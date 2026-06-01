@@ -109,10 +109,10 @@ func resourceSlbSslExpireCheckRead(ctx context.Context, d *schema.ResourceData, 
 	return diags
 }
 
-func getObjectSlbSslExpireCheckException1513(d []interface{}) edpt.SlbSslExpireCheckException1513 {
+func getObjectSlbSslExpireCheckException1514(d []interface{}) edpt.SlbSslExpireCheckException1514 {
 
 	count1 := len(d)
-	var ret edpt.SlbSslExpireCheckException1513
+	var ret edpt.SlbSslExpireCheckException1514
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
@@ -124,7 +124,7 @@ func getObjectSlbSslExpireCheckException1513(d []interface{}) edpt.SlbSslExpireC
 func dataToEndpointSlbSslExpireCheck(d *schema.ResourceData) edpt.SlbSslExpireCheck {
 	var ret edpt.SlbSslExpireCheck
 	ret.Inst.Before = d.Get("before").(int)
-	ret.Inst.Exception = getObjectSlbSslExpireCheckException1513(d.Get("exception").([]interface{}))
+	ret.Inst.Exception = getObjectSlbSslExpireCheckException1514(d.Get("exception").([]interface{}))
 	ret.Inst.ExpireAddress1 = d.Get("expire_address1").(string)
 	ret.Inst.IntervalDays = d.Get("interval_days").(int)
 	ret.Inst.SslExpireEmailAddress = d.Get("ssl_expire_email_address").(string)

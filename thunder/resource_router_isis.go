@@ -632,38 +632,38 @@ func resourceRouterIsisRead(ctx context.Context, d *schema.ResourceData, meta in
 	return diags
 }
 
-func getObjectRouterIsisAddressFamily1363(d []interface{}) edpt.RouterIsisAddressFamily1363 {
+func getObjectRouterIsisAddressFamily1362(d []interface{}) edpt.RouterIsisAddressFamily1362 {
 
 	count1 := len(d)
-	var ret edpt.RouterIsisAddressFamily1363
+	var ret edpt.RouterIsisAddressFamily1362
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Ipv6 = getObjectRouterIsisAddressFamilyIpv61364(in["ipv6"].([]interface{}))
+		ret.Ipv6 = getObjectRouterIsisAddressFamilyIpv61363(in["ipv6"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouterIsisAddressFamilyIpv61364(d []interface{}) edpt.RouterIsisAddressFamilyIpv61364 {
+func getObjectRouterIsisAddressFamilyIpv61363(d []interface{}) edpt.RouterIsisAddressFamilyIpv61363 {
 
 	count1 := len(d)
-	var ret edpt.RouterIsisAddressFamilyIpv61364
+	var ret edpt.RouterIsisAddressFamilyIpv61363
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DefaultInformation = in["default_information"].(string)
 		ret.AdjacencyCheck = in["adjacency_check"].(int)
 		ret.Distance = in["distance"].(int)
-		ret.MultiTopologyCfg = getObjectRouterIsisAddressFamilyIpv6MultiTopologyCfg1365(in["multi_topology_cfg"].([]interface{}))
-		ret.SummaryPrefixList = getSliceRouterIsisAddressFamilyIpv6SummaryPrefixList1366(in["summary_prefix_list"].([]interface{}))
+		ret.MultiTopologyCfg = getObjectRouterIsisAddressFamilyIpv6MultiTopologyCfg1364(in["multi_topology_cfg"].([]interface{}))
+		ret.SummaryPrefixList = getSliceRouterIsisAddressFamilyIpv6SummaryPrefixList1365(in["summary_prefix_list"].([]interface{}))
 		//omit uuid
-		ret.Redistribute = getObjectRouterIsisAddressFamilyIpv6Redistribute1367(in["redistribute"].([]interface{}))
+		ret.Redistribute = getObjectRouterIsisAddressFamilyIpv6Redistribute1366(in["redistribute"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouterIsisAddressFamilyIpv6MultiTopologyCfg1365(d []interface{}) edpt.RouterIsisAddressFamilyIpv6MultiTopologyCfg1365 {
+func getObjectRouterIsisAddressFamilyIpv6MultiTopologyCfg1364(d []interface{}) edpt.RouterIsisAddressFamilyIpv6MultiTopologyCfg1364 {
 
 	count1 := len(d)
-	var ret edpt.RouterIsisAddressFamilyIpv6MultiTopologyCfg1365
+	var ret edpt.RouterIsisAddressFamilyIpv6MultiTopologyCfg1364
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MultiTopology = in["multi_topology"].(int)
@@ -674,13 +674,13 @@ func getObjectRouterIsisAddressFamilyIpv6MultiTopologyCfg1365(d []interface{}) e
 	return ret
 }
 
-func getSliceRouterIsisAddressFamilyIpv6SummaryPrefixList1366(d []interface{}) []edpt.RouterIsisAddressFamilyIpv6SummaryPrefixList1366 {
+func getSliceRouterIsisAddressFamilyIpv6SummaryPrefixList1365(d []interface{}) []edpt.RouterIsisAddressFamilyIpv6SummaryPrefixList1365 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterIsisAddressFamilyIpv6SummaryPrefixList1366, 0, count1)
+	ret := make([]edpt.RouterIsisAddressFamilyIpv6SummaryPrefixList1365, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterIsisAddressFamilyIpv6SummaryPrefixList1366
+		var oi edpt.RouterIsisAddressFamilyIpv6SummaryPrefixList1365
 		oi.Prefix = in["prefix"].(string)
 		oi.Level = in["level"].(string)
 		ret = append(ret, oi)
@@ -688,27 +688,27 @@ func getSliceRouterIsisAddressFamilyIpv6SummaryPrefixList1366(d []interface{}) [
 	return ret
 }
 
-func getObjectRouterIsisAddressFamilyIpv6Redistribute1367(d []interface{}) edpt.RouterIsisAddressFamilyIpv6Redistribute1367 {
+func getObjectRouterIsisAddressFamilyIpv6Redistribute1366(d []interface{}) edpt.RouterIsisAddressFamilyIpv6Redistribute1366 {
 
 	count1 := len(d)
-	var ret edpt.RouterIsisAddressFamilyIpv6Redistribute1367
+	var ret edpt.RouterIsisAddressFamilyIpv6Redistribute1366
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.RedistList = getSliceRouterIsisAddressFamilyIpv6RedistributeRedistList1368(in["redist_list"].([]interface{}))
-		ret.VipList = getSliceRouterIsisAddressFamilyIpv6RedistributeVipList1369(in["vip_list"].([]interface{}))
-		ret.Isis = getObjectRouterIsisAddressFamilyIpv6RedistributeIsis1370(in["isis"].([]interface{}))
+		ret.RedistList = getSliceRouterIsisAddressFamilyIpv6RedistributeRedistList1367(in["redist_list"].([]interface{}))
+		ret.VipList = getSliceRouterIsisAddressFamilyIpv6RedistributeVipList1368(in["vip_list"].([]interface{}))
+		ret.Isis = getObjectRouterIsisAddressFamilyIpv6RedistributeIsis1369(in["isis"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceRouterIsisAddressFamilyIpv6RedistributeRedistList1368(d []interface{}) []edpt.RouterIsisAddressFamilyIpv6RedistributeRedistList1368 {
+func getSliceRouterIsisAddressFamilyIpv6RedistributeRedistList1367(d []interface{}) []edpt.RouterIsisAddressFamilyIpv6RedistributeRedistList1367 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterIsisAddressFamilyIpv6RedistributeRedistList1368, 0, count1)
+	ret := make([]edpt.RouterIsisAddressFamilyIpv6RedistributeRedistList1367, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterIsisAddressFamilyIpv6RedistributeRedistList1368
+		var oi edpt.RouterIsisAddressFamilyIpv6RedistributeRedistList1367
 		oi.Type = in["type"].(string)
 		oi.Metric = in["metric"].(int)
 		oi.MetricType = in["metric_type"].(string)
@@ -719,13 +719,13 @@ func getSliceRouterIsisAddressFamilyIpv6RedistributeRedistList1368(d []interface
 	return ret
 }
 
-func getSliceRouterIsisAddressFamilyIpv6RedistributeVipList1369(d []interface{}) []edpt.RouterIsisAddressFamilyIpv6RedistributeVipList1369 {
+func getSliceRouterIsisAddressFamilyIpv6RedistributeVipList1368(d []interface{}) []edpt.RouterIsisAddressFamilyIpv6RedistributeVipList1368 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterIsisAddressFamilyIpv6RedistributeVipList1369, 0, count1)
+	ret := make([]edpt.RouterIsisAddressFamilyIpv6RedistributeVipList1368, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterIsisAddressFamilyIpv6RedistributeVipList1369
+		var oi edpt.RouterIsisAddressFamilyIpv6RedistributeVipList1368
 		oi.VipType = in["vip_type"].(string)
 		oi.VipMetric = in["vip_metric"].(int)
 		oi.VipRouteMap = in["vip_route_map"].(string)
@@ -736,33 +736,33 @@ func getSliceRouterIsisAddressFamilyIpv6RedistributeVipList1369(d []interface{})
 	return ret
 }
 
-func getObjectRouterIsisAddressFamilyIpv6RedistributeIsis1370(d []interface{}) edpt.RouterIsisAddressFamilyIpv6RedistributeIsis1370 {
+func getObjectRouterIsisAddressFamilyIpv6RedistributeIsis1369(d []interface{}) edpt.RouterIsisAddressFamilyIpv6RedistributeIsis1369 {
 
 	count1 := len(d)
-	var ret edpt.RouterIsisAddressFamilyIpv6RedistributeIsis1370
+	var ret edpt.RouterIsisAddressFamilyIpv6RedistributeIsis1369
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Level1From = getObjectRouterIsisAddressFamilyIpv6RedistributeIsisLevel1From1371(in["level_1_from"].([]interface{}))
-		ret.Level2From = getObjectRouterIsisAddressFamilyIpv6RedistributeIsisLevel2From1373(in["level_2_from"].([]interface{}))
+		ret.Level1From = getObjectRouterIsisAddressFamilyIpv6RedistributeIsisLevel1From1370(in["level_1_from"].([]interface{}))
+		ret.Level2From = getObjectRouterIsisAddressFamilyIpv6RedistributeIsisLevel2From1372(in["level_2_from"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouterIsisAddressFamilyIpv6RedistributeIsisLevel1From1371(d []interface{}) edpt.RouterIsisAddressFamilyIpv6RedistributeIsisLevel1From1371 {
+func getObjectRouterIsisAddressFamilyIpv6RedistributeIsisLevel1From1370(d []interface{}) edpt.RouterIsisAddressFamilyIpv6RedistributeIsisLevel1From1370 {
 
 	count1 := len(d)
-	var ret edpt.RouterIsisAddressFamilyIpv6RedistributeIsisLevel1From1371
+	var ret edpt.RouterIsisAddressFamilyIpv6RedistributeIsisLevel1From1370
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Into1 = getObjectRouterIsisAddressFamilyIpv6RedistributeIsisLevel1FromInto11372(in["into_1"].([]interface{}))
+		ret.Into1 = getObjectRouterIsisAddressFamilyIpv6RedistributeIsisLevel1FromInto11371(in["into_1"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouterIsisAddressFamilyIpv6RedistributeIsisLevel1FromInto11372(d []interface{}) edpt.RouterIsisAddressFamilyIpv6RedistributeIsisLevel1FromInto11372 {
+func getObjectRouterIsisAddressFamilyIpv6RedistributeIsisLevel1FromInto11371(d []interface{}) edpt.RouterIsisAddressFamilyIpv6RedistributeIsisLevel1FromInto11371 {
 
 	count1 := len(d)
-	var ret edpt.RouterIsisAddressFamilyIpv6RedistributeIsisLevel1FromInto11372
+	var ret edpt.RouterIsisAddressFamilyIpv6RedistributeIsisLevel1FromInto11371
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Level2 = in["level_2"].(int)
@@ -771,21 +771,21 @@ func getObjectRouterIsisAddressFamilyIpv6RedistributeIsisLevel1FromInto11372(d [
 	return ret
 }
 
-func getObjectRouterIsisAddressFamilyIpv6RedistributeIsisLevel2From1373(d []interface{}) edpt.RouterIsisAddressFamilyIpv6RedistributeIsisLevel2From1373 {
+func getObjectRouterIsisAddressFamilyIpv6RedistributeIsisLevel2From1372(d []interface{}) edpt.RouterIsisAddressFamilyIpv6RedistributeIsisLevel2From1372 {
 
 	count1 := len(d)
-	var ret edpt.RouterIsisAddressFamilyIpv6RedistributeIsisLevel2From1373
+	var ret edpt.RouterIsisAddressFamilyIpv6RedistributeIsisLevel2From1372
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Into2 = getObjectRouterIsisAddressFamilyIpv6RedistributeIsisLevel2FromInto21374(in["into_2"].([]interface{}))
+		ret.Into2 = getObjectRouterIsisAddressFamilyIpv6RedistributeIsisLevel2FromInto21373(in["into_2"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouterIsisAddressFamilyIpv6RedistributeIsisLevel2FromInto21374(d []interface{}) edpt.RouterIsisAddressFamilyIpv6RedistributeIsisLevel2FromInto21374 {
+func getObjectRouterIsisAddressFamilyIpv6RedistributeIsisLevel2FromInto21373(d []interface{}) edpt.RouterIsisAddressFamilyIpv6RedistributeIsisLevel2FromInto21373 {
 
 	count1 := len(d)
-	var ret edpt.RouterIsisAddressFamilyIpv6RedistributeIsisLevel2FromInto21374
+	var ret edpt.RouterIsisAddressFamilyIpv6RedistributeIsisLevel2FromInto21373
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Level1 = in["level_1"].(int)
@@ -1007,27 +1007,27 @@ func getSliceRouterIsisProtocolList(d []interface{}) []edpt.RouterIsisProtocolLi
 	return ret
 }
 
-func getObjectRouterIsisRedistribute1375(d []interface{}) edpt.RouterIsisRedistribute1375 {
+func getObjectRouterIsisRedistribute1374(d []interface{}) edpt.RouterIsisRedistribute1374 {
 
 	count1 := len(d)
-	var ret edpt.RouterIsisRedistribute1375
+	var ret edpt.RouterIsisRedistribute1374
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.RedistList = getSliceRouterIsisRedistributeRedistList1376(in["redist_list"].([]interface{}))
-		ret.VipList = getSliceRouterIsisRedistributeVipList1377(in["vip_list"].([]interface{}))
-		ret.Isis = getObjectRouterIsisRedistributeIsis1378(in["isis"].([]interface{}))
+		ret.RedistList = getSliceRouterIsisRedistributeRedistList1375(in["redist_list"].([]interface{}))
+		ret.VipList = getSliceRouterIsisRedistributeVipList1376(in["vip_list"].([]interface{}))
+		ret.Isis = getObjectRouterIsisRedistributeIsis1377(in["isis"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceRouterIsisRedistributeRedistList1376(d []interface{}) []edpt.RouterIsisRedistributeRedistList1376 {
+func getSliceRouterIsisRedistributeRedistList1375(d []interface{}) []edpt.RouterIsisRedistributeRedistList1375 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterIsisRedistributeRedistList1376, 0, count1)
+	ret := make([]edpt.RouterIsisRedistributeRedistList1375, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterIsisRedistributeRedistList1376
+		var oi edpt.RouterIsisRedistributeRedistList1375
 		oi.Type = in["type"].(string)
 		oi.Metric = in["metric"].(int)
 		oi.MetricType = in["metric_type"].(string)
@@ -1038,13 +1038,13 @@ func getSliceRouterIsisRedistributeRedistList1376(d []interface{}) []edpt.Router
 	return ret
 }
 
-func getSliceRouterIsisRedistributeVipList1377(d []interface{}) []edpt.RouterIsisRedistributeVipList1377 {
+func getSliceRouterIsisRedistributeVipList1376(d []interface{}) []edpt.RouterIsisRedistributeVipList1376 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterIsisRedistributeVipList1377, 0, count1)
+	ret := make([]edpt.RouterIsisRedistributeVipList1376, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterIsisRedistributeVipList1377
+		var oi edpt.RouterIsisRedistributeVipList1376
 		oi.VipType = in["vip_type"].(string)
 		oi.VipMetric = in["vip_metric"].(int)
 		oi.VipRouteMap = in["vip_route_map"].(string)
@@ -1055,33 +1055,33 @@ func getSliceRouterIsisRedistributeVipList1377(d []interface{}) []edpt.RouterIsi
 	return ret
 }
 
-func getObjectRouterIsisRedistributeIsis1378(d []interface{}) edpt.RouterIsisRedistributeIsis1378 {
+func getObjectRouterIsisRedistributeIsis1377(d []interface{}) edpt.RouterIsisRedistributeIsis1377 {
 
 	count1 := len(d)
-	var ret edpt.RouterIsisRedistributeIsis1378
+	var ret edpt.RouterIsisRedistributeIsis1377
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Level1From = getObjectRouterIsisRedistributeIsisLevel1From1379(in["level_1_from"].([]interface{}))
-		ret.Level2From = getObjectRouterIsisRedistributeIsisLevel2From1381(in["level_2_from"].([]interface{}))
+		ret.Level1From = getObjectRouterIsisRedistributeIsisLevel1From1378(in["level_1_from"].([]interface{}))
+		ret.Level2From = getObjectRouterIsisRedistributeIsisLevel2From1380(in["level_2_from"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouterIsisRedistributeIsisLevel1From1379(d []interface{}) edpt.RouterIsisRedistributeIsisLevel1From1379 {
+func getObjectRouterIsisRedistributeIsisLevel1From1378(d []interface{}) edpt.RouterIsisRedistributeIsisLevel1From1378 {
 
 	count1 := len(d)
-	var ret edpt.RouterIsisRedistributeIsisLevel1From1379
+	var ret edpt.RouterIsisRedistributeIsisLevel1From1378
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Into1 = getObjectRouterIsisRedistributeIsisLevel1FromInto11380(in["into_1"].([]interface{}))
+		ret.Into1 = getObjectRouterIsisRedistributeIsisLevel1FromInto11379(in["into_1"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouterIsisRedistributeIsisLevel1FromInto11380(d []interface{}) edpt.RouterIsisRedistributeIsisLevel1FromInto11380 {
+func getObjectRouterIsisRedistributeIsisLevel1FromInto11379(d []interface{}) edpt.RouterIsisRedistributeIsisLevel1FromInto11379 {
 
 	count1 := len(d)
-	var ret edpt.RouterIsisRedistributeIsisLevel1FromInto11380
+	var ret edpt.RouterIsisRedistributeIsisLevel1FromInto11379
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Level2 = in["level_2"].(int)
@@ -1090,21 +1090,21 @@ func getObjectRouterIsisRedistributeIsisLevel1FromInto11380(d []interface{}) edp
 	return ret
 }
 
-func getObjectRouterIsisRedistributeIsisLevel2From1381(d []interface{}) edpt.RouterIsisRedistributeIsisLevel2From1381 {
+func getObjectRouterIsisRedistributeIsisLevel2From1380(d []interface{}) edpt.RouterIsisRedistributeIsisLevel2From1380 {
 
 	count1 := len(d)
-	var ret edpt.RouterIsisRedistributeIsisLevel2From1381
+	var ret edpt.RouterIsisRedistributeIsisLevel2From1380
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Into2 = getObjectRouterIsisRedistributeIsisLevel2FromInto21382(in["into_2"].([]interface{}))
+		ret.Into2 = getObjectRouterIsisRedistributeIsisLevel2FromInto21381(in["into_2"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouterIsisRedistributeIsisLevel2FromInto21382(d []interface{}) edpt.RouterIsisRedistributeIsisLevel2FromInto21382 {
+func getObjectRouterIsisRedistributeIsisLevel2FromInto21381(d []interface{}) edpt.RouterIsisRedistributeIsisLevel2FromInto21381 {
 
 	count1 := len(d)
-	var ret edpt.RouterIsisRedistributeIsisLevel2FromInto21382
+	var ret edpt.RouterIsisRedistributeIsisLevel2FromInto21381
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Level1 = in["level_1"].(int)
@@ -1181,7 +1181,7 @@ func getSliceRouterIsisSummaryAddressList(d []interface{}) []edpt.RouterIsisSumm
 
 func dataToEndpointRouterIsis(d *schema.ResourceData) edpt.RouterIsis {
 	var ret edpt.RouterIsis
-	ret.Inst.AddressFamily = getObjectRouterIsisAddressFamily1363(d.Get("address_family").([]interface{}))
+	ret.Inst.AddressFamily = getObjectRouterIsisAddressFamily1362(d.Get("address_family").([]interface{}))
 	ret.Inst.AdjacencyCheck = d.Get("adjacency_check").(int)
 	ret.Inst.AreaPasswordCfg = getObjectRouterIsisAreaPasswordCfg(d.Get("area_password_cfg").([]interface{}))
 	ret.Inst.Authentication = getObjectRouterIsisAuthentication(d.Get("authentication").([]interface{}))
@@ -1200,7 +1200,7 @@ func dataToEndpointRouterIsis(d *schema.ResourceData) edpt.RouterIsis {
 	ret.Inst.NetList = getSliceRouterIsisNetList(d.Get("net_list").([]interface{}))
 	ret.Inst.PassiveInterfaceList = getSliceRouterIsisPassiveInterfaceList(d.Get("passive_interface_list").([]interface{}))
 	ret.Inst.ProtocolList = getSliceRouterIsisProtocolList(d.Get("protocol_list").([]interface{}))
-	ret.Inst.Redistribute = getObjectRouterIsisRedistribute1375(d.Get("redistribute").([]interface{}))
+	ret.Inst.Redistribute = getObjectRouterIsisRedistribute1374(d.Get("redistribute").([]interface{}))
 	ret.Inst.SetOverloadBitCfg = getObjectRouterIsisSetOverloadBitCfg(d.Get("set_overload_bit_cfg").([]interface{}))
 	ret.Inst.SpfIntervalExpList = getSliceRouterIsisSpfIntervalExpList(d.Get("spf_interval_exp_list").([]interface{}))
 	ret.Inst.SummaryAddressList = getSliceRouterIsisSummaryAddressList(d.Get("summary_address_list").([]interface{}))

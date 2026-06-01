@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosZoneTemplateQuicVersionSupportedMalformedCheck struct {
 	Inst struct {
 		MalformedCheckAction string `json:"malformed-check-action"`
@@ -20,9 +20,9 @@ type DdosZoneTemplateQuicVersionSupportedMalformedCheck struct {
 
 		Uuid string `json:"uuid"`
 
-		VersionEnd string
-
 		VersionStart string
+
+		VersionEnd string
 
 		QuicTmplName string
 	} `json:"malformed-check"`

@@ -166,10 +166,10 @@ func resourceSystemIpmiRead(ctx context.Context, d *schema.ResourceData, meta in
 	return diags
 }
 
-func getObjectSystemIpmiIp1693(d []interface{}) edpt.SystemIpmiIp1693 {
+func getObjectSystemIpmiIp1694(d []interface{}) edpt.SystemIpmiIp1694 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpmiIp1693
+	var ret edpt.SystemIpmiIp1694
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ipv4Address = in["ipv4_address"].(string)
@@ -179,10 +179,10 @@ func getObjectSystemIpmiIp1693(d []interface{}) edpt.SystemIpmiIp1693 {
 	return ret
 }
 
-func getObjectSystemIpmiIpsrc1694(d []interface{}) edpt.SystemIpmiIpsrc1694 {
+func getObjectSystemIpmiIpsrc1695(d []interface{}) edpt.SystemIpmiIpsrc1695 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpmiIpsrc1694
+	var ret edpt.SystemIpmiIpsrc1695
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Dhcp = in["dhcp"].(int)
@@ -191,10 +191,10 @@ func getObjectSystemIpmiIpsrc1694(d []interface{}) edpt.SystemIpmiIpsrc1694 {
 	return ret
 }
 
-func getObjectSystemIpmiTool1695(d []interface{}) edpt.SystemIpmiTool1695 {
+func getObjectSystemIpmiTool1696(d []interface{}) edpt.SystemIpmiTool1696 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpmiTool1695
+	var ret edpt.SystemIpmiTool1696
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Cmd = in["cmd"].(string)
@@ -202,10 +202,10 @@ func getObjectSystemIpmiTool1695(d []interface{}) edpt.SystemIpmiTool1695 {
 	return ret
 }
 
-func getObjectSystemIpmiUser1696(d []interface{}) edpt.SystemIpmiUser1696 {
+func getObjectSystemIpmiUser1697(d []interface{}) edpt.SystemIpmiUser1697 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpmiUser1696
+	var ret edpt.SystemIpmiUser1697
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Add = in["add"].(string)
@@ -226,10 +226,10 @@ func getObjectSystemIpmiUser1696(d []interface{}) edpt.SystemIpmiUser1696 {
 
 func dataToEndpointSystemIpmi(d *schema.ResourceData) edpt.SystemIpmi {
 	var ret edpt.SystemIpmi
-	ret.Inst.Ip = getObjectSystemIpmiIp1693(d.Get("ip").([]interface{}))
-	ret.Inst.Ipsrc = getObjectSystemIpmiIpsrc1694(d.Get("ipsrc").([]interface{}))
+	ret.Inst.Ip = getObjectSystemIpmiIp1694(d.Get("ip").([]interface{}))
+	ret.Inst.Ipsrc = getObjectSystemIpmiIpsrc1695(d.Get("ipsrc").([]interface{}))
 	ret.Inst.Reset = d.Get("reset").(int)
-	ret.Inst.Tool = getObjectSystemIpmiTool1695(d.Get("tool").([]interface{}))
-	ret.Inst.User = getObjectSystemIpmiUser1696(d.Get("user").([]interface{}))
+	ret.Inst.Tool = getObjectSystemIpmiTool1696(d.Get("tool").([]interface{}))
+	ret.Inst.User = getObjectSystemIpmiUser1697(d.Get("user").([]interface{}))
 	return ret
 }

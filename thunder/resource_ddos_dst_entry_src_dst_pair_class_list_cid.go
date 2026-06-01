@@ -117,11 +117,11 @@ func resourceDdosDstEntrySrcDstPairClassListCid() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"dst_entry_name": {
-				Type: schema.TypeString, Required: true, Description: "DstEntryName",
-			},
 			"class_list_name": {
 				Type: schema.TypeString, Required: true, Description: "ClassListName",
+			},
+			"dst_entry_name": {
+				Type: schema.TypeString, Required: true, Description: "DstEntryName",
 			},
 		},
 	}
@@ -271,7 +271,7 @@ func dataToEndpointDdosDstEntrySrcDstPairClassListCid(d *schema.ResourceData) ed
 	ret.Inst.LogPeriodic = d.Get("log_periodic").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.DstEntryName = d.Get("dst_entry_name").(string)
 	ret.Inst.ClassListName = d.Get("class_list_name").(string)
+	ret.Inst.DstEntryName = d.Get("dst_entry_name").(string)
 	return ret
 }

@@ -5,24 +5,24 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityTopn struct {
 	Inst struct {
-		Cgnv6NatPoolTopnNode VisibilityTopnCgnv6NatPoolTopnNode3234 `json:"cgnv6-nat-pool-topn-node"`
+		Cgnv6NatPoolTopnNode VisibilityTopnCgnv6NatPoolTopnNode3262 `json:"cgnv6-nat-pool-topn-node"`
 
 		Cgnv6NatPoolTopnTmplList []VisibilityTopnCgnv6NatPoolTopnTmplList `json:"cgnv6-nat-pool-topn-tmpl-list"`
 
-		GtpApnPrefixTopnNode VisibilityTopnGtpApnPrefixTopnNode3235 `json:"gtp-apn-prefix-topn-node"`
+		GtpApnPrefixTopnNode VisibilityTopnGtpApnPrefixTopnNode3263 `json:"gtp-apn-prefix-topn-node"`
 
 		GtpApnPrefixTopnTmplList []VisibilityTopnGtpApnPrefixTopnTmplList `json:"gtp-apn-prefix-topn-tmpl-list"`
 
-		GtpNetworkElementTopnNode VisibilityTopnGtpNetworkElementTopnNode3236 `json:"gtp-network-element-topn-node"`
+		GtpNetworkElementTopnNode VisibilityTopnGtpNetworkElementTopnNode3264 `json:"gtp-network-element-topn-node"`
 
 		GtpNetworkElementTopnTmplList []VisibilityTopnGtpNetworkElementTopnTmplList `json:"gtp-network-element-topn-tmpl-list"`
 
 		SamplingEnable []VisibilityTopnSamplingEnable `json:"sampling-enable"`
 
-		TemplGtpPlcyTopnNode VisibilityTopnTemplGtpPlcyTopnNode3237 `json:"templ-gtp-plcy-topn-node"`
+		TemplGtpPlcyTopnNode VisibilityTopnTemplGtpPlcyTopnNode3265 `json:"templ-gtp-plcy-topn-node"`
 
 		TemplGtpPlcyTopnTmplList []VisibilityTopnTemplGtpPlcyTopnTmplList `json:"templ-gtp-plcy-topn-tmpl-list"`
 
@@ -30,7 +30,7 @@ type VisibilityTopn struct {
 	} `json:"topn"`
 }
 
-type VisibilityTopnCgnv6NatPoolTopnNode3234 struct {
+type VisibilityTopnCgnv6NatPoolTopnNode3262 struct {
 	Activate string `json:"activate"`
 	Uuid     string `json:"uuid"`
 }
@@ -50,7 +50,7 @@ type VisibilityTopnCgnv6NatPoolTopnTmplListMetrics struct {
 	Uuid     string `json:"uuid"`
 }
 
-type VisibilityTopnGtpApnPrefixTopnNode3235 struct {
+type VisibilityTopnGtpApnPrefixTopnNode3263 struct {
 	Activate string `json:"activate"`
 	Uuid     string `json:"uuid"`
 }
@@ -155,7 +155,7 @@ type VisibilityTopnGtpApnPrefixTopnTmplListMetrics struct {
 	Uuid                               string `json:"uuid"`
 }
 
-type VisibilityTopnGtpNetworkElementTopnNode3236 struct {
+type VisibilityTopnGtpNetworkElementTopnNode3264 struct {
 	Activate string `json:"activate"`
 	Uuid     string `json:"uuid"`
 }
@@ -267,7 +267,7 @@ type VisibilityTopnSamplingEnable struct {
 	Counters1 string `json:"counters1"`
 }
 
-type VisibilityTopnTemplGtpPlcyTopnNode3237 struct {
+type VisibilityTopnTemplGtpPlcyTopnNode3265 struct {
 	Activate string `json:"activate"`
 	Uuid     string `json:"uuid"`
 }

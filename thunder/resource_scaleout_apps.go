@@ -19,6 +19,19 @@ func resourceScaleoutApps() *schema.Resource {
 			"enable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable Scaleout for apps",
 			},
+			"separate_v4_v6_traffic_map": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"enable": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Separates traffic maps for IPv4 and IPv6",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
 			"skip_mac_overwrite": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -100,6 +113,18 @@ func resourceScaleoutAppsRead(ctx context.Context, d *schema.ResourceData, meta 
 	return diags
 }
 
+func getObjectScaleoutAppsSeparateV4V6TrafficMap1410(d []interface{}) edpt.ScaleoutAppsSeparateV4V6TrafficMap1410 {
+
+	count1 := len(d)
+	var ret edpt.ScaleoutAppsSeparateV4V6TrafficMap1410
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Enable = in["enable"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
 func getObjectScaleoutAppsSkipMacOverwrite1411(d []interface{}) edpt.ScaleoutAppsSkipMacOverwrite1411 {
 
 	count1 := len(d)
@@ -115,6 +140,7 @@ func getObjectScaleoutAppsSkipMacOverwrite1411(d []interface{}) edpt.ScaleoutApp
 func dataToEndpointScaleoutApps(d *schema.ResourceData) edpt.ScaleoutApps {
 	var ret edpt.ScaleoutApps
 	ret.Inst.Enable = d.Get("enable").(int)
+	ret.Inst.SeparateV4V6TrafficMap = getObjectScaleoutAppsSeparateV4V6TrafficMap1410(d.Get("separate_v4_v6_traffic_map").([]interface{}))
 	ret.Inst.SkipMacOverwrite = getObjectScaleoutAppsSkipMacOverwrite1411(d.Get("skip_mac_overwrite").([]interface{}))
 	//omit uuid
 	return ret

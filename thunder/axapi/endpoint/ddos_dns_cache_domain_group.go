@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDnsCacheDomainGroup struct {
 	Inst struct {
 		DomainListPolicyList []DdosDnsCacheDomainGroupDomainListPolicyList `json:"domain-list-policy-list"`
@@ -28,6 +28,7 @@ type DdosDnsCacheDomainGroupDomainListPolicyList struct {
 	ServerV6Port           int                                                        `json:"server-v6-port" dval:"53"`
 	ClientIpv6             string                                                     `json:"client-ipv6"`
 	DnsNotifyEnableIpv6    int                                                        `json:"dns-notify-enable-ipv6"`
+	RefreshIntervalBySoa   int                                                        `json:"refresh-interval-by-soa"`
 	RefreshIntervalHours   int                                                        `json:"refresh-interval-hours" dval:"4"`
 	TtlOverride            int                                                        `json:"ttl-override"`
 	RespondWithAuthority   int                                                        `json:"respond-with-authority"`
@@ -35,6 +36,7 @@ type DdosDnsCacheDomainGroupDomainListPolicyList struct {
 	ResolveCnameRecord     int                                                        `json:"resolve-cname-record"`
 	ManualRefresh          string                                                     `json:"manual-refresh"`
 	Force                  int                                                        `json:"force"`
+	Ixfr                   int                                                        `json:"ixfr"`
 	CacheAllRecords        int                                                        `json:"cache-all-records"`
 	CacheDnssecRecords     int                                                        `json:"cache-dnssec-records"`
 	Uuid                   string                                                     `json:"uuid"`

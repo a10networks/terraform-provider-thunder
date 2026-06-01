@@ -36,12 +36,22 @@ resource "thunder_scaleout_apps" "thunder_scaleout_apps" {
 ### Optional
 
 - `enable` (Number) Enable Scaleout for apps
+- `separate_v4_v6_traffic_map` (Block List, Max: 1) (see [below for nested schema](#nestedblock--separate_v4_v6_traffic_map))
 - `skip_mac_overwrite` (Block List, Max: 1) (see [below for nested schema](#nestedblock--skip_mac_overwrite))
 - `uuid` (String) uuid of the object
 
 ### Read-Only
 
 - `id` (String) The ID of this resource.
+
+<a id="nestedblock--separate_v4_v6_traffic_map"></a>
+### Nested Schema for `separate_v4_v6_traffic_map`
+
+Optional:
+
+- `enable` (Number) Separates traffic maps for IPv4 and IPv6
+- `uuid` (String) uuid of the object
+
 
 <a id="nestedblock--skip_mac_overwrite"></a>
 ### Nested Schema for `skip_mac_overwrite`

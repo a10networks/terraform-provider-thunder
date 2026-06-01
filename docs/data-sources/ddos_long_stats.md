@@ -100,6 +100,7 @@ Optional:
 - `jumbo_frag_drop_by_filter` (Number) Jumbo Fragment Filter Miss Drop
 - `jumbo_in_tunnel_drop` (Number) Jumbo Packet in Tunnel Drop
 - `jumbo_outgoing_mtu_exceed_drop` (Number) Jumbo Outgoing MTU Exceed Drop
+- `outgoing_mtu_exceed_drop` (Number) Outgoing MTU Exceed Drop
 - `src_entry_aged` (Number) Src Entry Aged
 - `src_entry_hit` (Number) Src Entry Hit
 - `src_entry_learn` (Number) Src Entry Learned

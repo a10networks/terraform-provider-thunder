@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDetectionStatisticsStats struct {
 	Stats DdosDetectionStatisticsStatsStats `json:"stats"`
 }
@@ -96,6 +96,8 @@ type DdosDetectionStatisticsStatsStats struct {
 	NSportNotFound              int `json:"n-sport-not-found"`
 	NSportCreateFail            int `json:"n-sport-create-fail"`
 	TrustedSampleProcessed      int `json:"trusted-sample-processed"`
+	IntfSelectSampleDropped     int `json:"intf-select-sample-dropped"`
+	IntfNameRegexMatchError     int `json:"intf-name-regex-match-error"`
 }
 
 func (p *DdosDetectionStatisticsStats) GetId() string {

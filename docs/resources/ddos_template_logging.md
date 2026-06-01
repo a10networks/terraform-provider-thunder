@@ -43,7 +43,7 @@ resource "thunder_ddos_template_logging" "thunder_ddos_template_logging" {
 - `enable_action_logging` (Number) Log action taken
 - `log_format_cef` (Number) Log in CEF format
 - `log_format_custom` (String) Customize log format
-- `use_obj_name` (Number) Show obj name in the log
+- `use_obj_name` (Number) Show obj name instead of ip in the log
 - `user_tag` (String) Customized tag
 - `uuid` (String) uuid of the object
 

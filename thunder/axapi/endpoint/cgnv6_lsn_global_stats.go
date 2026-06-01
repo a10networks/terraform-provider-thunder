@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6LsnGlobalStats struct {
 	Stats Cgnv6LsnGlobalStatsStats `json:"stats"`
 }
@@ -136,14 +136,6 @@ type Cgnv6LsnGlobalStatsStats struct {
 	Port_overloading_port_free_tcp                      int `json:"port_overloading_port_free_tcp"`
 	Port_overloading_port_free_udp                      int `json:"port_overloading_port_free_udp"`
 	Chassis_incorrect_pu                                int `json:"chassis_incorrect_pu"`
-	Data_session_created_sby                            int `json:"data_session_created_sby"`
-	Data_session_freed_sby                              int `json:"data_session_freed_sby"`
-	User_quota_created_sby                              int `json:"user_quota_created_sby"`
-	User_quota_put_in_del_q_sby                         int `json:"user_quota_put_in_del_q_sby"`
-	Tcp_fullcone_created_sby                            int `json:"tcp_fullcone_created_sby"`
-	Tcp_fullcone_freed_sby                              int `json:"tcp_fullcone_freed_sby"`
-	Udp_fullcone_created_sby                            int `json:"udp_fullcone_created_sby"`
-	Udp_fullcone_freed_sby                              int `json:"udp_fullcone_freed_sby"`
 }
 
 func (p *Cgnv6LsnGlobalStats) GetId() string {

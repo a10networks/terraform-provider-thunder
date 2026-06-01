@@ -60,6 +60,21 @@ func resourceTacacsServerHostTacacsHostname() *schema.Resource {
 									"prefer_data_interface": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Prefer data plane to send request (Only for loopback)",
 									},
+									"over_tls": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable TACACS+ over TLS support",
+									},
+									"cert": {
+										Type: schema.TypeString, Optional: true, Description: "Specify the client certificate (The certificate file name)",
+									},
+									"private_key": {
+										Type: schema.TypeString, Optional: true, Description: "Specify the client private-key (The private-key file name)",
+									},
+									"custom_ca": {
+										Type: schema.TypeString, Optional: true, Description: "Speicfy a CA certificate (The CA certificate file name)",
+									},
+									"skip_cert_verification": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Do TLS without server certificate verification",
+									},
 									"monitor": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify monitor TACACS+ server",
 									},
@@ -175,6 +190,11 @@ func getObjectTacacsServerHostTacacsHostnameSecretPortCfg(d []interface{}) edpt.
 		ret.Port = in["port"].(int)
 		ret.Timeout = in["timeout"].(int)
 		ret.PreferDataInterface = in["prefer_data_interface"].(int)
+		ret.OverTls = in["over_tls"].(int)
+		ret.Cert = in["cert"].(string)
+		ret.PrivateKey = in["private_key"].(string)
+		ret.CustomCa = in["custom_ca"].(string)
+		ret.SkipCertVerification = in["skip_cert_verification"].(int)
 		ret.Monitor = in["monitor"].(int)
 		ret.Username = in["username"].(string)
 		ret.Password = in["password"].(int)

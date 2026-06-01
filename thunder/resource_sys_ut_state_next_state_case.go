@@ -334,11 +334,11 @@ func resourceSysUtStateNextStateCase() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"state_name": {
-				Type: schema.TypeString, Required: true, Description: "State_name",
-			},
 			"next_state_name": {
 				Type: schema.TypeString, Required: true, Description: "Next_state_name",
+			},
+			"state_name": {
+				Type: schema.TypeString, Required: true, Description: "State_name",
 			},
 		},
 	}
@@ -627,7 +627,7 @@ func dataToEndpointSysUtStateNextStateCase(d *schema.ResourceData) edpt.SysUtSta
 	ret.Inst.Repeat = d.Get("repeat").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.State_name = d.Get("state_name").(string)
 	ret.Inst.Next_state_name = d.Get("next_state_name").(string)
+	ret.Inst.State_name = d.Get("state_name").(string)
 	return ret
 }

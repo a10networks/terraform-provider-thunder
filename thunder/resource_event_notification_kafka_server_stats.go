@@ -165,16 +165,16 @@ func resourceEventNotificationKafkaServerStats() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Description: "Metrics dropped,missing partition tenant mapping",
 						},
 						"ssli_pc_acos_harmony_topic": {
-							Type: schema.TypeInt, Optional: true, Description: "SSLi PC topic counter from acos to harmony",
+							Type: schema.TypeInt, Optional: true, Description: "SSLi PC topic counter from acos to A10C",
 						},
 						"ssli_pc_acos_harmony_topic_dequeue_err": {
-							Type: schema.TypeInt, Optional: true, Description: "SSLi PC topic to harmony dequeue error",
+							Type: schema.TypeInt, Optional: true, Description: "SSLi PC topic to A10C dequeue error",
 						},
 						"ssli_pe_acos_harmony_topic": {
-							Type: schema.TypeInt, Optional: true, Description: "SSLi PE topic counter from acos to harmony",
+							Type: schema.TypeInt, Optional: true, Description: "SSLi PE topic counter from acos to A10C",
 						},
 						"ssli_pe_acos_harmony_topic_dequeue_err": {
-							Type: schema.TypeInt, Optional: true, Description: "SSLi PE topic to harmony dequeue error",
+							Type: schema.TypeInt, Optional: true, Description: "SSLi PE topic to A10C dequeue error",
 						},
 						"analytics_bus_restart": {
 							Type: schema.TypeInt, Optional: true, Description: "Analytics bus restart count",
@@ -198,25 +198,25 @@ func resourceEventNotificationKafkaServerStats() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Description: "Visibility TopN metrics dropped,enq error analytics qs",
 						},
 						"hc_logs_sent_to_master": {
-							Type: schema.TypeInt, Optional: true, Description: "HC logs sent to master",
+							Type: schema.TypeInt, Optional: true, Description: "A10C logs sent to master",
 						},
 						"hc_logs_received_from_blade": {
-							Type: schema.TypeInt, Optional: true, Description: "HC logs received from blade",
+							Type: schema.TypeInt, Optional: true, Description: "A10C logs received from blade",
 						},
 						"hc_oper_sent_to_master": {
-							Type: schema.TypeInt, Optional: true, Description: "HC oper to master",
+							Type: schema.TypeInt, Optional: true, Description: "A10C oper to master",
 						},
 						"hc_oper_received_from_blade": {
-							Type: schema.TypeInt, Optional: true, Description: "HC oper received from blade",
+							Type: schema.TypeInt, Optional: true, Description: "A10C oper received from blade",
 						},
 						"hc_counters_sent_to_master": {
-							Type: schema.TypeInt, Optional: true, Description: "HC counters sent to master",
+							Type: schema.TypeInt, Optional: true, Description: "A10C counters sent to master",
 						},
 						"hc_counters_received_from_blade": {
-							Type: schema.TypeInt, Optional: true, Description: "HC counters received from blade",
+							Type: schema.TypeInt, Optional: true, Description: "A10C counters received from blade",
 						},
 						"hc_counters_dropped_from_blade": {
-							Type: schema.TypeInt, Optional: true, Description: "HC counters dropped from blade (uuid or size mismatch)",
+							Type: schema.TypeInt, Optional: true, Description: "A10C counters dropped from blade (uuid or size mismatch)",
 						},
 						"pe_acos_harmony_topic": {
 							Type: schema.TypeInt, Optional: true, Description: "L7 PE logs sent",
@@ -246,10 +246,10 @@ func resourceEventNotificationKafkaServerStats() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Description: "VPN STATS metrics dropped,enq error analytics qs",
 						},
 						"cgn_port_usage_hstgrm_acos_harmony_topic": {
-							Type: schema.TypeInt, Optional: true, Description: "CGN Port Usage Histogram HC Export",
+							Type: schema.TypeInt, Optional: true, Description: "CGN Port Usage Histogram A10C Export",
 						},
 						"cgn_port_usage_hstgrm_acos_harmony_topic_dequeue_err": {
-							Type: schema.TypeInt, Optional: true, Description: "CGN Port Usage Histogram HC Export Failed",
+							Type: schema.TypeInt, Optional: true, Description: "CGN Port Usage Histogram A10C Export Failed",
 						},
 						"avro_system_env_topic": {
 							Type: schema.TypeInt, Optional: true, Description: "System environment sent",
@@ -264,16 +264,16 @@ func resourceEventNotificationKafkaServerStats() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Description: "Cert-pinning candidate list dropped,enq error analytics queues",
 						},
 						"ngwaf_hc_ep_topic": {
-							Type: schema.TypeInt, Optional: true, Description: "NGWAF HC PE export",
+							Type: schema.TypeInt, Optional: true, Description: "NGWAF A10C PE export",
 						},
 						"ngwaf_hc_ep_topic_dequeue_err": {
-							Type: schema.TypeInt, Optional: true, Description: "NGWAF HC PE export failed",
+							Type: schema.TypeInt, Optional: true, Description: "NGWAF A10C PE export failed",
 						},
 						"ngwaf_hc_metrics_topic": {
-							Type: schema.TypeInt, Optional: true, Description: "NGWAF HC metrics export",
+							Type: schema.TypeInt, Optional: true, Description: "NGWAF A10C metrics export",
 						},
 						"ngwaf_hc_metrics_topic_dequeue_err": {
-							Type: schema.TypeInt, Optional: true, Description: "NGWAF HC metrics export failed",
+							Type: schema.TypeInt, Optional: true, Description: "NGWAF A10C metrics export failed",
 						},
 					},
 				},

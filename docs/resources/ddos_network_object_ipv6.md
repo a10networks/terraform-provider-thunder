@@ -27,6 +27,7 @@ __PLACEHOLDER__
 
 - `prefix_anomaly_threshold` (Block List, Max: 1) (see [below for nested schema](#nestedblock--prefix_anomaly_threshold))
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `src_port_list` (Block List) (see [below for nested schema](#nestedblock--src_port_list))
 - `user_tag` (String) Customized tag
 - `uuid` (String) uuid of the object
 
@@ -49,3 +50,36 @@ Optional:
 Optional:
 
 - `counters1` (String) 'all': all; 'packet_rate': PPS; 'bit_rate': B(bits)PS;
+
+
+<a id="nestedblock--src_port_list"></a>
+### Nested Schema for `src_port_list`
+
+Required:
+
+- `port_num` (Number) Port Number
+- `protocol` (String) 'udp': UDP port; 'tcp': TCP Port;
+
+Optional:
+
+- `host_src_port_anomaly_threshold` (Block List, Max: 1) (see [below for nested schema](#nestedblock--src_port_list--host_src_port_anomaly_threshold))
+- `subnet_src_port_anomaly_threshold` (Block List, Max: 1) (see [below for nested schema](#nestedblock--src_port_list--subnet_src_port_anomaly_threshold))
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--src_port_list--host_src_port_anomaly_threshold"></a>
+### Nested Schema for `src_port_list.host_src_port_anomaly_threshold`
+
+Optional:
+
+- `host_src_port_bit_rate` (Number) Forward bit rate of per-host source port entries
+- `host_src_port_pkt_rate` (Number) Forward packet rate of per-host source port entries
+
+
+<a id="nestedblock--src_port_list--subnet_src_port_anomaly_threshold"></a>
+### Nested Schema for `src_port_list.subnet_src_port_anomaly_threshold`
+
+Optional:
+
+- `subnet_src_port_bit_rate` (Number) Forward bit rate of per-subnet source port entries
+- `subnet_src_port_pkt_rate` (Number) Forward packet rate of per-subnet source port entries

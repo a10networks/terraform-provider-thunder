@@ -76,6 +76,9 @@ func resourceVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsCha
 			"standby_drop": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Fixed NAT LID Standby Drop",
 			},
+			"unused_ip_drop": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Fixed NAT UNUSED IP Hit and Drop",
+			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
@@ -169,6 +172,7 @@ func dataToEndpointVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjSt
 	ret.Inst.SessionUserQuotaExceeded = d.Get("session_user_quota_exceeded").(int)
 	ret.Inst.SixrdDrop = d.Get("sixrd_drop").(int)
 	ret.Inst.StandbyDrop = d.Get("standby_drop").(int)
+	ret.Inst.UnusedIpDrop = d.Get("unused_ip_drop").(int)
 	//omit uuid
 	ret.Inst.Template_name = d.Get("template_name").(string)
 	return ret

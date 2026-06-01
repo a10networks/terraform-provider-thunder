@@ -53,14 +53,14 @@ func resourceDdosDstEntrySrcDstPairPolicyPolicyClassListL4TypeSrcDst() *schema.R
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
+			"class_list_name": {
+				Type: schema.TypeString, Required: true, Description: "ClassListName",
+			},
 			"src_based_policy_name": {
 				Type: schema.TypeString, Required: true, Description: "SrcBasedPolicyName",
 			},
 			"dst_entry_name": {
 				Type: schema.TypeString, Required: true, Description: "DstEntryName",
-			},
-			"class_list_name": {
-				Type: schema.TypeString, Required: true, Description: "ClassListName",
 			},
 		},
 	}
@@ -150,8 +150,8 @@ func dataToEndpointDdosDstEntrySrcDstPairPolicyPolicyClassListL4TypeSrcDst(d *sc
 	ret.Inst.Template = getObjectDdosDstEntrySrcDstPairPolicyPolicyClassListL4TypeSrcDstTemplate(d.Get("template").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
+	ret.Inst.ClassListName = d.Get("class_list_name").(string)
 	ret.Inst.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
 	ret.Inst.DstEntryName = d.Get("dst_entry_name").(string)
-	ret.Inst.ClassListName = d.Get("class_list_name").(string)
 	return ret
 }

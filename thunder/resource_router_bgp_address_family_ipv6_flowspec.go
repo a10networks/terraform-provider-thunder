@@ -158,10 +158,10 @@ func resourceRouterBgpAddressFamilyIpv6FlowspecRead(ctx context.Context, d *sche
 	return diags
 }
 
-func getObjectRouterBgpAddressFamilyIpv6FlowspecNeighbor1236(d []interface{}) edpt.RouterBgpAddressFamilyIpv6FlowspecNeighbor1236 {
+func getObjectRouterBgpAddressFamilyIpv6FlowspecNeighbor1235(d []interface{}) edpt.RouterBgpAddressFamilyIpv6FlowspecNeighbor1235 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6FlowspecNeighbor1236
+	var ret edpt.RouterBgpAddressFamilyIpv6FlowspecNeighbor1235
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ipv4NeighborList = getSliceRouterBgpAddressFamilyIpv6FlowspecNeighborIpv4NeighborList(in["ipv4_neighbor_list"].([]interface{}))
@@ -234,7 +234,7 @@ func getSliceRouterBgpAddressFamilyIpv6FlowspecNeighborIpv6NeighborListNeighborR
 
 func dataToEndpointRouterBgpAddressFamilyIpv6Flowspec(d *schema.ResourceData) edpt.RouterBgpAddressFamilyIpv6Flowspec {
 	var ret edpt.RouterBgpAddressFamilyIpv6Flowspec
-	ret.Inst.Neighbor = getObjectRouterBgpAddressFamilyIpv6FlowspecNeighbor1236(d.Get("neighbor").([]interface{}))
+	ret.Inst.Neighbor = getObjectRouterBgpAddressFamilyIpv6FlowspecNeighbor1235(d.Get("neighbor").([]interface{}))
 	//omit uuid
 	ret.Inst.AsNumber = d.Get("as_number").(string)
 	return ret

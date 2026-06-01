@@ -5,24 +5,24 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type InterfaceLif struct {
 	Inst struct {
 		AccessList InterfaceLifAccessList `json:"access-list"`
 
 		Action string `json:"action" dval:"enable"`
 
-		Bfd InterfaceLifBfd683 `json:"bfd"`
+		Bfd InterfaceLifBfd674 `json:"bfd"`
 
-		Encapsulation InterfaceLifEncapsulation686 `json:"encapsulation"`
+		Encapsulation InterfaceLifEncapsulation677 `json:"encapsulation"`
 
 		Ifname string `json:"ifname"`
 
-		Ip InterfaceLifIp688 `json:"ip"`
+		Ip InterfaceLifIp679 `json:"ip"`
 
-		Ipv6 InterfaceLifIpv6710 `json:"ipv6"`
+		Ipv6 InterfaceLifIpv6701 `json:"ipv6"`
 
-		Isis InterfaceLifIsis727 `json:"isis"`
+		Isis InterfaceLifIsis718 `json:"isis"`
 
 		Mtu int `json:"mtu"`
 
@@ -41,41 +41,41 @@ type InterfaceLifAccessList struct {
 	AclName string `json:"acl-name"`
 }
 
-type InterfaceLifBfd683 struct {
-	Authentication InterfaceLifBfdAuthentication684 `json:"authentication"`
+type InterfaceLifBfd674 struct {
+	Authentication InterfaceLifBfdAuthentication675 `json:"authentication"`
 	Echo           int                              `json:"echo"`
 	Demand         int                              `json:"demand"`
-	IntervalCfg    InterfaceLifBfdIntervalCfg685    `json:"interval-cfg"`
+	IntervalCfg    InterfaceLifBfdIntervalCfg676    `json:"interval-cfg"`
 	Uuid           string                           `json:"uuid"`
 }
 
-type InterfaceLifBfdAuthentication684 struct {
+type InterfaceLifBfdAuthentication675 struct {
 	KeyId     int    `json:"key-id"`
 	Method    string `json:"method"`
 	Password  string `json:"password"`
 	Encrypted string `json:"encrypted"`
 }
 
-type InterfaceLifBfdIntervalCfg685 struct {
+type InterfaceLifBfdIntervalCfg676 struct {
 	Interval   int `json:"interval"`
 	MinRx      int `json:"min-rx"`
 	Multiplier int `json:"multiplier"`
 }
 
-type InterfaceLifEncapsulation686 struct {
-	Dot1q InterfaceLifEncapsulationDot1q687 `json:"dot1q"`
+type InterfaceLifEncapsulation677 struct {
+	Dot1q InterfaceLifEncapsulationDot1q678 `json:"dot1q"`
 }
 
-type InterfaceLifEncapsulationDot1q687 struct {
+type InterfaceLifEncapsulationDot1q678 struct {
 	Tag      int    `json:"tag"`
 	Ethernet int    `json:"ethernet"`
 	Trunk    int    `json:"trunk"`
 	Uuid     string `json:"uuid"`
 }
 
-type InterfaceLifIp688 struct {
+type InterfaceLifIp679 struct {
 	Dhcp                    int                            `json:"dhcp"`
-	AddressList             []InterfaceLifIpAddressList689 `json:"address-list"`
+	AddressList             []InterfaceLifIpAddressList680 `json:"address-list"`
 	AllowPromiscuousVip     int                            `json:"allow-promiscuous-vip"`
 	CacheSpoofingPort       int                            `json:"cache-spoofing-port"`
 	Client                  int                            `json:"client"`
@@ -88,117 +88,117 @@ type InterfaceLifIp688 struct {
 	MaxRespTime             int                            `json:"max-resp-time" dval:"100"`
 	Unnumbered              int                            `json:"unnumbered"`
 	Uuid                    string                         `json:"uuid"`
-	Router                  InterfaceLifIpRouter690        `json:"router"`
-	Rip                     InterfaceLifIpRip692           `json:"rip"`
-	Ospf                    InterfaceLifIpOspf700          `json:"ospf"`
+	Router                  InterfaceLifIpRouter681        `json:"router"`
+	Rip                     InterfaceLifIpRip683           `json:"rip"`
+	Ospf                    InterfaceLifIpOspf691          `json:"ospf"`
 }
 
-type InterfaceLifIpAddressList689 struct {
+type InterfaceLifIpAddressList680 struct {
 	Ipv4Address string `json:"ipv4-address"`
 	Ipv4Netmask string `json:"ipv4-netmask"`
 }
 
-type InterfaceLifIpRouter690 struct {
-	Isis InterfaceLifIpRouterIsis691 `json:"isis"`
+type InterfaceLifIpRouter681 struct {
+	Isis InterfaceLifIpRouterIsis682 `json:"isis"`
 }
 
-type InterfaceLifIpRouterIsis691 struct {
+type InterfaceLifIpRouterIsis682 struct {
 	Tag  string `json:"tag"`
 	Uuid string `json:"uuid"`
 }
 
-type InterfaceLifIpRip692 struct {
-	Authentication  InterfaceLifIpRipAuthentication693  `json:"authentication"`
+type InterfaceLifIpRip683 struct {
+	Authentication  InterfaceLifIpRipAuthentication684  `json:"authentication"`
 	SendPacket      int                                 `json:"send-packet" dval:"1"`
 	ReceivePacket   int                                 `json:"receive-packet" dval:"1"`
-	SendCfg         InterfaceLifIpRipSendCfg697         `json:"send-cfg"`
-	ReceiveCfg      InterfaceLifIpRipReceiveCfg698      `json:"receive-cfg"`
-	SplitHorizonCfg InterfaceLifIpRipSplitHorizonCfg699 `json:"split-horizon-cfg"`
+	SendCfg         InterfaceLifIpRipSendCfg688         `json:"send-cfg"`
+	ReceiveCfg      InterfaceLifIpRipReceiveCfg689      `json:"receive-cfg"`
+	SplitHorizonCfg InterfaceLifIpRipSplitHorizonCfg690 `json:"split-horizon-cfg"`
 	Uuid            string                              `json:"uuid"`
 }
 
-type InterfaceLifIpRipAuthentication693 struct {
-	Str      InterfaceLifIpRipAuthenticationStr694      `json:"str"`
-	Mode     InterfaceLifIpRipAuthenticationMode695     `json:"mode"`
-	KeyChain InterfaceLifIpRipAuthenticationKeyChain696 `json:"key-chain"`
+type InterfaceLifIpRipAuthentication684 struct {
+	Str      InterfaceLifIpRipAuthenticationStr685      `json:"str"`
+	Mode     InterfaceLifIpRipAuthenticationMode686     `json:"mode"`
+	KeyChain InterfaceLifIpRipAuthenticationKeyChain687 `json:"key-chain"`
 }
 
-type InterfaceLifIpRipAuthenticationStr694 struct {
+type InterfaceLifIpRipAuthenticationStr685 struct {
 	String string `json:"string"`
 }
 
-type InterfaceLifIpRipAuthenticationMode695 struct {
+type InterfaceLifIpRipAuthenticationMode686 struct {
 	Mode string `json:"mode" dval:"text"`
 }
 
-type InterfaceLifIpRipAuthenticationKeyChain696 struct {
+type InterfaceLifIpRipAuthenticationKeyChain687 struct {
 	KeyChain string `json:"key-chain"`
 }
 
-type InterfaceLifIpRipSendCfg697 struct {
+type InterfaceLifIpRipSendCfg688 struct {
 	Send    int    `json:"send"`
 	Version string `json:"version"`
 }
 
-type InterfaceLifIpRipReceiveCfg698 struct {
+type InterfaceLifIpRipReceiveCfg689 struct {
 	Receive int    `json:"receive"`
 	Version string `json:"version"`
 }
 
-type InterfaceLifIpRipSplitHorizonCfg699 struct {
+type InterfaceLifIpRipSplitHorizonCfg690 struct {
 	State string `json:"state" dval:"poisoned"`
 }
 
-type InterfaceLifIpOspf700 struct {
-	OspfGlobal InterfaceLifIpOspfOspfGlobal701   `json:"ospf-global"`
-	OspfIpList []InterfaceLifIpOspfOspfIpList708 `json:"ospf-ip-list"`
+type InterfaceLifIpOspf691 struct {
+	OspfGlobal InterfaceLifIpOspfOspfGlobal692   `json:"ospf-global"`
+	OspfIpList []InterfaceLifIpOspfOspfIpList699 `json:"ospf-ip-list"`
 }
 
-type InterfaceLifIpOspfOspfGlobal701 struct {
-	AuthenticationCfg  InterfaceLifIpOspfOspfGlobalAuthenticationCfg702  `json:"authentication-cfg"`
+type InterfaceLifIpOspfOspfGlobal692 struct {
+	AuthenticationCfg  InterfaceLifIpOspfOspfGlobalAuthenticationCfg693  `json:"authentication-cfg"`
 	AuthenticationKey  string                                            `json:"authentication-key"`
-	BfdCfg             InterfaceLifIpOspfOspfGlobalBfdCfg703             `json:"bfd-cfg"`
+	BfdCfg             InterfaceLifIpOspfOspfGlobalBfdCfg694             `json:"bfd-cfg"`
 	Cost               int                                               `json:"cost"`
-	DatabaseFilterCfg  InterfaceLifIpOspfOspfGlobalDatabaseFilterCfg704  `json:"database-filter-cfg"`
+	DatabaseFilterCfg  InterfaceLifIpOspfOspfGlobalDatabaseFilterCfg695  `json:"database-filter-cfg"`
 	DeadInterval       int                                               `json:"dead-interval" dval:"40"`
 	Disable            string                                            `json:"disable"`
 	HelloInterval      int                                               `json:"hello-interval" dval:"10"`
-	MessageDigestCfg   []InterfaceLifIpOspfOspfGlobalMessageDigestCfg705 `json:"message-digest-cfg"`
+	MessageDigestCfg   []InterfaceLifIpOspfOspfGlobalMessageDigestCfg696 `json:"message-digest-cfg"`
 	Mtu                int                                               `json:"mtu"`
 	MtuIgnore          int                                               `json:"mtu-ignore"`
-	Network            InterfaceLifIpOspfOspfGlobalNetwork707            `json:"network"`
+	Network            InterfaceLifIpOspfOspfGlobalNetwork698            `json:"network"`
 	Priority           int                                               `json:"priority" dval:"1"`
 	RetransmitInterval int                                               `json:"retransmit-interval" dval:"5"`
 	TransmitDelay      int                                               `json:"transmit-delay" dval:"1"`
 	Uuid               string                                            `json:"uuid"`
 }
 
-type InterfaceLifIpOspfOspfGlobalAuthenticationCfg702 struct {
+type InterfaceLifIpOspfOspfGlobalAuthenticationCfg693 struct {
 	Authentication int    `json:"authentication"`
 	Value          string `json:"value"`
 }
 
-type InterfaceLifIpOspfOspfGlobalBfdCfg703 struct {
+type InterfaceLifIpOspfOspfGlobalBfdCfg694 struct {
 	Bfd     int `json:"bfd"`
 	Disable int `json:"disable"`
 }
 
-type InterfaceLifIpOspfOspfGlobalDatabaseFilterCfg704 struct {
+type InterfaceLifIpOspfOspfGlobalDatabaseFilterCfg695 struct {
 	DatabaseFilter string `json:"database-filter"`
 	Out            int    `json:"out"`
 }
 
-type InterfaceLifIpOspfOspfGlobalMessageDigestCfg705 struct {
+type InterfaceLifIpOspfOspfGlobalMessageDigestCfg696 struct {
 	MessageDigestKey int                                                `json:"message-digest-key"`
-	Md5              InterfaceLifIpOspfOspfGlobalMessageDigestCfgMd5706 `json:"md5"`
+	Md5              InterfaceLifIpOspfOspfGlobalMessageDigestCfgMd5697 `json:"md5"`
 }
 
-type InterfaceLifIpOspfOspfGlobalMessageDigestCfgMd5706 struct {
+type InterfaceLifIpOspfOspfGlobalMessageDigestCfgMd5697 struct {
 	Md5Value  string `json:"md5-value"`
 	Encrypted string `json:"encrypted"`
 }
 
-type InterfaceLifIpOspfOspfGlobalNetwork707 struct {
+type InterfaceLifIpOspfOspfGlobalNetwork698 struct {
 	Broadcast         int `json:"broadcast"`
 	NonBroadcast      int `json:"non-broadcast"`
 	PointToPoint      int `json:"point-to-point"`
@@ -206,7 +206,7 @@ type InterfaceLifIpOspfOspfGlobalNetwork707 struct {
 	P2mpNbma          int `json:"p2mp-nbma"`
 }
 
-type InterfaceLifIpOspfOspfIpList708 struct {
+type InterfaceLifIpOspfOspfIpList699 struct {
 	IpAddr             string                                            `json:"ip-addr"`
 	Authentication     int                                               `json:"authentication"`
 	Value              string                                            `json:"value"`
@@ -216,7 +216,7 @@ type InterfaceLifIpOspfOspfIpList708 struct {
 	Out                int                                               `json:"out"`
 	DeadInterval       int                                               `json:"dead-interval" dval:"40"`
 	HelloInterval      int                                               `json:"hello-interval" dval:"10"`
-	MessageDigestCfg   []InterfaceLifIpOspfOspfIpListMessageDigestCfg709 `json:"message-digest-cfg"`
+	MessageDigestCfg   []InterfaceLifIpOspfOspfIpListMessageDigestCfg700 `json:"message-digest-cfg"`
 	MtuIgnore          int                                               `json:"mtu-ignore"`
 	Priority           int                                               `json:"priority" dval:"1"`
 	RetransmitInterval int                                               `json:"retransmit-interval" dval:"5"`
@@ -224,98 +224,98 @@ type InterfaceLifIpOspfOspfIpList708 struct {
 	Uuid               string                                            `json:"uuid"`
 }
 
-type InterfaceLifIpOspfOspfIpListMessageDigestCfg709 struct {
+type InterfaceLifIpOspfOspfIpListMessageDigestCfg700 struct {
 	MessageDigestKey int    `json:"message-digest-key"`
 	Md5Value         string `json:"md5-value"`
 	Encrypted        string `json:"encrypted"`
 }
 
-type InterfaceLifIpv6710 struct {
-	AddressList []InterfaceLifIpv6AddressList711 `json:"address-list"`
+type InterfaceLifIpv6701 struct {
+	AddressList []InterfaceLifIpv6AddressList702 `json:"address-list"`
 	Ipv6Enable  int                              `json:"ipv6-enable"`
 	Inside      int                              `json:"inside"`
 	Outside     int                              `json:"outside"`
 	Uuid        string                           `json:"uuid"`
-	Router      InterfaceLifIpv6Router712        `json:"router"`
-	Ospf        InterfaceLifIpv6Ospf717          `json:"ospf"`
+	Router      InterfaceLifIpv6Router703        `json:"router"`
+	Ospf        InterfaceLifIpv6Ospf708          `json:"ospf"`
 }
 
-type InterfaceLifIpv6AddressList711 struct {
+type InterfaceLifIpv6AddressList702 struct {
 	Ipv6Addr  string `json:"ipv6-addr"`
 	Anycast   int    `json:"anycast"`
 	LinkLocal int    `json:"link-local"`
 }
 
-type InterfaceLifIpv6Router712 struct {
-	Ripng InterfaceLifIpv6RouterRipng713 `json:"ripng"`
-	Ospf  InterfaceLifIpv6RouterOspf714  `json:"ospf"`
-	Isis  InterfaceLifIpv6RouterIsis716  `json:"isis"`
+type InterfaceLifIpv6Router703 struct {
+	Ripng InterfaceLifIpv6RouterRipng704 `json:"ripng"`
+	Ospf  InterfaceLifIpv6RouterOspf705  `json:"ospf"`
+	Isis  InterfaceLifIpv6RouterIsis707  `json:"isis"`
 }
 
-type InterfaceLifIpv6RouterRipng713 struct {
+type InterfaceLifIpv6RouterRipng704 struct {
 	Rip  int    `json:"rip"`
 	Uuid string `json:"uuid"`
 }
 
-type InterfaceLifIpv6RouterOspf714 struct {
-	AreaList []InterfaceLifIpv6RouterOspfAreaList715 `json:"area-list"`
+type InterfaceLifIpv6RouterOspf705 struct {
+	AreaList []InterfaceLifIpv6RouterOspfAreaList706 `json:"area-list"`
 	Uuid     string                                  `json:"uuid"`
 }
 
-type InterfaceLifIpv6RouterOspfAreaList715 struct {
+type InterfaceLifIpv6RouterOspfAreaList706 struct {
 	AreaIdNum  int    `json:"area-id-num"`
 	AreaIdAddr string `json:"area-id-addr"`
 	Tag        string `json:"tag"`
 	InstanceId int    `json:"instance-id"`
 }
 
-type InterfaceLifIpv6RouterIsis716 struct {
+type InterfaceLifIpv6RouterIsis707 struct {
 	Tag  string `json:"tag"`
 	Uuid string `json:"uuid"`
 }
 
-type InterfaceLifIpv6Ospf717 struct {
-	NetworkList           []InterfaceLifIpv6OspfNetworkList718           `json:"network-list"`
+type InterfaceLifIpv6Ospf708 struct {
+	NetworkList           []InterfaceLifIpv6OspfNetworkList709           `json:"network-list"`
 	Bfd                   int                                            `json:"bfd"`
 	Disable               int                                            `json:"disable"`
-	CostCfg               []InterfaceLifIpv6OspfCostCfg719               `json:"cost-cfg"`
-	DeadIntervalCfg       []InterfaceLifIpv6OspfDeadIntervalCfg720       `json:"dead-interval-cfg"`
-	HelloIntervalCfg      []InterfaceLifIpv6OspfHelloIntervalCfg721      `json:"hello-interval-cfg"`
-	MtuIgnoreCfg          []InterfaceLifIpv6OspfMtuIgnoreCfg722          `json:"mtu-ignore-cfg"`
-	NeighborCfg           []InterfaceLifIpv6OspfNeighborCfg723           `json:"neighbor-cfg"`
-	PriorityCfg           []InterfaceLifIpv6OspfPriorityCfg724           `json:"priority-cfg"`
-	RetransmitIntervalCfg []InterfaceLifIpv6OspfRetransmitIntervalCfg725 `json:"retransmit-interval-cfg"`
-	TransmitDelayCfg      []InterfaceLifIpv6OspfTransmitDelayCfg726      `json:"transmit-delay-cfg"`
+	CostCfg               []InterfaceLifIpv6OspfCostCfg710               `json:"cost-cfg"`
+	DeadIntervalCfg       []InterfaceLifIpv6OspfDeadIntervalCfg711       `json:"dead-interval-cfg"`
+	HelloIntervalCfg      []InterfaceLifIpv6OspfHelloIntervalCfg712      `json:"hello-interval-cfg"`
+	MtuIgnoreCfg          []InterfaceLifIpv6OspfMtuIgnoreCfg713          `json:"mtu-ignore-cfg"`
+	NeighborCfg           []InterfaceLifIpv6OspfNeighborCfg714           `json:"neighbor-cfg"`
+	PriorityCfg           []InterfaceLifIpv6OspfPriorityCfg715           `json:"priority-cfg"`
+	RetransmitIntervalCfg []InterfaceLifIpv6OspfRetransmitIntervalCfg716 `json:"retransmit-interval-cfg"`
+	TransmitDelayCfg      []InterfaceLifIpv6OspfTransmitDelayCfg717      `json:"transmit-delay-cfg"`
 	Uuid                  string                                         `json:"uuid"`
 }
 
-type InterfaceLifIpv6OspfNetworkList718 struct {
+type InterfaceLifIpv6OspfNetworkList709 struct {
 	BroadcastType     string `json:"broadcast-type"`
 	P2mpNbma          int    `json:"p2mp-nbma"`
 	NetworkInstanceId int    `json:"network-instance-id"`
 }
 
-type InterfaceLifIpv6OspfCostCfg719 struct {
+type InterfaceLifIpv6OspfCostCfg710 struct {
 	Cost       int `json:"cost"`
 	InstanceId int `json:"instance-id"`
 }
 
-type InterfaceLifIpv6OspfDeadIntervalCfg720 struct {
+type InterfaceLifIpv6OspfDeadIntervalCfg711 struct {
 	DeadInterval int `json:"dead-interval" dval:"40"`
 	InstanceId   int `json:"instance-id"`
 }
 
-type InterfaceLifIpv6OspfHelloIntervalCfg721 struct {
+type InterfaceLifIpv6OspfHelloIntervalCfg712 struct {
 	HelloInterval int `json:"hello-interval" dval:"10"`
 	InstanceId    int `json:"instance-id"`
 }
 
-type InterfaceLifIpv6OspfMtuIgnoreCfg722 struct {
+type InterfaceLifIpv6OspfMtuIgnoreCfg713 struct {
 	MtuIgnore  int `json:"mtu-ignore"`
 	InstanceId int `json:"instance-id"`
 }
 
-type InterfaceLifIpv6OspfNeighborCfg723 struct {
+type InterfaceLifIpv6OspfNeighborCfg714 struct {
 	Neighbor             string `json:"neighbor" dval:"::"`
 	NeigInst             int    `json:"neig-inst"`
 	NeighborCost         int    `json:"neighbor-cost"`
@@ -323,108 +323,108 @@ type InterfaceLifIpv6OspfNeighborCfg723 struct {
 	NeighborPriority     int    `json:"neighbor-priority"`
 }
 
-type InterfaceLifIpv6OspfPriorityCfg724 struct {
+type InterfaceLifIpv6OspfPriorityCfg715 struct {
 	Priority   int `json:"priority" dval:"1"`
 	InstanceId int `json:"instance-id"`
 }
 
-type InterfaceLifIpv6OspfRetransmitIntervalCfg725 struct {
+type InterfaceLifIpv6OspfRetransmitIntervalCfg716 struct {
 	RetransmitInterval int `json:"retransmit-interval" dval:"5"`
 	InstanceId         int `json:"instance-id"`
 }
 
-type InterfaceLifIpv6OspfTransmitDelayCfg726 struct {
+type InterfaceLifIpv6OspfTransmitDelayCfg717 struct {
 	TransmitDelay int `json:"transmit-delay" dval:"1"`
 	InstanceId    int `json:"instance-id"`
 }
 
-type InterfaceLifIsis727 struct {
-	Authentication           InterfaceLifIsisAuthentication728             `json:"authentication"`
-	BfdCfg                   InterfaceLifIsisBfdCfg732                     `json:"bfd-cfg"`
+type InterfaceLifIsis718 struct {
+	Authentication           InterfaceLifIsisAuthentication719             `json:"authentication"`
+	BfdCfg                   InterfaceLifIsisBfdCfg723                     `json:"bfd-cfg"`
 	CircuitType              string                                        `json:"circuit-type" dval:"level-1-2"`
-	CsnpIntervalList         []InterfaceLifIsisCsnpIntervalList733         `json:"csnp-interval-list"`
+	CsnpIntervalList         []InterfaceLifIsisCsnpIntervalList724         `json:"csnp-interval-list"`
 	Padding                  int                                           `json:"padding" dval:"1"`
-	HelloIntervalList        []InterfaceLifIsisHelloIntervalList734        `json:"hello-interval-list"`
-	HelloIntervalMinimalList []InterfaceLifIsisHelloIntervalMinimalList735 `json:"hello-interval-minimal-list"`
-	HelloMultiplierList      []InterfaceLifIsisHelloMultiplierList736      `json:"hello-multiplier-list"`
+	HelloIntervalList        []InterfaceLifIsisHelloIntervalList725        `json:"hello-interval-list"`
+	HelloIntervalMinimalList []InterfaceLifIsisHelloIntervalMinimalList726 `json:"hello-interval-minimal-list"`
+	HelloMultiplierList      []InterfaceLifIsisHelloMultiplierList727      `json:"hello-multiplier-list"`
 	LspInterval              int                                           `json:"lsp-interval" dval:"33"`
-	MeshGroup                InterfaceLifIsisMeshGroup737                  `json:"mesh-group"`
-	MetricList               []InterfaceLifIsisMetricList738               `json:"metric-list"`
+	MeshGroup                InterfaceLifIsisMeshGroup728                  `json:"mesh-group"`
+	MetricList               []InterfaceLifIsisMetricList729               `json:"metric-list"`
 	Network                  string                                        `json:"network"`
-	PasswordList             []InterfaceLifIsisPasswordList739             `json:"password-list"`
-	PriorityList             []InterfaceLifIsisPriorityList740             `json:"priority-list"`
+	PasswordList             []InterfaceLifIsisPasswordList730             `json:"password-list"`
+	PriorityList             []InterfaceLifIsisPriorityList731             `json:"priority-list"`
 	RetransmitInterval       int                                           `json:"retransmit-interval" dval:"5"`
-	WideMetricList           []InterfaceLifIsisWideMetricList741           `json:"wide-metric-list"`
+	WideMetricList           []InterfaceLifIsisWideMetricList732           `json:"wide-metric-list"`
 	Uuid                     string                                        `json:"uuid"`
 }
 
-type InterfaceLifIsisAuthentication728 struct {
-	SendOnlyList []InterfaceLifIsisAuthenticationSendOnlyList729 `json:"send-only-list"`
-	ModeList     []InterfaceLifIsisAuthenticationModeList730     `json:"mode-list"`
-	KeyChainList []InterfaceLifIsisAuthenticationKeyChainList731 `json:"key-chain-list"`
+type InterfaceLifIsisAuthentication719 struct {
+	SendOnlyList []InterfaceLifIsisAuthenticationSendOnlyList720 `json:"send-only-list"`
+	ModeList     []InterfaceLifIsisAuthenticationModeList721     `json:"mode-list"`
+	KeyChainList []InterfaceLifIsisAuthenticationKeyChainList722 `json:"key-chain-list"`
 }
 
-type InterfaceLifIsisAuthenticationSendOnlyList729 struct {
+type InterfaceLifIsisAuthenticationSendOnlyList720 struct {
 	SendOnly int    `json:"send-only"`
 	Level    string `json:"level"`
 }
 
-type InterfaceLifIsisAuthenticationModeList730 struct {
+type InterfaceLifIsisAuthenticationModeList721 struct {
 	Mode  string `json:"mode"`
 	Level string `json:"level"`
 }
 
-type InterfaceLifIsisAuthenticationKeyChainList731 struct {
+type InterfaceLifIsisAuthenticationKeyChainList722 struct {
 	KeyChain string `json:"key-chain"`
 	Level    string `json:"level"`
 }
 
-type InterfaceLifIsisBfdCfg732 struct {
+type InterfaceLifIsisBfdCfg723 struct {
 	Bfd     int `json:"bfd"`
 	Disable int `json:"disable"`
 }
 
-type InterfaceLifIsisCsnpIntervalList733 struct {
+type InterfaceLifIsisCsnpIntervalList724 struct {
 	CsnpInterval int    `json:"csnp-interval" dval:"10"`
 	Level        string `json:"level"`
 }
 
-type InterfaceLifIsisHelloIntervalList734 struct {
+type InterfaceLifIsisHelloIntervalList725 struct {
 	HelloInterval int    `json:"hello-interval" dval:"10"`
 	Level         string `json:"level"`
 }
 
-type InterfaceLifIsisHelloIntervalMinimalList735 struct {
+type InterfaceLifIsisHelloIntervalMinimalList726 struct {
 	HelloIntervalMinimal int    `json:"hello-interval-minimal"`
 	Level                string `json:"level"`
 }
 
-type InterfaceLifIsisHelloMultiplierList736 struct {
+type InterfaceLifIsisHelloMultiplierList727 struct {
 	HelloMultiplier int    `json:"hello-multiplier" dval:"3"`
 	Level           string `json:"level"`
 }
 
-type InterfaceLifIsisMeshGroup737 struct {
+type InterfaceLifIsisMeshGroup728 struct {
 	Value   int `json:"value"`
 	Blocked int `json:"blocked"`
 }
 
-type InterfaceLifIsisMetricList738 struct {
+type InterfaceLifIsisMetricList729 struct {
 	Metric int    `json:"metric" dval:"10"`
 	Level  string `json:"level"`
 }
 
-type InterfaceLifIsisPasswordList739 struct {
+type InterfaceLifIsisPasswordList730 struct {
 	Password string `json:"password"`
 	Level    string `json:"level"`
 }
 
-type InterfaceLifIsisPriorityList740 struct {
+type InterfaceLifIsisPriorityList731 struct {
 	Priority int    `json:"priority" dval:"64"`
 	Level    string `json:"level"`
 }
 
-type InterfaceLifIsisWideMetricList741 struct {
+type InterfaceLifIsisWideMetricList732 struct {
 	WideMetric int    `json:"wide-metric" dval:"10"`
 	Level      string `json:"level"`
 }

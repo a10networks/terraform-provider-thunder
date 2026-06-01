@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstEntrySrcDstPairClassListCid struct {
 	Inst struct {
 		AppTypeSrcDstCidList []DdosDstEntrySrcDstPairClassListCidAppTypeSrcDstCidList `json:"app-type-src-dst-cid-list"`
@@ -23,9 +23,9 @@ type DdosDstEntrySrcDstPairClassListCid struct {
 
 		Uuid string `json:"uuid"`
 
-		DstEntryName string
-
 		ClassListName string
+
+		DstEntryName string
 	} `json:"cid"`
 }
 

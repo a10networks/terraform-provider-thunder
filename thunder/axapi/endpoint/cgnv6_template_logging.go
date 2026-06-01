@@ -6,16 +6,16 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6TemplateLogging struct {
 	Inst struct {
 		BatchedLoggingDisable int `json:"batched-logging-disable"`
 
 		Custom Cgnv6TemplateLoggingCustom `json:"custom"`
 
-		DisableLogByDestination Cgnv6TemplateLoggingDisableLogByDestination117 `json:"disable-log-by-destination"`
+		DisableLogByDestination Cgnv6TemplateLoggingDisableLogByDestination118 `json:"disable-log-by-destination"`
 
-		EnableLogByDestination Cgnv6TemplateLoggingEnableLogByDestination126 `json:"enable-log-by-destination"`
+		EnableLogByDestination Cgnv6TemplateLoggingEnableLogByDestination127 `json:"enable-log-by-destination"`
 
 		Facility string `json:"facility" dval:"local0"`
 
@@ -55,7 +55,7 @@ type Cgnv6TemplateLogging struct {
 
 		Shared int `json:"shared"`
 
-		SourceAddress Cgnv6TemplateLoggingSourceAddress135 `json:"source-address"`
+		SourceAddress Cgnv6TemplateLoggingSourceAddress136 `json:"source-address"`
 
 		SourcePort Cgnv6TemplateLoggingSourcePort `json:"source-port"`
 
@@ -90,122 +90,122 @@ type Cgnv6TemplateLoggingCustomCustomMessage struct {
 	CustomSessionDeleted           string `json:"custom-session-deleted"`
 }
 
-type Cgnv6TemplateLoggingDisableLogByDestination117 struct {
-	TcpList []Cgnv6TemplateLoggingDisableLogByDestinationTcpList118 `json:"tcp-list"`
-	UdpList []Cgnv6TemplateLoggingDisableLogByDestinationUdpList119 `json:"udp-list"`
+type Cgnv6TemplateLoggingDisableLogByDestination118 struct {
+	TcpList []Cgnv6TemplateLoggingDisableLogByDestinationTcpList119 `json:"tcp-list"`
+	UdpList []Cgnv6TemplateLoggingDisableLogByDestinationUdpList120 `json:"udp-list"`
 	Icmp    int                                                     `json:"icmp"`
 	Others  int                                                     `json:"others"`
 	Uuid    string                                                  `json:"uuid"`
-	IpList  []Cgnv6TemplateLoggingDisableLogByDestinationIpList120  `json:"ip-list"`
-	Ip6List []Cgnv6TemplateLoggingDisableLogByDestinationIp6List123 `json:"ip6-list"`
+	IpList  []Cgnv6TemplateLoggingDisableLogByDestinationIpList121  `json:"ip-list"`
+	Ip6List []Cgnv6TemplateLoggingDisableLogByDestinationIp6List124 `json:"ip6-list"`
 }
 
-type Cgnv6TemplateLoggingDisableLogByDestinationTcpList118 struct {
+type Cgnv6TemplateLoggingDisableLogByDestinationTcpList119 struct {
 	TcpPortStart int `json:"tcp-port-start"`
 	TcpPortEnd   int `json:"tcp-port-end"`
 }
 
-type Cgnv6TemplateLoggingDisableLogByDestinationUdpList119 struct {
+type Cgnv6TemplateLoggingDisableLogByDestinationUdpList120 struct {
 	UdpPortStart int `json:"udp-port-start"`
 	UdpPortEnd   int `json:"udp-port-end"`
 }
 
-type Cgnv6TemplateLoggingDisableLogByDestinationIpList120 struct {
+type Cgnv6TemplateLoggingDisableLogByDestinationIpList121 struct {
 	Ipv4Addr string                                                        `json:"ipv4-addr"`
-	TcpList  []Cgnv6TemplateLoggingDisableLogByDestinationIpListTcpList121 `json:"tcp-list"`
-	UdpList  []Cgnv6TemplateLoggingDisableLogByDestinationIpListUdpList122 `json:"udp-list"`
+	TcpList  []Cgnv6TemplateLoggingDisableLogByDestinationIpListTcpList122 `json:"tcp-list"`
+	UdpList  []Cgnv6TemplateLoggingDisableLogByDestinationIpListUdpList123 `json:"udp-list"`
 	Icmp     int                                                           `json:"icmp"`
 	Others   int                                                           `json:"others"`
 	Uuid     string                                                        `json:"uuid"`
 	UserTag  string                                                        `json:"user-tag"`
 }
 
-type Cgnv6TemplateLoggingDisableLogByDestinationIpListTcpList121 struct {
+type Cgnv6TemplateLoggingDisableLogByDestinationIpListTcpList122 struct {
 	TcpPortStart int `json:"tcp-port-start"`
 	TcpPortEnd   int `json:"tcp-port-end"`
 }
 
-type Cgnv6TemplateLoggingDisableLogByDestinationIpListUdpList122 struct {
+type Cgnv6TemplateLoggingDisableLogByDestinationIpListUdpList123 struct {
 	UdpPortStart int `json:"udp-port-start"`
 	UdpPortEnd   int `json:"udp-port-end"`
 }
 
-type Cgnv6TemplateLoggingDisableLogByDestinationIp6List123 struct {
+type Cgnv6TemplateLoggingDisableLogByDestinationIp6List124 struct {
 	Ipv6Addr string                                                         `json:"ipv6-addr"`
-	TcpList  []Cgnv6TemplateLoggingDisableLogByDestinationIp6ListTcpList124 `json:"tcp-list"`
-	UdpList  []Cgnv6TemplateLoggingDisableLogByDestinationIp6ListUdpList125 `json:"udp-list"`
+	TcpList  []Cgnv6TemplateLoggingDisableLogByDestinationIp6ListTcpList125 `json:"tcp-list"`
+	UdpList  []Cgnv6TemplateLoggingDisableLogByDestinationIp6ListUdpList126 `json:"udp-list"`
 	Icmp     int                                                            `json:"icmp"`
 	Others   int                                                            `json:"others"`
 	Uuid     string                                                         `json:"uuid"`
 	UserTag  string                                                         `json:"user-tag"`
 }
 
-type Cgnv6TemplateLoggingDisableLogByDestinationIp6ListTcpList124 struct {
+type Cgnv6TemplateLoggingDisableLogByDestinationIp6ListTcpList125 struct {
 	TcpPortStart int `json:"tcp-port-start"`
 	TcpPortEnd   int `json:"tcp-port-end"`
 }
 
-type Cgnv6TemplateLoggingDisableLogByDestinationIp6ListUdpList125 struct {
+type Cgnv6TemplateLoggingDisableLogByDestinationIp6ListUdpList126 struct {
 	UdpPortStart int `json:"udp-port-start"`
 	UdpPortEnd   int `json:"udp-port-end"`
 }
 
-type Cgnv6TemplateLoggingEnableLogByDestination126 struct {
-	TcpList []Cgnv6TemplateLoggingEnableLogByDestinationTcpList127 `json:"tcp-list"`
-	UdpList []Cgnv6TemplateLoggingEnableLogByDestinationUdpList128 `json:"udp-list"`
+type Cgnv6TemplateLoggingEnableLogByDestination127 struct {
+	TcpList []Cgnv6TemplateLoggingEnableLogByDestinationTcpList128 `json:"tcp-list"`
+	UdpList []Cgnv6TemplateLoggingEnableLogByDestinationUdpList129 `json:"udp-list"`
 	Icmp    int                                                    `json:"icmp"`
 	Others  int                                                    `json:"others"`
 	Uuid    string                                                 `json:"uuid"`
-	IpList  []Cgnv6TemplateLoggingEnableLogByDestinationIpList129  `json:"ip-list"`
-	Ip6List []Cgnv6TemplateLoggingEnableLogByDestinationIp6List132 `json:"ip6-list"`
+	IpList  []Cgnv6TemplateLoggingEnableLogByDestinationIpList130  `json:"ip-list"`
+	Ip6List []Cgnv6TemplateLoggingEnableLogByDestinationIp6List133 `json:"ip6-list"`
 }
 
-type Cgnv6TemplateLoggingEnableLogByDestinationTcpList127 struct {
+type Cgnv6TemplateLoggingEnableLogByDestinationTcpList128 struct {
 	TcpPortStart int `json:"tcp-port-start"`
 	TcpPortEnd   int `json:"tcp-port-end"`
 }
 
-type Cgnv6TemplateLoggingEnableLogByDestinationUdpList128 struct {
+type Cgnv6TemplateLoggingEnableLogByDestinationUdpList129 struct {
 	UdpPortStart int `json:"udp-port-start"`
 	UdpPortEnd   int `json:"udp-port-end"`
 }
 
-type Cgnv6TemplateLoggingEnableLogByDestinationIpList129 struct {
+type Cgnv6TemplateLoggingEnableLogByDestinationIpList130 struct {
 	Ipv4Addr string                                                       `json:"ipv4-addr"`
-	TcpList  []Cgnv6TemplateLoggingEnableLogByDestinationIpListTcpList130 `json:"tcp-list"`
-	UdpList  []Cgnv6TemplateLoggingEnableLogByDestinationIpListUdpList131 `json:"udp-list"`
+	TcpList  []Cgnv6TemplateLoggingEnableLogByDestinationIpListTcpList131 `json:"tcp-list"`
+	UdpList  []Cgnv6TemplateLoggingEnableLogByDestinationIpListUdpList132 `json:"udp-list"`
 	Icmp     int                                                          `json:"icmp"`
 	Others   int                                                          `json:"others"`
 	Uuid     string                                                       `json:"uuid"`
 	UserTag  string                                                       `json:"user-tag"`
 }
 
-type Cgnv6TemplateLoggingEnableLogByDestinationIpListTcpList130 struct {
+type Cgnv6TemplateLoggingEnableLogByDestinationIpListTcpList131 struct {
 	TcpPortStart int `json:"tcp-port-start"`
 	TcpPortEnd   int `json:"tcp-port-end"`
 }
 
-type Cgnv6TemplateLoggingEnableLogByDestinationIpListUdpList131 struct {
+type Cgnv6TemplateLoggingEnableLogByDestinationIpListUdpList132 struct {
 	UdpPortStart int `json:"udp-port-start"`
 	UdpPortEnd   int `json:"udp-port-end"`
 }
 
-type Cgnv6TemplateLoggingEnableLogByDestinationIp6List132 struct {
+type Cgnv6TemplateLoggingEnableLogByDestinationIp6List133 struct {
 	Ipv6Addr string                                                        `json:"ipv6-addr"`
-	TcpList  []Cgnv6TemplateLoggingEnableLogByDestinationIp6ListTcpList133 `json:"tcp-list"`
-	UdpList  []Cgnv6TemplateLoggingEnableLogByDestinationIp6ListUdpList134 `json:"udp-list"`
+	TcpList  []Cgnv6TemplateLoggingEnableLogByDestinationIp6ListTcpList134 `json:"tcp-list"`
+	UdpList  []Cgnv6TemplateLoggingEnableLogByDestinationIp6ListUdpList135 `json:"udp-list"`
 	Icmp     int                                                           `json:"icmp"`
 	Others   int                                                           `json:"others"`
 	Uuid     string                                                        `json:"uuid"`
 	UserTag  string                                                        `json:"user-tag"`
 }
 
-type Cgnv6TemplateLoggingEnableLogByDestinationIp6ListTcpList133 struct {
+type Cgnv6TemplateLoggingEnableLogByDestinationIp6ListTcpList134 struct {
 	TcpPortStart int `json:"tcp-port-start"`
 	TcpPortEnd   int `json:"tcp-port-end"`
 }
 
-type Cgnv6TemplateLoggingEnableLogByDestinationIp6ListUdpList134 struct {
+type Cgnv6TemplateLoggingEnableLogByDestinationIp6ListUdpList135 struct {
 	UdpPortStart int `json:"udp-port-start"`
 	UdpPortEnd   int `json:"udp-port-end"`
 }
@@ -339,7 +339,7 @@ type Cgnv6TemplateLoggingSeverity struct {
 	SeverityVal    int    `json:"severity-val" dval:"7"`
 }
 
-type Cgnv6TemplateLoggingSourceAddress135 struct {
+type Cgnv6TemplateLoggingSourceAddress136 struct {
 	Ip   string `json:"ip"`
 	Ipv6 string `json:"ipv6"`
 	Uuid string `json:"uuid"`

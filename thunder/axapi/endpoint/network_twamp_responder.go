@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type NetworkTwampResponder struct {
 	Inst struct {
 		EnableBothIpIpv6 int `json:"enable-both-ip-ipv6"`
@@ -14,9 +14,9 @@ type NetworkTwampResponder struct {
 
 		EnableIpv6 int `json:"enable-ipv6"`
 
-		Ip NetworkTwampResponderIp1156 `json:"ip"`
+		Ip NetworkTwampResponderIp1155 `json:"ip"`
 
-		Ipv6 NetworkTwampResponderIpv61157 `json:"ipv6"`
+		Ipv6 NetworkTwampResponderIpv61156 `json:"ipv6"`
 
 		Port int `json:"port"`
 
@@ -24,13 +24,13 @@ type NetworkTwampResponder struct {
 	} `json:"responder"`
 }
 
-type NetworkTwampResponderIp1156 struct {
+type NetworkTwampResponderIp1155 struct {
 	AclId   int    `json:"acl-id"`
 	AclName string `json:"acl-name"`
 	Uuid    string `json:"uuid"`
 }
 
-type NetworkTwampResponderIpv61157 struct {
+type NetworkTwampResponderIpv61156 struct {
 	V6AclName string `json:"v6-acl-name"`
 	Uuid      string `json:"uuid"`
 }

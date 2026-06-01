@@ -5,28 +5,28 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type WebCategoryWebReputation struct {
 	Inst struct {
-		BypassedUrls WebCategoryWebReputationBypassedUrls3757 `json:"bypassed-urls"`
+		BypassedUrls WebCategoryWebReputationBypassedUrls3795 `json:"bypassed-urls"`
 
-		InterceptedUrls WebCategoryWebReputationInterceptedUrls3758 `json:"intercepted-urls"`
+		InterceptedUrls WebCategoryWebReputationInterceptedUrls3796 `json:"intercepted-urls"`
 
-		Url WebCategoryWebReputationUrl3759 `json:"url"`
+		Url WebCategoryWebReputationUrl3797 `json:"url"`
 
 		Uuid string `json:"uuid"`
 	} `json:"web-reputation"`
 }
 
-type WebCategoryWebReputationBypassedUrls3757 struct {
+type WebCategoryWebReputationBypassedUrls3795 struct {
 	Uuid string `json:"uuid"`
 }
 
-type WebCategoryWebReputationInterceptedUrls3758 struct {
+type WebCategoryWebReputationInterceptedUrls3796 struct {
 	Uuid string `json:"uuid"`
 }
 
-type WebCategoryWebReputationUrl3759 struct {
+type WebCategoryWebReputationUrl3797 struct {
 	Uuid string `json:"uuid"`
 }
 

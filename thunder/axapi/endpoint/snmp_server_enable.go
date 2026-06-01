@@ -5,51 +5,51 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SnmpServerEnable struct {
 	Inst struct {
 		SchemaAgent int `json:"schema-agent"`
 
 		Service int `json:"service"`
 
-		Traps SnmpServerEnableTraps1606 `json:"traps"`
+		Traps SnmpServerEnableTraps1607 `json:"traps"`
 
 		Uuid string `json:"uuid"`
 	} `json:"enable"`
 }
 
-type SnmpServerEnableTraps1606 struct {
+type SnmpServerEnableTraps1607 struct {
 	All       int                                `json:"all"`
 	Lldp      int                                `json:"lldp"`
 	Uuid      string                             `json:"uuid"`
-	Routing   SnmpServerEnableTrapsRouting1607   `json:"routing"`
-	Gslb      SnmpServerEnableTrapsGslb1612      `json:"gslb"`
-	Slb       SnmpServerEnableTrapsSlb1613       `json:"slb"`
-	Scaleout  SnmpServerEnableTrapsScaleout1614  `json:"scaleout"`
-	Snmp      SnmpServerEnableTrapsSnmp1619      `json:"snmp"`
-	VrrpA     SnmpServerEnableTrapsVrrpA1620     `json:"vrrp-a"`
-	Vcs       SnmpServerEnableTrapsVcs1621       `json:"vcs"`
-	System    SnmpServerEnableTrapsSystem1622    `json:"system"`
-	SlbChange SnmpServerEnableTrapsSlbChange1624 `json:"slb-change"`
-	Lsn       SnmpServerEnableTrapsLsn1625       `json:"lsn"`
-	Network   SnmpServerEnableTrapsNetwork1626   `json:"network"`
-	Ssl       SnmpServerEnableTrapsSsl1627       `json:"ssl"`
+	Routing   SnmpServerEnableTrapsRouting1608   `json:"routing"`
+	Gslb      SnmpServerEnableTrapsGslb1613      `json:"gslb"`
+	Slb       SnmpServerEnableTrapsSlb1614       `json:"slb"`
+	Scaleout  SnmpServerEnableTrapsScaleout1615  `json:"scaleout"`
+	Snmp      SnmpServerEnableTrapsSnmp1620      `json:"snmp"`
+	VrrpA     SnmpServerEnableTrapsVrrpA1621     `json:"vrrp-a"`
+	Vcs       SnmpServerEnableTrapsVcs1622       `json:"vcs"`
+	System    SnmpServerEnableTrapsSystem1623    `json:"system"`
+	SlbChange SnmpServerEnableTrapsSlbChange1625 `json:"slb-change"`
+	Lsn       SnmpServerEnableTrapsLsn1626       `json:"lsn"`
+	Network   SnmpServerEnableTrapsNetwork1627   `json:"network"`
+	Ssl       SnmpServerEnableTrapsSsl1628       `json:"ssl"`
 }
 
-type SnmpServerEnableTrapsRouting1607 struct {
-	Bgp  SnmpServerEnableTrapsRoutingBgp1608  `json:"bgp"`
-	Isis SnmpServerEnableTrapsRoutingIsis1610 `json:"isis"`
-	Ospf SnmpServerEnableTrapsRoutingOspf1611 `json:"ospf"`
+type SnmpServerEnableTrapsRouting1608 struct {
+	Bgp  SnmpServerEnableTrapsRoutingBgp1609  `json:"bgp"`
+	Isis SnmpServerEnableTrapsRoutingIsis1611 `json:"isis"`
+	Ospf SnmpServerEnableTrapsRoutingOspf1612 `json:"ospf"`
 }
 
-type SnmpServerEnableTrapsRoutingBgp1608 struct {
+type SnmpServerEnableTrapsRoutingBgp1609 struct {
 	Bgpestablishednotification   int                                   `json:"bgpEstablishedNotification"`
 	Bgpbackwardtransnotification int                                   `json:"bgpBackwardTransNotification"`
 	Uuid                         string                                `json:"uuid"`
-	Ax                           SnmpServerEnableTrapsRoutingBgpAx1609 `json:"ax"`
+	Ax                           SnmpServerEnableTrapsRoutingBgpAx1610 `json:"ax"`
 }
 
-type SnmpServerEnableTrapsRoutingBgpAx1609 struct {
+type SnmpServerEnableTrapsRoutingBgpAx1610 struct {
 	Bgpestablishednotification             int    `json:"bgpEstablishedNotification"`
 	Bgpbackwardtransnotification           int    `json:"bgpBackwardTransNotification"`
 	Bgpprefixthresholdexceedednotification int    `json:"bgpPrefixThresholdExceededNotification"`
@@ -57,7 +57,7 @@ type SnmpServerEnableTrapsRoutingBgpAx1609 struct {
 	Uuid                                   string `json:"uuid"`
 }
 
-type SnmpServerEnableTrapsRoutingIsis1610 struct {
+type SnmpServerEnableTrapsRoutingIsis1611 struct {
 	Isisadjacencychange                  int    `json:"isisAdjacencyChange"`
 	Isisareamismatch                     int    `json:"isisAreaMismatch"`
 	Isisattempttoexceedmaxsequence       int    `json:"isisAttemptToExceedMaxSequence"`
@@ -79,7 +79,7 @@ type SnmpServerEnableTrapsRoutingIsis1610 struct {
 	Uuid                                 string `json:"uuid"`
 }
 
-type SnmpServerEnableTrapsRoutingOspf1611 struct {
+type SnmpServerEnableTrapsRoutingOspf1612 struct {
 	Ospfifauthfailure           int    `json:"ospfIfAuthFailure"`
 	Ospfifconfigerror           int    `json:"ospfIfConfigError"`
 	Ospfifrxbadpacket           int    `json:"ospfIfRxBadPacket"`
@@ -99,7 +99,7 @@ type SnmpServerEnableTrapsRoutingOspf1611 struct {
 	Uuid                        string `json:"uuid"`
 }
 
-type SnmpServerEnableTrapsGslb1612 struct {
+type SnmpServerEnableTrapsGslb1613 struct {
 	All       int    `json:"all"`
 	Zone      int    `json:"zone"`
 	Site      int    `json:"site"`
@@ -108,7 +108,7 @@ type SnmpServerEnableTrapsGslb1612 struct {
 	Uuid      string `json:"uuid"`
 }
 
-type SnmpServerEnableTrapsSlb1613 struct {
+type SnmpServerEnableTrapsSlb1614 struct {
 	All                    int    `json:"all"`
 	ApplicationBufferLimit int    `json:"application-buffer-limit"`
 	GatewayUp              int    `json:"gateway-up"`
@@ -141,59 +141,59 @@ type SnmpServerEnableTrapsSlb1613 struct {
 	Uuid                   string `json:"uuid"`
 }
 
-type SnmpServerEnableTrapsScaleout1614 struct {
-	Infrastructure SnmpServerEnableTrapsScaleoutInfrastructure1615 `json:"infrastructure"`
+type SnmpServerEnableTrapsScaleout1615 struct {
+	Infrastructure SnmpServerEnableTrapsScaleoutInfrastructure1616 `json:"infrastructure"`
 }
 
-type SnmpServerEnableTrapsScaleoutInfrastructure1615 struct {
+type SnmpServerEnableTrapsScaleoutInfrastructure1616 struct {
 	All              int                                                        `json:"all"`
 	TestSendAllTraps int                                                        `json:"test-send-all-traps"`
 	Uuid             string                                                     `json:"uuid"`
-	Cluster          SnmpServerEnableTrapsScaleoutInfrastructureCluster1616     `json:"cluster"`
-	ServiceNode      SnmpServerEnableTrapsScaleoutInfrastructureServiceNode1617 `json:"service-node"`
-	MasterNode       SnmpServerEnableTrapsScaleoutInfrastructureMasterNode1618  `json:"master-node"`
+	Cluster          SnmpServerEnableTrapsScaleoutInfrastructureCluster1617     `json:"cluster"`
+	ServiceNode      SnmpServerEnableTrapsScaleoutInfrastructureServiceNode1618 `json:"service-node"`
+	MasterNode       SnmpServerEnableTrapsScaleoutInfrastructureMasterNode1619  `json:"master-node"`
 }
 
-type SnmpServerEnableTrapsScaleoutInfrastructureCluster1616 struct {
+type SnmpServerEnableTrapsScaleoutInfrastructureCluster1617 struct {
 	Election                int    `json:"election"`
 	MasterCallingReElection int    `json:"master-calling-re-election"`
 	NodeStatus              int    `json:"node-status"`
 	Uuid                    string `json:"uuid"`
 }
 
-type SnmpServerEnableTrapsScaleoutInfrastructureServiceNode1617 struct {
+type SnmpServerEnableTrapsScaleoutInfrastructureServiceNode1618 struct {
 	LocalDeviceDisabled int    `json:"local-device-disabled"`
 	ServiceMaster       int    `json:"service-master"`
 	TrafficMapUpdate    int    `json:"traffic-map-update"`
 	Uuid                string `json:"uuid"`
 }
 
-type SnmpServerEnableTrapsScaleoutInfrastructureMasterNode1618 struct {
+type SnmpServerEnableTrapsScaleoutInfrastructureMasterNode1619 struct {
 	TrafficMapDistribution  int    `json:"traffic-map-distribution"`
 	VserverTrafficMapUpdate int    `json:"vserver-traffic-map-update"`
 	Uuid                    string `json:"uuid"`
 }
 
-type SnmpServerEnableTrapsSnmp1619 struct {
+type SnmpServerEnableTrapsSnmp1620 struct {
 	All      int    `json:"all"`
 	Linkdown int    `json:"linkdown"`
 	Linkup   int    `json:"linkup"`
 	Uuid     string `json:"uuid"`
 }
 
-type SnmpServerEnableTrapsVrrpA1620 struct {
+type SnmpServerEnableTrapsVrrpA1621 struct {
 	All     int    `json:"all"`
 	Active  int    `json:"active"`
 	Standby int    `json:"standby"`
 	Uuid    string `json:"uuid"`
 }
 
-type SnmpServerEnableTrapsVcs1621 struct {
+type SnmpServerEnableTrapsVcs1622 struct {
 	StateChange int    `json:"state-change"`
 	Uuid        string `json:"uuid"`
 }
 
-type SnmpServerEnableTrapsSystem1622 struct {
+type SnmpServerEnableTrapsSystem1623 struct {
 	All                int                                       `json:"all"`
 	ControlCpuHigh     int                                       `json:"control-cpu-high"`
 	DataCpuHigh        int                                       `json:"data-cpu-high"`
@@ -215,16 +215,16 @@ type SnmpServerEnableTrapsSystem1622 struct {
 	TacacsServerUpDown int                                       `json:"tacacs-server-up-down"`
 	Start              int                                       `json:"start"`
 	Uuid               string                                    `json:"uuid"`
-	AppsGlobal         SnmpServerEnableTrapsSystemAppsGlobal1623 `json:"apps-global"`
+	AppsGlobal         SnmpServerEnableTrapsSystemAppsGlobal1624 `json:"apps-global"`
 }
 
-type SnmpServerEnableTrapsSystemAppsGlobal1623 struct {
+type SnmpServerEnableTrapsSystemAppsGlobal1624 struct {
 	SessionsThreshold int    `json:"sessions-threshold"`
 	CpsThreshold      int    `json:"cps-threshold"`
 	Uuid              string `json:"uuid"`
 }
 
-type SnmpServerEnableTrapsSlbChange1624 struct {
+type SnmpServerEnableTrapsSlbChange1625 struct {
 	All                     int    `json:"all"`
 	ResourceUsageWarning    int    `json:"resource-usage-warning"`
 	ConnectionResourceEvent int    `json:"connection-resource-event"`
@@ -238,7 +238,7 @@ type SnmpServerEnableTrapsSlbChange1624 struct {
 	Uuid                    string `json:"uuid"`
 }
 
-type SnmpServerEnableTrapsLsn1625 struct {
+type SnmpServerEnableTrapsLsn1626 struct {
 	All                           int    `json:"all"`
 	TotalPortUsageThreshold       int    `json:"total-port-usage-threshold"`
 	PerIpPortUsageThreshold       int    `json:"per-ip-port-usage-threshold"`
@@ -249,12 +249,12 @@ type SnmpServerEnableTrapsLsn1625 struct {
 	Uuid                          string `json:"uuid"`
 }
 
-type SnmpServerEnableTrapsNetwork1626 struct {
+type SnmpServerEnableTrapsNetwork1627 struct {
 	TrunkPortThreshold int    `json:"trunk-port-threshold"`
 	Uuid               string `json:"uuid"`
 }
 
-type SnmpServerEnableTrapsSsl1627 struct {
+type SnmpServerEnableTrapsSsl1628 struct {
 	ServerCertificateError int    `json:"server-certificate-error"`
 	Uuid                   string `json:"uuid"`
 }

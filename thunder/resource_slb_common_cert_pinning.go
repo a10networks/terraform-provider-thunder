@@ -121,10 +121,10 @@ func resourceSlbCommonCertPinningRead(ctx context.Context, d *schema.ResourceDat
 	return diags
 }
 
-func getObjectSlbCommonCertPinningCandidateListFeedbackOptIn1498(d []interface{}) edpt.SlbCommonCertPinningCandidateListFeedbackOptIn1498 {
+func getObjectSlbCommonCertPinningCandidateListFeedbackOptIn1499(d []interface{}) edpt.SlbCommonCertPinningCandidateListFeedbackOptIn1499 {
 
 	count1 := len(d)
-	var ret edpt.SlbCommonCertPinningCandidateListFeedbackOptIn1498
+	var ret edpt.SlbCommonCertPinningCandidateListFeedbackOptIn1499
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
@@ -142,7 +142,7 @@ func getObjectSlbCommonCertPinningCandidateListFeedbackOptIn1498(d []interface{}
 
 func dataToEndpointSlbCommonCertPinning(d *schema.ResourceData) edpt.SlbCommonCertPinning {
 	var ret edpt.SlbCommonCertPinning
-	ret.Inst.CandidateListFeedbackOptIn = getObjectSlbCommonCertPinningCandidateListFeedbackOptIn1498(d.Get("candidate_list_feedback_opt_in").([]interface{}))
+	ret.Inst.CandidateListFeedbackOptIn = getObjectSlbCommonCertPinningCandidateListFeedbackOptIn1499(d.Get("candidate_list_feedback_opt_in").([]interface{}))
 	ret.Inst.Ttl = d.Get("ttl").(int)
 	//omit uuid
 	return ret

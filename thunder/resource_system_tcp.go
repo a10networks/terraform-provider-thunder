@@ -110,10 +110,10 @@ func resourceSystemTcpRead(ctx context.Context, d *schema.ResourceData, meta int
 	return diags
 }
 
-func getObjectSystemTcpRateLimitResetUnknownConn1754(d []interface{}) edpt.SystemTcpRateLimitResetUnknownConn1754 {
+func getObjectSystemTcpRateLimitResetUnknownConn1755(d []interface{}) edpt.SystemTcpRateLimitResetUnknownConn1755 {
 
 	count1 := len(d)
-	var ret edpt.SystemTcpRateLimitResetUnknownConn1754
+	var ret edpt.SystemTcpRateLimitResetUnknownConn1755
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PktRateForResetUnknownConn = in["pkt_rate_for_reset_unknown_conn"].(int)
@@ -138,7 +138,7 @@ func getSliceSystemTcpSamplingEnable(d []interface{}) []edpt.SystemTcpSamplingEn
 
 func dataToEndpointSystemTcp(d *schema.ResourceData) edpt.SystemTcp {
 	var ret edpt.SystemTcp
-	ret.Inst.RateLimitResetUnknownConn = getObjectSystemTcpRateLimitResetUnknownConn1754(d.Get("rate_limit_reset_unknown_conn").([]interface{}))
+	ret.Inst.RateLimitResetUnknownConn = getObjectSystemTcpRateLimitResetUnknownConn1755(d.Get("rate_limit_reset_unknown_conn").([]interface{}))
 	ret.Inst.SamplingEnable = getSliceSystemTcpSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	//omit uuid
 	return ret

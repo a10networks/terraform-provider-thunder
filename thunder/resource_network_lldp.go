@@ -248,10 +248,10 @@ func getObjectNetworkLldpEnableCfg(d []interface{}) edpt.NetworkLldpEnableCfg {
 	return ret
 }
 
-func getObjectNetworkLldpManagementAddress1155(d []interface{}) edpt.NetworkLldpManagementAddress1155 {
+func getObjectNetworkLldpManagementAddress1154(d []interface{}) edpt.NetworkLldpManagementAddress1154 {
 
 	count1 := len(d)
-	var ret edpt.NetworkLldpManagementAddress1155
+	var ret edpt.NetworkLldpManagementAddress1154
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DnsList = getSliceNetworkLldpManagementAddressDnsList(in["dns_list"].([]interface{}))
@@ -375,7 +375,7 @@ func getObjectNetworkLldpTxSet(d []interface{}) edpt.NetworkLldpTxSet {
 func dataToEndpointNetworkLldp(d *schema.ResourceData) edpt.NetworkLldp {
 	var ret edpt.NetworkLldp
 	ret.Inst.EnableCfg = getObjectNetworkLldpEnableCfg(d.Get("enable_cfg").([]interface{}))
-	ret.Inst.ManagementAddress = getObjectNetworkLldpManagementAddress1155(d.Get("management_address").([]interface{}))
+	ret.Inst.ManagementAddress = getObjectNetworkLldpManagementAddress1154(d.Get("management_address").([]interface{}))
 	ret.Inst.NotificationCfg = getObjectNetworkLldpNotificationCfg(d.Get("notification_cfg").([]interface{}))
 	ret.Inst.SystemDescription = d.Get("system_description").(string)
 	ret.Inst.SystemName = d.Get("system_name").(string)

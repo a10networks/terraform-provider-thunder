@@ -144,10 +144,10 @@ func resourceSnmpServerEnableTrapsScaleoutInfrastructureRead(ctx context.Context
 	return diags
 }
 
-func getObjectSnmpServerEnableTrapsScaleoutInfrastructureCluster1581(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructureCluster1581 {
+func getObjectSnmpServerEnableTrapsScaleoutInfrastructureCluster1582(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructureCluster1582 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructureCluster1581
+	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructureCluster1582
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Election = in["election"].(int)
@@ -158,10 +158,10 @@ func getObjectSnmpServerEnableTrapsScaleoutInfrastructureCluster1581(d []interfa
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsScaleoutInfrastructureMasterNode1582(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructureMasterNode1582 {
+func getObjectSnmpServerEnableTrapsScaleoutInfrastructureMasterNode1583(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructureMasterNode1583 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructureMasterNode1582
+	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructureMasterNode1583
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TrafficMapDistribution = in["traffic_map_distribution"].(int)
@@ -171,10 +171,10 @@ func getObjectSnmpServerEnableTrapsScaleoutInfrastructureMasterNode1582(d []inte
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsScaleoutInfrastructureServiceNode1583(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructureServiceNode1583 {
+func getObjectSnmpServerEnableTrapsScaleoutInfrastructureServiceNode1584(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructureServiceNode1584 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructureServiceNode1583
+	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructureServiceNode1584
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.LocalDeviceDisabled = in["local_device_disabled"].(int)
@@ -188,9 +188,9 @@ func getObjectSnmpServerEnableTrapsScaleoutInfrastructureServiceNode1583(d []int
 func dataToEndpointSnmpServerEnableTrapsScaleoutInfrastructure(d *schema.ResourceData) edpt.SnmpServerEnableTrapsScaleoutInfrastructure {
 	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructure
 	ret.Inst.All = d.Get("all").(int)
-	ret.Inst.Cluster = getObjectSnmpServerEnableTrapsScaleoutInfrastructureCluster1581(d.Get("cluster").([]interface{}))
-	ret.Inst.MasterNode = getObjectSnmpServerEnableTrapsScaleoutInfrastructureMasterNode1582(d.Get("master_node").([]interface{}))
-	ret.Inst.ServiceNode = getObjectSnmpServerEnableTrapsScaleoutInfrastructureServiceNode1583(d.Get("service_node").([]interface{}))
+	ret.Inst.Cluster = getObjectSnmpServerEnableTrapsScaleoutInfrastructureCluster1582(d.Get("cluster").([]interface{}))
+	ret.Inst.MasterNode = getObjectSnmpServerEnableTrapsScaleoutInfrastructureMasterNode1583(d.Get("master_node").([]interface{}))
+	ret.Inst.ServiceNode = getObjectSnmpServerEnableTrapsScaleoutInfrastructureServiceNode1584(d.Get("service_node").([]interface{}))
 	ret.Inst.TestSendAllTraps = d.Get("test_send_all_traps").(int)
 	//omit uuid
 	return ret

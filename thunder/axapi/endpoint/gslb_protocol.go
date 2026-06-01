@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type GslbProtocol struct {
 	Inst struct {
 		AutoDetect int `json:"auto-detect"`
@@ -14,13 +14,13 @@ type GslbProtocol struct {
 
 		EnableList []GslbProtocolEnableList `json:"enable-list"`
 
-		Limit GslbProtocolLimit487 `json:"limit"`
+		Limit GslbProtocolLimit478 `json:"limit"`
 
 		MsgFormatAcos2x int `json:"msg-format-acos-2x"`
 
 		PingSite string `json:"ping-site"`
 
-		Secure GslbProtocolSecure488 `json:"secure"`
+		Secure GslbProtocolSecure479 `json:"secure"`
 
 		StatusInterval int `json:"status-interval"`
 
@@ -37,17 +37,17 @@ type GslbProtocolEnableList struct {
 	Uuid string `json:"uuid"`
 }
 
-type GslbProtocolLimit487 struct {
+type GslbProtocolLimit478 struct {
 	ArdtQuery    int    `json:"ardt-query" dval:"200"`
 	ArdtResponse int    `json:"ardt-response" dval:"1000"`
 	ArdtSession  int    `json:"ardt-session" dval:"32768"`
 	ConnResponse int    `json:"conn-response"`
 	Response     int    `json:"response" dval:"3600"`
-	Message      int    `json:"message" dval:"10000"`
+	Message      int    `json:"message" dval:"100000"`
 	Uuid         string `json:"uuid"`
 }
 
-type GslbProtocolSecure488 struct {
+type GslbProtocolSecure479 struct {
 	Action string `json:"action" dval:"disable"`
 	Uuid   string `json:"uuid"`
 }

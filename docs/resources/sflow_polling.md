@@ -57,6 +57,7 @@ resource "thunder_sflow_polling" "thunder_sflow_polling" {
 - `ethernet_list` (Block List) (see [below for nested schema](#nestedblock--ethernet_list))
 - `http` (Block List, Max: 1) (see [below for nested schema](#nestedblock--http))
 - `http_counter` (Number) Polling HTTP counters
+- `mgmt_svc_acl` (Block List, Max: 1) (see [below for nested schema](#nestedblock--mgmt_svc_acl))
 - `system_health` (Block List, Max: 1) (see [below for nested schema](#nestedblock--system_health))
 - `uuid` (String) uuid of the object
 - `ve_list` (Block List) (see [below for nested schema](#nestedblock--ve_list))
@@ -136,6 +137,15 @@ Optional:
 Optional:
 
 - `toggle` (String) 'enable': Enable polling HTTP counters; 'disable': Disable polling HTTP counters;
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--mgmt_svc_acl"></a>
+### Nested Schema for `mgmt_svc_acl`
+
+Optional:
+
+- `toggle` (String) 'enable': Enable polling MGMT Service ACL counters; 'disable': Disable polling MGMT Service ACL counters;
 - `uuid` (String) uuid of the object
 
 

@@ -93,6 +93,9 @@ func resourceDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassList() *sch
 			"glid_action": {
 				Type: schema.TypeString, Optional: true, Description: "'drop': Drop packets for glid exceed (Default); 'blacklist-src': Blacklist-src for glid exceed; 'ignore': Do nothing for glid exceed;",
 			},
+			"log_enable": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable logging",
+			},
 			"max_dynamic_entry_count": {
 				Type: schema.TypeInt, Optional: true, Description: "Maximum count for dynamic source zone service entry allowed for this class-list",
 			},
@@ -131,14 +134,14 @@ func resourceDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassList() *sch
 					},
 				},
 			},
+			"src_based_policy_name": {
+				Type: schema.TypeString, Required: true, Description: "SrcBasedPolicyName",
+			},
 			"port_other": {
 				Type: schema.TypeString, Required: true, Description: "PortOther",
 			},
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
-			},
-			"src_based_policy_name": {
-				Type: schema.TypeString, Required: true, Description: "SrcBasedPolicyName",
 			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
@@ -282,14 +285,15 @@ func dataToEndpointDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassList(
 	ret.Inst.DynamicEntryCountWarnThreshold = d.Get("dynamic_entry_count_warn_threshold").(int)
 	ret.Inst.Glid = d.Get("glid").(string)
 	ret.Inst.GlidAction = d.Get("glid_action").(string)
+	ret.Inst.LogEnable = d.Get("log_enable").(int)
 	ret.Inst.MaxDynamicEntryCount = d.Get("max_dynamic_entry_count").(int)
 	ret.Inst.SamplingEnable = getSliceDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassListSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.ZoneTemplate = getObjectDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassListZoneTemplate(d.Get("zone_template").([]interface{}))
+	ret.Inst.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
 	ret.Inst.PortOther = d.Get("port_other").(string)
 	ret.Inst.Protocol = d.Get("protocol").(string)
-	ret.Inst.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
 	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	return ret
 }

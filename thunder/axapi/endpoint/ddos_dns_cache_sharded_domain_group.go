@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDnsCacheShardedDomainGroup struct {
 	Inst struct {
 		EncapTemplate string `json:"encap-template"`
@@ -35,6 +35,7 @@ type DdosDnsCacheShardedDomainGroupShardedDomainListPolicyList struct {
 	ServerV6Port         int                                                                      `json:"server-v6-port" dval:"53"`
 	ClientIpv6           string                                                                   `json:"client-ipv6"`
 	DnsNotifyEnableIpv6  int                                                                      `json:"dns-notify-enable-ipv6"`
+	RefreshIntervalBySoa int                                                                      `json:"refresh-interval-by-soa"`
 	RefreshIntervalHours int                                                                      `json:"refresh-interval-hours" dval:"4"`
 	ManualRefresh        string                                                                   `json:"manual-refresh"`
 	Force                int                                                                      `json:"force"`

@@ -68,7 +68,7 @@ resource "thunder_gslb_group" "thunder_gslb_group" {
 - `resolve_as` (String) 'resolve-to-ipv4': Use A Query only to resolve FQDN (Default Query type); 'resolve-to-ipv6': Use AAAA Query only to resolve FQDN; 'resolve-to-ipv4-and-ipv6': Use A as well as AAAA Query to resolve FQDN;
 - `standalone` (Number) Run GSLB Group in standalone mode
 - `suffix` (String) Set DNS Suffix (Name)
-- `sync_timeout` (Number) Specify timeout for gslb config sync (Specify timeout, unit:minute,default is 1)
+- `sync_timeout` (Number) Specify timeout for gslb group config sync (Specify timeout, unit:minute,default is 1)
 - `user_tag` (String) Customized tag
 - `uuid` (String) uuid of the object
 

@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplTriggerStatsInc2791 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplTriggerStatsInc2809 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplTriggerStatsRate2792 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplTriggerStatsRate2810 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplTriggerStatsSeverity2793 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplTriggerStatsSeverity2811 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,7 +25,7 @@ type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmpl struct {
 	} `json:"interface-ethernet-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplTriggerStatsInc2791 struct {
+type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplTriggerStatsInc2809 struct {
 	Input_errors  int    `json:"input_errors"`
 	Crc           int    `json:"crc"`
 	Runts         int    `json:"runts"`
@@ -36,7 +36,7 @@ type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplTriggerStatsInc2
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplTriggerStatsRate2792 struct {
+type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplTriggerStatsRate2810 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Input_errors        int    `json:"input_errors"`
@@ -49,7 +49,7 @@ type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplTriggerStatsRate
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplTriggerStatsSeverity2793 struct {
+type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplTriggerStatsSeverity2811 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

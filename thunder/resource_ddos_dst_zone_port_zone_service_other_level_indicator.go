@@ -64,11 +64,11 @@ func resourceDdosDstZonePortZoneServiceOtherLevelIndicator() *schema.Resource {
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
-			"level_num": {
-				Type: schema.TypeString, Required: true, Description: "LevelNum",
-			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			},
+			"level_num": {
+				Type: schema.TypeString, Required: true, Description: "LevelNum",
 			},
 		},
 	}
@@ -153,7 +153,7 @@ func dataToEndpointDdosDstZonePortZoneServiceOtherLevelIndicator(d *schema.Resou
 	ret.Inst.ZoneViolationActions = d.Get("zone_violation_actions").(string)
 	ret.Inst.PortOther = d.Get("port_other").(string)
 	ret.Inst.Protocol = d.Get("protocol").(string)
-	ret.Inst.LevelNum = d.Get("level_num").(string)
 	ret.Inst.ZoneName = d.Get("zone_name").(string)
+	ret.Inst.LevelNum = d.Get("level_num").(string)
 	return ret
 }

@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemThroughputStats struct {
 	Stats SystemThroughputStatsStats `json:"stats"`
 }
@@ -14,8 +14,13 @@ type DataSystemThroughputStats struct {
 }
 
 type SystemThroughputStatsStats struct {
-	GlobalSystemThroughputBitsPerSec int `json:"global-system-throughput-bits-per-sec"`
-	PerPartThroughputBitsPerSec      int `json:"per-part-throughput-bits-per-sec"`
+	GlobalSystemThroughputBitsPerSec        int `json:"global-system-throughput-bits-per-sec"`
+	GlobalSystemIngressThroughputBitsPerSec int `json:"global-system-ingress-throughput-bits-per-sec"`
+	PerPartThroughputBitsPerSec             int `json:"per-part-throughput-bits-per-sec"`
+	GlobalClientSslCount                    int `json:"global-client-ssl-count"`
+	GlobalServerSslCount                    int `json:"global-server-ssl-count"`
+	GlobalClientSslConnectionsPerSec        int `json:"global-client-ssl-connections-per-sec"`
+	GlobalServerSslConnectionsPerSec        int `json:"global-server-ssl-connections-per-sec"`
 }
 
 func (p *SystemThroughputStats) GetId() string {

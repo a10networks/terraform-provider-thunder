@@ -85,7 +85,7 @@ Optional:
 - `ardt_response` (Number) Response Messages of Active RDT, default is 1000 (Number)
 - `ardt_session` (Number) Sessions of Active RDT, default is 32768 (Number)
 - `conn_response` (Number) Response Messages of Connection Load, default is no limit (Number)
-- `message` (Number) Amount of Messages, default is 10000 (Number)
+- `message` (Number) Amount of Messages, default is 100000 (Number)
 - `response` (Number) Amount of Response Messages, default is 3600 (Number)
 - `uuid` (String) uuid of the object
 

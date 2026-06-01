@@ -150,6 +150,9 @@ func resourceDdosDstZoneIpProtoProtoNumberPortIndOper() *schema.Resource {
 						"active_time": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
+						"baseline_window_size": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 						"sources_all_entries": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
@@ -211,6 +214,7 @@ func setObjectDdosDstZoneIpProtoProtoNumberPortIndOperOper(ret edpt.DataDdosDstZ
 			"escalation_timestamp":  ret.DtDdosDstZoneIpProtoProtoNumberPortIndOper.Oper.EscalationTimestamp,
 			"initial_learning":      ret.DtDdosDstZoneIpProtoProtoNumberPortIndOper.Oper.InitialLearning,
 			"active_time":           ret.DtDdosDstZoneIpProtoProtoNumberPortIndOper.Oper.ActiveTime,
+			"baseline_window_size":  ret.DtDdosDstZoneIpProtoProtoNumberPortIndOper.Oper.BaselineWindowSize,
 			"sources_all_entries":   ret.DtDdosDstZoneIpProtoProtoNumberPortIndOper.Oper.SourcesAllEntries,
 			"subnet_ip_addr":        ret.DtDdosDstZoneIpProtoProtoNumberPortIndOper.Oper.SubnetIpAddr,
 			"subnet_ipv6_addr":      ret.DtDdosDstZoneIpProtoProtoNumberPortIndOper.Oper.SubnetIpv6Addr,
@@ -302,6 +306,7 @@ func getObjectDdosDstZoneIpProtoProtoNumberPortIndOperOper(d []interface{}) edpt
 		ret.EscalationTimestamp = in["escalation_timestamp"].(string)
 		ret.InitialLearning = in["initial_learning"].(string)
 		ret.ActiveTime = in["active_time"].(int)
+		ret.BaselineWindowSize = in["baseline_window_size"].(int)
 		ret.SourcesAllEntries = in["sources_all_entries"].(int)
 		ret.SubnetIpAddr = in["subnet_ip_addr"].(string)
 		ret.SubnetIpv6Addr = in["subnet_ipv6_addr"].(string)

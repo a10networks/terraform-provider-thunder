@@ -43,11 +43,11 @@ func resourceSysUtEventActionTcpFlags() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"direction": {
-				Type: schema.TypeString, Required: true, Description: "Direction",
-			},
 			"event_number": {
 				Type: schema.TypeString, Required: true, Description: "EventNumber",
+			},
+			"direction": {
+				Type: schema.TypeString, Required: true, Description: "Direction",
 			},
 		},
 	}
@@ -125,7 +125,7 @@ func dataToEndpointSysUtEventActionTcpFlags(d *schema.ResourceData) edpt.SysUtEv
 	ret.Inst.Syn = d.Get("syn").(int)
 	ret.Inst.Urg = d.Get("urg").(int)
 	//omit uuid
-	ret.Inst.Direction = d.Get("direction").(string)
 	ret.Inst.EventNumber = d.Get("event_number").(string)
+	ret.Inst.Direction = d.Get("direction").(string)
 	return ret
 }

@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type ConfigureSync struct {
 	Inst struct {
 		Address string `json:"address"`
@@ -29,8 +29,6 @@ type ConfigureSync struct {
 		Type string `json:"type"`
 
 		Usr string `json:"usr"`
-
-		Uuid string `json:"uuid"`
 	} `json:"sync"`
 }
 

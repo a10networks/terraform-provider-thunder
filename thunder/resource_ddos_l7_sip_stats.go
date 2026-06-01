@@ -243,22 +243,22 @@ func resourceDdosL7SipStats() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Description: "Src Header Filter Action Default Pass",
 						},
 						"src_dst_header_filter_match": {
-							Type: schema.TypeInt, Optional: true, Description: "Src Header Filter Match",
+							Type: schema.TypeInt, Optional: true, Description: "Src Dst Header Filter Match",
 						},
 						"src_dst_header_filter_not_match": {
-							Type: schema.TypeInt, Optional: true, Description: "Src Header Filter Not Match",
+							Type: schema.TypeInt, Optional: true, Description: "Src Dst Header Filter Not Match",
 						},
 						"src_dst_header_filter_action_drop": {
-							Type: schema.TypeInt, Optional: true, Description: "Src Header Filter Action Drop",
+							Type: schema.TypeInt, Optional: true, Description: "Src Dst Header Filter Action Drop",
 						},
 						"src_dst_header_filter_action_blacklist": {
-							Type: schema.TypeInt, Optional: true, Description: "Src Header Filter Action Blacklist",
+							Type: schema.TypeInt, Optional: true, Description: "Src Dst Header Filter Action Blacklist",
 						},
 						"src_dst_header_filter_action_whitelist": {
-							Type: schema.TypeInt, Optional: true, Description: "Src Header Filter Action Whitelist",
+							Type: schema.TypeInt, Optional: true, Description: "Src Dst Header Filter Action Whitelist",
 						},
 						"src_dst_header_filter_action_default_pass": {
-							Type: schema.TypeInt, Optional: true, Description: "Src Header Filter Action Default Pass",
+							Type: schema.TypeInt, Optional: true, Description: "Src Dst Header Filter Action Default Pass",
 						},
 					},
 				},

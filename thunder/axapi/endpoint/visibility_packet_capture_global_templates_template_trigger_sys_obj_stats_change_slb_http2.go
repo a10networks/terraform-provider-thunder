@@ -5,12 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbHttp2 struct {
 	Inst struct {
-		TriggerStatsInc VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbHttp2TriggerStatsInc2156 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbHttp2TriggerStatsInc2159 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbHttp2TriggerStatsRate2157 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbHttp2TriggerStatsRate2160 `json:"trigger-stats-rate"`
 
 		Uuid string `json:"uuid"`
 
@@ -18,7 +18,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbHt
 	} `json:"slb-http2"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbHttp2TriggerStatsInc2156 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbHttp2TriggerStatsInc2159 struct {
 	Protocol_error                          int    `json:"protocol_error"`
 	Internal_error                          int    `json:"internal_error"`
 	Proxy_alloc_error                       int    `json:"proxy_alloc_error"`
@@ -89,7 +89,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbHt
 	Uuid                                    string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbHttp2TriggerStatsRate2157 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbHttp2TriggerStatsRate2160 struct {
 	ThresholdExceededBy                     int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                                int    `json:"duration" dval:"60"`
 	Protocol_error                          int    `json:"protocol_error"`

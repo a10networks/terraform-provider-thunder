@@ -37,6 +37,9 @@ func resourceDdosDnsCacheDomainGroupDomainListPolicy() *schema.Resource {
 			"force": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Force update even the serial is the same",
 			},
+			"ixfr": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use IXFR to update",
+			},
 			"manual_refresh": {
 				Type: schema.TypeString, Optional: true, Description: "Manually refresh the particular zone",
 			},
@@ -71,6 +74,9 @@ func resourceDdosDnsCacheDomainGroupDomainListPolicy() *schema.Resource {
 						},
 					},
 				},
+			},
+			"refresh_interval_by_soa": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Read by SOA record",
 			},
 			"refresh_interval_hours": {
 				Type: schema.TypeInt, Optional: true, Default: 4, Description: "Zone transfer refresh rate in hours (Default 4). 0 means no refresh",
@@ -170,25 +176,25 @@ func resourceDdosDnsCacheDomainGroupDomainListPolicyRead(ctx context.Context, d 
 	return diags
 }
 
-func getObjectDdosDnsCacheDomainGroupDomainListPolicyPacketCapturing167(d []interface{}) edpt.DdosDnsCacheDomainGroupDomainListPolicyPacketCapturing167 {
+func getObjectDdosDnsCacheDomainGroupDomainListPolicyPacketCapturing170(d []interface{}) edpt.DdosDnsCacheDomainGroupDomainListPolicyPacketCapturing170 {
 
 	count1 := len(d)
-	var ret edpt.DdosDnsCacheDomainGroupDomainListPolicyPacketCapturing167
+	var ret edpt.DdosDnsCacheDomainGroupDomainListPolicyPacketCapturing170
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.RootZoneList = getSliceDdosDnsCacheDomainGroupDomainListPolicyPacketCapturingRootZoneList168(in["root_zone_list"].([]interface{}))
+		ret.RootZoneList = getSliceDdosDnsCacheDomainGroupDomainListPolicyPacketCapturingRootZoneList171(in["root_zone_list"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceDdosDnsCacheDomainGroupDomainListPolicyPacketCapturingRootZoneList168(d []interface{}) []edpt.DdosDnsCacheDomainGroupDomainListPolicyPacketCapturingRootZoneList168 {
+func getSliceDdosDnsCacheDomainGroupDomainListPolicyPacketCapturingRootZoneList171(d []interface{}) []edpt.DdosDnsCacheDomainGroupDomainListPolicyPacketCapturingRootZoneList171 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDnsCacheDomainGroupDomainListPolicyPacketCapturingRootZoneList168, 0, count1)
+	ret := make([]edpt.DdosDnsCacheDomainGroupDomainListPolicyPacketCapturingRootZoneList171, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDnsCacheDomainGroupDomainListPolicyPacketCapturingRootZoneList168
+		var oi edpt.DdosDnsCacheDomainGroupDomainListPolicyPacketCapturingRootZoneList171
 		oi.RootZone = in["root_zone"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		oi.CaptureMode = in["capture_mode"].(string)
@@ -206,10 +212,12 @@ func dataToEndpointDdosDnsCacheDomainGroupDomainListPolicy(d *schema.ResourceDat
 	ret.Inst.DnsNotifyEnableIpv4 = d.Get("dns_notify_enable_ipv4").(int)
 	ret.Inst.DnsNotifyEnableIpv6 = d.Get("dns_notify_enable_ipv6").(int)
 	ret.Inst.Force = d.Get("force").(int)
+	ret.Inst.Ixfr = d.Get("ixfr").(int)
 	ret.Inst.ManualRefresh = d.Get("manual_refresh").(string)
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.OversizeAnswerResponse = d.Get("oversize_answer_response").(string)
-	ret.Inst.PacketCapturing = getObjectDdosDnsCacheDomainGroupDomainListPolicyPacketCapturing167(d.Get("packet_capturing").([]interface{}))
+	ret.Inst.PacketCapturing = getObjectDdosDnsCacheDomainGroupDomainListPolicyPacketCapturing170(d.Get("packet_capturing").([]interface{}))
+	ret.Inst.RefreshIntervalBySoa = d.Get("refresh_interval_by_soa").(int)
 	ret.Inst.RefreshIntervalHours = d.Get("refresh_interval_hours").(int)
 	ret.Inst.ResolveCnameRecord = d.Get("resolve_cname_record").(int)
 	ret.Inst.RespondWithAuthority = d.Get("respond_with_authority").(int)

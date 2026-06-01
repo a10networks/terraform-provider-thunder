@@ -125,7 +125,7 @@ Optional:
 - `progression_tracking_req_enabled` (String) 'enable-check': Enable General Progression Tracking per Request Response;
 - `request_length_max` (Number) Set the maximum request length
 - `request_length_min` (Number) Set the minimum request length
-- `request_response_model` (String) 'enable': Enable Request Response Model; 'disable': Disable Request Response Model;
+- `request_response_model` (String) 'enable': Enable Request Response Model (Default); 'disable': Disable Request Response Model;
 - `request_to_response_max_time` (Number) Set the maximum request to response time (in unit of 100ms)
 - `response_length_max` (Number) Set the maximum response length
 - `response_length_min` (Number) Set the minimum response length
@@ -144,6 +144,7 @@ Optional:
 - `progression_tracking_slow_action` (String) 'drop': Drop packets for progression tracking violation exceed (Default); 'reset': Reset client connection; 'blacklist-src': Blacklist-src for progression tracking violation exceed;
 - `progression_tracking_slow_action_list_name` (String) Configure action-list to take when progression tracking violation exceed
 - `response_pkt_rate_max` (Number) Set the transferred packets per response
+- `slow_attack` (String) 'enable-check': Enter Progression Tracking Tracking Slow Attack;
 - `slow_attacker_identification` (Block List, Max: 1) (see [below for nested schema](#nestedblock--mitigation--slow_attack--slow_attacker_identification))
 - `uuid` (String) uuid of the object
 

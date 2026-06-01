@@ -150,6 +150,9 @@ func resourceDdosDstZonePortRangePortIndOper() *schema.Resource {
 						"active_time": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
+						"baseline_window_size": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 						"sources_all_entries": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
@@ -171,17 +174,17 @@ func resourceDdosDstZonePortRangePortIndOper() *schema.Resource {
 					},
 				},
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
-			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
-			"port_range_end": {
-				Type: schema.TypeString, Required: true, Description: "PortRangeEnd",
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 			"port_range_start": {
 				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
+			},
+			"port_range_end": {
+				Type: schema.TypeString, Required: true, Description: "PortRangeEnd",
 			},
 		},
 	}
@@ -217,6 +220,7 @@ func setObjectDdosDstZonePortRangePortIndOperOper(ret edpt.DataDdosDstZonePortRa
 			"escalation_timestamp":  ret.DtDdosDstZonePortRangePortIndOper.Oper.EscalationTimestamp,
 			"initial_learning":      ret.DtDdosDstZonePortRangePortIndOper.Oper.InitialLearning,
 			"active_time":           ret.DtDdosDstZonePortRangePortIndOper.Oper.ActiveTime,
+			"baseline_window_size":  ret.DtDdosDstZonePortRangePortIndOper.Oper.BaselineWindowSize,
 			"sources_all_entries":   ret.DtDdosDstZonePortRangePortIndOper.Oper.SourcesAllEntries,
 			"subnet_ip_addr":        ret.DtDdosDstZonePortRangePortIndOper.Oper.SubnetIpAddr,
 			"subnet_ipv6_addr":      ret.DtDdosDstZonePortRangePortIndOper.Oper.SubnetIpv6Addr,
@@ -308,6 +312,7 @@ func getObjectDdosDstZonePortRangePortIndOperOper(d []interface{}) edpt.DdosDstZ
 		ret.EscalationTimestamp = in["escalation_timestamp"].(string)
 		ret.InitialLearning = in["initial_learning"].(string)
 		ret.ActiveTime = in["active_time"].(int)
+		ret.BaselineWindowSize = in["baseline_window_size"].(int)
 		ret.SourcesAllEntries = in["sources_all_entries"].(int)
 		ret.SubnetIpAddr = in["subnet_ip_addr"].(string)
 		ret.SubnetIpv6Addr = in["subnet_ipv6_addr"].(string)
@@ -402,12 +407,12 @@ func dataToEndpointDdosDstZonePortRangePortIndOper(d *schema.ResourceData) edpt.
 
 	ret.Oper = getObjectDdosDstZonePortRangePortIndOperOper(d.Get("oper").([]interface{}))
 
-	ret.Protocol = d.Get("protocol").(string)
-
 	ret.ZoneName = d.Get("zone_name").(string)
 
-	ret.PortRangeEnd = d.Get("port_range_end").(string)
+	ret.Protocol = d.Get("protocol").(string)
 
 	ret.PortRangeStart = d.Get("port_range_start").(string)
+
+	ret.PortRangeEnd = d.Get("port_range_end").(string)
 	return ret
 }

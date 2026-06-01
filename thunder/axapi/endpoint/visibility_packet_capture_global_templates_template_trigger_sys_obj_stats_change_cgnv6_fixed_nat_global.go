@@ -5,12 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6FixedNatGlobal struct {
 	Inst struct {
-		TriggerStatsInc VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsInc2094 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsInc2093 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsRate2095 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsRate2094 `json:"trigger-stats-rate"`
 
 		Uuid string `json:"uuid"`
 
@@ -18,7 +18,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6
 	} `json:"cgnv6-fixed-nat-global"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsInc2094 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsInc2093 struct {
 	NatPortUnavailableTcp              int    `json:"nat-port-unavailable-tcp"`
 	NatPortUnavailableUdp              int    `json:"nat-port-unavailable-udp"`
 	NatPortUnavailableIcmp             int    `json:"nat-port-unavailable-icmp"`
@@ -39,10 +39,11 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6
 	ConfigNotFound                     int    `json:"config-not-found"`
 	PortOverloadFailed                 int    `json:"port-overload-failed"`
 	HaSessionUserQuotaExceeded         int    `json:"ha-session-user-quota-exceeded"`
+	UnusedIpDrop                       int    `json:"unused-ip-drop"`
 	Uuid                               string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsRate2095 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsRate2094 struct {
 	ThresholdExceededBy                int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                           int    `json:"duration" dval:"60"`
 	NatPortUnavailableTcp              int    `json:"nat-port-unavailable-tcp"`
@@ -65,6 +66,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6
 	ConfigNotFound                     int    `json:"config-not-found"`
 	PortOverloadFailed                 int    `json:"port-overload-failed"`
 	HaSessionUserQuotaExceeded         int    `json:"ha-session-user-quota-exceeded"`
+	UnusedIpDrop                       int    `json:"unused-ip-drop"`
 	Uuid                               string `json:"uuid"`
 }
 

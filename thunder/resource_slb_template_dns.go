@@ -297,6 +297,9 @@ func resourceSlbTemplateDns() *schema.Resource {
 			"max_query_length": {
 				Type: schema.TypeInt, Optional: true, Description: "Define Maximum DNS Query Length, default is unlimited (Specify Maximum Length)",
 			},
+			"max_udp_size": {
+				Type: schema.TypeInt, Optional: true, Description: "Set maximum DNS response message size that ACOS sends by UDP (Maximum DNS response message size (bytes))",
+			},
 			"name": {
 				Type: schema.TypeString, Required: true, Description: "DNS Template Name",
 			},
@@ -456,6 +459,18 @@ func resourceSlbTemplateDns() *schema.Resource {
 						},
 						"dnssec_validation": {
 							Type: schema.TypeString, Optional: true, Default: "disabled", Description: "'enabled': Enable DNSSEC validation; 'disabled': Disable DNSSEC validation;",
+						},
+						"edns_udp_size": {
+							Type: schema.TypeInt, Optional: true, Default: 4096, Description: "Set EDNS UDP payload size of queries sent during resolution (EDNS UDP payload size of queries, default:4096 bytes)",
+						},
+						"max_signature_validation_attempts": {
+							Type: schema.TypeInt, Optional: true, Description: "Set maximum number of times DNSSEC signature validation attempts allowed per resolution",
+						},
+						"max_signature_validation_failures": {
+							Type: schema.TypeInt, Optional: true, Description: "Set maximum number of times DNSSEC signature validation failures allowed per resolution",
+						},
+						"max_key_digest_validation_failures": {
+							Type: schema.TypeInt, Optional: true, Description: "Set maximum number of times DNSSEC key-digest validation failures allowed per resolution",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -800,26 +815,26 @@ func getSliceSlbTemplateDnsCategoryLookupList(d []interface{}) []edpt.SlbTemplat
 	return ret
 }
 
-func getObjectSlbTemplateDnsClassList1523(d []interface{}) edpt.SlbTemplateDnsClassList1523 {
+func getObjectSlbTemplateDnsClassList1524(d []interface{}) edpt.SlbTemplateDnsClassList1524 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsClassList1523
+	var ret edpt.SlbTemplateDnsClassList1524
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Name = in["name"].(string)
 		//omit uuid
-		ret.LidList = getSliceSlbTemplateDnsClassListLidList1524(in["lid_list"].([]interface{}))
+		ret.LidList = getSliceSlbTemplateDnsClassListLidList1525(in["lid_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsClassListLidList1524(d []interface{}) []edpt.SlbTemplateDnsClassListLidList1524 {
+func getSliceSlbTemplateDnsClassListLidList1525(d []interface{}) []edpt.SlbTemplateDnsClassListLidList1525 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsClassListLidList1524, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsClassListLidList1525, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsClassListLidList1524
+		var oi edpt.SlbTemplateDnsClassListLidList1525
 		oi.Lidnum = in["lidnum"].(int)
 		oi.ConnRateLimit = in["conn_rate_limit"].(int)
 		oi.Per = in["per"].(int)
@@ -828,7 +843,7 @@ func getSliceSlbTemplateDnsClassListLidList1524(d []interface{}) []edpt.SlbTempl
 		oi.Lockout = in["lockout"].(int)
 		oi.Log = in["log"].(int)
 		oi.LogInterval = in["log_interval"].(int)
-		oi.Dns = getObjectSlbTemplateDnsClassListLidListDns1525(in["dns"].([]interface{}))
+		oi.Dns = getObjectSlbTemplateDnsClassListLidListDns1526(in["dns"].([]interface{}))
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		ret = append(ret, oi)
@@ -836,10 +851,10 @@ func getSliceSlbTemplateDnsClassListLidList1524(d []interface{}) []edpt.SlbTempl
 	return ret
 }
 
-func getObjectSlbTemplateDnsClassListLidListDns1525(d []interface{}) edpt.SlbTemplateDnsClassListLidListDns1525 {
+func getObjectSlbTemplateDnsClassListLidListDns1526(d []interface{}) edpt.SlbTemplateDnsClassListLidListDns1526 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsClassListLidListDns1525
+	var ret edpt.SlbTemplateDnsClassListLidListDns1526
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.CacheAction = in["cache_action"].(string)
@@ -850,10 +865,10 @@ func getObjectSlbTemplateDnsClassListLidListDns1525(d []interface{}) edpt.SlbTem
 	return ret
 }
 
-func getObjectSlbTemplateDnsDns641526(d []interface{}) edpt.SlbTemplateDnsDns641526 {
+func getObjectSlbTemplateDnsDns641527(d []interface{}) edpt.SlbTemplateDnsDns641527 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsDns641526
+	var ret edpt.SlbTemplateDnsDns641527
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
@@ -868,10 +883,10 @@ func getObjectSlbTemplateDnsDns641526(d []interface{}) edpt.SlbTemplateDnsDns641
 	return ret
 }
 
-func getObjectSlbTemplateDnsLabelCountFilter1527(d []interface{}) edpt.SlbTemplateDnsLabelCountFilter1527 {
+func getObjectSlbTemplateDnsLabelCountFilter1528(d []interface{}) edpt.SlbTemplateDnsLabelCountFilter1528 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsLabelCountFilter1527
+	var ret edpt.SlbTemplateDnsLabelCountFilter1528
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DropLogEnable = in["drop_log_enable"].(int)
@@ -883,27 +898,27 @@ func getObjectSlbTemplateDnsLabelCountFilter1527(d []interface{}) edpt.SlbTempla
 	return ret
 }
 
-func getObjectSlbTemplateDnsLabelLengthFilter1528(d []interface{}) edpt.SlbTemplateDnsLabelLengthFilter1528 {
+func getObjectSlbTemplateDnsLabelLengthFilter1529(d []interface{}) edpt.SlbTemplateDnsLabelLengthFilter1529 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsLabelLengthFilter1528
+	var ret edpt.SlbTemplateDnsLabelLengthFilter1529
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DropLogEnable = in["drop_log_enable"].(int)
 		ret.LabelLengthFilterAction = in["label_length_filter_action"].(string)
-		ret.FqdnLabelLength = getSliceSlbTemplateDnsLabelLengthFilterFqdnLabelLength1529(in["fqdn_label_length"].([]interface{}))
+		ret.FqdnLabelLength = getSliceSlbTemplateDnsLabelLengthFilterFqdnLabelLength1530(in["fqdn_label_length"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsLabelLengthFilterFqdnLabelLength1529(d []interface{}) []edpt.SlbTemplateDnsLabelLengthFilterFqdnLabelLength1529 {
+func getSliceSlbTemplateDnsLabelLengthFilterFqdnLabelLength1530(d []interface{}) []edpt.SlbTemplateDnsLabelLengthFilterFqdnLabelLength1530 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsLabelLengthFilterFqdnLabelLength1529, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsLabelLengthFilterFqdnLabelLength1530, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsLabelLengthFilterFqdnLabelLength1529
+		var oi edpt.SlbTemplateDnsLabelLengthFilterFqdnLabelLength1530
 		oi.Length = in["length"].(int)
 		oi.Suffix = in["suffix"].(int)
 		ret = append(ret, oi)
@@ -911,49 +926,49 @@ func getSliceSlbTemplateDnsLabelLengthFilterFqdnLabelLength1529(d []interface{})
 	return ret
 }
 
-func getObjectSlbTemplateDnsLocalDnsResolution1530(d []interface{}) edpt.SlbTemplateDnsLocalDnsResolution1530 {
+func getObjectSlbTemplateDnsLocalDnsResolution1531(d []interface{}) edpt.SlbTemplateDnsLocalDnsResolution1531 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsLocalDnsResolution1530
+	var ret edpt.SlbTemplateDnsLocalDnsResolution1531
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.HostListCfg = getSliceSlbTemplateDnsLocalDnsResolutionHostListCfg1531(in["host_list_cfg"].([]interface{}))
-		ret.LocalResolverCfg = getSliceSlbTemplateDnsLocalDnsResolutionLocalResolverCfg1532(in["local_resolver_cfg"].([]interface{}))
+		ret.HostListCfg = getSliceSlbTemplateDnsLocalDnsResolutionHostListCfg1532(in["host_list_cfg"].([]interface{}))
+		ret.LocalResolverCfg = getSliceSlbTemplateDnsLocalDnsResolutionLocalResolverCfg1533(in["local_resolver_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsLocalDnsResolutionHostListCfg1531(d []interface{}) []edpt.SlbTemplateDnsLocalDnsResolutionHostListCfg1531 {
+func getSliceSlbTemplateDnsLocalDnsResolutionHostListCfg1532(d []interface{}) []edpt.SlbTemplateDnsLocalDnsResolutionHostListCfg1532 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsLocalDnsResolutionHostListCfg1531, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsLocalDnsResolutionHostListCfg1532, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsLocalDnsResolutionHostListCfg1531
+		var oi edpt.SlbTemplateDnsLocalDnsResolutionHostListCfg1532
 		oi.Hostnames = in["hostnames"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsLocalDnsResolutionLocalResolverCfg1532(d []interface{}) []edpt.SlbTemplateDnsLocalDnsResolutionLocalResolverCfg1532 {
+func getSliceSlbTemplateDnsLocalDnsResolutionLocalResolverCfg1533(d []interface{}) []edpt.SlbTemplateDnsLocalDnsResolutionLocalResolverCfg1533 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsLocalDnsResolutionLocalResolverCfg1532, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsLocalDnsResolutionLocalResolverCfg1533, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsLocalDnsResolutionLocalResolverCfg1532
+		var oi edpt.SlbTemplateDnsLocalDnsResolutionLocalResolverCfg1533
 		oi.LocalResolver = in["local_resolver"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSlbTemplateDnsNegativeDnsCache1533(d []interface{}) edpt.SlbTemplateDnsNegativeDnsCache1533 {
+func getObjectSlbTemplateDnsNegativeDnsCache1534(d []interface{}) edpt.SlbTemplateDnsNegativeDnsCache1534 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsNegativeDnsCache1533
+	var ret edpt.SlbTemplateDnsNegativeDnsCache1534
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.EnableNegativeDnsCache = in["enable_negative_dns_cache"].(int)
@@ -965,26 +980,26 @@ func getObjectSlbTemplateDnsNegativeDnsCache1533(d []interface{}) edpt.SlbTempla
 	return ret
 }
 
-func getObjectSlbTemplateDnsQueryClassFilter1534(d []interface{}) edpt.SlbTemplateDnsQueryClassFilter1534 {
+func getObjectSlbTemplateDnsQueryClassFilter1535(d []interface{}) edpt.SlbTemplateDnsQueryClassFilter1535 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsQueryClassFilter1534
+	var ret edpt.SlbTemplateDnsQueryClassFilter1535
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.QueryClassAction = in["query_class_action"].(string)
-		ret.QueryClass = getSliceSlbTemplateDnsQueryClassFilterQueryClass1535(in["query_class"].([]interface{}))
+		ret.QueryClass = getSliceSlbTemplateDnsQueryClassFilterQueryClass1536(in["query_class"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsQueryClassFilterQueryClass1535(d []interface{}) []edpt.SlbTemplateDnsQueryClassFilterQueryClass1535 {
+func getSliceSlbTemplateDnsQueryClassFilterQueryClass1536(d []interface{}) []edpt.SlbTemplateDnsQueryClassFilterQueryClass1536 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsQueryClassFilterQueryClass1535, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsQueryClassFilterQueryClass1536, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsQueryClassFilterQueryClass1535
+		var oi edpt.SlbTemplateDnsQueryClassFilterQueryClass1536
 		oi.StrQueryClass = in["str_query_class"].(string)
 		oi.NumQueryClass = in["num_query_class"].(int)
 		ret = append(ret, oi)
@@ -992,26 +1007,26 @@ func getSliceSlbTemplateDnsQueryClassFilterQueryClass1535(d []interface{}) []edp
 	return ret
 }
 
-func getObjectSlbTemplateDnsQueryTypeFilter1536(d []interface{}) edpt.SlbTemplateDnsQueryTypeFilter1536 {
+func getObjectSlbTemplateDnsQueryTypeFilter1537(d []interface{}) edpt.SlbTemplateDnsQueryTypeFilter1537 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsQueryTypeFilter1536
+	var ret edpt.SlbTemplateDnsQueryTypeFilter1537
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.QueryTypeAction = in["query_type_action"].(string)
-		ret.QueryType = getSliceSlbTemplateDnsQueryTypeFilterQueryType1537(in["query_type"].([]interface{}))
+		ret.QueryType = getSliceSlbTemplateDnsQueryTypeFilterQueryType1538(in["query_type"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsQueryTypeFilterQueryType1537(d []interface{}) []edpt.SlbTemplateDnsQueryTypeFilterQueryType1537 {
+func getSliceSlbTemplateDnsQueryTypeFilterQueryType1538(d []interface{}) []edpt.SlbTemplateDnsQueryTypeFilterQueryType1538 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsQueryTypeFilterQueryType1537, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsQueryTypeFilterQueryType1538, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsQueryTypeFilterQueryType1537
+		var oi edpt.SlbTemplateDnsQueryTypeFilterQueryType1538
 		oi.StrQueryType = in["str_query_type"].(string)
 		oi.NumQueryType = in["num_query_type"].(int)
 		ret = append(ret, oi)
@@ -1019,13 +1034,13 @@ func getSliceSlbTemplateDnsQueryTypeFilterQueryType1537(d []interface{}) []edpt.
 	return ret
 }
 
-func getObjectSlbTemplateDnsRecursiveDnsResolution1538(d []interface{}) edpt.SlbTemplateDnsRecursiveDnsResolution1538 {
+func getObjectSlbTemplateDnsRecursiveDnsResolution1539(d []interface{}) edpt.SlbTemplateDnsRecursiveDnsResolution1539 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsRecursiveDnsResolution1538
+	var ret edpt.SlbTemplateDnsRecursiveDnsResolution1539
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.HostListCfg = getSliceSlbTemplateDnsRecursiveDnsResolutionHostListCfg1539(in["host_list_cfg"].([]interface{}))
+		ret.HostListCfg = getSliceSlbTemplateDnsRecursiveDnsResolutionHostListCfg1540(in["host_list_cfg"].([]interface{}))
 		ret.CsubnetRetry = in["csubnet_retry"].(int)
 		ret.NsCacheLookup = in["ns_cache_lookup"].(string)
 		ret.NsLongestMatch = in["ns_longest_match"].(string)
@@ -1044,45 +1059,49 @@ func getObjectSlbTemplateDnsRecursiveDnsResolution1538(d []interface{}) edpt.Slb
 		ret.ForceCnameResolution = in["force_cname_resolution"].(string)
 		ret.FastNsSelection = in["fast_ns_selection"].(string)
 		ret.DnssecValidation = in["dnssec_validation"].(string)
+		ret.EdnsUdpSize = in["edns_udp_size"].(int)
+		ret.MaxSignatureValidationAttempts = in["max_signature_validation_attempts"].(int)
+		ret.MaxSignatureValidationFailures = in["max_signature_validation_failures"].(int)
+		ret.MaxKeyDigestValidationFailures = in["max_key_digest_validation_failures"].(int)
 		//omit uuid
-		ret.LookupOrder = getObjectSlbTemplateDnsRecursiveDnsResolutionLookupOrder1540(in["lookup_order"].([]interface{}))
-		ret.GatewayHealthCheck = getObjectSlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1542(in["gateway_health_check"].([]interface{}))
+		ret.LookupOrder = getObjectSlbTemplateDnsRecursiveDnsResolutionLookupOrder1541(in["lookup_order"].([]interface{}))
+		ret.GatewayHealthCheck = getObjectSlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1543(in["gateway_health_check"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsRecursiveDnsResolutionHostListCfg1539(d []interface{}) []edpt.SlbTemplateDnsRecursiveDnsResolutionHostListCfg1539 {
+func getSliceSlbTemplateDnsRecursiveDnsResolutionHostListCfg1540(d []interface{}) []edpt.SlbTemplateDnsRecursiveDnsResolutionHostListCfg1540 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsRecursiveDnsResolutionHostListCfg1539, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsRecursiveDnsResolutionHostListCfg1540, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsRecursiveDnsResolutionHostListCfg1539
+		var oi edpt.SlbTemplateDnsRecursiveDnsResolutionHostListCfg1540
 		oi.Hostnames = in["hostnames"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSlbTemplateDnsRecursiveDnsResolutionLookupOrder1540(d []interface{}) edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrder1540 {
+func getObjectSlbTemplateDnsRecursiveDnsResolutionLookupOrder1541(d []interface{}) edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrder1541 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrder1540
+	var ret edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrder1541
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.QueryType = getSliceSlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1541(in["query_type"].([]interface{}))
+		ret.QueryType = getSliceSlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1542(in["query_type"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1541(d []interface{}) []edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1541 {
+func getSliceSlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1542(d []interface{}) []edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1542 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1541, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1542, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1541
+		var oi edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1542
 		oi.StrQueryType = in["str_query_type"].(string)
 		oi.NumQueryType = in["num_query_type"].(int)
 		oi.Order = in["order"].(string)
@@ -1091,10 +1110,10 @@ func getSliceSlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1541(d []in
 	return ret
 }
 
-func getObjectSlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1542(d []interface{}) edpt.SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1542 {
+func getObjectSlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1543(d []interface{}) edpt.SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1543 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1542
+	var ret edpt.SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1543
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.QueryName = in["query_name"].(string)
@@ -1111,10 +1130,10 @@ func getObjectSlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1542(d []int
 	return ret
 }
 
-func getObjectSlbTemplateDnsResponseRateLimiting1543(d []interface{}) edpt.SlbTemplateDnsResponseRateLimiting1543 {
+func getObjectSlbTemplateDnsResponseRateLimiting1544(d []interface{}) edpt.SlbTemplateDnsResponseRateLimiting1544 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsResponseRateLimiting1543
+	var ret edpt.SlbTemplateDnsResponseRateLimiting1544
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ResponseRate = in["response_rate"].(int)
@@ -1129,34 +1148,34 @@ func getObjectSlbTemplateDnsResponseRateLimiting1543(d []interface{}) edpt.SlbTe
 		ret.EnableLog = in["enable_log"].(int)
 		ret.Action = in["action"].(string)
 		//omit uuid
-		ret.RrlClassListList = getSliceSlbTemplateDnsResponseRateLimitingRrlClassListList1544(in["rrl_class_list_list"].([]interface{}))
+		ret.RrlClassListList = getSliceSlbTemplateDnsResponseRateLimitingRrlClassListList1545(in["rrl_class_list_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsResponseRateLimitingRrlClassListList1544(d []interface{}) []edpt.SlbTemplateDnsResponseRateLimitingRrlClassListList1544 {
+func getSliceSlbTemplateDnsResponseRateLimitingRrlClassListList1545(d []interface{}) []edpt.SlbTemplateDnsResponseRateLimitingRrlClassListList1545 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsResponseRateLimitingRrlClassListList1544, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsResponseRateLimitingRrlClassListList1545, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsResponseRateLimitingRrlClassListList1544
+		var oi edpt.SlbTemplateDnsResponseRateLimitingRrlClassListList1545
 		oi.Name = in["name"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.LidList = getSliceSlbTemplateDnsResponseRateLimitingRrlClassListListLidList1545(in["lid_list"].([]interface{}))
+		oi.LidList = getSliceSlbTemplateDnsResponseRateLimitingRrlClassListListLidList1546(in["lid_list"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsResponseRateLimitingRrlClassListListLidList1545(d []interface{}) []edpt.SlbTemplateDnsResponseRateLimitingRrlClassListListLidList1545 {
+func getSliceSlbTemplateDnsResponseRateLimitingRrlClassListListLidList1546(d []interface{}) []edpt.SlbTemplateDnsResponseRateLimitingRrlClassListListLidList1546 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsResponseRateLimitingRrlClassListListLidList1545, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsResponseRateLimitingRrlClassListListLidList1546, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsResponseRateLimitingRrlClassListListLidList1545
+		var oi edpt.SlbTemplateDnsResponseRateLimitingRrlClassListListLidList1546
 		oi.Lidnum = in["lidnum"].(int)
 		oi.LidResponseRate = in["lid_response_rate"].(int)
 		oi.LidSlipRate = in["lid_slip_rate"].(int)
@@ -1218,10 +1237,10 @@ func getSliceSlbTemplateDnsRpzListLoggingRpzAction(d []interface{}) []edpt.SlbTe
 	return ret
 }
 
-func getObjectSlbTemplateDnsUdpRetransmit1546(d []interface{}) edpt.SlbTemplateDnsUdpRetransmit1546 {
+func getObjectSlbTemplateDnsUdpRetransmit1547(d []interface{}) edpt.SlbTemplateDnsUdpRetransmit1547 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsUdpRetransmit1546
+	var ret edpt.SlbTemplateDnsUdpRetransmit1547
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RetryInterval = in["retry_interval"].(int)
@@ -1240,45 +1259,46 @@ func dataToEndpointSlbTemplateDns(d *schema.ResourceData) edpt.SlbTemplateDns {
 	ret.Inst.CategoryLookupBypass = d.Get("category_lookup_bypass").(string)
 	ret.Inst.CategoryLookupList = getSliceSlbTemplateDnsCategoryLookupList(d.Get("category_lookup_list").([]interface{}))
 	ret.Inst.CategoryLookupOnlineLookup = d.Get("category_lookup_online_lookup").(int)
-	ret.Inst.ClassList = getObjectSlbTemplateDnsClassList1523(d.Get("class_list").([]interface{}))
+	ret.Inst.ClassList = getObjectSlbTemplateDnsClassList1524(d.Get("class_list").([]interface{}))
 	ret.Inst.DefaultPolicy = d.Get("default_policy").(string)
 	ret.Inst.DisableDnsTemplate = d.Get("disable_dns_template").(int)
 	ret.Inst.DisableRaCachedResp = d.Get("disable_ra_cached_resp").(int)
 	ret.Inst.DisableRpzAttachSoa = d.Get("disable_rpz_attach_soa").(int)
 	ret.Inst.DnsCookieCachePolicy = d.Get("dns_cookie_cache_policy").(string)
 	ret.Inst.DnsLogging = d.Get("dns_logging").(string)
-	ret.Inst.Dns64 = getObjectSlbTemplateDnsDns641526(d.Get("dns64").([]interface{}))
+	ret.Inst.Dns64 = getObjectSlbTemplateDnsDns641527(d.Get("dns64").([]interface{}))
 	ret.Inst.DnssecServiceGroup = d.Get("dnssec_service_group").(string)
 	ret.Inst.Drop = d.Get("drop").(int)
 	ret.Inst.EnableCacheSharing = d.Get("enable_cache_sharing").(int)
 	ret.Inst.Forward = d.Get("forward").(string)
 	ret.Inst.InsertIpv4 = d.Get("insert_ipv4").(int)
 	ret.Inst.InsertIpv6 = d.Get("insert_ipv6").(int)
-	ret.Inst.LabelCountFilter = getObjectSlbTemplateDnsLabelCountFilter1527(d.Get("label_count_filter").([]interface{}))
-	ret.Inst.LabelLengthFilter = getObjectSlbTemplateDnsLabelLengthFilter1528(d.Get("label_length_filter").([]interface{}))
-	ret.Inst.LocalDnsResolution = getObjectSlbTemplateDnsLocalDnsResolution1530(d.Get("local_dns_resolution").([]interface{}))
+	ret.Inst.LabelCountFilter = getObjectSlbTemplateDnsLabelCountFilter1528(d.Get("label_count_filter").([]interface{}))
+	ret.Inst.LabelLengthFilter = getObjectSlbTemplateDnsLabelLengthFilter1529(d.Get("label_length_filter").([]interface{}))
+	ret.Inst.LocalDnsResolution = getObjectSlbTemplateDnsLocalDnsResolution1531(d.Get("local_dns_resolution").([]interface{}))
 	ret.Inst.MaxCacheEntrySize = d.Get("max_cache_entry_size").(int)
 	ret.Inst.MaxCacheSize = d.Get("max_cache_size").(int)
 	ret.Inst.MaxQueryLength = d.Get("max_query_length").(int)
+	ret.Inst.MaxUdpSize = d.Get("max_udp_size").(int)
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.NegativeDnsCache = getObjectSlbTemplateDnsNegativeDnsCache1533(d.Get("negative_dns_cache").([]interface{}))
+	ret.Inst.NegativeDnsCache = getObjectSlbTemplateDnsNegativeDnsCache1534(d.Get("negative_dns_cache").([]interface{}))
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.QpsLogHigh = d.Get("qps_log_high").(int)
 	ret.Inst.QpsLogLow = d.Get("qps_log_low").(int)
 	ret.Inst.QpsThresholdLog = d.Get("qps_threshold_log").(int)
-	ret.Inst.QueryClassFilter = getObjectSlbTemplateDnsQueryClassFilter1534(d.Get("query_class_filter").([]interface{}))
+	ret.Inst.QueryClassFilter = getObjectSlbTemplateDnsQueryClassFilter1535(d.Get("query_class_filter").([]interface{}))
 	ret.Inst.QueryIdSwitch = d.Get("query_id_switch").(int)
-	ret.Inst.QueryTypeFilter = getObjectSlbTemplateDnsQueryTypeFilter1536(d.Get("query_type_filter").([]interface{}))
-	ret.Inst.RecursiveDnsResolution = getObjectSlbTemplateDnsRecursiveDnsResolution1538(d.Get("recursive_dns_resolution").([]interface{}))
+	ret.Inst.QueryTypeFilter = getObjectSlbTemplateDnsQueryTypeFilter1537(d.Get("query_type_filter").([]interface{}))
+	ret.Inst.RecursiveDnsResolution = getObjectSlbTemplateDnsRecursiveDnsResolution1539(d.Get("recursive_dns_resolution").([]interface{}))
 	ret.Inst.RedirectToTcpPort = d.Get("redirect_to_tcp_port").(int)
 	ret.Inst.RemoveAaFlag = d.Get("remove_aa_flag").(int)
 	ret.Inst.RemoveCsubnet = d.Get("remove_csubnet").(int)
 	ret.Inst.RemovePaddingToServer = d.Get("remove_padding_to_server").(int)
-	ret.Inst.ResponseRateLimiting = getObjectSlbTemplateDnsResponseRateLimiting1543(d.Get("response_rate_limiting").([]interface{}))
+	ret.Inst.ResponseRateLimiting = getObjectSlbTemplateDnsResponseRateLimiting1544(d.Get("response_rate_limiting").([]interface{}))
 	ret.Inst.RpzList = getSliceSlbTemplateDnsRpzList(d.Get("rpz_list").([]interface{}))
 	ret.Inst.TldFilterLogEnable = d.Get("tld_filter_log_enable").(int)
 	ret.Inst.TldFilterWhiteList = d.Get("tld_filter_white_list").(string)
-	ret.Inst.UdpRetransmit = getObjectSlbTemplateDnsUdpRetransmit1546(d.Get("udp_retransmit").([]interface{}))
+	ret.Inst.UdpRetransmit = getObjectSlbTemplateDnsUdpRetransmit1547(d.Get("udp_retransmit").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

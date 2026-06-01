@@ -6,20 +6,20 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbVirtualServerPortStats struct {
 	Inst struct {
 		PortNumber int `json:"port-number"`
 
 		Protocol string `json:"protocol"`
 
-		Stats SlbVirtualServerPortStatsStats1577 `json:"stats"`
+		Stats SlbVirtualServerPortStatsStats1578 `json:"stats"`
 
 		Virtual_server_name string
 	} `json:"port"`
 }
 
-type SlbVirtualServerPortStatsStats1577 struct {
+type SlbVirtualServerPortStatsStats1578 struct {
 	Cache SlbVirtualServerPortStatsStatsCache `json:"cache"`
 }
 

@@ -5,12 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6Nat64Global struct {
 	Inst struct {
-		TriggerStatsInc VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsInc2118 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsInc2119 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsRate2119 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsRate2120 `json:"trigger-stats-rate"`
 
 		Uuid string `json:"uuid"`
 
@@ -18,7 +18,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6
 	} `json:"cgnv6-nat64-global"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsInc2118 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsInc2119 struct {
 	User_quota_failure              int    `json:"user_quota_failure"`
 	Nat_port_unavailable_tcp        int    `json:"nat_port_unavailable_tcp"`
 	Nat_port_unavailable_udp        int    `json:"nat_port_unavailable_udp"`
@@ -37,7 +37,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6
 	Uuid                            string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsRate2119 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsRate2120 struct {
 	ThresholdExceededBy             int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                        int    `json:"duration" dval:"60"`
 	User_quota_failure              int    `json:"user_quota_failure"`

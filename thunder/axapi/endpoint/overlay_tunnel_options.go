@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type OverlayTunnelOptions struct {
 	Inst struct {
 		FragmentationModeInner int `json:"fragmentation-mode-inner"`
@@ -18,7 +18,7 @@ type OverlayTunnelOptions struct {
 
 		NvgreKeyModeLower24 int `json:"nvgre-key-mode-lower24"`
 
-		SrcPortRange OverlayTunnelOptionsSrcPortRange1161 `json:"src-port-range"`
+		SrcPortRange OverlayTunnelOptionsSrcPortRange1160 `json:"src-port-range"`
 
 		TcpMssAdjustDisable int `json:"tcp-mss-adjust-disable"`
 
@@ -28,7 +28,7 @@ type OverlayTunnelOptions struct {
 	} `json:"options"`
 }
 
-type OverlayTunnelOptionsSrcPortRange1161 struct {
+type OverlayTunnelOptionsSrcPortRange1160 struct {
 	MinPort int    `json:"min-port" dval:"1"`
 	MaxPort int    `json:"max-port" dval:"65535"`
 	Uuid    string `json:"uuid"`

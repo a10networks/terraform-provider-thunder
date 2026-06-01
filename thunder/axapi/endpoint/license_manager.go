@@ -5,14 +5,14 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type LicenseManager struct {
 	Inst struct {
 		BandwidthBase int `json:"bandwidth-base"`
 
 		BandwidthUnrestricted int `json:"bandwidth-unrestricted"`
 
-		Connect LicenseManagerConnect1128 `json:"connect"`
+		Connect LicenseManagerConnect1127 `json:"connect"`
 
 		HostList []LicenseManagerHostList `json:"host-list"`
 
@@ -20,9 +20,9 @@ type LicenseManager struct {
 
 		Interval int `json:"interval"`
 
-		NgWafModule LicenseManagerNgWafModule1129 `json:"ng-waf-module"`
+		NgWafModule LicenseManagerNgWafModule1128 `json:"ng-waf-module"`
 
-		Overage LicenseManagerOverage1130 `json:"overage"`
+		Overage LicenseManagerOverage1129 `json:"overage"`
 
 		ReminderList []LicenseManagerReminderList `json:"reminder-list"`
 
@@ -34,7 +34,7 @@ type LicenseManager struct {
 	} `json:"license-manager"`
 }
 
-type LicenseManagerConnect1128 struct {
+type LicenseManagerConnect1127 struct {
 	Connect int    `json:"connect"`
 	Uuid    string `json:"uuid"`
 }
@@ -46,12 +46,12 @@ type LicenseManagerHostList struct {
 	Uuid     string `json:"uuid"`
 }
 
-type LicenseManagerNgWafModule1129 struct {
+type LicenseManagerNgWafModule1128 struct {
 	AccessKeyId     string `json:"access-key-id"`
 	SecretAccessKey string `json:"secret-access-key"`
 }
 
-type LicenseManagerOverage1130 struct {
+type LicenseManagerOverage1129 struct {
 	Days    int    `json:"days"`
 	Hours   int    `json:"hours"`
 	Minutes int    `json:"minutes"`

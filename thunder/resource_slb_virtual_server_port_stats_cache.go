@@ -203,10 +203,10 @@ func resourceSlbVirtualServerPortStatsRead(ctx context.Context, d *schema.Resour
 	return diags
 }
 
-func getObjectSlbVirtualServerPortStatsStats1577(d []interface{}) edpt.SlbVirtualServerPortStatsStats1577 {
+func getObjectSlbVirtualServerPortStatsStats1578(d []interface{}) edpt.SlbVirtualServerPortStatsStats1578 {
 
 	count1 := len(d)
-	var ret edpt.SlbVirtualServerPortStatsStats1577
+	var ret edpt.SlbVirtualServerPortStatsStats1578
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Cache = getObjectSlbVirtualServerPortStatsStatsCache(in["cache"].([]interface{}))
@@ -261,7 +261,7 @@ func dataToEndpointSlbVirtualServerPortStats(d *schema.ResourceData) edpt.SlbVir
 	var ret edpt.SlbVirtualServerPortStats
 	ret.Inst.PortNumber = d.Get("port_number").(int)
 	ret.Inst.Protocol = d.Get("protocol").(string)
-	ret.Inst.Stats = getObjectSlbVirtualServerPortStatsStats1577(d.Get("stats").([]interface{}))
+	ret.Inst.Stats = getObjectSlbVirtualServerPortStatsStats1578(d.Get("stats").([]interface{}))
 	ret.Inst.Virtual_server_name = d.Get("virtual_server_name").(string)
 	return ret
 }

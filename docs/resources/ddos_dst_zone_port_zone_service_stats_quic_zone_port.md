@@ -179,6 +179,8 @@ Optional:
 - `src_hw_drop` (Number) Src Hardware Packets Dropped
 - `src_hw_drop_inserted` (Number) Src Hardware Drop Rules Inserted
 - `src_hw_drop_removed` (Number) Src Hardware Drop Rules Removed
+- `src_ip_filtering_bypass` (Number) Src-ip-filtering Bypass
+- `src_ip_filtering_drop` (Number) Src-ip-filtering Drop
 - `src_learn_overflow` (Number) Source Dynamic Entry Overflow
 - `src_ntp_monlist_req` (Number) Src NTP Monlist Request
 - `src_ntp_monlist_resp` (Number) Src NTP Monlist Response

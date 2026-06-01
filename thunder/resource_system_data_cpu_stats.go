@@ -320,21 +320,6 @@ func resourceSystemDataCpuStats() *schema.Resource {
 						"cpu_100": {
 							Type: schema.TypeInt, Optional: true, Description: "Data CPU-100",
 						},
-						"cpu_101": {
-							Type: schema.TypeInt, Optional: true, Description: "Data CPU-101",
-						},
-						"cpu_102": {
-							Type: schema.TypeInt, Optional: true, Description: "Data CPU-102",
-						},
-						"cpu_103": {
-							Type: schema.TypeInt, Optional: true, Description: "Data CPU-103",
-						},
-						"cpu_104": {
-							Type: schema.TypeInt, Optional: true, Description: "Data CPU-104",
-						},
-						"cpu_105": {
-							Type: schema.TypeInt, Optional: true, Description: "Data CPU-105",
-						},
 					},
 				},
 			},
@@ -465,11 +450,6 @@ func setObjectSystemDataCpuStatsStats(ret edpt.DataSystemDataCpuStats) []interfa
 			"cpu_98":          ret.DtSystemDataCpuStats.Stats.Cpu98,
 			"cpu_99":          ret.DtSystemDataCpuStats.Stats.Cpu99,
 			"cpu_100":         ret.DtSystemDataCpuStats.Stats.Cpu100,
-			"cpu_101":         ret.DtSystemDataCpuStats.Stats.Cpu101,
-			"cpu_102":         ret.DtSystemDataCpuStats.Stats.Cpu102,
-			"cpu_103":         ret.DtSystemDataCpuStats.Stats.Cpu103,
-			"cpu_104":         ret.DtSystemDataCpuStats.Stats.Cpu104,
-			"cpu_105":         ret.DtSystemDataCpuStats.Stats.Cpu105,
 		},
 	}
 }
@@ -581,11 +561,6 @@ func getObjectSystemDataCpuStatsStats(d []interface{}) edpt.SystemDataCpuStatsSt
 		ret.Cpu98 = in["cpu_98"].(int)
 		ret.Cpu99 = in["cpu_99"].(int)
 		ret.Cpu100 = in["cpu_100"].(int)
-		ret.Cpu101 = in["cpu_101"].(int)
-		ret.Cpu102 = in["cpu_102"].(int)
-		ret.Cpu103 = in["cpu_103"].(int)
-		ret.Cpu104 = in["cpu_104"].(int)
-		ret.Cpu105 = in["cpu_105"].(int)
 	}
 	return ret
 }

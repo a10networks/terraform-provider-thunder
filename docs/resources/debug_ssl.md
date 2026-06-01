@@ -32,6 +32,7 @@ resource "thunder_debug_ssl" "thunder_debug_ssl" {
 ### Optional
 
 - `client_server` (String) 'clientside': clientside SSL connection; 'serverside': serverside SSL connection;
+- `event_log` (String) 'minimal': Minimal event logs, skip encryption/decryption hardware operations; 'basic': Basic event logs; 'detailed': Detailed event logs, including logs for encryption/decryption operations; 'verbose': Verbose event logs;
 - `payload_dump_max` (Number) Application payloads exceeding this limit will be truncated to dump. Set to 0 to disable payload dumping
 - `payload_dump_string` (Number) Dump the application payload as strings
 - `read_write` (String) 'read': read record; 'write': write record;

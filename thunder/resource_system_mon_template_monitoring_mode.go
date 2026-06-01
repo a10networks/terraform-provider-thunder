@@ -17,7 +17,7 @@ func resourceSystemMonTemplateMonitoringMode() *schema.Resource {
 
 		Schema: map[string]*schema.Schema{
 			"mmode": {
-				Type: schema.TypeString, Optional: true, Default: "and", Description: "'interdependent': INTERDEPENDENT monitoring behaviour; 'and': AND monitoring behaviour, Default;",
+				Type: schema.TypeString, Optional: true, Default: "interdependent", Description: "'interdependent': INTERDEPENDENT monitoring behaviour, Default; 'and': AND monitoring behaviour;",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",

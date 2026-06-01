@@ -128,6 +128,19 @@ func resourceSflowPolling() *schema.Resource {
 			"http_counter": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Polling HTTP counters",
 			},
+			"mgmt_svc_acl": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"toggle": {
+							Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable polling MGMT Service ACL counters; 'disable': Disable polling MGMT Service ACL counters;",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
 			"system_health": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -326,10 +339,22 @@ func getObjectSflowPollingHttp1496(d []interface{}) edpt.SflowPollingHttp1496 {
 	return ret
 }
 
-func getObjectSflowPollingSystemHealth1497(d []interface{}) edpt.SflowPollingSystemHealth1497 {
+func getObjectSflowPollingMgmtSvcAcl1497(d []interface{}) edpt.SflowPollingMgmtSvcAcl1497 {
 
 	count1 := len(d)
-	var ret edpt.SflowPollingSystemHealth1497
+	var ret edpt.SflowPollingMgmtSvcAcl1497
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Toggle = in["toggle"].(string)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectSflowPollingSystemHealth1498(d []interface{}) edpt.SflowPollingSystemHealth1498 {
+
+	count1 := len(d)
+	var ret edpt.SflowPollingSystemHealth1498
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SystemHealthUsage = in["system_health_usage"].(string)
@@ -366,7 +391,8 @@ func dataToEndpointSflowPolling(d *schema.ResourceData) edpt.SflowPolling {
 	ret.Inst.EthernetList = getSliceSflowPollingEthernetList(d.Get("ethernet_list").([]interface{}))
 	ret.Inst.Http = getObjectSflowPollingHttp1496(d.Get("http").([]interface{}))
 	ret.Inst.HttpCounter = d.Get("http_counter").(int)
-	ret.Inst.SystemHealth = getObjectSflowPollingSystemHealth1497(d.Get("system_health").([]interface{}))
+	ret.Inst.MgmtSvcAcl = getObjectSflowPollingMgmtSvcAcl1497(d.Get("mgmt_svc_acl").([]interface{}))
+	ret.Inst.SystemHealth = getObjectSflowPollingSystemHealth1498(d.Get("system_health").([]interface{}))
 	//omit uuid
 	ret.Inst.VeList = getSliceSflowPollingVeList(d.Get("ve_list").([]interface{}))
 	return ret

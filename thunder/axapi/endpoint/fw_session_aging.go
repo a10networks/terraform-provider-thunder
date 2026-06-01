@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type FwSessionAging struct {
 	Inst struct {
 		IcmpIdleTimeout int `json:"icmp-idle-timeout" dval:"2"`
@@ -14,9 +14,9 @@ type FwSessionAging struct {
 
 		Name string `json:"name"`
 
-		Tcp FwSessionAgingTcp446 `json:"tcp"`
+		Tcp FwSessionAgingTcp437 `json:"tcp"`
 
-		Udp FwSessionAgingUdp448 `json:"udp"`
+		Udp FwSessionAgingUdp439 `json:"udp"`
 
 		UserTag string `json:"user-tag"`
 
@@ -24,17 +24,17 @@ type FwSessionAging struct {
 	} `json:"session-aging"`
 }
 
-type FwSessionAgingTcp446 struct {
+type FwSessionAgingTcp437 struct {
 	TcpIdleTimeout          int                           `json:"tcp-idle-timeout" dval:"600"`
 	HalfOpenIdleTimeout     int                           `json:"half-open-idle-timeout"`
 	HalfCloseIdleTimeout    int                           `json:"half-close-idle-timeout"`
 	ForceDeleteTimeout      int                           `json:"force-delete-timeout"`
 	ForceDeleteTimeout100ms int                           `json:"force-delete-timeout-100ms"`
-	PortCfg                 []FwSessionAgingTcpPortCfg447 `json:"port-cfg"`
+	PortCfg                 []FwSessionAgingTcpPortCfg438 `json:"port-cfg"`
 	Uuid                    string                        `json:"uuid"`
 }
 
-type FwSessionAgingTcpPortCfg447 struct {
+type FwSessionAgingTcpPortCfg438 struct {
 	TcpPort                 int `json:"tcp-port"`
 	TcpIdleTimeout          int `json:"tcp-idle-timeout"`
 	HalfOpenIdleTimeout     int `json:"half-open-idle-timeout"`
@@ -43,13 +43,13 @@ type FwSessionAgingTcpPortCfg447 struct {
 	ForceDeleteTimeout100ms int `json:"force-delete-timeout-100ms"`
 }
 
-type FwSessionAgingUdp448 struct {
+type FwSessionAgingUdp439 struct {
 	UdpIdleTimeout int                           `json:"udp-idle-timeout" dval:"120"`
-	PortCfg        []FwSessionAgingUdpPortCfg449 `json:"port-cfg"`
+	PortCfg        []FwSessionAgingUdpPortCfg440 `json:"port-cfg"`
 	Uuid           string                        `json:"uuid"`
 }
 
-type FwSessionAgingUdpPortCfg449 struct {
+type FwSessionAgingUdpPortCfg440 struct {
 	UdpPort        int `json:"udp-port"`
 	UdpIdleTimeout int `json:"udp-idle-timeout" dval:"120"`
 }

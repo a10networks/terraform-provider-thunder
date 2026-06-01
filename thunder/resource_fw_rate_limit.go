@@ -117,16 +117,16 @@ func getSliceFwRateLimitSamplingEnable(d []interface{}) []edpt.FwRateLimitSampli
 	return ret
 }
 
-func getObjectFwRateLimitSummary445(d []interface{}) edpt.FwRateLimitSummary445 {
+func getObjectFwRateLimitSummary436(d []interface{}) edpt.FwRateLimitSummary436 {
 
-	var ret edpt.FwRateLimitSummary445
+	var ret edpt.FwRateLimitSummary436
 	return ret
 }
 
 func dataToEndpointFwRateLimit(d *schema.ResourceData) edpt.FwRateLimit {
 	var ret edpt.FwRateLimit
 	ret.Inst.SamplingEnable = getSliceFwRateLimitSamplingEnable(d.Get("sampling_enable").([]interface{}))
-	ret.Inst.Summary = getObjectFwRateLimitSummary445(d.Get("summary").([]interface{}))
+	ret.Inst.Summary = getObjectFwRateLimitSummary436(d.Get("summary").([]interface{}))
 	//omit uuid
 	return ret
 }

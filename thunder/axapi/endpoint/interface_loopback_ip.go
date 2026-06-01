@@ -5,16 +5,16 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type InterfaceLoopbackIp struct {
 	Inst struct {
 		AddressList []InterfaceLoopbackIpAddressList `json:"address-list"`
 
-		Ospf InterfaceLoopbackIpOspf742 `json:"ospf"`
+		Ospf InterfaceLoopbackIpOspf733 `json:"ospf"`
 
-		Rip InterfaceLoopbackIpRip749 `json:"rip"`
+		Rip InterfaceLoopbackIpRip740 `json:"rip"`
 
-		Router InterfaceLoopbackIpRouter757 `json:"router"`
+		Router InterfaceLoopbackIpRouter748 `json:"router"`
 
 		Uuid string `json:"uuid"`
 
@@ -27,21 +27,21 @@ type InterfaceLoopbackIpAddressList struct {
 	Ipv4Netmask string `json:"ipv4-netmask"`
 }
 
-type InterfaceLoopbackIpOspf742 struct {
-	OspfGlobal InterfaceLoopbackIpOspfOspfGlobal743 `json:"ospf-global"`
+type InterfaceLoopbackIpOspf733 struct {
+	OspfGlobal InterfaceLoopbackIpOspfOspfGlobal734 `json:"ospf-global"`
 	OspfIpList []InterfaceLoopbackIpOspfOspfIpList  `json:"ospf-ip-list"`
 }
 
-type InterfaceLoopbackIpOspfOspfGlobal743 struct {
-	AuthenticationCfg  InterfaceLoopbackIpOspfOspfGlobalAuthenticationCfg744  `json:"authentication-cfg"`
+type InterfaceLoopbackIpOspfOspfGlobal734 struct {
+	AuthenticationCfg  InterfaceLoopbackIpOspfOspfGlobalAuthenticationCfg735  `json:"authentication-cfg"`
 	AuthenticationKey  string                                                 `json:"authentication-key"`
-	BfdCfg             InterfaceLoopbackIpOspfOspfGlobalBfdCfg745             `json:"bfd-cfg"`
+	BfdCfg             InterfaceLoopbackIpOspfOspfGlobalBfdCfg736             `json:"bfd-cfg"`
 	Cost               int                                                    `json:"cost"`
-	DatabaseFilterCfg  InterfaceLoopbackIpOspfOspfGlobalDatabaseFilterCfg746  `json:"database-filter-cfg"`
+	DatabaseFilterCfg  InterfaceLoopbackIpOspfOspfGlobalDatabaseFilterCfg737  `json:"database-filter-cfg"`
 	DeadInterval       int                                                    `json:"dead-interval" dval:"40"`
 	Disable            string                                                 `json:"disable"`
 	HelloInterval      int                                                    `json:"hello-interval" dval:"10"`
-	MessageDigestCfg   []InterfaceLoopbackIpOspfOspfGlobalMessageDigestCfg747 `json:"message-digest-cfg"`
+	MessageDigestCfg   []InterfaceLoopbackIpOspfOspfGlobalMessageDigestCfg738 `json:"message-digest-cfg"`
 	Mtu                int                                                    `json:"mtu"`
 	MtuIgnore          int                                                    `json:"mtu-ignore"`
 	Priority           int                                                    `json:"priority" dval:"1"`
@@ -50,27 +50,27 @@ type InterfaceLoopbackIpOspfOspfGlobal743 struct {
 	Uuid               string                                                 `json:"uuid"`
 }
 
-type InterfaceLoopbackIpOspfOspfGlobalAuthenticationCfg744 struct {
+type InterfaceLoopbackIpOspfOspfGlobalAuthenticationCfg735 struct {
 	Authentication int    `json:"authentication"`
 	Value          string `json:"value"`
 }
 
-type InterfaceLoopbackIpOspfOspfGlobalBfdCfg745 struct {
+type InterfaceLoopbackIpOspfOspfGlobalBfdCfg736 struct {
 	Bfd     int `json:"bfd"`
 	Disable int `json:"disable"`
 }
 
-type InterfaceLoopbackIpOspfOspfGlobalDatabaseFilterCfg746 struct {
+type InterfaceLoopbackIpOspfOspfGlobalDatabaseFilterCfg737 struct {
 	DatabaseFilter string `json:"database-filter"`
 	Out            int    `json:"out"`
 }
 
-type InterfaceLoopbackIpOspfOspfGlobalMessageDigestCfg747 struct {
+type InterfaceLoopbackIpOspfOspfGlobalMessageDigestCfg738 struct {
 	MessageDigestKey int                                                     `json:"message-digest-key"`
-	Md5              InterfaceLoopbackIpOspfOspfGlobalMessageDigestCfgMd5748 `json:"md5"`
+	Md5              InterfaceLoopbackIpOspfOspfGlobalMessageDigestCfgMd5739 `json:"md5"`
 }
 
-type InterfaceLoopbackIpOspfOspfGlobalMessageDigestCfgMd5748 struct {
+type InterfaceLoopbackIpOspfOspfGlobalMessageDigestCfgMd5739 struct {
 	Md5Value  string `json:"md5-value"`
 	Encrypted string `json:"encrypted"`
 }
@@ -99,53 +99,53 @@ type InterfaceLoopbackIpOspfOspfIpListMessageDigestCfg struct {
 	Encrypted        string `json:"encrypted"`
 }
 
-type InterfaceLoopbackIpRip749 struct {
-	Authentication  InterfaceLoopbackIpRipAuthentication750  `json:"authentication"`
+type InterfaceLoopbackIpRip740 struct {
+	Authentication  InterfaceLoopbackIpRipAuthentication741  `json:"authentication"`
 	SendPacket      int                                      `json:"send-packet" dval:"1"`
 	ReceivePacket   int                                      `json:"receive-packet" dval:"1"`
-	SendCfg         InterfaceLoopbackIpRipSendCfg754         `json:"send-cfg"`
-	ReceiveCfg      InterfaceLoopbackIpRipReceiveCfg755      `json:"receive-cfg"`
-	SplitHorizonCfg InterfaceLoopbackIpRipSplitHorizonCfg756 `json:"split-horizon-cfg"`
+	SendCfg         InterfaceLoopbackIpRipSendCfg745         `json:"send-cfg"`
+	ReceiveCfg      InterfaceLoopbackIpRipReceiveCfg746      `json:"receive-cfg"`
+	SplitHorizonCfg InterfaceLoopbackIpRipSplitHorizonCfg747 `json:"split-horizon-cfg"`
 	Uuid            string                                   `json:"uuid"`
 }
 
-type InterfaceLoopbackIpRipAuthentication750 struct {
-	Str      InterfaceLoopbackIpRipAuthenticationStr751      `json:"str"`
-	Mode     InterfaceLoopbackIpRipAuthenticationMode752     `json:"mode"`
-	KeyChain InterfaceLoopbackIpRipAuthenticationKeyChain753 `json:"key-chain"`
+type InterfaceLoopbackIpRipAuthentication741 struct {
+	Str      InterfaceLoopbackIpRipAuthenticationStr742      `json:"str"`
+	Mode     InterfaceLoopbackIpRipAuthenticationMode743     `json:"mode"`
+	KeyChain InterfaceLoopbackIpRipAuthenticationKeyChain744 `json:"key-chain"`
 }
 
-type InterfaceLoopbackIpRipAuthenticationStr751 struct {
+type InterfaceLoopbackIpRipAuthenticationStr742 struct {
 	String string `json:"string"`
 }
 
-type InterfaceLoopbackIpRipAuthenticationMode752 struct {
+type InterfaceLoopbackIpRipAuthenticationMode743 struct {
 	Mode string `json:"mode" dval:"text"`
 }
 
-type InterfaceLoopbackIpRipAuthenticationKeyChain753 struct {
+type InterfaceLoopbackIpRipAuthenticationKeyChain744 struct {
 	KeyChain string `json:"key-chain"`
 }
 
-type InterfaceLoopbackIpRipSendCfg754 struct {
+type InterfaceLoopbackIpRipSendCfg745 struct {
 	Send    int    `json:"send"`
 	Version string `json:"version"`
 }
 
-type InterfaceLoopbackIpRipReceiveCfg755 struct {
+type InterfaceLoopbackIpRipReceiveCfg746 struct {
 	Receive int    `json:"receive"`
 	Version string `json:"version"`
 }
 
-type InterfaceLoopbackIpRipSplitHorizonCfg756 struct {
+type InterfaceLoopbackIpRipSplitHorizonCfg747 struct {
 	State string `json:"state" dval:"poisoned"`
 }
 
-type InterfaceLoopbackIpRouter757 struct {
-	Isis InterfaceLoopbackIpRouterIsis758 `json:"isis"`
+type InterfaceLoopbackIpRouter748 struct {
+	Isis InterfaceLoopbackIpRouterIsis749 `json:"isis"`
 }
 
-type InterfaceLoopbackIpRouterIsis758 struct {
+type InterfaceLoopbackIpRouterIsis749 struct {
 	Tag  string `json:"tag"`
 	Uuid string `json:"uuid"`
 }

@@ -5,20 +5,20 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemIpThreatList struct {
 	Inst struct {
-		Ipv4DestList SystemIpThreatListIpv4DestList1681 `json:"ipv4-dest-list"`
+		Ipv4DestList SystemIpThreatListIpv4DestList1682 `json:"ipv4-dest-list"`
 
-		Ipv4InternetHostList SystemIpThreatListIpv4InternetHostList1683 `json:"ipv4-internet-host-list"`
+		Ipv4InternetHostList SystemIpThreatListIpv4InternetHostList1684 `json:"ipv4-internet-host-list"`
 
-		Ipv4SourceList SystemIpThreatListIpv4SourceList1685 `json:"ipv4-source-list"`
+		Ipv4SourceList SystemIpThreatListIpv4SourceList1686 `json:"ipv4-source-list"`
 
-		Ipv6DestList SystemIpThreatListIpv6DestList1687 `json:"ipv6-dest-list"`
+		Ipv6DestList SystemIpThreatListIpv6DestList1688 `json:"ipv6-dest-list"`
 
-		Ipv6InternetHostList SystemIpThreatListIpv6InternetHostList1689 `json:"ipv6-internet-host-list"`
+		Ipv6InternetHostList SystemIpThreatListIpv6InternetHostList1690 `json:"ipv6-internet-host-list"`
 
-		Ipv6SourceList SystemIpThreatListIpv6SourceList1691 `json:"ipv6-source-list"`
+		Ipv6SourceList SystemIpThreatListIpv6SourceList1692 `json:"ipv6-source-list"`
 
 		SamplingEnable []SystemIpThreatListSamplingEnable `json:"sampling-enable"`
 
@@ -26,64 +26,64 @@ type SystemIpThreatList struct {
 	} `json:"ip-threat-list"`
 }
 
-type SystemIpThreatListIpv4DestList1681 struct {
-	ClassListCfg []SystemIpThreatListIpv4DestListClassListCfg1682 `json:"class-list-cfg"`
+type SystemIpThreatListIpv4DestList1682 struct {
+	ClassListCfg []SystemIpThreatListIpv4DestListClassListCfg1683 `json:"class-list-cfg"`
 	Uuid         string                                           `json:"uuid"`
 }
 
-type SystemIpThreatListIpv4DestListClassListCfg1682 struct {
+type SystemIpThreatListIpv4DestListClassListCfg1683 struct {
 	ClassList          string `json:"class-list"`
 	IpThreatActionTmpl int    `json:"ip-threat-action-tmpl"`
 }
 
-type SystemIpThreatListIpv4InternetHostList1683 struct {
+type SystemIpThreatListIpv4InternetHostList1684 struct {
 	WhiteList    string                                                   `json:"white-list"`
-	ClassListCfg []SystemIpThreatListIpv4InternetHostListClassListCfg1684 `json:"class-list-cfg"`
+	ClassListCfg []SystemIpThreatListIpv4InternetHostListClassListCfg1685 `json:"class-list-cfg"`
 	Uuid         string                                                   `json:"uuid"`
 }
 
-type SystemIpThreatListIpv4InternetHostListClassListCfg1684 struct {
+type SystemIpThreatListIpv4InternetHostListClassListCfg1685 struct {
 	ClassList          string `json:"class-list"`
 	IpThreatActionTmpl int    `json:"ip-threat-action-tmpl"`
 }
 
-type SystemIpThreatListIpv4SourceList1685 struct {
-	ClassListCfg []SystemIpThreatListIpv4SourceListClassListCfg1686 `json:"class-list-cfg"`
+type SystemIpThreatListIpv4SourceList1686 struct {
+	ClassListCfg []SystemIpThreatListIpv4SourceListClassListCfg1687 `json:"class-list-cfg"`
 	Uuid         string                                             `json:"uuid"`
 }
 
-type SystemIpThreatListIpv4SourceListClassListCfg1686 struct {
+type SystemIpThreatListIpv4SourceListClassListCfg1687 struct {
 	ClassList          string `json:"class-list"`
 	IpThreatActionTmpl int    `json:"ip-threat-action-tmpl"`
 }
 
-type SystemIpThreatListIpv6DestList1687 struct {
-	ClassListCfg []SystemIpThreatListIpv6DestListClassListCfg1688 `json:"class-list-cfg"`
+type SystemIpThreatListIpv6DestList1688 struct {
+	ClassListCfg []SystemIpThreatListIpv6DestListClassListCfg1689 `json:"class-list-cfg"`
 	Uuid         string                                           `json:"uuid"`
 }
 
-type SystemIpThreatListIpv6DestListClassListCfg1688 struct {
+type SystemIpThreatListIpv6DestListClassListCfg1689 struct {
 	ClassList          string `json:"class-list"`
 	IpThreatActionTmpl int    `json:"ip-threat-action-tmpl"`
 }
 
-type SystemIpThreatListIpv6InternetHostList1689 struct {
+type SystemIpThreatListIpv6InternetHostList1690 struct {
 	WhiteList    string                                                   `json:"white-list"`
-	ClassListCfg []SystemIpThreatListIpv6InternetHostListClassListCfg1690 `json:"class-list-cfg"`
+	ClassListCfg []SystemIpThreatListIpv6InternetHostListClassListCfg1691 `json:"class-list-cfg"`
 	Uuid         string                                                   `json:"uuid"`
 }
 
-type SystemIpThreatListIpv6InternetHostListClassListCfg1690 struct {
+type SystemIpThreatListIpv6InternetHostListClassListCfg1691 struct {
 	ClassList          string `json:"class-list"`
 	IpThreatActionTmpl int    `json:"ip-threat-action-tmpl"`
 }
 
-type SystemIpThreatListIpv6SourceList1691 struct {
-	ClassListCfg []SystemIpThreatListIpv6SourceListClassListCfg1692 `json:"class-list-cfg"`
+type SystemIpThreatListIpv6SourceList1692 struct {
+	ClassListCfg []SystemIpThreatListIpv6SourceListClassListCfg1693 `json:"class-list-cfg"`
 	Uuid         string                                             `json:"uuid"`
 }
 
-type SystemIpThreatListIpv6SourceListClassListCfg1692 struct {
+type SystemIpThreatListIpv6SourceListClassListCfg1693 struct {
 	ClassList          string `json:"class-list"`
 	IpThreatActionTmpl int    `json:"ip-threat-action-tmpl"`
 }

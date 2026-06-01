@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type NetworkLldpManagementAddressIpv4Addr struct {
 	Inst struct {
 		InterfaceIpv4 NetworkLldpManagementAddressIpv4AddrInterfaceIpv4 `json:"interface-ipv4"`

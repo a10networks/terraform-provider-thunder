@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplTriggerStatsInc2746 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplTriggerStatsInc2761 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplTriggerStatsRate2747 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplTriggerStatsRate2762 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplTriggerStatsSeverity2748 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplTriggerStatsSeverity2763 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,7 +25,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmpl struct {
 	} `json:"aam-auth-server-ocsp-inst-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplTriggerStatsInc2746 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplTriggerStatsInc2761 struct {
 	Timeout         int    `json:"timeout"`
 	Fail            int    `json:"fail"`
 	StaplingTimeout int    `json:"stapling-timeout"`
@@ -33,7 +33,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplTriggerStats
 	Uuid            string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplTriggerStatsRate2747 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplTriggerStatsRate2762 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Timeout             int    `json:"timeout"`
@@ -43,7 +43,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplTriggerStats
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplTriggerStatsSeverity2748 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplTriggerStatsSeverity2763 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

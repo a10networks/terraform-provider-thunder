@@ -132,27 +132,27 @@ func resourceIpAppProtocolPortUdpPortAddAppNameRead(ctx context.Context, d *sche
 	return diags
 }
 
-func getObjectIpAppProtocolPortUdpPortAddAppNameInterface1118(d []interface{}) edpt.IpAppProtocolPortUdpPortAddAppNameInterface1118 {
+func getObjectIpAppProtocolPortUdpPortAddAppNameInterface1117(d []interface{}) edpt.IpAppProtocolPortUdpPortAddAppNameInterface1117 {
 
 	count1 := len(d)
-	var ret edpt.IpAppProtocolPortUdpPortAddAppNameInterface1118
+	var ret edpt.IpAppProtocolPortUdpPortAddAppNameInterface1117
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Management = in["management"].(int)
-		ret.VeCfg = getSliceIpAppProtocolPortUdpPortAddAppNameInterfaceVeCfg1119(in["ve_cfg"].([]interface{}))
-		ret.EthCfg = getSliceIpAppProtocolPortUdpPortAddAppNameInterfaceEthCfg1120(in["eth_cfg"].([]interface{}))
+		ret.VeCfg = getSliceIpAppProtocolPortUdpPortAddAppNameInterfaceVeCfg1118(in["ve_cfg"].([]interface{}))
+		ret.EthCfg = getSliceIpAppProtocolPortUdpPortAddAppNameInterfaceEthCfg1119(in["eth_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceIpAppProtocolPortUdpPortAddAppNameInterfaceVeCfg1119(d []interface{}) []edpt.IpAppProtocolPortUdpPortAddAppNameInterfaceVeCfg1119 {
+func getSliceIpAppProtocolPortUdpPortAddAppNameInterfaceVeCfg1118(d []interface{}) []edpt.IpAppProtocolPortUdpPortAddAppNameInterfaceVeCfg1118 {
 
 	count1 := len(d)
-	ret := make([]edpt.IpAppProtocolPortUdpPortAddAppNameInterfaceVeCfg1119, 0, count1)
+	ret := make([]edpt.IpAppProtocolPortUdpPortAddAppNameInterfaceVeCfg1118, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.IpAppProtocolPortUdpPortAddAppNameInterfaceVeCfg1119
+		var oi edpt.IpAppProtocolPortUdpPortAddAppNameInterfaceVeCfg1118
 		oi.VeStart = in["ve_start"].(int)
 		oi.VeEnd = in["ve_end"].(int)
 		ret = append(ret, oi)
@@ -160,13 +160,13 @@ func getSliceIpAppProtocolPortUdpPortAddAppNameInterfaceVeCfg1119(d []interface{
 	return ret
 }
 
-func getSliceIpAppProtocolPortUdpPortAddAppNameInterfaceEthCfg1120(d []interface{}) []edpt.IpAppProtocolPortUdpPortAddAppNameInterfaceEthCfg1120 {
+func getSliceIpAppProtocolPortUdpPortAddAppNameInterfaceEthCfg1119(d []interface{}) []edpt.IpAppProtocolPortUdpPortAddAppNameInterfaceEthCfg1119 {
 
 	count1 := len(d)
-	ret := make([]edpt.IpAppProtocolPortUdpPortAddAppNameInterfaceEthCfg1120, 0, count1)
+	ret := make([]edpt.IpAppProtocolPortUdpPortAddAppNameInterfaceEthCfg1119, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.IpAppProtocolPortUdpPortAddAppNameInterfaceEthCfg1120
+		var oi edpt.IpAppProtocolPortUdpPortAddAppNameInterfaceEthCfg1119
 		oi.EthernetStart = in["ethernet_start"].(int)
 		oi.EthernetEnd = in["ethernet_end"].(int)
 		ret = append(ret, oi)
@@ -176,7 +176,7 @@ func getSliceIpAppProtocolPortUdpPortAddAppNameInterfaceEthCfg1120(d []interface
 
 func dataToEndpointIpAppProtocolPortUdpPortAddAppName(d *schema.ResourceData) edpt.IpAppProtocolPortUdpPortAddAppName {
 	var ret edpt.IpAppProtocolPortUdpPortAddAppName
-	ret.Inst.Interface = getObjectIpAppProtocolPortUdpPortAddAppNameInterface1118(d.Get("interface").([]interface{}))
+	ret.Inst.Interface = getObjectIpAppProtocolPortUdpPortAddAppNameInterface1117(d.Get("interface").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid

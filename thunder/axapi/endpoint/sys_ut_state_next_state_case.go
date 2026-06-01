@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SysUtStateNextStateCase struct {
 	Inst struct {
 		ActionList []SysUtStateNextStateCaseActionList `json:"action-list"`
@@ -19,9 +19,9 @@ type SysUtStateNextStateCase struct {
 
 		Uuid string `json:"uuid"`
 
-		State_name string
-
 		Next_state_name string
+
+		State_name string
 	} `json:"case"`
 }
 

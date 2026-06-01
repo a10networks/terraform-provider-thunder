@@ -5,16 +5,16 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityMonitorSecondaryMonitor struct {
 	Inst struct {
 		DebugList []VisibilityMonitorSecondaryMonitorDebugList `json:"debug-list"`
 
-		DeleteDebugFile VisibilityMonitorSecondaryMonitorDeleteDebugFile2039 `json:"delete-debug-file"`
+		DeleteDebugFile VisibilityMonitorSecondaryMonitorDeleteDebugFile2038 `json:"delete-debug-file"`
 
 		MonEntityTopk int `json:"mon-entity-topk"`
 
-		ReplayDebugFile VisibilityMonitorSecondaryMonitorReplayDebugFile2040 `json:"replay-debug-file"`
+		ReplayDebugFile VisibilityMonitorSecondaryMonitorReplayDebugFile2039 `json:"replay-debug-file"`
 
 		SecondaryMonitoringKey string `json:"secondary-monitoring-key"`
 
@@ -31,13 +31,13 @@ type VisibilityMonitorSecondaryMonitorDebugList struct {
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityMonitorSecondaryMonitorDeleteDebugFile2039 struct {
+type VisibilityMonitorSecondaryMonitorDeleteDebugFile2038 struct {
 	DebugIpAddr   string `json:"debug-ip-addr"`
 	DebugPort     int    `json:"debug-port"`
 	DebugProtocol string `json:"debug-protocol"`
 }
 
-type VisibilityMonitorSecondaryMonitorReplayDebugFile2040 struct {
+type VisibilityMonitorSecondaryMonitorReplayDebugFile2039 struct {
 	DebugIpAddr   string `json:"debug-ip-addr"`
 	DebugPort     int    `json:"debug-port"`
 	DebugProtocol string `json:"debug-protocol"`

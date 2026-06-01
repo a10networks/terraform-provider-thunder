@@ -143,6 +143,9 @@ func resourceSlbDnsCacheOper() *schema.Resource {
 						"global": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
+						"template": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
 						"cache_content": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
@@ -229,6 +232,7 @@ func setObjectSlbDnsCacheOperOper(ret edpt.DataSlbDnsCacheOper) []interface{} {
 			"client":                       ret.DtSlbDnsCacheOper.Oper.Client,
 			"entry":                        ret.DtSlbDnsCacheOper.Oper.Entry,
 			"global":                       ret.DtSlbDnsCacheOper.Oper.Global,
+			"template":                     ret.DtSlbDnsCacheOper.Oper.Template,
 			"cache_content":                ret.DtSlbDnsCacheOper.Oper.CacheContent,
 			"vport":                        ret.DtSlbDnsCacheOper.Oper.Vport,
 			"vs_name":                      ret.DtSlbDnsCacheOper.Oper.VsName,
@@ -320,6 +324,7 @@ func getObjectSlbDnsCacheOperOper(d []interface{}) edpt.SlbDnsCacheOperOper {
 		ret.Client = in["client"].(int)
 		ret.Entry = in["entry"].(int)
 		ret.Global = in["global"].(int)
+		ret.Template = in["template"].(string)
 		ret.CacheContent = in["cache_content"].(int)
 		ret.Vport = in["vport"].(int)
 		ret.VsName = in["vs_name"].(string)

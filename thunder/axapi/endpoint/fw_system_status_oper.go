@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type FwSystemStatusOper struct {
 	Oper FwSystemStatusOperOper `json:"oper"`
 }
@@ -14,10 +14,12 @@ type DataFwSystemStatusOper struct {
 }
 
 type FwSystemStatusOperOper struct {
-	DataSessionsUsed int `json:"data-sessions-used"`
-	DataSessionsFree int `json:"data-sessions-free"`
-	SmpSessionsUsed  int `json:"smp-sessions-used"`
-	SmpSessionsFree  int `json:"smp-sessions-free"`
+	DataSessionsUsed  int `json:"data-sessions-used"`
+	DataSessionsFree  int `json:"data-sessions-free"`
+	SmpSessionsUsed   int `json:"smp-sessions-used"`
+	SmpSessionsFree   int `json:"smp-sessions-free"`
+	RadiusEntriesUsed int `json:"radius-entries-used"`
+	RadiusEntriesFree int `json:"radius-entries-free"`
 }
 
 func (p *FwSystemStatusOper) GetId() string {

@@ -17,7 +17,7 @@ func resourceNtpAuthKey() *schema.Resource {
 
 		Schema: map[string]*schema.Schema{
 			"alg_type": {
-				Type: schema.TypeString, Optional: true, Description: "'MD5': encryption using MD5; 'SHA1': encryption using SHA1; 'SHA256': encryption using SHA256; 'SHA384': encryption using SHA384; 'SHA512': encryption using SHA512;",
+				Type: schema.TypeString, Optional: true, Description: "'M': encryption using MD5; 'SHA': encryption using SHA; 'SHA1': encryption using SHA1;",
 			},
 			"asc_key": {
 				Type: schema.TypeString, Optional: true, Description: "",

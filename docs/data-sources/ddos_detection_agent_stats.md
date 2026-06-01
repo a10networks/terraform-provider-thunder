@@ -80,3 +80,4 @@ Optional:
 - `xflow_dst_svc_miss_extend_pkt_rcv` (Number) Extend Packets Received of DDoS Destination Service Miss
 - `xflow_extend_byte_rcv` (Number) XFlow Sample Extend Bytes Received
 - `xflow_extend_pkt_rcv` (Number) XFlow Sample Extend Packets Received
+- `xflow_sample_dropped_by_intf_select` (Number) Xflow Samples Dropped by Interface Selection

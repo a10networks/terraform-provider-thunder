@@ -659,6 +659,27 @@ func resourceDdosDnsUdpZonePortStats() *schema.Resource {
 						"same_sport_dport_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "Same Source and Destination Port Drop",
 						},
+						"pattern_filter1_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Extracted Filter1 Drop",
+						},
+						"pattern_filter2_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Extracted Filter2 Drop",
+						},
+						"pattern_filter3_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Extracted Filter3 Drop",
+						},
+						"pattern_filter4_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Extracted Filter4 Drop",
+						},
+						"pattern_filter5_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Extracted Filter5 Drop",
+						},
+						"src_ip_filtering_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Src-ip-filtering Drop",
+						},
+						"src_ip_filtering_bypass": {
+							Type: schema.TypeInt, Optional: true, Description: "Src-ip-filtering Bypass",
+						},
 					},
 				},
 			},
@@ -902,6 +923,13 @@ func setObjectDdosDnsUdpZonePortStatsStats(ret edpt.DataDdosDnsUdpZonePortStats)
 			"rrsig_expire_drop":                         ret.DtDdosDnsUdpZonePortStats.Stats.Rrsig_expire_drop,
 			"src_zone_service_entry_hit":                ret.DtDdosDnsUdpZonePortStats.Stats.Src_zone_service_entry_hit,
 			"same_sport_dport_drop":                     ret.DtDdosDnsUdpZonePortStats.Stats.Same_sport_dport_drop,
+			"pattern_filter1_drop":                      ret.DtDdosDnsUdpZonePortStats.Stats.Pattern_filter1_drop,
+			"pattern_filter2_drop":                      ret.DtDdosDnsUdpZonePortStats.Stats.Pattern_filter2_drop,
+			"pattern_filter3_drop":                      ret.DtDdosDnsUdpZonePortStats.Stats.Pattern_filter3_drop,
+			"pattern_filter4_drop":                      ret.DtDdosDnsUdpZonePortStats.Stats.Pattern_filter4_drop,
+			"pattern_filter5_drop":                      ret.DtDdosDnsUdpZonePortStats.Stats.Pattern_filter5_drop,
+			"src_ip_filtering_drop":                     ret.DtDdosDnsUdpZonePortStats.Stats.Src_ip_filtering_drop,
+			"src_ip_filtering_bypass":                   ret.DtDdosDnsUdpZonePortStats.Stats.Src_ip_filtering_bypass,
 		},
 	}
 }
@@ -1126,6 +1154,13 @@ func getObjectDdosDnsUdpZonePortStatsStats(d []interface{}) edpt.DdosDnsUdpZoneP
 		ret.Rrsig_expire_drop = in["rrsig_expire_drop"].(int)
 		ret.Src_zone_service_entry_hit = in["src_zone_service_entry_hit"].(int)
 		ret.Same_sport_dport_drop = in["same_sport_dport_drop"].(int)
+		ret.Pattern_filter1_drop = in["pattern_filter1_drop"].(int)
+		ret.Pattern_filter2_drop = in["pattern_filter2_drop"].(int)
+		ret.Pattern_filter3_drop = in["pattern_filter3_drop"].(int)
+		ret.Pattern_filter4_drop = in["pattern_filter4_drop"].(int)
+		ret.Pattern_filter5_drop = in["pattern_filter5_drop"].(int)
+		ret.Src_ip_filtering_drop = in["src_ip_filtering_drop"].(int)
+		ret.Src_ip_filtering_bypass = in["src_ip_filtering_bypass"].(int)
 	}
 	return ret
 }

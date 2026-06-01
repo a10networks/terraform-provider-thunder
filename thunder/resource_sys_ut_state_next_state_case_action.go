@@ -315,14 +315,14 @@ func resourceSysUtStateNextStateCaseAction() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"state_name": {
-				Type: schema.TypeString, Required: true, Description: "State_name",
+			"next_state_name": {
+				Type: schema.TypeString, Required: true, Description: "Next_state_name",
 			},
 			"case_number": {
 				Type: schema.TypeString, Required: true, Description: "CaseNumber",
 			},
-			"next_state_name": {
-				Type: schema.TypeString, Required: true, Description: "Next_state_name",
+			"state_name": {
+				Type: schema.TypeString, Required: true, Description: "State_name",
 			},
 		},
 	}
@@ -389,14 +389,14 @@ func resourceSysUtStateNextStateCaseActionRead(ctx context.Context, d *schema.Re
 	return diags
 }
 
-func getObjectSysUtStateNextStateCaseActionL11644(d []interface{}) edpt.SysUtStateNextStateCaseActionL11644 {
+func getObjectSysUtStateNextStateCaseActionL11645(d []interface{}) edpt.SysUtStateNextStateCaseActionL11645 {
 
 	count1 := len(d)
-	var ret edpt.SysUtStateNextStateCaseActionL11644
+	var ret edpt.SysUtStateNextStateCaseActionL11645
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.EthList = getSliceSysUtStateNextStateCaseActionL1EthList1645(in["eth_list"].([]interface{}))
-		ret.Trunk_list = getSliceSysUtStateNextStateCaseActionL1Trunk_list1646(in["trunk_list"].([]interface{}))
+		ret.EthList = getSliceSysUtStateNextStateCaseActionL1EthList1646(in["eth_list"].([]interface{}))
+		ret.Trunk_list = getSliceSysUtStateNextStateCaseActionL1Trunk_list1647(in["trunk_list"].([]interface{}))
 		ret.Length = in["length"].(int)
 		ret.Value = in["value"].(int)
 		ret.Auto = in["auto"].(int)
@@ -405,13 +405,13 @@ func getObjectSysUtStateNextStateCaseActionL11644(d []interface{}) edpt.SysUtSta
 	return ret
 }
 
-func getSliceSysUtStateNextStateCaseActionL1EthList1645(d []interface{}) []edpt.SysUtStateNextStateCaseActionL1EthList1645 {
+func getSliceSysUtStateNextStateCaseActionL1EthList1646(d []interface{}) []edpt.SysUtStateNextStateCaseActionL1EthList1646 {
 
 	count1 := len(d)
-	ret := make([]edpt.SysUtStateNextStateCaseActionL1EthList1645, 0, count1)
+	ret := make([]edpt.SysUtStateNextStateCaseActionL1EthList1646, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SysUtStateNextStateCaseActionL1EthList1645
+		var oi edpt.SysUtStateNextStateCaseActionL1EthList1646
 		oi.EthernetStart = in["ethernet_start"].(int)
 		oi.EthernetEnd = in["ethernet_end"].(int)
 		ret = append(ret, oi)
@@ -419,13 +419,13 @@ func getSliceSysUtStateNextStateCaseActionL1EthList1645(d []interface{}) []edpt.
 	return ret
 }
 
-func getSliceSysUtStateNextStateCaseActionL1Trunk_list1646(d []interface{}) []edpt.SysUtStateNextStateCaseActionL1Trunk_list1646 {
+func getSliceSysUtStateNextStateCaseActionL1Trunk_list1647(d []interface{}) []edpt.SysUtStateNextStateCaseActionL1Trunk_list1647 {
 
 	count1 := len(d)
-	ret := make([]edpt.SysUtStateNextStateCaseActionL1Trunk_list1646, 0, count1)
+	ret := make([]edpt.SysUtStateNextStateCaseActionL1Trunk_list1647, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SysUtStateNextStateCaseActionL1Trunk_list1646
+		var oi edpt.SysUtStateNextStateCaseActionL1Trunk_list1647
 		oi.TrunkStart = in["trunk_start"].(int)
 		oi.TrunkEnd = in["trunk_end"].(int)
 		ret = append(ret, oi)
@@ -433,10 +433,10 @@ func getSliceSysUtStateNextStateCaseActionL1Trunk_list1646(d []interface{}) []ed
 	return ret
 }
 
-func getObjectSysUtStateNextStateCaseActionL21647(d []interface{}) edpt.SysUtStateNextStateCaseActionL21647 {
+func getObjectSysUtStateNextStateCaseActionL21648(d []interface{}) edpt.SysUtStateNextStateCaseActionL21648 {
 
 	count1 := len(d)
-	var ret edpt.SysUtStateNextStateCaseActionL21647
+	var ret edpt.SysUtStateNextStateCaseActionL21648
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ethertype = in["ethertype"].(int)
@@ -444,18 +444,18 @@ func getObjectSysUtStateNextStateCaseActionL21647(d []interface{}) edpt.SysUtSta
 		ret.Value = in["value"].(int)
 		ret.Vlan = in["vlan"].(int)
 		//omit uuid
-		ret.MacList = getSliceSysUtStateNextStateCaseActionL2MacList1648(in["mac_list"].([]interface{}))
+		ret.MacList = getSliceSysUtStateNextStateCaseActionL2MacList1649(in["mac_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSysUtStateNextStateCaseActionL2MacList1648(d []interface{}) []edpt.SysUtStateNextStateCaseActionL2MacList1648 {
+func getSliceSysUtStateNextStateCaseActionL2MacList1649(d []interface{}) []edpt.SysUtStateNextStateCaseActionL2MacList1649 {
 
 	count1 := len(d)
-	ret := make([]edpt.SysUtStateNextStateCaseActionL2MacList1648, 0, count1)
+	ret := make([]edpt.SysUtStateNextStateCaseActionL2MacList1649, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SysUtStateNextStateCaseActionL2MacList1648
+		var oi edpt.SysUtStateNextStateCaseActionL2MacList1649
 		oi.SrcDst = in["src_dst"].(string)
 		oi.AddressType = in["address_type"].(string)
 		oi.VirtualServer = in["virtual_server"].(string)
@@ -470,10 +470,10 @@ func getSliceSysUtStateNextStateCaseActionL2MacList1648(d []interface{}) []edpt.
 	return ret
 }
 
-func getObjectSysUtStateNextStateCaseActionL31649(d []interface{}) edpt.SysUtStateNextStateCaseActionL31649 {
+func getObjectSysUtStateNextStateCaseActionL31650(d []interface{}) edpt.SysUtStateNextStateCaseActionL31650 {
 
 	count1 := len(d)
-	var ret edpt.SysUtStateNextStateCaseActionL31649
+	var ret edpt.SysUtStateNextStateCaseActionL31650
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Protocol = in["protocol"].(int)
@@ -482,18 +482,18 @@ func getObjectSysUtStateNextStateCaseActionL31649(d []interface{}) edpt.SysUtSta
 		ret.Checksum = in["checksum"].(string)
 		ret.Ttl = in["ttl"].(int)
 		//omit uuid
-		ret.IpList = getSliceSysUtStateNextStateCaseActionL3IpList1650(in["ip_list"].([]interface{}))
+		ret.IpList = getSliceSysUtStateNextStateCaseActionL3IpList1651(in["ip_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSysUtStateNextStateCaseActionL3IpList1650(d []interface{}) []edpt.SysUtStateNextStateCaseActionL3IpList1650 {
+func getSliceSysUtStateNextStateCaseActionL3IpList1651(d []interface{}) []edpt.SysUtStateNextStateCaseActionL3IpList1651 {
 
 	count1 := len(d)
-	ret := make([]edpt.SysUtStateNextStateCaseActionL3IpList1650, 0, count1)
+	ret := make([]edpt.SysUtStateNextStateCaseActionL3IpList1651, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SysUtStateNextStateCaseActionL3IpList1650
+		var oi edpt.SysUtStateNextStateCaseActionL3IpList1651
 		oi.SrcDst = in["src_dst"].(string)
 		oi.Ipv4Address = in["ipv4_address"].(string)
 		oi.Ipv6Address = in["ipv6_address"].(string)
@@ -508,10 +508,10 @@ func getSliceSysUtStateNextStateCaseActionL3IpList1650(d []interface{}) []edpt.S
 	return ret
 }
 
-func getObjectSysUtStateNextStateCaseActionTcp1651(d []interface{}) edpt.SysUtStateNextStateCaseActionTcp1651 {
+func getObjectSysUtStateNextStateCaseActionTcp1652(d []interface{}) edpt.SysUtStateNextStateCaseActionTcp1652 {
 
 	count1 := len(d)
-	var ret edpt.SysUtStateNextStateCaseActionTcp1651
+	var ret edpt.SysUtStateNextStateCaseActionTcp1652
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SrcPort = in["src_port"].(int)
@@ -524,16 +524,16 @@ func getObjectSysUtStateNextStateCaseActionTcp1651(d []interface{}) edpt.SysUtSt
 		ret.Urgent = in["urgent"].(string)
 		ret.Window = in["window"].(string)
 		//omit uuid
-		ret.Flags = getObjectSysUtStateNextStateCaseActionTcpFlags1652(in["flags"].([]interface{}))
-		ret.Options = getObjectSysUtStateNextStateCaseActionTcpOptions1653(in["options"].([]interface{}))
+		ret.Flags = getObjectSysUtStateNextStateCaseActionTcpFlags1653(in["flags"].([]interface{}))
+		ret.Options = getObjectSysUtStateNextStateCaseActionTcpOptions1654(in["options"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSysUtStateNextStateCaseActionTcpFlags1652(d []interface{}) edpt.SysUtStateNextStateCaseActionTcpFlags1652 {
+func getObjectSysUtStateNextStateCaseActionTcpFlags1653(d []interface{}) edpt.SysUtStateNextStateCaseActionTcpFlags1653 {
 
 	count1 := len(d)
-	var ret edpt.SysUtStateNextStateCaseActionTcpFlags1652
+	var ret edpt.SysUtStateNextStateCaseActionTcpFlags1653
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Syn = in["syn"].(int)
@@ -549,10 +549,10 @@ func getObjectSysUtStateNextStateCaseActionTcpFlags1652(d []interface{}) edpt.Sy
 	return ret
 }
 
-func getObjectSysUtStateNextStateCaseActionTcpOptions1653(d []interface{}) edpt.SysUtStateNextStateCaseActionTcpOptions1653 {
+func getObjectSysUtStateNextStateCaseActionTcpOptions1654(d []interface{}) edpt.SysUtStateNextStateCaseActionTcpOptions1654 {
 
 	count1 := len(d)
-	var ret edpt.SysUtStateNextStateCaseActionTcpOptions1653
+	var ret edpt.SysUtStateNextStateCaseActionTcpOptions1654
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mss = in["mss"].(int)
@@ -565,10 +565,10 @@ func getObjectSysUtStateNextStateCaseActionTcpOptions1653(d []interface{}) edpt.
 	return ret
 }
 
-func getObjectSysUtStateNextStateCaseActionUdp1654(d []interface{}) edpt.SysUtStateNextStateCaseActionUdp1654 {
+func getObjectSysUtStateNextStateCaseActionUdp1655(d []interface{}) edpt.SysUtStateNextStateCaseActionUdp1655 {
 
 	count1 := len(d)
-	var ret edpt.SysUtStateNextStateCaseActionUdp1654
+	var ret edpt.SysUtStateNextStateCaseActionUdp1655
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SrcPort = in["src_port"].(int)
@@ -587,15 +587,15 @@ func dataToEndpointSysUtStateNextStateCaseAction(d *schema.ResourceData) edpt.Sy
 	ret.Inst.Delay = d.Get("delay").(int)
 	ret.Inst.Direction = d.Get("direction").(string)
 	ret.Inst.Drop = d.Get("drop").(int)
-	ret.Inst.L1 = getObjectSysUtStateNextStateCaseActionL11644(d.Get("l1").([]interface{}))
-	ret.Inst.L2 = getObjectSysUtStateNextStateCaseActionL21647(d.Get("l2").([]interface{}))
-	ret.Inst.L3 = getObjectSysUtStateNextStateCaseActionL31649(d.Get("l3").([]interface{}))
-	ret.Inst.Tcp = getObjectSysUtStateNextStateCaseActionTcp1651(d.Get("tcp").([]interface{}))
+	ret.Inst.L1 = getObjectSysUtStateNextStateCaseActionL11645(d.Get("l1").([]interface{}))
+	ret.Inst.L2 = getObjectSysUtStateNextStateCaseActionL21648(d.Get("l2").([]interface{}))
+	ret.Inst.L3 = getObjectSysUtStateNextStateCaseActionL31650(d.Get("l3").([]interface{}))
+	ret.Inst.Tcp = getObjectSysUtStateNextStateCaseActionTcp1652(d.Get("tcp").([]interface{}))
 	ret.Inst.Template = d.Get("template").(string)
-	ret.Inst.Udp = getObjectSysUtStateNextStateCaseActionUdp1654(d.Get("udp").([]interface{}))
+	ret.Inst.Udp = getObjectSysUtStateNextStateCaseActionUdp1655(d.Get("udp").([]interface{}))
 	//omit uuid
-	ret.Inst.State_name = d.Get("state_name").(string)
-	ret.Inst.CaseNumber = d.Get("case_number").(string)
 	ret.Inst.Next_state_name = d.Get("next_state_name").(string)
+	ret.Inst.CaseNumber = d.Get("case_number").(string)
+	ret.Inst.State_name = d.Get("state_name").(string)
 	return ret
 }

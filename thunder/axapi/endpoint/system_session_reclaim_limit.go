@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemSessionReclaimLimit struct {
 	Inst struct {
 		NscanLimit int `json:"nscan-limit" dval:"4096"`

@@ -34,11 +34,11 @@ func resourceSysUtEventActionIgnoreValidation() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"direction": {
-				Type: schema.TypeString, Required: true, Description: "Direction",
-			},
 			"event_number": {
 				Type: schema.TypeString, Required: true, Description: "EventNumber",
+			},
+			"direction": {
+				Type: schema.TypeString, Required: true, Description: "Direction",
 			},
 		},
 	}
@@ -113,7 +113,7 @@ func dataToEndpointSysUtEventActionIgnoreValidation(d *schema.ResourceData) edpt
 	ret.Inst.L3 = d.Get("l3").(int)
 	ret.Inst.L4 = d.Get("l4").(int)
 	//omit uuid
-	ret.Inst.Direction = d.Get("direction").(string)
 	ret.Inst.EventNumber = d.Get("event_number").(string)
+	ret.Inst.Direction = d.Get("direction").(string)
 	return ret
 }

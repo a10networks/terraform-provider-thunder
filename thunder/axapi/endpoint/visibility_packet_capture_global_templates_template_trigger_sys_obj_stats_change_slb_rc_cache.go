@@ -5,12 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbRcCache struct {
 	Inst struct {
-		TriggerStatsInc VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbRcCacheTriggerStatsInc2184 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbRcCacheTriggerStatsInc2187 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbRcCacheTriggerStatsRate2185 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbRcCacheTriggerStatsRate2188 `json:"trigger-stats-rate"`
 
 		Uuid string `json:"uuid"`
 
@@ -18,7 +18,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbRc
 	} `json:"slb-rc-cache"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbRcCacheTriggerStatsInc2184 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbRcCacheTriggerStatsInc2187 struct {
 	Rv_failure            int    `json:"rv_failure"`
 	Content_toobig        int    `json:"content_toobig"`
 	Content_toosmall      int    `json:"content_toosmall"`
@@ -26,7 +26,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbRc
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbRcCacheTriggerStatsRate2185 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbRcCacheTriggerStatsRate2188 struct {
 	ThresholdExceededBy   int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration              int    `json:"duration" dval:"60"`
 	Rv_failure            int    `json:"rv_failure"`

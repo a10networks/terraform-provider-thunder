@@ -37,11 +37,11 @@ func resourceSysUtEventActionUdp() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"direction": {
-				Type: schema.TypeString, Required: true, Description: "Direction",
-			},
 			"event_number": {
 				Type: schema.TypeString, Required: true, Description: "EventNumber",
+			},
+			"direction": {
+				Type: schema.TypeString, Required: true, Description: "Direction",
 			},
 		},
 	}
@@ -117,7 +117,7 @@ func dataToEndpointSysUtEventActionUdp(d *schema.ResourceData) edpt.SysUtEventAc
 	ret.Inst.NatPool = d.Get("nat_pool").(string)
 	ret.Inst.SrcPort = d.Get("src_port").(int)
 	//omit uuid
-	ret.Inst.Direction = d.Get("direction").(string)
 	ret.Inst.EventNumber = d.Get("event_number").(string)
+	ret.Inst.Direction = d.Get("direction").(string)
 	return ret
 }

@@ -5,12 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VpnIpsec struct {
 	Inst struct {
 		AntiReplayWindow string `json:"anti-replay-window" dval:"0"`
 
-		BindTunnel VpnIpsecBindTunnel3711 `json:"bind-tunnel"`
+		BindTunnel VpnIpsecBindTunnel3749 `json:"bind-tunnel"`
 
 		DhGroup string `json:"dh-group" dval:"0"`
 
@@ -20,7 +20,7 @@ type VpnIpsec struct {
 
 		EnforceTrafficSelector int `json:"enforce-traffic-selector"`
 
-		IpsecGateway VpnIpsecIpsecGateway3712 `json:"ipsec-gateway"`
+		IpsecGateway VpnIpsecIpsecGateway3750 `json:"ipsec-gateway"`
 
 		Lifebytes int `json:"lifebytes"`
 
@@ -46,7 +46,7 @@ type VpnIpsec struct {
 	} `json:"ipsec"`
 }
 
-type VpnIpsecBindTunnel3711 struct {
+type VpnIpsecBindTunnel3749 struct {
 	Tunnel    int    `json:"tunnel"`
 	NextHop   string `json:"next-hop"`
 	NextHopV6 string `json:"next-hop-v6"`
@@ -60,7 +60,7 @@ type VpnIpsecEncCfg struct {
 	Gcm_priority int    `json:"gcm_priority" dval:"5"`
 }
 
-type VpnIpsecIpsecGateway3712 struct {
+type VpnIpsecIpsecGateway3750 struct {
 	IkeGateway string `json:"ike-gateway"`
 	Uuid       string `json:"uuid"`
 }

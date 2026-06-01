@@ -54,10 +54,10 @@ func resourceDdosZoneTemplateQuicVersionSupported() *schema.Resource {
 				Type: schema.TypeString, Optional: true, Description: "Configure action-list to take",
 			},
 			"version_end": {
-				Type: schema.TypeString, Required: true, Description: "Version supported range end",
+				Type: schema.TypeInt, Required: true, Description: "Version supported range end",
 			},
 			"version_start": {
-				Type: schema.TypeString, Required: true, Description: "Configure versions supported in hex",
+				Type: schema.TypeInt, Required: true, Description: "Configure versions supported in hex",
 			},
 			"quic_tmpl_name": {
 				Type: schema.TypeString, Required: true, Description: "QuicTmplName",
@@ -127,10 +127,10 @@ func resourceDdosZoneTemplateQuicVersionSupportedRead(ctx context.Context, d *sc
 	return diags
 }
 
-func getObjectDdosZoneTemplateQuicVersionSupportedMalformedCheck368(d []interface{}) edpt.DdosZoneTemplateQuicVersionSupportedMalformedCheck368 {
+func getObjectDdosZoneTemplateQuicVersionSupportedMalformedCheck364(d []interface{}) edpt.DdosZoneTemplateQuicVersionSupportedMalformedCheck364 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateQuicVersionSupportedMalformedCheck368
+	var ret edpt.DdosZoneTemplateQuicVersionSupportedMalformedCheck364
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MalformedEnable = in["malformed_enable"].(string)
@@ -145,13 +145,13 @@ func getObjectDdosZoneTemplateQuicVersionSupportedMalformedCheck368(d []interfac
 
 func dataToEndpointDdosZoneTemplateQuicVersionSupported(d *schema.ResourceData) edpt.DdosZoneTemplateQuicVersionSupported {
 	var ret edpt.DdosZoneTemplateQuicVersionSupported
-	ret.Inst.MalformedCheck = getObjectDdosZoneTemplateQuicVersionSupportedMalformedCheck368(d.Get("malformed_check").([]interface{}))
+	ret.Inst.MalformedCheck = getObjectDdosZoneTemplateQuicVersionSupportedMalformedCheck364(d.Get("malformed_check").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.VersionAction = d.Get("version_action").(string)
 	ret.Inst.VersionActionListName = d.Get("version_action_list_name").(string)
-	ret.Inst.VersionEnd = d.Get("version_end").(string)
-	ret.Inst.VersionStart = d.Get("version_start").(string)
+	ret.Inst.VersionEnd = d.Get("version_end").(int)
+	ret.Inst.VersionStart = d.Get("version_start").(int)
 	ret.Inst.QuicTmplName = d.Get("quic_tmpl_name").(string)
 	return ret
 }

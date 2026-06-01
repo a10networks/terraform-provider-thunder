@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesRuleSetTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesRuleSetTmplTriggerStatsInc2806 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesRuleSetTmplTriggerStatsInc2824 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesRuleSetTmplTriggerStatsRate2807 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesRuleSetTmplTriggerStatsRate2825 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesRuleSetTmplTriggerStatsSeverity2808 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesRuleSetTmplTriggerStatsSeverity2826 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,14 +25,14 @@ type VisibilityPacketCaptureObjectTemplatesRuleSetTmpl struct {
 	} `json:"rule-set-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesRuleSetTmplTriggerStatsInc2806 struct {
+type VisibilityPacketCaptureObjectTemplatesRuleSetTmplTriggerStatsInc2824 struct {
 	UnmatchedDrops int    `json:"unmatched-drops"`
 	Deny           int    `json:"deny"`
 	Reset          int    `json:"reset"`
 	Uuid           string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesRuleSetTmplTriggerStatsRate2807 struct {
+type VisibilityPacketCaptureObjectTemplatesRuleSetTmplTriggerStatsRate2825 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	UnmatchedDrops      int    `json:"unmatched-drops"`
@@ -41,7 +41,7 @@ type VisibilityPacketCaptureObjectTemplatesRuleSetTmplTriggerStatsRate2807 struc
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesRuleSetTmplTriggerStatsSeverity2808 struct {
+type VisibilityPacketCaptureObjectTemplatesRuleSetTmplTriggerStatsSeverity2826 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

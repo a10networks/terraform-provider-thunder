@@ -399,26 +399,26 @@ func getSliceOverlayTunnelVtepHostList(d []interface{}) []edpt.OverlayTunnelVtep
 	return ret
 }
 
-func getObjectOverlayTunnelVtepLocalIpAddress1168(d []interface{}) edpt.OverlayTunnelVtepLocalIpAddress1168 {
+func getObjectOverlayTunnelVtepLocalIpAddress1167(d []interface{}) edpt.OverlayTunnelVtepLocalIpAddress1167 {
 
 	count1 := len(d)
-	var ret edpt.OverlayTunnelVtepLocalIpAddress1168
+	var ret edpt.OverlayTunnelVtepLocalIpAddress1167
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.IpAddress = in["ip_address"].(string)
 		//omit uuid
-		ret.VniList = getSliceOverlayTunnelVtepLocalIpAddressVniList1169(in["vni_list"].([]interface{}))
+		ret.VniList = getSliceOverlayTunnelVtepLocalIpAddressVniList1168(in["vni_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceOverlayTunnelVtepLocalIpAddressVniList1169(d []interface{}) []edpt.OverlayTunnelVtepLocalIpAddressVniList1169 {
+func getSliceOverlayTunnelVtepLocalIpAddressVniList1168(d []interface{}) []edpt.OverlayTunnelVtepLocalIpAddressVniList1168 {
 
 	count1 := len(d)
-	ret := make([]edpt.OverlayTunnelVtepLocalIpAddressVniList1169, 0, count1)
+	ret := make([]edpt.OverlayTunnelVtepLocalIpAddressVniList1168, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.OverlayTunnelVtepLocalIpAddressVniList1169
+		var oi edpt.OverlayTunnelVtepLocalIpAddressVniList1168
 		oi.Segment = in["segment"].(int)
 		oi.Partition = in["partition"].(string)
 		oi.Gateway = in["gateway"].(int)
@@ -429,26 +429,26 @@ func getSliceOverlayTunnelVtepLocalIpAddressVniList1169(d []interface{}) []edpt.
 	return ret
 }
 
-func getObjectOverlayTunnelVtepLocalIpv6Address1170(d []interface{}) edpt.OverlayTunnelVtepLocalIpv6Address1170 {
+func getObjectOverlayTunnelVtepLocalIpv6Address1169(d []interface{}) edpt.OverlayTunnelVtepLocalIpv6Address1169 {
 
 	count1 := len(d)
-	var ret edpt.OverlayTunnelVtepLocalIpv6Address1170
+	var ret edpt.OverlayTunnelVtepLocalIpv6Address1169
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ipv6Address = in["ipv6_address"].(string)
 		//omit uuid
-		ret.VniList = getSliceOverlayTunnelVtepLocalIpv6AddressVniList1171(in["vni_list"].([]interface{}))
+		ret.VniList = getSliceOverlayTunnelVtepLocalIpv6AddressVniList1170(in["vni_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceOverlayTunnelVtepLocalIpv6AddressVniList1171(d []interface{}) []edpt.OverlayTunnelVtepLocalIpv6AddressVniList1171 {
+func getSliceOverlayTunnelVtepLocalIpv6AddressVniList1170(d []interface{}) []edpt.OverlayTunnelVtepLocalIpv6AddressVniList1170 {
 
 	count1 := len(d)
-	ret := make([]edpt.OverlayTunnelVtepLocalIpv6AddressVniList1171, 0, count1)
+	ret := make([]edpt.OverlayTunnelVtepLocalIpv6AddressVniList1170, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.OverlayTunnelVtepLocalIpv6AddressVniList1171
+		var oi edpt.OverlayTunnelVtepLocalIpv6AddressVniList1170
 		oi.Segment = in["segment"].(int)
 		oi.Partition = in["partition"].(string)
 		oi.Gateway = in["gateway"].(int)
@@ -618,10 +618,10 @@ func getSliceOverlayTunnelVtepSamplingEnable(d []interface{}) []edpt.OverlayTunn
 	return ret
 }
 
-func getObjectOverlayTunnelVtepSrcPortRange1172(d []interface{}) edpt.OverlayTunnelVtepSrcPortRange1172 {
+func getObjectOverlayTunnelVtepSrcPortRange1171(d []interface{}) edpt.OverlayTunnelVtepSrcPortRange1171 {
 
 	count1 := len(d)
-	var ret edpt.OverlayTunnelVtepSrcPortRange1172
+	var ret edpt.OverlayTunnelVtepSrcPortRange1171
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MinPort = in["min_port"].(int)
@@ -637,12 +637,12 @@ func dataToEndpointOverlayTunnelVtep(d *schema.ResourceData) edpt.OverlayTunnelV
 	ret.Inst.Encap = d.Get("encap").(string)
 	ret.Inst.HostList = getSliceOverlayTunnelVtepHostList(d.Get("host_list").([]interface{}))
 	ret.Inst.Id1 = d.Get("id1").(int)
-	ret.Inst.LocalIpAddress = getObjectOverlayTunnelVtepLocalIpAddress1168(d.Get("local_ip_address").([]interface{}))
-	ret.Inst.LocalIpv6Address = getObjectOverlayTunnelVtepLocalIpv6Address1170(d.Get("local_ipv6_address").([]interface{}))
+	ret.Inst.LocalIpAddress = getObjectOverlayTunnelVtepLocalIpAddress1167(d.Get("local_ip_address").([]interface{}))
+	ret.Inst.LocalIpv6Address = getObjectOverlayTunnelVtepLocalIpv6Address1169(d.Get("local_ipv6_address").([]interface{}))
 	ret.Inst.RemoteIpAddressList = getSliceOverlayTunnelVtepRemoteIpAddressList(d.Get("remote_ip_address_list").([]interface{}))
 	ret.Inst.RemoteIpv6AddressList = getSliceOverlayTunnelVtepRemoteIpv6AddressList(d.Get("remote_ipv6_address_list").([]interface{}))
 	ret.Inst.SamplingEnable = getSliceOverlayTunnelVtepSamplingEnable(d.Get("sampling_enable").([]interface{}))
-	ret.Inst.SrcPortRange = getObjectOverlayTunnelVtepSrcPortRange1172(d.Get("src_port_range").([]interface{}))
+	ret.Inst.SrcPortRange = getObjectOverlayTunnelVtepSrcPortRange1171(d.Get("src_port_range").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

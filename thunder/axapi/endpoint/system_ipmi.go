@@ -5,37 +5,37 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemIpmi struct {
 	Inst struct {
-		Ip SystemIpmiIp1693 `json:"ip"`
+		Ip SystemIpmiIp1694 `json:"ip"`
 
-		Ipsrc SystemIpmiIpsrc1694 `json:"ipsrc"`
+		Ipsrc SystemIpmiIpsrc1695 `json:"ipsrc"`
 
 		Reset int `json:"reset"`
 
-		Tool SystemIpmiTool1695 `json:"tool"`
+		Tool SystemIpmiTool1696 `json:"tool"`
 
-		User SystemIpmiUser1696 `json:"user"`
+		User SystemIpmiUser1697 `json:"user"`
 	} `json:"ipmi"`
 }
 
-type SystemIpmiIp1693 struct {
+type SystemIpmiIp1694 struct {
 	Ipv4Address    string `json:"ipv4-address"`
 	Ipv4Netmask    string `json:"ipv4-netmask"`
 	DefaultGateway string `json:"default-gateway"`
 }
 
-type SystemIpmiIpsrc1694 struct {
+type SystemIpmiIpsrc1695 struct {
 	Dhcp   int `json:"dhcp"`
 	Static int `json:"static"`
 }
 
-type SystemIpmiTool1695 struct {
+type SystemIpmiTool1696 struct {
 	Cmd string `json:"cmd"`
 }
 
-type SystemIpmiUser1696 struct {
+type SystemIpmiUser1697 struct {
 	Add           string `json:"add"`
 	Password      string `json:"password"`
 	Administrator int    `json:"administrator"`

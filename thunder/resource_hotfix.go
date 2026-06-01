@@ -29,6 +29,9 @@ func resourceHotfix() *schema.Resource {
 						"file_url": {
 							Type: schema.TypeString, Optional: true, Description: "File URL",
 						},
+						"password": {
+							Type: schema.TypeString, Optional: true, Description: "password for the remote site",
+						},
 						"image_file": {
 							Type: schema.TypeString, Optional: true, Description: "image file from AXAPI",
 						},
@@ -103,15 +106,16 @@ func resourceHotfixRead(ctx context.Context, d *schema.ResourceData, meta interf
 	return diags
 }
 
-func getObjectHotfixApply532(d []interface{}) edpt.HotfixApply532 {
+func getObjectHotfixApply519(d []interface{}) edpt.HotfixApply519 {
 
 	count1 := len(d)
-	var ret edpt.HotfixApply532
+	var ret edpt.HotfixApply519
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.UseMgmtPort = in["use_mgmt_port"].(int)
 		ret.SourceIpAddress = in["source_ip_address"].(string)
 		ret.FileUrl = in["file_url"].(string)
+		ret.Password = in["password"].(string)
 		ret.ImageFile = in["image_file"].(string)
 	}
 	return ret
@@ -119,7 +123,7 @@ func getObjectHotfixApply532(d []interface{}) edpt.HotfixApply532 {
 
 func dataToEndpointHotfix(d *schema.ResourceData) edpt.Hotfix {
 	var ret edpt.Hotfix
-	ret.Inst.Apply = getObjectHotfixApply532(d.Get("apply").([]interface{}))
+	ret.Inst.Apply = getObjectHotfixApply519(d.Get("apply").([]interface{}))
 	ret.Inst.Revoke = d.Get("revoke").(int)
 	return ret
 }

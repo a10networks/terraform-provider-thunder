@@ -5,100 +5,106 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZonePortRangePortIndStats struct {
 	Stats DdosDstZonePortRangePortIndStatsStats `json:"stats"`
 
-	Protocol string
-
 	ZoneName string
 
-	PortRangeEnd string
+	Protocol string
 
 	PortRangeStart string
+
+	PortRangeEnd string
 }
 type DataDdosDstZonePortRangePortIndStats struct {
 	DtDdosDstZonePortRangePortIndStats DdosDstZonePortRangePortIndStats `json:"port-ind"`
 }
 
 type DdosDstZonePortRangePortIndStatsStats struct {
-	IpProtoType                                       int `json:"ip-proto-type"`
-	Ddet_ind_pkt_rate_current                         int `json:"ddet_ind_pkt_rate_current"`
-	Ddet_ind_pkt_rate_min                             int `json:"ddet_ind_pkt_rate_min"`
-	Ddet_ind_pkt_rate_max                             int `json:"ddet_ind_pkt_rate_max"`
-	Ddet_ind_pkt_rate_adaptive_threshold              int `json:"ddet_ind_pkt_rate_adaptive_threshold"`
-	Ddet_ind_pkt_drop_rate_current                    int `json:"ddet_ind_pkt_drop_rate_current"`
-	Ddet_ind_pkt_drop_rate_min                        int `json:"ddet_ind_pkt_drop_rate_min"`
-	Ddet_ind_pkt_drop_rate_max                        int `json:"ddet_ind_pkt_drop_rate_max"`
-	Ddet_ind_pkt_drop_rate_adaptive_threshold         int `json:"ddet_ind_pkt_drop_rate_adaptive_threshold"`
-	Ddet_ind_syn_rate_current                         int `json:"ddet_ind_syn_rate_current"`
-	Ddet_ind_syn_rate_min                             int `json:"ddet_ind_syn_rate_min"`
-	Ddet_ind_syn_rate_max                             int `json:"ddet_ind_syn_rate_max"`
-	Ddet_ind_syn_rate_adaptive_threshold              int `json:"ddet_ind_syn_rate_adaptive_threshold"`
-	Ddet_ind_fin_rate_current                         int `json:"ddet_ind_fin_rate_current"`
-	Ddet_ind_fin_rate_min                             int `json:"ddet_ind_fin_rate_min"`
-	Ddet_ind_fin_rate_max                             int `json:"ddet_ind_fin_rate_max"`
-	Ddet_ind_fin_rate_adaptive_threshold              int `json:"ddet_ind_fin_rate_adaptive_threshold"`
-	Ddet_ind_rst_rate_current                         int `json:"ddet_ind_rst_rate_current"`
-	Ddet_ind_rst_rate_min                             int `json:"ddet_ind_rst_rate_min"`
-	Ddet_ind_rst_rate_max                             int `json:"ddet_ind_rst_rate_max"`
-	Ddet_ind_rst_rate_adaptive_threshold              int `json:"ddet_ind_rst_rate_adaptive_threshold"`
-	Ddet_ind_small_window_ack_rate_current            int `json:"ddet_ind_small_window_ack_rate_current"`
-	Ddet_ind_small_window_ack_rate_min                int `json:"ddet_ind_small_window_ack_rate_min"`
-	Ddet_ind_small_window_ack_rate_max                int `json:"ddet_ind_small_window_ack_rate_max"`
-	Ddet_ind_small_window_ack_rate_adaptive_threshold int `json:"ddet_ind_small_window_ack_rate_adaptive_threshold"`
-	Ddet_ind_empty_ack_rate_current                   int `json:"ddet_ind_empty_ack_rate_current"`
-	Ddet_ind_empty_ack_rate_min                       int `json:"ddet_ind_empty_ack_rate_min"`
-	Ddet_ind_empty_ack_rate_max                       int `json:"ddet_ind_empty_ack_rate_max"`
-	Ddet_ind_empty_ack_rate_adaptive_threshold        int `json:"ddet_ind_empty_ack_rate_adaptive_threshold"`
-	Ddet_ind_small_payload_rate_current               int `json:"ddet_ind_small_payload_rate_current"`
-	Ddet_ind_small_payload_rate_min                   int `json:"ddet_ind_small_payload_rate_min"`
-	Ddet_ind_small_payload_rate_max                   int `json:"ddet_ind_small_payload_rate_max"`
-	Ddet_ind_small_payload_rate_adaptive_threshold    int `json:"ddet_ind_small_payload_rate_adaptive_threshold"`
-	Ddet_ind_pkt_drop_ratio_current                   int `json:"ddet_ind_pkt_drop_ratio_current"`
-	Ddet_ind_pkt_drop_ratio_min                       int `json:"ddet_ind_pkt_drop_ratio_min"`
-	Ddet_ind_pkt_drop_ratio_max                       int `json:"ddet_ind_pkt_drop_ratio_max"`
-	Ddet_ind_pkt_drop_ratio_adaptive_threshold        int `json:"ddet_ind_pkt_drop_ratio_adaptive_threshold"`
-	Ddet_ind_inb_per_outb_current                     int `json:"ddet_ind_inb_per_outb_current"`
-	Ddet_ind_inb_per_outb_min                         int `json:"ddet_ind_inb_per_outb_min"`
-	Ddet_ind_inb_per_outb_max                         int `json:"ddet_ind_inb_per_outb_max"`
-	Ddet_ind_inb_per_outb_adaptive_threshold          int `json:"ddet_ind_inb_per_outb_adaptive_threshold"`
-	Ddet_ind_syn_per_fin_rate_current                 int `json:"ddet_ind_syn_per_fin_rate_current"`
-	Ddet_ind_syn_per_fin_rate_min                     int `json:"ddet_ind_syn_per_fin_rate_min"`
-	Ddet_ind_syn_per_fin_rate_max                     int `json:"ddet_ind_syn_per_fin_rate_max"`
-	Ddet_ind_syn_per_fin_rate_adaptive_threshold      int `json:"ddet_ind_syn_per_fin_rate_adaptive_threshold"`
-	Ddet_ind_conn_miss_rate_current                   int `json:"ddet_ind_conn_miss_rate_current"`
-	Ddet_ind_conn_miss_rate_min                       int `json:"ddet_ind_conn_miss_rate_min"`
-	Ddet_ind_conn_miss_rate_max                       int `json:"ddet_ind_conn_miss_rate_max"`
-	Ddet_ind_conn_miss_rate_adaptive_threshold        int `json:"ddet_ind_conn_miss_rate_adaptive_threshold"`
-	Ddet_ind_concurrent_conns_current                 int `json:"ddet_ind_concurrent_conns_current"`
-	Ddet_ind_concurrent_conns_min                     int `json:"ddet_ind_concurrent_conns_min"`
-	Ddet_ind_concurrent_conns_max                     int `json:"ddet_ind_concurrent_conns_max"`
-	Ddet_ind_concurrent_conns_adaptive_threshold      int `json:"ddet_ind_concurrent_conns_adaptive_threshold"`
-	Ddet_ind_data_cpu_util_current                    int `json:"ddet_ind_data_cpu_util_current"`
-	Ddet_ind_data_cpu_util_min                        int `json:"ddet_ind_data_cpu_util_min"`
-	Ddet_ind_data_cpu_util_max                        int `json:"ddet_ind_data_cpu_util_max"`
-	Ddet_ind_data_cpu_util_adaptive_threshold         int `json:"ddet_ind_data_cpu_util_adaptive_threshold"`
-	Ddet_ind_outside_intf_util_current                int `json:"ddet_ind_outside_intf_util_current"`
-	Ddet_ind_outside_intf_util_min                    int `json:"ddet_ind_outside_intf_util_min"`
-	Ddet_ind_outside_intf_util_max                    int `json:"ddet_ind_outside_intf_util_max"`
-	Ddet_ind_outside_intf_util_adaptive_threshold     int `json:"ddet_ind_outside_intf_util_adaptive_threshold"`
-	Ddet_ind_frag_rate_current                        int `json:"ddet_ind_frag_rate_current"`
-	Ddet_ind_frag_rate_min                            int `json:"ddet_ind_frag_rate_min"`
-	Ddet_ind_frag_rate_max                            int `json:"ddet_ind_frag_rate_max"`
-	Ddet_ind_frag_rate_adaptive_threshold             int `json:"ddet_ind_frag_rate_adaptive_threshold"`
-	Ddet_ind_bit_rate_current                         int `json:"ddet_ind_bit_rate_current"`
-	Ddet_ind_bit_rate_min                             int `json:"ddet_ind_bit_rate_min"`
-	Ddet_ind_bit_rate_max                             int `json:"ddet_ind_bit_rate_max"`
-	Ddet_ind_bit_rate_adaptive_threshold              int `json:"ddet_ind_bit_rate_adaptive_threshold"`
-	Ddet_ind_total_szp_current                        int `json:"ddet_ind_total_szp_current"`
-	Ddet_ind_total_szp_min                            int `json:"ddet_ind_total_szp_min"`
-	Ddet_ind_total_szp_max                            int `json:"ddet_ind_total_szp_max"`
-	Ddet_ind_total_szp_adaptive_threshold             int `json:"ddet_ind_total_szp_adaptive_threshold"`
-	Ddet_ind_syn_ack_rate_current                     int `json:"ddet_ind_syn_ack_rate_current"`
-	Ddet_ind_syn_ack_rate_min                         int `json:"ddet_ind_syn_ack_rate_min"`
-	Ddet_ind_syn_ack_rate_max                         int `json:"ddet_ind_syn_ack_rate_max"`
-	Ddet_ind_syn_ack_rate_adaptive_threshold          int `json:"ddet_ind_syn_ack_rate_adaptive_threshold"`
+	IpProtoType                                             int `json:"ip-proto-type"`
+	Ddet_ind_pkt_rate_current                               int `json:"ddet_ind_pkt_rate_current"`
+	Ddet_ind_pkt_rate_min                                   int `json:"ddet_ind_pkt_rate_min"`
+	Ddet_ind_pkt_rate_max                                   int `json:"ddet_ind_pkt_rate_max"`
+	Ddet_ind_pkt_rate_adaptive_threshold                    int `json:"ddet_ind_pkt_rate_adaptive_threshold"`
+	Ddet_ind_pkt_drop_rate_current                          int `json:"ddet_ind_pkt_drop_rate_current"`
+	Ddet_ind_pkt_drop_rate_min                              int `json:"ddet_ind_pkt_drop_rate_min"`
+	Ddet_ind_pkt_drop_rate_max                              int `json:"ddet_ind_pkt_drop_rate_max"`
+	Ddet_ind_pkt_drop_rate_adaptive_threshold               int `json:"ddet_ind_pkt_drop_rate_adaptive_threshold"`
+	Ddet_ind_syn_rate_current                               int `json:"ddet_ind_syn_rate_current"`
+	Ddet_ind_syn_rate_min                                   int `json:"ddet_ind_syn_rate_min"`
+	Ddet_ind_syn_rate_max                                   int `json:"ddet_ind_syn_rate_max"`
+	Ddet_ind_syn_rate_adaptive_threshold                    int `json:"ddet_ind_syn_rate_adaptive_threshold"`
+	Ddet_ind_fin_rate_current                               int `json:"ddet_ind_fin_rate_current"`
+	Ddet_ind_fin_rate_min                                   int `json:"ddet_ind_fin_rate_min"`
+	Ddet_ind_fin_rate_max                                   int `json:"ddet_ind_fin_rate_max"`
+	Ddet_ind_fin_rate_adaptive_threshold                    int `json:"ddet_ind_fin_rate_adaptive_threshold"`
+	Ddet_ind_rst_rate_current                               int `json:"ddet_ind_rst_rate_current"`
+	Ddet_ind_rst_rate_min                                   int `json:"ddet_ind_rst_rate_min"`
+	Ddet_ind_rst_rate_max                                   int `json:"ddet_ind_rst_rate_max"`
+	Ddet_ind_rst_rate_adaptive_threshold                    int `json:"ddet_ind_rst_rate_adaptive_threshold"`
+	Ddet_ind_small_window_ack_rate_current                  int `json:"ddet_ind_small_window_ack_rate_current"`
+	Ddet_ind_small_window_ack_rate_min                      int `json:"ddet_ind_small_window_ack_rate_min"`
+	Ddet_ind_small_window_ack_rate_max                      int `json:"ddet_ind_small_window_ack_rate_max"`
+	Ddet_ind_small_window_ack_rate_adaptive_threshold       int `json:"ddet_ind_small_window_ack_rate_adaptive_threshold"`
+	Ddet_ind_empty_ack_rate_current                         int `json:"ddet_ind_empty_ack_rate_current"`
+	Ddet_ind_empty_ack_rate_min                             int `json:"ddet_ind_empty_ack_rate_min"`
+	Ddet_ind_empty_ack_rate_max                             int `json:"ddet_ind_empty_ack_rate_max"`
+	Ddet_ind_empty_ack_rate_adaptive_threshold              int `json:"ddet_ind_empty_ack_rate_adaptive_threshold"`
+	Ddet_ind_small_payload_rate_current                     int `json:"ddet_ind_small_payload_rate_current"`
+	Ddet_ind_small_payload_rate_min                         int `json:"ddet_ind_small_payload_rate_min"`
+	Ddet_ind_small_payload_rate_max                         int `json:"ddet_ind_small_payload_rate_max"`
+	Ddet_ind_small_payload_rate_adaptive_threshold          int `json:"ddet_ind_small_payload_rate_adaptive_threshold"`
+	Ddet_ind_pkt_drop_ratio_current                         int `json:"ddet_ind_pkt_drop_ratio_current"`
+	Ddet_ind_pkt_drop_ratio_min                             int `json:"ddet_ind_pkt_drop_ratio_min"`
+	Ddet_ind_pkt_drop_ratio_max                             int `json:"ddet_ind_pkt_drop_ratio_max"`
+	Ddet_ind_pkt_drop_ratio_adaptive_threshold              int `json:"ddet_ind_pkt_drop_ratio_adaptive_threshold"`
+	Ddet_ind_inb_per_outb_current                           int `json:"ddet_ind_inb_per_outb_current"`
+	Ddet_ind_inb_per_outb_min                               int `json:"ddet_ind_inb_per_outb_min"`
+	Ddet_ind_inb_per_outb_max                               int `json:"ddet_ind_inb_per_outb_max"`
+	Ddet_ind_inb_per_outb_adaptive_threshold                int `json:"ddet_ind_inb_per_outb_adaptive_threshold"`
+	Ddet_ind_syn_per_fin_rate_current                       int `json:"ddet_ind_syn_per_fin_rate_current"`
+	Ddet_ind_syn_per_fin_rate_min                           int `json:"ddet_ind_syn_per_fin_rate_min"`
+	Ddet_ind_syn_per_fin_rate_max                           int `json:"ddet_ind_syn_per_fin_rate_max"`
+	Ddet_ind_syn_per_fin_rate_adaptive_threshold            int `json:"ddet_ind_syn_per_fin_rate_adaptive_threshold"`
+	Ddet_ind_conn_miss_rate_current                         int `json:"ddet_ind_conn_miss_rate_current"`
+	Ddet_ind_conn_miss_rate_min                             int `json:"ddet_ind_conn_miss_rate_min"`
+	Ddet_ind_conn_miss_rate_max                             int `json:"ddet_ind_conn_miss_rate_max"`
+	Ddet_ind_conn_miss_rate_adaptive_threshold              int `json:"ddet_ind_conn_miss_rate_adaptive_threshold"`
+	Ddet_ind_concurrent_conns_current                       int `json:"ddet_ind_concurrent_conns_current"`
+	Ddet_ind_concurrent_conns_min                           int `json:"ddet_ind_concurrent_conns_min"`
+	Ddet_ind_concurrent_conns_max                           int `json:"ddet_ind_concurrent_conns_max"`
+	Ddet_ind_concurrent_conns_adaptive_threshold            int `json:"ddet_ind_concurrent_conns_adaptive_threshold"`
+	Ddet_ind_data_cpu_util_current                          int `json:"ddet_ind_data_cpu_util_current"`
+	Ddet_ind_data_cpu_util_min                              int `json:"ddet_ind_data_cpu_util_min"`
+	Ddet_ind_data_cpu_util_max                              int `json:"ddet_ind_data_cpu_util_max"`
+	Ddet_ind_data_cpu_util_adaptive_threshold               int `json:"ddet_ind_data_cpu_util_adaptive_threshold"`
+	Ddet_ind_outside_intf_util_current                      int `json:"ddet_ind_outside_intf_util_current"`
+	Ddet_ind_outside_intf_util_min                          int `json:"ddet_ind_outside_intf_util_min"`
+	Ddet_ind_outside_intf_util_max                          int `json:"ddet_ind_outside_intf_util_max"`
+	Ddet_ind_outside_intf_util_adaptive_threshold           int `json:"ddet_ind_outside_intf_util_adaptive_threshold"`
+	Ddet_ind_frag_rate_current                              int `json:"ddet_ind_frag_rate_current"`
+	Ddet_ind_frag_rate_min                                  int `json:"ddet_ind_frag_rate_min"`
+	Ddet_ind_frag_rate_max                                  int `json:"ddet_ind_frag_rate_max"`
+	Ddet_ind_frag_rate_adaptive_threshold                   int `json:"ddet_ind_frag_rate_adaptive_threshold"`
+	Ddet_ind_bit_rate_current                               int `json:"ddet_ind_bit_rate_current"`
+	Ddet_ind_bit_rate_min                                   int `json:"ddet_ind_bit_rate_min"`
+	Ddet_ind_bit_rate_max                                   int `json:"ddet_ind_bit_rate_max"`
+	Ddet_ind_bit_rate_adaptive_threshold                    int `json:"ddet_ind_bit_rate_adaptive_threshold"`
+	Ddet_ind_total_szp_current                              int `json:"ddet_ind_total_szp_current"`
+	Ddet_ind_total_szp_min                                  int `json:"ddet_ind_total_szp_min"`
+	Ddet_ind_total_szp_max                                  int `json:"ddet_ind_total_szp_max"`
+	Ddet_ind_total_szp_adaptive_threshold                   int `json:"ddet_ind_total_szp_adaptive_threshold"`
+	Ddet_ind_syn_ack_rate_current                           int `json:"ddet_ind_syn_ack_rate_current"`
+	Ddet_ind_syn_ack_rate_min                               int `json:"ddet_ind_syn_ack_rate_min"`
+	Ddet_ind_syn_ack_rate_max                               int `json:"ddet_ind_syn_ack_rate_max"`
+	Ddet_ind_syn_ack_rate_adaptive_threshold                int `json:"ddet_ind_syn_ack_rate_adaptive_threshold"`
+	Ddet_ind_inside_out_concurrent_conns_current            int `json:"ddet_ind_inside_out_concurrent_conns_current"`
+	Ddet_ind_inside_out_concurrent_conns_min                int `json:"ddet_ind_inside_out_concurrent_conns_min"`
+	Ddet_ind_inside_out_concurrent_conns_max                int `json:"ddet_ind_inside_out_concurrent_conns_max"`
+	Ddet_ind_inside_out_concurrent_conns_adaptive_threshold int `json:"ddet_ind_inside_out_concurrent_conns_adaptive_threshold"`
+	Ddet_ind_pkt_rate_adaptive_baseline                     int `json:"ddet_ind_pkt_rate_adaptive_baseline"`
+	Ddet_ind_bit_rate_adaptive_baseline                     int `json:"ddet_ind_bit_rate_adaptive_baseline"`
 }
 
 func (p *DdosDstZonePortRangePortIndStats) GetId() string {

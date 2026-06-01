@@ -25,11 +25,11 @@ func resourceAcosEventsTemplateMessageSelectorCollectorGroup() *schema.Resource 
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"message_selector_name": {
-				Type: schema.TypeString, Required: true, Description: "Message_selector_name",
-			},
 			"template_name": {
 				Type: schema.TypeString, Required: true, Description: "Template_name",
+			},
+			"message_selector_name": {
+				Type: schema.TypeString, Required: true, Description: "Message_selector_name",
 			},
 		},
 	}
@@ -101,7 +101,7 @@ func dataToEndpointAcosEventsTemplateMessageSelectorCollectorGroup(d *schema.Res
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Message_selector_name = d.Get("message_selector_name").(string)
 	ret.Inst.Template_name = d.Get("template_name").(string)
+	ret.Inst.Message_selector_name = d.Get("message_selector_name").(string)
 	return ret
 }

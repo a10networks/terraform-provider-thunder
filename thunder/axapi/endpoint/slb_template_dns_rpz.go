@@ -6,10 +6,10 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbTemplateDnsRpz struct {
 	Inst struct {
-		Logging SlbTemplateDnsRpzLogging1521 `json:"logging"`
+		Logging SlbTemplateDnsRpzLogging1522 `json:"logging"`
 
 		Name string `json:"name"`
 
@@ -23,13 +23,13 @@ type SlbTemplateDnsRpz struct {
 	} `json:"rpz"`
 }
 
-type SlbTemplateDnsRpzLogging1521 struct {
+type SlbTemplateDnsRpzLogging1522 struct {
 	Enable    int                                     `json:"enable"`
-	RpzAction []SlbTemplateDnsRpzLoggingRpzAction1522 `json:"rpz-action"`
+	RpzAction []SlbTemplateDnsRpzLoggingRpzAction1523 `json:"rpz-action"`
 	Uuid      string                                  `json:"uuid"`
 }
 
-type SlbTemplateDnsRpzLoggingRpzAction1522 struct {
+type SlbTemplateDnsRpzLoggingRpzAction1523 struct {
 	StrRpzAction string `json:"str-rpz-action"`
 }
 

@@ -47,17 +47,17 @@ func resourceDdosDstZoneIpProtoProtoNumberSrcBasedPolicyPolicyClassListClassList
 					},
 				},
 			},
-			"class_list_name": {
-				Type: schema.TypeString, Required: true, Description: "ClassListName",
+			"protocol_num": {
+				Type: schema.TypeString, Required: true, Description: "ProtocolNum",
 			},
 			"src_based_policy_name": {
 				Type: schema.TypeString, Required: true, Description: "SrcBasedPolicyName",
 			},
+			"class_list_name": {
+				Type: schema.TypeString, Required: true, Description: "ClassListName",
+			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
-			},
-			"protocol_num": {
-				Type: schema.TypeString, Required: true, Description: "ProtocolNum",
 			},
 		},
 	}
@@ -145,9 +145,9 @@ func dataToEndpointDdosDstZoneIpProtoProtoNumberSrcBasedPolicyPolicyClassListCla
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.ZoneTemplate = getObjectDdosDstZoneIpProtoProtoNumberSrcBasedPolicyPolicyClassListClassListOverflowPolicyZoneTemplate(d.Get("zone_template").([]interface{}))
-	ret.Inst.ClassListName = d.Get("class_list_name").(string)
-	ret.Inst.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
-	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	ret.Inst.ProtocolNum = d.Get("protocol_num").(string)
+	ret.Inst.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
+	ret.Inst.ClassListName = d.Get("class_list_name").(string)
+	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	return ret
 }

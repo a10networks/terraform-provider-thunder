@@ -6,9 +6,13 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type ImportPeriodicTsig struct {
 	Inst struct {
+		Encrypted string `json:"encrypted"`
+
+		Password string `json:"password"`
+
 		Period int `json:"period"`
 
 		RemoteFile string `json:"remote-file"`

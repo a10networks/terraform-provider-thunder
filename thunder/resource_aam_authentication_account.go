@@ -38,9 +38,6 @@ func resourceAamAuthenticationAccount() *schema.Resource {
 						"secret_string": {
 							Type: schema.TypeString, Optional: true, Description: "Password of AD account",
 						},
-						"encryption_algorithm": {
-							Type: schema.TypeString, Optional: true, Default: "aes256-cts-hmac-sha1-96", Description: "'aes128-cts-hmac-sha1-96': AES-128 CTS mode with 96-bit SHA-1 HMAC; 'aes256-cts-hmac-sha1-96': AES-256 CTS mode with 96-bit SHA-1 HMAC (default);",
-						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 						},
@@ -142,7 +139,6 @@ func getSliceAamAuthenticationAccountKerberosSpnList(d []interface{}) []edpt.Aam
 		oi.Password = in["password"].(int)
 		oi.SecretString = in["secret_string"].(string)
 		//omit encrypted
-		oi.EncryptionAlgorithm = in["encryption_algorithm"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		ret = append(ret, oi)

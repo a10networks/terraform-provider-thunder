@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosTemplateSipFilterHeader struct {
 	Inst struct {
 		SipFilterHeaderBlacklist int `json:"sip-filter-header-blacklist"`

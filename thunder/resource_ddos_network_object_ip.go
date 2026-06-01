@@ -39,6 +39,51 @@ func resourceDdosNetworkObjectIp() *schema.Resource {
 					},
 				},
 			},
+			"src_port_list": {
+				Type: schema.TypeList, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"port_num": {
+							Type: schema.TypeInt, Required: true, Description: "Port Number",
+						},
+						"protocol": {
+							Type: schema.TypeString, Required: true, Description: "'udp': UDP port; 'tcp': TCP Port;",
+						},
+						"host_src_port_anomaly_threshold": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"host_src_port_pkt_rate": {
+										Type: schema.TypeInt, Optional: true, Description: "Forward packet rate of per-host source port entries",
+									},
+									"host_src_port_bit_rate": {
+										Type: schema.TypeInt, Optional: true, Description: "Forward bit rate of per-host source port entries",
+									},
+								},
+							},
+						},
+						"subnet_src_port_anomaly_threshold": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"subnet_src_port_pkt_rate": {
+										Type: schema.TypeInt, Optional: true, Description: "Forward packet rate of per-subnet source port entries",
+									},
+									"subnet_src_port_bit_rate": {
+										Type: schema.TypeInt, Optional: true, Description: "Forward bit rate of per-subnet source port entries",
+									},
+								},
+							},
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+						"user_tag": {
+							Type: schema.TypeString, Optional: true, Description: "Customized tag",
+						},
+					},
+				},
+			},
 			"subnet_ip_addr": {
 				Type: schema.TypeString, Required: true, Description: "IP Subnet, supported prefix range is from 8 to 32",
 			},
@@ -141,10 +186,53 @@ func getSliceDdosNetworkObjectIpSamplingEnable(d []interface{}) []edpt.DdosNetwo
 	return ret
 }
 
+func getSliceDdosNetworkObjectIpSrcPortList(d []interface{}) []edpt.DdosNetworkObjectIpSrcPortList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosNetworkObjectIpSrcPortList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosNetworkObjectIpSrcPortList
+		oi.PortNum = in["port_num"].(int)
+		oi.Protocol = in["protocol"].(string)
+		oi.HostSrcPortAnomalyThreshold = getObjectDdosNetworkObjectIpSrcPortListHostSrcPortAnomalyThreshold(in["host_src_port_anomaly_threshold"].([]interface{}))
+		oi.SubnetSrcPortAnomalyThreshold = getObjectDdosNetworkObjectIpSrcPortListSubnetSrcPortAnomalyThreshold(in["subnet_src_port_anomaly_threshold"].([]interface{}))
+		//omit uuid
+		oi.UserTag = in["user_tag"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectDdosNetworkObjectIpSrcPortListHostSrcPortAnomalyThreshold(d []interface{}) edpt.DdosNetworkObjectIpSrcPortListHostSrcPortAnomalyThreshold {
+
+	count1 := len(d)
+	var ret edpt.DdosNetworkObjectIpSrcPortListHostSrcPortAnomalyThreshold
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.HostSrcPortPktRate = in["host_src_port_pkt_rate"].(int)
+		ret.HostSrcPortBitRate = in["host_src_port_bit_rate"].(int)
+	}
+	return ret
+}
+
+func getObjectDdosNetworkObjectIpSrcPortListSubnetSrcPortAnomalyThreshold(d []interface{}) edpt.DdosNetworkObjectIpSrcPortListSubnetSrcPortAnomalyThreshold {
+
+	count1 := len(d)
+	var ret edpt.DdosNetworkObjectIpSrcPortListSubnetSrcPortAnomalyThreshold
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.SubnetSrcPortPktRate = in["subnet_src_port_pkt_rate"].(int)
+		ret.SubnetSrcPortBitRate = in["subnet_src_port_bit_rate"].(int)
+	}
+	return ret
+}
+
 func dataToEndpointDdosNetworkObjectIp(d *schema.ResourceData) edpt.DdosNetworkObjectIp {
 	var ret edpt.DdosNetworkObjectIp
 	ret.Inst.PrefixAnomalyThreshold = getObjectDdosNetworkObjectIpPrefixAnomalyThreshold(d.Get("prefix_anomaly_threshold").([]interface{}))
 	ret.Inst.SamplingEnable = getSliceDdosNetworkObjectIpSamplingEnable(d.Get("sampling_enable").([]interface{}))
+	ret.Inst.SrcPortList = getSliceDdosNetworkObjectIpSrcPortList(d.Get("src_port_list").([]interface{}))
 	ret.Inst.SubnetIpAddr = d.Get("subnet_ip_addr").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid

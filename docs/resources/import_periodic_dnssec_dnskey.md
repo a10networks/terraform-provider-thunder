@@ -38,6 +38,7 @@ resource "thunder_import_periodic_dnssec_dnskey" "thunder_import_periodic_dnssec
 
 ### Optional
 
+- `password` (String) Config remote server  password
 - `period` (Number) Specify the period in second
 - `remote_file` (String) profile name for remote url
 - `use_mgmt_port` (Number) Use management port as source port

@@ -49,6 +49,7 @@ resource "thunder_slb_template_dns_logging" "dns_logging" {
 - `response_include_rcode` (Number) Log DNS Rcode with Response
 - `response_tuple` (String) 'client-side': DNS response log with client-side tuple; 'server-side': DNS response log with server-side tuple;
 - `response_type` (Block List, Max: 1) (see [below for nested schema](#nestedblock--response_type))
+- `standard_log_list` (Block List) (see [below for nested schema](#nestedblock--standard_log_list))
 - `user_tag` (String) Customized tag
 - `uuid` (String) uuid of the object
 
@@ -61,14 +62,28 @@ resource "thunder_slb_template_dns_logging" "dns_logging" {
 
 Required:
 
-- `trigger_reason` (String) 'request': log when request comes from client; 'response': log when response to client;
+- `trigger_reason` (String) 'request': log when request comes from client; 'response': log when response to client; 'timeout': log when request connection timeout;
 
 Optional:
 
 - `enable` (Number) Enable this log
 - `format` (String) Request Message (Custom message string)
+- `log_filter_list` (Block List) (see [below for nested schema](#nestedblock--custom_log_list--log_filter_list))
 - `user_tag` (String) Customized tag
 - `uuid` (String) uuid of the object
+
+<a id="nestedblock--custom_log_list--log_filter_list"></a>
+### Nested Schema for `custom_log_list.log_filter_list`
+
+Required:
+
+- `feature` (String) 'RPZ': log when rpz feature hit;
+
+Optional:
+
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+
 
 
 <a id="nestedblock--response_type"></a>
@@ -116,3 +131,30 @@ Optional:
 - `user_tag` (String) Customized tag
 - `uuid` (String) uuid of the object
 - `value_field` (Number)
+
+
+
+<a id="nestedblock--standard_log_list"></a>
+### Nested Schema for `standard_log_list`
+
+Required:
+
+- `trigger_reason` (String) 'request': log when request comes from client;
+
+Optional:
+
+- `log_filter_list` (Block List) (see [below for nested schema](#nestedblock--standard_log_list--log_filter_list))
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--standard_log_list--log_filter_list"></a>
+### Nested Schema for `standard_log_list.log_filter_list`
+
+Required:
+
+- `feature` (String) 'RPZ': log when rpz feature hit;
+
+Optional:
+
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object

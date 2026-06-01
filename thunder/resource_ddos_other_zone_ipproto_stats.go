@@ -281,6 +281,12 @@ func resourceDdosOtherZoneIpprotoStats() *schema.Resource {
 						"src_zone_service_entry_hit": {
 							Type: schema.TypeInt, Optional: true, Description: "SrcZoneService Entry Hit",
 						},
+						"src_ip_filtering_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Src-ip-filtering Drop",
+						},
+						"src_ip_filtering_bypass": {
+							Type: schema.TypeInt, Optional: true, Description: "Src-ip-filtering Bypass",
+						},
 					},
 				},
 			},
@@ -398,6 +404,8 @@ func setObjectDdosOtherZoneIpprotoStatsStats(ret edpt.DataDdosOtherZoneIpprotoSt
 			"src_learn_overflow":                  ret.DtDdosOtherZoneIpprotoStats.Stats.Src_learn_overflow,
 			"dynamic_count_warn":                  ret.DtDdosOtherZoneIpprotoStats.Stats.Dynamic_count_warn,
 			"src_zone_service_entry_hit":          ret.DtDdosOtherZoneIpprotoStats.Stats.Src_zone_service_entry_hit,
+			"src_ip_filtering_drop":               ret.DtDdosOtherZoneIpprotoStats.Stats.Src_ip_filtering_drop,
+			"src_ip_filtering_bypass":             ret.DtDdosOtherZoneIpprotoStats.Stats.Src_ip_filtering_bypass,
 		},
 	}
 }
@@ -496,6 +504,8 @@ func getObjectDdosOtherZoneIpprotoStatsStats(d []interface{}) edpt.DdosOtherZone
 		ret.Src_learn_overflow = in["src_learn_overflow"].(int)
 		ret.Dynamic_count_warn = in["dynamic_count_warn"].(int)
 		ret.Src_zone_service_entry_hit = in["src_zone_service_entry_hit"].(int)
+		ret.Src_ip_filtering_drop = in["src_ip_filtering_drop"].(int)
+		ret.Src_ip_filtering_bypass = in["src_ip_filtering_bypass"].(int)
 	}
 	return ret
 }

@@ -675,6 +675,27 @@ func resourceDdosDstZonePortRangeStats24() *schema.Resource {
 									"same_sport_dport_drop": {
 										Type: schema.TypeInt, Optional: true, Description: "Same Source and Destination Port Drop",
 									},
+									"pattern_filter1_drop": {
+										Type: schema.TypeInt, Optional: true, Description: "Extracted Filter1 Drop",
+									},
+									"pattern_filter2_drop": {
+										Type: schema.TypeInt, Optional: true, Description: "Extracted Filter2 Drop",
+									},
+									"pattern_filter3_drop": {
+										Type: schema.TypeInt, Optional: true, Description: "Extracted Filter3 Drop",
+									},
+									"pattern_filter4_drop": {
+										Type: schema.TypeInt, Optional: true, Description: "Extracted Filter4 Drop",
+									},
+									"pattern_filter5_drop": {
+										Type: schema.TypeInt, Optional: true, Description: "Extracted Filter5 Drop",
+									},
+									"src_ip_filtering_drop": {
+										Type: schema.TypeInt, Optional: true, Description: "Src-ip-filtering Drop",
+									},
+									"src_ip_filtering_bypass": {
+										Type: schema.TypeInt, Optional: true, Description: "Src-ip-filtering Bypass",
+									},
 								},
 							},
 						},
@@ -980,6 +1001,13 @@ func getObjectDdosDstZonePortRangeStats24StatsDnsUdpZonePort(d []interface{}) ed
 		ret.Rrsig_expire_drop = in["rrsig_expire_drop"].(int)
 		ret.Src_zone_service_entry_hit = in["src_zone_service_entry_hit"].(int)
 		ret.Same_sport_dport_drop = in["same_sport_dport_drop"].(int)
+		ret.Pattern_filter1_drop = in["pattern_filter1_drop"].(int)
+		ret.Pattern_filter2_drop = in["pattern_filter2_drop"].(int)
+		ret.Pattern_filter3_drop = in["pattern_filter3_drop"].(int)
+		ret.Pattern_filter4_drop = in["pattern_filter4_drop"].(int)
+		ret.Pattern_filter5_drop = in["pattern_filter5_drop"].(int)
+		ret.Src_ip_filtering_drop = in["src_ip_filtering_drop"].(int)
+		ret.Src_ip_filtering_bypass = in["src_ip_filtering_bypass"].(int)
 	}
 	return ret
 }

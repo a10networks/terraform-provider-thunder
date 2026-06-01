@@ -5,17 +5,17 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZonePortRangeVirtualhostsVirtualhostOper struct {
 	Oper DdosDstZonePortRangeVirtualhostsVirtualhostOperOper `json:"oper"`
 
 	Vhost string `json:"vhost"`
 
+	Protocol string
+
 	ZoneName string
 
 	PortRangeStart string
-
-	Protocol string
 
 	PortRangeEnd string
 }

@@ -259,10 +259,10 @@ func getSliceSlbTemplateServerSslCaCerts(d []interface{}) []edpt.SlbTemplateServ
 	return ret
 }
 
-func getObjectSlbTemplateServerSslCertificate1576(d []interface{}) edpt.SlbTemplateServerSslCertificate1576 {
+func getObjectSlbTemplateServerSslCertificate1577(d []interface{}) edpt.SlbTemplateServerSslCertificate1577 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateServerSslCertificate1576
+	var ret edpt.SlbTemplateServerSslCertificate1577
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Cert = in["cert"].(string)
@@ -332,7 +332,7 @@ func dataToEndpointSlbTemplateServerSsl(d *schema.ResourceData) edpt.SlbTemplate
 	var ret edpt.SlbTemplateServerSsl
 	ret.Inst.AlertType = d.Get("alert_type").(string)
 	ret.Inst.CaCerts = getSliceSlbTemplateServerSslCaCerts(d.Get("ca_certs").([]interface{}))
-	ret.Inst.Certificate = getObjectSlbTemplateServerSslCertificate1576(d.Get("certificate").([]interface{}))
+	ret.Inst.Certificate = getObjectSlbTemplateServerSslCertificate1577(d.Get("certificate").([]interface{}))
 	ret.Inst.CipherTemplate = d.Get("cipher_template").(string)
 	ret.Inst.CipherWithoutPrioList = getSliceSlbTemplateServerSslCipherWithoutPrioList(d.Get("cipher_without_prio_list").([]interface{}))
 	ret.Inst.CloseNotify = d.Get("close_notify").(int)

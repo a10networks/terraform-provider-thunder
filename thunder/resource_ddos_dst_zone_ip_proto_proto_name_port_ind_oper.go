@@ -150,6 +150,9 @@ func resourceDdosDstZoneIpProtoProtoNamePortIndOper() *schema.Resource {
 						"active_time": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
+						"baseline_window_size": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 						"sources_all_entries": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
@@ -171,11 +174,11 @@ func resourceDdosDstZoneIpProtoProtoNamePortIndOper() *schema.Resource {
 					},
 				},
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
-			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			},
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 		},
 	}
@@ -211,6 +214,7 @@ func setObjectDdosDstZoneIpProtoProtoNamePortIndOperOper(ret edpt.DataDdosDstZon
 			"escalation_timestamp":  ret.DtDdosDstZoneIpProtoProtoNamePortIndOper.Oper.EscalationTimestamp,
 			"initial_learning":      ret.DtDdosDstZoneIpProtoProtoNamePortIndOper.Oper.InitialLearning,
 			"active_time":           ret.DtDdosDstZoneIpProtoProtoNamePortIndOper.Oper.ActiveTime,
+			"baseline_window_size":  ret.DtDdosDstZoneIpProtoProtoNamePortIndOper.Oper.BaselineWindowSize,
 			"sources_all_entries":   ret.DtDdosDstZoneIpProtoProtoNamePortIndOper.Oper.SourcesAllEntries,
 			"subnet_ip_addr":        ret.DtDdosDstZoneIpProtoProtoNamePortIndOper.Oper.SubnetIpAddr,
 			"subnet_ipv6_addr":      ret.DtDdosDstZoneIpProtoProtoNamePortIndOper.Oper.SubnetIpv6Addr,
@@ -302,6 +306,7 @@ func getObjectDdosDstZoneIpProtoProtoNamePortIndOperOper(d []interface{}) edpt.D
 		ret.EscalationTimestamp = in["escalation_timestamp"].(string)
 		ret.InitialLearning = in["initial_learning"].(string)
 		ret.ActiveTime = in["active_time"].(int)
+		ret.BaselineWindowSize = in["baseline_window_size"].(int)
 		ret.SourcesAllEntries = in["sources_all_entries"].(int)
 		ret.SubnetIpAddr = in["subnet_ip_addr"].(string)
 		ret.SubnetIpv6Addr = in["subnet_ipv6_addr"].(string)
@@ -396,8 +401,8 @@ func dataToEndpointDdosDstZoneIpProtoProtoNamePortIndOper(d *schema.ResourceData
 
 	ret.Oper = getObjectDdosDstZoneIpProtoProtoNamePortIndOperOper(d.Get("oper").([]interface{}))
 
-	ret.Protocol = d.Get("protocol").(string)
-
 	ret.ZoneName = d.Get("zone_name").(string)
+
+	ret.Protocol = d.Get("protocol").(string)
 	return ret
 }

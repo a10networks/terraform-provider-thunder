@@ -5,22 +5,22 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SysUtTemplate struct {
 	Inst struct {
-		IgnoreValidation SysUtTemplateIgnoreValidation1657 `json:"ignore-validation"`
+		IgnoreValidation SysUtTemplateIgnoreValidation1658 `json:"ignore-validation"`
 
-		L1 SysUtTemplateL11658 `json:"l1"`
+		L1 SysUtTemplateL11659 `json:"l1"`
 
-		L2 SysUtTemplateL21661 `json:"l2"`
+		L2 SysUtTemplateL21662 `json:"l2"`
 
-		L3 SysUtTemplateL31663 `json:"l3"`
+		L3 SysUtTemplateL31664 `json:"l3"`
 
 		Name string `json:"name"`
 
-		Tcp SysUtTemplateTcp1665 `json:"tcp"`
+		Tcp SysUtTemplateTcp1666 `json:"tcp"`
 
-		Udp SysUtTemplateUdp1669 `json:"udp"`
+		Udp SysUtTemplateUdp1670 `json:"udp"`
 
 		UserTag string `json:"user-tag"`
 
@@ -28,7 +28,7 @@ type SysUtTemplate struct {
 	} `json:"template"`
 }
 
-type SysUtTemplateIgnoreValidation1657 struct {
+type SysUtTemplateIgnoreValidation1658 struct {
 	L1   int    `json:"l1"`
 	L2   int    `json:"l2"`
 	L3   int    `json:"l3"`
@@ -37,9 +37,9 @@ type SysUtTemplateIgnoreValidation1657 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SysUtTemplateL11658 struct {
-	EthList    []SysUtTemplateL1EthList1659    `json:"eth-list"`
-	Trunk_list []SysUtTemplateL1Trunk_list1660 `json:"trunk_list"`
+type SysUtTemplateL11659 struct {
+	EthList    []SysUtTemplateL1EthList1660    `json:"eth-list"`
+	Trunk_list []SysUtTemplateL1Trunk_list1661 `json:"trunk_list"`
 	Drop       int                             `json:"drop"`
 	Length     int                             `json:"length"`
 	Value      int                             `json:"value"`
@@ -47,26 +47,26 @@ type SysUtTemplateL11658 struct {
 	Uuid       string                          `json:"uuid"`
 }
 
-type SysUtTemplateL1EthList1659 struct {
+type SysUtTemplateL1EthList1660 struct {
 	EthernetStart int `json:"ethernet-start"`
 	EthernetEnd   int `json:"ethernet-end"`
 }
 
-type SysUtTemplateL1Trunk_list1660 struct {
+type SysUtTemplateL1Trunk_list1661 struct {
 	TrunkStart int `json:"trunk-start"`
 	TrunkEnd   int `json:"trunk-end"`
 }
 
-type SysUtTemplateL21661 struct {
+type SysUtTemplateL21662 struct {
 	Ethertype int                          `json:"ethertype"`
 	Protocol  string                       `json:"protocol" dval:"ipv4"`
 	Value     int                          `json:"value"`
 	Vlan      int                          `json:"vlan"`
 	Uuid      string                       `json:"uuid"`
-	MacList   []SysUtTemplateL2MacList1662 `json:"mac-list"`
+	MacList   []SysUtTemplateL2MacList1663 `json:"mac-list"`
 }
 
-type SysUtTemplateL2MacList1662 struct {
+type SysUtTemplateL2MacList1663 struct {
 	SrcDst        string `json:"src-dst"`
 	AddressType   string `json:"address-type"`
 	VirtualServer string `json:"virtual-server"`
@@ -78,17 +78,17 @@ type SysUtTemplateL2MacList1662 struct {
 	Uuid          string `json:"uuid"`
 }
 
-type SysUtTemplateL31663 struct {
+type SysUtTemplateL31664 struct {
 	Protocol int                         `json:"protocol"`
 	Type     string                      `json:"type"`
 	Value    int                         `json:"value"`
 	Checksum string                      `json:"checksum" dval:"valid"`
 	Ttl      int                         `json:"ttl"`
 	Uuid     string                      `json:"uuid"`
-	IpList   []SysUtTemplateL3IpList1664 `json:"ip-list"`
+	IpList   []SysUtTemplateL3IpList1665 `json:"ip-list"`
 }
 
-type SysUtTemplateL3IpList1664 struct {
+type SysUtTemplateL3IpList1665 struct {
 	SrcDst           string `json:"src-dst"`
 	Ipv4StartAddress string `json:"ipv4-start-address"`
 	Ipv4EndAddress   string `json:"ipv4-end-address"`
@@ -102,8 +102,8 @@ type SysUtTemplateL3IpList1664 struct {
 	Uuid             string `json:"uuid"`
 }
 
-type SysUtTemplateTcp1665 struct {
-	SrcPortRange  []SysUtTemplateTcpSrcPortRange1666 `json:"src-port-range"`
+type SysUtTemplateTcp1666 struct {
+	SrcPortRange  []SysUtTemplateTcpSrcPortRange1667 `json:"src-port-range"`
 	DestPort      int                                `json:"dest-port"`
 	DestPortValue int                                `json:"dest-port-value"`
 	NatPool       string                             `json:"nat-pool"`
@@ -113,16 +113,16 @@ type SysUtTemplateTcp1665 struct {
 	Urgent        string                             `json:"urgent" dval:"valid"`
 	Window        string                             `json:"window" dval:"valid"`
 	Uuid          string                             `json:"uuid"`
-	Flags         SysUtTemplateTcpFlags1667          `json:"flags"`
-	Options       SysUtTemplateTcpOptions1668        `json:"options"`
+	Flags         SysUtTemplateTcpFlags1668          `json:"flags"`
+	Options       SysUtTemplateTcpOptions1669        `json:"options"`
 }
 
-type SysUtTemplateTcpSrcPortRange1666 struct {
+type SysUtTemplateTcpSrcPortRange1667 struct {
 	SrcPortStart int `json:"src-port-start"`
 	SrcPortEnd   int `json:"src-port-end"`
 }
 
-type SysUtTemplateTcpFlags1667 struct {
+type SysUtTemplateTcpFlags1668 struct {
 	Syn  int    `json:"syn"`
 	Ack  int    `json:"ack"`
 	Fin  int    `json:"fin"`
@@ -134,7 +134,7 @@ type SysUtTemplateTcpFlags1667 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SysUtTemplateTcpOptions1668 struct {
+type SysUtTemplateTcpOptions1669 struct {
 	Mss             int    `json:"mss"`
 	Wscale          int    `json:"wscale"`
 	SackType        string `json:"sack-type"`
@@ -143,8 +143,8 @@ type SysUtTemplateTcpOptions1668 struct {
 	Uuid            string `json:"uuid"`
 }
 
-type SysUtTemplateUdp1669 struct {
-	SrcPortRange  []SysUtTemplateUdpSrcPortRange1670 `json:"src-port-range"`
+type SysUtTemplateUdp1670 struct {
+	SrcPortRange  []SysUtTemplateUdpSrcPortRange1671 `json:"src-port-range"`
 	DestPort      int                                `json:"dest-port"`
 	DestPortValue int                                `json:"dest-port-value"`
 	NatPool       string                             `json:"nat-pool"`
@@ -153,7 +153,7 @@ type SysUtTemplateUdp1669 struct {
 	Uuid          string                             `json:"uuid"`
 }
 
-type SysUtTemplateUdpSrcPortRange1670 struct {
+type SysUtTemplateUdpSrcPortRange1671 struct {
 	SrcPortStart int `json:"src-port-start"`
 	SrcPortEnd   int `json:"src-port-end"`
 }

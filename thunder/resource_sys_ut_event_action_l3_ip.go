@@ -43,11 +43,11 @@ func resourceSysUtEventActionL3Ip() *schema.Resource {
 			"virtual_server": {
 				Type: schema.TypeString, Optional: true, Description: "vip",
 			},
-			"direction": {
-				Type: schema.TypeString, Required: true, Description: "Direction",
-			},
 			"event_number": {
 				Type: schema.TypeString, Required: true, Description: "EventNumber",
+			},
+			"direction": {
+				Type: schema.TypeString, Required: true, Description: "Direction",
 			},
 		},
 	}
@@ -125,7 +125,7 @@ func dataToEndpointSysUtEventActionL3Ip(d *schema.ResourceData) edpt.SysUtEventA
 	//omit uuid
 	ret.Inst.Ve = d.Get("ve").(int)
 	ret.Inst.VirtualServer = d.Get("virtual_server").(string)
-	ret.Inst.Direction = d.Get("direction").(string)
 	ret.Inst.EventNumber = d.Get("event_number").(string)
+	ret.Inst.Direction = d.Get("direction").(string)
 	return ret
 }

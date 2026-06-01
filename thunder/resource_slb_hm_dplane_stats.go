@@ -128,6 +128,9 @@ func resourceSlbHmDplaneStats() *schema.Resource {
 						"err_entry_missing_vport": {
 							Type: schema.TypeInt, Optional: true, Description: "Entry missing Virtual-Port",
 						},
+						"err_entry_check_slb_failed": {
+							Type: schema.TypeInt, Optional: true, Description: "Error in checking HM internal SLB Resource",
+						},
 					},
 				},
 			},
@@ -194,6 +197,7 @@ func setObjectSlbHmDplaneStatsStats(ret edpt.DataSlbHmDplaneStats) []interface{}
 			"err_missing_server_ssl_template":      ret.DtSlbHmDplaneStats.Stats.Err_missing_server_ssl_template,
 			"err_create_ssl_ctx_fail":              ret.DtSlbHmDplaneStats.Stats.Err_create_ssl_ctx_fail,
 			"err_entry_missing_vport":              ret.DtSlbHmDplaneStats.Stats.Err_entry_missing_vport,
+			"err_entry_check_slb_failed":           ret.DtSlbHmDplaneStats.Stats.Err_entry_check_slb_failed,
 		},
 	}
 }
@@ -241,6 +245,7 @@ func getObjectSlbHmDplaneStatsStats(d []interface{}) edpt.SlbHmDplaneStatsStats 
 		ret.Err_missing_server_ssl_template = in["err_missing_server_ssl_template"].(int)
 		ret.Err_create_ssl_ctx_fail = in["err_create_ssl_ctx_fail"].(int)
 		ret.Err_entry_missing_vport = in["err_entry_missing_vport"].(int)
+		ret.Err_entry_check_slb_failed = in["err_entry_check_slb_failed"].(int)
 	}
 	return ret
 }

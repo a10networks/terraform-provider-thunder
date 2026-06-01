@@ -26,6 +26,7 @@ __PLACEHOLDER__
 - `image` (String) 'pri': Primary image; 'sec': Secondary image;
 - `image_file` (String) image file from AXAPI,
 - `local` (String) Local GUI image name
+- `password` (String) password for the remote site
 - `remote_url` (String)
 - `rollback` (String) Rollback to a specific local GUI image
 - `source_ip_address` (String) Source IP address

@@ -5,14 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type AamAuthenticationAccountKerberosSpn struct {
 	Inst struct {
 		Account string `json:"account"`
 
 		Encrypted string `json:"encrypted"`
-
-		EncryptionAlgorithm string `json:"encryption-algorithm" dval:"aes256-cts-hmac-sha1-96"`
 
 		Name string `json:"name"`
 

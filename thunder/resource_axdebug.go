@@ -265,6 +265,9 @@ func resourceAxdebug() *schema.Resource {
 						"ssl_key_enable": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ssl key tracking",
 						},
+						"pcapng_enhanced_log_enable": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable pcapng enhanced logs",
+						},
 						"exit": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Exit from axdebug pcapng mode",
 						},
@@ -361,10 +364,10 @@ func resourceAxdebugRead(ctx context.Context, d *schema.ResourceData, meta inter
 	return diags
 }
 
-func getObjectAxdebugApplyConfig75(d []interface{}) edpt.AxdebugApplyConfig75 {
+func getObjectAxdebugApplyConfig76(d []interface{}) edpt.AxdebugApplyConfig76 {
 
 	count1 := len(d)
-	var ret edpt.AxdebugApplyConfig75
+	var ret edpt.AxdebugApplyConfig76
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ConfigFile = in["config_file"].(string)
@@ -372,10 +375,10 @@ func getObjectAxdebugApplyConfig75(d []interface{}) edpt.AxdebugApplyConfig75 {
 	return ret
 }
 
-func getObjectAxdebugCapture76(d []interface{}) edpt.AxdebugCapture76 {
+func getObjectAxdebugCapture77(d []interface{}) edpt.AxdebugCapture77 {
 
 	count1 := len(d)
-	var ret edpt.AxdebugCapture76
+	var ret edpt.AxdebugCapture77
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Brief = in["brief"].(int)
@@ -387,10 +390,10 @@ func getObjectAxdebugCapture76(d []interface{}) edpt.AxdebugCapture76 {
 	return ret
 }
 
-func getObjectAxdebugDelete77(d []interface{}) edpt.AxdebugDelete77 {
+func getObjectAxdebugDelete78(d []interface{}) edpt.AxdebugDelete78 {
 
 	count1 := len(d)
-	var ret edpt.AxdebugDelete77
+	var ret edpt.AxdebugDelete78
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.CaptureFile = in["capture_file"].(string)
@@ -399,10 +402,10 @@ func getObjectAxdebugDelete77(d []interface{}) edpt.AxdebugDelete77 {
 	return ret
 }
 
-func getObjectAxdebugExit78(d []interface{}) edpt.AxdebugExit78 {
+func getObjectAxdebugExit79(d []interface{}) edpt.AxdebugExit79 {
 
 	count1 := len(d)
-	var ret edpt.AxdebugExit78
+	var ret edpt.AxdebugExit79
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.StopCapture = in["stop_capture"].(int)
@@ -473,24 +476,25 @@ func getSliceAxdebugFilterConfigList(d []interface{}) []edpt.AxdebugFilterConfig
 	return ret
 }
 
-func getObjectAxdebugPcapngConfig79(d []interface{}) edpt.AxdebugPcapngConfig79 {
+func getObjectAxdebugPcapngConfig80(d []interface{}) edpt.AxdebugPcapngConfig80 {
 
 	count1 := len(d)
-	var ret edpt.AxdebugPcapngConfig79
+	var ret edpt.AxdebugPcapngConfig80
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PcapngEnable = in["pcapng_enable"].(int)
 		ret.SslKeyEnable = in["ssl_key_enable"].(int)
+		ret.PcapngEnhancedLogEnable = in["pcapng_enhanced_log_enable"].(int)
 		ret.Exit = in["exit"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectAxdebugSaveConfig80(d []interface{}) edpt.AxdebugSaveConfig80 {
+func getObjectAxdebugSaveConfig81(d []interface{}) edpt.AxdebugSaveConfig81 {
 
 	count1 := len(d)
-	var ret edpt.AxdebugSaveConfig80
+	var ret edpt.AxdebugSaveConfig81
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ConfigFile = in["config_file"].(string)
@@ -501,11 +505,11 @@ func getObjectAxdebugSaveConfig80(d []interface{}) edpt.AxdebugSaveConfig80 {
 
 func dataToEndpointAxdebug(d *schema.ResourceData) edpt.Axdebug {
 	var ret edpt.Axdebug
-	ret.Inst.ApplyConfig = getObjectAxdebugApplyConfig75(d.Get("apply_config").([]interface{}))
-	ret.Inst.Capture = getObjectAxdebugCapture76(d.Get("capture").([]interface{}))
+	ret.Inst.ApplyConfig = getObjectAxdebugApplyConfig76(d.Get("apply_config").([]interface{}))
+	ret.Inst.Capture = getObjectAxdebugCapture77(d.Get("capture").([]interface{}))
 	ret.Inst.Count1 = d.Get("count1").(int)
-	ret.Inst.Delete = getObjectAxdebugDelete77(d.Get("delete").([]interface{}))
-	ret.Inst.Exit = getObjectAxdebugExit78(d.Get("exit").([]interface{}))
+	ret.Inst.Delete = getObjectAxdebugDelete78(d.Get("delete").([]interface{}))
+	ret.Inst.Exit = getObjectAxdebugExit79(d.Get("exit").([]interface{}))
 	ret.Inst.FileSize = d.Get("file_size").(int)
 	ret.Inst.FilterConfigList = getSliceAxdebugFilterConfigList(d.Get("filter_config_list").([]interface{}))
 	ret.Inst.IncPortNum = d.Get("inc_port_num").(string)
@@ -514,8 +518,8 @@ func dataToEndpointAxdebug(d *schema.ResourceData) edpt.Axdebug {
 	ret.Inst.Maxfile = d.Get("maxfile").(int)
 	ret.Inst.OutPortNum = d.Get("out_port_num").(string)
 	ret.Inst.Outgoing = d.Get("outgoing").(int)
-	ret.Inst.PcapngConfig = getObjectAxdebugPcapngConfig79(d.Get("pcapng_config").([]interface{}))
-	ret.Inst.SaveConfig = getObjectAxdebugSaveConfig80(d.Get("save_config").([]interface{}))
+	ret.Inst.PcapngConfig = getObjectAxdebugPcapngConfig80(d.Get("pcapng_config").([]interface{}))
+	ret.Inst.SaveConfig = getObjectAxdebugSaveConfig81(d.Get("save_config").([]interface{}))
 	ret.Inst.SessFilterDis = d.Get("sess_filter_dis").(int)
 	ret.Inst.Timeout = d.Get("timeout").(int)
 	//omit uuid

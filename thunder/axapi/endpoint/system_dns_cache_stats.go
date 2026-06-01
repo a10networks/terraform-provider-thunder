@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemDnsCacheStats struct {
 	Stats SystemDnsCacheStatsStats `json:"stats"`
 }
@@ -14,31 +14,32 @@ type DataSystemDnsCacheStats struct {
 }
 
 type SystemDnsCacheStatsStats struct {
-	Total_q               int `json:"total_q"`
-	Total_r               int `json:"total_r"`
-	Hit                   int `json:"hit"`
-	Bad_q                 int `json:"bad_q"`
-	Encode_q              int `json:"encode_q"`
-	Multiple_q            int `json:"multiple_q"`
-	Oversize_q            int `json:"oversize_q"`
-	Bad_r                 int `json:"bad_r"`
-	Oversize_r            int `json:"oversize_r"`
-	Encode_r              int `json:"encode_r"`
-	Multiple_r            int `json:"multiple_r"`
-	Answer_r              int `json:"answer_r"`
-	Ttl_r                 int `json:"ttl_r"`
-	Ageout                int `json:"ageout"`
-	Bad_answer            int `json:"bad_answer"`
-	Ageout_weight         int `json:"ageout_weight"`
-	Total_log             int `json:"total_log"`
-	Total_alloc           int `json:"total_alloc"`
-	Total_freed           int `json:"total_freed"`
-	Current_allocate      int `json:"current_allocate"`
-	Current_data_allocate int `json:"current_data_allocate"`
-	Resolver_queue_full   int `json:"resolver_queue_full"`
-	Truncated_r           int `json:"truncated_r"`
-	Qps                   int `json:"qps"`
-	Hit_rate_per_sec      int `json:"hit_rate_per_sec"`
+	Total_q                  int `json:"total_q"`
+	Total_r                  int `json:"total_r"`
+	Hit                      int `json:"hit"`
+	Bad_q                    int `json:"bad_q"`
+	Encode_q                 int `json:"encode_q"`
+	Multiple_q               int `json:"multiple_q"`
+	Oversize_q               int `json:"oversize_q"`
+	Bad_r                    int `json:"bad_r"`
+	Oversize_r               int `json:"oversize_r"`
+	Encode_r                 int `json:"encode_r"`
+	Multiple_r               int `json:"multiple_r"`
+	Answer_r                 int `json:"answer_r"`
+	Ttl_r                    int `json:"ttl_r"`
+	Ageout                   int `json:"ageout"`
+	Bad_answer               int `json:"bad_answer"`
+	Ageout_weight            int `json:"ageout_weight"`
+	Total_log                int `json:"total_log"`
+	Total_alloc              int `json:"total_alloc"`
+	Total_freed              int `json:"total_freed"`
+	Current_allocate         int `json:"current_allocate"`
+	Current_data_allocate    int `json:"current_data_allocate"`
+	Resolver_queue_full      int `json:"resolver_queue_full"`
+	Truncated_r              int `json:"truncated_r"`
+	Qps                      int `json:"qps"`
+	Hit_rate_per_sec         int `json:"hit_rate_per_sec"`
+	Multiple_answer_no_cache int `json:"multiple_answer_no_cache"`
 }
 
 func (p *SystemDnsCacheStats) GetId() string {

@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6NatPoolStats struct {
 	PoolName string `json:"pool-name"`
 
@@ -16,34 +16,41 @@ type DataCgnv6NatPoolStats struct {
 }
 
 type Cgnv6NatPoolStatsStats struct {
-	Users                 int `json:"users"`
-	Icmp                  int `json:"icmp"`
-	IcmpFreed             int `json:"icmp-freed"`
-	IcmpTotal             int `json:"icmp-total"`
-	IcmpRsvd              int `json:"icmp-rsvd"`
-	IcmpPeak              int `json:"icmp-peak"`
-	IcmpHitFull           int `json:"icmp-hit-full"`
-	Udp                   int `json:"udp"`
-	UdpFreed              int `json:"udp-freed"`
-	UdpTotal              int `json:"udp-total"`
-	UdpRsvd               int `json:"udp-rsvd"`
-	UdpPeak               int `json:"udp-peak"`
-	UdpHitFull            int `json:"udp-hit-full"`
-	UdpPortOverloaded     int `json:"udp-port-overloaded"`
-	UdpPortOverloadCreate int `json:"udp-port-overload-create"`
-	UdpPortOverloadFree   int `json:"udp-port-overload-free"`
-	Tcp                   int `json:"tcp"`
-	TcpFreed              int `json:"tcp-freed"`
-	TcpTotal              int `json:"tcp-total"`
-	TcpRsvd               int `json:"tcp-rsvd"`
-	TcpPeak               int `json:"tcp-peak"`
-	TcpHitFull            int `json:"tcp-hit-full"`
-	TcpPortOverloaded     int `json:"tcp-port-overloaded"`
-	TcpPortOverloadCreate int `json:"tcp-port-overload-create"`
-	TcpPortOverloadFree   int `json:"tcp-port-overload-free"`
-	IpUsed                int `json:"ip-used"`
-	IpFree                int `json:"ip-free"`
-	IpTotal               int `json:"ip-total"`
+	Users                    int `json:"users"`
+	Icmp                     int `json:"icmp"`
+	IcmpFreed                int `json:"icmp-freed"`
+	IcmpTotal                int `json:"icmp-total"`
+	IcmpRsvd                 int `json:"icmp-rsvd"`
+	IcmpPeak                 int `json:"icmp-peak"`
+	IcmpHitFull              int `json:"icmp-hit-full"`
+	Udp                      int `json:"udp"`
+	UdpFreed                 int `json:"udp-freed"`
+	UdpTotal                 int `json:"udp-total"`
+	UdpRsvd                  int `json:"udp-rsvd"`
+	UdpPeak                  int `json:"udp-peak"`
+	UdpHitFull               int `json:"udp-hit-full"`
+	UdpPortOverloaded        int `json:"udp-port-overloaded"`
+	UdpPortOverloadCreate    int `json:"udp-port-overload-create"`
+	UdpPortOverloadFree      int `json:"udp-port-overload-free"`
+	Tcp                      int `json:"tcp"`
+	TcpFreed                 int `json:"tcp-freed"`
+	TcpTotal                 int `json:"tcp-total"`
+	TcpRsvd                  int `json:"tcp-rsvd"`
+	TcpPeak                  int `json:"tcp-peak"`
+	TcpHitFull               int `json:"tcp-hit-full"`
+	TcpPortOverloaded        int `json:"tcp-port-overloaded"`
+	TcpPortOverloadCreate    int `json:"tcp-port-overload-create"`
+	TcpPortOverloadFree      int `json:"tcp-port-overload-free"`
+	IpUsed                   int `json:"ip-used"`
+	IpFree                   int `json:"ip-free"`
+	IpTotal                  int `json:"ip-total"`
+	UdpTotalPort             int `json:"udp-total-port"`
+	UdpPortUsagePercentage   int `json:"udp-port-usage-percentage"`
+	TcpTotalPort             int `json:"tcp-total-port"`
+	TcpPortUsagePercentage   int `json:"tcp-port-usage-percentage"`
+	MaxUsersAllowed          int `json:"max-users-allowed"`
+	UserOccupationPercentage int `json:"user-occupation-percentage"`
+	IpTotalCluster           int `json:"ip-total-cluster"`
 }
 
 func (p *Cgnv6NatPoolStats) GetId() string {

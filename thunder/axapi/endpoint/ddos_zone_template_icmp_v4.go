@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosZoneTemplateIcmpV4 struct {
 	Inst struct {
 		FilterList []DdosZoneTemplateIcmpV4FilterList `json:"filter-list"`
@@ -17,7 +17,7 @@ type DdosZoneTemplateIcmpV4 struct {
 
 		TypeList []DdosZoneTemplateIcmpV4TypeList `json:"type-list"`
 
-		TypeOther DdosZoneTemplateIcmpV4TypeOther362 `json:"type-other"`
+		TypeOther DdosZoneTemplateIcmpV4TypeOther358 `json:"type-other"`
 
 		UserTag string `json:"user-tag"`
 
@@ -81,21 +81,21 @@ type DdosZoneTemplateIcmpV4TypeListV4DstCodeCfg struct {
 	DstCodeRateAction         string `json:"dst-code-rate-action"`
 }
 
-type DdosZoneTemplateIcmpV4TypeOther362 struct {
+type DdosZoneTemplateIcmpV4TypeOther358 struct {
 	IcmpTypeOtherActionListName string                                `json:"icmp-type-other-action-list-name"`
 	IcmpTypeOtherAction         string                                `json:"icmp-type-other-action"`
-	Src                         DdosZoneTemplateIcmpV4TypeOtherSrc363 `json:"src"`
-	Dst                         DdosZoneTemplateIcmpV4TypeOtherDst364 `json:"dst"`
+	Src                         DdosZoneTemplateIcmpV4TypeOtherSrc359 `json:"src"`
+	Dst                         DdosZoneTemplateIcmpV4TypeOtherDst360 `json:"dst"`
 	Uuid                        string                                `json:"uuid"`
 }
 
-type DdosZoneTemplateIcmpV4TypeOtherSrc363 struct {
+type DdosZoneTemplateIcmpV4TypeOtherSrc359 struct {
 	SrcTypeOtherRate               int    `json:"src-type-other-rate"`
 	SrcTypeOtherRateActionListName string `json:"src-type-other-rate-action-list-name"`
 	SrcTypeOtherRateAction         string `json:"src-type-other-rate-action"`
 }
 
-type DdosZoneTemplateIcmpV4TypeOtherDst364 struct {
+type DdosZoneTemplateIcmpV4TypeOtherDst360 struct {
 	DstTypeOtherRate               int    `json:"dst-type-other-rate"`
 	DstTypeOtherRateActionListName string `json:"dst-type-other-rate-action-list-name"`
 	DstTypeOtherRateAction         string `json:"dst-type-other-rate-action"`

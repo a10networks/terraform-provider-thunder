@@ -42,6 +42,8 @@ resource "thunder_scaleout_cluster_local_device" "thunder_scaleout_cluster_local
 - `action` (String) 'enable': enable; 'disable': disable;
 - `cluster_mode` (String) 'layer-2': Nodes in cluster are layer 2 connected (default mode); 'layer-3': Nodes in cluster are l3 connected;
 - `exclude_interfaces` (Block List, Max: 1) (see [below for nested schema](#nestedblock--exclude_interfaces))
+- `failure_domain` (Number) configure failure-domain
+- `failure_domain_string` (String) Specify the failure-domain name
 - `id1` (Number)
 - `l2_redirect` (Block List, Max: 1) (see [below for nested schema](#nestedblock--l2_redirect))
 - `priority` (Number)

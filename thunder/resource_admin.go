@@ -269,10 +269,10 @@ func resourceAdminRead(ctx context.Context, d *schema.ResourceData, meta interfa
 	return diags
 }
 
-func getObjectAdminAccess60(d []interface{}) edpt.AdminAccess60 {
+func getObjectAdminAccess61(d []interface{}) edpt.AdminAccess61 {
 
 	count1 := len(d)
-	var ret edpt.AdminAccess60
+	var ret edpt.AdminAccess61
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.AccessType = in["access_type"].(string)
@@ -281,10 +281,10 @@ func getObjectAdminAccess60(d []interface{}) edpt.AdminAccess60 {
 	return ret
 }
 
-func getObjectAdminAwsAccesskey61(d []interface{}) edpt.AdminAwsAccesskey61 {
+func getObjectAdminAwsAccesskey62(d []interface{}) edpt.AdminAwsAccesskey62 {
 
 	count1 := len(d)
-	var ret edpt.AdminAwsAccesskey61
+	var ret edpt.AdminAwsAccesskey62
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Import = in["import"].(int)
@@ -296,10 +296,10 @@ func getObjectAdminAwsAccesskey61(d []interface{}) edpt.AdminAwsAccesskey61 {
 	return ret
 }
 
-func getObjectAdminAzureCred62(d []interface{}) edpt.AdminAzureCred62 {
+func getObjectAdminAzureCred63(d []interface{}) edpt.AdminAzureCred63 {
 
 	count1 := len(d)
-	var ret edpt.AdminAzureCred62
+	var ret edpt.AdminAzureCred63
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Import = in["import"].(int)
@@ -311,10 +311,10 @@ func getObjectAdminAzureCred62(d []interface{}) edpt.AdminAzureCred62 {
 	return ret
 }
 
-func getObjectAdminCloudCred63(d []interface{}) edpt.AdminCloudCred63 {
+func getObjectAdminCloudCred64(d []interface{}) edpt.AdminCloudCred64 {
 
 	count1 := len(d)
-	var ret edpt.AdminCloudCred63
+	var ret edpt.AdminCloudCred64
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Type = in["type"].(string)
@@ -327,10 +327,10 @@ func getObjectAdminCloudCred63(d []interface{}) edpt.AdminCloudCred63 {
 	return ret
 }
 
-func getObjectAdminGcpCred64(d []interface{}) edpt.AdminGcpCred64 {
+func getObjectAdminGcpCred65(d []interface{}) edpt.AdminGcpCred65 {
 
 	count1 := len(d)
-	var ret edpt.AdminGcpCred64
+	var ret edpt.AdminGcpCred65
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Import = in["import"].(int)
@@ -342,10 +342,10 @@ func getObjectAdminGcpCred64(d []interface{}) edpt.AdminGcpCred64 {
 	return ret
 }
 
-func getObjectAdminPassword65(d []interface{}) edpt.AdminPassword65 {
+func getObjectAdminPassword66(d []interface{}) edpt.AdminPassword66 {
 
 	count1 := len(d)
-	var ret edpt.AdminPassword65
+	var ret edpt.AdminPassword66
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PasswordInModule = in["password_in_module"].(string)
@@ -369,10 +369,10 @@ func getSliceAdminPrivilegeList(d []interface{}) []edpt.AdminPrivilegeList {
 	return ret
 }
 
-func getObjectAdminSshPubkey66(d []interface{}) edpt.AdminSshPubkey66 {
+func getObjectAdminSshPubkey67(d []interface{}) edpt.AdminSshPubkey67 {
 
 	count1 := len(d)
-	var ret edpt.AdminSshPubkey66
+	var ret edpt.AdminSshPubkey67
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Import = in["import"].(int)
@@ -386,21 +386,21 @@ func getObjectAdminSshPubkey66(d []interface{}) edpt.AdminSshPubkey66 {
 
 func dataToEndpointAdmin(d *schema.ResourceData) edpt.Admin {
 	var ret edpt.Admin
-	ret.Inst.Access = getObjectAdminAccess60(d.Get("access").([]interface{}))
+	ret.Inst.Access = getObjectAdminAccess61(d.Get("access").([]interface{}))
 	ret.Inst.AccessList = d.Get("access_list").(int)
 	ret.Inst.Action = d.Get("action").(string)
-	ret.Inst.AwsAccesskey = getObjectAdminAwsAccesskey61(d.Get("aws_accesskey").([]interface{}))
-	ret.Inst.AzureCred = getObjectAdminAzureCred62(d.Get("azure_cred").([]interface{}))
-	ret.Inst.CloudCred = getObjectAdminCloudCred63(d.Get("cloud_cred").([]interface{}))
+	ret.Inst.AwsAccesskey = getObjectAdminAwsAccesskey62(d.Get("aws_accesskey").([]interface{}))
+	ret.Inst.AzureCred = getObjectAdminAzureCred63(d.Get("azure_cred").([]interface{}))
+	ret.Inst.CloudCred = getObjectAdminCloudCred64(d.Get("cloud_cred").([]interface{}))
 	//omit encrypted
-	ret.Inst.GcpCred = getObjectAdminGcpCred64(d.Get("gcp_cred").([]interface{}))
+	ret.Inst.GcpCred = getObjectAdminGcpCred65(d.Get("gcp_cred").([]interface{}))
 	ret.Inst.PasswdString = d.Get("passwd_string").(string)
-	ret.Inst.Password = getObjectAdminPassword65(d.Get("password").([]interface{}))
+	ret.Inst.Password = getObjectAdminPassword66(d.Get("password").([]interface{}))
 	ret.Inst.PasswordKey = d.Get("password_key").(int)
 	ret.Inst.PrivilegeGlobal = d.Get("privilege_global").(string)
 	ret.Inst.PrivilegeList = getSliceAdminPrivilegeList(d.Get("privilege_list").([]interface{}))
 	ret.Inst.PrivilegeShellRoot = d.Get("privilege_shell_root").(int)
-	ret.Inst.SshPubkey = getObjectAdminSshPubkey66(d.Get("ssh_pubkey").([]interface{}))
+	ret.Inst.SshPubkey = getObjectAdminSshPubkey67(d.Get("ssh_pubkey").([]interface{}))
 	ret.Inst.TrustedHost = d.Get("trusted_host").(int)
 	ret.Inst.TrustedHostAclId = d.Get("trusted_host_acl_id").(int)
 	ret.Inst.TrustedHostCidr = d.Get("trusted_host_cidr").(string)

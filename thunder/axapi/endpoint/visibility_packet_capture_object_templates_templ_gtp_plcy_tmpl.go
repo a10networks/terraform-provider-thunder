@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplTriggerStatsInc2824 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplTriggerStatsInc2842 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplTriggerStatsRate2825 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplTriggerStatsRate2843 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplTriggerStatsSeverity2826 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplTriggerStatsSeverity2844 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,7 +25,7 @@ type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmpl struct {
 	} `json:"templ-gtp-plcy-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplTriggerStatsInc2824 struct {
+type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplTriggerStatsInc2842 struct {
 	DropVldGtpIeRepeatCountExceed      int    `json:"drop-vld-gtp-ie-repeat-count-exceed"`
 	DropVldReservedFieldSet            int    `json:"drop-vld-reserved-field-set"`
 	DropVldTunnelIdFlag                int    `json:"drop-vld-tunnel-id-flag"`
@@ -59,7 +59,7 @@ type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplTriggerStatsInc2824 s
 	Uuid                               string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplTriggerStatsRate2825 struct {
+type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplTriggerStatsRate2843 struct {
 	ThresholdExceededBy                int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                           int    `json:"duration" dval:"60"`
 	DropVldGtpIeRepeatCountExceed      int    `json:"drop-vld-gtp-ie-repeat-count-exceed"`
@@ -95,7 +95,7 @@ type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplTriggerStatsRate2825 
 	Uuid                               string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplTriggerStatsSeverity2826 struct {
+type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplTriggerStatsSeverity2844 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

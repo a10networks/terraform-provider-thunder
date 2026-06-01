@@ -5,20 +5,20 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type OverlayTunnelVtepRemoteIpv6Address struct {
 	Inst struct {
 		ClassList string `json:"class-list"`
 
 		Encap string `json:"encap"`
 
-		GreKeepalive OverlayTunnelVtepRemoteIpv6AddressGreKeepalive1165 `json:"gre-keepalive"`
+		GreKeepalive OverlayTunnelVtepRemoteIpv6AddressGreKeepalive1164 `json:"gre-keepalive"`
 
 		Ipv6Address string `json:"ipv6-address"`
 
-		UseGreKey OverlayTunnelVtepRemoteIpv6AddressUseGreKey1166 `json:"use-gre-key"`
+		UseGreKey OverlayTunnelVtepRemoteIpv6AddressUseGreKey1165 `json:"use-gre-key"`
 
-		UseLif OverlayTunnelVtepRemoteIpv6AddressUseLif1167 `json:"use-lif"`
+		UseLif OverlayTunnelVtepRemoteIpv6AddressUseLif1166 `json:"use-lif"`
 
 		UserTag string `json:"user-tag"`
 
@@ -30,18 +30,18 @@ type OverlayTunnelVtepRemoteIpv6Address struct {
 	} `json:"remote-ipv6-address"`
 }
 
-type OverlayTunnelVtepRemoteIpv6AddressGreKeepalive1165 struct {
+type OverlayTunnelVtepRemoteIpv6AddressGreKeepalive1164 struct {
 	RetryTime  int    `json:"retry-time" dval:"10"`
 	RetryCount int    `json:"retry-count"`
 	Uuid       string `json:"uuid"`
 }
 
-type OverlayTunnelVtepRemoteIpv6AddressUseGreKey1166 struct {
+type OverlayTunnelVtepRemoteIpv6AddressUseGreKey1165 struct {
 	GreKey int    `json:"gre-key"`
 	Uuid   string `json:"uuid"`
 }
 
-type OverlayTunnelVtepRemoteIpv6AddressUseLif1167 struct {
+type OverlayTunnelVtepRemoteIpv6AddressUseLif1166 struct {
 	Partition string `json:"partition"`
 	Lif       string `json:"lif"`
 	Uuid      string `json:"uuid"`

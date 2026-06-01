@@ -5,53 +5,53 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityMonitoredEntity struct {
 	Inst struct {
-		Detail VisibilityMonitoredEntityDetail2052 `json:"detail"`
+		Detail VisibilityMonitoredEntityDetail2051 `json:"detail"`
 
-		MonTopk VisibilityMonitoredEntityMonTopk2054 `json:"mon-topk"`
+		MonTopk VisibilityMonitoredEntityMonTopk2053 `json:"mon-topk"`
 
-		Secondary VisibilityMonitoredEntitySecondary2056 `json:"secondary"`
+		Secondary VisibilityMonitoredEntitySecondary2055 `json:"secondary"`
 
-		Sessions VisibilityMonitoredEntitySessions2059 `json:"sessions"`
+		Sessions VisibilityMonitoredEntitySessions2058 `json:"sessions"`
 
 		Uuid string `json:"uuid"`
 	} `json:"monitored-entity"`
 }
 
-type VisibilityMonitoredEntityDetail2052 struct {
+type VisibilityMonitoredEntityDetail2051 struct {
 	Uuid  string                                   `json:"uuid"`
-	Debug VisibilityMonitoredEntityDetailDebug2053 `json:"debug"`
+	Debug VisibilityMonitoredEntityDetailDebug2052 `json:"debug"`
 }
 
-type VisibilityMonitoredEntityDetailDebug2053 struct {
+type VisibilityMonitoredEntityDetailDebug2052 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VisibilityMonitoredEntityMonTopk2054 struct {
+type VisibilityMonitoredEntityMonTopk2053 struct {
 	Uuid    string                                      `json:"uuid"`
-	Sources VisibilityMonitoredEntityMonTopkSources2055 `json:"sources"`
+	Sources VisibilityMonitoredEntityMonTopkSources2054 `json:"sources"`
 }
 
-type VisibilityMonitoredEntityMonTopkSources2055 struct {
+type VisibilityMonitoredEntityMonTopkSources2054 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VisibilityMonitoredEntitySecondary2056 struct {
-	MonTopk VisibilityMonitoredEntitySecondaryMonTopk2057 `json:"mon-topk"`
+type VisibilityMonitoredEntitySecondary2055 struct {
+	MonTopk VisibilityMonitoredEntitySecondaryMonTopk2056 `json:"mon-topk"`
 }
 
-type VisibilityMonitoredEntitySecondaryMonTopk2057 struct {
+type VisibilityMonitoredEntitySecondaryMonTopk2056 struct {
 	Uuid    string                                               `json:"uuid"`
-	Sources VisibilityMonitoredEntitySecondaryMonTopkSources2058 `json:"sources"`
+	Sources VisibilityMonitoredEntitySecondaryMonTopkSources2057 `json:"sources"`
 }
 
-type VisibilityMonitoredEntitySecondaryMonTopkSources2058 struct {
+type VisibilityMonitoredEntitySecondaryMonTopkSources2057 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VisibilityMonitoredEntitySessions2059 struct {
+type VisibilityMonitoredEntitySessions2058 struct {
 	Uuid string `json:"uuid"`
 }
 

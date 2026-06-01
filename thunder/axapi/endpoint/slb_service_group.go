@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbServiceGroup struct {
 	Inst struct {
 		BackupServerEventLog int `json:"backup-server-event-log"`
@@ -73,7 +73,7 @@ type SlbServiceGroup struct {
 
 		ReportDelay int `json:"report-delay"`
 
-		Reset SlbServiceGroupReset1512 `json:"reset"`
+		Reset SlbServiceGroupReset1513 `json:"reset"`
 
 		ResetOnServerSelectionFail int `json:"reset-on-server-selection-fail"`
 
@@ -152,7 +152,7 @@ type SlbServiceGroupPriorities struct {
 	PriorityAction string `json:"priority-action" dval:"proceed"`
 }
 
-type SlbServiceGroupReset1512 struct {
+type SlbServiceGroupReset1513 struct {
 	AutoSwitch int `json:"auto-switch"`
 }
 

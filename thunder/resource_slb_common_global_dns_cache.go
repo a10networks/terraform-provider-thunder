@@ -150,26 +150,26 @@ func resourceSlbCommonGlobalDnsCacheRead(ctx context.Context, d *schema.Resource
 	return diags
 }
 
-func getObjectSlbCommonGlobalDnsCacheClassList1499(d []interface{}) edpt.SlbCommonGlobalDnsCacheClassList1499 {
+func getObjectSlbCommonGlobalDnsCacheClassList1500(d []interface{}) edpt.SlbCommonGlobalDnsCacheClassList1500 {
 
 	count1 := len(d)
-	var ret edpt.SlbCommonGlobalDnsCacheClassList1499
+	var ret edpt.SlbCommonGlobalDnsCacheClassList1500
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Name = in["name"].(string)
 		//omit uuid
-		ret.LidList = getSliceSlbCommonGlobalDnsCacheClassListLidList1500(in["lid_list"].([]interface{}))
+		ret.LidList = getSliceSlbCommonGlobalDnsCacheClassListLidList1501(in["lid_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSlbCommonGlobalDnsCacheClassListLidList1500(d []interface{}) []edpt.SlbCommonGlobalDnsCacheClassListLidList1500 {
+func getSliceSlbCommonGlobalDnsCacheClassListLidList1501(d []interface{}) []edpt.SlbCommonGlobalDnsCacheClassListLidList1501 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbCommonGlobalDnsCacheClassListLidList1500, 0, count1)
+	ret := make([]edpt.SlbCommonGlobalDnsCacheClassListLidList1501, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbCommonGlobalDnsCacheClassListLidList1500
+		var oi edpt.SlbCommonGlobalDnsCacheClassListLidList1501
 		oi.Lidnum = in["lidnum"].(int)
 		oi.ConnRateLimit = in["conn_rate_limit"].(int)
 		oi.Per = in["per"].(int)
@@ -177,7 +177,7 @@ func getSliceSlbCommonGlobalDnsCacheClassListLidList1500(d []interface{}) []edpt
 		oi.Lockout = in["lockout"].(int)
 		oi.Log = in["log"].(int)
 		oi.LogInterval = in["log_interval"].(int)
-		oi.Dns = getObjectSlbCommonGlobalDnsCacheClassListLidListDns1501(in["dns"].([]interface{}))
+		oi.Dns = getObjectSlbCommonGlobalDnsCacheClassListLidListDns1502(in["dns"].([]interface{}))
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		ret = append(ret, oi)
@@ -185,10 +185,10 @@ func getSliceSlbCommonGlobalDnsCacheClassListLidList1500(d []interface{}) []edpt
 	return ret
 }
 
-func getObjectSlbCommonGlobalDnsCacheClassListLidListDns1501(d []interface{}) edpt.SlbCommonGlobalDnsCacheClassListLidListDns1501 {
+func getObjectSlbCommonGlobalDnsCacheClassListLidListDns1502(d []interface{}) edpt.SlbCommonGlobalDnsCacheClassListLidListDns1502 {
 
 	count1 := len(d)
-	var ret edpt.SlbCommonGlobalDnsCacheClassListLidListDns1501
+	var ret edpt.SlbCommonGlobalDnsCacheClassListLidListDns1502
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.CacheAction = in["cache_action"].(string)
@@ -201,7 +201,7 @@ func getObjectSlbCommonGlobalDnsCacheClassListLidListDns1501(d []interface{}) ed
 
 func dataToEndpointSlbCommonGlobalDnsCache(d *schema.ResourceData) edpt.SlbCommonGlobalDnsCache {
 	var ret edpt.SlbCommonGlobalDnsCache
-	ret.Inst.ClassList = getObjectSlbCommonGlobalDnsCacheClassList1499(d.Get("class_list").([]interface{}))
+	ret.Inst.ClassList = getObjectSlbCommonGlobalDnsCacheClassList1500(d.Get("class_list").([]interface{}))
 	//omit uuid
 	return ret
 }

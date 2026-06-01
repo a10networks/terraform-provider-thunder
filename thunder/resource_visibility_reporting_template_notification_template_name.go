@@ -161,10 +161,10 @@ func resourceVisibilityReportingTemplateNotificationTemplateNameRead(ctx context
 	return diags
 }
 
-func getObjectVisibilityReportingTemplateNotificationTemplateNameAuthentication3225(d []interface{}) edpt.VisibilityReportingTemplateNotificationTemplateNameAuthentication3225 {
+func getObjectVisibilityReportingTemplateNotificationTemplateNameAuthentication3253(d []interface{}) edpt.VisibilityReportingTemplateNotificationTemplateNameAuthentication3253 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityReportingTemplateNotificationTemplateNameAuthentication3225
+	var ret edpt.VisibilityReportingTemplateNotificationTemplateNameAuthentication3253
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RelativeLoginUri = in["relative_login_uri"].(string)
@@ -197,7 +197,7 @@ func getSliceVisibilityReportingTemplateNotificationTemplateNameSamplingEnable(d
 func dataToEndpointVisibilityReportingTemplateNotificationTemplateName(d *schema.ResourceData) edpt.VisibilityReportingTemplateNotificationTemplateName {
 	var ret edpt.VisibilityReportingTemplateNotificationTemplateName
 	ret.Inst.Action = d.Get("action").(string)
-	ret.Inst.Authentication = getObjectVisibilityReportingTemplateNotificationTemplateNameAuthentication3225(d.Get("authentication").([]interface{}))
+	ret.Inst.Authentication = getObjectVisibilityReportingTemplateNotificationTemplateNameAuthentication3253(d.Get("authentication").([]interface{}))
 	ret.Inst.DebugMode = d.Get("debug_mode").(int)
 	ret.Inst.HostName = d.Get("host_name").(string)
 	ret.Inst.HttpPort = d.Get("http_port").(int)

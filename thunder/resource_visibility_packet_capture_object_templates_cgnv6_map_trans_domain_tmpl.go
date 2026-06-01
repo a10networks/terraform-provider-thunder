@@ -201,10 +201,10 @@ func resourceVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplRead(c
 	return diags
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsInc2770(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsInc2770 {
+func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsInc2788(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsInc2788 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsInc2770
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsInc2788
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Inbound_addr_port_validation_failed = in["inbound_addr_port_validation_failed"].(int)
@@ -220,10 +220,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTrigg
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsRate2771(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsRate2771 {
+func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsRate2789(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsRate2789 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsRate2771
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsRate2789
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -241,10 +241,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTrigg
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsSeverity2772(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsSeverity2772 {
+func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsSeverity2790(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsSeverity2790 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsSeverity2772
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsSeverity2790
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -264,9 +264,9 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmpl
 	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmpl
 	ret.Inst.CaptureConfig = d.Get("capture_config").(string)
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsInc2770(d.Get("trigger_stats_inc").([]interface{}))
-	ret.Inst.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsRate2771(d.Get("trigger_stats_rate").([]interface{}))
-	ret.Inst.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsSeverity2772(d.Get("trigger_stats_severity").([]interface{}))
+	ret.Inst.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsInc2788(d.Get("trigger_stats_inc").([]interface{}))
+	ret.Inst.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsRate2789(d.Get("trigger_stats_rate").([]interface{}))
+	ret.Inst.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsSeverity2790(d.Get("trigger_stats_severity").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

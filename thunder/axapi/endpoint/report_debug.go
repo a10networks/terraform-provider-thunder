@@ -5,16 +5,16 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type ReportDebug struct {
 	Inst struct {
 		Log int `json:"log"`
 
-		Sflow ReportDebugSflow1178 `json:"sflow"`
+		Sflow ReportDebugSflow1177 `json:"sflow"`
 	} `json:"debug"`
 }
 
-type ReportDebugSflow1178 struct {
+type ReportDebugSflow1177 struct {
 	Parser   int `json:"parser"`
 	StatsOid int `json:"stats-oid"`
 }

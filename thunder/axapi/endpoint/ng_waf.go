@@ -5,26 +5,24 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type NgWaf struct {
-	Inst struct {
-		CustomPage NgWafCustomPage1158 `json:"custom-page"`
-
-		CustomSignals NgWafCustomSignals1159 `json:"custom-signals"`
-
-		StatsList []NgWafStatsList `json:"stats-list"`
-
-		Status NgWafStatus1160 `json:"status"`
-
-		Uuid string `json:"uuid"`
-	} `json:"ng-waf"`
+    Inst struct {
+        CustomPage    NgWafCustomPage1157    `json:"custom-page"`
+        CustomSignals NgWafCustomSignals1158 `json:"custom-signals"`
+        StatsList     []NgWafStatsList       `json:"stats-list"`
+        Status        NgWafStatus1159         `json:"status"`
+        Uuid          string                 `json:"uuid"`
+    } `json:"ng-waf"`
 }
 
-type NgWafCustomPage1158 struct {
+
+
+type NgWafCustomPage1157 struct {
 	Uuid string `json:"uuid"`
 }
 
-type NgWafCustomSignals1159 struct {
+type NgWafCustomSignals1158 struct {
 	Uuid string `json:"uuid"`
 }
 
@@ -34,7 +32,7 @@ type NgWafStatsList struct {
 	UserTag string `json:"user-tag"`
 }
 
-type NgWafStatus1160 struct {
+type NgWafStatus1159 struct {
 	Uuid string `json:"uuid"`
 }
 

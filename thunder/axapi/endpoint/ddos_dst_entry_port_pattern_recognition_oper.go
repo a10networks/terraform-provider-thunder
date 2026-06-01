@@ -5,15 +5,15 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstEntryPortPatternRecognitionOper struct {
 	Oper DdosDstEntryPortPatternRecognitionOperOper `json:"oper"`
-
-	Protocol string
 
 	PortNum string
 
 	DstEntryName string
+
+	Protocol string
 }
 type DataDdosDstEntryPortPatternRecognitionOper struct {
 	DtDdosDstEntryPortPatternRecognitionOper DdosDstEntryPortPatternRecognitionOper `json:"pattern-recognition"`

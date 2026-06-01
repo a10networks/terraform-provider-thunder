@@ -5,14 +5,14 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbCommon struct {
 	Inst struct {
 		AflexPersistUieChassisSyncEnable int `json:"aflex-persist-uie-chassis-sync-enable"`
 
 		AflexTableEntryAgingInterval int `json:"aflex-table-entry-aging-interval" dval:"1"`
 
-		AflexTableEntrySync SlbCommonAflexTableEntrySync1502 `json:"aflex-table-entry-sync"`
+		AflexTableEntrySync SlbCommonAflexTableEntrySync1503 `json:"aflex-table-entry-sync"`
 
 		AfterDisable int `json:"after-disable"`
 
@@ -38,7 +38,7 @@ type SlbCommon struct {
 
 		CancelStreamLoopLimit int `json:"cancel-stream-loop-limit" dval:"5"`
 
-		CertPinning SlbCommonCertPinning1503 `json:"cert-pinning"`
+		CertPinning SlbCommonCertPinning1504 `json:"cert-pinning"`
 
 		ClientsideIp string `json:"clientside-ip"`
 
@@ -46,7 +46,7 @@ type SlbCommon struct {
 
 		CompressBlockSize int `json:"compress-block-size"`
 
-		ConnRateLimit SlbCommonConnRateLimit1505 `json:"conn-rate-limit"`
+		ConnRateLimit SlbCommonConnRateLimit1506 `json:"conn-rate-limit"`
 
 		CustomMessage string `json:"custom-message"`
 
@@ -90,6 +90,8 @@ type SlbCommon struct {
 
 		DnsCookieCachePolicy string `json:"dns-cookie-cache-policy"`
 
+		DnsMaxUdpSize int `json:"dns-max-udp-size"`
+
 		DnsNegativeCacheBypassThreshold int `json:"dns-negative-cache-bypass-threshold" dval:"100"`
 
 		DnsNegativeCacheCachingNonValid int `json:"dns-negative-cache-caching-non-valid"`
@@ -102,7 +104,7 @@ type SlbCommon struct {
 
 		DnsPersistentCacheTtlThreshold int `json:"dns-persistent-cache-ttl-threshold"`
 
-		DnsResponseRateLimiting SlbCommonDnsResponseRateLimiting1506 `json:"dns-response-rate-limiting"`
+		DnsResponseRateLimiting SlbCommonDnsResponseRateLimiting1507 `json:"dns-response-rate-limiting"`
 
 		DnsVipStateless int `json:"dns-vip-stateless"`
 
@@ -128,7 +130,7 @@ type SlbCommon struct {
 
 		GatewayHealthCheck int `json:"gateway-health-check"`
 
-		GlobalDnsCache SlbCommonGlobalDnsCache1507 `json:"global-dns-cache"`
+		GlobalDnsCache SlbCommonGlobalDnsCache1508 `json:"global-dns-cache"`
 
 		GracefulShutdown int `json:"graceful-shutdown"`
 
@@ -172,6 +174,10 @@ type SlbCommon struct {
 
 		MssTable int `json:"mss-table" dval:"536"`
 
+		N5New int `json:"N5-new"`
+
+		N5Old int `json:"N5-old"`
+
 		NgwafProxyIpv4 string `json:"ngwaf-proxy-ipv4"`
 
 		NgwafProxyIpv6 string `json:"ngwaf-proxy-ipv6"`
@@ -210,7 +216,7 @@ type SlbCommon struct {
 
 		Qat4 int `json:"QAT4"`
 
-		Quic SlbCommonQuic1511 `json:"quic"`
+		Quic SlbCommonQuic1512 `json:"quic"`
 
 		Range int `json:"range"`
 
@@ -256,9 +262,17 @@ type SlbCommon struct {
 
 		Software int `json:"software"`
 
+		SoftwareTls13 int `json:"software-tls13"`
+
 		SoftwareTls13Offload int `json:"software-tls13-offload"`
 
+		SortRes int `json:"sort-res"`
+
 		SslModuleUsageEnable int `json:"ssl-module-usage-enable"`
+
+		SslN5DelayTxEnable int `json:"ssl-n5-delay-tx-enable"`
+
+		SslRatelimitCfg SlbCommonSslRatelimitCfg `json:"ssl-ratelimit-cfg"`
 
 		SsliCertNotReadyInspectLimit int `json:"ssli-cert-not-ready-inspect-limit" dval:"2000"`
 
@@ -296,7 +310,7 @@ type SlbCommon struct {
 	} `json:"common"`
 }
 
-type SlbCommonAflexTableEntrySync1502 struct {
+type SlbCommonAflexTableEntrySync1503 struct {
 	AflexTableEntrySyncEnable      int    `json:"aflex-table-entry-sync-enable"`
 	AflexTableEntrySyncMaxKeyLen   int    `json:"aflex-table-entry-sync-max-key-len" dval:"1000"`
 	AflexTableEntrySyncMaxValueLen int    `json:"aflex-table-entry-sync-max-value-len" dval:"1000"`
@@ -304,13 +318,13 @@ type SlbCommonAflexTableEntrySync1502 struct {
 	Uuid                           string `json:"uuid"`
 }
 
-type SlbCommonCertPinning1503 struct {
+type SlbCommonCertPinning1504 struct {
 	Ttl                        int                                                `json:"ttl" dval:"144"`
 	Uuid                       string                                             `json:"uuid"`
-	CandidateListFeedbackOptIn SlbCommonCertPinningCandidateListFeedbackOptIn1504 `json:"candidate-list-feedback-opt-in"`
+	CandidateListFeedbackOptIn SlbCommonCertPinningCandidateListFeedbackOptIn1505 `json:"candidate-list-feedback-opt-in"`
 }
 
-type SlbCommonCertPinningCandidateListFeedbackOptIn1504 struct {
+type SlbCommonCertPinningCandidateListFeedbackOptIn1505 struct {
 	Enable      int    `json:"enable"`
 	Schedule    int    `json:"schedule"`
 	Weekly      int    `json:"weekly"`
@@ -322,7 +336,7 @@ type SlbCommonCertPinningCandidateListFeedbackOptIn1504 struct {
 	Uuid        string `json:"uuid"`
 }
 
-type SlbCommonConnRateLimit1505 struct {
+type SlbCommonConnRateLimit1506 struct {
 	SrcIpList []SlbCommonConnRateLimitSrcIpList `json:"src-ip-list"`
 }
 
@@ -353,24 +367,24 @@ type SlbCommonDdosProtectionPacketsPerSecond struct {
 	IpdUdp int `json:"ipd-udp" dval:"200"`
 }
 
-type SlbCommonDnsResponseRateLimiting1506 struct {
+type SlbCommonDnsResponseRateLimiting1507 struct {
 	MaxTableEntries int    `json:"max-table-entries"`
 	SourceEntryAge  int    `json:"source-entry-age"`
 	Uuid            string `json:"uuid"`
 }
 
-type SlbCommonGlobalDnsCache1507 struct {
+type SlbCommonGlobalDnsCache1508 struct {
 	Uuid      string                               `json:"uuid"`
-	ClassList SlbCommonGlobalDnsCacheClassList1508 `json:"class-list"`
+	ClassList SlbCommonGlobalDnsCacheClassList1509 `json:"class-list"`
 }
 
-type SlbCommonGlobalDnsCacheClassList1508 struct {
+type SlbCommonGlobalDnsCacheClassList1509 struct {
 	Name    string                                        `json:"name"`
 	Uuid    string                                        `json:"uuid"`
-	LidList []SlbCommonGlobalDnsCacheClassListLidList1509 `json:"lid-list"`
+	LidList []SlbCommonGlobalDnsCacheClassListLidList1510 `json:"lid-list"`
 }
 
-type SlbCommonGlobalDnsCacheClassListLidList1509 struct {
+type SlbCommonGlobalDnsCacheClassListLidList1510 struct {
 	Lidnum          int                                            `json:"lidnum"`
 	ConnRateLimit   int                                            `json:"conn-rate-limit"`
 	Per             int                                            `json:"per"`
@@ -378,19 +392,19 @@ type SlbCommonGlobalDnsCacheClassListLidList1509 struct {
 	Lockout         int                                            `json:"lockout"`
 	Log             int                                            `json:"log"`
 	LogInterval     int                                            `json:"log-interval"`
-	Dns             SlbCommonGlobalDnsCacheClassListLidListDns1510 `json:"dns"`
+	Dns             SlbCommonGlobalDnsCacheClassListLidListDns1511 `json:"dns"`
 	Uuid            string                                         `json:"uuid"`
 	UserTag         string                                         `json:"user-tag"`
 }
 
-type SlbCommonGlobalDnsCacheClassListLidListDns1510 struct {
+type SlbCommonGlobalDnsCacheClassListLidListDns1511 struct {
 	CacheAction            string `json:"cache-action" dval:"cache-enable"`
 	Ttl                    int    `json:"ttl" dval:"300"`
 	Weight                 int    `json:"weight" dval:"1"`
 	HonorServerResponseTtl int    `json:"honor-server-response-ttl"`
 }
 
-type SlbCommonQuic1511 struct {
+type SlbCommonQuic1512 struct {
 	CidLen          int    `json:"cid-len" dval:"4"`
 	Signature       string `json:"signature"`
 	SignatureLen    int    `json:"signature-len" dval:"3"`
@@ -409,6 +423,12 @@ type SlbCommonSnatPreserve struct {
 type SlbCommonSnatPreserveRange struct {
 	Port1 int `json:"port1" dval:"1025"`
 	Port2 int `json:"port2" dval:"1025"`
+}
+
+type SlbCommonSslRatelimitCfg struct {
+	DisableRate int `json:"disable-rate"`
+	Tls12Rate   int `json:"tls12-rate" dval:"120"`
+	Tls13Rate   int `json:"tls13-rate" dval:"72"`
 }
 
 func (p *SlbCommon) GetId() string {

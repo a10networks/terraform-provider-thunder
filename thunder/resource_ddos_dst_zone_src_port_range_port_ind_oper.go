@@ -61,14 +61,14 @@ func resourceDdosDstZoneSrcPortRangePortIndOper() *schema.Resource {
 					},
 				},
 			},
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			},
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 			"src_port_range_end": {
 				Type: schema.TypeString, Required: true, Description: "SrcPortRangeEnd",
-			},
-			"zone_name": {
-				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 			"src_port_range_start": {
 				Type: schema.TypeString, Required: true, Description: "SrcPortRangeStart",
@@ -182,11 +182,11 @@ func dataToEndpointDdosDstZoneSrcPortRangePortIndOper(d *schema.ResourceData) ed
 
 	ret.Oper = getObjectDdosDstZoneSrcPortRangePortIndOperOper(d.Get("oper").([]interface{}))
 
+	ret.ZoneName = d.Get("zone_name").(string)
+
 	ret.Protocol = d.Get("protocol").(string)
 
 	ret.SrcPortRangeEnd = d.Get("src_port_range_end").(string)
-
-	ret.ZoneName = d.Get("zone_name").(string)
 
 	ret.SrcPortRangeStart = d.Get("src_port_range_start").(string)
 	return ret

@@ -126,26 +126,26 @@ func resourceSystemDnsRead(ctx context.Context, d *schema.ResourceData, meta int
 	return diags
 }
 
-func getObjectSystemDnsRecursiveNameserver1676(d []interface{}) edpt.SystemDnsRecursiveNameserver1676 {
+func getObjectSystemDnsRecursiveNameserver1677(d []interface{}) edpt.SystemDnsRecursiveNameserver1677 {
 
 	count1 := len(d)
-	var ret edpt.SystemDnsRecursiveNameserver1676
+	var ret edpt.SystemDnsRecursiveNameserver1677
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.FollowShared = in["follow_shared"].(int)
-		ret.ServerList = getSliceSystemDnsRecursiveNameserverServerList1677(in["server_list"].([]interface{}))
+		ret.ServerList = getSliceSystemDnsRecursiveNameserverServerList1678(in["server_list"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSystemDnsRecursiveNameserverServerList1677(d []interface{}) []edpt.SystemDnsRecursiveNameserverServerList1677 {
+func getSliceSystemDnsRecursiveNameserverServerList1678(d []interface{}) []edpt.SystemDnsRecursiveNameserverServerList1678 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemDnsRecursiveNameserverServerList1677, 0, count1)
+	ret := make([]edpt.SystemDnsRecursiveNameserverServerList1678, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemDnsRecursiveNameserverServerList1677
+		var oi edpt.SystemDnsRecursiveNameserverServerList1678
 		oi.Ipv4Addr = in["ipv4_addr"].(string)
 		oi.V4Desc = in["v4_desc"].(string)
 		oi.Ipv6Addr = in["ipv6_addr"].(string)
@@ -170,7 +170,7 @@ func getSliceSystemDnsSamplingEnable(d []interface{}) []edpt.SystemDnsSamplingEn
 
 func dataToEndpointSystemDns(d *schema.ResourceData) edpt.SystemDns {
 	var ret edpt.SystemDns
-	ret.Inst.RecursiveNameserver = getObjectSystemDnsRecursiveNameserver1676(d.Get("recursive_nameserver").([]interface{}))
+	ret.Inst.RecursiveNameserver = getObjectSystemDnsRecursiveNameserver1677(d.Get("recursive_nameserver").([]interface{}))
 	ret.Inst.SamplingEnable = getSliceSystemDnsSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	//omit uuid
 	return ret

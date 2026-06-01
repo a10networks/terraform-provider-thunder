@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosZoneTemplateSslL4 struct {
 	Inst struct {
 		AllowNonTls int `json:"allow-non-tls"`
@@ -23,11 +23,11 @@ type DdosZoneTemplateSslL4 struct {
 
 		Src DdosZoneTemplateSslL4Src `json:"src"`
 
-		SslHandshakePolicy DdosZoneTemplateSslL4SslHandshakePolicy371 `json:"ssl-handshake-policy"`
+		SslHandshakePolicy DdosZoneTemplateSslL4SslHandshakePolicy367 `json:"ssl-handshake-policy"`
 
 		SslL4TmplName string `json:"ssl-l4-tmpl-name"`
 
-		SslTrafficCheck DdosZoneTemplateSslL4SslTrafficCheck372 `json:"ssl-traffic-check"`
+		SslTrafficCheck DdosZoneTemplateSslL4SslTrafficCheck368 `json:"ssl-traffic-check"`
 
 		UserTag string `json:"user-tag"`
 
@@ -100,7 +100,7 @@ type DdosZoneTemplateSslL4SrcRateLimitRequest struct {
 	SrcRequestRateLimitAction         string `json:"src-request-rate-limit-action"`
 }
 
-type DdosZoneTemplateSslL4SslHandshakePolicy371 struct {
+type DdosZoneTemplateSslL4SslHandshakePolicy367 struct {
 	Action                           string `json:"action"`
 	SslHandshakePolicyActionListName string `json:"ssl-handshake-policy-action-list-name"`
 	CipherSuitesLimit                int    `json:"cipher-suites-limit"`
@@ -111,7 +111,7 @@ type DdosZoneTemplateSslL4SslHandshakePolicy371 struct {
 	Uuid                             string `json:"uuid"`
 }
 
-type DdosZoneTemplateSslL4SslTrafficCheck372 struct {
+type DdosZoneTemplateSslL4SslTrafficCheck368 struct {
 	HeaderInspection       int    `json:"header-inspection"`
 	HeaderAction           string `json:"header-action"`
 	CheckResumedConnection int    `json:"check-resumed-connection"`

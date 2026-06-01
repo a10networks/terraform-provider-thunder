@@ -76,6 +76,7 @@ resource "thunder_visibility_packet_capture_global_templates_template_trigger_sy
 - `session_user_quota_exceeded` (Number) Enable automatic packet-capture for Sessions User Quota Exceeded
 - `sixrd_drop` (Number) Enable automatic packet-capture for Fixed NAT IPv6 in IPv4 Packet Drop
 - `standby_drop` (Number) Enable automatic packet-capture for Fixed NAT LID Standby Drop
+- `unused_ip_drop` (Number) Enable automatic packet-capture for Fixed NAT UNUSED IP Hit and Drop
 - `uuid` (String) uuid of the object
 
 ### Read-Only

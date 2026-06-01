@@ -19,6 +19,9 @@ func resourceImportPeriodicBwList() *schema.Resource {
 			"bw_list": {
 				Type: schema.TypeString, Required: true, Description: "Black white List File",
 			},
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "Config remote server  password",
+			},
 			"period": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the period in second",
 			},
@@ -99,6 +102,8 @@ func resourceImportPeriodicBwListRead(ctx context.Context, d *schema.ResourceDat
 func dataToEndpointImportPeriodicBwList(d *schema.ResourceData) edpt.ImportPeriodicBwList {
 	var ret edpt.ImportPeriodicBwList
 	ret.Inst.BwList = d.Get("bw_list").(string)
+	//omit encrypted
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)

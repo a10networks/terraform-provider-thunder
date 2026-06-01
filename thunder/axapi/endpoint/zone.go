@@ -5,12 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Zone struct {
 	Inst struct {
-		Interface ZoneInterface3780 `json:"interface"`
+		Interface ZoneInterface3818 `json:"interface"`
 
-		LocalZoneCfg ZoneLocalZoneCfg3786 `json:"local-zone-cfg"`
+		LocalZoneCfg ZoneLocalZoneCfg3824 `json:"local-zone-cfg"`
 
 		Name string `json:"name"`
 
@@ -18,55 +18,55 @@ type Zone struct {
 
 		Uuid string `json:"uuid"`
 
-		Vlan ZoneVlan3787 `json:"vlan"`
+		Vlan ZoneVlan3825 `json:"vlan"`
 	} `json:"zone"`
 }
 
-type ZoneInterface3780 struct {
-	EthernetList []ZoneInterfaceEthernetList3781 `json:"ethernet-list"`
-	TrunkList    []ZoneInterfaceTrunkList3782    `json:"trunk-list"`
-	VeList       []ZoneInterfaceVeList3783       `json:"ve-list"`
-	LifList      []ZoneInterfaceLifList3784      `json:"lif-list"`
-	TunnelList   []ZoneInterfaceTunnelList3785   `json:"tunnel-list"`
+type ZoneInterface3818 struct {
+	EthernetList []ZoneInterfaceEthernetList3819 `json:"ethernet-list"`
+	TrunkList    []ZoneInterfaceTrunkList3820    `json:"trunk-list"`
+	VeList       []ZoneInterfaceVeList3821       `json:"ve-list"`
+	LifList      []ZoneInterfaceLifList3822      `json:"lif-list"`
+	TunnelList   []ZoneInterfaceTunnelList3823   `json:"tunnel-list"`
 	Uuid         string                          `json:"uuid"`
 }
 
-type ZoneInterfaceEthernetList3781 struct {
+type ZoneInterfaceEthernetList3819 struct {
 	InterfaceEthernetStart int `json:"interface-ethernet-start"`
 	InterfaceEthernetEnd   int `json:"interface-ethernet-end"`
 }
 
-type ZoneInterfaceTrunkList3782 struct {
+type ZoneInterfaceTrunkList3820 struct {
 	InterfaceTrunkStart int `json:"interface-trunk-start"`
 	InterfaceTrunkEnd   int `json:"interface-trunk-end"`
 }
 
-type ZoneInterfaceVeList3783 struct {
+type ZoneInterfaceVeList3821 struct {
 	InterfaceVeStart int `json:"interface-ve-start"`
 	InterfaceVeEnd   int `json:"interface-ve-end"`
 }
 
-type ZoneInterfaceLifList3784 struct {
+type ZoneInterfaceLifList3822 struct {
 	InterfaceLifStart int `json:"interface-lif-start"`
 	InterfaceLifEnd   int `json:"interface-lif-end"`
 }
 
-type ZoneInterfaceTunnelList3785 struct {
+type ZoneInterfaceTunnelList3823 struct {
 	InterfaceTunnelStart int `json:"interface-tunnel-start"`
 	InterfaceTunnelEnd   int `json:"interface-tunnel-end"`
 }
 
-type ZoneLocalZoneCfg3786 struct {
+type ZoneLocalZoneCfg3824 struct {
 	LocalType int    `json:"local-type"`
 	Uuid      string `json:"uuid"`
 }
 
-type ZoneVlan3787 struct {
-	VlanList []ZoneVlanVlanList3788 `json:"vlan-list"`
+type ZoneVlan3825 struct {
+	VlanList []ZoneVlanVlanList3826 `json:"vlan-list"`
 	Uuid     string                 `json:"uuid"`
 }
 
-type ZoneVlanVlanList3788 struct {
+type ZoneVlanVlanList3826 struct {
 	VlanStart int `json:"vlan-start"`
 	VlanEnd   int `json:"vlan-end"`
 }

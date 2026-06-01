@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type TacacsServerHostTacacsHostname struct {
 	Inst struct {
 		Hostname string `json:"hostname"`
@@ -31,14 +31,19 @@ type TacacsServerHostTacacsHostnameSecret struct {
 }
 
 type TacacsServerHostTacacsHostnameSecretPortCfg struct {
-	Port                int    `json:"port" dval:"49"`
-	Timeout             int    `json:"timeout" dval:"12"`
-	PreferDataInterface int    `json:"prefer-data-interface"`
-	Monitor             int    `json:"monitor"`
-	Username            string `json:"username"`
-	Password            int    `json:"password"`
-	PasswordValue       string `json:"password-value"`
-	Encrypted           string `json:"encrypted"`
+	Port                 int    `json:"port" dval:"49"`
+	Timeout              int    `json:"timeout" dval:"12"`
+	PreferDataInterface  int    `json:"prefer-data-interface"`
+	OverTls              int    `json:"over-tls"`
+	Cert                 string `json:"cert"`
+	PrivateKey           string `json:"private-key"`
+	CustomCa             string `json:"custom-ca"`
+	SkipCertVerification int    `json:"skip-cert-verification"`
+	Monitor              int    `json:"monitor"`
+	Username             string `json:"username"`
+	Password             int    `json:"password"`
+	PasswordValue        string `json:"password-value"`
+	Encrypted            string `json:"encrypted"`
 }
 
 func (p *TacacsServerHostTacacsHostname) GetId() string {

@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplTriggerStatsInc2752 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplTriggerStatsInc2767 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplTriggerStatsRate2753 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplTriggerStatsRate2768 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplTriggerStatsSeverity2754 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplTriggerStatsSeverity2769 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,7 +25,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmpl struct {
 	} `json:"aam-auth-server-win-inst-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplTriggerStatsInc2752 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplTriggerStatsInc2767 struct {
 	Krb_timeout_error        int    `json:"krb_timeout_error"`
 	Krb_other_error          int    `json:"krb_other_error"`
 	Krb_pw_expiry            int    `json:"krb_pw_expiry"`
@@ -34,7 +34,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplTriggerStatsI
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplTriggerStatsRate2753 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplTriggerStatsRate2768 struct {
 	ThresholdExceededBy      int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                 int    `json:"duration" dval:"60"`
 	Krb_timeout_error        int    `json:"krb_timeout_error"`
@@ -45,7 +45,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplTriggerStatsR
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplTriggerStatsSeverity2754 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplTriggerStatsSeverity2769 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

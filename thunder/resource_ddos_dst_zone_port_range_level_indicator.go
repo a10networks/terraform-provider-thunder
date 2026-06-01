@@ -58,17 +58,17 @@ func resourceDdosDstZonePortRangeLevelIndicator() *schema.Resource {
 			"zone_violation_actions": {
 				Type: schema.TypeString, Optional: true, Description: "Violation actions to use when this zone indicator threshold reaches",
 			},
-			"port_range_start": {
-				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
-			},
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
+			},
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 			"level_num": {
 				Type: schema.TypeString, Required: true, Description: "LevelNum",
 			},
-			"zone_name": {
-				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			"port_range_start": {
+				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
 			},
 			"port_range_end": {
 				Type: schema.TypeString, Required: true, Description: "PortRangeEnd",
@@ -154,10 +154,10 @@ func dataToEndpointDdosDstZonePortRangeLevelIndicator(d *schema.ResourceData) ed
 	ret.Inst.ZoneThresholdNum = d.Get("zone_threshold_num").(int)
 	ret.Inst.ZoneThresholdStr = d.Get("zone_threshold_str").(string)
 	ret.Inst.ZoneViolationActions = d.Get("zone_violation_actions").(string)
-	ret.Inst.PortRangeStart = d.Get("port_range_start").(string)
 	ret.Inst.Protocol = d.Get("protocol").(string)
-	ret.Inst.LevelNum = d.Get("level_num").(string)
 	ret.Inst.ZoneName = d.Get("zone_name").(string)
+	ret.Inst.LevelNum = d.Get("level_num").(string)
+	ret.Inst.PortRangeStart = d.Get("port_range_start").(string)
 	ret.Inst.PortRangeEnd = d.Get("port_range_end").(string)
 	return ret
 }

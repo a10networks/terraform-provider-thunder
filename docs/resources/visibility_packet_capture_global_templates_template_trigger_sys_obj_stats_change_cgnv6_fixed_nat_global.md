@@ -91,6 +91,7 @@ Optional:
 - `session_user_quota_exceeded` (Number) Enable automatic packet-capture for Sessions User Quota Exceeded
 - `sixrd_drop` (Number) Enable automatic packet-capture for Fixed NAT IPv6 in IPv4 Packet Drop
 - `standby_drop` (Number) Enable automatic packet-capture for Fixed NAT LID Standby Drop
+- `unused_ip_drop` (Number) Enable automatic packet-capture for Fixed NAT UNUSED IP Hit and Drop
 - `uuid` (String) uuid of the object
 
 
@@ -121,4 +122,5 @@ Optional:
 - `sixrd_drop` (Number) Enable automatic packet-capture for Fixed NAT IPv6 in IPv4 Packet Drop
 - `standby_drop` (Number) Enable automatic packet-capture for Fixed NAT LID Standby Drop
 - `threshold_exceeded_by` (Number) Set the threshold to the number of times greater than the previous duration to start the capture, default is 5
+- `unused_ip_drop` (Number) Enable automatic packet-capture for Fixed NAT UNUSED IP Hit and Drop
 - `uuid` (String) uuid of the object

@@ -112,10 +112,10 @@ func resourceVisibilityTopnCgnv6NatPoolTopnTmplRead(ctx context.Context, d *sche
 	return diags
 }
 
-func getObjectVisibilityTopnCgnv6NatPoolTopnTmplMetrics3230(d []interface{}) edpt.VisibilityTopnCgnv6NatPoolTopnTmplMetrics3230 {
+func getObjectVisibilityTopnCgnv6NatPoolTopnTmplMetrics3258(d []interface{}) edpt.VisibilityTopnCgnv6NatPoolTopnTmplMetrics3258 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopnCgnv6NatPoolTopnTmplMetrics3230
+	var ret edpt.VisibilityTopnCgnv6NatPoolTopnTmplMetrics3258
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.UdpTotal = in["udp_total"].(int)
@@ -128,7 +128,7 @@ func getObjectVisibilityTopnCgnv6NatPoolTopnTmplMetrics3230(d []interface{}) edp
 func dataToEndpointVisibilityTopnCgnv6NatPoolTopnTmpl(d *schema.ResourceData) edpt.VisibilityTopnCgnv6NatPoolTopnTmpl {
 	var ret edpt.VisibilityTopnCgnv6NatPoolTopnTmpl
 	ret.Inst.Interval = d.Get("interval").(string)
-	ret.Inst.Metrics = getObjectVisibilityTopnCgnv6NatPoolTopnTmplMetrics3230(d.Get("metrics").([]interface{}))
+	ret.Inst.Metrics = getObjectVisibilityTopnCgnv6NatPoolTopnTmplMetrics3258(d.Get("metrics").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.TopnSize = d.Get("topn_size").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)

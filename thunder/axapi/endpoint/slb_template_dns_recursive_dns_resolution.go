@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbTemplateDnsRecursiveDnsResolution struct {
 	Inst struct {
 		CsubnetRetry int `json:"csubnet-retry"`
@@ -14,13 +14,15 @@ type SlbTemplateDnsRecursiveDnsResolution struct {
 
 		DnssecValidation string `json:"dnssec-validation" dval:"disabled"`
 
+		EdnsUdpSize int `json:"edns-udp-size" dval:"4096"`
+
 		FastNsSelection string `json:"fast-ns-selection" dval:"enabled"`
 
 		ForceCnameResolution string `json:"force-cname-resolution" dval:"enabled"`
 
 		FullResponse int `json:"full-response"`
 
-		GatewayHealthCheck SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1518 `json:"gateway-health-check"`
+		GatewayHealthCheck SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1519 `json:"gateway-health-check"`
 
 		HostListCfg []SlbTemplateDnsRecursiveDnsResolutionHostListCfg `json:"host-list-cfg"`
 
@@ -28,7 +30,13 @@ type SlbTemplateDnsRecursiveDnsResolution struct {
 
 		Ipv6NatPool string `json:"ipv6-nat-pool"`
 
-		LookupOrder SlbTemplateDnsRecursiveDnsResolutionLookupOrder1519 `json:"lookup-order"`
+		LookupOrder SlbTemplateDnsRecursiveDnsResolutionLookupOrder1520 `json:"lookup-order"`
+
+		MaxKeyDigestValidationFailures int `json:"max-key-digest-validation-failures"`
+
+		MaxSignatureValidationAttempts int `json:"max-signature-validation-attempts"`
+
+		MaxSignatureValidationFailures int `json:"max-signature-validation-failures"`
 
 		MaxTrials int `json:"max-trials" dval:"255"`
 
@@ -56,7 +64,7 @@ type SlbTemplateDnsRecursiveDnsResolution struct {
 	} `json:"recursive-dns-resolution"`
 }
 
-type SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1518 struct {
+type SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1519 struct {
 	QueryName         string `json:"query-name" dval:"a10networks.com"`
 	Retry             int    `json:"retry" dval:"6"`
 	Timeout           int    `json:"timeout" dval:"5"`
@@ -73,12 +81,12 @@ type SlbTemplateDnsRecursiveDnsResolutionHostListCfg struct {
 	Hostnames string `json:"hostnames"`
 }
 
-type SlbTemplateDnsRecursiveDnsResolutionLookupOrder1519 struct {
-	QueryType []SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1520 `json:"query-type"`
+type SlbTemplateDnsRecursiveDnsResolutionLookupOrder1520 struct {
+	QueryType []SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1521 `json:"query-type"`
 	Uuid      string                                                         `json:"uuid"`
 }
 
-type SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1520 struct {
+type SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1521 struct {
 	StrQueryType string `json:"str-query-type"`
 	NumQueryType int    `json:"num-query-type"`
 	Order        string `json:"order"`

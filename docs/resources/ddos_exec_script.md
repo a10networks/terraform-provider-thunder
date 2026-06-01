@@ -30,8 +30,6 @@ __PLACEHOLDER__
 - `protocol` (String) 'dns-tcp': DNS-TCP Port; 'dns-udp': DNS-UDP Port; 'http': HTTP Port; 'tcp': TCP Port; 'udp': UDP Port; 'ssl-l4': SSL-L4 Port; 'sip-tcp': SIP-TCP Port; 'sip-udp': SIP-UDP Port; 'quic': QUIC Port;
 - `protocol_num` (Number) Protocol Number
 - `script` (String) Specify script to execute
-- `src_ip` (Block List) (see [below for nested schema](#nestedblock--src_ip))
-- `src_ipv6` (Block List) (see [below for nested schema](#nestedblock--src_ipv6))
 - `threshold` (Number) Threshold
 - `timeout` (Number) Timeout (Default: 10 seconds, Mock Default: 2 seconds)
 - `zone` (String) DST Zone name
@@ -39,20 +37,3 @@ __PLACEHOLDER__
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-
-<a id="nestedblock--src_ip"></a>
-### Nested Schema for `src_ip`
-
-Optional:
-
-- `ip_addr` (String) Specify IP address
-- `subnet_ip_addr` (String) IP Subnet
-
-
-<a id="nestedblock--src_ipv6"></a>
-### Nested Schema for `src_ipv6`
-
-Optional:
-
-- `ip6_addr` (String) Specify IPv6 address
-- `subnet_ipv6_addr` (String) IPV6 Subnet

@@ -5,12 +5,14 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbTemplateDnsLoggingCustomLog struct {
 	Inst struct {
 		Enable int `json:"enable"`
 
 		Format string `json:"format"`
+
+		LogFilterList []SlbTemplateDnsLoggingCustomLogLogFilterList `json:"log-filter-list"`
 
 		TriggerReason string `json:"trigger-reason"`
 
@@ -20,6 +22,12 @@ type SlbTemplateDnsLoggingCustomLog struct {
 
 		Dns_logging_name string
 	} `json:"custom-log"`
+}
+
+type SlbTemplateDnsLoggingCustomLogLogFilterList struct {
+	Feature string `json:"feature"`
+	Uuid    string `json:"uuid"`
+	UserTag string `json:"user-tag"`
 }
 
 func (p *SlbTemplateDnsLoggingCustomLog) GetId() string {

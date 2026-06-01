@@ -46,14 +46,14 @@ func resourceGslbZoneServiceDnsARecordDnsARecordIpv6() *schema.Resource {
 			"weight": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify weight for Service-IP (Weight value)",
 			},
-			"service_port": {
-				Type: schema.TypeString, Required: true, Description: "ServicePort",
-			},
 			"service_name": {
 				Type: schema.TypeString, Required: true, Description: "ServiceName",
 			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "Zone_name",
+			},
+			"service_port": {
+				Type: schema.TypeString, Required: true, Description: "ServicePort",
 			},
 		},
 	}
@@ -132,8 +132,8 @@ func dataToEndpointGslbZoneServiceDnsARecordDnsARecordIpv6(d *schema.ResourceDat
 	ret.Inst.Ttl = d.Get("ttl").(int)
 	//omit uuid
 	ret.Inst.Weight = d.Get("weight").(int)
-	ret.Inst.ServicePort = d.Get("service_port").(string)
 	ret.Inst.ServiceName = d.Get("service_name").(string)
 	ret.Inst.Zone_name = d.Get("zone_name").(string)
+	ret.Inst.ServicePort = d.Get("service_port").(string)
 	return ret
 }

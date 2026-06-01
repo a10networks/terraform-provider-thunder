@@ -5,10 +5,14 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type ImportPeriodicDnssecDs struct {
 	Inst struct {
 		DnssecDs string `json:"dnssec-ds"`
+
+		Encrypted string `json:"encrypted"`
+
+		Password string `json:"password"`
 
 		Period int `json:"period"`
 

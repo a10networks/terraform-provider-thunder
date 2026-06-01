@@ -308,6 +308,9 @@ func resourceDdosLongStats() *schema.Resource {
 						"jumbo_frag_drop_before_slb": {
 							Type: schema.TypeInt, Optional: true, Description: "Jumbo Fragment Non Data Plane Drop",
 						},
+						"outgoing_mtu_exceed_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Outgoing MTU Exceed Drop",
+						},
 						"jumbo_outgoing_mtu_exceed_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "Jumbo Outgoing MTU Exceed Drop",
 						},
@@ -452,6 +455,7 @@ func setObjectDdosLongStatsStats(ret edpt.DataDdosLongStats) []interface{} {
 			"ip_vxlan_tunnel_decap_err":              ret.DtDdosLongStats.Stats.Ip_vxlan_tunnel_decap_err,
 			"jumbo_frag_drop_by_filter":              ret.DtDdosLongStats.Stats.Jumbo_frag_drop_by_filter,
 			"jumbo_frag_drop_before_slb":             ret.DtDdosLongStats.Stats.Jumbo_frag_drop_before_slb,
+			"outgoing_mtu_exceed_drop":               ret.DtDdosLongStats.Stats.Outgoing_mtu_exceed_drop,
 			"jumbo_outgoing_mtu_exceed_drop":         ret.DtDdosLongStats.Stats.Jumbo_outgoing_mtu_exceed_drop,
 			"jumbo_in_tunnel_drop":                   ret.DtDdosLongStats.Stats.Jumbo_in_tunnel_drop,
 			"tcp_progression_violation_exceed":       ret.DtDdosLongStats.Stats.Tcp_progression_violation_exceed,
@@ -565,6 +569,7 @@ func getObjectDdosLongStatsStats(d []interface{}) edpt.DdosLongStatsStats {
 		ret.Ip_vxlan_tunnel_decap_err = in["ip_vxlan_tunnel_decap_err"].(int)
 		ret.Jumbo_frag_drop_by_filter = in["jumbo_frag_drop_by_filter"].(int)
 		ret.Jumbo_frag_drop_before_slb = in["jumbo_frag_drop_before_slb"].(int)
+		ret.Outgoing_mtu_exceed_drop = in["outgoing_mtu_exceed_drop"].(int)
 		ret.Jumbo_outgoing_mtu_exceed_drop = in["jumbo_outgoing_mtu_exceed_drop"].(int)
 		ret.Jumbo_in_tunnel_drop = in["jumbo_in_tunnel_drop"].(int)
 		ret.Tcp_progression_violation_exceed = in["tcp_progression_violation_exceed"].(int)

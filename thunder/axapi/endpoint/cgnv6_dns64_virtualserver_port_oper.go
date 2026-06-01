@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6Dns64VirtualserverPortOper struct {
 	Oper Cgnv6Dns64VirtualserverPortOperOper `json:"oper"`
 

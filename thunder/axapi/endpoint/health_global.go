@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type HealthGlobal struct {
 	Inst struct {
 		CheckRate int `json:"check-rate" dval:"1000"`
@@ -21,8 +21,6 @@ type HealthGlobal struct {
 		Per int `json:"per" dval:"2"`
 
 		Retry int `json:"retry" dval:"3"`
-
-		SupportDeprecatedTls string `json:"support-deprecated-tls" dval:"enable"`
 
 		Timeout int `json:"timeout" dval:"5"`
 

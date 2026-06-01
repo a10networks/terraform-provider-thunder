@@ -138,14 +138,14 @@ func resourceDdosDstZonePortRangeLevel() *schema.Resource {
 			"zone_violation_actions": {
 				Type: schema.TypeString, Optional: true, Description: "Violation actions apply due to zone escalate from this level",
 			},
-			"port_range_start": {
-				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
-			},
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			},
+			"port_range_start": {
+				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
 			},
 			"port_range_end": {
 				Type: schema.TypeString, Required: true, Description: "PortRangeEnd",
@@ -277,9 +277,9 @@ func dataToEndpointDdosDstZonePortRangeLevel(d *schema.ResourceData) edpt.DdosDs
 	ret.Inst.ZoneEscalationScore = d.Get("zone_escalation_score").(int)
 	ret.Inst.ZoneTemplate = getObjectDdosDstZonePortRangeLevelZoneTemplate(d.Get("zone_template").([]interface{}))
 	ret.Inst.ZoneViolationActions = d.Get("zone_violation_actions").(string)
-	ret.Inst.PortRangeStart = d.Get("port_range_start").(string)
 	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.ZoneName = d.Get("zone_name").(string)
+	ret.Inst.PortRangeStart = d.Get("port_range_start").(string)
 	ret.Inst.PortRangeEnd = d.Get("port_range_end").(string)
 	return ret
 }

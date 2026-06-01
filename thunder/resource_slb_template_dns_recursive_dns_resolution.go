@@ -25,6 +25,9 @@ func resourceSlbTemplateDnsRecursiveDnsResolution() *schema.Resource {
 			"dnssec_validation": {
 				Type: schema.TypeString, Optional: true, Default: "disabled", Description: "'enabled': Enable DNSSEC validation; 'disabled': Disable DNSSEC validation;",
 			},
+			"edns_udp_size": {
+				Type: schema.TypeInt, Optional: true, Default: 4096, Description: "Set EDNS UDP payload size of queries sent during resolution (EDNS UDP payload size of queries, default:4096 bytes)",
+			},
 			"fast_ns_selection": {
 				Type: schema.TypeString, Optional: true, Default: "enabled", Description: "'enabled': Enable fast NS selection; 'disabled': Disable fast NS selection;",
 			},
@@ -112,6 +115,15 @@ func resourceSlbTemplateDnsRecursiveDnsResolution() *schema.Resource {
 						},
 					},
 				},
+			},
+			"max_key_digest_validation_failures": {
+				Type: schema.TypeInt, Optional: true, Description: "Set maximum number of times DNSSEC key-digest validation failures allowed per resolution",
+			},
+			"max_signature_validation_attempts": {
+				Type: schema.TypeInt, Optional: true, Description: "Set maximum number of times DNSSEC signature validation attempts allowed per resolution",
+			},
+			"max_signature_validation_failures": {
+				Type: schema.TypeInt, Optional: true, Description: "Set maximum number of times DNSSEC signature validation failures allowed per resolution",
 			},
 			"max_trials": {
 				Type: schema.TypeInt, Optional: true, Default: 255, Description: "Total number of times to try DNS query to server before closing client connection, default 255",
@@ -214,10 +226,10 @@ func resourceSlbTemplateDnsRecursiveDnsResolutionRead(ctx context.Context, d *sc
 	return diags
 }
 
-func getObjectSlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1518(d []interface{}) edpt.SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1518 {
+func getObjectSlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1519(d []interface{}) edpt.SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1519 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1518
+	var ret edpt.SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1519
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.QueryName = in["query_name"].(string)
@@ -247,25 +259,25 @@ func getSliceSlbTemplateDnsRecursiveDnsResolutionHostListCfg(d []interface{}) []
 	return ret
 }
 
-func getObjectSlbTemplateDnsRecursiveDnsResolutionLookupOrder1519(d []interface{}) edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrder1519 {
+func getObjectSlbTemplateDnsRecursiveDnsResolutionLookupOrder1520(d []interface{}) edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrder1520 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrder1519
+	var ret edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrder1520
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.QueryType = getSliceSlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1520(in["query_type"].([]interface{}))
+		ret.QueryType = getSliceSlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1521(in["query_type"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1520(d []interface{}) []edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1520 {
+func getSliceSlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1521(d []interface{}) []edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1521 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1520, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1521, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1520
+		var oi edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1521
 		oi.StrQueryType = in["str_query_type"].(string)
 		oi.NumQueryType = in["num_query_type"].(int)
 		oi.Order = in["order"].(string)
@@ -279,14 +291,18 @@ func dataToEndpointSlbTemplateDnsRecursiveDnsResolution(d *schema.ResourceData) 
 	ret.Inst.CsubnetRetry = d.Get("csubnet_retry").(int)
 	ret.Inst.DefaultRecursive = d.Get("default_recursive").(int)
 	ret.Inst.DnssecValidation = d.Get("dnssec_validation").(string)
+	ret.Inst.EdnsUdpSize = d.Get("edns_udp_size").(int)
 	ret.Inst.FastNsSelection = d.Get("fast_ns_selection").(string)
 	ret.Inst.ForceCnameResolution = d.Get("force_cname_resolution").(string)
 	ret.Inst.FullResponse = d.Get("full_response").(int)
-	ret.Inst.GatewayHealthCheck = getObjectSlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1518(d.Get("gateway_health_check").([]interface{}))
+	ret.Inst.GatewayHealthCheck = getObjectSlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1519(d.Get("gateway_health_check").([]interface{}))
 	ret.Inst.HostListCfg = getSliceSlbTemplateDnsRecursiveDnsResolutionHostListCfg(d.Get("host_list_cfg").([]interface{}))
 	ret.Inst.Ipv4NatPool = d.Get("ipv4_nat_pool").(string)
 	ret.Inst.Ipv6NatPool = d.Get("ipv6_nat_pool").(string)
-	ret.Inst.LookupOrder = getObjectSlbTemplateDnsRecursiveDnsResolutionLookupOrder1519(d.Get("lookup_order").([]interface{}))
+	ret.Inst.LookupOrder = getObjectSlbTemplateDnsRecursiveDnsResolutionLookupOrder1520(d.Get("lookup_order").([]interface{}))
+	ret.Inst.MaxKeyDigestValidationFailures = d.Get("max_key_digest_validation_failures").(int)
+	ret.Inst.MaxSignatureValidationAttempts = d.Get("max_signature_validation_attempts").(int)
+	ret.Inst.MaxSignatureValidationFailures = d.Get("max_signature_validation_failures").(int)
 	ret.Inst.MaxTrials = d.Get("max_trials").(int)
 	ret.Inst.NsCacheLookup = d.Get("ns_cache_lookup").(string)
 	ret.Inst.NsLongestMatch = d.Get("ns_longest_match").(string)

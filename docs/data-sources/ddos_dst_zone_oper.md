@@ -46,6 +46,7 @@ output "get_ddos_dst_zone_oper" {
 - `packet_anomaly_detection` (Block List, Max: 1) (see [below for nested schema](#nestedblock--packet_anomaly_detection))
 - `port` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port))
 - `port_range_list` (Block List) (see [below for nested schema](#nestedblock--port_range_list))
+- `src_ip_filtering` (Block List, Max: 1) (see [below for nested schema](#nestedblock--src_ip_filtering))
 - `src_port` (Block List, Max: 1) (see [below for nested schema](#nestedblock--src_port))
 - `src_port_range_list` (Block List) (see [below for nested schema](#nestedblock--src_port_range_list))
 - `topk_destinations` (Block List, Max: 1) (see [below for nested schema](#nestedblock--topk_destinations))
@@ -380,6 +381,7 @@ Optional:
 Optional:
 
 - `active_time` (Number)
+- `baseline_window_size` (Number)
 - `current_level` (String)
 - `details` (Number)
 - `detection_data_source` (String)
@@ -784,6 +786,7 @@ Optional:
 Optional:
 
 - `active_time` (Number)
+- `baseline_window_size` (Number)
 - `current_level` (String)
 - `details` (Number)
 - `detection_data_source` (String)
@@ -1658,6 +1661,7 @@ Optional:
 Optional:
 
 - `active_time` (Number)
+- `baseline_window_size` (Number)
 - `current_level` (String)
 - `details` (Number)
 - `detection_data_source` (String)
@@ -2318,6 +2322,7 @@ Optional:
 Optional:
 
 - `active_time` (Number)
+- `baseline_window_size` (Number)
 - `current_level` (String)
 - `details` (Number)
 - `detection_data_source` (String)
@@ -2857,6 +2862,7 @@ Optional:
 Optional:
 
 - `active_time` (Number)
+- `baseline_window_size` (Number)
 - `current_level` (String)
 - `details` (Number)
 - `detection_data_source` (String)
@@ -3275,6 +3281,31 @@ Optional:
 
 
 
+
+
+
+
+<a id="nestedblock--src_ip_filtering"></a>
+### Nested Schema for `src_ip_filtering`
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--src_ip_filtering--oper))
+
+<a id="nestedblock--src_ip_filtering--oper"></a>
+### Nested Schema for `src_ip_filtering.oper`
+
+Optional:
+
+- `class_list` (Block List) (see [below for nested schema](#nestedblock--src_ip_filtering--oper--class_list))
+
+<a id="nestedblock--src_ip_filtering--oper--class_list"></a>
+### Nested Schema for `src_ip_filtering.oper.class_list`
+
+Optional:
+
+- `hit` (Number)
+- `name` (String)
 
 
 

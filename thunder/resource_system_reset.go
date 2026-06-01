@@ -16,6 +16,9 @@ func resourceSystemReset() *schema.Resource {
 		DeleteContext: resourceSystemResetDelete,
 
 		Schema: map[string]*schema.Schema{
+			"preserve_license": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "preserve license",
+			},
 			"reboot_flag": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "",
 			},
@@ -86,6 +89,7 @@ func resourceSystemResetRead(ctx context.Context, d *schema.ResourceData, meta i
 
 func dataToEndpointSystemReset(d *schema.ResourceData) edpt.SystemReset {
 	var ret edpt.SystemReset
+	ret.Inst.PreserveLicense = d.Get("preserve_license").(int)
 	ret.Inst.RebootFlag = d.Get("reboot_flag").(int)
 	return ret
 }

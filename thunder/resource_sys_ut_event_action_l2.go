@@ -65,11 +65,11 @@ func resourceSysUtEventActionL2() *schema.Resource {
 			"vlan": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Vlan ID on the packet. 0 is untagged",
 			},
-			"direction": {
-				Type: schema.TypeString, Required: true, Description: "Direction",
-			},
 			"event_number": {
 				Type: schema.TypeString, Required: true, Description: "EventNumber",
+			},
+			"direction": {
+				Type: schema.TypeString, Required: true, Description: "Direction",
 			},
 		},
 	}
@@ -165,7 +165,7 @@ func dataToEndpointSysUtEventActionL2(d *schema.ResourceData) edpt.SysUtEventAct
 	//omit uuid
 	ret.Inst.Value = d.Get("value").(int)
 	ret.Inst.Vlan = d.Get("vlan").(int)
-	ret.Inst.Direction = d.Get("direction").(string)
 	ret.Inst.EventNumber = d.Get("event_number").(string)
+	ret.Inst.Direction = d.Get("direction").(string)
 	return ret
 }

@@ -707,6 +707,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 															"active_time": {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
+															"baseline_window_size": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
 															"sources_all_entries": {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
@@ -1575,6 +1578,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 																Type: schema.TypeString, Optional: true, Description: "",
 															},
 															"active_time": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"baseline_window_size": {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
 															"sources_all_entries": {
@@ -2869,6 +2875,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 															"active_time": {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
+															"baseline_window_size": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
 															"sources_all_entries": {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
@@ -4053,6 +4062,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 															"active_time": {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
+															"baseline_window_size": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
 															"sources_all_entries": {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
@@ -4971,6 +4983,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 												"active_time": {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
+												"baseline_window_size": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
 												"sources_all_entries": {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
@@ -5588,6 +5603,33 @@ func resourceDdosDstZoneOper() *schema.Resource {
 															},
 														},
 													},
+												},
+											},
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+			"src_ip_filtering": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"oper": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"class_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"name": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
+												"hit": {
+													Type: schema.TypeInt, Optional: true, Description: "",
 												},
 											},
 										},
@@ -6506,6 +6548,8 @@ func resourceDdosDstZoneOperRead(ctx context.Context, d *schema.ResourceData, me
 		d.Set("port", DdosDstZoneOperPort)
 		DdosDstZoneOperPortRangeList := setSliceDdosDstZoneOperPortRangeList(res)
 		d.Set("port_range_list", DdosDstZoneOperPortRangeList)
+		DdosDstZoneOperSrcIpFiltering := setObjectDdosDstZoneOperSrcIpFiltering(res)
+		d.Set("src_ip_filtering", DdosDstZoneOperSrcIpFiltering)
 		DdosDstZoneOperSrcPort := setObjectDdosDstZoneOperSrcPort(res)
 		d.Set("src_port", DdosDstZoneOperSrcPort)
 		DdosDstZoneOperSrcPortRangeList := setSliceDdosDstZoneOperSrcPortRangeList(res)
@@ -6984,6 +7028,8 @@ func setObjectDdosDstZoneOperIpProtoProtoNumberListPortIndOper(d edpt.DdosDstZon
 	in["initial_learning"] = d.InitialLearning
 
 	in["active_time"] = d.ActiveTime
+
+	in["baseline_window_size"] = d.BaselineWindowSize
 
 	in["sources_all_entries"] = d.SourcesAllEntries
 
@@ -7606,6 +7652,8 @@ func setObjectDdosDstZoneOperIpProtoProtoNameListPortIndOper(d edpt.DdosDstZoneO
 	in["initial_learning"] = d.InitialLearning
 
 	in["active_time"] = d.ActiveTime
+
+	in["baseline_window_size"] = d.BaselineWindowSize
 
 	in["sources_all_entries"] = d.SourcesAllEntries
 
@@ -8453,6 +8501,8 @@ func setObjectDdosDstZoneOperPortZoneServiceListPortIndOper(d edpt.DdosDstZoneOp
 
 	in["active_time"] = d.ActiveTime
 
+	in["baseline_window_size"] = d.BaselineWindowSize
+
 	in["sources_all_entries"] = d.SourcesAllEntries
 
 	in["subnet_ip_addr"] = d.SubnetIpAddr
@@ -9250,6 +9300,8 @@ func setObjectDdosDstZoneOperPortZoneServiceOtherListPortIndOper(d edpt.DdosDstZ
 
 	in["active_time"] = d.ActiveTime
 
+	in["baseline_window_size"] = d.BaselineWindowSize
+
 	in["sources_all_entries"] = d.SourcesAllEntries
 
 	in["subnet_ip_addr"] = d.SubnetIpAddr
@@ -9898,6 +9950,8 @@ func setObjectDdosDstZoneOperPortRangeListPortIndOper(d edpt.DdosDstZoneOperPort
 
 	in["active_time"] = d.ActiveTime
 
+	in["baseline_window_size"] = d.BaselineWindowSize
+
 	in["sources_all_entries"] = d.SourcesAllEntries
 
 	in["subnet_ip_addr"] = d.SubnetIpAddr
@@ -10398,6 +10452,33 @@ func setSliceDdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_ent
 		in["is_response_size_rate_limit_exceed"] = item.IsResponseSizeRateLimitExceed
 		in["current_response_size_rate"] = item.CurrentResponseSizeRate
 		in["response_size_rate_limit"] = item.ResponseSizeRateLimit
+		result = append(result, in)
+	}
+	return result
+}
+
+func setObjectDdosDstZoneOperSrcIpFiltering(ret edpt.DataDdosDstZoneOper) []interface{} {
+	return []interface{}{
+		map[string]interface{}{
+			"oper": setObjectDdosDstZoneOperSrcIpFilteringOper(ret.DtDdosDstZoneOper.SrcIpFiltering.Oper),
+		},
+	}
+}
+
+func setObjectDdosDstZoneOperSrcIpFilteringOper(d edpt.DdosDstZoneOperSrcIpFilteringOper) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+	in["class_list"] = setSliceDdosDstZoneOperSrcIpFilteringOperClassList(d.ClassList)
+	result = append(result, in)
+	return result
+}
+
+func setSliceDdosDstZoneOperSrcIpFilteringOperClassList(d []edpt.DdosDstZoneOperSrcIpFilteringOperClassList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["name"] = item.Name
+		in["hit"] = item.Hit
 		result = append(result, in)
 	}
 	return result
@@ -11431,6 +11512,7 @@ func getObjectDdosDstZoneOperIpProtoProtoNumberListPortIndOper(d []interface{}) 
 		ret.EscalationTimestamp = in["escalation_timestamp"].(string)
 		ret.InitialLearning = in["initial_learning"].(string)
 		ret.ActiveTime = in["active_time"].(int)
+		ret.BaselineWindowSize = in["baseline_window_size"].(int)
 		ret.SourcesAllEntries = in["sources_all_entries"].(int)
 		ret.SubnetIpAddr = in["subnet_ip_addr"].(string)
 		ret.SubnetIpv6Addr = in["subnet_ipv6_addr"].(string)
@@ -12078,6 +12160,7 @@ func getObjectDdosDstZoneOperIpProtoProtoNameListPortIndOper(d []interface{}) ed
 		ret.EscalationTimestamp = in["escalation_timestamp"].(string)
 		ret.InitialLearning = in["initial_learning"].(string)
 		ret.ActiveTime = in["active_time"].(int)
+		ret.BaselineWindowSize = in["baseline_window_size"].(int)
 		ret.SourcesAllEntries = in["sources_all_entries"].(int)
 		ret.SubnetIpAddr = in["subnet_ip_addr"].(string)
 		ret.SubnetIpv6Addr = in["subnet_ipv6_addr"].(string)
@@ -13002,6 +13085,7 @@ func getObjectDdosDstZoneOperPortZoneServiceListPortIndOper(d []interface{}) edp
 		ret.EscalationTimestamp = in["escalation_timestamp"].(string)
 		ret.InitialLearning = in["initial_learning"].(string)
 		ret.ActiveTime = in["active_time"].(int)
+		ret.BaselineWindowSize = in["baseline_window_size"].(int)
 		ret.SourcesAllEntries = in["sources_all_entries"].(int)
 		ret.SubnetIpAddr = in["subnet_ip_addr"].(string)
 		ret.SubnetIpv6Addr = in["subnet_ipv6_addr"].(string)
@@ -13838,6 +13922,7 @@ func getObjectDdosDstZoneOperPortZoneServiceOtherListPortIndOper(d []interface{}
 		ret.EscalationTimestamp = in["escalation_timestamp"].(string)
 		ret.InitialLearning = in["initial_learning"].(string)
 		ret.ActiveTime = in["active_time"].(int)
+		ret.BaselineWindowSize = in["baseline_window_size"].(int)
 		ret.SourcesAllEntries = in["sources_all_entries"].(int)
 		ret.SubnetIpAddr = in["subnet_ip_addr"].(string)
 		ret.SubnetIpv6Addr = in["subnet_ipv6_addr"].(string)
@@ -14532,6 +14617,7 @@ func getObjectDdosDstZoneOperPortRangeListPortIndOper(d []interface{}) edpt.Ddos
 		ret.EscalationTimestamp = in["escalation_timestamp"].(string)
 		ret.InitialLearning = in["initial_learning"].(string)
 		ret.ActiveTime = in["active_time"].(int)
+		ret.BaselineWindowSize = in["baseline_window_size"].(int)
 		ret.SourcesAllEntries = in["sources_all_entries"].(int)
 		ret.SubnetIpAddr = in["subnet_ip_addr"].(string)
 		ret.SubnetIpv6Addr = in["subnet_ipv6_addr"].(string)
@@ -15059,6 +15145,42 @@ func getSliceDdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_ent
 		oi.IsResponseSizeRateLimitExceed = in["is_response_size_rate_limit_exceed"].(int)
 		oi.CurrentResponseSizeRate = in["current_response_size_rate"].(string)
 		oi.ResponseSizeRateLimit = in["response_size_rate_limit"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneOperSrcIpFiltering(d []interface{}) edpt.DdosDstZoneOperSrcIpFiltering {
+
+	count1 := len(d)
+	var ret edpt.DdosDstZoneOperSrcIpFiltering
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Oper = getObjectDdosDstZoneOperSrcIpFilteringOper(in["oper"].([]interface{}))
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneOperSrcIpFilteringOper(d []interface{}) edpt.DdosDstZoneOperSrcIpFilteringOper {
+
+	count1 := len(d)
+	var ret edpt.DdosDstZoneOperSrcIpFilteringOper
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.ClassList = getSliceDdosDstZoneOperSrcIpFilteringOperClassList(in["class_list"].([]interface{}))
+	}
+	return ret
+}
+
+func getSliceDdosDstZoneOperSrcIpFilteringOperClassList(d []interface{}) []edpt.DdosDstZoneOperSrcIpFilteringOperClassList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperSrcIpFilteringOperClassList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperSrcIpFilteringOperClassList
+		oi.Name = in["name"].(string)
+		oi.Hit = in["hit"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -15649,6 +15771,8 @@ func dataToEndpointDdosDstZoneOper(d *schema.ResourceData) edpt.DdosDstZoneOper 
 	ret.Port = getObjectDdosDstZoneOperPort(d.Get("port").([]interface{}))
 
 	ret.PortRangeList = getSliceDdosDstZoneOperPortRangeList(d.Get("port_range_list").([]interface{}))
+
+	ret.SrcIpFiltering = getObjectDdosDstZoneOperSrcIpFiltering(d.Get("src_ip_filtering").([]interface{}))
 
 	ret.SrcPort = getObjectDdosDstZoneOperSrcPort(d.Get("src_port").([]interface{}))
 

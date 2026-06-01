@@ -191,9 +191,9 @@ func getSliceDdosDstZoneDetectionOutboundDetectionIndicatorList(d []interface{})
 	return ret
 }
 
-func getObjectDdosDstZoneDetectionOutboundDetectionTopkSourceSubnet204(d []interface{}) edpt.DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet204 {
+func getObjectDdosDstZoneDetectionOutboundDetectionTopkSourceSubnet207(d []interface{}) edpt.DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet207 {
 
-	var ret edpt.DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet204
+	var ret edpt.DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet207
 	return ret
 }
 
@@ -205,7 +205,7 @@ func dataToEndpointDdosDstZoneDetectionOutboundDetection(d *schema.ResourceData)
 	ret.Inst.EnableTopK = getSliceDdosDstZoneDetectionOutboundDetectionEnableTopK(d.Get("enable_top_k").([]interface{}))
 	ret.Inst.IndicatorList = getSliceDdosDstZoneDetectionOutboundDetectionIndicatorList(d.Get("indicator_list").([]interface{}))
 	ret.Inst.Toggle = d.Get("toggle").(string)
-	ret.Inst.TopkSourceSubnet = getObjectDdosDstZoneDetectionOutboundDetectionTopkSourceSubnet204(d.Get("topk_source_subnet").([]interface{}))
+	ret.Inst.TopkSourceSubnet = getObjectDdosDstZoneDetectionOutboundDetectionTopkSourceSubnet207(d.Get("topk_source_subnet").([]interface{}))
 	//omit uuid
 	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	return ret

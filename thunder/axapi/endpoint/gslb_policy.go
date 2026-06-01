@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type GslbPolicy struct {
 	Inst struct {
-		ActiveRdt GslbPolicyActiveRdt475 `json:"active-rdt"`
+		ActiveRdt GslbPolicyActiveRdt466 `json:"active-rdt"`
 
 		ActiveServersEnable int `json:"active-servers-enable"`
 
@@ -24,25 +24,25 @@ type GslbPolicy struct {
 
 		AmountFirst int `json:"amount-first"`
 
-		AutoMap GslbPolicyAutoMap476 `json:"auto-map"`
+		AutoMap GslbPolicyAutoMap467 `json:"auto-map"`
 
 		BwCostEnable int `json:"bw-cost-enable"`
 
 		BwCostFailBreak int `json:"bw-cost-fail-break"`
 
-		Capacity GslbPolicyCapacity477 `json:"capacity"`
+		Capacity GslbPolicyCapacity468 `json:"capacity"`
 
-		ConnectionCountBySite GslbPolicyConnectionCountBySite478 `json:"connection-count-by-site"`
+		ConnectionCountBySite GslbPolicyConnectionCountBySite469 `json:"connection-count-by-site"`
 
-		ConnectionLoad GslbPolicyConnectionLoad479 `json:"connection-load"`
+		ConnectionLoad GslbPolicyConnectionLoad470 `json:"connection-load"`
 
-		Dns GslbPolicyDns480 `json:"dns"`
+		Dns GslbPolicyDns471 `json:"dns"`
 
-		Edns GslbPolicyEdns485 `json:"edns"`
+		Edns GslbPolicyEdns476 `json:"edns"`
 
 		GeoLocationList []GslbPolicyGeoLocationList `json:"geo-location-list"`
 
-		GeoLocationMatch GslbPolicyGeoLocationMatch486 `json:"geo-location-match"`
+		GeoLocationMatch GslbPolicyGeoLocationMatch477 `json:"geo-location-match"`
 
 		Geographic int `json:"geographic" dval:"1"`
 
@@ -90,7 +90,7 @@ type GslbPolicy struct {
 	} `json:"policy"`
 }
 
-type GslbPolicyActiveRdt475 struct {
+type GslbPolicyActiveRdt466 struct {
 	Enable           int    `json:"enable"`
 	SingleShot       int    `json:"single-shot"`
 	PreferDnsSticky  int    `json:"prefer-dns-sticky"`
@@ -109,7 +109,7 @@ type GslbPolicyActiveRdt475 struct {
 	Uuid             string `json:"uuid"`
 }
 
-type GslbPolicyAutoMap476 struct {
+type GslbPolicyAutoMap467 struct {
 	Ttl           int    `json:"ttl" dval:"300"`
 	ModuleDisable int    `json:"module-disable"`
 	All           int    `json:"all"`
@@ -117,19 +117,19 @@ type GslbPolicyAutoMap476 struct {
 	Uuid          string `json:"uuid"`
 }
 
-type GslbPolicyCapacity477 struct {
+type GslbPolicyCapacity468 struct {
 	CapacityEnable    int    `json:"capacity-enable"`
 	Threshold         int    `json:"threshold" dval:"90"`
 	CapacityFailBreak int    `json:"capacity-fail-break"`
 	Uuid              string `json:"uuid"`
 }
 
-type GslbPolicyConnectionCountBySite478 struct {
+type GslbPolicyConnectionCountBySite469 struct {
 	ConnectionCountEnable int    `json:"connection-count-enable"`
 	Uuid                  string `json:"uuid"`
 }
 
-type GslbPolicyConnectionLoad479 struct {
+type GslbPolicyConnectionLoad470 struct {
 	ConnectionLoadEnable    int    `json:"connection-load-enable"`
 	ConnectionLoadFailBreak int    `json:"connection-load-fail-break"`
 	ConnectionLoadSamples   int    `json:"connection-load-samples" dval:"5"`
@@ -139,7 +139,7 @@ type GslbPolicyConnectionLoad479 struct {
 	Uuid                    string `json:"uuid"`
 }
 
-type GslbPolicyDns480 struct {
+type GslbPolicyDns471 struct {
 	Action                  int                                       `json:"action"`
 	ActiveOnly              int                                       `json:"active-only"`
 	ActiveOnlyFailSafe      int                                       `json:"active-only-fail-safe"`
@@ -185,11 +185,11 @@ type GslbPolicyDns480 struct {
 	ZoneOwnerMode           int                                       `json:"zone-owner-mode"`
 	ServerCname             int                                       `json:"server-cname"`
 	ServerCaa               int                                       `json:"server-caa"`
-	Ipv6                    []GslbPolicyDnsIpv6481                    `json:"ipv6"`
+	Ipv6                    []GslbPolicyDnsIpv6472                    `json:"ipv6"`
 	BlockAction             int                                       `json:"block-action"`
 	ActionType              string                                    `json:"action-type"`
-	ProxyBlockPortRangeList []GslbPolicyDnsProxyBlockPortRangeList482 `json:"proxy-block-port-range-list"`
-	BlockValue              []GslbPolicyDnsBlockValue483              `json:"block-value"`
+	ProxyBlockPortRangeList []GslbPolicyDnsProxyBlockPortRangeList473 `json:"proxy-block-port-range-list"`
+	BlockValue              []GslbPolicyDnsBlockValue474              `json:"block-value"`
 	BlockType               string                                    `json:"block-type"`
 	Sticky                  int                                       `json:"sticky"`
 	StickyMask              string                                    `json:"sticky-mask" dval:"/32"`
@@ -198,30 +198,30 @@ type GslbPolicyDns480 struct {
 	DynamicPreference       int                                       `json:"dynamic-preference"`
 	DynamicWeight           int                                       `json:"dynamic-weight"`
 	Uuid                    string                                    `json:"uuid"`
-	StickyOptions           GslbPolicyDnsStickyOptions484             `json:"sticky-options"`
+	StickyOptions           GslbPolicyDnsStickyOptions475             `json:"sticky-options"`
 }
 
-type GslbPolicyDnsIpv6481 struct {
+type GslbPolicyDnsIpv6472 struct {
 	DnsIpv6Option      string `json:"dns-ipv6-option"`
 	DnsIpv6MappingType string `json:"dns-ipv6-mapping-type"`
 }
 
-type GslbPolicyDnsProxyBlockPortRangeList482 struct {
+type GslbPolicyDnsProxyBlockPortRangeList473 struct {
 	ProxyBlockRangeFrom int `json:"proxy-block-range-from"`
 	ProxyBlockRangeTo   int `json:"proxy-block-range-to"`
 }
 
-type GslbPolicyDnsBlockValue483 struct {
+type GslbPolicyDnsBlockValue474 struct {
 	BlockValue int `json:"block-value"`
 }
 
-type GslbPolicyDnsStickyOptions484 struct {
+type GslbPolicyDnsStickyOptions475 struct {
 	EdnsClientSubnet int    `json:"edns-client-subnet"`
 	OnlyEcs          int    `json:"only-ecs"`
 	Uuid             string `json:"uuid"`
 }
 
-type GslbPolicyEdns485 struct {
+type GslbPolicyEdns476 struct {
 	ClientSubnetGeographic int    `json:"client-subnet-geographic"`
 	Uuid                   string `json:"uuid"`
 }
@@ -246,7 +246,7 @@ type GslbPolicyGeoLocationListIpv6MultipleFields struct {
 	Ipv6Addr2Sub string `json:"ipv6-addr2-sub"`
 }
 
-type GslbPolicyGeoLocationMatch486 struct {
+type GslbPolicyGeoLocationMatch477 struct {
 	Overlap        int    `json:"overlap"`
 	GeoTypeOverlap string `json:"geo-type-overlap"`
 	MatchFirst     string `json:"match-first" dval:"global"`

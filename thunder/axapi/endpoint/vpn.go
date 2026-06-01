@@ -5,26 +5,26 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Vpn struct {
 	Inst struct {
 		AsymmetricFlowSupport int `json:"asymmetric-flow-support"`
 
-		Crl VpnCrl3713 `json:"crl"`
+		Crl VpnCrl3751 `json:"crl"`
 
-		Default VpnDefault3714 `json:"default"`
+		Default VpnDefault3752 `json:"default"`
 
 		EnableVpnMetrics int `json:"enable-vpn-metrics"`
 
-		Error VpnError3715 `json:"error"`
+		Error VpnError3753 `json:"error"`
 
-		Errordump VpnErrordump3716 `json:"errordump"`
+		Errordump VpnErrordump3754 `json:"errordump"`
 
 		ExtendedMatching int `json:"extended-matching"`
 
 		FragmentAfterEncap int `json:"fragment-after-encap"`
 
-		GroupList VpnGroupList3717 `json:"group-list"`
+		GroupList VpnGroupList3755 `json:"group-list"`
 
 		IkeAccEnable int `json:"ike-acc-enable"`
 
@@ -32,17 +32,17 @@ type Vpn struct {
 
 		IkeLoggingEnable int `json:"ike-logging-enable"`
 
-		IkeSa VpnIkeSa3718 `json:"ike-sa"`
+		IkeSa VpnIkeSa3756 `json:"ike-sa"`
 
-		IkeSaBrief VpnIkeSaBrief3719 `json:"ike-sa-brief"`
+		IkeSaBrief VpnIkeSaBrief3757 `json:"ike-sa-brief"`
 
-		IkeSaClients VpnIkeSaClients3720 `json:"ike-sa-clients"`
+		IkeSaClients VpnIkeSaClients3758 `json:"ike-sa-clients"`
 
 		IkeSaTimeout int `json:"ike-sa-timeout" dval:"600"`
 
-		IkeStatsByGw VpnIkeStatsByGw3721 `json:"ike-stats-by-gw"`
+		IkeStatsByGw VpnIkeStatsByGw3759 `json:"ike-stats-by-gw"`
 
-		IkeStatsGlobal VpnIkeStatsGlobal3722 `json:"ike-stats-global"`
+		IkeStatsGlobal VpnIkeStatsGlobal3760 `json:"ike-stats-global"`
 
 		IpsecCipherCheck int `json:"ipsec-cipher-check"`
 
@@ -54,21 +54,21 @@ type Vpn struct {
 
 		IpsecMgmtDefaultPolicyDrop int `json:"ipsec-mgmt-default-policy-drop"`
 
-		IpsecSa VpnIpsecSa3724 `json:"ipsec-sa"`
+		IpsecSa VpnIpsecSa3762 `json:"ipsec-sa"`
 
-		IpsecSaByGw VpnIpsecSaByGw3725 `json:"ipsec-sa-by-gw"`
+		IpsecSaByGw VpnIpsecSaByGw3763 `json:"ipsec-sa-by-gw"`
 
-		IpsecSaClients VpnIpsecSaClients3726 `json:"ipsec-sa-clients"`
+		IpsecSaClients VpnIpsecSaClients3764 `json:"ipsec-sa-clients"`
 
 		IpsecSaStatsList []VpnIpsecSaStatsList `json:"ipsec-sa-stats-list"`
 
 		JumboFragment int `json:"jumbo-fragment"`
 
-		Log VpnLog3727 `json:"log"`
+		Log VpnLog3765 `json:"log"`
 
 		NatTraversalFlowAffinity int `json:"nat-traversal-flow-affinity"`
 
-		Ocsp VpnOcsp3728 `json:"ocsp"`
+		Ocsp VpnOcsp3766 `json:"ocsp"`
 
 		RevocationList []VpnRevocationList `json:"revocation-list"`
 
@@ -84,23 +84,23 @@ type Vpn struct {
 	} `json:"vpn"`
 }
 
-type VpnCrl3713 struct {
+type VpnCrl3751 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VpnDefault3714 struct {
+type VpnDefault3752 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VpnError3715 struct {
+type VpnError3753 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VpnErrordump3716 struct {
+type VpnErrordump3754 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VpnGroupList3717 struct {
+type VpnGroupList3755 struct {
 	Uuid string `json:"uuid"`
 }
 
@@ -197,28 +197,28 @@ type VpnIkeGatewayListSamplingEnable struct {
 	Counters1 string `json:"counters1"`
 }
 
-type VpnIkeSa3718 struct {
+type VpnIkeSa3756 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VpnIkeSaBrief3719 struct {
+type VpnIkeSaBrief3757 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VpnIkeSaClients3720 struct {
+type VpnIkeSaClients3758 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VpnIkeStatsByGw3721 struct {
+type VpnIkeStatsByGw3759 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VpnIkeStatsGlobal3722 struct {
+type VpnIkeStatsGlobal3760 struct {
 	Uuid           string                                `json:"uuid"`
-	SamplingEnable []VpnIkeStatsGlobalSamplingEnable3723 `json:"sampling-enable"`
+	SamplingEnable []VpnIkeStatsGlobalSamplingEnable3761 `json:"sampling-enable"`
 }
 
-type VpnIkeStatsGlobalSamplingEnable3723 struct {
+type VpnIkeStatsGlobalSamplingEnable3761 struct {
 	Counters1 string `json:"counters1"`
 }
 
@@ -303,15 +303,15 @@ type VpnIpsecListIpsecGateway struct {
 	Uuid       string `json:"uuid"`
 }
 
-type VpnIpsecSa3724 struct {
+type VpnIpsecSa3762 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VpnIpsecSaByGw3725 struct {
+type VpnIpsecSaByGw3763 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VpnIpsecSaClients3726 struct {
+type VpnIpsecSaClients3764 struct {
 	Uuid string `json:"uuid"`
 }
 
@@ -323,11 +323,11 @@ type VpnIpsecSaStatsListSamplingEnable struct {
 	Counters1 string `json:"counters1"`
 }
 
-type VpnLog3727 struct {
+type VpnLog3765 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VpnOcsp3728 struct {
+type VpnOcsp3766 struct {
 	Uuid string `json:"uuid"`
 }
 

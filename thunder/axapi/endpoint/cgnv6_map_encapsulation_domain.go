@@ -6,16 +6,16 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6MapEncapsulationDomain struct {
 	Inst struct {
-		BasicMappingRule Cgnv6MapEncapsulationDomainBasicMappingRule99 `json:"basic-mapping-rule"`
+		BasicMappingRule Cgnv6MapEncapsulationDomainBasicMappingRule100 `json:"basic-mapping-rule"`
 
 		Description string `json:"description"`
 
 		Format string `json:"format"`
 
-		HealthCheckGateway Cgnv6MapEncapsulationDomainHealthCheckGateway101 `json:"health-check-gateway"`
+		HealthCheckGateway Cgnv6MapEncapsulationDomainHealthCheckGateway102 `json:"health-check-gateway"`
 
 		Name string `json:"name"`
 
@@ -31,16 +31,16 @@ type Cgnv6MapEncapsulationDomain struct {
 	} `json:"domain"`
 }
 
-type Cgnv6MapEncapsulationDomainBasicMappingRule99 struct {
+type Cgnv6MapEncapsulationDomainBasicMappingRule100 struct {
 	RuleIpv4AddressPortSettings string                                                         `json:"rule-ipv4-address-port-settings"`
 	EaLength                    int                                                            `json:"ea-length"`
 	ShareRatio                  int                                                            `json:"share-ratio"`
 	PortStart                   int                                                            `json:"port-start"`
 	Uuid                        string                                                         `json:"uuid"`
-	PrefixRuleList              []Cgnv6MapEncapsulationDomainBasicMappingRulePrefixRuleList100 `json:"prefix-rule-list"`
+	PrefixRuleList              []Cgnv6MapEncapsulationDomainBasicMappingRulePrefixRuleList101 `json:"prefix-rule-list"`
 }
 
-type Cgnv6MapEncapsulationDomainBasicMappingRulePrefixRuleList100 struct {
+type Cgnv6MapEncapsulationDomainBasicMappingRulePrefixRuleList101 struct {
 	Name                    string `json:"name"`
 	RuleIpv6Prefix          string `json:"rule-ipv6-prefix"`
 	RuleIpv4Prefix          string `json:"rule-ipv4-prefix"`
@@ -53,18 +53,18 @@ type Cgnv6MapEncapsulationDomainBasicMappingRulePrefixRuleList100 struct {
 	UserTag                 string `json:"user-tag"`
 }
 
-type Cgnv6MapEncapsulationDomainHealthCheckGateway101 struct {
-	AddressList     []Cgnv6MapEncapsulationDomainHealthCheckGatewayAddressList102     `json:"address-list"`
-	Ipv6AddressList []Cgnv6MapEncapsulationDomainHealthCheckGatewayIpv6AddressList103 `json:"ipv6-address-list"`
+type Cgnv6MapEncapsulationDomainHealthCheckGateway102 struct {
+	AddressList     []Cgnv6MapEncapsulationDomainHealthCheckGatewayAddressList103     `json:"address-list"`
+	Ipv6AddressList []Cgnv6MapEncapsulationDomainHealthCheckGatewayIpv6AddressList104 `json:"ipv6-address-list"`
 	WithdrawRoute   string                                                            `json:"withdraw-route" dval:"any-link-failure"`
 	Uuid            string                                                            `json:"uuid"`
 }
 
-type Cgnv6MapEncapsulationDomainHealthCheckGatewayAddressList102 struct {
+type Cgnv6MapEncapsulationDomainHealthCheckGatewayAddressList103 struct {
 	Ipv4Gateway string `json:"ipv4-gateway"`
 }
 
-type Cgnv6MapEncapsulationDomainHealthCheckGatewayIpv6AddressList103 struct {
+type Cgnv6MapEncapsulationDomainHealthCheckGatewayIpv6AddressList104 struct {
 	Ipv6Gateway string `json:"ipv6-gateway"`
 }
 

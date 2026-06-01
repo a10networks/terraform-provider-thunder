@@ -24,6 +24,9 @@ func resourceScaleoutUserGroupAssignmentTemplateInfoOper() *schema.Resource {
 									"address_prefix": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
+									"assignment_prefix_length": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
 									"prefixes_count": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
@@ -85,6 +88,7 @@ func setSliceScaleoutUserGroupAssignmentTemplateInfoOperOperAssignmentList(d []e
 	for _, item := range d {
 		in := make(map[string]interface{})
 		in["address_prefix"] = item.AddressPrefix
+		in["assignment_prefix_length"] = item.AssignmentPrefixLength
 		in["prefixes_count"] = item.PrefixesCount
 		in["ip_count_per_prefix"] = item.IpCountPerPrefix
 		in["prefixes_per_user_group"] = item.PrefixesPerUserGroup
@@ -115,6 +119,7 @@ func getSliceScaleoutUserGroupAssignmentTemplateInfoOperOperAssignmentList(d []i
 		in := item.(map[string]interface{})
 		var oi edpt.ScaleoutUserGroupAssignmentTemplateInfoOperOperAssignmentList
 		oi.AddressPrefix = in["address_prefix"].(string)
+		oi.AssignmentPrefixLength = in["assignment_prefix_length"].(int)
 		oi.PrefixesCount = in["prefixes_count"].(int)
 		oi.IpCountPerPrefix = in["ip_count_per_prefix"].(int)
 		oi.PrefixesPerUserGroup = in["prefixes_per_user_group"].(int)

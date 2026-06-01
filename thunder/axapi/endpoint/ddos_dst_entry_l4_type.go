@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstEntryL4Type struct {
 	Inst struct {
 		Deny int `json:"deny"`
@@ -28,9 +28,9 @@ type DdosDstEntryL4Type struct {
 
 		MaxRexmitSynPerFlowExceedAction string `json:"max-rexmit-syn-per-flow-exceed-action"`
 
-		PortInd DdosDstEntryL4TypePortInd178 `json:"port-ind"`
+		PortInd DdosDstEntryL4TypePortInd181 `json:"port-ind"`
 
-		ProgressionTracking DdosDstEntryL4TypeProgressionTracking180 `json:"progression-tracking"`
+		ProgressionTracking DdosDstEntryL4TypeProgressionTracking183 `json:"progression-tracking"`
 
 		Protocol string `json:"protocol"`
 
@@ -52,7 +52,7 @@ type DdosDstEntryL4Type struct {
 
 		TopkSortKey string `json:"topk-sort-key" dval:"avg"`
 
-		TopkSources DdosDstEntryL4TypeTopkSources181 `json:"topk-sources"`
+		TopkSources DdosDstEntryL4TypeTopkSources184 `json:"topk-sources"`
 
 		TunnelDecap DdosDstEntryL4TypeTunnelDecap `json:"tunnel-decap"`
 
@@ -77,16 +77,16 @@ type DdosDstEntryL4TypeGlidExceedActionStatelessEncapActionCfg struct {
 	EncapTemplate        string `json:"encap-template"`
 }
 
-type DdosDstEntryL4TypePortInd178 struct {
+type DdosDstEntryL4TypePortInd181 struct {
 	Uuid           string                                       `json:"uuid"`
-	SamplingEnable []DdosDstEntryL4TypePortIndSamplingEnable179 `json:"sampling-enable"`
+	SamplingEnable []DdosDstEntryL4TypePortIndSamplingEnable182 `json:"sampling-enable"`
 }
 
-type DdosDstEntryL4TypePortIndSamplingEnable179 struct {
+type DdosDstEntryL4TypePortIndSamplingEnable182 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type DdosDstEntryL4TypeProgressionTracking180 struct {
+type DdosDstEntryL4TypeProgressionTracking183 struct {
 	Uuid string `json:"uuid"`
 }
 
@@ -95,7 +95,7 @@ type DdosDstEntryL4TypeTemplate struct {
 	TemplateIcmpV6 string `json:"template-icmp-v6"`
 }
 
-type DdosDstEntryL4TypeTopkSources181 struct {
+type DdosDstEntryL4TypeTopkSources184 struct {
 	Uuid string `json:"uuid"`
 }
 

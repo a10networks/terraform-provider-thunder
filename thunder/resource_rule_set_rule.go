@@ -564,17 +564,17 @@ func resourceRuleSetRuleRead(ctx context.Context, d *schema.ResourceData, meta i
 	return diags
 }
 
-func getObjectRuleSetRuleActionGroup1402(d []interface{}) edpt.RuleSetRuleActionGroup1402 {
+func getObjectRuleSetRuleActionGroup1401(d []interface{}) edpt.RuleSetRuleActionGroup1401 {
 
 	count1 := len(d)
-	var ret edpt.RuleSetRuleActionGroup1402
+	var ret edpt.RuleSetRuleActionGroup1401
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Type = in["type"].(string)
 		ret.PermitLog = in["permit_log"].(int)
 		ret.ResetLog = in["reset_log"].(int)
 		ret.DenyLog = in["deny_log"].(int)
-		ret.LoggingTemplateList = getSliceRuleSetRuleActionGroupLoggingTemplateList1403(in["logging_template_list"].([]interface{}))
+		ret.LoggingTemplateList = getSliceRuleSetRuleActionGroupLoggingTemplateList1402(in["logging_template_list"].([]interface{}))
 		ret.ResetLogTemplateType = in["reset_log_template_type"].(string)
 		ret.ResetFwLog = in["reset_fw_log"].(string)
 		ret.DenyLogTemplateType = in["deny_log_template_type"].(string)
@@ -609,13 +609,13 @@ func getObjectRuleSetRuleActionGroup1402(d []interface{}) edpt.RuleSetRuleAction
 	return ret
 }
 
-func getSliceRuleSetRuleActionGroupLoggingTemplateList1403(d []interface{}) []edpt.RuleSetRuleActionGroupLoggingTemplateList1403 {
+func getSliceRuleSetRuleActionGroupLoggingTemplateList1402(d []interface{}) []edpt.RuleSetRuleActionGroupLoggingTemplateList1402 {
 
 	count1 := len(d)
-	ret := make([]edpt.RuleSetRuleActionGroupLoggingTemplateList1403, 0, count1)
+	ret := make([]edpt.RuleSetRuleActionGroupLoggingTemplateList1402, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RuleSetRuleActionGroupLoggingTemplateList1403
+		var oi edpt.RuleSetRuleActionGroupLoggingTemplateList1402
 		oi.PermitLogTemplateType = in["permit_log_template_type"].(string)
 		oi.PermitFwLog = in["permit_fw_log"].(string)
 		oi.PermitCgnv6Log = in["permit_cgnv6_log"].(string)
@@ -673,10 +673,10 @@ func getSliceRuleSetRuleDscpList(d []interface{}) []edpt.RuleSetRuleDscpList {
 	return ret
 }
 
-func getObjectRuleSetRuleMoveRule1404(d []interface{}) edpt.RuleSetRuleMoveRule1404 {
+func getObjectRuleSetRuleMoveRule1403(d []interface{}) edpt.RuleSetRuleMoveRule1403 {
 
 	count1 := len(d)
-	var ret edpt.RuleSetRuleMoveRule1404
+	var ret edpt.RuleSetRuleMoveRule1403
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Location = in["location"].(string)
@@ -755,7 +755,7 @@ func getSliceRuleSetRuleSourceList(d []interface{}) []edpt.RuleSetRuleSourceList
 func dataToEndpointRuleSetRule(d *schema.ResourceData) edpt.RuleSetRule {
 	var ret edpt.RuleSetRule
 	ret.Inst.Action = d.Get("action").(string)
-	ret.Inst.ActionGroup = getObjectRuleSetRuleActionGroup1402(d.Get("action_group").([]interface{}))
+	ret.Inst.ActionGroup = getObjectRuleSetRuleActionGroup1401(d.Get("action_group").([]interface{}))
 	ret.Inst.AppList = getSliceRuleSetRuleAppList(d.Get("app_list").([]interface{}))
 	ret.Inst.ApplicationAny = d.Get("application_any").(string)
 	ret.Inst.Cgnv6DsLite = d.Get("cgnv6_ds_lite").(string)
@@ -792,7 +792,7 @@ func dataToEndpointRuleSetRule(d *schema.ResourceData) edpt.RuleSetRule {
 	ret.Inst.ListenOnPortLid = d.Get("listen_on_port_lid").(int)
 	ret.Inst.ListenOnPortLidlog = d.Get("listen_on_port_lidlog").(int)
 	ret.Inst.Log = d.Get("log").(int)
-	ret.Inst.MoveRule = getObjectRuleSetRuleMoveRule1404(d.Get("move_rule").([]interface{}))
+	ret.Inst.MoveRule = getObjectRuleSetRuleMoveRule1403(d.Get("move_rule").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.PacketCaptureTemplate = d.Get("packet_capture_template").(string)
 	ret.Inst.Policy = d.Get("policy").(string)

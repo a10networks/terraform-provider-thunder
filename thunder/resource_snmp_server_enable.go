@@ -706,62 +706,62 @@ func resourceSnmpServerEnableRead(ctx context.Context, d *schema.ResourceData, m
 	return diags
 }
 
-func getObjectSnmpServerEnableTraps1606(d []interface{}) edpt.SnmpServerEnableTraps1606 {
+func getObjectSnmpServerEnableTraps1607(d []interface{}) edpt.SnmpServerEnableTraps1607 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTraps1606
+	var ret edpt.SnmpServerEnableTraps1607
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.All = in["all"].(int)
 		ret.Lldp = in["lldp"].(int)
 		//omit uuid
-		ret.Routing = getObjectSnmpServerEnableTrapsRouting1607(in["routing"].([]interface{}))
-		ret.Gslb = getObjectSnmpServerEnableTrapsGslb1612(in["gslb"].([]interface{}))
-		ret.Slb = getObjectSnmpServerEnableTrapsSlb1613(in["slb"].([]interface{}))
-		ret.Scaleout = getObjectSnmpServerEnableTrapsScaleout1614(in["scaleout"].([]interface{}))
-		ret.Snmp = getObjectSnmpServerEnableTrapsSnmp1619(in["snmp"].([]interface{}))
-		ret.VrrpA = getObjectSnmpServerEnableTrapsVrrpA1620(in["vrrp_a"].([]interface{}))
-		ret.Vcs = getObjectSnmpServerEnableTrapsVcs1621(in["vcs"].([]interface{}))
-		ret.System = getObjectSnmpServerEnableTrapsSystem1622(in["system"].([]interface{}))
-		ret.SlbChange = getObjectSnmpServerEnableTrapsSlbChange1624(in["slb_change"].([]interface{}))
-		ret.Lsn = getObjectSnmpServerEnableTrapsLsn1625(in["lsn"].([]interface{}))
-		ret.Network = getObjectSnmpServerEnableTrapsNetwork1626(in["network"].([]interface{}))
-		ret.Ssl = getObjectSnmpServerEnableTrapsSsl1627(in["ssl"].([]interface{}))
+		ret.Routing = getObjectSnmpServerEnableTrapsRouting1608(in["routing"].([]interface{}))
+		ret.Gslb = getObjectSnmpServerEnableTrapsGslb1613(in["gslb"].([]interface{}))
+		ret.Slb = getObjectSnmpServerEnableTrapsSlb1614(in["slb"].([]interface{}))
+		ret.Scaleout = getObjectSnmpServerEnableTrapsScaleout1615(in["scaleout"].([]interface{}))
+		ret.Snmp = getObjectSnmpServerEnableTrapsSnmp1620(in["snmp"].([]interface{}))
+		ret.VrrpA = getObjectSnmpServerEnableTrapsVrrpA1621(in["vrrp_a"].([]interface{}))
+		ret.Vcs = getObjectSnmpServerEnableTrapsVcs1622(in["vcs"].([]interface{}))
+		ret.System = getObjectSnmpServerEnableTrapsSystem1623(in["system"].([]interface{}))
+		ret.SlbChange = getObjectSnmpServerEnableTrapsSlbChange1625(in["slb_change"].([]interface{}))
+		ret.Lsn = getObjectSnmpServerEnableTrapsLsn1626(in["lsn"].([]interface{}))
+		ret.Network = getObjectSnmpServerEnableTrapsNetwork1627(in["network"].([]interface{}))
+		ret.Ssl = getObjectSnmpServerEnableTrapsSsl1628(in["ssl"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsRouting1607(d []interface{}) edpt.SnmpServerEnableTrapsRouting1607 {
+func getObjectSnmpServerEnableTrapsRouting1608(d []interface{}) edpt.SnmpServerEnableTrapsRouting1608 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsRouting1607
+	var ret edpt.SnmpServerEnableTrapsRouting1608
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Bgp = getObjectSnmpServerEnableTrapsRoutingBgp1608(in["bgp"].([]interface{}))
-		ret.Isis = getObjectSnmpServerEnableTrapsRoutingIsis1610(in["isis"].([]interface{}))
-		ret.Ospf = getObjectSnmpServerEnableTrapsRoutingOspf1611(in["ospf"].([]interface{}))
+		ret.Bgp = getObjectSnmpServerEnableTrapsRoutingBgp1609(in["bgp"].([]interface{}))
+		ret.Isis = getObjectSnmpServerEnableTrapsRoutingIsis1611(in["isis"].([]interface{}))
+		ret.Ospf = getObjectSnmpServerEnableTrapsRoutingOspf1612(in["ospf"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsRoutingBgp1608(d []interface{}) edpt.SnmpServerEnableTrapsRoutingBgp1608 {
+func getObjectSnmpServerEnableTrapsRoutingBgp1609(d []interface{}) edpt.SnmpServerEnableTrapsRoutingBgp1609 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsRoutingBgp1608
+	var ret edpt.SnmpServerEnableTrapsRoutingBgp1609
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Bgpestablishednotification = in["bgpestablishednotification"].(int)
 		ret.Bgpbackwardtransnotification = in["bgpbackwardtransnotification"].(int)
 		//omit uuid
-		ret.Ax = getObjectSnmpServerEnableTrapsRoutingBgpAx1609(in["ax"].([]interface{}))
+		ret.Ax = getObjectSnmpServerEnableTrapsRoutingBgpAx1610(in["ax"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsRoutingBgpAx1609(d []interface{}) edpt.SnmpServerEnableTrapsRoutingBgpAx1609 {
+func getObjectSnmpServerEnableTrapsRoutingBgpAx1610(d []interface{}) edpt.SnmpServerEnableTrapsRoutingBgpAx1610 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsRoutingBgpAx1609
+	var ret edpt.SnmpServerEnableTrapsRoutingBgpAx1610
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Bgpestablishednotification = in["bgpestablishednotification"].(int)
@@ -773,10 +773,10 @@ func getObjectSnmpServerEnableTrapsRoutingBgpAx1609(d []interface{}) edpt.SnmpSe
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsRoutingIsis1610(d []interface{}) edpt.SnmpServerEnableTrapsRoutingIsis1610 {
+func getObjectSnmpServerEnableTrapsRoutingIsis1611(d []interface{}) edpt.SnmpServerEnableTrapsRoutingIsis1611 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsRoutingIsis1610
+	var ret edpt.SnmpServerEnableTrapsRoutingIsis1611
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Isisadjacencychange = in["isisadjacencychange"].(int)
@@ -802,10 +802,10 @@ func getObjectSnmpServerEnableTrapsRoutingIsis1610(d []interface{}) edpt.SnmpSer
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsRoutingOspf1611(d []interface{}) edpt.SnmpServerEnableTrapsRoutingOspf1611 {
+func getObjectSnmpServerEnableTrapsRoutingOspf1612(d []interface{}) edpt.SnmpServerEnableTrapsRoutingOspf1612 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsRoutingOspf1611
+	var ret edpt.SnmpServerEnableTrapsRoutingOspf1612
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ospfifauthfailure = in["ospfifauthfailure"].(int)
@@ -829,10 +829,10 @@ func getObjectSnmpServerEnableTrapsRoutingOspf1611(d []interface{}) edpt.SnmpSer
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsGslb1612(d []interface{}) edpt.SnmpServerEnableTrapsGslb1612 {
+func getObjectSnmpServerEnableTrapsGslb1613(d []interface{}) edpt.SnmpServerEnableTrapsGslb1613 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsGslb1612
+	var ret edpt.SnmpServerEnableTrapsGslb1613
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.All = in["all"].(int)
@@ -845,10 +845,10 @@ func getObjectSnmpServerEnableTrapsGslb1612(d []interface{}) edpt.SnmpServerEnab
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsSlb1613(d []interface{}) edpt.SnmpServerEnableTrapsSlb1613 {
+func getObjectSnmpServerEnableTrapsSlb1614(d []interface{}) edpt.SnmpServerEnableTrapsSlb1614 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsSlb1613
+	var ret edpt.SnmpServerEnableTrapsSlb1614
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.All = in["all"].(int)
@@ -885,37 +885,37 @@ func getObjectSnmpServerEnableTrapsSlb1613(d []interface{}) edpt.SnmpServerEnabl
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsScaleout1614(d []interface{}) edpt.SnmpServerEnableTrapsScaleout1614 {
+func getObjectSnmpServerEnableTrapsScaleout1615(d []interface{}) edpt.SnmpServerEnableTrapsScaleout1615 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsScaleout1614
+	var ret edpt.SnmpServerEnableTrapsScaleout1615
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Infrastructure = getObjectSnmpServerEnableTrapsScaleoutInfrastructure1615(in["infrastructure"].([]interface{}))
+		ret.Infrastructure = getObjectSnmpServerEnableTrapsScaleoutInfrastructure1616(in["infrastructure"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsScaleoutInfrastructure1615(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructure1615 {
+func getObjectSnmpServerEnableTrapsScaleoutInfrastructure1616(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructure1616 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructure1615
+	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructure1616
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.All = in["all"].(int)
 		ret.TestSendAllTraps = in["test_send_all_traps"].(int)
 		//omit uuid
-		ret.Cluster = getObjectSnmpServerEnableTrapsScaleoutInfrastructureCluster1616(in["cluster"].([]interface{}))
-		ret.ServiceNode = getObjectSnmpServerEnableTrapsScaleoutInfrastructureServiceNode1617(in["service_node"].([]interface{}))
-		ret.MasterNode = getObjectSnmpServerEnableTrapsScaleoutInfrastructureMasterNode1618(in["master_node"].([]interface{}))
+		ret.Cluster = getObjectSnmpServerEnableTrapsScaleoutInfrastructureCluster1617(in["cluster"].([]interface{}))
+		ret.ServiceNode = getObjectSnmpServerEnableTrapsScaleoutInfrastructureServiceNode1618(in["service_node"].([]interface{}))
+		ret.MasterNode = getObjectSnmpServerEnableTrapsScaleoutInfrastructureMasterNode1619(in["master_node"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsScaleoutInfrastructureCluster1616(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructureCluster1616 {
+func getObjectSnmpServerEnableTrapsScaleoutInfrastructureCluster1617(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructureCluster1617 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructureCluster1616
+	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructureCluster1617
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Election = in["election"].(int)
@@ -926,10 +926,10 @@ func getObjectSnmpServerEnableTrapsScaleoutInfrastructureCluster1616(d []interfa
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsScaleoutInfrastructureServiceNode1617(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructureServiceNode1617 {
+func getObjectSnmpServerEnableTrapsScaleoutInfrastructureServiceNode1618(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructureServiceNode1618 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructureServiceNode1617
+	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructureServiceNode1618
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.LocalDeviceDisabled = in["local_device_disabled"].(int)
@@ -940,10 +940,10 @@ func getObjectSnmpServerEnableTrapsScaleoutInfrastructureServiceNode1617(d []int
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsScaleoutInfrastructureMasterNode1618(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructureMasterNode1618 {
+func getObjectSnmpServerEnableTrapsScaleoutInfrastructureMasterNode1619(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructureMasterNode1619 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructureMasterNode1618
+	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructureMasterNode1619
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TrafficMapDistribution = in["traffic_map_distribution"].(int)
@@ -953,10 +953,10 @@ func getObjectSnmpServerEnableTrapsScaleoutInfrastructureMasterNode1618(d []inte
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsSnmp1619(d []interface{}) edpt.SnmpServerEnableTrapsSnmp1619 {
+func getObjectSnmpServerEnableTrapsSnmp1620(d []interface{}) edpt.SnmpServerEnableTrapsSnmp1620 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsSnmp1619
+	var ret edpt.SnmpServerEnableTrapsSnmp1620
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.All = in["all"].(int)
@@ -967,10 +967,10 @@ func getObjectSnmpServerEnableTrapsSnmp1619(d []interface{}) edpt.SnmpServerEnab
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsVrrpA1620(d []interface{}) edpt.SnmpServerEnableTrapsVrrpA1620 {
+func getObjectSnmpServerEnableTrapsVrrpA1621(d []interface{}) edpt.SnmpServerEnableTrapsVrrpA1621 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsVrrpA1620
+	var ret edpt.SnmpServerEnableTrapsVrrpA1621
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.All = in["all"].(int)
@@ -981,10 +981,10 @@ func getObjectSnmpServerEnableTrapsVrrpA1620(d []interface{}) edpt.SnmpServerEna
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsVcs1621(d []interface{}) edpt.SnmpServerEnableTrapsVcs1621 {
+func getObjectSnmpServerEnableTrapsVcs1622(d []interface{}) edpt.SnmpServerEnableTrapsVcs1622 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsVcs1621
+	var ret edpt.SnmpServerEnableTrapsVcs1622
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.StateChange = in["state_change"].(int)
@@ -993,10 +993,10 @@ func getObjectSnmpServerEnableTrapsVcs1621(d []interface{}) edpt.SnmpServerEnabl
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsSystem1622(d []interface{}) edpt.SnmpServerEnableTrapsSystem1622 {
+func getObjectSnmpServerEnableTrapsSystem1623(d []interface{}) edpt.SnmpServerEnableTrapsSystem1623 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsSystem1622
+	var ret edpt.SnmpServerEnableTrapsSystem1623
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.All = in["all"].(int)
@@ -1020,15 +1020,15 @@ func getObjectSnmpServerEnableTrapsSystem1622(d []interface{}) edpt.SnmpServerEn
 		ret.TacacsServerUpDown = in["tacacs_server_up_down"].(int)
 		ret.Start = in["start"].(int)
 		//omit uuid
-		ret.AppsGlobal = getObjectSnmpServerEnableTrapsSystemAppsGlobal1623(in["apps_global"].([]interface{}))
+		ret.AppsGlobal = getObjectSnmpServerEnableTrapsSystemAppsGlobal1624(in["apps_global"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsSystemAppsGlobal1623(d []interface{}) edpt.SnmpServerEnableTrapsSystemAppsGlobal1623 {
+func getObjectSnmpServerEnableTrapsSystemAppsGlobal1624(d []interface{}) edpt.SnmpServerEnableTrapsSystemAppsGlobal1624 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsSystemAppsGlobal1623
+	var ret edpt.SnmpServerEnableTrapsSystemAppsGlobal1624
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SessionsThreshold = in["sessions_threshold"].(int)
@@ -1038,10 +1038,10 @@ func getObjectSnmpServerEnableTrapsSystemAppsGlobal1623(d []interface{}) edpt.Sn
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsSlbChange1624(d []interface{}) edpt.SnmpServerEnableTrapsSlbChange1624 {
+func getObjectSnmpServerEnableTrapsSlbChange1625(d []interface{}) edpt.SnmpServerEnableTrapsSlbChange1625 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsSlbChange1624
+	var ret edpt.SnmpServerEnableTrapsSlbChange1625
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.All = in["all"].(int)
@@ -1059,10 +1059,10 @@ func getObjectSnmpServerEnableTrapsSlbChange1624(d []interface{}) edpt.SnmpServe
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsLsn1625(d []interface{}) edpt.SnmpServerEnableTrapsLsn1625 {
+func getObjectSnmpServerEnableTrapsLsn1626(d []interface{}) edpt.SnmpServerEnableTrapsLsn1626 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsLsn1625
+	var ret edpt.SnmpServerEnableTrapsLsn1626
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.All = in["all"].(int)
@@ -1077,10 +1077,10 @@ func getObjectSnmpServerEnableTrapsLsn1625(d []interface{}) edpt.SnmpServerEnabl
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsNetwork1626(d []interface{}) edpt.SnmpServerEnableTrapsNetwork1626 {
+func getObjectSnmpServerEnableTrapsNetwork1627(d []interface{}) edpt.SnmpServerEnableTrapsNetwork1627 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsNetwork1626
+	var ret edpt.SnmpServerEnableTrapsNetwork1627
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TrunkPortThreshold = in["trunk_port_threshold"].(int)
@@ -1089,10 +1089,10 @@ func getObjectSnmpServerEnableTrapsNetwork1626(d []interface{}) edpt.SnmpServerE
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsSsl1627(d []interface{}) edpt.SnmpServerEnableTrapsSsl1627 {
+func getObjectSnmpServerEnableTrapsSsl1628(d []interface{}) edpt.SnmpServerEnableTrapsSsl1628 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsSsl1627
+	var ret edpt.SnmpServerEnableTrapsSsl1628
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ServerCertificateError = in["server_certificate_error"].(int)
@@ -1105,7 +1105,7 @@ func dataToEndpointSnmpServerEnable(d *schema.ResourceData) edpt.SnmpServerEnabl
 	var ret edpt.SnmpServerEnable
 	ret.Inst.SchemaAgent = d.Get("schema_agent").(int)
 	ret.Inst.Service = d.Get("service").(int)
-	ret.Inst.Traps = getObjectSnmpServerEnableTraps1606(d.Get("traps").([]interface{}))
+	ret.Inst.Traps = getObjectSnmpServerEnableTraps1607(d.Get("traps").([]interface{}))
 	//omit uuid
 	return ret
 }

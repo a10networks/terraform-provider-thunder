@@ -356,10 +356,10 @@ func resourceDdosZoneProfileRead(ctx context.Context, d *schema.ResourceData, me
 	return diags
 }
 
-func getObjectDdosZoneProfileIpProto358(d []interface{}) edpt.DdosZoneProfileIpProto358 {
+func getObjectDdosZoneProfileIpProto354(d []interface{}) edpt.DdosZoneProfileIpProto354 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneProfileIpProto358
+	var ret edpt.DdosZoneProfileIpProto354
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ProtoNumberList = getSliceDdosZoneProfileIpProtoProtoNumberList(in["proto_number_list"].([]interface{}))
@@ -607,7 +607,7 @@ func getObjectDdosZoneProfilePortRangeListIndicatorListZoneThresholdCfg(d []inte
 
 func dataToEndpointDdosZoneProfile(d *schema.ResourceData) edpt.DdosZoneProfile {
 	var ret edpt.DdosZoneProfile
-	ret.Inst.IpProto = getObjectDdosZoneProfileIpProto358(d.Get("ip_proto").([]interface{}))
+	ret.Inst.IpProto = getObjectDdosZoneProfileIpProto354(d.Get("ip_proto").([]interface{}))
 	ret.Inst.PortList = getSliceDdosZoneProfilePortList(d.Get("port_list").([]interface{}))
 	ret.Inst.PortRangeList = getSliceDdosZoneProfilePortRangeList(d.Get("port_range_list").([]interface{}))
 	ret.Inst.ProfileName = d.Get("profile_name").(string)

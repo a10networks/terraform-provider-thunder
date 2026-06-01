@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type OverlayTunnelVtepRemoteIpAddressGreKeepalive struct {
 	Inst struct {
 		RetryCount int `json:"retry-count"`
@@ -14,9 +14,9 @@ type OverlayTunnelVtepRemoteIpAddressGreKeepalive struct {
 
 		Uuid string `json:"uuid"`
 
-		Id1 string
-
 		IpAddress string
+
+		Id1 string
 	} `json:"gre-keepalive"`
 }
 

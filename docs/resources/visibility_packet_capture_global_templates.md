@@ -349,6 +349,7 @@ Optional:
 - `cgnv6_lsn_alg_pptp` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_list--trigger_sys_obj_stats_change--cgnv6_lsn_alg_pptp))
 - `cgnv6_lsn_alg_rtsp` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_list--trigger_sys_obj_stats_change--cgnv6_lsn_alg_rtsp))
 - `cgnv6_lsn_alg_sip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_list--trigger_sys_obj_stats_change--cgnv6_lsn_alg_sip))
+- `cgnv6_lsn_radius` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_list--trigger_sys_obj_stats_change--cgnv6_lsn_radius))
 - `cgnv6_nat64_global` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_list--trigger_sys_obj_stats_change--cgnv6_nat64_global))
 - `cgnv6_pcp` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_list--trigger_sys_obj_stats_change--cgnv6_pcp))
 - `fw_alg_pptp` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_list--trigger_sys_obj_stats_change--fw_alg_pptp))
@@ -357,6 +358,7 @@ Optional:
 - `fw_global` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_list--trigger_sys_obj_stats_change--fw_global))
 - `fw_gtp` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_list--trigger_sys_obj_stats_change--fw_gtp))
 - `fw_logging` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_list--trigger_sys_obj_stats_change--fw_logging))
+- `fw_rad_server` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_list--trigger_sys_obj_stats_change--fw_rad_server))
 - `fw_tcp_syn_cookie` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_list--trigger_sys_obj_stats_change--fw_tcp_syn_cookie))
 - `ip_anomaly_drop` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_list--trigger_sys_obj_stats_change--ip_anomaly_drop))
 - `logging_local_log_global` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_list--trigger_sys_obj_stats_change--logging_local_log_global))
@@ -875,13 +877,10 @@ Optional:
 - `ip_port_block_alloc_failure` (Number) Enable automatic packet-capture for Port block alloc failure
 - `l3_entry_add_to_bgp_failure` (Number) Enable automatic packet-capture for L3 Entry BGP add failures
 - `l3_entry_add_to_hw_failure` (Number) Enable automatic packet-capture for L3 entry HW add failure
-- `l3_entry_del_to_hw_failure` (Number) Enable automatic packet-capture for L3 entry HW del failure
 - `l3_entry_drop_max_hw_exceeded` (Number) Enable automatic packet-capture for L3 Entry Drop due to HW Limit Exceeded
 - `l3_entry_match_drop` (Number) Enable automatic packet-capture for L3 Entry match drop
 - `l3_entry_match_drop_hw` (Number) Enable automatic packet-capture for L3 HW entry match drop
 - `l3_entry_remove_from_bgp_failure` (Number) Enable automatic packet-capture for L3 entry BGP remove failures
-- `l4_entry_add_to_hw_failure` (Number) Enable automatic packet-capture for L4 entry HW add failure
-- `l4_entry_del_to_hw_failure` (Number) Enable automatic packet-capture for L4 entry HW del failure
 - `l4_entry_drop_max_hw_exceeded` (Number) Enable automatic packet-capture for L4 Entry Drop due to HW Limit Exceeded
 - `l4_entry_list_alloc_failure` (Number) Enable automatic packet-capture for L4 Entry list alloc failures
 - `l4_entry_match_drop` (Number) Enable automatic packet-capture for L4 Entry match drop
@@ -901,13 +900,10 @@ Optional:
 - `ip_port_block_alloc_failure` (Number) Enable automatic packet-capture for Port block alloc failure
 - `l3_entry_add_to_bgp_failure` (Number) Enable automatic packet-capture for L3 Entry BGP add failures
 - `l3_entry_add_to_hw_failure` (Number) Enable automatic packet-capture for L3 entry HW add failure
-- `l3_entry_del_to_hw_failure` (Number) Enable automatic packet-capture for L3 entry HW del failure
 - `l3_entry_drop_max_hw_exceeded` (Number) Enable automatic packet-capture for L3 Entry Drop due to HW Limit Exceeded
 - `l3_entry_match_drop` (Number) Enable automatic packet-capture for L3 Entry match drop
 - `l3_entry_match_drop_hw` (Number) Enable automatic packet-capture for L3 HW entry match drop
 - `l3_entry_remove_from_bgp_failure` (Number) Enable automatic packet-capture for L3 entry BGP remove failures
-- `l4_entry_add_to_hw_failure` (Number) Enable automatic packet-capture for L4 entry HW add failure
-- `l4_entry_del_to_hw_failure` (Number) Enable automatic packet-capture for L4 entry HW del failure
 - `l4_entry_drop_max_hw_exceeded` (Number) Enable automatic packet-capture for L4 Entry Drop due to HW Limit Exceeded
 - `l4_entry_list_alloc_failure` (Number) Enable automatic packet-capture for L4 Entry list alloc failures
 - `l4_entry_match_drop` (Number) Enable automatic packet-capture for L4 Entry match drop
@@ -1156,6 +1152,7 @@ Optional:
 - `session_user_quota_exceeded` (Number) Enable automatic packet-capture for Sessions User Quota Exceeded
 - `sixrd_drop` (Number) Enable automatic packet-capture for Fixed NAT IPv6 in IPv4 Packet Drop
 - `standby_drop` (Number) Enable automatic packet-capture for Fixed NAT LID Standby Drop
+- `unused_ip_drop` (Number) Enable automatic packet-capture for Fixed NAT UNUSED IP Hit and Drop
 - `uuid` (String) uuid of the object
 
 
@@ -1186,6 +1183,7 @@ Optional:
 - `sixrd_drop` (Number) Enable automatic packet-capture for Fixed NAT IPv6 in IPv4 Packet Drop
 - `standby_drop` (Number) Enable automatic packet-capture for Fixed NAT LID Standby Drop
 - `threshold_exceeded_by` (Number) Set the threshold to the number of times greater than the previous duration to start the capture, default is 5
+- `unused_ip_drop` (Number) Enable automatic packet-capture for Fixed NAT UNUSED IP Hit and Drop
 - `uuid` (String) uuid of the object
 
 
@@ -1612,6 +1610,52 @@ Optional:
 
 
 
+<a id="nestedblock--template_list--trigger_sys_obj_stats_change--cgnv6_lsn_radius"></a>
+### Nested Schema for `template_list.trigger_sys_obj_stats_change.cgnv6_lsn_radius`
+
+Optional:
+
+- `trigger_stats_inc` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_list--trigger_sys_obj_stats_change--cgnv6_lsn_radius--trigger_stats_inc))
+- `trigger_stats_rate` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_list--trigger_sys_obj_stats_change--cgnv6_lsn_radius--trigger_stats_rate))
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--template_list--trigger_sys_obj_stats_change--cgnv6_lsn_radius--trigger_stats_inc"></a>
+### Nested Schema for `template_list.trigger_sys_obj_stats_change.cgnv6_lsn_radius.trigger_stats_inc`
+
+Optional:
+
+- `ha_standby_dropped` (Number) Enable automatic packet-capture for HA Standby Dropped
+- `invalid_key` (Number) Enable automatic packet-capture for Radius Request has Invalid Key Field
+- `radius_request_dropped` (Number) Enable automatic packet-capture for RADIUS Request Dropped (Malformed Packet)
+- `radius_table_full` (Number) Enable automatic packet-capture for RADIUS Request Dropped (Table Full)
+- `request_bad_secret_dropped` (Number) Enable automatic packet-capture for RADIUS Request Bad Secret Dropped
+- `request_ignored` (Number) Enable automatic packet-capture for RADIUS Request Ignored
+- `request_malformed_dropped` (Number) Enable automatic packet-capture for RADIUS Request Malformed Dropped
+- `request_no_key_vap_dropped` (Number) Enable automatic packet-capture for RADIUS Request No Key Attribute Dropped
+- `secret_not_configured_dropped` (Number) Enable automatic packet-capture for RADIUS Secret Not Configured Dropped
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--template_list--trigger_sys_obj_stats_change--cgnv6_lsn_radius--trigger_stats_rate"></a>
+### Nested Schema for `template_list.trigger_sys_obj_stats_change.cgnv6_lsn_radius.trigger_stats_rate`
+
+Optional:
+
+- `duration` (Number) Time in seconds to look for the anomaly, default is 60
+- `ha_standby_dropped` (Number) Enable automatic packet-capture for HA Standby Dropped
+- `invalid_key` (Number) Enable automatic packet-capture for Radius Request has Invalid Key Field
+- `radius_request_dropped` (Number) Enable automatic packet-capture for RADIUS Request Dropped (Malformed Packet)
+- `radius_table_full` (Number) Enable automatic packet-capture for RADIUS Request Dropped (Table Full)
+- `request_bad_secret_dropped` (Number) Enable automatic packet-capture for RADIUS Request Bad Secret Dropped
+- `request_ignored` (Number) Enable automatic packet-capture for RADIUS Request Ignored
+- `request_malformed_dropped` (Number) Enable automatic packet-capture for RADIUS Request Malformed Dropped
+- `request_no_key_vap_dropped` (Number) Enable automatic packet-capture for RADIUS Request No Key Attribute Dropped
+- `secret_not_configured_dropped` (Number) Enable automatic packet-capture for RADIUS Secret Not Configured Dropped
+- `threshold_exceeded_by` (Number) Set the threshold to the number of times greater than the previous duration to start the capture, default is 5
+- `uuid` (String) uuid of the object
+
+
+
 <a id="nestedblock--template_list--trigger_sys_obj_stats_change--cgnv6_nat64_global"></a>
 ### Nested Schema for `template_list.trigger_sys_obj_stats_change.cgnv6_nat64_global`
 
@@ -1979,6 +2023,52 @@ Optional:
 - `http_logging_invalid_format` (Number) Enable automatic packet-capture for HTTP Logging Invalid Format Error
 - `log_dropped` (Number) Enable automatic packet-capture for Log Packets Dropped
 - `session_limit_exceeded` (Number) Enable automatic packet-capture for Session Limit Exceeded
+- `threshold_exceeded_by` (Number) Set the threshold to the number of times greater than the previous duration to start the capture, default is 5
+- `uuid` (String) uuid of the object
+
+
+
+<a id="nestedblock--template_list--trigger_sys_obj_stats_change--fw_rad_server"></a>
+### Nested Schema for `template_list.trigger_sys_obj_stats_change.fw_rad_server`
+
+Optional:
+
+- `trigger_stats_inc` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_list--trigger_sys_obj_stats_change--fw_rad_server--trigger_stats_inc))
+- `trigger_stats_rate` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_list--trigger_sys_obj_stats_change--fw_rad_server--trigger_stats_rate))
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--template_list--trigger_sys_obj_stats_change--fw_rad_server--trigger_stats_inc"></a>
+### Nested Schema for `template_list.trigger_sys_obj_stats_change.fw_rad_server.trigger_stats_inc`
+
+Optional:
+
+- `ha_standby_dropped` (Number) Enable automatic packet-capture for HA Standby Dropped
+- `invalid_key` (Number) Enable automatic packet-capture for Radius Request has Invalid Key Field
+- `ipv6_prefix_length_mismatch` (Number) Enable automatic packet-capture for Framed IPV6 Prefix Length Mismatch
+- `radius_request_dropped` (Number) Enable automatic packet-capture for RADIUS Request Dropped (Malformed Packet)
+- `radius_table_full` (Number) Enable automatic packet-capture for RADIUS Request Dropped (Table Full)
+- `request_bad_secret_dropped` (Number) Enable automatic packet-capture for RADIUS Request Bad Secret Dropped
+- `request_ignored` (Number) Enable automatic packet-capture for RADIUS Request Table Full Dropped
+- `request_malformed_dropped` (Number) Enable automatic packet-capture for RADIUS Request Malformed Dropped
+- `request_no_key_vap_dropped` (Number) Enable automatic packet-capture for RADIUS Request No Key Attribute Dropped
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--template_list--trigger_sys_obj_stats_change--fw_rad_server--trigger_stats_rate"></a>
+### Nested Schema for `template_list.trigger_sys_obj_stats_change.fw_rad_server.trigger_stats_rate`
+
+Optional:
+
+- `duration` (Number) Time in seconds to look for the anomaly, default is 60
+- `ha_standby_dropped` (Number) Enable automatic packet-capture for HA Standby Dropped
+- `invalid_key` (Number) Enable automatic packet-capture for Radius Request has Invalid Key Field
+- `ipv6_prefix_length_mismatch` (Number) Enable automatic packet-capture for Framed IPV6 Prefix Length Mismatch
+- `radius_request_dropped` (Number) Enable automatic packet-capture for RADIUS Request Dropped (Malformed Packet)
+- `radius_table_full` (Number) Enable automatic packet-capture for RADIUS Request Dropped (Table Full)
+- `request_bad_secret_dropped` (Number) Enable automatic packet-capture for RADIUS Request Bad Secret Dropped
+- `request_ignored` (Number) Enable automatic packet-capture for RADIUS Request Table Full Dropped
+- `request_malformed_dropped` (Number) Enable automatic packet-capture for RADIUS Request Malformed Dropped
+- `request_no_key_vap_dropped` (Number) Enable automatic packet-capture for RADIUS Request No Key Attribute Dropped
 - `threshold_exceeded_by` (Number) Set the threshold to the number of times greater than the previous duration to start the capture, default is 5
 - `uuid` (String) uuid of the object
 

@@ -100,10 +100,10 @@ func resourceIpv6UnnumberedRead(ctx context.Context, d *schema.ResourceData, met
 	return diags
 }
 
-func getObjectIpv6UnnumberedUseSourceIpv61127(d []interface{}) edpt.Ipv6UnnumberedUseSourceIpv61127 {
+func getObjectIpv6UnnumberedUseSourceIpv61126(d []interface{}) edpt.Ipv6UnnumberedUseSourceIpv61126 {
 
 	count1 := len(d)
-	var ret edpt.Ipv6UnnumberedUseSourceIpv61127
+	var ret edpt.Ipv6UnnumberedUseSourceIpv61126
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.UpdateSourceIpv6 = in["update_source_ipv6"].(string)
@@ -115,7 +115,7 @@ func getObjectIpv6UnnumberedUseSourceIpv61127(d []interface{}) edpt.Ipv6Unnumber
 func dataToEndpointIpv6Unnumbered(d *schema.ResourceData) edpt.Ipv6Unnumbered {
 	var ret edpt.Ipv6Unnumbered
 	ret.Inst.UseSourceAcl = d.Get("use_source_acl").(string)
-	ret.Inst.UseSourceIpv6 = getObjectIpv6UnnumberedUseSourceIpv61127(d.Get("use_source_ipv6").([]interface{}))
+	ret.Inst.UseSourceIpv6 = getObjectIpv6UnnumberedUseSourceIpv61126(d.Get("use_source_ipv6").([]interface{}))
 	//omit uuid
 	return ret
 }

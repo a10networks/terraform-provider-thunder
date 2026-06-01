@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZonePortZoneServiceLevel struct {
 	Inst struct {
 		ApplyExtractedFilters int `json:"apply-extracted-filters"`
@@ -42,11 +42,11 @@ type DdosDstZonePortZoneServiceLevel struct {
 
 		ZoneViolationActions string `json:"zone-violation-actions"`
 
-		Protocol string
+		ZoneName string
 
 		PortNum string
 
-		ZoneName string
+		Protocol string
 	} `json:"level"`
 }
 

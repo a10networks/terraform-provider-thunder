@@ -6,16 +6,16 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbTemplatePolicy struct {
 	Inst struct {
 		BwListId []SlbTemplatePolicyBwListId `json:"bw-list-id"`
 
 		BwListName string `json:"bw-list-name"`
 
-		ClassList SlbTemplatePolicyClassList1555 `json:"class-list"`
+		ClassList SlbTemplatePolicyClassList1556 `json:"class-list"`
 
-		ForwardPolicy SlbTemplatePolicyForwardPolicy1559 `json:"forward-policy"`
+		ForwardPolicy SlbTemplatePolicyForwardPolicy1560 `json:"forward-policy"`
 
 		FullDomainTree int `json:"full-domain-tree"`
 
@@ -58,16 +58,16 @@ type SlbTemplatePolicyBwListId struct {
 	ActionInterval int    `json:"action-interval" dval:"3"`
 }
 
-type SlbTemplatePolicyClassList1555 struct {
+type SlbTemplatePolicyClassList1556 struct {
 	Name             string                                  `json:"name"`
 	ClientIpL3Dest   int                                     `json:"client-ip-l3-dest"`
 	ClientIpL7Header int                                     `json:"client-ip-l7-header"`
 	HeaderName       string                                  `json:"header-name"`
 	Uuid             string                                  `json:"uuid"`
-	LidList          []SlbTemplatePolicyClassListLidList1556 `json:"lid-list"`
+	LidList          []SlbTemplatePolicyClassListLidList1557 `json:"lid-list"`
 }
 
-type SlbTemplatePolicyClassListLidList1556 struct {
+type SlbTemplatePolicyClassListLidList1557 struct {
 	Lidnum                int                                                          `json:"lidnum"`
 	ConnLimit             int                                                          `json:"conn-limit"`
 	ConnRateLimit         int                                                          `json:"conn-rate-limit"`
@@ -90,50 +90,50 @@ type SlbTemplatePolicyClassListLidList1556 struct {
 	DirectActionValue     string                                                       `json:"direct-action-value"`
 	DirectLoggingDrpRst   int                                                          `json:"direct-logging-drp-rst"`
 	DirectActionInterval  int                                                          `json:"direct-action-interval" dval:"3"`
-	ResponseCodeRateLimit []SlbTemplatePolicyClassListLidListResponseCodeRateLimit1557 `json:"response-code-rate-limit"`
-	Dns64                 SlbTemplatePolicyClassListLidListDns641558                   `json:"dns64"`
+	ResponseCodeRateLimit []SlbTemplatePolicyClassListLidListResponseCodeRateLimit1558 `json:"response-code-rate-limit"`
+	Dns64                 SlbTemplatePolicyClassListLidListDns641559                   `json:"dns64"`
 	Uuid                  string                                                       `json:"uuid"`
 	UserTag               string                                                       `json:"user-tag"`
 }
 
-type SlbTemplatePolicyClassListLidListResponseCodeRateLimit1557 struct {
+type SlbTemplatePolicyClassListLidListResponseCodeRateLimit1558 struct {
 	CodeRangeStart int `json:"code-range-start"`
 	CodeRangeEnd   int `json:"code-range-end"`
 	Threshold      int `json:"threshold"`
 	Period         int `json:"period"`
 }
 
-type SlbTemplatePolicyClassListLidListDns641558 struct {
+type SlbTemplatePolicyClassListLidListDns641559 struct {
 	Disable         int    `json:"disable"`
 	ExclusiveAnswer int    `json:"exclusive-answer"`
 	Prefix          string `json:"prefix"`
 }
 
-type SlbTemplatePolicyForwardPolicy1559 struct {
+type SlbTemplatePolicyForwardPolicy1560 struct {
 	NoClientConnReuse        int                                                     `json:"no-client-conn-reuse"`
 	AcosEventLog             int                                                     `json:"acos-event-log"`
 	LocalLogging             int                                                     `json:"local-logging"`
 	RequireWebCategory       int                                                     `json:"require-web-category"`
 	ForwardHttpConnectToIcap int                                                     `json:"forward-http-connect-to-icap"`
 	ReqmodIcap               string                                                  `json:"reqmod-icap"`
-	Filtering                []SlbTemplatePolicyForwardPolicyFiltering1560           `json:"filtering"`
-	SanFiltering             []SlbTemplatePolicyForwardPolicySanFiltering1561        `json:"san-filtering"`
+	Filtering                []SlbTemplatePolicyForwardPolicyFiltering1561           `json:"filtering"`
+	SanFiltering             []SlbTemplatePolicyForwardPolicySanFiltering1562        `json:"san-filtering"`
 	EnableAdvMatch           int                                                     `json:"enable-adv-match"`
 	Uuid                     string                                                  `json:"uuid"`
-	ActionList               []SlbTemplatePolicyForwardPolicyActionList1562          `json:"action-list"`
-	DualStackActionList      []SlbTemplatePolicyForwardPolicyDualStackActionList1564 `json:"dual-stack-action-list"`
-	SourceList               []SlbTemplatePolicyForwardPolicySourceList1566          `json:"source-list"`
+	ActionList               []SlbTemplatePolicyForwardPolicyActionList1563          `json:"action-list"`
+	DualStackActionList      []SlbTemplatePolicyForwardPolicyDualStackActionList1565 `json:"dual-stack-action-list"`
+	SourceList               []SlbTemplatePolicyForwardPolicySourceList1567          `json:"source-list"`
 }
 
-type SlbTemplatePolicyForwardPolicyFiltering1560 struct {
+type SlbTemplatePolicyForwardPolicyFiltering1561 struct {
 	SsliUrlFiltering string `json:"ssli-url-filtering"`
 }
 
-type SlbTemplatePolicyForwardPolicySanFiltering1561 struct {
+type SlbTemplatePolicyForwardPolicySanFiltering1562 struct {
 	SsliUrlFilteringSan string `json:"ssli-url-filtering-san"`
 }
 
-type SlbTemplatePolicyForwardPolicyActionList1562 struct {
+type SlbTemplatePolicyForwardPolicyActionList1563 struct {
 	Name                string                                                       `json:"name"`
 	Action1             string                                                       `json:"action1"`
 	FakeSg              string                                                       `json:"fake-sg"`
@@ -153,14 +153,14 @@ type SlbTemplatePolicyForwardPolicyActionList1562 struct {
 	HttpStatusCode      string                                                       `json:"http-status-code" dval:"302"`
 	Uuid                string                                                       `json:"uuid"`
 	UserTag             string                                                       `json:"user-tag"`
-	SamplingEnable      []SlbTemplatePolicyForwardPolicyActionListSamplingEnable1563 `json:"sampling-enable"`
+	SamplingEnable      []SlbTemplatePolicyForwardPolicyActionListSamplingEnable1564 `json:"sampling-enable"`
 }
 
-type SlbTemplatePolicyForwardPolicyActionListSamplingEnable1563 struct {
+type SlbTemplatePolicyForwardPolicyActionListSamplingEnable1564 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SlbTemplatePolicyForwardPolicyDualStackActionList1564 struct {
+type SlbTemplatePolicyForwardPolicyDualStackActionList1565 struct {
 	Name           string                                                                `json:"name"`
 	Ipv4           string                                                                `json:"ipv4"`
 	Ipv4Snat       string                                                                `json:"ipv4-snat"`
@@ -171,14 +171,14 @@ type SlbTemplatePolicyForwardPolicyDualStackActionList1564 struct {
 	Log            int                                                                   `json:"log"`
 	Uuid           string                                                                `json:"uuid"`
 	UserTag        string                                                                `json:"user-tag"`
-	SamplingEnable []SlbTemplatePolicyForwardPolicyDualStackActionListSamplingEnable1565 `json:"sampling-enable"`
+	SamplingEnable []SlbTemplatePolicyForwardPolicyDualStackActionListSamplingEnable1566 `json:"sampling-enable"`
 }
 
-type SlbTemplatePolicyForwardPolicyDualStackActionListSamplingEnable1565 struct {
+type SlbTemplatePolicyForwardPolicyDualStackActionListSamplingEnable1566 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SlbTemplatePolicyForwardPolicySourceList1566 struct {
+type SlbTemplatePolicyForwardPolicySourceList1567 struct {
 	Name                 string                                                       `json:"name"`
 	MatchClassList       string                                                       `json:"match-class-list"`
 	MatchAny             int                                                          `json:"match-any"`
@@ -186,23 +186,23 @@ type SlbTemplatePolicyForwardPolicySourceList1566 struct {
 	Priority             int                                                          `json:"priority"`
 	Uuid                 string                                                       `json:"uuid"`
 	UserTag              string                                                       `json:"user-tag"`
-	SamplingEnable       []SlbTemplatePolicyForwardPolicySourceListSamplingEnable1567 `json:"sampling-enable"`
-	Destination          SlbTemplatePolicyForwardPolicySourceListDestination1568      `json:"destination"`
+	SamplingEnable       []SlbTemplatePolicyForwardPolicySourceListSamplingEnable1568 `json:"sampling-enable"`
+	Destination          SlbTemplatePolicyForwardPolicySourceListDestination1569      `json:"destination"`
 }
 
-type SlbTemplatePolicyForwardPolicySourceListSamplingEnable1567 struct {
+type SlbTemplatePolicyForwardPolicySourceListSamplingEnable1568 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SlbTemplatePolicyForwardPolicySourceListDestination1568 struct {
-	AdvMatchList           []SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchList1569           `json:"adv-match-list"`
-	ClassListList          []SlbTemplatePolicyForwardPolicySourceListDestinationClassListList1571          `json:"class-list-list"`
-	WebReputationScopeList []SlbTemplatePolicyForwardPolicySourceListDestinationWebReputationScopeList1572 `json:"web-reputation-scope-list"`
-	WebCategoryListList    []SlbTemplatePolicyForwardPolicySourceListDestinationWebCategoryListList1573    `json:"web-category-list-list"`
-	Any                    SlbTemplatePolicyForwardPolicySourceListDestinationAny1574                      `json:"any"`
+type SlbTemplatePolicyForwardPolicySourceListDestination1569 struct {
+	AdvMatchList           []SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchList1570           `json:"adv-match-list"`
+	ClassListList          []SlbTemplatePolicyForwardPolicySourceListDestinationClassListList1572          `json:"class-list-list"`
+	WebReputationScopeList []SlbTemplatePolicyForwardPolicySourceListDestinationWebReputationScopeList1573 `json:"web-reputation-scope-list"`
+	WebCategoryListList    []SlbTemplatePolicyForwardPolicySourceListDestinationWebCategoryListList1574    `json:"web-category-list-list"`
+	Any                    SlbTemplatePolicyForwardPolicySourceListDestinationAny1575                      `json:"any"`
 }
 
-type SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchList1569 struct {
+type SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchList1570 struct {
 	Priority                         int                                                                                 `json:"priority"`
 	MatchHost                        string                                                                              `json:"match-host"`
 	MatchHttpContentEncoding         string                                                                              `json:"match-http-content-encoding"`
@@ -237,14 +237,14 @@ type SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchList1569 struct 
 	DualStackAction                  string                                                                              `json:"dual-stack-action"`
 	Uuid                             string                                                                              `json:"uuid"`
 	UserTag                          string                                                                              `json:"user-tag"`
-	SamplingEnable                   []SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchListSamplingEnable1570 `json:"sampling-enable"`
+	SamplingEnable                   []SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchListSamplingEnable1571 `json:"sampling-enable"`
 }
 
-type SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchListSamplingEnable1570 struct {
+type SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchListSamplingEnable1571 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SlbTemplatePolicyForwardPolicySourceListDestinationClassListList1571 struct {
+type SlbTemplatePolicyForwardPolicySourceListDestinationClassListList1572 struct {
 	DestClassList   string `json:"dest-class-list"`
 	Action          string `json:"action"`
 	DualStackAction string `json:"dual-stack-action"`
@@ -253,7 +253,7 @@ type SlbTemplatePolicyForwardPolicySourceListDestinationClassListList1571 struct
 	Uuid            string `json:"uuid"`
 }
 
-type SlbTemplatePolicyForwardPolicySourceListDestinationWebReputationScopeList1572 struct {
+type SlbTemplatePolicyForwardPolicySourceListDestinationWebReputationScopeList1573 struct {
 	WebReputationScope string `json:"web-reputation-scope"`
 	Action             string `json:"action"`
 	DualStackAction    string `json:"dual-stack-action"`
@@ -262,7 +262,7 @@ type SlbTemplatePolicyForwardPolicySourceListDestinationWebReputationScopeList15
 	Uuid               string `json:"uuid"`
 }
 
-type SlbTemplatePolicyForwardPolicySourceListDestinationWebCategoryListList1573 struct {
+type SlbTemplatePolicyForwardPolicySourceListDestinationWebCategoryListList1574 struct {
 	WebCategoryList string `json:"web-category-list"`
 	Action          string `json:"action"`
 	DualStackAction string `json:"dual-stack-action"`
@@ -271,14 +271,14 @@ type SlbTemplatePolicyForwardPolicySourceListDestinationWebCategoryListList1573 
 	Uuid            string `json:"uuid"`
 }
 
-type SlbTemplatePolicyForwardPolicySourceListDestinationAny1574 struct {
+type SlbTemplatePolicyForwardPolicySourceListDestinationAny1575 struct {
 	Action          string                                                                     `json:"action"`
 	DualStackAction string                                                                     `json:"dual-stack-action"`
 	Uuid            string                                                                     `json:"uuid"`
-	SamplingEnable  []SlbTemplatePolicyForwardPolicySourceListDestinationAnySamplingEnable1575 `json:"sampling-enable"`
+	SamplingEnable  []SlbTemplatePolicyForwardPolicySourceListDestinationAnySamplingEnable1576 `json:"sampling-enable"`
 }
 
-type SlbTemplatePolicyForwardPolicySourceListDestinationAnySamplingEnable1575 struct {
+type SlbTemplatePolicyForwardPolicySourceListDestinationAnySamplingEnable1576 struct {
 	Counters1 string `json:"counters1"`
 }
 

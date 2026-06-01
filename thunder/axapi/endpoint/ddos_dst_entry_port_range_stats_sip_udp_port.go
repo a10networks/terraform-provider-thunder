@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstEntryPortRangeStats8 struct {
 	Inst struct {
 		PortRangeEnd int `json:"port-range-end"`
@@ -201,6 +201,11 @@ type DdosDstEntryPortRangeStats8StatsSipUdpPort struct {
 	Token_authentication_session_created_fail int `json:"token_authentication_session_created_fail"`
 	Snat_fail                                 int `json:"snat_fail"`
 	Exceed_action_drop                        int `json:"exceed_action_drop"`
+	Pattern_filter1_drop                      int `json:"pattern_filter1_drop"`
+	Pattern_filter2_drop                      int `json:"pattern_filter2_drop"`
+	Pattern_filter3_drop                      int `json:"pattern_filter3_drop"`
+	Pattern_filter4_drop                      int `json:"pattern_filter4_drop"`
+	Pattern_filter5_drop                      int `json:"pattern_filter5_drop"`
 }
 
 func (p *DdosDstEntryPortRangeStats8) GetId() string {

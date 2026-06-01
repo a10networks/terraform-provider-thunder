@@ -61,7 +61,6 @@ Required:
 Optional:
 
 - `account` (String) Specify domain account for SPN
-- `encryption_algorithm` (String) 'aes128-cts-hmac-sha1-96': AES-128 CTS mode with 96-bit SHA-1 HMAC; 'aes256-cts-hmac-sha1-96': AES-256 CTS mode with 96-bit SHA-1 HMAC (default);
 - `password` (Number) Specify password of domain account
 - `realm` (String) Specify Kerberos realm
 - `secret_string` (String) Password of AD account

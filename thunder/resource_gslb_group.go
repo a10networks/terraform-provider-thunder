@@ -91,7 +91,7 @@ func resourceGslbGroup() *schema.Resource {
 				Type: schema.TypeString, Optional: true, Description: "Set DNS Suffix (Name)",
 			},
 			"sync_timeout": {
-				Type: schema.TypeInt, Optional: true, Default: 1, Description: "Specify timeout for gslb config sync (Specify timeout, unit:minute,default is 1)",
+				Type: schema.TypeInt, Optional: true, Default: 1, Description: "Specify timeout for gslb group config sync (Specify timeout, unit:minute,default is 1)",
 			},
 			"user_tag": {
 				Type: schema.TypeString, Optional: true, Description: "Customized tag",

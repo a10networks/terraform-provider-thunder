@@ -35,6 +35,18 @@ func resourceSystemCpuLoadSharing() *schema.Resource {
 			"disable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable CPU load sharing in overload situations",
 			},
+			"disallow_new_session_cpu_ewma_alpha": {
+				Type: schema.TypeInt, Optional: true, Default: 18, Description: "EWMA ALPHA value to control how responsive the system disallow new session to CPU usage changes (default: 18)",
+			},
+			"disallow_new_session_cpu_probe_time": {
+				Type: schema.TypeInt, Optional: true, Default: 20, Description: "Probe time when CPU RR is trigged for disallow new session (default: 20)",
+			},
+			"disallow_new_session_cpu_usage_high": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "CPU usage threshold (percentage) that fully disallow new sessions (default: 0, not enabled)",
+			},
+			"disallow_new_session_cpu_usage_low": {
+				Type: schema.TypeInt, Optional: true, Description: "CPU usage threshold (percentage) that fully allow new sessions (default: 1/2 of cpu-usage-high configured)",
+			},
 			"others": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disallow redistribution of new non TCP/UDP IP sessions",
 			},
@@ -150,6 +162,10 @@ func dataToEndpointSystemCpuLoadSharing(d *schema.ResourceData) edpt.SystemCpuLo
 	ret.Inst.AllowL7Sessions = d.Get("allow_l7_sessions").(int)
 	ret.Inst.CpuUsage = getObjectSystemCpuLoadSharingCpuUsage(d.Get("cpu_usage").([]interface{}))
 	ret.Inst.Disable = d.Get("disable").(int)
+	ret.Inst.DisallowNewSessionCpuEwmaAlpha = d.Get("disallow_new_session_cpu_ewma_alpha").(int)
+	ret.Inst.DisallowNewSessionCpuProbeTime = d.Get("disallow_new_session_cpu_probe_time").(int)
+	ret.Inst.DisallowNewSessionCpuUsageHigh = d.Get("disallow_new_session_cpu_usage_high").(int)
+	ret.Inst.DisallowNewSessionCpuUsageLow = d.Get("disallow_new_session_cpu_usage_low").(int)
 	ret.Inst.Others = d.Get("others").(int)
 	ret.Inst.PacketsPerSecond = getObjectSystemCpuLoadSharingPacketsPerSecond(d.Get("packets_per_second").([]interface{}))
 	ret.Inst.Tcp = d.Get("tcp").(int)

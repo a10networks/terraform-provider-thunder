@@ -3,13 +3,13 @@
 page_title: "thunder_ddos_zone_template_tcp_progression_tracking_mitigation_slow_attack Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  thunder_ddos_zone_template_tcp_progression_tracking_mitigation_slow_attack: Configure and enable TCP progression Tracking Mitigation for slow attack (identify slow attacker)
+  thunder_ddos_zone_template_tcp_progression_tracking_mitigation_slow_attack: Configure and enable TCP Progression Tracking Mitigation for Slow Attack
   PLACEHOLDER
 ---
 
 # thunder_ddos_zone_template_tcp_progression_tracking_mitigation_slow_attack (Resource)
 
-`thunder_ddos_zone_template_tcp_progression_tracking_mitigation_slow_attack`: Configure and enable TCP progression Tracking Mitigation for slow attack (identify slow attacker)
+`thunder_ddos_zone_template_tcp_progression_tracking_mitigation_slow_attack`: Configure and enable TCP Progression Tracking Mitigation for Slow Attack
 
 __PLACEHOLDER__
 
@@ -20,6 +20,7 @@ __PLACEHOLDER__
 
 ### Required
 
+- `slow_attack` (String) 'enable-check': Enter Progression Tracking Tracking Slow Attack;
 - `tcp_name` (String) Tcp_name
 
 ### Optional

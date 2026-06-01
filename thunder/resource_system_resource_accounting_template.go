@@ -748,53 +748,53 @@ func resourceSystemResourceAccountingTemplateRead(ctx context.Context, d *schema
 	return diags
 }
 
-func getObjectSystemResourceAccountingTemplateAppResources1701(d []interface{}) edpt.SystemResourceAccountingTemplateAppResources1701 {
+func getObjectSystemResourceAccountingTemplateAppResources1702(d []interface{}) edpt.SystemResourceAccountingTemplateAppResources1702 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResources1701
+	var ret edpt.SystemResourceAccountingTemplateAppResources1702
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.GslbDeviceCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbDeviceCfg1702(in["gslb_device_cfg"].([]interface{}))
-		ret.GslbGeoLocationCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbGeoLocationCfg1703(in["gslb_geo_location_cfg"].([]interface{}))
-		ret.GslbIpListCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbIpListCfg1704(in["gslb_ip_list_cfg"].([]interface{}))
-		ret.GslbPolicyCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbPolicyCfg1705(in["gslb_policy_cfg"].([]interface{}))
-		ret.GslbServiceCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbServiceCfg1706(in["gslb_service_cfg"].([]interface{}))
-		ret.GslbServiceIpCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbServiceIpCfg1707(in["gslb_service_ip_cfg"].([]interface{}))
-		ret.GslbServicePortCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbServicePortCfg1708(in["gslb_service_port_cfg"].([]interface{}))
-		ret.GslbSiteCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbSiteCfg1709(in["gslb_site_cfg"].([]interface{}))
-		ret.GslbSvcGroupCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbSvcGroupCfg1710(in["gslb_svc_group_cfg"].([]interface{}))
-		ret.GslbTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbTemplateCfg1711(in["gslb_template_cfg"].([]interface{}))
-		ret.GslbZoneCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbZoneCfg1712(in["gslb_zone_cfg"].([]interface{}))
-		ret.HealthMonitorCfg = getObjectSystemResourceAccountingTemplateAppResourcesHealthMonitorCfg1713(in["health_monitor_cfg"].([]interface{}))
-		ret.RealPortCfg = getObjectSystemResourceAccountingTemplateAppResourcesRealPortCfg1714(in["real_port_cfg"].([]interface{}))
-		ret.RealServerCfg = getObjectSystemResourceAccountingTemplateAppResourcesRealServerCfg1715(in["real_server_cfg"].([]interface{}))
-		ret.ServiceGroupCfg = getObjectSystemResourceAccountingTemplateAppResourcesServiceGroupCfg1716(in["service_group_cfg"].([]interface{}))
-		ret.VirtualServerCfg = getObjectSystemResourceAccountingTemplateAppResourcesVirtualServerCfg1717(in["virtual_server_cfg"].([]interface{}))
-		ret.VirtualPortCfg = getObjectSystemResourceAccountingTemplateAppResourcesVirtualPortCfg1718(in["virtual_port_cfg"].([]interface{}))
-		ret.CacheTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesCacheTemplateCfg1719(in["cache_template_cfg"].([]interface{}))
-		ret.ClientSslTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesClientSslTemplateCfg1720(in["client_ssl_template_cfg"].([]interface{}))
-		ret.ConnReuseTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesConnReuseTemplateCfg1721(in["conn_reuse_template_cfg"].([]interface{}))
-		ret.FastTcpTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesFastTcpTemplateCfg1722(in["fast_tcp_template_cfg"].([]interface{}))
-		ret.FastUdpTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesFastUdpTemplateCfg1723(in["fast_udp_template_cfg"].([]interface{}))
-		ret.FixTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesFixTemplateCfg1724(in["fix_template_cfg"].([]interface{}))
-		ret.HttpTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesHttpTemplateCfg1725(in["http_template_cfg"].([]interface{}))
-		ret.LinkCostTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesLinkCostTemplateCfg1726(in["link_cost_template_cfg"].([]interface{}))
-		ret.PbslbEntryCfg = getObjectSystemResourceAccountingTemplateAppResourcesPbslbEntryCfg1727(in["pbslb_entry_cfg"].([]interface{}))
-		ret.PersistCookieTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesPersistCookieTemplateCfg1728(in["persist_cookie_template_cfg"].([]interface{}))
-		ret.PersistSrcipTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesPersistSrcipTemplateCfg1729(in["persist_srcip_template_cfg"].([]interface{}))
-		ret.ServerSslTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesServerSslTemplateCfg1730(in["server_ssl_template_cfg"].([]interface{}))
-		ret.ProxyTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesProxyTemplateCfg1731(in["proxy_template_cfg"].([]interface{}))
-		ret.StreamTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesStreamTemplateCfg1732(in["stream_template_cfg"].([]interface{}))
+		ret.GslbDeviceCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbDeviceCfg1703(in["gslb_device_cfg"].([]interface{}))
+		ret.GslbGeoLocationCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbGeoLocationCfg1704(in["gslb_geo_location_cfg"].([]interface{}))
+		ret.GslbIpListCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbIpListCfg1705(in["gslb_ip_list_cfg"].([]interface{}))
+		ret.GslbPolicyCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbPolicyCfg1706(in["gslb_policy_cfg"].([]interface{}))
+		ret.GslbServiceCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbServiceCfg1707(in["gslb_service_cfg"].([]interface{}))
+		ret.GslbServiceIpCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbServiceIpCfg1708(in["gslb_service_ip_cfg"].([]interface{}))
+		ret.GslbServicePortCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbServicePortCfg1709(in["gslb_service_port_cfg"].([]interface{}))
+		ret.GslbSiteCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbSiteCfg1710(in["gslb_site_cfg"].([]interface{}))
+		ret.GslbSvcGroupCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbSvcGroupCfg1711(in["gslb_svc_group_cfg"].([]interface{}))
+		ret.GslbTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbTemplateCfg1712(in["gslb_template_cfg"].([]interface{}))
+		ret.GslbZoneCfg = getObjectSystemResourceAccountingTemplateAppResourcesGslbZoneCfg1713(in["gslb_zone_cfg"].([]interface{}))
+		ret.HealthMonitorCfg = getObjectSystemResourceAccountingTemplateAppResourcesHealthMonitorCfg1714(in["health_monitor_cfg"].([]interface{}))
+		ret.RealPortCfg = getObjectSystemResourceAccountingTemplateAppResourcesRealPortCfg1715(in["real_port_cfg"].([]interface{}))
+		ret.RealServerCfg = getObjectSystemResourceAccountingTemplateAppResourcesRealServerCfg1716(in["real_server_cfg"].([]interface{}))
+		ret.ServiceGroupCfg = getObjectSystemResourceAccountingTemplateAppResourcesServiceGroupCfg1717(in["service_group_cfg"].([]interface{}))
+		ret.VirtualServerCfg = getObjectSystemResourceAccountingTemplateAppResourcesVirtualServerCfg1718(in["virtual_server_cfg"].([]interface{}))
+		ret.VirtualPortCfg = getObjectSystemResourceAccountingTemplateAppResourcesVirtualPortCfg1719(in["virtual_port_cfg"].([]interface{}))
+		ret.CacheTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesCacheTemplateCfg1720(in["cache_template_cfg"].([]interface{}))
+		ret.ClientSslTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesClientSslTemplateCfg1721(in["client_ssl_template_cfg"].([]interface{}))
+		ret.ConnReuseTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesConnReuseTemplateCfg1722(in["conn_reuse_template_cfg"].([]interface{}))
+		ret.FastTcpTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesFastTcpTemplateCfg1723(in["fast_tcp_template_cfg"].([]interface{}))
+		ret.FastUdpTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesFastUdpTemplateCfg1724(in["fast_udp_template_cfg"].([]interface{}))
+		ret.FixTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesFixTemplateCfg1725(in["fix_template_cfg"].([]interface{}))
+		ret.HttpTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesHttpTemplateCfg1726(in["http_template_cfg"].([]interface{}))
+		ret.LinkCostTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesLinkCostTemplateCfg1727(in["link_cost_template_cfg"].([]interface{}))
+		ret.PbslbEntryCfg = getObjectSystemResourceAccountingTemplateAppResourcesPbslbEntryCfg1728(in["pbslb_entry_cfg"].([]interface{}))
+		ret.PersistCookieTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesPersistCookieTemplateCfg1729(in["persist_cookie_template_cfg"].([]interface{}))
+		ret.PersistSrcipTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesPersistSrcipTemplateCfg1730(in["persist_srcip_template_cfg"].([]interface{}))
+		ret.ServerSslTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesServerSslTemplateCfg1731(in["server_ssl_template_cfg"].([]interface{}))
+		ret.ProxyTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesProxyTemplateCfg1732(in["proxy_template_cfg"].([]interface{}))
+		ret.StreamTemplateCfg = getObjectSystemResourceAccountingTemplateAppResourcesStreamTemplateCfg1733(in["stream_template_cfg"].([]interface{}))
 		ret.Threshold = in["threshold"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesGslbDeviceCfg1702(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbDeviceCfg1702 {
+func getObjectSystemResourceAccountingTemplateAppResourcesGslbDeviceCfg1703(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbDeviceCfg1703 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbDeviceCfg1702
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbDeviceCfg1703
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GslbDeviceMax = in["gslb_device_max"].(int)
@@ -803,10 +803,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesGslbDeviceCfg1702(d []
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesGslbGeoLocationCfg1703(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbGeoLocationCfg1703 {
+func getObjectSystemResourceAccountingTemplateAppResourcesGslbGeoLocationCfg1704(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbGeoLocationCfg1704 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbGeoLocationCfg1703
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbGeoLocationCfg1704
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GslbGeoLocationMax = in["gslb_geo_location_max"].(int)
@@ -815,10 +815,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesGslbGeoLocationCfg1703
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesGslbIpListCfg1704(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbIpListCfg1704 {
+func getObjectSystemResourceAccountingTemplateAppResourcesGslbIpListCfg1705(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbIpListCfg1705 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbIpListCfg1704
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbIpListCfg1705
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GslbIpListMax = in["gslb_ip_list_max"].(int)
@@ -827,10 +827,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesGslbIpListCfg1704(d []
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesGslbPolicyCfg1705(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbPolicyCfg1705 {
+func getObjectSystemResourceAccountingTemplateAppResourcesGslbPolicyCfg1706(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbPolicyCfg1706 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbPolicyCfg1705
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbPolicyCfg1706
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GslbPolicyMax = in["gslb_policy_max"].(int)
@@ -839,10 +839,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesGslbPolicyCfg1705(d []
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesGslbServiceCfg1706(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbServiceCfg1706 {
+func getObjectSystemResourceAccountingTemplateAppResourcesGslbServiceCfg1707(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbServiceCfg1707 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbServiceCfg1706
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbServiceCfg1707
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GslbServiceMax = in["gslb_service_max"].(int)
@@ -851,10 +851,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesGslbServiceCfg1706(d [
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesGslbServiceIpCfg1707(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbServiceIpCfg1707 {
+func getObjectSystemResourceAccountingTemplateAppResourcesGslbServiceIpCfg1708(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbServiceIpCfg1708 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbServiceIpCfg1707
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbServiceIpCfg1708
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GslbServiceIpMax = in["gslb_service_ip_max"].(int)
@@ -863,10 +863,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesGslbServiceIpCfg1707(d
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesGslbServicePortCfg1708(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbServicePortCfg1708 {
+func getObjectSystemResourceAccountingTemplateAppResourcesGslbServicePortCfg1709(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbServicePortCfg1709 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbServicePortCfg1708
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbServicePortCfg1709
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GslbServicePortMax = in["gslb_service_port_max"].(int)
@@ -875,10 +875,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesGslbServicePortCfg1708
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesGslbSiteCfg1709(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbSiteCfg1709 {
+func getObjectSystemResourceAccountingTemplateAppResourcesGslbSiteCfg1710(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbSiteCfg1710 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbSiteCfg1709
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbSiteCfg1710
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GslbSiteMax = in["gslb_site_max"].(int)
@@ -887,10 +887,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesGslbSiteCfg1709(d []in
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesGslbSvcGroupCfg1710(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbSvcGroupCfg1710 {
+func getObjectSystemResourceAccountingTemplateAppResourcesGslbSvcGroupCfg1711(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbSvcGroupCfg1711 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbSvcGroupCfg1710
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbSvcGroupCfg1711
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GslbSvcGroupMax = in["gslb_svc_group_max"].(int)
@@ -899,10 +899,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesGslbSvcGroupCfg1710(d 
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesGslbTemplateCfg1711(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbTemplateCfg1711 {
+func getObjectSystemResourceAccountingTemplateAppResourcesGslbTemplateCfg1712(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbTemplateCfg1712 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbTemplateCfg1711
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbTemplateCfg1712
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GslbTemplateMax = in["gslb_template_max"].(int)
@@ -911,10 +911,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesGslbTemplateCfg1711(d 
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesGslbZoneCfg1712(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbZoneCfg1712 {
+func getObjectSystemResourceAccountingTemplateAppResourcesGslbZoneCfg1713(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesGslbZoneCfg1713 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbZoneCfg1712
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesGslbZoneCfg1713
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GslbZoneMax = in["gslb_zone_max"].(int)
@@ -923,10 +923,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesGslbZoneCfg1712(d []in
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesHealthMonitorCfg1713(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesHealthMonitorCfg1713 {
+func getObjectSystemResourceAccountingTemplateAppResourcesHealthMonitorCfg1714(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesHealthMonitorCfg1714 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesHealthMonitorCfg1713
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesHealthMonitorCfg1714
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.HealthMonitorMax = in["health_monitor_max"].(int)
@@ -935,10 +935,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesHealthMonitorCfg1713(d
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesRealPortCfg1714(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesRealPortCfg1714 {
+func getObjectSystemResourceAccountingTemplateAppResourcesRealPortCfg1715(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesRealPortCfg1715 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesRealPortCfg1714
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesRealPortCfg1715
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RealPortMax = in["real_port_max"].(int)
@@ -947,10 +947,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesRealPortCfg1714(d []in
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesRealServerCfg1715(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesRealServerCfg1715 {
+func getObjectSystemResourceAccountingTemplateAppResourcesRealServerCfg1716(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesRealServerCfg1716 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesRealServerCfg1715
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesRealServerCfg1716
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RealServerMax = in["real_server_max"].(int)
@@ -959,10 +959,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesRealServerCfg1715(d []
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesServiceGroupCfg1716(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesServiceGroupCfg1716 {
+func getObjectSystemResourceAccountingTemplateAppResourcesServiceGroupCfg1717(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesServiceGroupCfg1717 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesServiceGroupCfg1716
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesServiceGroupCfg1717
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ServiceGroupMax = in["service_group_max"].(int)
@@ -971,10 +971,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesServiceGroupCfg1716(d 
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesVirtualServerCfg1717(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesVirtualServerCfg1717 {
+func getObjectSystemResourceAccountingTemplateAppResourcesVirtualServerCfg1718(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesVirtualServerCfg1718 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesVirtualServerCfg1717
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesVirtualServerCfg1718
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.VirtualServerMax = in["virtual_server_max"].(int)
@@ -983,10 +983,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesVirtualServerCfg1717(d
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesVirtualPortCfg1718(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesVirtualPortCfg1718 {
+func getObjectSystemResourceAccountingTemplateAppResourcesVirtualPortCfg1719(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesVirtualPortCfg1719 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesVirtualPortCfg1718
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesVirtualPortCfg1719
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.VirtualPortMax = in["virtual_port_max"].(int)
@@ -995,10 +995,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesVirtualPortCfg1718(d [
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesCacheTemplateCfg1719(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesCacheTemplateCfg1719 {
+func getObjectSystemResourceAccountingTemplateAppResourcesCacheTemplateCfg1720(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesCacheTemplateCfg1720 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesCacheTemplateCfg1719
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesCacheTemplateCfg1720
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.CacheTemplateMax = in["cache_template_max"].(int)
@@ -1007,10 +1007,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesCacheTemplateCfg1719(d
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesClientSslTemplateCfg1720(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesClientSslTemplateCfg1720 {
+func getObjectSystemResourceAccountingTemplateAppResourcesClientSslTemplateCfg1721(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesClientSslTemplateCfg1721 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesClientSslTemplateCfg1720
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesClientSslTemplateCfg1721
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ClientSslTemplateMax = in["client_ssl_template_max"].(int)
@@ -1019,10 +1019,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesClientSslTemplateCfg17
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesConnReuseTemplateCfg1721(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesConnReuseTemplateCfg1721 {
+func getObjectSystemResourceAccountingTemplateAppResourcesConnReuseTemplateCfg1722(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesConnReuseTemplateCfg1722 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesConnReuseTemplateCfg1721
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesConnReuseTemplateCfg1722
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ConnReuseTemplateMax = in["conn_reuse_template_max"].(int)
@@ -1031,10 +1031,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesConnReuseTemplateCfg17
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesFastTcpTemplateCfg1722(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesFastTcpTemplateCfg1722 {
+func getObjectSystemResourceAccountingTemplateAppResourcesFastTcpTemplateCfg1723(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesFastTcpTemplateCfg1723 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesFastTcpTemplateCfg1722
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesFastTcpTemplateCfg1723
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.FastTcpTemplateMax = in["fast_tcp_template_max"].(int)
@@ -1043,10 +1043,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesFastTcpTemplateCfg1722
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesFastUdpTemplateCfg1723(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesFastUdpTemplateCfg1723 {
+func getObjectSystemResourceAccountingTemplateAppResourcesFastUdpTemplateCfg1724(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesFastUdpTemplateCfg1724 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesFastUdpTemplateCfg1723
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesFastUdpTemplateCfg1724
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.FastUdpTemplateMax = in["fast_udp_template_max"].(int)
@@ -1055,10 +1055,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesFastUdpTemplateCfg1723
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesFixTemplateCfg1724(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesFixTemplateCfg1724 {
+func getObjectSystemResourceAccountingTemplateAppResourcesFixTemplateCfg1725(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesFixTemplateCfg1725 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesFixTemplateCfg1724
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesFixTemplateCfg1725
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.FixTemplateMax = in["fix_template_max"].(int)
@@ -1067,10 +1067,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesFixTemplateCfg1724(d [
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesHttpTemplateCfg1725(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesHttpTemplateCfg1725 {
+func getObjectSystemResourceAccountingTemplateAppResourcesHttpTemplateCfg1726(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesHttpTemplateCfg1726 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesHttpTemplateCfg1725
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesHttpTemplateCfg1726
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.HttpTemplateMax = in["http_template_max"].(int)
@@ -1079,10 +1079,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesHttpTemplateCfg1725(d 
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesLinkCostTemplateCfg1726(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesLinkCostTemplateCfg1726 {
+func getObjectSystemResourceAccountingTemplateAppResourcesLinkCostTemplateCfg1727(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesLinkCostTemplateCfg1727 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesLinkCostTemplateCfg1726
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesLinkCostTemplateCfg1727
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.LinkCostTemplateMax = in["link_cost_template_max"].(int)
@@ -1091,10 +1091,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesLinkCostTemplateCfg172
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesPbslbEntryCfg1727(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesPbslbEntryCfg1727 {
+func getObjectSystemResourceAccountingTemplateAppResourcesPbslbEntryCfg1728(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesPbslbEntryCfg1728 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesPbslbEntryCfg1727
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesPbslbEntryCfg1728
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PbslbEntryMax = in["pbslb_entry_max"].(int)
@@ -1103,10 +1103,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesPbslbEntryCfg1727(d []
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesPersistCookieTemplateCfg1728(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesPersistCookieTemplateCfg1728 {
+func getObjectSystemResourceAccountingTemplateAppResourcesPersistCookieTemplateCfg1729(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesPersistCookieTemplateCfg1729 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesPersistCookieTemplateCfg1728
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesPersistCookieTemplateCfg1729
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PersistCookieTemplateMax = in["persist_cookie_template_max"].(int)
@@ -1115,10 +1115,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesPersistCookieTemplateC
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesPersistSrcipTemplateCfg1729(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesPersistSrcipTemplateCfg1729 {
+func getObjectSystemResourceAccountingTemplateAppResourcesPersistSrcipTemplateCfg1730(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesPersistSrcipTemplateCfg1730 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesPersistSrcipTemplateCfg1729
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesPersistSrcipTemplateCfg1730
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PersistSrcipTemplateMax = in["persist_srcip_template_max"].(int)
@@ -1127,10 +1127,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesPersistSrcipTemplateCf
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesServerSslTemplateCfg1730(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesServerSslTemplateCfg1730 {
+func getObjectSystemResourceAccountingTemplateAppResourcesServerSslTemplateCfg1731(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesServerSslTemplateCfg1731 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesServerSslTemplateCfg1730
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesServerSslTemplateCfg1731
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ServerSslTemplateMax = in["server_ssl_template_max"].(int)
@@ -1139,10 +1139,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesServerSslTemplateCfg17
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesProxyTemplateCfg1731(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesProxyTemplateCfg1731 {
+func getObjectSystemResourceAccountingTemplateAppResourcesProxyTemplateCfg1732(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesProxyTemplateCfg1732 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesProxyTemplateCfg1731
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesProxyTemplateCfg1732
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ProxyTemplateMax = in["proxy_template_max"].(int)
@@ -1151,10 +1151,10 @@ func getObjectSystemResourceAccountingTemplateAppResourcesProxyTemplateCfg1731(d
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateAppResourcesStreamTemplateCfg1732(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesStreamTemplateCfg1732 {
+func getObjectSystemResourceAccountingTemplateAppResourcesStreamTemplateCfg1733(d []interface{}) edpt.SystemResourceAccountingTemplateAppResourcesStreamTemplateCfg1733 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateAppResourcesStreamTemplateCfg1732
+	var ret edpt.SystemResourceAccountingTemplateAppResourcesStreamTemplateCfg1733
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.StreamTemplateMax = in["stream_template_max"].(int)
@@ -1163,31 +1163,31 @@ func getObjectSystemResourceAccountingTemplateAppResourcesStreamTemplateCfg1732(
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateNetworkResources1733(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResources1733 {
+func getObjectSystemResourceAccountingTemplateNetworkResources1734(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResources1734 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateNetworkResources1733
+	var ret edpt.SystemResourceAccountingTemplateNetworkResources1734
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.StaticIpv4RouteCfg = getObjectSystemResourceAccountingTemplateNetworkResourcesStaticIpv4RouteCfg1734(in["static_ipv4_route_cfg"].([]interface{}))
-		ret.StaticIpv6RouteCfg = getObjectSystemResourceAccountingTemplateNetworkResourcesStaticIpv6RouteCfg1735(in["static_ipv6_route_cfg"].([]interface{}))
-		ret.Ipv4AclLineCfg = getObjectSystemResourceAccountingTemplateNetworkResourcesIpv4AclLineCfg1736(in["ipv4_acl_line_cfg"].([]interface{}))
-		ret.Ipv6AclLineCfg = getObjectSystemResourceAccountingTemplateNetworkResourcesIpv6AclLineCfg1737(in["ipv6_acl_line_cfg"].([]interface{}))
-		ret.StaticArpCfg = getObjectSystemResourceAccountingTemplateNetworkResourcesStaticArpCfg1738(in["static_arp_cfg"].([]interface{}))
-		ret.StaticNeighborCfg = getObjectSystemResourceAccountingTemplateNetworkResourcesStaticNeighborCfg1739(in["static_neighbor_cfg"].([]interface{}))
-		ret.StaticMacCfg = getObjectSystemResourceAccountingTemplateNetworkResourcesStaticMacCfg1740(in["static_mac_cfg"].([]interface{}))
-		ret.ObjectGroupCfg = getObjectSystemResourceAccountingTemplateNetworkResourcesObjectGroupCfg1741(in["object_group_cfg"].([]interface{}))
-		ret.ObjectGroupClauseCfg = getObjectSystemResourceAccountingTemplateNetworkResourcesObjectGroupClauseCfg1742(in["object_group_clause_cfg"].([]interface{}))
+		ret.StaticIpv4RouteCfg = getObjectSystemResourceAccountingTemplateNetworkResourcesStaticIpv4RouteCfg1735(in["static_ipv4_route_cfg"].([]interface{}))
+		ret.StaticIpv6RouteCfg = getObjectSystemResourceAccountingTemplateNetworkResourcesStaticIpv6RouteCfg1736(in["static_ipv6_route_cfg"].([]interface{}))
+		ret.Ipv4AclLineCfg = getObjectSystemResourceAccountingTemplateNetworkResourcesIpv4AclLineCfg1737(in["ipv4_acl_line_cfg"].([]interface{}))
+		ret.Ipv6AclLineCfg = getObjectSystemResourceAccountingTemplateNetworkResourcesIpv6AclLineCfg1738(in["ipv6_acl_line_cfg"].([]interface{}))
+		ret.StaticArpCfg = getObjectSystemResourceAccountingTemplateNetworkResourcesStaticArpCfg1739(in["static_arp_cfg"].([]interface{}))
+		ret.StaticNeighborCfg = getObjectSystemResourceAccountingTemplateNetworkResourcesStaticNeighborCfg1740(in["static_neighbor_cfg"].([]interface{}))
+		ret.StaticMacCfg = getObjectSystemResourceAccountingTemplateNetworkResourcesStaticMacCfg1741(in["static_mac_cfg"].([]interface{}))
+		ret.ObjectGroupCfg = getObjectSystemResourceAccountingTemplateNetworkResourcesObjectGroupCfg1742(in["object_group_cfg"].([]interface{}))
+		ret.ObjectGroupClauseCfg = getObjectSystemResourceAccountingTemplateNetworkResourcesObjectGroupClauseCfg1743(in["object_group_clause_cfg"].([]interface{}))
 		ret.Threshold = in["threshold"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateNetworkResourcesStaticIpv4RouteCfg1734(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResourcesStaticIpv4RouteCfg1734 {
+func getObjectSystemResourceAccountingTemplateNetworkResourcesStaticIpv4RouteCfg1735(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResourcesStaticIpv4RouteCfg1735 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateNetworkResourcesStaticIpv4RouteCfg1734
+	var ret edpt.SystemResourceAccountingTemplateNetworkResourcesStaticIpv4RouteCfg1735
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.StaticIpv4RouteMax = in["static_ipv4_route_max"].(int)
@@ -1196,10 +1196,10 @@ func getObjectSystemResourceAccountingTemplateNetworkResourcesStaticIpv4RouteCfg
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateNetworkResourcesStaticIpv6RouteCfg1735(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResourcesStaticIpv6RouteCfg1735 {
+func getObjectSystemResourceAccountingTemplateNetworkResourcesStaticIpv6RouteCfg1736(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResourcesStaticIpv6RouteCfg1736 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateNetworkResourcesStaticIpv6RouteCfg1735
+	var ret edpt.SystemResourceAccountingTemplateNetworkResourcesStaticIpv6RouteCfg1736
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.StaticIpv6RouteMax = in["static_ipv6_route_max"].(int)
@@ -1208,10 +1208,10 @@ func getObjectSystemResourceAccountingTemplateNetworkResourcesStaticIpv6RouteCfg
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateNetworkResourcesIpv4AclLineCfg1736(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResourcesIpv4AclLineCfg1736 {
+func getObjectSystemResourceAccountingTemplateNetworkResourcesIpv4AclLineCfg1737(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResourcesIpv4AclLineCfg1737 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateNetworkResourcesIpv4AclLineCfg1736
+	var ret edpt.SystemResourceAccountingTemplateNetworkResourcesIpv4AclLineCfg1737
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ipv4AclLineMax = in["ipv4_acl_line_max"].(int)
@@ -1220,10 +1220,10 @@ func getObjectSystemResourceAccountingTemplateNetworkResourcesIpv4AclLineCfg1736
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateNetworkResourcesIpv6AclLineCfg1737(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResourcesIpv6AclLineCfg1737 {
+func getObjectSystemResourceAccountingTemplateNetworkResourcesIpv6AclLineCfg1738(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResourcesIpv6AclLineCfg1738 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateNetworkResourcesIpv6AclLineCfg1737
+	var ret edpt.SystemResourceAccountingTemplateNetworkResourcesIpv6AclLineCfg1738
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ipv6AclLineMax = in["ipv6_acl_line_max"].(int)
@@ -1232,10 +1232,10 @@ func getObjectSystemResourceAccountingTemplateNetworkResourcesIpv6AclLineCfg1737
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateNetworkResourcesStaticArpCfg1738(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResourcesStaticArpCfg1738 {
+func getObjectSystemResourceAccountingTemplateNetworkResourcesStaticArpCfg1739(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResourcesStaticArpCfg1739 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateNetworkResourcesStaticArpCfg1738
+	var ret edpt.SystemResourceAccountingTemplateNetworkResourcesStaticArpCfg1739
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.StaticArpMax = in["static_arp_max"].(int)
@@ -1244,10 +1244,10 @@ func getObjectSystemResourceAccountingTemplateNetworkResourcesStaticArpCfg1738(d
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateNetworkResourcesStaticNeighborCfg1739(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResourcesStaticNeighborCfg1739 {
+func getObjectSystemResourceAccountingTemplateNetworkResourcesStaticNeighborCfg1740(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResourcesStaticNeighborCfg1740 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateNetworkResourcesStaticNeighborCfg1739
+	var ret edpt.SystemResourceAccountingTemplateNetworkResourcesStaticNeighborCfg1740
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.StaticNeighborMax = in["static_neighbor_max"].(int)
@@ -1256,10 +1256,10 @@ func getObjectSystemResourceAccountingTemplateNetworkResourcesStaticNeighborCfg1
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateNetworkResourcesStaticMacCfg1740(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResourcesStaticMacCfg1740 {
+func getObjectSystemResourceAccountingTemplateNetworkResourcesStaticMacCfg1741(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResourcesStaticMacCfg1741 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateNetworkResourcesStaticMacCfg1740
+	var ret edpt.SystemResourceAccountingTemplateNetworkResourcesStaticMacCfg1741
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.StaticMacMax = in["static_mac_max"].(int)
@@ -1268,10 +1268,10 @@ func getObjectSystemResourceAccountingTemplateNetworkResourcesStaticMacCfg1740(d
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateNetworkResourcesObjectGroupCfg1741(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResourcesObjectGroupCfg1741 {
+func getObjectSystemResourceAccountingTemplateNetworkResourcesObjectGroupCfg1742(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResourcesObjectGroupCfg1742 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateNetworkResourcesObjectGroupCfg1741
+	var ret edpt.SystemResourceAccountingTemplateNetworkResourcesObjectGroupCfg1742
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ObjectGroupMax = in["object_group_max"].(int)
@@ -1280,10 +1280,10 @@ func getObjectSystemResourceAccountingTemplateNetworkResourcesObjectGroupCfg1741
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateNetworkResourcesObjectGroupClauseCfg1742(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResourcesObjectGroupClauseCfg1742 {
+func getObjectSystemResourceAccountingTemplateNetworkResourcesObjectGroupClauseCfg1743(d []interface{}) edpt.SystemResourceAccountingTemplateNetworkResourcesObjectGroupClauseCfg1743 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateNetworkResourcesObjectGroupClauseCfg1742
+	var ret edpt.SystemResourceAccountingTemplateNetworkResourcesObjectGroupClauseCfg1743
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ObjectGroupClauseMax = in["object_group_clause_max"].(int)
@@ -1292,31 +1292,31 @@ func getObjectSystemResourceAccountingTemplateNetworkResourcesObjectGroupClauseC
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateSystemResources1743(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResources1743 {
+func getObjectSystemResourceAccountingTemplateSystemResources1744(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResources1744 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateSystemResources1743
+	var ret edpt.SystemResourceAccountingTemplateSystemResources1744
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.BwLimitCfg = getObjectSystemResourceAccountingTemplateSystemResourcesBwLimitCfg1744(in["bw_limit_cfg"].([]interface{}))
-		ret.ConcurrentSessionLimitCfg = getObjectSystemResourceAccountingTemplateSystemResourcesConcurrentSessionLimitCfg1745(in["concurrent_session_limit_cfg"].([]interface{}))
-		ret.L4SessionLimitCfg = getObjectSystemResourceAccountingTemplateSystemResourcesL4SessionLimitCfg1746(in["l4_session_limit_cfg"].([]interface{}))
-		ret.L4cpsLimitCfg = getObjectSystemResourceAccountingTemplateSystemResourcesL4cpsLimitCfg1747(in["l4cps_limit_cfg"].([]interface{}))
-		ret.L7cpsLimitCfg = getObjectSystemResourceAccountingTemplateSystemResourcesL7cpsLimitCfg1748(in["l7cps_limit_cfg"].([]interface{}))
-		ret.NatcpsLimitCfg = getObjectSystemResourceAccountingTemplateSystemResourcesNatcpsLimitCfg1749(in["natcps_limit_cfg"].([]interface{}))
-		ret.FwcpsLimitCfg = getObjectSystemResourceAccountingTemplateSystemResourcesFwcpsLimitCfg1750(in["fwcps_limit_cfg"].([]interface{}))
-		ret.SslThroughputLimitCfg = getObjectSystemResourceAccountingTemplateSystemResourcesSslThroughputLimitCfg1751(in["ssl_throughput_limit_cfg"].([]interface{}))
-		ret.SslcpsLimitCfg = getObjectSystemResourceAccountingTemplateSystemResourcesSslcpsLimitCfg1752(in["sslcps_limit_cfg"].([]interface{}))
+		ret.BwLimitCfg = getObjectSystemResourceAccountingTemplateSystemResourcesBwLimitCfg1745(in["bw_limit_cfg"].([]interface{}))
+		ret.ConcurrentSessionLimitCfg = getObjectSystemResourceAccountingTemplateSystemResourcesConcurrentSessionLimitCfg1746(in["concurrent_session_limit_cfg"].([]interface{}))
+		ret.L4SessionLimitCfg = getObjectSystemResourceAccountingTemplateSystemResourcesL4SessionLimitCfg1747(in["l4_session_limit_cfg"].([]interface{}))
+		ret.L4cpsLimitCfg = getObjectSystemResourceAccountingTemplateSystemResourcesL4cpsLimitCfg1748(in["l4cps_limit_cfg"].([]interface{}))
+		ret.L7cpsLimitCfg = getObjectSystemResourceAccountingTemplateSystemResourcesL7cpsLimitCfg1749(in["l7cps_limit_cfg"].([]interface{}))
+		ret.NatcpsLimitCfg = getObjectSystemResourceAccountingTemplateSystemResourcesNatcpsLimitCfg1750(in["natcps_limit_cfg"].([]interface{}))
+		ret.FwcpsLimitCfg = getObjectSystemResourceAccountingTemplateSystemResourcesFwcpsLimitCfg1751(in["fwcps_limit_cfg"].([]interface{}))
+		ret.SslThroughputLimitCfg = getObjectSystemResourceAccountingTemplateSystemResourcesSslThroughputLimitCfg1752(in["ssl_throughput_limit_cfg"].([]interface{}))
+		ret.SslcpsLimitCfg = getObjectSystemResourceAccountingTemplateSystemResourcesSslcpsLimitCfg1753(in["sslcps_limit_cfg"].([]interface{}))
 		ret.Threshold = in["threshold"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateSystemResourcesBwLimitCfg1744(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResourcesBwLimitCfg1744 {
+func getObjectSystemResourceAccountingTemplateSystemResourcesBwLimitCfg1745(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResourcesBwLimitCfg1745 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateSystemResourcesBwLimitCfg1744
+	var ret edpt.SystemResourceAccountingTemplateSystemResourcesBwLimitCfg1745
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.BwLimitMax = in["bw_limit_max"].(int)
@@ -1325,10 +1325,10 @@ func getObjectSystemResourceAccountingTemplateSystemResourcesBwLimitCfg1744(d []
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateSystemResourcesConcurrentSessionLimitCfg1745(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResourcesConcurrentSessionLimitCfg1745 {
+func getObjectSystemResourceAccountingTemplateSystemResourcesConcurrentSessionLimitCfg1746(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResourcesConcurrentSessionLimitCfg1746 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateSystemResourcesConcurrentSessionLimitCfg1745
+	var ret edpt.SystemResourceAccountingTemplateSystemResourcesConcurrentSessionLimitCfg1746
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ConcurrentSessionLimitMax = in["concurrent_session_limit_max"].(int)
@@ -1336,10 +1336,10 @@ func getObjectSystemResourceAccountingTemplateSystemResourcesConcurrentSessionLi
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateSystemResourcesL4SessionLimitCfg1746(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResourcesL4SessionLimitCfg1746 {
+func getObjectSystemResourceAccountingTemplateSystemResourcesL4SessionLimitCfg1747(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResourcesL4SessionLimitCfg1747 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateSystemResourcesL4SessionLimitCfg1746
+	var ret edpt.SystemResourceAccountingTemplateSystemResourcesL4SessionLimitCfg1747
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.L4SessionLimitMax = in["l4_session_limit_max"].(string)
@@ -1348,10 +1348,10 @@ func getObjectSystemResourceAccountingTemplateSystemResourcesL4SessionLimitCfg17
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateSystemResourcesL4cpsLimitCfg1747(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResourcesL4cpsLimitCfg1747 {
+func getObjectSystemResourceAccountingTemplateSystemResourcesL4cpsLimitCfg1748(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResourcesL4cpsLimitCfg1748 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateSystemResourcesL4cpsLimitCfg1747
+	var ret edpt.SystemResourceAccountingTemplateSystemResourcesL4cpsLimitCfg1748
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.L4cpsLimitMax = in["l4cps_limit_max"].(int)
@@ -1359,10 +1359,10 @@ func getObjectSystemResourceAccountingTemplateSystemResourcesL4cpsLimitCfg1747(d
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateSystemResourcesL7cpsLimitCfg1748(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResourcesL7cpsLimitCfg1748 {
+func getObjectSystemResourceAccountingTemplateSystemResourcesL7cpsLimitCfg1749(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResourcesL7cpsLimitCfg1749 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateSystemResourcesL7cpsLimitCfg1748
+	var ret edpt.SystemResourceAccountingTemplateSystemResourcesL7cpsLimitCfg1749
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.L7cpsLimitMax = in["l7cps_limit_max"].(int)
@@ -1370,10 +1370,10 @@ func getObjectSystemResourceAccountingTemplateSystemResourcesL7cpsLimitCfg1748(d
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateSystemResourcesNatcpsLimitCfg1749(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResourcesNatcpsLimitCfg1749 {
+func getObjectSystemResourceAccountingTemplateSystemResourcesNatcpsLimitCfg1750(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResourcesNatcpsLimitCfg1750 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateSystemResourcesNatcpsLimitCfg1749
+	var ret edpt.SystemResourceAccountingTemplateSystemResourcesNatcpsLimitCfg1750
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.NatcpsLimitMax = in["natcps_limit_max"].(int)
@@ -1381,10 +1381,10 @@ func getObjectSystemResourceAccountingTemplateSystemResourcesNatcpsLimitCfg1749(
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateSystemResourcesFwcpsLimitCfg1750(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResourcesFwcpsLimitCfg1750 {
+func getObjectSystemResourceAccountingTemplateSystemResourcesFwcpsLimitCfg1751(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResourcesFwcpsLimitCfg1751 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateSystemResourcesFwcpsLimitCfg1750
+	var ret edpt.SystemResourceAccountingTemplateSystemResourcesFwcpsLimitCfg1751
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.FwcpsLimitMax = in["fwcps_limit_max"].(int)
@@ -1392,10 +1392,10 @@ func getObjectSystemResourceAccountingTemplateSystemResourcesFwcpsLimitCfg1750(d
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateSystemResourcesSslThroughputLimitCfg1751(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResourcesSslThroughputLimitCfg1751 {
+func getObjectSystemResourceAccountingTemplateSystemResourcesSslThroughputLimitCfg1752(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResourcesSslThroughputLimitCfg1752 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateSystemResourcesSslThroughputLimitCfg1751
+	var ret edpt.SystemResourceAccountingTemplateSystemResourcesSslThroughputLimitCfg1752
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SslThroughputLimitMax = in["ssl_throughput_limit_max"].(int)
@@ -1404,10 +1404,10 @@ func getObjectSystemResourceAccountingTemplateSystemResourcesSslThroughputLimitC
 	return ret
 }
 
-func getObjectSystemResourceAccountingTemplateSystemResourcesSslcpsLimitCfg1752(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResourcesSslcpsLimitCfg1752 {
+func getObjectSystemResourceAccountingTemplateSystemResourcesSslcpsLimitCfg1753(d []interface{}) edpt.SystemResourceAccountingTemplateSystemResourcesSslcpsLimitCfg1753 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceAccountingTemplateSystemResourcesSslcpsLimitCfg1752
+	var ret edpt.SystemResourceAccountingTemplateSystemResourcesSslcpsLimitCfg1753
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SslcpsLimitMax = in["sslcps_limit_max"].(int)
@@ -1417,10 +1417,10 @@ func getObjectSystemResourceAccountingTemplateSystemResourcesSslcpsLimitCfg1752(
 
 func dataToEndpointSystemResourceAccountingTemplate(d *schema.ResourceData) edpt.SystemResourceAccountingTemplate {
 	var ret edpt.SystemResourceAccountingTemplate
-	ret.Inst.AppResources = getObjectSystemResourceAccountingTemplateAppResources1701(d.Get("app_resources").([]interface{}))
+	ret.Inst.AppResources = getObjectSystemResourceAccountingTemplateAppResources1702(d.Get("app_resources").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.NetworkResources = getObjectSystemResourceAccountingTemplateNetworkResources1733(d.Get("network_resources").([]interface{}))
-	ret.Inst.SystemResources = getObjectSystemResourceAccountingTemplateSystemResources1743(d.Get("system_resources").([]interface{}))
+	ret.Inst.NetworkResources = getObjectSystemResourceAccountingTemplateNetworkResources1734(d.Get("network_resources").([]interface{}))
+	ret.Inst.SystemResources = getObjectSystemResourceAccountingTemplateSystemResources1744(d.Get("system_resources").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

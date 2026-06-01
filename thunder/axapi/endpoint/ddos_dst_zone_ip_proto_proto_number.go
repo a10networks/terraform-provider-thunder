@@ -6,12 +6,14 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZoneIpProtoProtoNumber struct {
 	Inst struct {
 		Age int `json:"age" dval:"5"`
 
 		ApplyPolicyOnOverflow int `json:"apply-policy-on-overflow"`
+
+		DefaultActionList string `json:"default-action-list"`
 
 		Deny int `json:"deny"`
 
@@ -35,9 +37,11 @@ type DdosDstZoneIpProtoProtoNumber struct {
 
 		IpFilteringPolicy string `json:"ip-filtering-policy"`
 
-		IpFilteringPolicyStatistics DdosDstZoneIpProtoProtoNumberIpFilteringPolicyStatistics222 `json:"ip-filtering-policy-statistics"`
+		IpFilteringPolicyStatistics DdosDstZoneIpProtoProtoNumberIpFilteringPolicyStatistics225 `json:"ip-filtering-policy-statistics"`
 
 		LevelList []DdosDstZoneIpProtoProtoNumberLevelList `json:"level-list"`
+
+		LogSrcDefaultEnable int `json:"log-src-default-enable"`
 
 		ManualModeEnable int `json:"manual-mode-enable"`
 
@@ -45,9 +49,9 @@ type DdosDstZoneIpProtoProtoNumber struct {
 
 		MaxDynamicEntryCount int `json:"max-dynamic-entry-count"`
 
-		PortInd DdosDstZoneIpProtoProtoNumberPortInd223 `json:"port-ind"`
+		PortInd DdosDstZoneIpProtoProtoNumberPortInd226 `json:"port-ind"`
 
-		ProgressionTracking DdosDstZoneIpProtoProtoNumberProgressionTracking225 `json:"progression-tracking"`
+		ProgressionTracking DdosDstZoneIpProtoProtoNumberProgressionTracking228 `json:"progression-tracking"`
 
 		ProtocolNum int `json:"protocol-num"`
 
@@ -57,7 +61,7 @@ type DdosDstZoneIpProtoProtoNumber struct {
 
 		SrcBasedPolicyList []DdosDstZoneIpProtoProtoNumberSrcBasedPolicyList `json:"src-based-policy-list"`
 
-		TopkDestinations DdosDstZoneIpProtoProtoNumberTopkDestinations226 `json:"topk-destinations"`
+		TopkDestinations DdosDstZoneIpProtoProtoNumberTopkDestinations229 `json:"topk-destinations"`
 
 		TopkDstNumRecords int `json:"topk-dst-num-records" dval:"20"`
 
@@ -67,7 +71,7 @@ type DdosDstZoneIpProtoProtoNumber struct {
 
 		TopkSortKey string `json:"topk-sort-key" dval:"avg"`
 
-		TopkSources DdosDstZoneIpProtoProtoNumberTopkSources227 `json:"topk-sources"`
+		TopkSources DdosDstZoneIpProtoProtoNumberTopkSources230 `json:"topk-sources"`
 
 		UnlimitedDynamicEntryCount int `json:"unlimited-dynamic-entry-count"`
 
@@ -103,7 +107,7 @@ type DdosDstZoneIpProtoProtoNumberGlidCfg struct {
 	PerAddrGlid string `json:"per-addr-glid"`
 }
 
-type DdosDstZoneIpProtoProtoNumberIpFilteringPolicyStatistics222 struct {
+type DdosDstZoneIpProtoProtoNumberIpFilteringPolicyStatistics225 struct {
 	Uuid string `json:"uuid"`
 }
 
@@ -156,16 +160,16 @@ type DdosDstZoneIpProtoProtoNumberManualModeListZoneTemplate struct {
 	Encap   string `json:"encap"`
 }
 
-type DdosDstZoneIpProtoProtoNumberPortInd223 struct {
+type DdosDstZoneIpProtoProtoNumberPortInd226 struct {
 	Uuid           string                                                  `json:"uuid"`
-	SamplingEnable []DdosDstZoneIpProtoProtoNumberPortIndSamplingEnable224 `json:"sampling-enable"`
+	SamplingEnable []DdosDstZoneIpProtoProtoNumberPortIndSamplingEnable227 `json:"sampling-enable"`
 }
 
-type DdosDstZoneIpProtoProtoNumberPortIndSamplingEnable224 struct {
+type DdosDstZoneIpProtoProtoNumberPortIndSamplingEnable227 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type DdosDstZoneIpProtoProtoNumberProgressionTracking225 struct {
+type DdosDstZoneIpProtoProtoNumberProgressionTracking228 struct {
 	Uuid string `json:"uuid"`
 }
 
@@ -217,11 +221,11 @@ type DdosDstZoneIpProtoProtoNumberSrcBasedPolicyListPolicyClassListListClassList
 	IpProto string `json:"ip-proto"`
 }
 
-type DdosDstZoneIpProtoProtoNumberTopkDestinations226 struct {
+type DdosDstZoneIpProtoProtoNumberTopkDestinations229 struct {
 	Uuid string `json:"uuid"`
 }
 
-type DdosDstZoneIpProtoProtoNumberTopkSources227 struct {
+type DdosDstZoneIpProtoProtoNumberTopkSources230 struct {
 	Uuid string `json:"uuid"`
 }
 

@@ -6,10 +6,10 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbTemplateDblb struct {
 	Inst struct {
-		CalcSha1 SlbTemplateDblbCalcSha11514 `json:"calc-sha1"`
+		CalcSha1 SlbTemplateDblbCalcSha11515 `json:"calc-sha1"`
 
 		ClassList string `json:"class-list"`
 
@@ -23,7 +23,7 @@ type SlbTemplateDblb struct {
 	} `json:"dblb"`
 }
 
-type SlbTemplateDblbCalcSha11514 struct {
+type SlbTemplateDblbCalcSha11515 struct {
 	Sha1Value string `json:"sha1-value"`
 }
 

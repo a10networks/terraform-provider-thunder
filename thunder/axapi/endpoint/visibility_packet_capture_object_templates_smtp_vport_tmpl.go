@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesSmtpVportTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesSmtpVportTmplTriggerStatsInc2821 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesSmtpVportTmplTriggerStatsInc2839 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesSmtpVportTmplTriggerStatsRate2822 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesSmtpVportTmplTriggerStatsRate2840 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesSmtpVportTmplTriggerStatsSeverity2823 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesSmtpVportTmplTriggerStatsSeverity2841 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,7 +25,7 @@ type VisibilityPacketCaptureObjectTemplatesSmtpVportTmpl struct {
 	} `json:"smtp-vport-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplTriggerStatsInc2821 struct {
+type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplTriggerStatsInc2839 struct {
 	No_proxy                      int    `json:"no_proxy"`
 	Parse_req_fail                int    `json:"parse_req_fail"`
 	Server_select_fail            int    `json:"server_select_fail"`
@@ -48,7 +48,7 @@ type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplTriggerStatsInc2821 stru
 	Uuid                          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplTriggerStatsRate2822 struct {
+type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplTriggerStatsRate2840 struct {
 	ThresholdExceededBy           int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                      int    `json:"duration" dval:"60"`
 	No_proxy                      int    `json:"no_proxy"`
@@ -73,7 +73,7 @@ type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplTriggerStatsRate2822 str
 	Uuid                          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplTriggerStatsSeverity2823 struct {
+type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplTriggerStatsSeverity2841 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

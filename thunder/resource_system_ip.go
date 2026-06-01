@@ -16,17 +16,8 @@ func resourceSystemIp() *schema.Resource {
 		DeleteContext: resourceSystemIpDelete,
 
 		Schema: map[string]*schema.Schema{
-			"icmp_redirect_disable": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable icmp redirect messages",
-			},
-			"icmp_unreachable_disable": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable icmp unreachable messages",
-			},
-			"rpf_check_enable": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable reverse path filter (strict mode)",
-			},
-			"source_route_pkt_drop_enable": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable IPv4 source routed packet drop",
+			"class_e_address_range_enable": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable class E (240.0.0.0/4) configuration",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -98,10 +89,7 @@ func resourceSystemIpRead(ctx context.Context, d *schema.ResourceData, meta inte
 
 func dataToEndpointSystemIp(d *schema.ResourceData) edpt.SystemIp {
 	var ret edpt.SystemIp
-	ret.Inst.IcmpRedirectDisable = d.Get("icmp_redirect_disable").(int)
-	ret.Inst.IcmpUnreachableDisable = d.Get("icmp_unreachable_disable").(int)
-	ret.Inst.RpfCheckEnable = d.Get("rpf_check_enable").(int)
-	ret.Inst.SourceRoutePktDropEnable = d.Get("source_route_pkt_drop_enable").(int)
+	ret.Inst.ClassEAddressRangeEnable = d.Get("class_e_address_range_enable").(int)
 	//omit uuid
 	return ret
 }

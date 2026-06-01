@@ -5,27 +5,27 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDetectionSettingsStandaloneSettings struct {
 	Inst struct {
 		Action string `json:"action" dval:"disable"`
 
-		Netflow DdosDetectionSettingsStandaloneSettingsNetflow147 `json:"netflow"`
+		Netflow DdosDetectionSettingsStandaloneSettingsNetflow148 `json:"netflow"`
 
-		Sflow DdosDetectionSettingsStandaloneSettingsSflow148 `json:"sflow"`
+		Sflow DdosDetectionSettingsStandaloneSettingsSflow149 `json:"sflow"`
 
 		Uuid string `json:"uuid"`
 	} `json:"standalone-settings"`
 }
 
-type DdosDetectionSettingsStandaloneSettingsNetflow147 struct {
+type DdosDetectionSettingsStandaloneSettingsNetflow148 struct {
 	ListeningPort         int    `json:"listening-port" dval:"9996"`
 	TemplateActiveTimeout int    `json:"template-active-timeout" dval:"30"`
 	DistributeByDuration  string `json:"distribute-by-duration" dval:"enable"`
 	Uuid                  string `json:"uuid"`
 }
 
-type DdosDetectionSettingsStandaloneSettingsSflow148 struct {
+type DdosDetectionSettingsStandaloneSettingsSflow149 struct {
 	ListeningPort int    `json:"listening-port" dval:"6343"`
 	Uuid          string `json:"uuid"`
 }

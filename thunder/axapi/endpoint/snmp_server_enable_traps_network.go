@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SnmpServerEnableTrapsNetwork struct {
 	Inst struct {
 		TrunkPortThreshold int `json:"trunk-port-threshold"`

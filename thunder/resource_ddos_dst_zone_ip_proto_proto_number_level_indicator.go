@@ -55,14 +55,14 @@ func resourceDdosDstZoneIpProtoProtoNumberLevelIndicator() *schema.Resource {
 			"zone_violation_actions": {
 				Type: schema.TypeString, Optional: true, Description: "Violation actions to use when this zone indicator threshold reaches",
 			},
-			"level_num": {
-				Type: schema.TypeString, Required: true, Description: "LevelNum",
-			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 			"protocol_num": {
 				Type: schema.TypeString, Required: true, Description: "ProtocolNum",
+			},
+			"level_num": {
+				Type: schema.TypeString, Required: true, Description: "LevelNum",
 			},
 		},
 	}
@@ -144,8 +144,8 @@ func dataToEndpointDdosDstZoneIpProtoProtoNumberLevelIndicator(d *schema.Resourc
 	ret.Inst.ZoneThresholdNum = d.Get("zone_threshold_num").(int)
 	ret.Inst.ZoneThresholdStr = d.Get("zone_threshold_str").(string)
 	ret.Inst.ZoneViolationActions = d.Get("zone_violation_actions").(string)
-	ret.Inst.LevelNum = d.Get("level_num").(string)
 	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	ret.Inst.ProtocolNum = d.Get("protocol_num").(string)
+	ret.Inst.LevelNum = d.Get("level_num").(string)
 	return ret
 }

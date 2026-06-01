@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6ResourceUsage struct {
 	Inst struct {
 		FixedNatInsideUserCount int `json:"fixed-nat-inside-user-count"`
@@ -14,13 +14,15 @@ type Cgnv6ResourceUsage struct {
 
 		LsnNatAddrCount int `json:"lsn-nat-addr-count"`
 
-		StatelessEntries Cgnv6ResourceUsageStatelessEntries112 `json:"stateless-entries"`
+		RadiusTableSize int `json:"radius-table-size"`
+
+		StatelessEntries Cgnv6ResourceUsageStatelessEntries113 `json:"stateless-entries"`
 
 		Uuid string `json:"uuid"`
 	} `json:"resource-usage"`
 }
 
-type Cgnv6ResourceUsageStatelessEntries112 struct {
+type Cgnv6ResourceUsageStatelessEntries113 struct {
 	L4SessionCount int    `json:"l4-session-count"`
 	Uuid           string `json:"uuid"`
 }

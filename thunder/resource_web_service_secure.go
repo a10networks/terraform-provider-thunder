@@ -58,6 +58,9 @@ func resourceWebServiceSecure() *schema.Resource {
 						"use_mgmt_port": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use management port as source port",
 						},
+						"passphrase": {
+							Type: schema.TypeString, Optional: true, Description: "Password Phrase",
+						},
 						"file_url": {
 							Type: schema.TypeString, Optional: true, Description: "File URL",
 						},
@@ -151,10 +154,10 @@ func resourceWebServiceSecureRead(ctx context.Context, d *schema.ResourceData, m
 	return diags
 }
 
-func getObjectWebServiceSecureCertificate3771(d []interface{}) edpt.WebServiceSecureCertificate3771 {
+func getObjectWebServiceSecureCertificate3809(d []interface{}) edpt.WebServiceSecureCertificate3809 {
 
 	count1 := len(d)
-	var ret edpt.WebServiceSecureCertificate3771
+	var ret edpt.WebServiceSecureCertificate3809
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Load = in["load"].(int)
@@ -164,10 +167,10 @@ func getObjectWebServiceSecureCertificate3771(d []interface{}) edpt.WebServiceSe
 	return ret
 }
 
-func getObjectWebServiceSecureGenerate3772(d []interface{}) edpt.WebServiceSecureGenerate3772 {
+func getObjectWebServiceSecureGenerate3810(d []interface{}) edpt.WebServiceSecureGenerate3810 {
 
 	count1 := len(d)
-	var ret edpt.WebServiceSecureGenerate3772
+	var ret edpt.WebServiceSecureGenerate3810
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DomainName = in["domain_name"].(string)
@@ -177,23 +180,24 @@ func getObjectWebServiceSecureGenerate3772(d []interface{}) edpt.WebServiceSecur
 	return ret
 }
 
-func getObjectWebServiceSecurePrivateKey3773(d []interface{}) edpt.WebServiceSecurePrivateKey3773 {
+func getObjectWebServiceSecurePrivateKey3811(d []interface{}) edpt.WebServiceSecurePrivateKey3811 {
 
 	count1 := len(d)
-	var ret edpt.WebServiceSecurePrivateKey3773
+	var ret edpt.WebServiceSecurePrivateKey3811
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Load = in["load"].(int)
 		ret.UseMgmtPort = in["use_mgmt_port"].(int)
+		ret.Passphrase = in["passphrase"].(string)
 		ret.FileUrl = in["file_url"].(string)
 	}
 	return ret
 }
 
-func getObjectWebServiceSecureRegenerate3774(d []interface{}) edpt.WebServiceSecureRegenerate3774 {
+func getObjectWebServiceSecureRegenerate3812(d []interface{}) edpt.WebServiceSecureRegenerate3812 {
 
 	count1 := len(d)
-	var ret edpt.WebServiceSecureRegenerate3774
+	var ret edpt.WebServiceSecureRegenerate3812
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DomainName = in["domain_name"].(string)
@@ -205,10 +209,10 @@ func getObjectWebServiceSecureRegenerate3774(d []interface{}) edpt.WebServiceSec
 
 func dataToEndpointWebServiceSecure(d *schema.ResourceData) edpt.WebServiceSecure {
 	var ret edpt.WebServiceSecure
-	ret.Inst.Certificate = getObjectWebServiceSecureCertificate3771(d.Get("certificate").([]interface{}))
-	ret.Inst.Generate = getObjectWebServiceSecureGenerate3772(d.Get("generate").([]interface{}))
-	ret.Inst.PrivateKey = getObjectWebServiceSecurePrivateKey3773(d.Get("private_key").([]interface{}))
-	ret.Inst.Regenerate = getObjectWebServiceSecureRegenerate3774(d.Get("regenerate").([]interface{}))
+	ret.Inst.Certificate = getObjectWebServiceSecureCertificate3809(d.Get("certificate").([]interface{}))
+	ret.Inst.Generate = getObjectWebServiceSecureGenerate3810(d.Get("generate").([]interface{}))
+	ret.Inst.PrivateKey = getObjectWebServiceSecurePrivateKey3811(d.Get("private_key").([]interface{}))
+	ret.Inst.Regenerate = getObjectWebServiceSecureRegenerate3812(d.Get("regenerate").([]interface{}))
 	ret.Inst.Restart = d.Get("restart").(int)
 	ret.Inst.Wipe = d.Get("wipe").(int)
 	return ret

@@ -123,26 +123,26 @@ func resourceVcsUnicastElectionRead(ctx context.Context, d *schema.ResourceData,
 	return diags
 }
 
-func getObjectVcsUnicastElectionMembers2032(d []interface{}) edpt.VcsUnicastElectionMembers2032 {
+func getObjectVcsUnicastElectionMembers2031(d []interface{}) edpt.VcsUnicastElectionMembers2031 {
 
 	count1 := len(d)
-	var ret edpt.VcsUnicastElectionMembers2032
+	var ret edpt.VcsUnicastElectionMembers2031
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.IpAddressCfg = getSliceVcsUnicastElectionMembersIpAddressCfg2033(in["ip_address_cfg"].([]interface{}))
-		ret.Ipv6AddressCfg = getSliceVcsUnicastElectionMembersIpv6AddressCfg2034(in["ipv6_address_cfg"].([]interface{}))
+		ret.IpAddressCfg = getSliceVcsUnicastElectionMembersIpAddressCfg2032(in["ip_address_cfg"].([]interface{}))
+		ret.Ipv6AddressCfg = getSliceVcsUnicastElectionMembersIpv6AddressCfg2033(in["ipv6_address_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceVcsUnicastElectionMembersIpAddressCfg2033(d []interface{}) []edpt.VcsUnicastElectionMembersIpAddressCfg2033 {
+func getSliceVcsUnicastElectionMembersIpAddressCfg2032(d []interface{}) []edpt.VcsUnicastElectionMembersIpAddressCfg2032 {
 
 	count1 := len(d)
-	ret := make([]edpt.VcsUnicastElectionMembersIpAddressCfg2033, 0, count1)
+	ret := make([]edpt.VcsUnicastElectionMembersIpAddressCfg2032, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VcsUnicastElectionMembersIpAddressCfg2033
+		var oi edpt.VcsUnicastElectionMembersIpAddressCfg2032
 		oi.IpAddress = in["ip_address"].(string)
 		oi.UseMgmtPort = in["use_mgmt_port"].(int)
 		ret = append(ret, oi)
@@ -150,13 +150,13 @@ func getSliceVcsUnicastElectionMembersIpAddressCfg2033(d []interface{}) []edpt.V
 	return ret
 }
 
-func getSliceVcsUnicastElectionMembersIpv6AddressCfg2034(d []interface{}) []edpt.VcsUnicastElectionMembersIpv6AddressCfg2034 {
+func getSliceVcsUnicastElectionMembersIpv6AddressCfg2033(d []interface{}) []edpt.VcsUnicastElectionMembersIpv6AddressCfg2033 {
 
 	count1 := len(d)
-	ret := make([]edpt.VcsUnicastElectionMembersIpv6AddressCfg2034, 0, count1)
+	ret := make([]edpt.VcsUnicastElectionMembersIpv6AddressCfg2033, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VcsUnicastElectionMembersIpv6AddressCfg2034
+		var oi edpt.VcsUnicastElectionMembersIpv6AddressCfg2033
 		oi.Ipv6Address = in["ipv6_address"].(string)
 		oi.UseMgmtPort = in["use_mgmt_port"].(int)
 		ret = append(ret, oi)
@@ -166,7 +166,7 @@ func getSliceVcsUnicastElectionMembersIpv6AddressCfg2034(d []interface{}) []edpt
 
 func dataToEndpointVcsUnicastElection(d *schema.ResourceData) edpt.VcsUnicastElection {
 	var ret edpt.VcsUnicastElection
-	ret.Inst.Members = getObjectVcsUnicastElectionMembers2032(d.Get("members").([]interface{}))
+	ret.Inst.Members = getObjectVcsUnicastElectionMembers2031(d.Get("members").([]interface{}))
 	ret.Inst.Port = d.Get("port").(int)
 	//omit uuid
 	return ret

@@ -9,7 +9,7 @@ import (
 
 func resourceDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttack() *schema.Resource {
 	return &schema.Resource{
-		Description:   "`thunder_ddos_zone_template_tcp_progression_tracking_mitigation_slow_attack`: Configure and enable TCP progression Tracking Mitigation for slow attack (identify slow attacker)\n\n__PLACEHOLDER__",
+		Description:   "`thunder_ddos_zone_template_tcp_progression_tracking_mitigation_slow_attack`: Configure and enable TCP Progression Tracking Mitigation for Slow Attack\n\n__PLACEHOLDER__",
 		CreateContext: resourceDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackCreate,
 		UpdateContext: resourceDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackUpdate,
 		ReadContext:   resourceDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackRead,
@@ -30,6 +30,9 @@ func resourceDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttack() *schem
 			},
 			"response_pkt_rate_max": {
 				Type: schema.TypeInt, Optional: true, Description: "Set the transferred packets per response",
+			},
+			"slow_attack": {
+				Type: schema.TypeString, Required: true, Description: "'enable-check': Enter Progression Tracking Tracking Slow Attack;",
 			},
 			"slow_attacker_identification": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -121,10 +124,10 @@ func resourceDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackRead(ctx 
 	return diags
 }
 
-func getObjectDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification373(d []interface{}) edpt.DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification373 {
+func getObjectDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification369(d []interface{}) edpt.DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification369 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification373
+	var ret edpt.DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification369
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.EnableIdentification = in["enable_identification"].(int)
@@ -142,7 +145,8 @@ func dataToEndpointDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttack(d 
 	ret.Inst.ProgressionTrackingSlowAction = d.Get("progression_tracking_slow_action").(string)
 	ret.Inst.ProgressionTrackingSlowActionListName = d.Get("progression_tracking_slow_action_list_name").(string)
 	ret.Inst.ResponsePktRateMax = d.Get("response_pkt_rate_max").(int)
-	ret.Inst.SlowAttackerIdentification = getObjectDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification373(d.Get("slow_attacker_identification").([]interface{}))
+	ret.Inst.SlowAttack = d.Get("slow_attack").(string)
+	ret.Inst.SlowAttackerIdentification = getObjectDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification369(d.Get("slow_attacker_identification").([]interface{}))
 	//omit uuid
 	ret.Inst.Tcp_name = d.Get("tcp_name").(string)
 	return ret

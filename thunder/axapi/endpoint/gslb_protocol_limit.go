@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type GslbProtocolLimit struct {
 	Inst struct {
 		ArdtQuery int `json:"ardt-query" dval:"200"`
@@ -16,7 +16,7 @@ type GslbProtocolLimit struct {
 
 		ConnResponse int `json:"conn-response"`
 
-		Message int `json:"message" dval:"10000"`
+		Message int `json:"message" dval:"100000"`
 
 		Response int `json:"response" dval:"3600"`
 

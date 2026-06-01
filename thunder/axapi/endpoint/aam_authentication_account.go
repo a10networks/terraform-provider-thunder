@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type AamAuthenticationAccount struct {
 	Inst struct {
 		KerberosSpnList []AamAuthenticationAccountKerberosSpnList `json:"kerberos-spn-list"`
@@ -24,7 +24,6 @@ type AamAuthenticationAccountKerberosSpnList struct {
 	Password             int    `json:"password"`
 	SecretString         string `json:"secret-string"`
 	Encrypted            string `json:"encrypted"`
-	EncryptionAlgorithm  string `json:"encryption-algorithm" dval:"aes256-cts-hmac-sha1-96"`
 	Uuid                 string `json:"uuid"`
 	UserTag              string `json:"user-tag"`
 }

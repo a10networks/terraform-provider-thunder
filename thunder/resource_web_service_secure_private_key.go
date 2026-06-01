@@ -22,6 +22,9 @@ func resourceWebServiceSecurePrivateKey() *schema.Resource {
 			"load": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Load WEB private-key",
 			},
+			"passphrase": {
+				Type: schema.TypeString, Optional: true, Description: "Password Phrase",
+			},
 			"use_mgmt_port": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use management port as source port",
 			},
@@ -94,6 +97,7 @@ func dataToEndpointWebServiceSecurePrivateKey(d *schema.ResourceData) edpt.WebSe
 	var ret edpt.WebServiceSecurePrivateKey
 	ret.Inst.FileUrl = d.Get("file_url").(string)
 	ret.Inst.Load = d.Get("load").(int)
+	ret.Inst.Passphrase = d.Get("passphrase").(string)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)
 	return ret
 }

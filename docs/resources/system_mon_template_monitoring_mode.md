@@ -20,7 +20,7 @@ __PLACEHOLDER__
 
 ### Optional
 
-- `mmode` (String) 'interdependent': INTERDEPENDENT monitoring behaviour; 'and': AND monitoring behaviour, Default;
+- `mmode` (String) 'interdependent': INTERDEPENDENT monitoring behaviour, Default; 'and': AND monitoring behaviour;
 - `uuid` (String) uuid of the object
 
 ### Read-Only

@@ -5,16 +5,16 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6OneToOneSharedPoolGroup struct {
 	Inst struct {
-		Members Cgnv6OneToOneSharedPoolGroupMembers111 `json:"members"`
+		Members Cgnv6OneToOneSharedPoolGroupMembers112 `json:"members"`
 
 		Uuid string `json:"uuid"`
 	} `json:"shared-pool-group"`
 }
 
-type Cgnv6OneToOneSharedPoolGroupMembers111 struct {
+type Cgnv6OneToOneSharedPoolGroupMembers112 struct {
 	Uuid string `json:"uuid"`
 }
 

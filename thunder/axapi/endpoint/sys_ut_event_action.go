@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SysUtEventAction struct {
 	Inst struct {
 		Delay int `json:"delay"`
@@ -14,19 +14,19 @@ type SysUtEventAction struct {
 
 		Drop int `json:"drop"`
 
-		IgnoreValidation SysUtEventActionIgnoreValidation1630 `json:"ignore-validation"`
+		IgnoreValidation SysUtEventActionIgnoreValidation1631 `json:"ignore-validation"`
 
-		L1 SysUtEventActionL11631 `json:"l1"`
+		L1 SysUtEventActionL11632 `json:"l1"`
 
-		L2 SysUtEventActionL21634 `json:"l2"`
+		L2 SysUtEventActionL21635 `json:"l2"`
 
-		L3 SysUtEventActionL31636 `json:"l3"`
+		L3 SysUtEventActionL31637 `json:"l3"`
 
-		Tcp SysUtEventActionTcp1638 `json:"tcp"`
+		Tcp SysUtEventActionTcp1639 `json:"tcp"`
 
 		Template string `json:"template"`
 
-		Udp SysUtEventActionUdp1641 `json:"udp"`
+		Udp SysUtEventActionUdp1642 `json:"udp"`
 
 		Uuid string `json:"uuid"`
 
@@ -34,7 +34,7 @@ type SysUtEventAction struct {
 	} `json:"action"`
 }
 
-type SysUtEventActionIgnoreValidation1630 struct {
+type SysUtEventActionIgnoreValidation1631 struct {
 	L1   int    `json:"l1"`
 	L2   int    `json:"l2"`
 	L3   int    `json:"l3"`
@@ -43,35 +43,35 @@ type SysUtEventActionIgnoreValidation1630 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SysUtEventActionL11631 struct {
-	EthList    []SysUtEventActionL1EthList1632    `json:"eth-list"`
-	Trunk_list []SysUtEventActionL1Trunk_list1633 `json:"trunk_list"`
+type SysUtEventActionL11632 struct {
+	EthList    []SysUtEventActionL1EthList1633    `json:"eth-list"`
+	Trunk_list []SysUtEventActionL1Trunk_list1634 `json:"trunk_list"`
 	Length     int                                `json:"length"`
 	Value      int                                `json:"value"`
 	Auto       int                                `json:"auto"`
 	Uuid       string                             `json:"uuid"`
 }
 
-type SysUtEventActionL1EthList1632 struct {
+type SysUtEventActionL1EthList1633 struct {
 	EthernetStart int `json:"ethernet-start"`
 	EthernetEnd   int `json:"ethernet-end"`
 }
 
-type SysUtEventActionL1Trunk_list1633 struct {
+type SysUtEventActionL1Trunk_list1634 struct {
 	TrunkStart int `json:"trunk-start"`
 	TrunkEnd   int `json:"trunk-end"`
 }
 
-type SysUtEventActionL21634 struct {
+type SysUtEventActionL21635 struct {
 	Ethertype int                             `json:"ethertype"`
 	Protocol  string                          `json:"protocol" dval:"ipv4"`
 	Value     int                             `json:"value"`
 	Vlan      int                             `json:"vlan"`
 	Uuid      string                          `json:"uuid"`
-	MacList   []SysUtEventActionL2MacList1635 `json:"mac-list"`
+	MacList   []SysUtEventActionL2MacList1636 `json:"mac-list"`
 }
 
-type SysUtEventActionL2MacList1635 struct {
+type SysUtEventActionL2MacList1636 struct {
 	SrcDst        string `json:"src-dst"`
 	AddressType   string `json:"address-type"`
 	VirtualServer string `json:"virtual-server"`
@@ -83,17 +83,17 @@ type SysUtEventActionL2MacList1635 struct {
 	Uuid          string `json:"uuid"`
 }
 
-type SysUtEventActionL31636 struct {
+type SysUtEventActionL31637 struct {
 	Protocol int                            `json:"protocol"`
 	Type     string                         `json:"type"`
 	Value    int                            `json:"value"`
 	Checksum string                         `json:"checksum" dval:"valid"`
 	Ttl      int                            `json:"ttl"`
 	Uuid     string                         `json:"uuid"`
-	IpList   []SysUtEventActionL3IpList1637 `json:"ip-list"`
+	IpList   []SysUtEventActionL3IpList1638 `json:"ip-list"`
 }
 
-type SysUtEventActionL3IpList1637 struct {
+type SysUtEventActionL3IpList1638 struct {
 	SrcDst        string `json:"src-dst"`
 	Ipv4Address   string `json:"ipv4-address"`
 	Ipv6Address   string `json:"ipv6-address"`
@@ -105,7 +105,7 @@ type SysUtEventActionL3IpList1637 struct {
 	Uuid          string `json:"uuid"`
 }
 
-type SysUtEventActionTcp1638 struct {
+type SysUtEventActionTcp1639 struct {
 	SrcPort       int                            `json:"src-port"`
 	DestPort      int                            `json:"dest-port"`
 	DestPortValue int                            `json:"dest-port-value"`
@@ -116,11 +116,11 @@ type SysUtEventActionTcp1638 struct {
 	Urgent        string                         `json:"urgent" dval:"valid"`
 	Window        string                         `json:"window" dval:"valid"`
 	Uuid          string                         `json:"uuid"`
-	Flags         SysUtEventActionTcpFlags1639   `json:"flags"`
-	Options       SysUtEventActionTcpOptions1640 `json:"options"`
+	Flags         SysUtEventActionTcpFlags1640   `json:"flags"`
+	Options       SysUtEventActionTcpOptions1641 `json:"options"`
 }
 
-type SysUtEventActionTcpFlags1639 struct {
+type SysUtEventActionTcpFlags1640 struct {
 	Syn  int    `json:"syn"`
 	Ack  int    `json:"ack"`
 	Fin  int    `json:"fin"`
@@ -132,7 +132,7 @@ type SysUtEventActionTcpFlags1639 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SysUtEventActionTcpOptions1640 struct {
+type SysUtEventActionTcpOptions1641 struct {
 	Mss             int    `json:"mss"`
 	Wscale          int    `json:"wscale"`
 	SackType        string `json:"sack-type"`
@@ -141,7 +141,7 @@ type SysUtEventActionTcpOptions1640 struct {
 	Uuid            string `json:"uuid"`
 }
 
-type SysUtEventActionUdp1641 struct {
+type SysUtEventActionUdp1642 struct {
 	SrcPort       int    `json:"src-port"`
 	DestPort      int    `json:"dest-port"`
 	DestPortValue int    `json:"dest-port-value"`

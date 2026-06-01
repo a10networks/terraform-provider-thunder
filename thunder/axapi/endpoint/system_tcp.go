@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemTcp struct {
 	Inst struct {
-		RateLimitResetUnknownConn SystemTcpRateLimitResetUnknownConn1754 `json:"rate-limit-reset-unknown-conn"`
+		RateLimitResetUnknownConn SystemTcpRateLimitResetUnknownConn1755 `json:"rate-limit-reset-unknown-conn"`
 
 		SamplingEnable []SystemTcpSamplingEnable `json:"sampling-enable"`
 
@@ -16,7 +16,7 @@ type SystemTcp struct {
 	} `json:"tcp"`
 }
 
-type SystemTcpRateLimitResetUnknownConn1754 struct {
+type SystemTcpRateLimitResetUnknownConn1755 struct {
 	PktRateForResetUnknownConn int    `json:"pkt-rate-for-reset-unknown-conn"`
 	LogForResetUnknownConn     int    `json:"log-for-reset-unknown-conn"`
 	Uuid                       string `json:"uuid"`

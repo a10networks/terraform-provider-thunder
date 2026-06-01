@@ -71,17 +71,17 @@ func resourceDdosDstZonePortRangeSrcBasedPolicyPolicyClassListOper() *schema.Res
 					},
 				},
 			},
-			"port_range_start": {
-				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
+			"src_based_policy_name": {
+				Type: schema.TypeString, Required: true, Description: "SrcBasedPolicyName",
 			},
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
-			"src_based_policy_name": {
-				Type: schema.TypeString, Required: true, Description: "SrcBasedPolicyName",
-			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			},
+			"port_range_start": {
+				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
 			},
 			"port_range_end": {
 				Type: schema.TypeString, Required: true, Description: "PortRangeEnd",
@@ -165,13 +165,13 @@ func dataToEndpointDdosDstZonePortRangeSrcBasedPolicyPolicyClassListOper(d *sche
 
 	ret.Oper = getObjectDdosDstZonePortRangeSrcBasedPolicyPolicyClassListOperOper(d.Get("oper").([]interface{}))
 
-	ret.PortRangeStart = d.Get("port_range_start").(string)
+	ret.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
 
 	ret.Protocol = d.Get("protocol").(string)
 
-	ret.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
-
 	ret.ZoneName = d.Get("zone_name").(string)
+
+	ret.PortRangeStart = d.Get("port_range_start").(string)
 
 	ret.PortRangeEnd = d.Get("port_range_end").(string)
 	return ret

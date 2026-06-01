@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type UpgradeHd struct {
 	Inst struct {
 		Device int `json:"Device"`
@@ -17,6 +17,8 @@ type UpgradeHd struct {
 		ImageFile string `json:"image-file"`
 
 		Local string `json:"local"`
+
+		Password string `json:"password"`
 
 		RebootAfterUpgrade int `json:"reboot-after-upgrade"`
 

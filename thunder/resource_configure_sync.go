@@ -46,9 +46,6 @@ func resourceConfigureSync() *schema.Resource {
 			"usr": {
 				Type: schema.TypeString, Optional: true, Description: "",
 			},
-			"uuid": {
-				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-			},
 		},
 	}
 }
@@ -127,6 +124,5 @@ func dataToEndpointConfigureSync(d *schema.ResourceData) edpt.ConfigureSync {
 	ret.Inst.Timeout = d.Get("timeout").(int)
 	ret.Inst.Type = d.Get("type").(string)
 	ret.Inst.Usr = d.Get("usr").(string)
-	//omit uuid
 	return ret
 }

@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type ScaleoutUserGroupAssignmentTemplate struct {
 	Inst struct {
 		Name string `json:"name"`
@@ -24,18 +24,22 @@ type ScaleoutUserGroupAssignmentTemplate struct {
 type ScaleoutUserGroupAssignmentTemplateV4AssignmentList struct {
 	Ipv4Prefix             string `json:"ipv4-prefix"`
 	AssignmentPrefixLength int    `json:"assignment-prefix-length" dval:"32"`
+	AssignmentPrefixAuto   int    `json:"assignment-prefix-auto"`
 	UserGroupRangeStart    int    `json:"user-group-range-start"`
 	UserGroupRangeEnd      int    `json:"user-group-range-end"`
 	ServiceConfigTemplate  string `json:"service-config-template"`
+	PrivateIp              int    `json:"private-ip"`
 	Uuid                   string `json:"uuid"`
 }
 
 type ScaleoutUserGroupAssignmentTemplateV6AssignmentList struct {
 	Ipv6Prefix             string `json:"ipv6-prefix"`
 	AssignmentPrefixLength int    `json:"assignment-prefix-length" dval:"128"`
+	AssignmentPrefixAuto   int    `json:"assignment-prefix-auto"`
 	UserGroupRangeStart    int    `json:"user-group-range-start"`
 	UserGroupRangeEnd      int    `json:"user-group-range-end"`
 	ServiceConfigTemplate  string `json:"service-config-template"`
+	PrivateIp              int    `json:"private-ip"`
 	Uuid                   string `json:"uuid"`
 }
 

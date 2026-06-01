@@ -6,16 +6,16 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type OverlayTunnelVtepRemoteIpAddressVni struct {
 	Inst struct {
 		Segment int `json:"segment"`
 
 		Uuid string `json:"uuid"`
 
-		Id1 string
-
 		IpAddress string
+
+		Id1 string
 	} `json:"vni"`
 }
 

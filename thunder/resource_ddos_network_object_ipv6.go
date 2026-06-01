@@ -39,6 +39,51 @@ func resourceDdosNetworkObjectIpv6() *schema.Resource {
 					},
 				},
 			},
+			"src_port_list": {
+				Type: schema.TypeList, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"port_num": {
+							Type: schema.TypeInt, Required: true, Description: "Port Number",
+						},
+						"protocol": {
+							Type: schema.TypeString, Required: true, Description: "'udp': UDP port; 'tcp': TCP Port;",
+						},
+						"host_src_port_anomaly_threshold": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"host_src_port_pkt_rate": {
+										Type: schema.TypeInt, Optional: true, Description: "Forward packet rate of per-host source port entries",
+									},
+									"host_src_port_bit_rate": {
+										Type: schema.TypeInt, Optional: true, Description: "Forward bit rate of per-host source port entries",
+									},
+								},
+							},
+						},
+						"subnet_src_port_anomaly_threshold": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"subnet_src_port_pkt_rate": {
+										Type: schema.TypeInt, Optional: true, Description: "Forward packet rate of per-subnet source port entries",
+									},
+									"subnet_src_port_bit_rate": {
+										Type: schema.TypeInt, Optional: true, Description: "Forward bit rate of per-subnet source port entries",
+									},
+								},
+							},
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+						"user_tag": {
+							Type: schema.TypeString, Optional: true, Description: "Customized tag",
+						},
+					},
+				},
+			},
 			"subnet_ipv6_addr": {
 				Type: schema.TypeString, Required: true, Description: "IPV6 Subnet, supported prefix range is from 40 to 64",
 			},
@@ -141,10 +186,53 @@ func getSliceDdosNetworkObjectIpv6SamplingEnable(d []interface{}) []edpt.DdosNet
 	return ret
 }
 
+func getSliceDdosNetworkObjectIpv6SrcPortList(d []interface{}) []edpt.DdosNetworkObjectIpv6SrcPortList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosNetworkObjectIpv6SrcPortList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosNetworkObjectIpv6SrcPortList
+		oi.PortNum = in["port_num"].(int)
+		oi.Protocol = in["protocol"].(string)
+		oi.HostSrcPortAnomalyThreshold = getObjectDdosNetworkObjectIpv6SrcPortListHostSrcPortAnomalyThreshold(in["host_src_port_anomaly_threshold"].([]interface{}))
+		oi.SubnetSrcPortAnomalyThreshold = getObjectDdosNetworkObjectIpv6SrcPortListSubnetSrcPortAnomalyThreshold(in["subnet_src_port_anomaly_threshold"].([]interface{}))
+		//omit uuid
+		oi.UserTag = in["user_tag"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectDdosNetworkObjectIpv6SrcPortListHostSrcPortAnomalyThreshold(d []interface{}) edpt.DdosNetworkObjectIpv6SrcPortListHostSrcPortAnomalyThreshold {
+
+	count1 := len(d)
+	var ret edpt.DdosNetworkObjectIpv6SrcPortListHostSrcPortAnomalyThreshold
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.HostSrcPortPktRate = in["host_src_port_pkt_rate"].(int)
+		ret.HostSrcPortBitRate = in["host_src_port_bit_rate"].(int)
+	}
+	return ret
+}
+
+func getObjectDdosNetworkObjectIpv6SrcPortListSubnetSrcPortAnomalyThreshold(d []interface{}) edpt.DdosNetworkObjectIpv6SrcPortListSubnetSrcPortAnomalyThreshold {
+
+	count1 := len(d)
+	var ret edpt.DdosNetworkObjectIpv6SrcPortListSubnetSrcPortAnomalyThreshold
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.SubnetSrcPortPktRate = in["subnet_src_port_pkt_rate"].(int)
+		ret.SubnetSrcPortBitRate = in["subnet_src_port_bit_rate"].(int)
+	}
+	return ret
+}
+
 func dataToEndpointDdosNetworkObjectIpv6(d *schema.ResourceData) edpt.DdosNetworkObjectIpv6 {
 	var ret edpt.DdosNetworkObjectIpv6
 	ret.Inst.PrefixAnomalyThreshold = getObjectDdosNetworkObjectIpv6PrefixAnomalyThreshold(d.Get("prefix_anomaly_threshold").([]interface{}))
 	ret.Inst.SamplingEnable = getSliceDdosNetworkObjectIpv6SamplingEnable(d.Get("sampling_enable").([]interface{}))
+	ret.Inst.SrcPortList = getSliceDdosNetworkObjectIpv6SrcPortList(d.Get("src_port_list").([]interface{}))
 	ret.Inst.SubnetIpv6Addr = d.Get("subnet_ipv6_addr").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid

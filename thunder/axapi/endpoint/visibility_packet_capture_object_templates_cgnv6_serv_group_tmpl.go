@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplTriggerStatsInc2773 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplTriggerStatsInc2791 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplTriggerStatsRate2774 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplTriggerStatsRate2792 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplTriggerStatsSeverity2775 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplTriggerStatsSeverity2793 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,13 +25,13 @@ type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmpl struct {
 	} `json:"cgnv6-serv-group-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplTriggerStatsInc2773 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplTriggerStatsInc2791 struct {
 	Server_selection_fail_drop  int    `json:"server_selection_fail_drop"`
 	Server_selection_fail_reset int    `json:"server_selection_fail_reset"`
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplTriggerStatsRate2774 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplTriggerStatsRate2792 struct {
 	ThresholdExceededBy         int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                    int    `json:"duration" dval:"60"`
 	Server_selection_fail_drop  int    `json:"server_selection_fail_drop"`
@@ -39,7 +39,7 @@ type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplTriggerStatsRate277
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplTriggerStatsSeverity2775 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplTriggerStatsSeverity2793 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

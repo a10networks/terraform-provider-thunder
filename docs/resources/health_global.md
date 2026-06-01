@@ -41,7 +41,6 @@ resource "thunder_health_global" "thunder_health_global" {
 - `multi_process` (Number) Start Health Monitoring in Multi-Process Mode (Specify the number of multiple processes (default 1))
 - `per` (Number) Specify the Unit Time for the rate (Specify the Unit Time, multiple of 100ms)
 - `retry` (Number) Specify the Healthcheck Retries (Retry Count (default 3))
-- `support_deprecated_tls` (String) 'enable': Enable TLS 1.0 and TLS 1.1 health-check (default); 'disable': Disable TLS 1.0 and TLS 1.1 health-check;
 - `timeout` (Number) Specify the Healthcheck Timeout (Timeout Value, in seconds (default 5), Timeout should be less than or equal to interval)
 - `up_retry` (Number) Specify the Healthcheck Retries before declaring target up (Up-retry count (default 1))
 - `uuid` (String) uuid of the object

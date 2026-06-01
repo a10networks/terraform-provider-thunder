@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZoneIpProtoProtoNameManualMode struct {
 	Inst struct {
 		Config string `json:"config"`
@@ -20,9 +20,9 @@ type DdosDstZoneIpProtoProtoNameManualMode struct {
 
 		ZoneTemplate DdosDstZoneIpProtoProtoNameManualModeZoneTemplate `json:"zone-template"`
 
-		Protocol string
-
 		ZoneName string
+
+		Protocol string
 	} `json:"manual-mode"`
 }
 

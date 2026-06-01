@@ -5,22 +5,22 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbCommonGlobalDnsCache struct {
 	Inst struct {
-		ClassList SlbCommonGlobalDnsCacheClassList1499 `json:"class-list"`
+		ClassList SlbCommonGlobalDnsCacheClassList1500 `json:"class-list"`
 
 		Uuid string `json:"uuid"`
 	} `json:"global-dns-cache"`
 }
 
-type SlbCommonGlobalDnsCacheClassList1499 struct {
+type SlbCommonGlobalDnsCacheClassList1500 struct {
 	Name    string                                        `json:"name"`
 	Uuid    string                                        `json:"uuid"`
-	LidList []SlbCommonGlobalDnsCacheClassListLidList1500 `json:"lid-list"`
+	LidList []SlbCommonGlobalDnsCacheClassListLidList1501 `json:"lid-list"`
 }
 
-type SlbCommonGlobalDnsCacheClassListLidList1500 struct {
+type SlbCommonGlobalDnsCacheClassListLidList1501 struct {
 	Lidnum          int                                            `json:"lidnum"`
 	ConnRateLimit   int                                            `json:"conn-rate-limit"`
 	Per             int                                            `json:"per"`
@@ -28,12 +28,12 @@ type SlbCommonGlobalDnsCacheClassListLidList1500 struct {
 	Lockout         int                                            `json:"lockout"`
 	Log             int                                            `json:"log"`
 	LogInterval     int                                            `json:"log-interval"`
-	Dns             SlbCommonGlobalDnsCacheClassListLidListDns1501 `json:"dns"`
+	Dns             SlbCommonGlobalDnsCacheClassListLidListDns1502 `json:"dns"`
 	Uuid            string                                         `json:"uuid"`
 	UserTag         string                                         `json:"user-tag"`
 }
 
-type SlbCommonGlobalDnsCacheClassListLidListDns1501 struct {
+type SlbCommonGlobalDnsCacheClassListLidListDns1502 struct {
 	CacheAction            string `json:"cache-action" dval:"cache-enable"`
 	Ttl                    int    `json:"ttl" dval:"300"`
 	Weight                 int    `json:"weight" dval:"1"`

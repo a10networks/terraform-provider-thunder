@@ -6,12 +6,14 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZone struct {
 	Inst struct {
 		ActionList string `json:"action-list"`
 
 		AdvertisedEnable int `json:"advertised-enable"`
+
+		BaselineWindowSize int `json:"baseline-window-size"`
 
 		CaptureConfigList []DdosDstZoneCaptureConfigList `json:"capture-config-list"`
 
@@ -25,7 +27,7 @@ type DdosDstZone struct {
 
 		DestNatIpv6 string `json:"dest-nat-ipv6"`
 
-		Detection DdosDstZoneDetection278 `json:"detection"`
+		Detection DdosDstZoneDetection281 `json:"detection"`
 
 		DropFragPkt int `json:"drop-frag-pkt"`
 
@@ -35,13 +37,15 @@ type DdosDstZone struct {
 
 		Glid string `json:"glid"`
 
-		HwBlacklistBlocking DdosDstZoneHwBlacklistBlocking290 `json:"hw-blacklist-blocking"`
+		HwBlacklistBlocking DdosDstZoneHwBlacklistBlocking293 `json:"hw-blacklist-blocking"`
 
 		InboundForwardDscp int `json:"inbound-forward-dscp"`
 
+		InboundMitigationEnforceEnable int `json:"inbound-mitigation-enforce-enable"`
+
 		Ip []DdosDstZoneIp `json:"ip"`
 
-		IpProto DdosDstZoneIpProto291 `json:"ip-proto"`
+		IpProto DdosDstZoneIpProto294 `json:"ip-proto"`
 
 		Ipv6 []DdosDstZoneIpv6 `json:"ipv6"`
 
@@ -59,9 +63,9 @@ type DdosDstZone struct {
 
 		OutboundForwardDscp int `json:"outbound-forward-dscp"`
 
-		OutboundPolicy DdosDstZoneOutboundPolicy292 `json:"outbound-policy"`
+		OutboundPolicy DdosDstZoneOutboundPolicy295 `json:"outbound-policy"`
 
-		PacketAnomalyDetection DdosDstZonePacketAnomalyDetection293 `json:"packet-anomaly-detection"`
+		PacketAnomalyDetection DdosDstZonePacketAnomalyDetection296 `json:"packet-anomaly-detection"`
 
 		PatternRecognitionHwFilterEnable int `json:"pattern-recognition-hw-filter-enable"`
 
@@ -69,7 +73,7 @@ type DdosDstZone struct {
 
 		PerAddrGlid string `json:"per-addr-glid"`
 
-		Port DdosDstZonePort294 `json:"port"`
+		Port DdosDstZonePort297 `json:"port"`
 
 		PortRangeList []DdosDstZonePortRangeList `json:"port-range-list"`
 
@@ -93,7 +97,9 @@ type DdosDstZone struct {
 
 		SourceNatPool string `json:"source-nat-pool"`
 
-		SrcPort DdosDstZoneSrcPort295 `json:"src-port"`
+		SrcIpFiltering DdosDstZoneSrcIpFiltering298 `json:"src-ip-filtering"`
+
+		SrcPort DdosDstZoneSrcPort300 `json:"src-port"`
 
 		SrcPortRangeList []DdosDstZoneSrcPortRangeList `json:"src-port-range-list"`
 
@@ -103,13 +109,13 @@ type DdosDstZone struct {
 
 		ThresholdSensitivity string `json:"threshold-sensitivity" dval:"OFF"`
 
-		TopkDestinations DdosDstZoneTopkDestinations296 `json:"topk-destinations"`
+		TopkDestinations DdosDstZoneTopkDestinations301 `json:"topk-destinations"`
 
 		UserTag string `json:"user-tag"`
 
 		Uuid string `json:"uuid"`
 
-		WebGui DdosDstZoneWebGui297 `json:"web-gui"`
+		WebGui DdosDstZoneWebGui302 `json:"web-gui"`
 
 		ZoneMigrateToOpposite int `json:"zone-migrate-to-opposite"`
 
@@ -131,45 +137,45 @@ type DdosDstZoneCollector struct {
 	SflowName string `json:"sflow-name"`
 }
 
-type DdosDstZoneDetection278 struct {
+type DdosDstZoneDetection281 struct {
 	Settings               string                                        `json:"settings"`
 	Toggle                 string                                        `json:"toggle" dval:"enable"`
 	Uuid                   string                                        `json:"uuid"`
-	Notification           DdosDstZoneDetectionNotification279           `json:"notification"`
-	OutboundDetection      DdosDstZoneDetectionOutboundDetection281      `json:"outbound-detection"`
-	ServiceDiscovery       DdosDstZoneDetectionServiceDiscovery285       `json:"service-discovery"`
-	PacketAnomalyDetection DdosDstZoneDetectionPacketAnomalyDetection286 `json:"packet-anomaly-detection"`
-	VictimIpDetection      DdosDstZoneDetectionVictimIpDetection288      `json:"victim-ip-detection"`
+	Notification           DdosDstZoneDetectionNotification282           `json:"notification"`
+	OutboundDetection      DdosDstZoneDetectionOutboundDetection284      `json:"outbound-detection"`
+	ServiceDiscovery       DdosDstZoneDetectionServiceDiscovery288       `json:"service-discovery"`
+	PacketAnomalyDetection DdosDstZoneDetectionPacketAnomalyDetection289 `json:"packet-anomaly-detection"`
+	VictimIpDetection      DdosDstZoneDetectionVictimIpDetection291      `json:"victim-ip-detection"`
 }
 
-type DdosDstZoneDetectionNotification279 struct {
+type DdosDstZoneDetectionNotification282 struct {
 	Configuration string                                            `json:"configuration"`
-	Notification  []DdosDstZoneDetectionNotificationNotification280 `json:"notification"`
+	Notification  []DdosDstZoneDetectionNotificationNotification283 `json:"notification"`
 	Uuid          string                                            `json:"uuid"`
 }
 
-type DdosDstZoneDetectionNotificationNotification280 struct {
+type DdosDstZoneDetectionNotificationNotification283 struct {
 	NotificationTemplateName string `json:"notification-template-name"`
 }
 
-type DdosDstZoneDetectionOutboundDetection281 struct {
+type DdosDstZoneDetectionOutboundDetection284 struct {
 	Configuration    string                                                   `json:"configuration"`
 	Toggle           string                                                   `json:"toggle" dval:"disable"`
 	DiscoveryMethod  string                                                   `json:"discovery-method"`
 	DiscoveryRecord  int                                                      `json:"discovery-record" dval:"10"`
-	EnableTopK       []DdosDstZoneDetectionOutboundDetectionEnableTopK282     `json:"enable-top-k"`
+	EnableTopK       []DdosDstZoneDetectionOutboundDetectionEnableTopK285     `json:"enable-top-k"`
 	Uuid             string                                                   `json:"uuid"`
-	IndicatorList    []DdosDstZoneDetectionOutboundDetectionIndicatorList283  `json:"indicator-list"`
-	TopkSourceSubnet DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet284 `json:"topk-source-subnet"`
+	IndicatorList    []DdosDstZoneDetectionOutboundDetectionIndicatorList286  `json:"indicator-list"`
+	TopkSourceSubnet DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet287 `json:"topk-source-subnet"`
 }
 
-type DdosDstZoneDetectionOutboundDetectionEnableTopK282 struct {
+type DdosDstZoneDetectionOutboundDetectionEnableTopK285 struct {
 	TopkType       string `json:"topk-type"`
 	TopkNetmask    int    `json:"topk-netmask" dval:"128"`
 	TopkNumRecords int    `json:"topk-num-records" dval:"20"`
 }
 
-type DdosDstZoneDetectionOutboundDetectionIndicatorList283 struct {
+type DdosDstZoneDetectionOutboundDetectionIndicatorList286 struct {
 	Type              string `json:"type"`
 	TcpWindowSize     int    `json:"tcp-window-size"`
 	DataPacketSize    int    `json:"data-packet-size"`
@@ -180,40 +186,40 @@ type DdosDstZoneDetectionOutboundDetectionIndicatorList283 struct {
 	UserTag           string `json:"user-tag"`
 }
 
-type DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet284 struct {
+type DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet287 struct {
 	Uuid string `json:"uuid"`
 }
 
-type DdosDstZoneDetectionServiceDiscovery285 struct {
+type DdosDstZoneDetectionServiceDiscovery288 struct {
 	Configuration    string `json:"configuration"`
 	Toggle           string `json:"toggle" dval:"disable"`
 	PktRateThreshold int    `json:"pkt-rate-threshold" dval:"10"`
 	Uuid             string `json:"uuid"`
 }
 
-type DdosDstZoneDetectionPacketAnomalyDetection286 struct {
+type DdosDstZoneDetectionPacketAnomalyDetection289 struct {
 	Configuration string                                                       `json:"configuration"`
 	Toggle        string                                                       `json:"toggle" dval:"enable"`
 	Uuid          string                                                       `json:"uuid"`
-	IndicatorList []DdosDstZoneDetectionPacketAnomalyDetectionIndicatorList287 `json:"indicator-list"`
+	IndicatorList []DdosDstZoneDetectionPacketAnomalyDetectionIndicatorList290 `json:"indicator-list"`
 }
 
-type DdosDstZoneDetectionPacketAnomalyDetectionIndicatorList287 struct {
+type DdosDstZoneDetectionPacketAnomalyDetectionIndicatorList290 struct {
 	Type         string `json:"type"`
 	ThresholdNum int    `json:"threshold-num" dval:"100"`
 	Uuid         string `json:"uuid"`
 	UserTag      string `json:"user-tag"`
 }
 
-type DdosDstZoneDetectionVictimIpDetection288 struct {
+type DdosDstZoneDetectionVictimIpDetection291 struct {
 	Configuration   string                                                  `json:"configuration"`
 	Toggle          string                                                  `json:"toggle" dval:"disable"`
 	HistogramToggle string                                                  `json:"histogram-toggle" dval:"histogram-disable"`
 	Uuid            string                                                  `json:"uuid"`
-	IndicatorList   []DdosDstZoneDetectionVictimIpDetectionIndicatorList289 `json:"indicator-list"`
+	IndicatorList   []DdosDstZoneDetectionVictimIpDetectionIndicatorList292 `json:"indicator-list"`
 }
 
-type DdosDstZoneDetectionVictimIpDetectionIndicatorList289 struct {
+type DdosDstZoneDetectionVictimIpDetectionIndicatorList292 struct {
 	Type           string `json:"type"`
 	IpThresholdNum int    `json:"ip-threshold-num"`
 	Uuid           string `json:"uuid"`
@@ -226,7 +232,7 @@ type DdosDstZoneEnableTopK struct {
 	TopkSortKey    string `json:"topk-sort-key" dval:"avg"`
 }
 
-type DdosDstZoneHwBlacklistBlocking290 struct {
+type DdosDstZoneHwBlacklistBlocking293 struct {
 	DstEnable int    `json:"dst-enable"`
 	SrcEnable int    `json:"src-enable"`
 	Uuid      string `json:"uuid"`
@@ -239,7 +245,7 @@ type DdosDstZoneIp struct {
 	ExpandIpSubnetMode string `json:"expand-ip-subnet-mode" dval:"default"`
 }
 
-type DdosDstZoneIpProto291 struct {
+type DdosDstZoneIpProto294 struct {
 	ProtoNumberList []DdosDstZoneIpProtoProtoNumberList `json:"proto-number-list"`
 	ProtoTcpUdpList []DdosDstZoneIpProtoProtoTcpUdpList `json:"proto-tcp-udp-list"`
 	ProtoNameList   []DdosDstZoneIpProtoProtoNameList   `json:"proto-name-list"`
@@ -266,8 +272,10 @@ type DdosDstZoneIpProtoProtoNumberList struct {
 	Age                            int                                                               `json:"age" dval:"5"`
 	EnableClassListOverflow        int                                                               `json:"enable-class-list-overflow"`
 	FasterDeEscalation             int                                                               `json:"faster-de-escalation"`
+	DefaultActionList              string                                                            `json:"default-action-list"`
 	SflowIpFilteringPolicy         int                                                               `json:"sflow-ip-filtering-policy"`
 	IpFilteringPolicy              string                                                            `json:"ip-filtering-policy"`
+	LogSrcDefaultEnable            int                                                               `json:"log-src-default-enable"`
 	Uuid                           string                                                            `json:"uuid"`
 	IpFilteringPolicyStatistics    DdosDstZoneIpProtoProtoNumberListIpFilteringPolicyStatistics      `json:"ip-filtering-policy-statistics"`
 	SrcBasedPolicyList             []DdosDstZoneIpProtoProtoNumberListSrcBasedPolicyList             `json:"src-based-policy-list"`
@@ -475,8 +483,10 @@ type DdosDstZoneIpProtoProtoNameList struct {
 	Age                            int                                                             `json:"age" dval:"5"`
 	EnableClassListOverflow        int                                                             `json:"enable-class-list-overflow"`
 	FasterDeEscalation             int                                                             `json:"faster-de-escalation"`
+	DefaultActionList              string                                                          `json:"default-action-list"`
 	SflowIpFilteringPolicy         int                                                             `json:"sflow-ip-filtering-policy"`
 	IpFilteringPolicy              string                                                          `json:"ip-filtering-policy"`
+	LogSrcDefaultEnable            int                                                             `json:"log-src-default-enable"`
 	Uuid                           string                                                          `json:"uuid"`
 	IpFilteringPolicyStatistics    DdosDstZoneIpProtoProtoNameListIpFilteringPolicyStatistics      `json:"ip-filtering-policy-statistics"`
 	LevelList                      []DdosDstZoneIpProtoProtoNameListLevelList                      `json:"level-list"`
@@ -655,16 +665,16 @@ type DdosDstZoneIpv6 struct {
 	ExpandIpv6SubnetMode string `json:"expand-ipv6-subnet-mode" dval:"default"`
 }
 
-type DdosDstZoneOutboundPolicy292 struct {
+type DdosDstZoneOutboundPolicy295 struct {
 	Name string `json:"name"`
 	Uuid string `json:"uuid"`
 }
 
-type DdosDstZonePacketAnomalyDetection293 struct {
+type DdosDstZonePacketAnomalyDetection296 struct {
 	Uuid string `json:"uuid"`
 }
 
-type DdosDstZonePort294 struct {
+type DdosDstZonePort297 struct {
 	ZoneServiceList      []DdosDstZonePortZoneServiceList      `json:"zone-service-list"`
 	ZoneServiceOtherList []DdosDstZonePortZoneServiceOtherList `json:"zone-service-other-list"`
 }
@@ -700,6 +710,7 @@ type DdosDstZonePortZoneServiceList struct {
 	FasterDeEscalation             int                                                            `json:"faster-de-escalation"`
 	IpFilteringPolicy              string                                                         `json:"ip-filtering-policy"`
 	SameSourceDestPortDrop         int                                                            `json:"same-source-dest-port-drop"`
+	LogSrcDefaultEnable            int                                                            `json:"log-src-default-enable"`
 	Uuid                           string                                                         `json:"uuid"`
 	PatternRecognition             DdosDstZonePortZoneServiceListPatternRecognition               `json:"pattern-recognition"`
 	PatternRecognitionPuDetails    DdosDstZonePortZoneServiceListPatternRecognitionPuDetails      `json:"pattern-recognition-pu-details"`
@@ -1004,6 +1015,7 @@ type DdosDstZonePortZoneServiceOtherList struct {
 	FasterDeEscalation             int                                                                 `json:"faster-de-escalation"`
 	IpFilteringPolicy              string                                                              `json:"ip-filtering-policy"`
 	SameSourceDestPortDrop         int                                                                 `json:"same-source-dest-port-drop"`
+	LogSrcDefaultEnable            int                                                                 `json:"log-src-default-enable"`
 	Uuid                           string                                                              `json:"uuid"`
 	IpFilteringPolicyStatistics    DdosDstZonePortZoneServiceOtherListIpFilteringPolicyStatistics      `json:"ip-filtering-policy-statistics"`
 	PatternRecognition             DdosDstZonePortZoneServiceOtherListPatternRecognition               `json:"pattern-recognition"`
@@ -1142,6 +1154,7 @@ type DdosDstZonePortZoneServiceOtherListSrcBasedPolicyListPolicyClassListList st
 	Glid                           string                                                                                                `json:"glid"`
 	GlidAction                     string                                                                                                `json:"glid-action"`
 	Action                         string                                                                                                `json:"action"`
+	LogEnable                      int                                                                                                   `json:"log-enable"`
 	MaxDynamicEntryCount           int                                                                                                   `json:"max-dynamic-entry-count"`
 	DynamicEntryCountWarnThreshold int                                                                                                   `json:"dynamic-entry-count-warn-threshold"`
 	ZoneTemplate                   DdosDstZonePortZoneServiceOtherListSrcBasedPolicyListPolicyClassListListZoneTemplate                  `json:"zone-template"`
@@ -1519,9 +1532,22 @@ type DdosDstZoneSflowTcp struct {
 	SflowTcpBasic    int `json:"sflow-tcp-basic"`
 	SflowTcpStateful int `json:"sflow-tcp-stateful"`
 	SflowSampSession int `json:"sflow-samp-session"`
+	SflowSampPacket  int `json:"sflow-samp-packet"`
 }
 
-type DdosDstZoneSrcPort295 struct {
+type DdosDstZoneSrcIpFiltering298 struct {
+	Name                    string                                       `json:"name"`
+	PerClassListHitTracking int                                          `json:"per-class-list-hit-tracking"`
+	PerServiceTracking      int                                          `json:"per-service-tracking"`
+	Uuid                    string                                       `json:"uuid"`
+	SamplingEnable          []DdosDstZoneSrcIpFilteringSamplingEnable299 `json:"sampling-enable"`
+}
+
+type DdosDstZoneSrcIpFilteringSamplingEnable299 struct {
+	Counters1 string `json:"counters1"`
+}
+
+type DdosDstZoneSrcPort300 struct {
 	ZoneSrcPortList      []DdosDstZoneSrcPortZoneSrcPortList      `json:"zone-src-port-list"`
 	ZoneSrcPortOtherList []DdosDstZoneSrcPortZoneSrcPortOtherList `json:"zone-src-port-other-list"`
 }
@@ -1662,64 +1688,64 @@ type DdosDstZoneSrcPortRangeListLevelListIndicatorList struct {
 	UserTag               string `json:"user-tag"`
 }
 
-type DdosDstZoneTopkDestinations296 struct {
+type DdosDstZoneTopkDestinations301 struct {
 	Uuid string `json:"uuid"`
 }
 
-type DdosDstZoneWebGui297 struct {
+type DdosDstZoneWebGui302 struct {
 	Status                 string                         `json:"status" dval:"newly"`
 	ActivatedAfterLearning int                            `json:"activated-after-learning"`
 	CreateTime             string                         `json:"create-time"`
 	ModifyTime             string                         `json:"modify-time"`
 	Sensitivity            string                         `json:"sensitivity" dval:"3"`
 	Uuid                   string                         `json:"uuid"`
-	Learning               DdosDstZoneWebGuiLearning298   `json:"learning"`
-	Protection             DdosDstZoneWebGuiProtection299 `json:"protection"`
+	Learning               DdosDstZoneWebGuiLearning303   `json:"learning"`
+	Protection             DdosDstZoneWebGuiProtection304 `json:"protection"`
 }
 
-type DdosDstZoneWebGuiLearning298 struct {
+type DdosDstZoneWebGuiLearning303 struct {
 	Duration     string `json:"duration" dval:"6hour"`
 	StartingTime string `json:"starting-time"`
 	Uuid         string `json:"uuid"`
 }
 
-type DdosDstZoneWebGuiProtection299 struct {
-	Port          DdosDstZoneWebGuiProtectionPort300            `json:"port"`
-	IpProto       DdosDstZoneWebGuiProtectionIpProto303         `json:"ip-proto"`
-	PortRangeList []DdosDstZoneWebGuiProtectionPortRangeList305 `json:"port-range-list"`
+type DdosDstZoneWebGuiProtection304 struct {
+	Port          DdosDstZoneWebGuiProtectionPort305            `json:"port"`
+	IpProto       DdosDstZoneWebGuiProtectionIpProto308         `json:"ip-proto"`
+	PortRangeList []DdosDstZoneWebGuiProtectionPortRangeList310 `json:"port-range-list"`
 }
 
-type DdosDstZoneWebGuiProtectionPort300 struct {
-	ZoneServiceList      []DdosDstZoneWebGuiProtectionPortZoneServiceList301      `json:"zone-service-list"`
-	ZoneServiceOtherList []DdosDstZoneWebGuiProtectionPortZoneServiceOtherList302 `json:"zone-service-other-list"`
+type DdosDstZoneWebGuiProtectionPort305 struct {
+	ZoneServiceList      []DdosDstZoneWebGuiProtectionPortZoneServiceList306      `json:"zone-service-list"`
+	ZoneServiceOtherList []DdosDstZoneWebGuiProtectionPortZoneServiceOtherList307 `json:"zone-service-other-list"`
 }
 
-type DdosDstZoneWebGuiProtectionPortZoneServiceList301 struct {
+type DdosDstZoneWebGuiProtectionPortZoneServiceList306 struct {
 	PortNum  int    `json:"port-num"`
 	Protocol string `json:"protocol"`
 	Pbe      string `json:"pbe"`
 	Uuid     string `json:"uuid"`
 }
 
-type DdosDstZoneWebGuiProtectionPortZoneServiceOtherList302 struct {
+type DdosDstZoneWebGuiProtectionPortZoneServiceOtherList307 struct {
 	PortOther string `json:"port-other"`
 	Protocol  string `json:"protocol"`
 	Pbe       string `json:"pbe"`
 	Uuid      string `json:"uuid"`
 }
 
-type DdosDstZoneWebGuiProtectionIpProto303 struct {
-	ProtoNameList []DdosDstZoneWebGuiProtectionIpProtoProtoNameList304 `json:"proto-name-list"`
+type DdosDstZoneWebGuiProtectionIpProto308 struct {
+	ProtoNameList []DdosDstZoneWebGuiProtectionIpProtoProtoNameList309 `json:"proto-name-list"`
 }
 
-type DdosDstZoneWebGuiProtectionIpProtoProtoNameList304 struct {
+type DdosDstZoneWebGuiProtectionIpProtoProtoNameList309 struct {
 	Protocol string `json:"protocol"`
 	Pbe      string `json:"pbe"`
 	Uuid     string `json:"uuid"`
 	UserTag  string `json:"user-tag"`
 }
 
-type DdosDstZoneWebGuiProtectionPortRangeList305 struct {
+type DdosDstZoneWebGuiProtectionPortRangeList310 struct {
 	PortRangeStart int    `json:"port-range-start"`
 	PortRangeEnd   int    `json:"port-range-end"`
 	Protocol       string `json:"protocol"`

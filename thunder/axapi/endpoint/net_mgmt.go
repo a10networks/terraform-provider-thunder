@@ -5,23 +5,23 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type NetMgmt struct {
 	Inst struct {
-		Snmp NetMgmtSnmp1134 `json:"snmp"`
+		Snmp NetMgmtSnmp1133 `json:"snmp"`
 	} `json:"net-mgmt"`
 }
 
-type NetMgmtSnmp1134 struct {
-	Engineid NetMgmtSnmpEngineid1135 `json:"engineID"`
-	Stats    NetMgmtSnmpStats1136    `json:"stats"`
+type NetMgmtSnmp1133 struct {
+	Engineid NetMgmtSnmpEngineid1134 `json:"engineID"`
+	Stats    NetMgmtSnmpStats1135    `json:"stats"`
 }
 
-type NetMgmtSnmpEngineid1135 struct {
+type NetMgmtSnmpEngineid1134 struct {
 	Uuid string `json:"uuid"`
 }
 
-type NetMgmtSnmpStats1136 struct {
+type NetMgmtSnmpStats1135 struct {
 	Uuid string `json:"uuid"`
 }
 

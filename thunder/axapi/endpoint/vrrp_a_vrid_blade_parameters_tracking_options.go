@@ -5,12 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VrrpAVridBladeParametersTrackingOptions struct {
 	Inst struct {
 		Bgp VrrpAVridBladeParametersTrackingOptionsBgp `json:"bgp"`
 
-		Gateway VrrpAVridBladeParametersTrackingOptionsGateway3729 `json:"gateway"`
+		Gateway VrrpAVridBladeParametersTrackingOptionsGateway3767 `json:"gateway"`
 
 		Interface []VrrpAVridBladeParametersTrackingOptionsInterface `json:"interface"`
 
@@ -41,7 +41,7 @@ type VrrpAVridBladeParametersTrackingOptionsBgpBgpIpv6AddressCfg struct {
 	PriorityCost   int    `json:"priority-cost"`
 }
 
-type VrrpAVridBladeParametersTrackingOptionsGateway3729 struct {
+type VrrpAVridBladeParametersTrackingOptionsGateway3767 struct {
 	Ipv4GatewayList []VrrpAVridBladeParametersTrackingOptionsGatewayIpv4GatewayList `json:"ipv4-gateway-list"`
 	Ipv6GatewayList []VrrpAVridBladeParametersTrackingOptionsGatewayIpv6GatewayList `json:"ipv6-gateway-list"`
 }

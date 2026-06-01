@@ -72,6 +72,7 @@ Optional:
 - `connattempt` (Number) Connect initiated
 - `conndrops` (Number) Embryonic connect dropped
 - `connects` (Number) Connect established
+- `cpurrdrop` (Number) CPU round robin packet drop
 - `delack` (Number) Delayed acks sent
 - `drops` (Number) Connect dropped
 - `earlyrexmit` (Number) Early Retransmission sent

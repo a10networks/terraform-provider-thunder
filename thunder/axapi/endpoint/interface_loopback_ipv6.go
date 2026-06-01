@@ -5,18 +5,18 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type InterfaceLoopbackIpv6 struct {
 	Inst struct {
 		AddressList []InterfaceLoopbackIpv6AddressList `json:"address-list"`
 
 		Ipv6Enable int `json:"ipv6-enable"`
 
-		Ospf InterfaceLoopbackIpv6Ospf759 `json:"ospf"`
+		Ospf InterfaceLoopbackIpv6Ospf750 `json:"ospf"`
 
-		Rip InterfaceLoopbackIpv6Rip767 `json:"rip"`
+		Rip InterfaceLoopbackIpv6Rip758 `json:"rip"`
 
-		Router InterfaceLoopbackIpv6Router769 `json:"router"`
+		Router InterfaceLoopbackIpv6Router760 `json:"router"`
 
 		Uuid string `json:"uuid"`
 
@@ -30,87 +30,87 @@ type InterfaceLoopbackIpv6AddressList struct {
 	LinkLocal int    `json:"link-local"`
 }
 
-type InterfaceLoopbackIpv6Ospf759 struct {
+type InterfaceLoopbackIpv6Ospf750 struct {
 	Bfd                   int                                                 `json:"bfd"`
 	Disable               int                                                 `json:"disable"`
-	CostCfg               []InterfaceLoopbackIpv6OspfCostCfg760               `json:"cost-cfg"`
-	DeadIntervalCfg       []InterfaceLoopbackIpv6OspfDeadIntervalCfg761       `json:"dead-interval-cfg"`
-	HelloIntervalCfg      []InterfaceLoopbackIpv6OspfHelloIntervalCfg762      `json:"hello-interval-cfg"`
-	MtuIgnoreCfg          []InterfaceLoopbackIpv6OspfMtuIgnoreCfg763          `json:"mtu-ignore-cfg"`
-	PriorityCfg           []InterfaceLoopbackIpv6OspfPriorityCfg764           `json:"priority-cfg"`
-	RetransmitIntervalCfg []InterfaceLoopbackIpv6OspfRetransmitIntervalCfg765 `json:"retransmit-interval-cfg"`
-	TransmitDelayCfg      []InterfaceLoopbackIpv6OspfTransmitDelayCfg766      `json:"transmit-delay-cfg"`
+	CostCfg               []InterfaceLoopbackIpv6OspfCostCfg751               `json:"cost-cfg"`
+	DeadIntervalCfg       []InterfaceLoopbackIpv6OspfDeadIntervalCfg752       `json:"dead-interval-cfg"`
+	HelloIntervalCfg      []InterfaceLoopbackIpv6OspfHelloIntervalCfg753      `json:"hello-interval-cfg"`
+	MtuIgnoreCfg          []InterfaceLoopbackIpv6OspfMtuIgnoreCfg754          `json:"mtu-ignore-cfg"`
+	PriorityCfg           []InterfaceLoopbackIpv6OspfPriorityCfg755           `json:"priority-cfg"`
+	RetransmitIntervalCfg []InterfaceLoopbackIpv6OspfRetransmitIntervalCfg756 `json:"retransmit-interval-cfg"`
+	TransmitDelayCfg      []InterfaceLoopbackIpv6OspfTransmitDelayCfg757      `json:"transmit-delay-cfg"`
 	Uuid                  string                                              `json:"uuid"`
 }
 
-type InterfaceLoopbackIpv6OspfCostCfg760 struct {
+type InterfaceLoopbackIpv6OspfCostCfg751 struct {
 	Cost       int `json:"cost"`
 	InstanceId int `json:"instance-id"`
 }
 
-type InterfaceLoopbackIpv6OspfDeadIntervalCfg761 struct {
+type InterfaceLoopbackIpv6OspfDeadIntervalCfg752 struct {
 	DeadInterval int `json:"dead-interval" dval:"40"`
 	InstanceId   int `json:"instance-id"`
 }
 
-type InterfaceLoopbackIpv6OspfHelloIntervalCfg762 struct {
+type InterfaceLoopbackIpv6OspfHelloIntervalCfg753 struct {
 	HelloInterval int `json:"hello-interval" dval:"10"`
 	InstanceId    int `json:"instance-id"`
 }
 
-type InterfaceLoopbackIpv6OspfMtuIgnoreCfg763 struct {
+type InterfaceLoopbackIpv6OspfMtuIgnoreCfg754 struct {
 	MtuIgnore  int `json:"mtu-ignore"`
 	InstanceId int `json:"instance-id"`
 }
 
-type InterfaceLoopbackIpv6OspfPriorityCfg764 struct {
+type InterfaceLoopbackIpv6OspfPriorityCfg755 struct {
 	Priority   int `json:"priority" dval:"1"`
 	InstanceId int `json:"instance-id"`
 }
 
-type InterfaceLoopbackIpv6OspfRetransmitIntervalCfg765 struct {
+type InterfaceLoopbackIpv6OspfRetransmitIntervalCfg756 struct {
 	RetransmitInterval int `json:"retransmit-interval" dval:"5"`
 	InstanceId         int `json:"instance-id"`
 }
 
-type InterfaceLoopbackIpv6OspfTransmitDelayCfg766 struct {
+type InterfaceLoopbackIpv6OspfTransmitDelayCfg757 struct {
 	TransmitDelay int `json:"transmit-delay" dval:"1"`
 	InstanceId    int `json:"instance-id"`
 }
 
-type InterfaceLoopbackIpv6Rip767 struct {
-	SplitHorizonCfg InterfaceLoopbackIpv6RipSplitHorizonCfg768 `json:"split-horizon-cfg"`
+type InterfaceLoopbackIpv6Rip758 struct {
+	SplitHorizonCfg InterfaceLoopbackIpv6RipSplitHorizonCfg759 `json:"split-horizon-cfg"`
 	Uuid            string                                     `json:"uuid"`
 }
 
-type InterfaceLoopbackIpv6RipSplitHorizonCfg768 struct {
+type InterfaceLoopbackIpv6RipSplitHorizonCfg759 struct {
 	State string `json:"state" dval:"poisoned"`
 }
 
-type InterfaceLoopbackIpv6Router769 struct {
-	Ripng InterfaceLoopbackIpv6RouterRipng770 `json:"ripng"`
-	Ospf  InterfaceLoopbackIpv6RouterOspf771  `json:"ospf"`
-	Isis  InterfaceLoopbackIpv6RouterIsis773  `json:"isis"`
+type InterfaceLoopbackIpv6Router760 struct {
+	Ripng InterfaceLoopbackIpv6RouterRipng761 `json:"ripng"`
+	Ospf  InterfaceLoopbackIpv6RouterOspf762  `json:"ospf"`
+	Isis  InterfaceLoopbackIpv6RouterIsis764  `json:"isis"`
 }
 
-type InterfaceLoopbackIpv6RouterRipng770 struct {
+type InterfaceLoopbackIpv6RouterRipng761 struct {
 	Rip  int    `json:"rip"`
 	Uuid string `json:"uuid"`
 }
 
-type InterfaceLoopbackIpv6RouterOspf771 struct {
-	AreaList []InterfaceLoopbackIpv6RouterOspfAreaList772 `json:"area-list"`
+type InterfaceLoopbackIpv6RouterOspf762 struct {
+	AreaList []InterfaceLoopbackIpv6RouterOspfAreaList763 `json:"area-list"`
 	Uuid     string                                       `json:"uuid"`
 }
 
-type InterfaceLoopbackIpv6RouterOspfAreaList772 struct {
+type InterfaceLoopbackIpv6RouterOspfAreaList763 struct {
 	AreaIdNum  int    `json:"area-id-num"`
 	AreaIdAddr string `json:"area-id-addr"`
 	Tag        string `json:"tag"`
 	InstanceId int    `json:"instance-id"`
 }
 
-type InterfaceLoopbackIpv6RouterIsis773 struct {
+type InterfaceLoopbackIpv6RouterIsis764 struct {
 	Tag  string `json:"tag"`
 	Uuid string `json:"uuid"`
 }

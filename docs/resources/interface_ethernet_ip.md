@@ -130,6 +130,7 @@ resource "thunder_interface_ethernet_ip" "thunder_interface_ethernet_ip" {
 - `router` (Block List, Max: 1) (see [below for nested schema](#nestedblock--router))
 - `server` (Number) Server facing interface for IPv4/v6 traffic
 - `slb_partition_redirect` (Number) Redirect SLB traffic across partition
+- `stateful_firewall` (Block List, Max: 1) (see [below for nested schema](#nestedblock--stateful_firewall))
 - `syn_cookie` (Number) Configure Enable SYN-cookie on the interface
 - `ttl_ignore` (Number) Ignore TTL decrement for a received packet before sending out
 - `unnumbered` (Number) Set the interface as unnumbered
@@ -365,4 +366,18 @@ Optional:
 Optional:
 
 - `tag` (String) ISO routing area tag
+- `uuid` (String) uuid of the object
+
+
+
+<a id="nestedblock--stateful_firewall"></a>
+### Nested Schema for `stateful_firewall`
+
+Optional:
+
+- `access_list` (Number) Access-list for traffic from the outside
+- `acl_id` (Number) ACL id
+- `class_list` (String) Class List (Class List Name)
+- `inside` (Number) Inside (private) interface for stateful firewall
+- `outside` (Number) Outside (public) interface for stateful firewall
 - `uuid` (String) uuid of the object

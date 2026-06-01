@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SysUtTemplateTcp struct {
 	Inst struct {
 		AckSeqNumber string `json:"ack-seq-number" dval:"valid"`
@@ -16,11 +16,11 @@ type SysUtTemplateTcp struct {
 
 		DestPortValue int `json:"dest-port-value"`
 
-		Flags SysUtTemplateTcpFlags1655 `json:"flags"`
+		Flags SysUtTemplateTcpFlags1656 `json:"flags"`
 
 		NatPool string `json:"nat-pool"`
 
-		Options SysUtTemplateTcpOptions1656 `json:"options"`
+		Options SysUtTemplateTcpOptions1657 `json:"options"`
 
 		SeqNumber string `json:"seq-number" dval:"valid"`
 
@@ -36,7 +36,7 @@ type SysUtTemplateTcp struct {
 	} `json:"tcp"`
 }
 
-type SysUtTemplateTcpFlags1655 struct {
+type SysUtTemplateTcpFlags1656 struct {
 	Syn  int    `json:"syn"`
 	Ack  int    `json:"ack"`
 	Fin  int    `json:"fin"`
@@ -48,7 +48,7 @@ type SysUtTemplateTcpFlags1655 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SysUtTemplateTcpOptions1656 struct {
+type SysUtTemplateTcpOptions1657 struct {
 	Mss             int    `json:"mss"`
 	Wscale          int    `json:"wscale"`
 	SackType        string `json:"sack-type"`

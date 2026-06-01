@@ -6,12 +6,12 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityTopnTemplGtpPlcyTopnTmpl struct {
 	Inst struct {
 		Interval string `json:"interval"`
 
-		Metrics VisibilityTopnTemplGtpPlcyTopnTmplMetrics3233 `json:"metrics"`
+		Metrics VisibilityTopnTemplGtpPlcyTopnTmplMetrics3261 `json:"metrics"`
 
 		Name string `json:"name"`
 
@@ -23,7 +23,7 @@ type VisibilityTopnTemplGtpPlcyTopnTmpl struct {
 	} `json:"templ-gtp-plcy-topn-tmpl"`
 }
 
-type VisibilityTopnTemplGtpPlcyTopnTmplMetrics3233 struct {
+type VisibilityTopnTemplGtpPlcyTopnTmplMetrics3261 struct {
 	RlMessageMonitor int    `json:"rl-message-monitor"`
 	Uuid             string `json:"uuid"`
 }

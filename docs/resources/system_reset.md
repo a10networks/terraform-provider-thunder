@@ -20,6 +20,7 @@ __PLACEHOLDER__
 
 ### Optional
 
+- `preserve_license` (Number) preserve license
 - `reboot_flag` (Number)
 
 ### Read-Only

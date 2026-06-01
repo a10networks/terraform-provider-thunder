@@ -36,11 +36,11 @@ func resourceDdosDstZoneIpProtoProtoNameIpFilteringPolicyStatisticsOper() *schem
 					},
 				},
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
-			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			},
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 		},
 	}
@@ -116,8 +116,8 @@ func dataToEndpointDdosDstZoneIpProtoProtoNameIpFilteringPolicyStatisticsOper(d 
 
 	ret.Oper = getObjectDdosDstZoneIpProtoProtoNameIpFilteringPolicyStatisticsOperOper(d.Get("oper").([]interface{}))
 
-	ret.Protocol = d.Get("protocol").(string)
-
 	ret.ZoneName = d.Get("zone_name").(string)
+
+	ret.Protocol = d.Get("protocol").(string)
 	return ret
 }

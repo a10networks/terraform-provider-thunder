@@ -371,6 +371,31 @@ func resourceInterfaceVeIp() *schema.Resource {
 			"slb_partition_redirect": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Redirect SLB traffic across partition",
 			},
+			"stateful_firewall": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"inside": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Inside (private) interface for stateful firewall",
+						},
+						"class_list": {
+							Type: schema.TypeString, Optional: true, Description: "Class List (Class List Name)",
+						},
+						"outside": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Outside (public) interface for stateful firewall",
+						},
+						"access_list": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Access-list for traffic from the outside",
+						},
+						"acl_id": {
+							Type: schema.TypeInt, Optional: true, Description: "ACL id",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
 			"syn_cookie": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SYN-cookie on the interface",
 			},
@@ -478,36 +503,36 @@ func getSliceInterfaceVeIpHelperAddressList(d []interface{}) []edpt.InterfaceVeI
 	return ret
 }
 
-func getObjectInterfaceVeIpOspf1011(d []interface{}) edpt.InterfaceVeIpOspf1011 {
+func getObjectInterfaceVeIpOspf1006(d []interface{}) edpt.InterfaceVeIpOspf1006 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceVeIpOspf1011
+	var ret edpt.InterfaceVeIpOspf1006
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.OspfGlobal = getObjectInterfaceVeIpOspfOspfGlobal1012(in["ospf_global"].([]interface{}))
+		ret.OspfGlobal = getObjectInterfaceVeIpOspfOspfGlobal1007(in["ospf_global"].([]interface{}))
 		ret.OspfIpList = getSliceInterfaceVeIpOspfOspfIpList(in["ospf_ip_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceVeIpOspfOspfGlobal1012(d []interface{}) edpt.InterfaceVeIpOspfOspfGlobal1012 {
+func getObjectInterfaceVeIpOspfOspfGlobal1007(d []interface{}) edpt.InterfaceVeIpOspfOspfGlobal1007 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceVeIpOspfOspfGlobal1012
+	var ret edpt.InterfaceVeIpOspfOspfGlobal1007
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.AuthenticationCfg = getObjectInterfaceVeIpOspfOspfGlobalAuthenticationCfg1013(in["authentication_cfg"].([]interface{}))
+		ret.AuthenticationCfg = getObjectInterfaceVeIpOspfOspfGlobalAuthenticationCfg1008(in["authentication_cfg"].([]interface{}))
 		ret.AuthenticationKey = in["authentication_key"].(string)
-		ret.BfdCfg = getObjectInterfaceVeIpOspfOspfGlobalBfdCfg1014(in["bfd_cfg"].([]interface{}))
+		ret.BfdCfg = getObjectInterfaceVeIpOspfOspfGlobalBfdCfg1009(in["bfd_cfg"].([]interface{}))
 		ret.Cost = in["cost"].(int)
-		ret.DatabaseFilterCfg = getObjectInterfaceVeIpOspfOspfGlobalDatabaseFilterCfg1015(in["database_filter_cfg"].([]interface{}))
+		ret.DatabaseFilterCfg = getObjectInterfaceVeIpOspfOspfGlobalDatabaseFilterCfg1010(in["database_filter_cfg"].([]interface{}))
 		ret.DeadInterval = in["dead_interval"].(int)
 		ret.Disable = in["disable"].(string)
 		ret.HelloInterval = in["hello_interval"].(int)
-		ret.MessageDigestCfg = getSliceInterfaceVeIpOspfOspfGlobalMessageDigestCfg1016(in["message_digest_cfg"].([]interface{}))
+		ret.MessageDigestCfg = getSliceInterfaceVeIpOspfOspfGlobalMessageDigestCfg1011(in["message_digest_cfg"].([]interface{}))
 		ret.Mtu = in["mtu"].(int)
 		ret.MtuIgnore = in["mtu_ignore"].(int)
-		ret.Network = getObjectInterfaceVeIpOspfOspfGlobalNetwork1018(in["network"].([]interface{}))
+		ret.Network = getObjectInterfaceVeIpOspfOspfGlobalNetwork1013(in["network"].([]interface{}))
 		ret.Priority = in["priority"].(int)
 		ret.RetransmitInterval = in["retransmit_interval"].(int)
 		ret.TransmitDelay = in["transmit_delay"].(int)
@@ -516,10 +541,10 @@ func getObjectInterfaceVeIpOspfOspfGlobal1012(d []interface{}) edpt.InterfaceVeI
 	return ret
 }
 
-func getObjectInterfaceVeIpOspfOspfGlobalAuthenticationCfg1013(d []interface{}) edpt.InterfaceVeIpOspfOspfGlobalAuthenticationCfg1013 {
+func getObjectInterfaceVeIpOspfOspfGlobalAuthenticationCfg1008(d []interface{}) edpt.InterfaceVeIpOspfOspfGlobalAuthenticationCfg1008 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceVeIpOspfOspfGlobalAuthenticationCfg1013
+	var ret edpt.InterfaceVeIpOspfOspfGlobalAuthenticationCfg1008
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Authentication = in["authentication"].(int)
@@ -528,10 +553,10 @@ func getObjectInterfaceVeIpOspfOspfGlobalAuthenticationCfg1013(d []interface{}) 
 	return ret
 }
 
-func getObjectInterfaceVeIpOspfOspfGlobalBfdCfg1014(d []interface{}) edpt.InterfaceVeIpOspfOspfGlobalBfdCfg1014 {
+func getObjectInterfaceVeIpOspfOspfGlobalBfdCfg1009(d []interface{}) edpt.InterfaceVeIpOspfOspfGlobalBfdCfg1009 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceVeIpOspfOspfGlobalBfdCfg1014
+	var ret edpt.InterfaceVeIpOspfOspfGlobalBfdCfg1009
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Bfd = in["bfd"].(int)
@@ -540,10 +565,10 @@ func getObjectInterfaceVeIpOspfOspfGlobalBfdCfg1014(d []interface{}) edpt.Interf
 	return ret
 }
 
-func getObjectInterfaceVeIpOspfOspfGlobalDatabaseFilterCfg1015(d []interface{}) edpt.InterfaceVeIpOspfOspfGlobalDatabaseFilterCfg1015 {
+func getObjectInterfaceVeIpOspfOspfGlobalDatabaseFilterCfg1010(d []interface{}) edpt.InterfaceVeIpOspfOspfGlobalDatabaseFilterCfg1010 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceVeIpOspfOspfGlobalDatabaseFilterCfg1015
+	var ret edpt.InterfaceVeIpOspfOspfGlobalDatabaseFilterCfg1010
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DatabaseFilter = in["database_filter"].(string)
@@ -552,24 +577,24 @@ func getObjectInterfaceVeIpOspfOspfGlobalDatabaseFilterCfg1015(d []interface{}) 
 	return ret
 }
 
-func getSliceInterfaceVeIpOspfOspfGlobalMessageDigestCfg1016(d []interface{}) []edpt.InterfaceVeIpOspfOspfGlobalMessageDigestCfg1016 {
+func getSliceInterfaceVeIpOspfOspfGlobalMessageDigestCfg1011(d []interface{}) []edpt.InterfaceVeIpOspfOspfGlobalMessageDigestCfg1011 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceVeIpOspfOspfGlobalMessageDigestCfg1016, 0, count1)
+	ret := make([]edpt.InterfaceVeIpOspfOspfGlobalMessageDigestCfg1011, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceVeIpOspfOspfGlobalMessageDigestCfg1016
+		var oi edpt.InterfaceVeIpOspfOspfGlobalMessageDigestCfg1011
 		oi.MessageDigestKey = in["message_digest_key"].(int)
-		oi.Md5 = getObjectInterfaceVeIpOspfOspfGlobalMessageDigestCfgMd51017(in["md5"].([]interface{}))
+		oi.Md5 = getObjectInterfaceVeIpOspfOspfGlobalMessageDigestCfgMd51012(in["md5"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectInterfaceVeIpOspfOspfGlobalMessageDigestCfgMd51017(d []interface{}) edpt.InterfaceVeIpOspfOspfGlobalMessageDigestCfgMd51017 {
+func getObjectInterfaceVeIpOspfOspfGlobalMessageDigestCfgMd51012(d []interface{}) edpt.InterfaceVeIpOspfOspfGlobalMessageDigestCfgMd51012 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceVeIpOspfOspfGlobalMessageDigestCfgMd51017
+	var ret edpt.InterfaceVeIpOspfOspfGlobalMessageDigestCfgMd51012
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Md5Value = in["md5_value"].(string)
@@ -578,10 +603,10 @@ func getObjectInterfaceVeIpOspfOspfGlobalMessageDigestCfgMd51017(d []interface{}
 	return ret
 }
 
-func getObjectInterfaceVeIpOspfOspfGlobalNetwork1018(d []interface{}) edpt.InterfaceVeIpOspfOspfGlobalNetwork1018 {
+func getObjectInterfaceVeIpOspfOspfGlobalNetwork1013(d []interface{}) edpt.InterfaceVeIpOspfOspfGlobalNetwork1013 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceVeIpOspfOspfGlobalNetwork1018
+	var ret edpt.InterfaceVeIpOspfOspfGlobalNetwork1013
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Broadcast = in["broadcast"].(int)
@@ -635,40 +660,40 @@ func getSliceInterfaceVeIpOspfOspfIpListMessageDigestCfg(d []interface{}) []edpt
 	return ret
 }
 
-func getObjectInterfaceVeIpRip1019(d []interface{}) edpt.InterfaceVeIpRip1019 {
+func getObjectInterfaceVeIpRip1014(d []interface{}) edpt.InterfaceVeIpRip1014 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceVeIpRip1019
+	var ret edpt.InterfaceVeIpRip1014
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Authentication = getObjectInterfaceVeIpRipAuthentication1020(in["authentication"].([]interface{}))
+		ret.Authentication = getObjectInterfaceVeIpRipAuthentication1015(in["authentication"].([]interface{}))
 		ret.SendPacket = in["send_packet"].(int)
 		ret.ReceivePacket = in["receive_packet"].(int)
-		ret.SendCfg = getObjectInterfaceVeIpRipSendCfg1024(in["send_cfg"].([]interface{}))
-		ret.ReceiveCfg = getObjectInterfaceVeIpRipReceiveCfg1025(in["receive_cfg"].([]interface{}))
-		ret.SplitHorizonCfg = getObjectInterfaceVeIpRipSplitHorizonCfg1026(in["split_horizon_cfg"].([]interface{}))
+		ret.SendCfg = getObjectInterfaceVeIpRipSendCfg1019(in["send_cfg"].([]interface{}))
+		ret.ReceiveCfg = getObjectInterfaceVeIpRipReceiveCfg1020(in["receive_cfg"].([]interface{}))
+		ret.SplitHorizonCfg = getObjectInterfaceVeIpRipSplitHorizonCfg1021(in["split_horizon_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectInterfaceVeIpRipAuthentication1020(d []interface{}) edpt.InterfaceVeIpRipAuthentication1020 {
+func getObjectInterfaceVeIpRipAuthentication1015(d []interface{}) edpt.InterfaceVeIpRipAuthentication1015 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceVeIpRipAuthentication1020
+	var ret edpt.InterfaceVeIpRipAuthentication1015
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Str = getObjectInterfaceVeIpRipAuthenticationStr1021(in["str"].([]interface{}))
-		ret.Mode = getObjectInterfaceVeIpRipAuthenticationMode1022(in["mode"].([]interface{}))
-		ret.KeyChain = getObjectInterfaceVeIpRipAuthenticationKeyChain1023(in["key_chain"].([]interface{}))
+		ret.Str = getObjectInterfaceVeIpRipAuthenticationStr1016(in["str"].([]interface{}))
+		ret.Mode = getObjectInterfaceVeIpRipAuthenticationMode1017(in["mode"].([]interface{}))
+		ret.KeyChain = getObjectInterfaceVeIpRipAuthenticationKeyChain1018(in["key_chain"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceVeIpRipAuthenticationStr1021(d []interface{}) edpt.InterfaceVeIpRipAuthenticationStr1021 {
+func getObjectInterfaceVeIpRipAuthenticationStr1016(d []interface{}) edpt.InterfaceVeIpRipAuthenticationStr1016 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceVeIpRipAuthenticationStr1021
+	var ret edpt.InterfaceVeIpRipAuthenticationStr1016
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.String = in["string"].(string)
@@ -676,10 +701,10 @@ func getObjectInterfaceVeIpRipAuthenticationStr1021(d []interface{}) edpt.Interf
 	return ret
 }
 
-func getObjectInterfaceVeIpRipAuthenticationMode1022(d []interface{}) edpt.InterfaceVeIpRipAuthenticationMode1022 {
+func getObjectInterfaceVeIpRipAuthenticationMode1017(d []interface{}) edpt.InterfaceVeIpRipAuthenticationMode1017 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceVeIpRipAuthenticationMode1022
+	var ret edpt.InterfaceVeIpRipAuthenticationMode1017
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mode = in["mode"].(string)
@@ -687,10 +712,10 @@ func getObjectInterfaceVeIpRipAuthenticationMode1022(d []interface{}) edpt.Inter
 	return ret
 }
 
-func getObjectInterfaceVeIpRipAuthenticationKeyChain1023(d []interface{}) edpt.InterfaceVeIpRipAuthenticationKeyChain1023 {
+func getObjectInterfaceVeIpRipAuthenticationKeyChain1018(d []interface{}) edpt.InterfaceVeIpRipAuthenticationKeyChain1018 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceVeIpRipAuthenticationKeyChain1023
+	var ret edpt.InterfaceVeIpRipAuthenticationKeyChain1018
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.KeyChain = in["key_chain"].(string)
@@ -698,10 +723,10 @@ func getObjectInterfaceVeIpRipAuthenticationKeyChain1023(d []interface{}) edpt.I
 	return ret
 }
 
-func getObjectInterfaceVeIpRipSendCfg1024(d []interface{}) edpt.InterfaceVeIpRipSendCfg1024 {
+func getObjectInterfaceVeIpRipSendCfg1019(d []interface{}) edpt.InterfaceVeIpRipSendCfg1019 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceVeIpRipSendCfg1024
+	var ret edpt.InterfaceVeIpRipSendCfg1019
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Send = in["send"].(int)
@@ -710,10 +735,10 @@ func getObjectInterfaceVeIpRipSendCfg1024(d []interface{}) edpt.InterfaceVeIpRip
 	return ret
 }
 
-func getObjectInterfaceVeIpRipReceiveCfg1025(d []interface{}) edpt.InterfaceVeIpRipReceiveCfg1025 {
+func getObjectInterfaceVeIpRipReceiveCfg1020(d []interface{}) edpt.InterfaceVeIpRipReceiveCfg1020 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceVeIpRipReceiveCfg1025
+	var ret edpt.InterfaceVeIpRipReceiveCfg1020
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Receive = in["receive"].(int)
@@ -722,10 +747,10 @@ func getObjectInterfaceVeIpRipReceiveCfg1025(d []interface{}) edpt.InterfaceVeIp
 	return ret
 }
 
-func getObjectInterfaceVeIpRipSplitHorizonCfg1026(d []interface{}) edpt.InterfaceVeIpRipSplitHorizonCfg1026 {
+func getObjectInterfaceVeIpRipSplitHorizonCfg1021(d []interface{}) edpt.InterfaceVeIpRipSplitHorizonCfg1021 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceVeIpRipSplitHorizonCfg1026
+	var ret edpt.InterfaceVeIpRipSplitHorizonCfg1021
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.State = in["state"].(string)
@@ -733,24 +758,40 @@ func getObjectInterfaceVeIpRipSplitHorizonCfg1026(d []interface{}) edpt.Interfac
 	return ret
 }
 
-func getObjectInterfaceVeIpRouter1027(d []interface{}) edpt.InterfaceVeIpRouter1027 {
+func getObjectInterfaceVeIpRouter1022(d []interface{}) edpt.InterfaceVeIpRouter1022 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceVeIpRouter1027
+	var ret edpt.InterfaceVeIpRouter1022
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Isis = getObjectInterfaceVeIpRouterIsis1028(in["isis"].([]interface{}))
+		ret.Isis = getObjectInterfaceVeIpRouterIsis1023(in["isis"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceVeIpRouterIsis1028(d []interface{}) edpt.InterfaceVeIpRouterIsis1028 {
+func getObjectInterfaceVeIpRouterIsis1023(d []interface{}) edpt.InterfaceVeIpRouterIsis1023 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceVeIpRouterIsis1028
+	var ret edpt.InterfaceVeIpRouterIsis1023
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Tag = in["tag"].(string)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectInterfaceVeIpStatefulFirewall1024(d []interface{}) edpt.InterfaceVeIpStatefulFirewall1024 {
+
+	count1 := len(d)
+	var ret edpt.InterfaceVeIpStatefulFirewall1024
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Inside = in["inside"].(int)
+		ret.ClassList = in["class_list"].(string)
+		ret.Outside = in["outside"].(int)
+		ret.AccessList = in["access_list"].(int)
+		ret.AclId = in["acl_id"].(int)
 		//omit uuid
 	}
 	return ret
@@ -767,13 +808,14 @@ func dataToEndpointInterfaceVeIp(d *schema.ResourceData) edpt.InterfaceVeIp {
 	ret.Inst.HelperAddressList = getSliceInterfaceVeIpHelperAddressList(d.Get("helper_address_list").([]interface{}))
 	ret.Inst.Inside = d.Get("inside").(int)
 	ret.Inst.MaxRespTime = d.Get("max_resp_time").(int)
-	ret.Inst.Ospf = getObjectInterfaceVeIpOspf1011(d.Get("ospf").([]interface{}))
+	ret.Inst.Ospf = getObjectInterfaceVeIpOspf1006(d.Get("ospf").([]interface{}))
 	ret.Inst.Outside = d.Get("outside").(int)
 	ret.Inst.QueryInterval = d.Get("query_interval").(int)
-	ret.Inst.Rip = getObjectInterfaceVeIpRip1019(d.Get("rip").([]interface{}))
-	ret.Inst.Router = getObjectInterfaceVeIpRouter1027(d.Get("router").([]interface{}))
+	ret.Inst.Rip = getObjectInterfaceVeIpRip1014(d.Get("rip").([]interface{}))
+	ret.Inst.Router = getObjectInterfaceVeIpRouter1022(d.Get("router").([]interface{}))
 	ret.Inst.Server = d.Get("server").(int)
 	ret.Inst.SlbPartitionRedirect = d.Get("slb_partition_redirect").(int)
+	ret.Inst.StatefulFirewall = getObjectInterfaceVeIpStatefulFirewall1024(d.Get("stateful_firewall").([]interface{}))
 	ret.Inst.SynCookie = d.Get("syn_cookie").(int)
 	ret.Inst.TtlIgnore = d.Get("ttl_ignore").(int)
 	ret.Inst.Unnumbered = d.Get("unnumbered").(int)

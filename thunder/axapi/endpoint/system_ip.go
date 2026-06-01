@@ -5,16 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemIp struct {
 	Inst struct {
-		IcmpRedirectDisable int `json:"icmp-redirect-disable"`
-
-		IcmpUnreachableDisable int `json:"icmp-unreachable-disable"`
-
-		RpfCheckEnable int `json:"rpf-check-enable"`
-
-		SourceRoutePktDropEnable int `json:"source-route-pkt-drop-enable"`
+		ClassEAddressRangeEnable int `json:"class-e-address-range-enable"`
 
 		Uuid string `json:"uuid"`
 	} `json:"ip"`

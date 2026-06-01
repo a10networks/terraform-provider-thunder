@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemTcpStatsStats struct {
 	Stats SystemTcpStatsStatsStats `json:"stats"`
 }
@@ -103,6 +103,7 @@ type SystemTcpStatsStatsStats struct {
 	A2bsndwnd             int `json:"a2bsndwnd"`
 	Proxyheaderv1         int `json:"proxyheaderv1"`
 	Proxyheaderv2         int `json:"proxyheaderv2"`
+	Cpurrdrop             int `json:"cpurrdrop"`
 }
 
 func (p *SystemTcpStatsStats) GetId() string {

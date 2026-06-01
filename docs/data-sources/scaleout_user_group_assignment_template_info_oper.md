@@ -40,6 +40,7 @@ Optional:
 Optional:
 
 - `address_prefix` (String)
+- `assignment_prefix_length` (Number)
 - `ip_count_per_prefix` (Number)
 - `prefixes_count` (Number)
 - `prefixes_per_user_group` (Number)

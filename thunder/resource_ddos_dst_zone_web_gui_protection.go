@@ -180,10 +180,10 @@ func resourceDdosDstZoneWebGuiProtectionRead(ctx context.Context, d *schema.Reso
 	return diags
 }
 
-func getObjectDdosDstZoneWebGuiProtectionIpProto268(d []interface{}) edpt.DdosDstZoneWebGuiProtectionIpProto268 {
+func getObjectDdosDstZoneWebGuiProtectionIpProto271(d []interface{}) edpt.DdosDstZoneWebGuiProtectionIpProto271 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneWebGuiProtectionIpProto268
+	var ret edpt.DdosDstZoneWebGuiProtectionIpProto271
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ProtoNameList = getSliceDdosDstZoneWebGuiProtectionIpProtoProtoNameList(in["proto_name_list"].([]interface{}))
@@ -207,10 +207,10 @@ func getSliceDdosDstZoneWebGuiProtectionIpProtoProtoNameList(d []interface{}) []
 	return ret
 }
 
-func getObjectDdosDstZoneWebGuiProtectionPort269(d []interface{}) edpt.DdosDstZoneWebGuiProtectionPort269 {
+func getObjectDdosDstZoneWebGuiProtectionPort272(d []interface{}) edpt.DdosDstZoneWebGuiProtectionPort272 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneWebGuiProtectionPort269
+	var ret edpt.DdosDstZoneWebGuiProtectionPort272
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ZoneServiceList = getSliceDdosDstZoneWebGuiProtectionPortZoneServiceList(in["zone_service_list"].([]interface{}))
@@ -271,8 +271,8 @@ func getSliceDdosDstZoneWebGuiProtectionPortRangeList(d []interface{}) []edpt.Dd
 
 func dataToEndpointDdosDstZoneWebGuiProtection(d *schema.ResourceData) edpt.DdosDstZoneWebGuiProtection {
 	var ret edpt.DdosDstZoneWebGuiProtection
-	ret.Inst.IpProto = getObjectDdosDstZoneWebGuiProtectionIpProto268(d.Get("ip_proto").([]interface{}))
-	ret.Inst.Port = getObjectDdosDstZoneWebGuiProtectionPort269(d.Get("port").([]interface{}))
+	ret.Inst.IpProto = getObjectDdosDstZoneWebGuiProtectionIpProto271(d.Get("ip_proto").([]interface{}))
+	ret.Inst.Port = getObjectDdosDstZoneWebGuiProtectionPort272(d.Get("port").([]interface{}))
 	ret.Inst.PortRangeList = getSliceDdosDstZoneWebGuiProtectionPortRangeList(d.Get("port_range_list").([]interface{}))
 	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	return ret

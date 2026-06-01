@@ -693,6 +693,21 @@ func resourceSlbVirtualServerPortStats50() *schema.Resource {
 									"dns_recursive_resolution_response_receive": {
 										Type: schema.TypeInt, Optional: true, Description: "DNS Recursive Resolution Response Receive",
 									},
+									"dns_recursive_resolution_received_tc_response": {
+										Type: schema.TypeInt, Optional: true, Description: "DNS Recursive Resolution TC Response Received",
+									},
+									"dns_max_udp_size_sent_tc_response": {
+										Type: schema.TypeInt, Optional: true, Description: "TC Response Sent Due to max-udp-size",
+									},
+									"dns_rr_exceed_per_resolv_max_sig_val_attempts": {
+										Type: schema.TypeInt, Optional: true, Description: "DNS Recursive Resolution exceed per-resolution maximum signature validation attempts",
+									},
+									"dns_rr_exceed_per_resolv_max_sig_val_failures": {
+										Type: schema.TypeInt, Optional: true, Description: "DNS Recursive Resolution exceed per-resolution maximum signature validation failures",
+									},
+									"dns_rr_exceed_per_resolv_max_dgst_val_failures": {
+										Type: schema.TypeInt, Optional: true, Description: "DNS Recursive Resolution exceed per-resolution maximum key-digest validation failures",
+									},
 								},
 							},
 						},
@@ -1005,6 +1020,11 @@ func getObjectSlbVirtualServerPortStats50StatsDns_vport(d []interface{}) edpt.Sl
 		ret.Dnsrrl_nx_exceed = in["dnsrrl_nx_exceed"].(int)
 		ret.Dns_recursive_resolution_request_send = in["dns_recursive_resolution_request_send"].(int)
 		ret.Dns_recursive_resolution_response_receive = in["dns_recursive_resolution_response_receive"].(int)
+		ret.Dns_recursive_resolution_received_tc_response = in["dns_recursive_resolution_received_tc_response"].(int)
+		ret.Dns_max_udp_size_sent_tc_response = in["dns_max_udp_size_sent_tc_response"].(int)
+		ret.Dns_rr_exceed_per_resolv_max_sig_val_attempts = in["dns_rr_exceed_per_resolv_max_sig_val_attempts"].(int)
+		ret.Dns_rr_exceed_per_resolv_max_sig_val_failures = in["dns_rr_exceed_per_resolv_max_sig_val_failures"].(int)
+		ret.Dns_rr_exceed_per_resolv_max_dgst_val_failures = in["dns_rr_exceed_per_resolv_max_dgst_val_failures"].(int)
 	}
 	return ret
 }

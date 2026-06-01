@@ -5,12 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SnmpServerEnableTrapsSystem struct {
 	Inst struct {
 		All int `json:"all"`
 
-		AppsGlobal SnmpServerEnableTrapsSystemAppsGlobal1584 `json:"apps-global"`
+		AppsGlobal SnmpServerEnableTrapsSystemAppsGlobal1585 `json:"apps-global"`
 
 		ControlCpuHigh int `json:"control-cpu-high"`
 
@@ -54,7 +54,7 @@ type SnmpServerEnableTrapsSystem struct {
 	} `json:"system"`
 }
 
-type SnmpServerEnableTrapsSystemAppsGlobal1584 struct {
+type SnmpServerEnableTrapsSystemAppsGlobal1585 struct {
 	SessionsThreshold int    `json:"sessions-threshold"`
 	CpsThreshold      int    `json:"cps-threshold"`
 	Uuid              string `json:"uuid"`

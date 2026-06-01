@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemViewHardwareViewOper struct {
 	Oper SystemViewHardwareViewOperOper `json:"oper"`
 }
@@ -50,7 +50,6 @@ type SystemViewHardwareViewOperOper struct {
 	Alldynamic          int                                            `json:"alldynamic"`
 	McpldType           int                                            `json:"mcpld-type"`
 	McpldDate           string                                         `json:"mcpld-date"`
-	HwGpus              string                                         `json:"hw-gpus"`
 }
 
 type SystemViewHardwareViewOperOperSslCards struct {

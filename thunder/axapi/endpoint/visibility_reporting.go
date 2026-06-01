@@ -5,16 +5,16 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityReporting struct {
 	Inst struct {
 		SamplingEnable []VisibilityReportingSamplingEnable `json:"sampling-enable"`
 
 		SessionLogging string `json:"session-logging" dval:"disable"`
 
-		TelemetryExportInterval VisibilityReportingTelemetryExportInterval3226 `json:"telemetry-export-interval"`
+		TelemetryExportInterval VisibilityReportingTelemetryExportInterval3254 `json:"telemetry-export-interval"`
 
-		Template VisibilityReportingTemplate3227 `json:"template"`
+		Template VisibilityReportingTemplate3255 `json:"template"`
 
 		Uuid string `json:"uuid"`
 	} `json:"reporting"`
@@ -24,18 +24,18 @@ type VisibilityReportingSamplingEnable struct {
 	Counters1 string `json:"counters1"`
 }
 
-type VisibilityReportingTelemetryExportInterval3226 struct {
+type VisibilityReportingTelemetryExportInterval3254 struct {
 	Value int    `json:"value" dval:"5"`
 	Uuid  string `json:"uuid"`
 }
 
-type VisibilityReportingTemplate3227 struct {
-	Notification VisibilityReportingTemplateNotification3228 `json:"notification"`
+type VisibilityReportingTemplate3255 struct {
+	Notification VisibilityReportingTemplateNotification3256 `json:"notification"`
 }
 
-type VisibilityReportingTemplateNotification3228 struct {
+type VisibilityReportingTemplateNotification3256 struct {
 	TemplateNameList []VisibilityReportingTemplateNotificationTemplateNameList `json:"template-name-list"`
-	Debug            VisibilityReportingTemplateNotificationDebug3229          `json:"debug"`
+	Debug            VisibilityReportingTemplateNotificationDebug3257          `json:"debug"`
 }
 
 type VisibilityReportingTemplateNotificationTemplateNameList struct {
@@ -73,7 +73,7 @@ type VisibilityReportingTemplateNotificationTemplateNameListAuthentication struc
 	Uuid               string `json:"uuid"`
 }
 
-type VisibilityReportingTemplateNotificationDebug3229 struct {
+type VisibilityReportingTemplateNotificationDebug3257 struct {
 	Uuid string `json:"uuid"`
 }
 

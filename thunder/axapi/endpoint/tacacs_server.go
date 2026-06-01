@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type TacacsServer struct {
 	Inst struct {
-		Host TacacsServerHost2020 `json:"host"`
+		Host TacacsServerHost2019 `json:"host"`
 
 		Interval int `json:"interval" dval:"60"`
 
@@ -18,7 +18,7 @@ type TacacsServer struct {
 	} `json:"tacacs-server"`
 }
 
-type TacacsServerHost2020 struct {
+type TacacsServerHost2019 struct {
 	Ipv4List           []TacacsServerHostIpv4List           `json:"ipv4-list"`
 	Ipv6List           []TacacsServerHostIpv6List           `json:"ipv6-list"`
 	TacacsHostnameList []TacacsServerHostTacacsHostnameList `json:"tacacs-hostname-list"`
@@ -43,14 +43,19 @@ type TacacsServerHostIpv4ListSecret struct {
 }
 
 type TacacsServerHostIpv4ListSecretPortCfg struct {
-	Port                int    `json:"port" dval:"49"`
-	Timeout             int    `json:"timeout" dval:"12"`
-	PreferDataInterface int    `json:"prefer-data-interface"`
-	Monitor             int    `json:"monitor"`
-	Username            string `json:"username"`
-	Password            int    `json:"password"`
-	PasswordValue       string `json:"password-value"`
-	Encrypted           string `json:"encrypted"`
+	Port                 int    `json:"port" dval:"49"`
+	Timeout              int    `json:"timeout" dval:"12"`
+	PreferDataInterface  int    `json:"prefer-data-interface"`
+	OverTls              int    `json:"over-tls"`
+	Cert                 string `json:"cert"`
+	PrivateKey           string `json:"private-key"`
+	CustomCa             string `json:"custom-ca"`
+	SkipCertVerification int    `json:"skip-cert-verification"`
+	Monitor              int    `json:"monitor"`
+	Username             string `json:"username"`
+	Password             int    `json:"password"`
+	PasswordValue        string `json:"password-value"`
+	Encrypted            string `json:"encrypted"`
 }
 
 type TacacsServerHostIpv6List struct {
@@ -72,14 +77,19 @@ type TacacsServerHostIpv6ListSecret struct {
 }
 
 type TacacsServerHostIpv6ListSecretPortCfg struct {
-	Port                int    `json:"port" dval:"49"`
-	Timeout             int    `json:"timeout" dval:"12"`
-	PreferDataInterface int    `json:"prefer-data-interface"`
-	Monitor             int    `json:"monitor"`
-	Username            string `json:"username"`
-	Password            int    `json:"password"`
-	PasswordValue       string `json:"password-value"`
-	Encrypted           string `json:"encrypted"`
+	Port                 int    `json:"port" dval:"49"`
+	Timeout              int    `json:"timeout" dval:"12"`
+	PreferDataInterface  int    `json:"prefer-data-interface"`
+	OverTls              int    `json:"over-tls"`
+	Cert                 string `json:"cert"`
+	PrivateKey           string `json:"private-key"`
+	CustomCa             string `json:"custom-ca"`
+	SkipCertVerification int    `json:"skip-cert-verification"`
+	Monitor              int    `json:"monitor"`
+	Username             string `json:"username"`
+	Password             int    `json:"password"`
+	PasswordValue        string `json:"password-value"`
+	Encrypted            string `json:"encrypted"`
 }
 
 type TacacsServerHostTacacsHostnameList struct {
@@ -102,14 +112,19 @@ type TacacsServerHostTacacsHostnameListSecret struct {
 }
 
 type TacacsServerHostTacacsHostnameListSecretPortCfg struct {
-	Port                int    `json:"port" dval:"49"`
-	Timeout             int    `json:"timeout" dval:"12"`
-	PreferDataInterface int    `json:"prefer-data-interface"`
-	Monitor             int    `json:"monitor"`
-	Username            string `json:"username"`
-	Password            int    `json:"password"`
-	PasswordValue       string `json:"password-value"`
-	Encrypted           string `json:"encrypted"`
+	Port                 int    `json:"port" dval:"49"`
+	Timeout              int    `json:"timeout" dval:"12"`
+	PreferDataInterface  int    `json:"prefer-data-interface"`
+	OverTls              int    `json:"over-tls"`
+	Cert                 string `json:"cert"`
+	PrivateKey           string `json:"private-key"`
+	CustomCa             string `json:"custom-ca"`
+	SkipCertVerification int    `json:"skip-cert-verification"`
+	Monitor              int    `json:"monitor"`
+	Username             string `json:"username"`
+	Password             int    `json:"password"`
+	PasswordValue        string `json:"password-value"`
+	Encrypted            string `json:"encrypted"`
 }
 
 func (p *TacacsServer) GetId() string {

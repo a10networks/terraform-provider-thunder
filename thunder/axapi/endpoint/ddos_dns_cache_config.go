@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDnsCacheConfig struct {
 	Inst struct {
 		DisableZoneTransferInOperMode int `json:"disable-zone-transfer-in-oper-mode"`
@@ -16,7 +16,7 @@ type DdosDnsCacheConfig struct {
 
 		EnableCacheWarmUpBgpAdvertise int `json:"enable-cache-warm-up-bgp-advertise"`
 
-		MaxConcurrentZoneTransfers DdosDnsCacheConfigMaxConcurrentZoneTransfers166 `json:"max-concurrent-zone-transfers"`
+		MaxConcurrentZoneTransfers DdosDnsCacheConfigMaxConcurrentZoneTransfers169 `json:"max-concurrent-zone-transfers"`
 
 		MinimalTruncationResponses int `json:"minimal-truncation-responses"`
 
@@ -24,7 +24,7 @@ type DdosDnsCacheConfig struct {
 	} `json:"dns-cache-config"`
 }
 
-type DdosDnsCacheConfigMaxConcurrentZoneTransfers166 struct {
+type DdosDnsCacheConfigMaxConcurrentZoneTransfers169 struct {
 	WarmUpMode      int    `json:"warm-up-mode" dval:"65472"`
 	OperationalMode int    `json:"operational-mode"`
 	Uuid            string `json:"uuid"`

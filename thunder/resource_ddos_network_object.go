@@ -16,6 +16,9 @@ func resourceDdosNetworkObject() *schema.Resource {
 		DeleteContext: resourceDdosNetworkObjectDelete,
 
 		Schema: map[string]*schema.Schema{
+			"anomaly_child_percentage": {
+				Type: schema.TypeInt, Optional: true, Description: "percentage of anomaly child's threshold used in delayed notification sending check (default 75)",
+			},
 			"anomaly_detection_trigger": {
 				Type: schema.TypeString, Optional: true, Description: "'all': Use both learned and static thresholds (static thresholds take precedence); 'static-threshold-only': Use static thresholds only;",
 			},
@@ -89,9 +92,6 @@ func resourceDdosNetworkObject() *schema.Resource {
 						},
 					},
 				},
-			},
-			"host_sport_discovery": {
-				Type: schema.TypeString, Optional: true, Description: "'enable': Enable source port discovery.; 'disable': Disable source port discovery.;",
 			},
 			"indicators_to_monitor": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -178,6 +178,51 @@ func resourceDdosNetworkObject() *schema.Resource {
 								},
 							},
 						},
+						"src_port_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"port_num": {
+										Type: schema.TypeInt, Required: true, Description: "Port Number",
+									},
+									"protocol": {
+										Type: schema.TypeString, Required: true, Description: "'udp': UDP port; 'tcp': TCP Port;",
+									},
+									"host_src_port_anomaly_threshold": {
+										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"host_src_port_pkt_rate": {
+													Type: schema.TypeInt, Optional: true, Description: "Forward packet rate of per-host source port entries",
+												},
+												"host_src_port_bit_rate": {
+													Type: schema.TypeInt, Optional: true, Description: "Forward bit rate of per-host source port entries",
+												},
+											},
+										},
+									},
+									"subnet_src_port_anomaly_threshold": {
+										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"subnet_src_port_pkt_rate": {
+													Type: schema.TypeInt, Optional: true, Description: "Forward packet rate of per-subnet source port entries",
+												},
+												"subnet_src_port_bit_rate": {
+													Type: schema.TypeInt, Optional: true, Description: "Forward bit rate of per-subnet source port entries",
+												},
+											},
+										},
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+									"user_tag": {
+										Type: schema.TypeString, Optional: true, Description: "Customized tag",
+									},
+								},
+							},
+						},
 					},
 				},
 			},
@@ -213,6 +258,51 @@ func resourceDdosNetworkObject() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"counters1": {
 										Type: schema.TypeString, Optional: true, Description: "'all': all; 'packet_rate': PPS; 'bit_rate': B(bits)PS;",
+									},
+								},
+							},
+						},
+						"src_port_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"port_num": {
+										Type: schema.TypeInt, Required: true, Description: "Port Number",
+									},
+									"protocol": {
+										Type: schema.TypeString, Required: true, Description: "'udp': UDP port; 'tcp': TCP Port;",
+									},
+									"host_src_port_anomaly_threshold": {
+										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"host_src_port_pkt_rate": {
+													Type: schema.TypeInt, Optional: true, Description: "Forward packet rate of per-host source port entries",
+												},
+												"host_src_port_bit_rate": {
+													Type: schema.TypeInt, Optional: true, Description: "Forward bit rate of per-host source port entries",
+												},
+											},
+										},
+									},
+									"subnet_src_port_anomaly_threshold": {
+										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"subnet_src_port_pkt_rate": {
+													Type: schema.TypeInt, Optional: true, Description: "Forward packet rate of per-subnet source port entries",
+												},
+												"subnet_src_port_bit_rate": {
+													Type: schema.TypeInt, Optional: true, Description: "Forward bit rate of per-subnet source port entries",
+												},
+											},
+										},
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+									"user_tag": {
+										Type: schema.TypeString, Optional: true, Description: "Customized tag",
 									},
 								},
 							},
@@ -301,270 +391,11 @@ func resourceDdosNetworkObject() *schema.Resource {
 			"service_discovery": {
 				Type: schema.TypeString, Optional: true, Description: "'disable': Disable service discovery for hosts (default: enabled);",
 			},
-			"sport_anomaly_detection": {
-				Type: schema.TypeString, Optional: true, Description: "'disable': Disable source port anomaly detection (default: enabled);",
+			"src_service_discovery": {
+				Type: schema.TypeString, Optional: true, Description: "'enable': Enable source service discovery.; 'disable': Disable source service discovery.;",
 			},
-			"sport_anomaly_threshold": {
-				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"packet_rate": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"value": {
-										Type: schema.TypeInt, Optional: true, Description: "Packet rate of a source port entry",
-									},
-									"uuid": {
-										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-									},
-								},
-							},
-						},
-						"packet_rate_percentage": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"value": {
-										Type: schema.TypeInt, Optional: true, Description: "Percentage of source port entry's parent entry",
-									},
-									"uuid": {
-										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-									},
-								},
-							},
-						},
-						"bit_rate": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"value": {
-										Type: schema.TypeInt, Optional: true, Description: "Bit rate of a source port entry",
-									},
-									"uuid": {
-										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-									},
-								},
-							},
-						},
-						"bit_rate_percentage": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"value": {
-										Type: schema.TypeInt, Optional: true, Description: "Percentage of source port entry's parent entry",
-									},
-									"uuid": {
-										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-									},
-								},
-							},
-						},
-						"ip_list": {
-							Type: schema.TypeList, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"ip_addr": {
-										Type: schema.TypeString, Required: true, Description: "Override threshold",
-									},
-									"packet_rate_str": {
-										Type: schema.TypeString, Required: true, Description: "'packet-rate': Packet rate of a source port entry;",
-									},
-									"packet_rate_percentage_str": {
-										Type: schema.TypeString, Required: true, Description: "'packet-rate-percentage': Percentage of source port entry's parent entry;",
-									},
-									"bit_rate_str": {
-										Type: schema.TypeString, Required: true, Description: "'bit-rate': Bit rate of a source port entry;",
-									},
-									"bit_rate_percentage_str": {
-										Type: schema.TypeString, Required: true, Description: "'bit-rate-percentage': Percentage of source port entry's parent entry;",
-									},
-									"packet_rate": {
-										Type: schema.TypeInt, Optional: true, Description: "Packet rate of a source port entry",
-									},
-									"packet_rate_percentage": {
-										Type: schema.TypeInt, Optional: true, Description: "Percentage of source port entry's parent entry",
-									},
-									"bit_rate": {
-										Type: schema.TypeInt, Optional: true, Description: "Bit rate of a source port entry",
-									},
-									"bit_rate_percentage": {
-										Type: schema.TypeInt, Optional: true, Description: "Percentage of source port entry's parent entry",
-									},
-									"sport_num": {
-										Type: schema.TypeInt, Required: true, Description: "Source port number",
-									},
-									"protocol": {
-										Type: schema.TypeString, Required: true, Description: "'udp': UDP port; 'tcp': TCP Port;",
-									},
-									"ip_sport_packet_rate_str": {
-										Type: schema.TypeString, Required: true, Description: "'packet-rate': Packet rate of a source port entry;",
-									},
-									"ip_sport_packet_rate_percentage_str": {
-										Type: schema.TypeString, Required: true, Description: "'packet-rate-percentage': Percentage of source port entry's parent entry;",
-									},
-									"ip_sport_bit_rate_str": {
-										Type: schema.TypeString, Required: true, Description: "'bit-rate': Bit rate of a source port entry;",
-									},
-									"ip_sport_bit_rate_percentage_str": {
-										Type: schema.TypeString, Required: true, Description: "'bit-rate-percentage': Percentage of source port entry's parent entry;",
-									},
-									"ip_sport_packet_rate": {
-										Type: schema.TypeInt, Optional: true, Description: "Packet rate of a source port entry",
-									},
-									"ip_sport_packet_rate_percentage": {
-										Type: schema.TypeInt, Optional: true, Description: "Percentage of source port entry's parent entry",
-									},
-									"ip_sport_bit_rate": {
-										Type: schema.TypeInt, Optional: true, Description: "Bit rate of a source port entry",
-									},
-									"ip_sport_bit_rate_percentage": {
-										Type: schema.TypeInt, Optional: true, Description: "Percentage of source port entry's parent entry",
-									},
-									"uuid": {
-										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-									},
-								},
-							},
-						},
-						"ipv6_list": {
-							Type: schema.TypeList, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"ip_addr": {
-										Type: schema.TypeString, Required: true, Description: "Override threshold",
-									},
-									"packet_rate_str": {
-										Type: schema.TypeString, Required: true, Description: "'packet-rate': Packet rate of a source port entry;",
-									},
-									"packet_rate_percentage_str": {
-										Type: schema.TypeString, Required: true, Description: "'packet-rate-percentage': Percentage of source port entry's parent entry;",
-									},
-									"bit_rate_str": {
-										Type: schema.TypeString, Required: true, Description: "'bit-rate': Bit rate of a source port entry;",
-									},
-									"bit_rate_percentage_str": {
-										Type: schema.TypeString, Required: true, Description: "'bit-rate-percentage': Percentage of source port entry's parent entry;",
-									},
-									"packet_rate": {
-										Type: schema.TypeInt, Optional: true, Description: "Packet rate of a source port entry",
-									},
-									"packet_rate_percentage": {
-										Type: schema.TypeInt, Optional: true, Description: "Percentage of source port entry's parent entry",
-									},
-									"bit_rate": {
-										Type: schema.TypeInt, Optional: true, Description: "Bit rate of a source port entry",
-									},
-									"bit_rate_percentage": {
-										Type: schema.TypeInt, Optional: true, Description: "Percentage of source port entry's parent entry",
-									},
-									"sport_num": {
-										Type: schema.TypeInt, Required: true, Description: "Source port number",
-									},
-									"protocol": {
-										Type: schema.TypeString, Required: true, Description: "'udp': UDP port; 'tcp': TCP Port;",
-									},
-									"ip_sport_packet_rate_str": {
-										Type: schema.TypeString, Required: true, Description: "'packet-rate': Packet rate of a source port entry;",
-									},
-									"ip_sport_packet_rate_percentage_str": {
-										Type: schema.TypeString, Required: true, Description: "'packet-rate-percentage': Percentage of source port entry's parent entry;",
-									},
-									"ip_sport_bit_rate_str": {
-										Type: schema.TypeString, Required: true, Description: "'bit-rate': Bit rate of a source port entry;",
-									},
-									"ip_sport_bit_rate_percentage_str": {
-										Type: schema.TypeString, Required: true, Description: "'bit-rate-percentage': Percentage of source port entry's parent entry;",
-									},
-									"ip_sport_packet_rate": {
-										Type: schema.TypeInt, Optional: true, Description: "Packet rate of a source port entry",
-									},
-									"ip_sport_packet_rate_percentage": {
-										Type: schema.TypeInt, Optional: true, Description: "Percentage of source port entry's parent entry",
-									},
-									"ip_sport_bit_rate": {
-										Type: schema.TypeInt, Optional: true, Description: "Bit rate of a source port entry",
-									},
-									"ip_sport_bit_rate_percentage": {
-										Type: schema.TypeInt, Optional: true, Description: "Percentage of source port entry's parent entry",
-									},
-									"uuid": {
-										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-									},
-								},
-							},
-						},
-						"sport_list": {
-							Type: schema.TypeList, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"sport_num": {
-										Type: schema.TypeInt, Required: true, Description: "Port Number",
-									},
-									"protocol": {
-										Type: schema.TypeString, Required: true, Description: "'udp': UDP port; 'tcp': TCP Port;",
-									},
-									"packet_rate_str": {
-										Type: schema.TypeString, Required: true, Description: "'packet-rate': Packet rate of a source port entry;",
-									},
-									"packet_rate_percentage_str": {
-										Type: schema.TypeString, Required: true, Description: "'packet-rate-percentage': Percentage of source port entry's parent entry;",
-									},
-									"bit_rate_str": {
-										Type: schema.TypeString, Required: true, Description: "'bit-rate': Bit rate of a source port entry;",
-									},
-									"bit_rate_percentage_str": {
-										Type: schema.TypeString, Required: true, Description: "'bit-rate-percentage': Percentage of source port entry's parent entry;",
-									},
-									"packet_rate": {
-										Type: schema.TypeInt, Optional: true, Description: "Packet rate of a source port entry",
-									},
-									"packet_rate_percentage": {
-										Type: schema.TypeInt, Optional: true, Description: "Percentage of source port entry's parent entry",
-									},
-									"bit_rate": {
-										Type: schema.TypeInt, Optional: true, Description: "Bit rate of a source port entry",
-									},
-									"bit_rate_percentage": {
-										Type: schema.TypeInt, Optional: true, Description: "Percentage of source port entry's parent entry",
-									},
-									"uuid": {
-										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-			"sport_discovery_threshold": {
-				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"sport_heavy_hitter_percentage": {
-							Type: schema.TypeInt, Optional: true, Default: 10, Description: "Percentage of the bit rate of undiscovered source ports (default: 10)",
-						},
-						"sport_discovery_bit_rate_percentage": {
-							Type: schema.TypeInt, Optional: true, Description: "Percentage of the bit rate of source port's parent entry",
-						},
-					},
-				},
-			},
-			"sport_list": {
-				Type: schema.TypeList, Optional: true, Description: "",
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"port_num": {
-							Type: schema.TypeInt, Required: true, Description: "Port Number",
-						},
-						"protocol": {
-							Type: schema.TypeString, Required: true, Description: "'udp': UDP port; 'tcp': TCP Port;",
-						},
-						"uuid": {
-							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-						},
-					},
-				},
+			"src_service_discovery_threshold": {
+				Type: schema.TypeInt, Optional: true, Default: 10, Description: "Percentage of the bit rate of undiscovered source services (default: 10)",
 			},
 			"static_auto_break_down_threshold": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -911,10 +742,10 @@ func getObjectDdosNetworkObjectHostAnomalyThreshold(d []interface{}) edpt.DdosNe
 	return ret
 }
 
-func getObjectDdosNetworkObjectIndicatorsToMonitor312(d []interface{}) edpt.DdosNetworkObjectIndicatorsToMonitor312 {
+func getObjectDdosNetworkObjectIndicatorsToMonitor317(d []interface{}) edpt.DdosNetworkObjectIndicatorsToMonitor317 {
 
 	count1 := len(d)
-	var ret edpt.DdosNetworkObjectIndicatorsToMonitor312
+	var ret edpt.DdosNetworkObjectIndicatorsToMonitor317
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
@@ -947,6 +778,7 @@ func getSliceDdosNetworkObjectIpList(d []interface{}) []edpt.DdosNetworkObjectIp
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		oi.SamplingEnable = getSliceDdosNetworkObjectIpListSamplingEnable(in["sampling_enable"].([]interface{}))
+		oi.SrcPortList = getSliceDdosNetworkObjectIpListSrcPortList(in["src_port_list"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
@@ -977,6 +809,48 @@ func getSliceDdosNetworkObjectIpListSamplingEnable(d []interface{}) []edpt.DdosN
 	return ret
 }
 
+func getSliceDdosNetworkObjectIpListSrcPortList(d []interface{}) []edpt.DdosNetworkObjectIpListSrcPortList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosNetworkObjectIpListSrcPortList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosNetworkObjectIpListSrcPortList
+		oi.PortNum = in["port_num"].(int)
+		oi.Protocol = in["protocol"].(string)
+		oi.HostSrcPortAnomalyThreshold = getObjectDdosNetworkObjectIpListSrcPortListHostSrcPortAnomalyThreshold(in["host_src_port_anomaly_threshold"].([]interface{}))
+		oi.SubnetSrcPortAnomalyThreshold = getObjectDdosNetworkObjectIpListSrcPortListSubnetSrcPortAnomalyThreshold(in["subnet_src_port_anomaly_threshold"].([]interface{}))
+		//omit uuid
+		oi.UserTag = in["user_tag"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectDdosNetworkObjectIpListSrcPortListHostSrcPortAnomalyThreshold(d []interface{}) edpt.DdosNetworkObjectIpListSrcPortListHostSrcPortAnomalyThreshold {
+
+	count1 := len(d)
+	var ret edpt.DdosNetworkObjectIpListSrcPortListHostSrcPortAnomalyThreshold
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.HostSrcPortPktRate = in["host_src_port_pkt_rate"].(int)
+		ret.HostSrcPortBitRate = in["host_src_port_bit_rate"].(int)
+	}
+	return ret
+}
+
+func getObjectDdosNetworkObjectIpListSrcPortListSubnetSrcPortAnomalyThreshold(d []interface{}) edpt.DdosNetworkObjectIpListSrcPortListSubnetSrcPortAnomalyThreshold {
+
+	count1 := len(d)
+	var ret edpt.DdosNetworkObjectIpListSrcPortListSubnetSrcPortAnomalyThreshold
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.SubnetSrcPortPktRate = in["subnet_src_port_pkt_rate"].(int)
+		ret.SubnetSrcPortBitRate = in["subnet_src_port_bit_rate"].(int)
+	}
+	return ret
+}
+
 func getSliceDdosNetworkObjectIpv6List(d []interface{}) []edpt.DdosNetworkObjectIpv6List {
 
 	count1 := len(d)
@@ -989,6 +863,7 @@ func getSliceDdosNetworkObjectIpv6List(d []interface{}) []edpt.DdosNetworkObject
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		oi.SamplingEnable = getSliceDdosNetworkObjectIpv6ListSamplingEnable(in["sampling_enable"].([]interface{}))
+		oi.SrcPortList = getSliceDdosNetworkObjectIpv6ListSrcPortList(in["src_port_list"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
@@ -1019,6 +894,48 @@ func getSliceDdosNetworkObjectIpv6ListSamplingEnable(d []interface{}) []edpt.Ddo
 	return ret
 }
 
+func getSliceDdosNetworkObjectIpv6ListSrcPortList(d []interface{}) []edpt.DdosNetworkObjectIpv6ListSrcPortList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosNetworkObjectIpv6ListSrcPortList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosNetworkObjectIpv6ListSrcPortList
+		oi.PortNum = in["port_num"].(int)
+		oi.Protocol = in["protocol"].(string)
+		oi.HostSrcPortAnomalyThreshold = getObjectDdosNetworkObjectIpv6ListSrcPortListHostSrcPortAnomalyThreshold(in["host_src_port_anomaly_threshold"].([]interface{}))
+		oi.SubnetSrcPortAnomalyThreshold = getObjectDdosNetworkObjectIpv6ListSrcPortListSubnetSrcPortAnomalyThreshold(in["subnet_src_port_anomaly_threshold"].([]interface{}))
+		//omit uuid
+		oi.UserTag = in["user_tag"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectDdosNetworkObjectIpv6ListSrcPortListHostSrcPortAnomalyThreshold(d []interface{}) edpt.DdosNetworkObjectIpv6ListSrcPortListHostSrcPortAnomalyThreshold {
+
+	count1 := len(d)
+	var ret edpt.DdosNetworkObjectIpv6ListSrcPortListHostSrcPortAnomalyThreshold
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.HostSrcPortPktRate = in["host_src_port_pkt_rate"].(int)
+		ret.HostSrcPortBitRate = in["host_src_port_bit_rate"].(int)
+	}
+	return ret
+}
+
+func getObjectDdosNetworkObjectIpv6ListSrcPortListSubnetSrcPortAnomalyThreshold(d []interface{}) edpt.DdosNetworkObjectIpv6ListSrcPortListSubnetSrcPortAnomalyThreshold {
+
+	count1 := len(d)
+	var ret edpt.DdosNetworkObjectIpv6ListSrcPortListSubnetSrcPortAnomalyThreshold
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.SubnetSrcPortPktRate = in["subnet_src_port_pkt_rate"].(int)
+		ret.SubnetSrcPortBitRate = in["subnet_src_port_bit_rate"].(int)
+	}
+	return ret
+}
+
 func getObjectDdosNetworkObjectNetworkObjectAnomalyThreshold(d []interface{}) edpt.DdosNetworkObjectNetworkObjectAnomalyThreshold {
 
 	count1 := len(d)
@@ -1031,26 +948,26 @@ func getObjectDdosNetworkObjectNetworkObjectAnomalyThreshold(d []interface{}) ed
 	return ret
 }
 
-func getObjectDdosNetworkObjectNotification313(d []interface{}) edpt.DdosNetworkObjectNotification313 {
+func getObjectDdosNetworkObjectNotification318(d []interface{}) edpt.DdosNetworkObjectNotification318 {
 
 	count1 := len(d)
-	var ret edpt.DdosNetworkObjectNotification313
+	var ret edpt.DdosNetworkObjectNotification318
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Configuration = in["configuration"].(string)
-		ret.Notification = getSliceDdosNetworkObjectNotificationNotification314(in["notification"].([]interface{}))
+		ret.Notification = getSliceDdosNetworkObjectNotificationNotification319(in["notification"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceDdosNetworkObjectNotificationNotification314(d []interface{}) []edpt.DdosNetworkObjectNotificationNotification314 {
+func getSliceDdosNetworkObjectNotificationNotification319(d []interface{}) []edpt.DdosNetworkObjectNotificationNotification319 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosNetworkObjectNotificationNotification314, 0, count1)
+	ret := make([]edpt.DdosNetworkObjectNotificationNotification319, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosNetworkObjectNotificationNotification314
+		var oi edpt.DdosNetworkObjectNotificationNotification319
 		oi.NotificationTemplateName = in["notification_template_name"].(string)
 		ret = append(ret, oi)
 	}
@@ -1089,185 +1006,6 @@ func getObjectDdosNetworkObjectServiceBreakDownThresholdLocal(d []interface{}) e
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SvcPercentage = in["svc_percentage"].(int)
-	}
-	return ret
-}
-
-func getObjectDdosNetworkObjectSportAnomalyThreshold315(d []interface{}) edpt.DdosNetworkObjectSportAnomalyThreshold315 {
-
-	count1 := len(d)
-	var ret edpt.DdosNetworkObjectSportAnomalyThreshold315
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.PacketRate = getObjectDdosNetworkObjectSportAnomalyThresholdPacketRate316(in["packet_rate"].([]interface{}))
-		ret.PacketRatePercentage = getObjectDdosNetworkObjectSportAnomalyThresholdPacketRatePercentage317(in["packet_rate_percentage"].([]interface{}))
-		ret.BitRate = getObjectDdosNetworkObjectSportAnomalyThresholdBitRate318(in["bit_rate"].([]interface{}))
-		ret.BitRatePercentage = getObjectDdosNetworkObjectSportAnomalyThresholdBitRatePercentage319(in["bit_rate_percentage"].([]interface{}))
-		ret.IpList = getSliceDdosNetworkObjectSportAnomalyThresholdIpList(in["ip_list"].([]interface{}))
-		ret.Ipv6List = getSliceDdosNetworkObjectSportAnomalyThresholdIpv6List(in["ipv6_list"].([]interface{}))
-		ret.SportList = getSliceDdosNetworkObjectSportAnomalyThresholdSportList(in["sport_list"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectDdosNetworkObjectSportAnomalyThresholdPacketRate316(d []interface{}) edpt.DdosNetworkObjectSportAnomalyThresholdPacketRate316 {
-
-	count1 := len(d)
-	var ret edpt.DdosNetworkObjectSportAnomalyThresholdPacketRate316
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Value = in["value"].(int)
-		//omit uuid
-	}
-	return ret
-}
-
-func getObjectDdosNetworkObjectSportAnomalyThresholdPacketRatePercentage317(d []interface{}) edpt.DdosNetworkObjectSportAnomalyThresholdPacketRatePercentage317 {
-
-	count1 := len(d)
-	var ret edpt.DdosNetworkObjectSportAnomalyThresholdPacketRatePercentage317
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Value = in["value"].(int)
-		//omit uuid
-	}
-	return ret
-}
-
-func getObjectDdosNetworkObjectSportAnomalyThresholdBitRate318(d []interface{}) edpt.DdosNetworkObjectSportAnomalyThresholdBitRate318 {
-
-	count1 := len(d)
-	var ret edpt.DdosNetworkObjectSportAnomalyThresholdBitRate318
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Value = in["value"].(int)
-		//omit uuid
-	}
-	return ret
-}
-
-func getObjectDdosNetworkObjectSportAnomalyThresholdBitRatePercentage319(d []interface{}) edpt.DdosNetworkObjectSportAnomalyThresholdBitRatePercentage319 {
-
-	count1 := len(d)
-	var ret edpt.DdosNetworkObjectSportAnomalyThresholdBitRatePercentage319
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Value = in["value"].(int)
-		//omit uuid
-	}
-	return ret
-}
-
-func getSliceDdosNetworkObjectSportAnomalyThresholdIpList(d []interface{}) []edpt.DdosNetworkObjectSportAnomalyThresholdIpList {
-
-	count1 := len(d)
-	ret := make([]edpt.DdosNetworkObjectSportAnomalyThresholdIpList, 0, count1)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.DdosNetworkObjectSportAnomalyThresholdIpList
-		oi.IpAddr = in["ip_addr"].(string)
-		oi.PacketRateStr = in["packet_rate_str"].(string)
-		oi.PacketRatePercentageStr = in["packet_rate_percentage_str"].(string)
-		oi.BitRateStr = in["bit_rate_str"].(string)
-		oi.BitRatePercentageStr = in["bit_rate_percentage_str"].(string)
-		oi.PacketRate = in["packet_rate"].(int)
-		oi.PacketRatePercentage = in["packet_rate_percentage"].(int)
-		oi.BitRate = in["bit_rate"].(int)
-		oi.BitRatePercentage = in["bit_rate_percentage"].(int)
-		oi.SportNum = in["sport_num"].(int)
-		oi.Protocol = in["protocol"].(string)
-		oi.IpSportPacketRateStr = in["ip_sport_packet_rate_str"].(string)
-		oi.IpSportPacketRatePercentageStr = in["ip_sport_packet_rate_percentage_str"].(string)
-		oi.IpSportBitRateStr = in["ip_sport_bit_rate_str"].(string)
-		oi.IpSportBitRatePercentageStr = in["ip_sport_bit_rate_percentage_str"].(string)
-		oi.IpSportPacketRate = in["ip_sport_packet_rate"].(int)
-		oi.IpSportPacketRatePercentage = in["ip_sport_packet_rate_percentage"].(int)
-		oi.IpSportBitRate = in["ip_sport_bit_rate"].(int)
-		oi.IpSportBitRatePercentage = in["ip_sport_bit_rate_percentage"].(int)
-		//omit uuid
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getSliceDdosNetworkObjectSportAnomalyThresholdIpv6List(d []interface{}) []edpt.DdosNetworkObjectSportAnomalyThresholdIpv6List {
-
-	count1 := len(d)
-	ret := make([]edpt.DdosNetworkObjectSportAnomalyThresholdIpv6List, 0, count1)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.DdosNetworkObjectSportAnomalyThresholdIpv6List
-		oi.IpAddr = in["ip_addr"].(string)
-		oi.PacketRateStr = in["packet_rate_str"].(string)
-		oi.PacketRatePercentageStr = in["packet_rate_percentage_str"].(string)
-		oi.BitRateStr = in["bit_rate_str"].(string)
-		oi.BitRatePercentageStr = in["bit_rate_percentage_str"].(string)
-		oi.PacketRate = in["packet_rate"].(int)
-		oi.PacketRatePercentage = in["packet_rate_percentage"].(int)
-		oi.BitRate = in["bit_rate"].(int)
-		oi.BitRatePercentage = in["bit_rate_percentage"].(int)
-		oi.SportNum = in["sport_num"].(int)
-		oi.Protocol = in["protocol"].(string)
-		oi.IpSportPacketRateStr = in["ip_sport_packet_rate_str"].(string)
-		oi.IpSportPacketRatePercentageStr = in["ip_sport_packet_rate_percentage_str"].(string)
-		oi.IpSportBitRateStr = in["ip_sport_bit_rate_str"].(string)
-		oi.IpSportBitRatePercentageStr = in["ip_sport_bit_rate_percentage_str"].(string)
-		oi.IpSportPacketRate = in["ip_sport_packet_rate"].(int)
-		oi.IpSportPacketRatePercentage = in["ip_sport_packet_rate_percentage"].(int)
-		oi.IpSportBitRate = in["ip_sport_bit_rate"].(int)
-		oi.IpSportBitRatePercentage = in["ip_sport_bit_rate_percentage"].(int)
-		//omit uuid
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getSliceDdosNetworkObjectSportAnomalyThresholdSportList(d []interface{}) []edpt.DdosNetworkObjectSportAnomalyThresholdSportList {
-
-	count1 := len(d)
-	ret := make([]edpt.DdosNetworkObjectSportAnomalyThresholdSportList, 0, count1)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.DdosNetworkObjectSportAnomalyThresholdSportList
-		oi.SportNum = in["sport_num"].(int)
-		oi.Protocol = in["protocol"].(string)
-		oi.PacketRateStr = in["packet_rate_str"].(string)
-		oi.PacketRatePercentageStr = in["packet_rate_percentage_str"].(string)
-		oi.BitRateStr = in["bit_rate_str"].(string)
-		oi.BitRatePercentageStr = in["bit_rate_percentage_str"].(string)
-		oi.PacketRate = in["packet_rate"].(int)
-		oi.PacketRatePercentage = in["packet_rate_percentage"].(int)
-		oi.BitRate = in["bit_rate"].(int)
-		oi.BitRatePercentage = in["bit_rate_percentage"].(int)
-		//omit uuid
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getObjectDdosNetworkObjectSportDiscoveryThreshold(d []interface{}) edpt.DdosNetworkObjectSportDiscoveryThreshold {
-
-	count1 := len(d)
-	var ret edpt.DdosNetworkObjectSportDiscoveryThreshold
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.SportHeavyHitterPercentage = in["sport_heavy_hitter_percentage"].(int)
-		ret.SportDiscoveryBitRatePercentage = in["sport_discovery_bit_rate_percentage"].(int)
-	}
-	return ret
-}
-
-func getSliceDdosNetworkObjectSportList(d []interface{}) []edpt.DdosNetworkObjectSportList {
-
-	count1 := len(d)
-	ret := make([]edpt.DdosNetworkObjectSportList, 0, count1)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.DdosNetworkObjectSportList
-		oi.PortNum = in["port_num"].(int)
-		oi.Protocol = in["protocol"].(string)
-		//omit uuid
-		ret = append(ret, oi)
 	}
 	return ret
 }
@@ -1463,28 +1201,26 @@ func getObjectDdosNetworkObjectTrustlist322(d []interface{}) edpt.DdosNetworkObj
 
 func dataToEndpointDdosNetworkObject(d *schema.ResourceData) edpt.DdosNetworkObject {
 	var ret edpt.DdosNetworkObject
+	ret.Inst.AnomalyChildPercentage = d.Get("anomaly_child_percentage").(int)
 	ret.Inst.AnomalyDetectionTrigger = d.Get("anomaly_detection_trigger").(string)
 	ret.Inst.EnableTopK = getSliceDdosNetworkObjectEnableTopK(d.Get("enable_top_k").([]interface{}))
 	ret.Inst.FloodingMultiplier = d.Get("flooding_multiplier").(int)
 	ret.Inst.HistogramMode = d.Get("histogram_mode").(string)
 	ret.Inst.HostAnomalyThreshold = getObjectDdosNetworkObjectHostAnomalyThreshold(d.Get("host_anomaly_threshold").([]interface{}))
-	ret.Inst.HostSportDiscovery = d.Get("host_sport_discovery").(string)
-	ret.Inst.IndicatorsToMonitor = getObjectDdosNetworkObjectIndicatorsToMonitor312(d.Get("indicators_to_monitor").([]interface{}))
+	ret.Inst.IndicatorsToMonitor = getObjectDdosNetworkObjectIndicatorsToMonitor317(d.Get("indicators_to_monitor").([]interface{}))
 	ret.Inst.IpList = getSliceDdosNetworkObjectIpList(d.Get("ip_list").([]interface{}))
 	ret.Inst.Ipv6List = getSliceDdosNetworkObjectIpv6List(d.Get("ipv6_list").([]interface{}))
 	ret.Inst.NetworkObjectAnomalyThreshold = getObjectDdosNetworkObjectNetworkObjectAnomalyThreshold(d.Get("network_object_anomaly_threshold").([]interface{}))
 	ret.Inst.NetworkObjectTemplate = d.Get("network_object_template").(string)
-	ret.Inst.Notification = getObjectDdosNetworkObjectNotification313(d.Get("notification").([]interface{}))
+	ret.Inst.Notification = getObjectDdosNetworkObjectNotification318(d.Get("notification").([]interface{}))
 	ret.Inst.ObjectName = d.Get("object_name").(string)
 	ret.Inst.OperationalMode = d.Get("operational_mode").(string)
 	ret.Inst.RelativeAutoBreakDownThreshold = getObjectDdosNetworkObjectRelativeAutoBreakDownThreshold(d.Get("relative_auto_break_down_threshold").([]interface{}))
 	ret.Inst.SamplingEnable = getSliceDdosNetworkObjectSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.ServiceBreakDownThresholdLocal = getObjectDdosNetworkObjectServiceBreakDownThresholdLocal(d.Get("service_break_down_threshold_local").([]interface{}))
 	ret.Inst.ServiceDiscovery = d.Get("service_discovery").(string)
-	ret.Inst.SportAnomalyDetection = d.Get("sport_anomaly_detection").(string)
-	ret.Inst.SportAnomalyThreshold = getObjectDdosNetworkObjectSportAnomalyThreshold315(d.Get("sport_anomaly_threshold").([]interface{}))
-	ret.Inst.SportDiscoveryThreshold = getObjectDdosNetworkObjectSportDiscoveryThreshold(d.Get("sport_discovery_threshold").([]interface{}))
-	ret.Inst.SportList = getSliceDdosNetworkObjectSportList(d.Get("sport_list").([]interface{}))
+	ret.Inst.SrcServiceDiscovery = d.Get("src_service_discovery").(string)
+	ret.Inst.SrcServiceDiscoveryThreshold = d.Get("src_service_discovery_threshold").(int)
 	ret.Inst.StaticAutoBreakDownThreshold = getObjectDdosNetworkObjectStaticAutoBreakDownThreshold(d.Get("static_auto_break_down_threshold").([]interface{}))
 	ret.Inst.SubNetwork = getObjectDdosNetworkObjectSubNetwork320(d.Get("sub_network").([]interface{}))
 	ret.Inst.ThresholdSensitivity = d.Get("threshold_sensitivity").(string)

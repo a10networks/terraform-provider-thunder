@@ -5,19 +5,19 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZonePortZoneServiceSrcBasedPolicyPolicyClassListStats struct {
 	ClassListName string `json:"class-list-name"`
 
 	Stats DdosDstZonePortZoneServiceSrcBasedPolicyPolicyClassListStatsStats `json:"stats"`
 
-	Protocol string
-
 	SrcBasedPolicyName string
 
-	ZoneName string
-
 	PortNum string
+
+	Protocol string
+
+	ZoneName string
 }
 type DataDdosDstZonePortZoneServiceSrcBasedPolicyPolicyClassListStats struct {
 	DtDdosDstZonePortZoneServiceSrcBasedPolicyPolicyClassListStats DdosDstZonePortZoneServiceSrcBasedPolicyPolicyClassListStats `json:"policy-class-list"`

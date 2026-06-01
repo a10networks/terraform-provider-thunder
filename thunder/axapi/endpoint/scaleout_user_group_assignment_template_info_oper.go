@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type ScaleoutUserGroupAssignmentTemplateInfoOper struct {
 	Oper ScaleoutUserGroupAssignmentTemplateInfoOperOper `json:"oper"`
 }
@@ -19,12 +19,13 @@ type ScaleoutUserGroupAssignmentTemplateInfoOperOper struct {
 }
 
 type ScaleoutUserGroupAssignmentTemplateInfoOperOperAssignmentList struct {
-	AddressPrefix        string `json:"address-prefix"`
-	PrefixesCount        int    `json:"prefixes-count"`
-	IpCountPerPrefix     int    `json:"ip-count-per-prefix"`
-	PrefixesPerUserGroup int    `json:"prefixes-per-user-group"`
-	UserGroupRangeStart  int    `json:"user-group-range-start"`
-	UserGroupRangeEnd    int    `json:"user-group-range-end"`
+	AddressPrefix          string `json:"address-prefix"`
+	AssignmentPrefixLength int    `json:"assignment-prefix-length"`
+	PrefixesCount          int    `json:"prefixes-count"`
+	IpCountPerPrefix       int    `json:"ip-count-per-prefix"`
+	PrefixesPerUserGroup   int    `json:"prefixes-per-user-group"`
+	UserGroupRangeStart    int    `json:"user-group-range-start"`
+	UserGroupRangeEnd      int    `json:"user-group-range-end"`
 }
 
 func (p *ScaleoutUserGroupAssignmentTemplateInfoOper) GetId() string {

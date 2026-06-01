@@ -143,6 +143,9 @@ func resourceSystemDnsCacheOper() *schema.Resource {
 						"global": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
+						"template": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
 						"cache_content": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
@@ -229,6 +232,7 @@ func setObjectSystemDnsCacheOperOper(ret edpt.DataSystemDnsCacheOper) []interfac
 			"client":                       ret.DtSystemDnsCacheOper.Oper.Client,
 			"entry":                        ret.DtSystemDnsCacheOper.Oper.Entry,
 			"global":                       ret.DtSystemDnsCacheOper.Oper.Global,
+			"template":                     ret.DtSystemDnsCacheOper.Oper.Template,
 			"cache_content":                ret.DtSystemDnsCacheOper.Oper.CacheContent,
 			"vport":                        ret.DtSystemDnsCacheOper.Oper.Vport,
 			"vs_name":                      ret.DtSystemDnsCacheOper.Oper.VsName,
@@ -320,6 +324,7 @@ func getObjectSystemDnsCacheOperOper(d []interface{}) edpt.SystemDnsCacheOperOpe
 		ret.Client = in["client"].(int)
 		ret.Entry = in["entry"].(int)
 		ret.Global = in["global"].(int)
+		ret.Template = in["template"].(string)
 		ret.CacheContent = in["cache_content"].(int)
 		ret.Vport = in["vport"].(int)
 		ret.VsName = in["vs_name"].(string)

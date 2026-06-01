@@ -19,6 +19,9 @@ func resourceImportPeriodicDnssecDnskey() *schema.Resource {
 			"dnssec_dnskey": {
 				Type: schema.TypeString, Required: true, Description: "DNSSEC DNSKEY(KSK) file for child zone",
 			},
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "Config remote server  password",
+			},
 			"period": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the period in second",
 			},
@@ -99,6 +102,8 @@ func resourceImportPeriodicDnssecDnskeyRead(ctx context.Context, d *schema.Resou
 func dataToEndpointImportPeriodicDnssecDnskey(d *schema.ResourceData) edpt.ImportPeriodicDnssecDnskey {
 	var ret edpt.ImportPeriodicDnssecDnskey
 	ret.Inst.DnssecDnskey = d.Get("dnssec_dnskey").(string)
+	//omit encrypted
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)

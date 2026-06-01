@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsInc2761 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsInc2776 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsRate2762 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsRate2777 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsSeverity2763 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsSeverity2778 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,7 +25,7 @@ type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmpl struct {
 	} `json:"aam-jwt-authorization-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsInc2761 struct {
+type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsInc2776 struct {
 	JwtAuthorizeFailure int    `json:"jwt-authorize-failure"`
 	JwtMissingToken     int    `json:"jwt-missing-token"`
 	JwtMissingClaim     int    `json:"jwt-missing-claim"`
@@ -35,7 +35,7 @@ type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsIn
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsRate2762 struct {
+type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsRate2777 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	JwtAuthorizeFailure int    `json:"jwt-authorize-failure"`
@@ -47,7 +47,7 @@ type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsRa
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsSeverity2763 struct {
+type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsSeverity2778 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

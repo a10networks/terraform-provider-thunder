@@ -24,6 +24,7 @@ __PLACEHOLDER__
 
 ### Optional
 
+- `password` (String) Config remote server  password
 - `period` (Number) Specify the period in second
 - `remote_file` (String) profile name for remote url
 - `remote_file_zone_transfer` (String) profile name for remote url

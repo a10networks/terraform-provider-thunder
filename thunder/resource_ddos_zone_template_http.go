@@ -1012,10 +1012,10 @@ func getObjectDdosZoneTemplateHttpIdleTimeout(d []interface{}) edpt.DdosZoneTemp
 	return ret
 }
 
-func getObjectDdosZoneTemplateHttpMalformedHttp361(d []interface{}) edpt.DdosZoneTemplateHttpMalformedHttp361 {
+func getObjectDdosZoneTemplateHttpMalformedHttp357(d []interface{}) edpt.DdosZoneTemplateHttpMalformedHttp357 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateHttpMalformedHttp361
+	var ret edpt.DdosZoneTemplateHttpMalformedHttp357
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MalformedHttp = in["malformed_http"].(string)
@@ -1144,7 +1144,7 @@ func dataToEndpointDdosZoneTemplateHttp(d *schema.ResourceData) edpt.DdosZoneTem
 	ret.Inst.FilterList = getSliceDdosZoneTemplateHttpFilterList(d.Get("filter_list").([]interface{}))
 	ret.Inst.HttpTmplName = d.Get("http_tmpl_name").(string)
 	ret.Inst.IdleTimeout = getObjectDdosZoneTemplateHttpIdleTimeout(d.Get("idle_timeout").([]interface{}))
-	ret.Inst.MalformedHttp = getObjectDdosZoneTemplateHttpMalformedHttp361(d.Get("malformed_http").([]interface{}))
+	ret.Inst.MalformedHttp = getObjectDdosZoneTemplateHttpMalformedHttp357(d.Get("malformed_http").([]interface{}))
 	ret.Inst.MssTimeout = getObjectDdosZoneTemplateHttpMssTimeout(d.Get("mss_timeout").([]interface{}))
 	ret.Inst.MultiPuThresholdDistribution = getObjectDdosZoneTemplateHttpMultiPuThresholdDistribution(d.Get("multi_pu_threshold_distribution").([]interface{}))
 	ret.Inst.NonHttpBypass = d.Get("non_http_bypass").(int)

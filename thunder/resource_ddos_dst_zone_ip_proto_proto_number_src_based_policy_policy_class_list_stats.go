@@ -53,14 +53,14 @@ func resourceDdosDstZoneIpProtoProtoNumberSrcBasedPolicyPolicyClassListStats() *
 					},
 				},
 			},
-			"src_based_policy_name": {
-				Type: schema.TypeString, Required: true, Description: "SrcBasedPolicyName",
-			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 			"protocol_num": {
 				Type: schema.TypeString, Required: true, Description: "ProtocolNum",
+			},
+			"src_based_policy_name": {
+				Type: schema.TypeString, Required: true, Description: "SrcBasedPolicyName",
 			},
 		},
 	}
@@ -129,10 +129,10 @@ func dataToEndpointDdosDstZoneIpProtoProtoNumberSrcBasedPolicyPolicyClassListSta
 
 	ret.Stats = getObjectDdosDstZoneIpProtoProtoNumberSrcBasedPolicyPolicyClassListStatsStats(d.Get("stats").([]interface{}))
 
-	ret.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
-
 	ret.ZoneName = d.Get("zone_name").(string)
 
 	ret.ProtocolNum = d.Get("protocol_num").(string)
+
+	ret.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
 	return ret
 }

@@ -5,12 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityReportingTemplateNotificationTemplateName struct {
 	Inst struct {
 		Action string `json:"action" dval:"enable"`
 
-		Authentication VisibilityReportingTemplateNotificationTemplateNameAuthentication3225 `json:"authentication"`
+		Authentication VisibilityReportingTemplateNotificationTemplateNameAuthentication3253 `json:"authentication"`
 
 		DebugMode int `json:"debug-mode"`
 
@@ -40,7 +40,7 @@ type VisibilityReportingTemplateNotificationTemplateName struct {
 	} `json:"template-name"`
 }
 
-type VisibilityReportingTemplateNotificationTemplateNameAuthentication3225 struct {
+type VisibilityReportingTemplateNotificationTemplateNameAuthentication3253 struct {
 	RelativeLoginUri   string `json:"relative-login-uri"`
 	RelativeLogoffUri  string `json:"relative-logoff-uri"`
 	AuthUsername       string `json:"auth-username"`

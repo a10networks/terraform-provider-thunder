@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbTemplateDnsRpzLogging struct {
 	Inst struct {
 		Enable int `json:"enable"`
@@ -14,9 +14,9 @@ type SlbTemplateDnsRpzLogging struct {
 
 		Uuid string `json:"uuid"`
 
-		Dns_name string
-
 		SeqId string
+
+		Dns_name string
 	} `json:"logging"`
 }
 

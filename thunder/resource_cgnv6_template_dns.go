@@ -247,26 +247,26 @@ func resourceCgnv6TemplateDnsRead(ctx context.Context, d *schema.ResourceData, m
 	return diags
 }
 
-func getObjectCgnv6TemplateDnsClassList113(d []interface{}) edpt.Cgnv6TemplateDnsClassList113 {
+func getObjectCgnv6TemplateDnsClassList114(d []interface{}) edpt.Cgnv6TemplateDnsClassList114 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6TemplateDnsClassList113
+	var ret edpt.Cgnv6TemplateDnsClassList114
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Name = in["name"].(string)
 		//omit uuid
-		ret.LidList = getSliceCgnv6TemplateDnsClassListLidList114(in["lid_list"].([]interface{}))
+		ret.LidList = getSliceCgnv6TemplateDnsClassListLidList115(in["lid_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceCgnv6TemplateDnsClassListLidList114(d []interface{}) []edpt.Cgnv6TemplateDnsClassListLidList114 {
+func getSliceCgnv6TemplateDnsClassListLidList115(d []interface{}) []edpt.Cgnv6TemplateDnsClassListLidList115 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6TemplateDnsClassListLidList114, 0, count1)
+	ret := make([]edpt.Cgnv6TemplateDnsClassListLidList115, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6TemplateDnsClassListLidList114
+		var oi edpt.Cgnv6TemplateDnsClassListLidList115
 		oi.Lidnum = in["lidnum"].(int)
 		oi.ConnRateLimit = in["conn_rate_limit"].(int)
 		oi.Per = in["per"].(int)
@@ -275,7 +275,7 @@ func getSliceCgnv6TemplateDnsClassListLidList114(d []interface{}) []edpt.Cgnv6Te
 		oi.Lockout = in["lockout"].(int)
 		oi.Log = in["log"].(int)
 		oi.LogInterval = in["log_interval"].(int)
-		oi.Dns = getObjectCgnv6TemplateDnsClassListLidListDns115(in["dns"].([]interface{}))
+		oi.Dns = getObjectCgnv6TemplateDnsClassListLidListDns116(in["dns"].([]interface{}))
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		ret = append(ret, oi)
@@ -283,10 +283,10 @@ func getSliceCgnv6TemplateDnsClassListLidList114(d []interface{}) []edpt.Cgnv6Te
 	return ret
 }
 
-func getObjectCgnv6TemplateDnsClassListLidListDns115(d []interface{}) edpt.Cgnv6TemplateDnsClassListLidListDns115 {
+func getObjectCgnv6TemplateDnsClassListLidListDns116(d []interface{}) edpt.Cgnv6TemplateDnsClassListLidListDns116 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6TemplateDnsClassListLidListDns115
+	var ret edpt.Cgnv6TemplateDnsClassListLidListDns116
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.CacheAction = in["cache_action"].(string)
@@ -296,10 +296,10 @@ func getObjectCgnv6TemplateDnsClassListLidListDns115(d []interface{}) edpt.Cgnv6
 	return ret
 }
 
-func getObjectCgnv6TemplateDnsDns64116(d []interface{}) edpt.Cgnv6TemplateDnsDns64116 {
+func getObjectCgnv6TemplateDnsDns64117(d []interface{}) edpt.Cgnv6TemplateDnsDns64117 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6TemplateDnsDns64116
+	var ret edpt.Cgnv6TemplateDnsDns64117
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
@@ -330,10 +330,10 @@ func getObjectCgnv6TemplateDnsDns64116(d []interface{}) edpt.Cgnv6TemplateDnsDns
 
 func dataToEndpointCgnv6TemplateDns(d *schema.ResourceData) edpt.Cgnv6TemplateDns {
 	var ret edpt.Cgnv6TemplateDns
-	ret.Inst.ClassList = getObjectCgnv6TemplateDnsClassList113(d.Get("class_list").([]interface{}))
+	ret.Inst.ClassList = getObjectCgnv6TemplateDnsClassList114(d.Get("class_list").([]interface{}))
 	ret.Inst.DefaultPolicy = d.Get("default_policy").(string)
 	ret.Inst.DisableDnsTemplate = d.Get("disable_dns_template").(int)
-	ret.Inst.Dns64 = getObjectCgnv6TemplateDnsDns64116(d.Get("dns64").([]interface{}))
+	ret.Inst.Dns64 = getObjectCgnv6TemplateDnsDns64117(d.Get("dns64").([]interface{}))
 	ret.Inst.Drop = d.Get("drop").(int)
 	ret.Inst.Forward = d.Get("forward").(string)
 	ret.Inst.MaxCacheSize = d.Get("max_cache_size").(int)

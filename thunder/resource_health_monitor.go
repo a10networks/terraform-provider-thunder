@@ -1021,7 +1021,7 @@ func resourceHealthMonitor() *schema.Resource {
 				Type: schema.TypeString, Optional: true, Default: "DEFAULT", Description: "Specify OpenSSL Cipher Suite name(s) for Health check (OpenSSL Cipher Suite(s) (Eg: AES128-SHA256), if the cipher is invalid, would give information at HM down reason)",
 			},
 			"ssl_dgversion": {
-				Type: schema.TypeInt, Optional: true, Default: 33, Description: "Lower TLS/SSL version can be downgraded",
+				Type: schema.TypeInt, Optional: true, Default: 31, Description: "Lower TLS/SSL version can be downgraded",
 			},
 			"ssl_ticket": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SSL-Ticket Session Resumption",
@@ -1121,67 +1121,67 @@ func resourceHealthMonitorRead(ctx context.Context, d *schema.ResourceData, meta
 	return diags
 }
 
-func getObjectHealthMonitorHeaderInsert497(d []interface{}) edpt.HealthMonitorHeaderInsert497 {
+func getObjectHealthMonitorHeaderInsert484(d []interface{}) edpt.HealthMonitorHeaderInsert484 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorHeaderInsert497
+	var ret edpt.HealthMonitorHeaderInsert484
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.InsertList = getSliceHealthMonitorHeaderInsertInsertList498(in["insert_list"].([]interface{}))
+		ret.InsertList = getSliceHealthMonitorHeaderInsertInsertList485(in["insert_list"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceHealthMonitorHeaderInsertInsertList498(d []interface{}) []edpt.HealthMonitorHeaderInsertInsertList498 {
+func getSliceHealthMonitorHeaderInsertInsertList485(d []interface{}) []edpt.HealthMonitorHeaderInsertInsertList485 {
 
 	count1 := len(d)
-	ret := make([]edpt.HealthMonitorHeaderInsertInsertList498, 0, count1)
+	ret := make([]edpt.HealthMonitorHeaderInsertInsertList485, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.HealthMonitorHeaderInsertInsertList498
+		var oi edpt.HealthMonitorHeaderInsertInsertList485
 		oi.InsertContent = in["insert_content"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectHealthMonitorMethod499(d []interface{}) edpt.HealthMonitorMethod499 {
+func getObjectHealthMonitorMethod486(d []interface{}) edpt.HealthMonitorMethod486 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethod499
+	var ret edpt.HealthMonitorMethod486
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Icmp = getObjectHealthMonitorMethodIcmp500(in["icmp"].([]interface{}))
-		ret.Quic = getObjectHealthMonitorMethodQuic501(in["quic"].([]interface{}))
-		ret.Tcp = getObjectHealthMonitorMethodTcp502(in["tcp"].([]interface{}))
-		ret.Udp = getObjectHealthMonitorMethodUdp504(in["udp"].([]interface{}))
-		ret.Http = getObjectHealthMonitorMethodHttp505(in["http"].([]interface{}))
-		ret.Ftp = getObjectHealthMonitorMethodFtp507(in["ftp"].([]interface{}))
-		ret.Snmp = getObjectHealthMonitorMethodSnmp508(in["snmp"].([]interface{}))
-		ret.Smtp = getObjectHealthMonitorMethodSmtp511(in["smtp"].([]interface{}))
-		ret.Dns = getObjectHealthMonitorMethodDns512(in["dns"].([]interface{}))
-		ret.Pop3 = getObjectHealthMonitorMethodPop3516(in["pop3"].([]interface{}))
-		ret.Imap = getObjectHealthMonitorMethodImap517(in["imap"].([]interface{}))
-		ret.Sip = getObjectHealthMonitorMethodSip518(in["sip"].([]interface{}))
-		ret.Radius = getObjectHealthMonitorMethodRadius519(in["radius"].([]interface{}))
-		ret.Ldap = getObjectHealthMonitorMethodLdap520(in["ldap"].([]interface{}))
-		ret.Rtsp = getObjectHealthMonitorMethodRtsp521(in["rtsp"].([]interface{}))
-		ret.Database = getObjectHealthMonitorMethodDatabase522(in["database"].([]interface{}))
-		ret.External = getObjectHealthMonitorMethodExternal523(in["external"].([]interface{}))
-		ret.Ntp = getObjectHealthMonitorMethodNtp524(in["ntp"].([]interface{}))
-		ret.KerberosKdc = getObjectHealthMonitorMethodKerberosKdc525(in["kerberos_kdc"].([]interface{}))
-		ret.Https = getObjectHealthMonitorMethodHttps527(in["https"].([]interface{}))
-		ret.Tacplus = getObjectHealthMonitorMethodTacplus529(in["tacplus"].([]interface{}))
-		ret.Compound = getObjectHealthMonitorMethodCompound530(in["compound"].([]interface{}))
+		ret.Icmp = getObjectHealthMonitorMethodIcmp487(in["icmp"].([]interface{}))
+		ret.Quic = getObjectHealthMonitorMethodQuic488(in["quic"].([]interface{}))
+		ret.Tcp = getObjectHealthMonitorMethodTcp489(in["tcp"].([]interface{}))
+		ret.Udp = getObjectHealthMonitorMethodUdp491(in["udp"].([]interface{}))
+		ret.Http = getObjectHealthMonitorMethodHttp492(in["http"].([]interface{}))
+		ret.Ftp = getObjectHealthMonitorMethodFtp494(in["ftp"].([]interface{}))
+		ret.Snmp = getObjectHealthMonitorMethodSnmp495(in["snmp"].([]interface{}))
+		ret.Smtp = getObjectHealthMonitorMethodSmtp498(in["smtp"].([]interface{}))
+		ret.Dns = getObjectHealthMonitorMethodDns499(in["dns"].([]interface{}))
+		ret.Pop3 = getObjectHealthMonitorMethodPop3503(in["pop3"].([]interface{}))
+		ret.Imap = getObjectHealthMonitorMethodImap504(in["imap"].([]interface{}))
+		ret.Sip = getObjectHealthMonitorMethodSip505(in["sip"].([]interface{}))
+		ret.Radius = getObjectHealthMonitorMethodRadius506(in["radius"].([]interface{}))
+		ret.Ldap = getObjectHealthMonitorMethodLdap507(in["ldap"].([]interface{}))
+		ret.Rtsp = getObjectHealthMonitorMethodRtsp508(in["rtsp"].([]interface{}))
+		ret.Database = getObjectHealthMonitorMethodDatabase509(in["database"].([]interface{}))
+		ret.External = getObjectHealthMonitorMethodExternal510(in["external"].([]interface{}))
+		ret.Ntp = getObjectHealthMonitorMethodNtp511(in["ntp"].([]interface{}))
+		ret.KerberosKdc = getObjectHealthMonitorMethodKerberosKdc512(in["kerberos_kdc"].([]interface{}))
+		ret.Https = getObjectHealthMonitorMethodHttps514(in["https"].([]interface{}))
+		ret.Tacplus = getObjectHealthMonitorMethodTacplus516(in["tacplus"].([]interface{}))
+		ret.Compound = getObjectHealthMonitorMethodCompound517(in["compound"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectHealthMonitorMethodIcmp500(d []interface{}) edpt.HealthMonitorMethodIcmp500 {
+func getObjectHealthMonitorMethodIcmp487(d []interface{}) edpt.HealthMonitorMethodIcmp487 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodIcmp500
+	var ret edpt.HealthMonitorMethodIcmp487
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Icmp = in["icmp"].(int)
@@ -1193,10 +1193,10 @@ func getObjectHealthMonitorMethodIcmp500(d []interface{}) edpt.HealthMonitorMeth
 	return ret
 }
 
-func getObjectHealthMonitorMethodQuic501(d []interface{}) edpt.HealthMonitorMethodQuic501 {
+func getObjectHealthMonitorMethodQuic488(d []interface{}) edpt.HealthMonitorMethodQuic488 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodQuic501
+	var ret edpt.HealthMonitorMethodQuic488
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Quic = in["quic"].(int)
@@ -1206,17 +1206,17 @@ func getObjectHealthMonitorMethodQuic501(d []interface{}) edpt.HealthMonitorMeth
 	return ret
 }
 
-func getObjectHealthMonitorMethodTcp502(d []interface{}) edpt.HealthMonitorMethodTcp502 {
+func getObjectHealthMonitorMethodTcp489(d []interface{}) edpt.HealthMonitorMethodTcp489 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodTcp502
+	var ret edpt.HealthMonitorMethodTcp489
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MethodTcp = in["method_tcp"].(int)
 		ret.TcpPort = in["tcp_port"].(int)
 		ret.PortHalfopen = in["port_halfopen"].(int)
 		ret.PortSend = in["port_send"].(string)
-		ret.PortResp = getObjectHealthMonitorMethodTcpPortResp503(in["port_resp"].([]interface{}))
+		ret.PortResp = getObjectHealthMonitorMethodTcpPortResp490(in["port_resp"].([]interface{}))
 		ret.Maintenance = in["maintenance"].(int)
 		ret.MaintenanceText = in["maintenance_text"].(string)
 		//omit uuid
@@ -1224,10 +1224,10 @@ func getObjectHealthMonitorMethodTcp502(d []interface{}) edpt.HealthMonitorMetho
 	return ret
 }
 
-func getObjectHealthMonitorMethodTcpPortResp503(d []interface{}) edpt.HealthMonitorMethodTcpPortResp503 {
+func getObjectHealthMonitorMethodTcpPortResp490(d []interface{}) edpt.HealthMonitorMethodTcpPortResp490 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodTcpPortResp503
+	var ret edpt.HealthMonitorMethodTcpPortResp490
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PortContains = in["port_contains"].(string)
@@ -1235,10 +1235,10 @@ func getObjectHealthMonitorMethodTcpPortResp503(d []interface{}) edpt.HealthMoni
 	return ret
 }
 
-func getObjectHealthMonitorMethodUdp504(d []interface{}) edpt.HealthMonitorMethodUdp504 {
+func getObjectHealthMonitorMethodUdp491(d []interface{}) edpt.HealthMonitorMethodUdp491 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodUdp504
+	var ret edpt.HealthMonitorMethodUdp491
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Udp = in["udp"].(int)
@@ -1249,10 +1249,10 @@ func getObjectHealthMonitorMethodUdp504(d []interface{}) edpt.HealthMonitorMetho
 	return ret
 }
 
-func getObjectHealthMonitorMethodHttp505(d []interface{}) edpt.HealthMonitorMethodHttp505 {
+func getObjectHealthMonitorMethodHttp492(d []interface{}) edpt.HealthMonitorMethodHttp492 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodHttp505
+	var ret edpt.HealthMonitorMethodHttp492
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Http = in["http"].(int)
@@ -1281,16 +1281,16 @@ func getObjectHealthMonitorMethodHttp505(d []interface{}) edpt.HealthMonitorMeth
 		//omit http_encrypted
 		ret.HttpKerberosAuth = in["http_kerberos_auth"].(int)
 		ret.HttpKerberosRealm = in["http_kerberos_realm"].(string)
-		ret.HttpKerberosKdc = getObjectHealthMonitorMethodHttpHttpKerberosKdc506(in["http_kerberos_kdc"].([]interface{}))
+		ret.HttpKerberosKdc = getObjectHealthMonitorMethodHttpHttpKerberosKdc493(in["http_kerberos_kdc"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectHealthMonitorMethodHttpHttpKerberosKdc506(d []interface{}) edpt.HealthMonitorMethodHttpHttpKerberosKdc506 {
+func getObjectHealthMonitorMethodHttpHttpKerberosKdc493(d []interface{}) edpt.HealthMonitorMethodHttpHttpKerberosKdc493 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodHttpHttpKerberosKdc506
+	var ret edpt.HealthMonitorMethodHttpHttpKerberosKdc493
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.HttpKerberosHostip = in["http_kerberos_hostip"].(string)
@@ -1301,10 +1301,10 @@ func getObjectHealthMonitorMethodHttpHttpKerberosKdc506(d []interface{}) edpt.He
 	return ret
 }
 
-func getObjectHealthMonitorMethodFtp507(d []interface{}) edpt.HealthMonitorMethodFtp507 {
+func getObjectHealthMonitorMethodFtp494(d []interface{}) edpt.HealthMonitorMethodFtp494 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodFtp507
+	var ret edpt.HealthMonitorMethodFtp494
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ftp = in["ftp"].(int)
@@ -1318,26 +1318,26 @@ func getObjectHealthMonitorMethodFtp507(d []interface{}) edpt.HealthMonitorMetho
 	return ret
 }
 
-func getObjectHealthMonitorMethodSnmp508(d []interface{}) edpt.HealthMonitorMethodSnmp508 {
+func getObjectHealthMonitorMethodSnmp495(d []interface{}) edpt.HealthMonitorMethodSnmp495 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodSnmp508
+	var ret edpt.HealthMonitorMethodSnmp495
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Snmp = in["snmp"].(int)
 		ret.SnmpPort = in["snmp_port"].(int)
 		ret.Community = in["community"].(string)
-		ret.Oid = getObjectHealthMonitorMethodSnmpOid509(in["oid"].([]interface{}))
-		ret.Operation = getObjectHealthMonitorMethodSnmpOperation510(in["operation"].([]interface{}))
+		ret.Oid = getObjectHealthMonitorMethodSnmpOid496(in["oid"].([]interface{}))
+		ret.Operation = getObjectHealthMonitorMethodSnmpOperation497(in["operation"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectHealthMonitorMethodSnmpOid509(d []interface{}) edpt.HealthMonitorMethodSnmpOid509 {
+func getObjectHealthMonitorMethodSnmpOid496(d []interface{}) edpt.HealthMonitorMethodSnmpOid496 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodSnmpOid509
+	var ret edpt.HealthMonitorMethodSnmpOid496
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mib = in["mib"].(string)
@@ -1346,10 +1346,10 @@ func getObjectHealthMonitorMethodSnmpOid509(d []interface{}) edpt.HealthMonitorM
 	return ret
 }
 
-func getObjectHealthMonitorMethodSnmpOperation510(d []interface{}) edpt.HealthMonitorMethodSnmpOperation510 {
+func getObjectHealthMonitorMethodSnmpOperation497(d []interface{}) edpt.HealthMonitorMethodSnmpOperation497 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodSnmpOperation510
+	var ret edpt.HealthMonitorMethodSnmpOperation497
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.OperType = in["oper_type"].(string)
@@ -1357,10 +1357,10 @@ func getObjectHealthMonitorMethodSnmpOperation510(d []interface{}) edpt.HealthMo
 	return ret
 }
 
-func getObjectHealthMonitorMethodSmtp511(d []interface{}) edpt.HealthMonitorMethodSmtp511 {
+func getObjectHealthMonitorMethodSmtp498(d []interface{}) edpt.HealthMonitorMethodSmtp498 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodSmtp511
+	var ret edpt.HealthMonitorMethodSmtp498
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Smtp = in["smtp"].(int)
@@ -1374,10 +1374,10 @@ func getObjectHealthMonitorMethodSmtp511(d []interface{}) edpt.HealthMonitorMeth
 	return ret
 }
 
-func getObjectHealthMonitorMethodDns512(d []interface{}) edpt.HealthMonitorMethodDns512 {
+func getObjectHealthMonitorMethodDns499(d []interface{}) edpt.HealthMonitorMethodDns499 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodDns512
+	var ret edpt.HealthMonitorMethodDns499
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Dns = in["dns"].(int)
@@ -1385,17 +1385,17 @@ func getObjectHealthMonitorMethodDns512(d []interface{}) edpt.HealthMonitorMetho
 		ret.DnsIpv4Addr = in["dns_ipv4_addr"].(string)
 		ret.DnsIpv6Addr = in["dns_ipv6_addr"].(string)
 		ret.DnsIpv4Port = in["dns_ipv4_port"].(int)
-		ret.DnsIpv4Expect = getObjectHealthMonitorMethodDnsDnsIpv4Expect513(in["dns_ipv4_expect"].([]interface{}))
+		ret.DnsIpv4Expect = getObjectHealthMonitorMethodDnsDnsIpv4Expect500(in["dns_ipv4_expect"].([]interface{}))
 		ret.DnsIpv4Recurse = in["dns_ipv4_recurse"].(string)
 		ret.DnsIpv4Tcp = in["dns_ipv4_tcp"].(int)
 		ret.DnsIpv6Port = in["dns_ipv6_port"].(int)
-		ret.DnsIpv6Expect = getObjectHealthMonitorMethodDnsDnsIpv6Expect514(in["dns_ipv6_expect"].([]interface{}))
+		ret.DnsIpv6Expect = getObjectHealthMonitorMethodDnsDnsIpv6Expect501(in["dns_ipv6_expect"].([]interface{}))
 		ret.DnsIpv6Recurse = in["dns_ipv6_recurse"].(string)
 		ret.DnsIpv6Tcp = in["dns_ipv6_tcp"].(int)
 		ret.DnsDomain = in["dns_domain"].(string)
 		ret.DnsDomainPort = in["dns_domain_port"].(int)
 		ret.DnsDomainType = in["dns_domain_type"].(string)
-		ret.DnsDomainExpect = getObjectHealthMonitorMethodDnsDnsDomainExpect515(in["dns_domain_expect"].([]interface{}))
+		ret.DnsDomainExpect = getObjectHealthMonitorMethodDnsDnsDomainExpect502(in["dns_domain_expect"].([]interface{}))
 		ret.DnsDomainRecurse = in["dns_domain_recurse"].(string)
 		ret.DnsDomainTcp = in["dns_domain_tcp"].(int)
 		//omit uuid
@@ -1403,10 +1403,10 @@ func getObjectHealthMonitorMethodDns512(d []interface{}) edpt.HealthMonitorMetho
 	return ret
 }
 
-func getObjectHealthMonitorMethodDnsDnsIpv4Expect513(d []interface{}) edpt.HealthMonitorMethodDnsDnsIpv4Expect513 {
+func getObjectHealthMonitorMethodDnsDnsIpv4Expect500(d []interface{}) edpt.HealthMonitorMethodDnsDnsIpv4Expect500 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodDnsDnsIpv4Expect513
+	var ret edpt.HealthMonitorMethodDnsDnsIpv4Expect500
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DnsIpv4Response = in["dns_ipv4_response"].(string)
@@ -1415,10 +1415,10 @@ func getObjectHealthMonitorMethodDnsDnsIpv4Expect513(d []interface{}) edpt.Healt
 	return ret
 }
 
-func getObjectHealthMonitorMethodDnsDnsIpv6Expect514(d []interface{}) edpt.HealthMonitorMethodDnsDnsIpv6Expect514 {
+func getObjectHealthMonitorMethodDnsDnsIpv6Expect501(d []interface{}) edpt.HealthMonitorMethodDnsDnsIpv6Expect501 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodDnsDnsIpv6Expect514
+	var ret edpt.HealthMonitorMethodDnsDnsIpv6Expect501
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DnsIpv6Response = in["dns_ipv6_response"].(string)
@@ -1427,10 +1427,10 @@ func getObjectHealthMonitorMethodDnsDnsIpv6Expect514(d []interface{}) edpt.Healt
 	return ret
 }
 
-func getObjectHealthMonitorMethodDnsDnsDomainExpect515(d []interface{}) edpt.HealthMonitorMethodDnsDnsDomainExpect515 {
+func getObjectHealthMonitorMethodDnsDnsDomainExpect502(d []interface{}) edpt.HealthMonitorMethodDnsDnsDomainExpect502 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodDnsDnsDomainExpect515
+	var ret edpt.HealthMonitorMethodDnsDnsDomainExpect502
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DnsDomainResponse = in["dns_domain_response"].(string)
@@ -1441,10 +1441,10 @@ func getObjectHealthMonitorMethodDnsDnsDomainExpect515(d []interface{}) edpt.Hea
 	return ret
 }
 
-func getObjectHealthMonitorMethodPop3516(d []interface{}) edpt.HealthMonitorMethodPop3516 {
+func getObjectHealthMonitorMethodPop3503(d []interface{}) edpt.HealthMonitorMethodPop3503 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodPop3516
+	var ret edpt.HealthMonitorMethodPop3503
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Pop3 = in["pop3"].(int)
@@ -1458,10 +1458,10 @@ func getObjectHealthMonitorMethodPop3516(d []interface{}) edpt.HealthMonitorMeth
 	return ret
 }
 
-func getObjectHealthMonitorMethodImap517(d []interface{}) edpt.HealthMonitorMethodImap517 {
+func getObjectHealthMonitorMethodImap504(d []interface{}) edpt.HealthMonitorMethodImap504 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodImap517
+	var ret edpt.HealthMonitorMethodImap504
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Imap = in["imap"].(int)
@@ -1479,10 +1479,10 @@ func getObjectHealthMonitorMethodImap517(d []interface{}) edpt.HealthMonitorMeth
 	return ret
 }
 
-func getObjectHealthMonitorMethodSip518(d []interface{}) edpt.HealthMonitorMethodSip518 {
+func getObjectHealthMonitorMethodSip505(d []interface{}) edpt.HealthMonitorMethodSip505 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodSip518
+	var ret edpt.HealthMonitorMethodSip505
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Sip = in["sip"].(int)
@@ -1496,10 +1496,10 @@ func getObjectHealthMonitorMethodSip518(d []interface{}) edpt.HealthMonitorMetho
 	return ret
 }
 
-func getObjectHealthMonitorMethodRadius519(d []interface{}) edpt.HealthMonitorMethodRadius519 {
+func getObjectHealthMonitorMethodRadius506(d []interface{}) edpt.HealthMonitorMethodRadius506 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodRadius519
+	var ret edpt.HealthMonitorMethodRadius506
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Radius = in["radius"].(int)
@@ -1517,10 +1517,10 @@ func getObjectHealthMonitorMethodRadius519(d []interface{}) edpt.HealthMonitorMe
 	return ret
 }
 
-func getObjectHealthMonitorMethodLdap520(d []interface{}) edpt.HealthMonitorMethodLdap520 {
+func getObjectHealthMonitorMethodLdap507(d []interface{}) edpt.HealthMonitorMethodLdap507 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodLdap520
+	var ret edpt.HealthMonitorMethodLdap507
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ldap = in["ldap"].(int)
@@ -1540,10 +1540,10 @@ func getObjectHealthMonitorMethodLdap520(d []interface{}) edpt.HealthMonitorMeth
 	return ret
 }
 
-func getObjectHealthMonitorMethodRtsp521(d []interface{}) edpt.HealthMonitorMethodRtsp521 {
+func getObjectHealthMonitorMethodRtsp508(d []interface{}) edpt.HealthMonitorMethodRtsp508 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodRtsp521
+	var ret edpt.HealthMonitorMethodRtsp508
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Rtsp = in["rtsp"].(int)
@@ -1554,10 +1554,10 @@ func getObjectHealthMonitorMethodRtsp521(d []interface{}) edpt.HealthMonitorMeth
 	return ret
 }
 
-func getObjectHealthMonitorMethodDatabase522(d []interface{}) edpt.HealthMonitorMethodDatabase522 {
+func getObjectHealthMonitorMethodDatabase509(d []interface{}) edpt.HealthMonitorMethodDatabase509 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodDatabase522
+	var ret edpt.HealthMonitorMethodDatabase509
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Database = in["database"].(int)
@@ -1579,10 +1579,10 @@ func getObjectHealthMonitorMethodDatabase522(d []interface{}) edpt.HealthMonitor
 	return ret
 }
 
-func getObjectHealthMonitorMethodExternal523(d []interface{}) edpt.HealthMonitorMethodExternal523 {
+func getObjectHealthMonitorMethodExternal510(d []interface{}) edpt.HealthMonitorMethodExternal510 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodExternal523
+	var ret edpt.HealthMonitorMethodExternal510
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.External = in["external"].(int)
@@ -1598,10 +1598,10 @@ func getObjectHealthMonitorMethodExternal523(d []interface{}) edpt.HealthMonitor
 	return ret
 }
 
-func getObjectHealthMonitorMethodNtp524(d []interface{}) edpt.HealthMonitorMethodNtp524 {
+func getObjectHealthMonitorMethodNtp511(d []interface{}) edpt.HealthMonitorMethodNtp511 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodNtp524
+	var ret edpt.HealthMonitorMethodNtp511
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ntp = in["ntp"].(int)
@@ -1611,22 +1611,22 @@ func getObjectHealthMonitorMethodNtp524(d []interface{}) edpt.HealthMonitorMetho
 	return ret
 }
 
-func getObjectHealthMonitorMethodKerberosKdc525(d []interface{}) edpt.HealthMonitorMethodKerberosKdc525 {
+func getObjectHealthMonitorMethodKerberosKdc512(d []interface{}) edpt.HealthMonitorMethodKerberosKdc512 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodKerberosKdc525
+	var ret edpt.HealthMonitorMethodKerberosKdc512
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.KerberosCfg = getObjectHealthMonitorMethodKerberosKdcKerberosCfg526(in["kerberos_cfg"].([]interface{}))
+		ret.KerberosCfg = getObjectHealthMonitorMethodKerberosKdcKerberosCfg513(in["kerberos_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectHealthMonitorMethodKerberosKdcKerberosCfg526(d []interface{}) edpt.HealthMonitorMethodKerberosKdcKerberosCfg526 {
+func getObjectHealthMonitorMethodKerberosKdcKerberosCfg513(d []interface{}) edpt.HealthMonitorMethodKerberosKdcKerberosCfg513 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodKerberosKdcKerberosCfg526
+	var ret edpt.HealthMonitorMethodKerberosKdcKerberosCfg513
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Kinit = in["kinit"].(int)
@@ -1652,10 +1652,10 @@ func getObjectHealthMonitorMethodKerberosKdcKerberosCfg526(d []interface{}) edpt
 	return ret
 }
 
-func getObjectHealthMonitorMethodHttps527(d []interface{}) edpt.HealthMonitorMethodHttps527 {
+func getObjectHealthMonitorMethodHttps514(d []interface{}) edpt.HealthMonitorMethodHttps514 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodHttps527
+	var ret edpt.HealthMonitorMethodHttps514
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Https = in["https"].(int)
@@ -1687,7 +1687,7 @@ func getObjectHealthMonitorMethodHttps527(d []interface{}) edpt.HealthMonitorMet
 		//omit https_encrypted
 		ret.HttpsKerberosAuth = in["https_kerberos_auth"].(int)
 		ret.HttpsKerberosRealm = in["https_kerberos_realm"].(string)
-		ret.HttpsKerberosKdc = getObjectHealthMonitorMethodHttpsHttpsKerberosKdc528(in["https_kerberos_kdc"].([]interface{}))
+		ret.HttpsKerberosKdc = getObjectHealthMonitorMethodHttpsHttpsKerberosKdc515(in["https_kerberos_kdc"].([]interface{}))
 		ret.CertKeyShared = in["cert_key_shared"].(int)
 		ret.Cert = in["cert"].(string)
 		ret.Key = in["key"].(string)
@@ -1699,10 +1699,10 @@ func getObjectHealthMonitorMethodHttps527(d []interface{}) edpt.HealthMonitorMet
 	return ret
 }
 
-func getObjectHealthMonitorMethodHttpsHttpsKerberosKdc528(d []interface{}) edpt.HealthMonitorMethodHttpsHttpsKerberosKdc528 {
+func getObjectHealthMonitorMethodHttpsHttpsKerberosKdc515(d []interface{}) edpt.HealthMonitorMethodHttpsHttpsKerberosKdc515 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodHttpsHttpsKerberosKdc528
+	var ret edpt.HealthMonitorMethodHttpsHttpsKerberosKdc515
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.HttpsKerberosHostip = in["https_kerberos_hostip"].(string)
@@ -1713,10 +1713,10 @@ func getObjectHealthMonitorMethodHttpsHttpsKerberosKdc528(d []interface{}) edpt.
 	return ret
 }
 
-func getObjectHealthMonitorMethodTacplus529(d []interface{}) edpt.HealthMonitorMethodTacplus529 {
+func getObjectHealthMonitorMethodTacplus516(d []interface{}) edpt.HealthMonitorMethodTacplus516 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodTacplus529
+	var ret edpt.HealthMonitorMethodTacplus516
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Tacplus = in["tacplus"].(int)
@@ -1734,10 +1734,10 @@ func getObjectHealthMonitorMethodTacplus529(d []interface{}) edpt.HealthMonitorM
 	return ret
 }
 
-func getObjectHealthMonitorMethodCompound530(d []interface{}) edpt.HealthMonitorMethodCompound530 {
+func getObjectHealthMonitorMethodCompound517(d []interface{}) edpt.HealthMonitorMethodCompound517 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorMethodCompound530
+	var ret edpt.HealthMonitorMethodCompound517
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Compound = in["compound"].(int)
@@ -1747,10 +1747,10 @@ func getObjectHealthMonitorMethodCompound530(d []interface{}) edpt.HealthMonitor
 	return ret
 }
 
-func getObjectHealthMonitorProxyHeader531(d []interface{}) edpt.HealthMonitorProxyHeader531 {
+func getObjectHealthMonitorProxyHeader518(d []interface{}) edpt.HealthMonitorProxyHeader518 {
 
 	count1 := len(d)
-	var ret edpt.HealthMonitorProxyHeader531
+	var ret edpt.HealthMonitorProxyHeader518
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ProxyHeaderVer = in["proxy_header_ver"].(string)
@@ -1765,16 +1765,16 @@ func dataToEndpointHealthMonitor(d *schema.ResourceData) edpt.HealthMonitor {
 	ret.Inst.DisableAfterDown = d.Get("disable_after_down").(int)
 	ret.Inst.Dplane = d.Get("dplane").(string)
 	ret.Inst.DsrL2Strict = d.Get("dsr_l2_strict").(int)
-	ret.Inst.HeaderInsert = getObjectHealthMonitorHeaderInsert497(d.Get("header_insert").([]interface{}))
+	ret.Inst.HeaderInsert = getObjectHealthMonitorHeaderInsert484(d.Get("header_insert").([]interface{}))
 	ret.Inst.Interval = d.Get("interval").(int)
-	ret.Inst.Method = getObjectHealthMonitorMethod499(d.Get("method").([]interface{}))
+	ret.Inst.Method = getObjectHealthMonitorMethod486(d.Get("method").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.OverrideIpv4 = d.Get("override_ipv4").(string)
 	ret.Inst.OverrideIpv6 = d.Get("override_ipv6").(string)
 	ret.Inst.OverridePort = d.Get("override_port").(int)
 	ret.Inst.Passive = d.Get("passive").(int)
 	ret.Inst.PassiveInterval = d.Get("passive_interval").(int)
-	ret.Inst.ProxyHeader = getObjectHealthMonitorProxyHeader531(d.Get("proxy_header").([]interface{}))
+	ret.Inst.ProxyHeader = getObjectHealthMonitorProxyHeader518(d.Get("proxy_header").([]interface{}))
 	ret.Inst.Retry = d.Get("retry").(int)
 	ret.Inst.SampleThreshold = d.Get("sample_threshold").(int)
 	ret.Inst.SslCiphers = d.Get("ssl_ciphers").(string)

@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosLongStats struct {
 	Stats DdosLongStatsStats `json:"stats"`
 }
@@ -111,6 +111,7 @@ type DdosLongStatsStats struct {
 	Ip_vxlan_tunnel_decap_err              int `json:"ip_vxlan_tunnel_decap_err"`
 	Jumbo_frag_drop_by_filter              int `json:"jumbo_frag_drop_by_filter"`
 	Jumbo_frag_drop_before_slb             int `json:"jumbo_frag_drop_before_slb"`
+	Outgoing_mtu_exceed_drop               int `json:"outgoing_mtu_exceed_drop"`
 	Jumbo_outgoing_mtu_exceed_drop         int `json:"jumbo_outgoing_mtu_exceed_drop"`
 	Jumbo_in_tunnel_drop                   int `json:"jumbo_in_tunnel_drop"`
 	Tcp_progression_violation_exceed       int `json:"tcp_progression_violation_exceed"`

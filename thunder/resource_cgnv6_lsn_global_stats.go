@@ -383,30 +383,6 @@ func resourceCgnv6LsnGlobalStats() *schema.Resource {
 						"chassis_incorrect_pu": {
 							Type: schema.TypeInt, Optional: true, Description: "chassis incorrect pu",
 						},
-						"data_session_created_sby": {
-							Type: schema.TypeInt, Optional: true, Description: "Data Session Created Standby",
-						},
-						"data_session_freed_sby": {
-							Type: schema.TypeInt, Optional: true, Description: "Data Session Freed Standby",
-						},
-						"user_quota_created_sby": {
-							Type: schema.TypeInt, Optional: true, Description: "User-Quota Created Standby",
-						},
-						"user_quota_put_in_del_q_sby": {
-							Type: schema.TypeInt, Optional: true, Description: "User-Quota Freed Standby",
-						},
-						"tcp_fullcone_created_sby": {
-							Type: schema.TypeInt, Optional: true, Description: "TCP Full-cone Session Created Standby",
-						},
-						"tcp_fullcone_freed_sby": {
-							Type: schema.TypeInt, Optional: true, Description: "TCP Full-cone Session Freed Standby",
-						},
-						"udp_fullcone_created_sby": {
-							Type: schema.TypeInt, Optional: true, Description: "UDP Full-cone Session Created Standby",
-						},
-						"udp_fullcone_freed_sby": {
-							Type: schema.TypeInt, Optional: true, Description: "UDP Full-cone Session Freed Standby",
-						},
 					},
 				},
 			},
@@ -558,14 +534,6 @@ func setObjectCgnv6LsnGlobalStatsStats(ret edpt.DataCgnv6LsnGlobalStats) []inter
 			"port_overloading_port_free_tcp":                      ret.DtCgnv6LsnGlobalStats.Stats.Port_overloading_port_free_tcp,
 			"port_overloading_port_free_udp":                      ret.DtCgnv6LsnGlobalStats.Stats.Port_overloading_port_free_udp,
 			"chassis_incorrect_pu":                                ret.DtCgnv6LsnGlobalStats.Stats.Chassis_incorrect_pu,
-			"data_session_created_sby":                            ret.DtCgnv6LsnGlobalStats.Stats.Data_session_created_sby,
-			"data_session_freed_sby":                              ret.DtCgnv6LsnGlobalStats.Stats.Data_session_freed_sby,
-			"user_quota_created_sby":                              ret.DtCgnv6LsnGlobalStats.Stats.User_quota_created_sby,
-			"user_quota_put_in_del_q_sby":                         ret.DtCgnv6LsnGlobalStats.Stats.User_quota_put_in_del_q_sby,
-			"tcp_fullcone_created_sby":                            ret.DtCgnv6LsnGlobalStats.Stats.Tcp_fullcone_created_sby,
-			"tcp_fullcone_freed_sby":                              ret.DtCgnv6LsnGlobalStats.Stats.Tcp_fullcone_freed_sby,
-			"udp_fullcone_created_sby":                            ret.DtCgnv6LsnGlobalStats.Stats.Udp_fullcone_created_sby,
-			"udp_fullcone_freed_sby":                              ret.DtCgnv6LsnGlobalStats.Stats.Udp_fullcone_freed_sby,
 		},
 	}
 }
@@ -698,14 +666,6 @@ func getObjectCgnv6LsnGlobalStatsStats(d []interface{}) edpt.Cgnv6LsnGlobalStats
 		ret.Port_overloading_port_free_tcp = in["port_overloading_port_free_tcp"].(int)
 		ret.Port_overloading_port_free_udp = in["port_overloading_port_free_udp"].(int)
 		ret.Chassis_incorrect_pu = in["chassis_incorrect_pu"].(int)
-		ret.Data_session_created_sby = in["data_session_created_sby"].(int)
-		ret.Data_session_freed_sby = in["data_session_freed_sby"].(int)
-		ret.User_quota_created_sby = in["user_quota_created_sby"].(int)
-		ret.User_quota_put_in_del_q_sby = in["user_quota_put_in_del_q_sby"].(int)
-		ret.Tcp_fullcone_created_sby = in["tcp_fullcone_created_sby"].(int)
-		ret.Tcp_fullcone_freed_sby = in["tcp_fullcone_freed_sby"].(int)
-		ret.Udp_fullcone_created_sby = in["udp_fullcone_created_sby"].(int)
-		ret.Udp_fullcone_freed_sby = in["udp_fullcone_freed_sby"].(int)
 	}
 	return ret
 }

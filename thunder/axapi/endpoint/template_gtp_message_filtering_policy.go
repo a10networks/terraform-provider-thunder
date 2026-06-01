@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type TemplateGtpMessageFilteringPolicy struct {
 	Inst struct {
 		InterfaceType string `json:"interface-type"`
@@ -17,15 +17,15 @@ type TemplateGtpMessageFilteringPolicy struct {
 
 		Uuid string `json:"uuid"`
 
-		VersionV0 TemplateGtpMessageFilteringPolicyVersionV02024 `json:"version-v0"`
+		VersionV0 TemplateGtpMessageFilteringPolicyVersionV02023 `json:"version-v0"`
 
-		VersionV1 TemplateGtpMessageFilteringPolicyVersionV12025 `json:"version-v1"`
+		VersionV1 TemplateGtpMessageFilteringPolicyVersionV12024 `json:"version-v1"`
 
-		VersionV2 TemplateGtpMessageFilteringPolicyVersionV22026 `json:"version-v2"`
+		VersionV2 TemplateGtpMessageFilteringPolicyVersionV22025 `json:"version-v2"`
 	} `json:"message-filtering-policy"`
 }
 
-type TemplateGtpMessageFilteringPolicyVersionV02024 struct {
+type TemplateGtpMessageFilteringPolicyVersionV02023 struct {
 	EnableDisableAction string `json:"enable-disable-action" dval:"enable"`
 	MessageType         int    `json:"message-type"`
 	CreatePdp           string `json:"create-pdp" dval:"enable"`
@@ -39,7 +39,7 @@ type TemplateGtpMessageFilteringPolicyVersionV02024 struct {
 	Uuid                string `json:"uuid"`
 }
 
-type TemplateGtpMessageFilteringPolicyVersionV12025 struct {
+type TemplateGtpMessageFilteringPolicyVersionV12024 struct {
 	EnableDisableAction string `json:"enable-disable-action" dval:"enable"`
 	MessageType         int    `json:"message-type"`
 	CreatePdp           string `json:"create-pdp" dval:"enable"`
@@ -60,7 +60,7 @@ type TemplateGtpMessageFilteringPolicyVersionV12025 struct {
 	Uuid                string `json:"uuid"`
 }
 
-type TemplateGtpMessageFilteringPolicyVersionV22026 struct {
+type TemplateGtpMessageFilteringPolicyVersionV22025 struct {
 	EnableDisableAction string `json:"enable-disable-action" dval:"enable"`
 	MessageType         int    `json:"message-type"`
 	ChangeNotification  string `json:"change-notification" dval:"enable"`

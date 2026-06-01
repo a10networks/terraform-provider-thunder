@@ -92,6 +92,9 @@ func resourceSlbDnsCacheStats() *schema.Resource {
 						"hit_rate_per_sec": {
 							Type: schema.TypeInt, Optional: true, Description: "Cache hit rate per second",
 						},
+						"multiple_answer_no_cache": {
+							Type: schema.TypeInt, Optional: true, Description: "Response not cached due to multiple answers",
+						},
 					},
 				},
 			},
@@ -121,31 +124,32 @@ func resourceSlbDnsCacheStatsRead(ctx context.Context, d *schema.ResourceData, m
 func setObjectSlbDnsCacheStatsStats(ret edpt.DataSlbDnsCacheStats) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"total_q":               ret.DtSlbDnsCacheStats.Stats.Total_q,
-			"total_r":               ret.DtSlbDnsCacheStats.Stats.Total_r,
-			"hit":                   ret.DtSlbDnsCacheStats.Stats.Hit,
-			"bad_q":                 ret.DtSlbDnsCacheStats.Stats.Bad_q,
-			"encode_q":              ret.DtSlbDnsCacheStats.Stats.Encode_q,
-			"multiple_q":            ret.DtSlbDnsCacheStats.Stats.Multiple_q,
-			"oversize_q":            ret.DtSlbDnsCacheStats.Stats.Oversize_q,
-			"bad_r":                 ret.DtSlbDnsCacheStats.Stats.Bad_r,
-			"oversize_r":            ret.DtSlbDnsCacheStats.Stats.Oversize_r,
-			"encode_r":              ret.DtSlbDnsCacheStats.Stats.Encode_r,
-			"multiple_r":            ret.DtSlbDnsCacheStats.Stats.Multiple_r,
-			"answer_r":              ret.DtSlbDnsCacheStats.Stats.Answer_r,
-			"ttl_r":                 ret.DtSlbDnsCacheStats.Stats.Ttl_r,
-			"ageout":                ret.DtSlbDnsCacheStats.Stats.Ageout,
-			"bad_answer":            ret.DtSlbDnsCacheStats.Stats.Bad_answer,
-			"ageout_weight":         ret.DtSlbDnsCacheStats.Stats.Ageout_weight,
-			"total_log":             ret.DtSlbDnsCacheStats.Stats.Total_log,
-			"total_alloc":           ret.DtSlbDnsCacheStats.Stats.Total_alloc,
-			"total_freed":           ret.DtSlbDnsCacheStats.Stats.Total_freed,
-			"current_allocate":      ret.DtSlbDnsCacheStats.Stats.Current_allocate,
-			"current_data_allocate": ret.DtSlbDnsCacheStats.Stats.Current_data_allocate,
-			"resolver_queue_full":   ret.DtSlbDnsCacheStats.Stats.Resolver_queue_full,
-			"truncated_r":           ret.DtSlbDnsCacheStats.Stats.Truncated_r,
-			"qps":                   ret.DtSlbDnsCacheStats.Stats.Qps,
-			"hit_rate_per_sec":      ret.DtSlbDnsCacheStats.Stats.Hit_rate_per_sec,
+			"total_q":                  ret.DtSlbDnsCacheStats.Stats.Total_q,
+			"total_r":                  ret.DtSlbDnsCacheStats.Stats.Total_r,
+			"hit":                      ret.DtSlbDnsCacheStats.Stats.Hit,
+			"bad_q":                    ret.DtSlbDnsCacheStats.Stats.Bad_q,
+			"encode_q":                 ret.DtSlbDnsCacheStats.Stats.Encode_q,
+			"multiple_q":               ret.DtSlbDnsCacheStats.Stats.Multiple_q,
+			"oversize_q":               ret.DtSlbDnsCacheStats.Stats.Oversize_q,
+			"bad_r":                    ret.DtSlbDnsCacheStats.Stats.Bad_r,
+			"oversize_r":               ret.DtSlbDnsCacheStats.Stats.Oversize_r,
+			"encode_r":                 ret.DtSlbDnsCacheStats.Stats.Encode_r,
+			"multiple_r":               ret.DtSlbDnsCacheStats.Stats.Multiple_r,
+			"answer_r":                 ret.DtSlbDnsCacheStats.Stats.Answer_r,
+			"ttl_r":                    ret.DtSlbDnsCacheStats.Stats.Ttl_r,
+			"ageout":                   ret.DtSlbDnsCacheStats.Stats.Ageout,
+			"bad_answer":               ret.DtSlbDnsCacheStats.Stats.Bad_answer,
+			"ageout_weight":            ret.DtSlbDnsCacheStats.Stats.Ageout_weight,
+			"total_log":                ret.DtSlbDnsCacheStats.Stats.Total_log,
+			"total_alloc":              ret.DtSlbDnsCacheStats.Stats.Total_alloc,
+			"total_freed":              ret.DtSlbDnsCacheStats.Stats.Total_freed,
+			"current_allocate":         ret.DtSlbDnsCacheStats.Stats.Current_allocate,
+			"current_data_allocate":    ret.DtSlbDnsCacheStats.Stats.Current_data_allocate,
+			"resolver_queue_full":      ret.DtSlbDnsCacheStats.Stats.Resolver_queue_full,
+			"truncated_r":              ret.DtSlbDnsCacheStats.Stats.Truncated_r,
+			"qps":                      ret.DtSlbDnsCacheStats.Stats.Qps,
+			"hit_rate_per_sec":         ret.DtSlbDnsCacheStats.Stats.Hit_rate_per_sec,
+			"multiple_answer_no_cache": ret.DtSlbDnsCacheStats.Stats.Multiple_answer_no_cache,
 		},
 	}
 }
@@ -181,6 +185,7 @@ func getObjectSlbDnsCacheStatsStats(d []interface{}) edpt.SlbDnsCacheStatsStats 
 		ret.Truncated_r = in["truncated_r"].(int)
 		ret.Qps = in["qps"].(int)
 		ret.Hit_rate_per_sec = in["hit_rate_per_sec"].(int)
+		ret.Multiple_answer_no_cache = in["multiple_answer_no_cache"].(int)
 	}
 	return ret
 }

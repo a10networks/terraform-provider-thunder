@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SysUtEventActionTcp struct {
 	Inst struct {
 		AckSeqNumber string `json:"ack-seq-number" dval:"valid"`
@@ -16,11 +16,11 @@ type SysUtEventActionTcp struct {
 
 		DestPortValue int `json:"dest-port-value"`
 
-		Flags SysUtEventActionTcpFlags1628 `json:"flags"`
+		Flags SysUtEventActionTcpFlags1629 `json:"flags"`
 
 		NatPool string `json:"nat-pool"`
 
-		Options SysUtEventActionTcpOptions1629 `json:"options"`
+		Options SysUtEventActionTcpOptions1630 `json:"options"`
 
 		SeqNumber string `json:"seq-number" dval:"valid"`
 
@@ -32,13 +32,13 @@ type SysUtEventActionTcp struct {
 
 		Window string `json:"window" dval:"valid"`
 
-		Direction string
-
 		EventNumber string
+
+		Direction string
 	} `json:"tcp"`
 }
 
-type SysUtEventActionTcpFlags1628 struct {
+type SysUtEventActionTcpFlags1629 struct {
 	Syn  int    `json:"syn"`
 	Ack  int    `json:"ack"`
 	Fin  int    `json:"fin"`
@@ -50,7 +50,7 @@ type SysUtEventActionTcpFlags1628 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SysUtEventActionTcpOptions1629 struct {
+type SysUtEventActionTcpOptions1630 struct {
 	Mss             int    `json:"mss"`
 	Wscale          int    `json:"wscale"`
 	SackType        string `json:"sack-type"`

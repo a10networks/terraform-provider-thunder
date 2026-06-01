@@ -29,14 +29,14 @@ func resourceDdosDstEntryPortPortInd() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
-			},
 			"port_num": {
 				Type: schema.TypeString, Required: true, Description: "PortNum",
 			},
 			"dst_entry_name": {
 				Type: schema.TypeString, Required: true, Description: "DstEntryName",
+			},
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 		},
 	}
@@ -120,8 +120,8 @@ func dataToEndpointDdosDstEntryPortPortInd(d *schema.ResourceData) edpt.DdosDstE
 	var ret edpt.DdosDstEntryPortPortInd
 	ret.Inst.SamplingEnable = getSliceDdosDstEntryPortPortIndSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	//omit uuid
-	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.PortNum = d.Get("port_num").(string)
 	ret.Inst.DstEntryName = d.Get("dst_entry_name").(string)
+	ret.Inst.Protocol = d.Get("protocol").(string)
 	return ret
 }

@@ -6,12 +6,14 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosNetworkObjectIp struct {
 	Inst struct {
 		PrefixAnomalyThreshold DdosNetworkObjectIpPrefixAnomalyThreshold `json:"prefix-anomaly-threshold"`
 
 		SamplingEnable []DdosNetworkObjectIpSamplingEnable `json:"sampling-enable"`
+
+		SrcPortList []DdosNetworkObjectIpSrcPortList `json:"src-port-list"`
 
 		SubnetIpAddr string `json:"subnet-ip-addr"`
 
@@ -30,6 +32,25 @@ type DdosNetworkObjectIpPrefixAnomalyThreshold struct {
 
 type DdosNetworkObjectIpSamplingEnable struct {
 	Counters1 string `json:"counters1"`
+}
+
+type DdosNetworkObjectIpSrcPortList struct {
+	PortNum                       int                                                         `json:"port-num"`
+	Protocol                      string                                                      `json:"protocol"`
+	HostSrcPortAnomalyThreshold   DdosNetworkObjectIpSrcPortListHostSrcPortAnomalyThreshold   `json:"host-src-port-anomaly-threshold"`
+	SubnetSrcPortAnomalyThreshold DdosNetworkObjectIpSrcPortListSubnetSrcPortAnomalyThreshold `json:"subnet-src-port-anomaly-threshold"`
+	Uuid                          string                                                      `json:"uuid"`
+	UserTag                       string                                                      `json:"user-tag"`
+}
+
+type DdosNetworkObjectIpSrcPortListHostSrcPortAnomalyThreshold struct {
+	HostSrcPortPktRate int `json:"host-src-port-pkt-rate"`
+	HostSrcPortBitRate int `json:"host-src-port-bit-rate"`
+}
+
+type DdosNetworkObjectIpSrcPortListSubnetSrcPortAnomalyThreshold struct {
+	SubnetSrcPortPktRate int `json:"subnet-src-port-pkt-rate"`
+	SubnetSrcPortBitRate int `json:"subnet-src-port-bit-rate"`
 }
 
 func (p *DdosNetworkObjectIp) GetId() string {

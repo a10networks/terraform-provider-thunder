@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZoneSrcPortRange struct {
 	Inst struct {
 		CaptureConfig DdosDstZoneSrcPortRangeCaptureConfig `json:"capture-config"`
@@ -19,7 +19,7 @@ type DdosDstZoneSrcPortRange struct {
 
 		LevelList []DdosDstZoneSrcPortRangeLevelList `json:"level-list"`
 
-		PortInd DdosDstZoneSrcPortRangePortInd265 `json:"port-ind"`
+		PortInd DdosDstZoneSrcPortRangePortInd268 `json:"port-ind"`
 
 		Protocol string `json:"protocol"`
 
@@ -64,7 +64,7 @@ type DdosDstZoneSrcPortRangeLevelListIndicatorList struct {
 	UserTag               string `json:"user-tag"`
 }
 
-type DdosDstZoneSrcPortRangePortInd265 struct {
+type DdosDstZoneSrcPortRangePortInd268 struct {
 	Uuid string `json:"uuid"`
 }
 

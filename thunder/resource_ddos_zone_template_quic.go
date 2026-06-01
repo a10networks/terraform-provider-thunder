@@ -190,10 +190,10 @@ func resourceDdosZoneTemplateQuicRead(ctx context.Context, d *schema.ResourceDat
 	return diags
 }
 
-func getObjectDdosZoneTemplateQuicActionOnInitial369(d []interface{}) edpt.DdosZoneTemplateQuicActionOnInitial369 {
+func getObjectDdosZoneTemplateQuicActionOnInitial365(d []interface{}) edpt.DdosZoneTemplateQuicActionOnInitial365 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateQuicActionOnInitial369
+	var ret edpt.DdosZoneTemplateQuicActionOnInitial365
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RetryTokenAuthenticationStatic = in["retry_token_authentication_static"].(string)
@@ -256,7 +256,7 @@ func getObjectDdosZoneTemplateQuicVersionSupportedListMalformedCheck(d []interfa
 
 func dataToEndpointDdosZoneTemplateQuic(d *schema.ResourceData) edpt.DdosZoneTemplateQuic {
 	var ret edpt.DdosZoneTemplateQuic
-	ret.Inst.ActionOnInitial = getObjectDdosZoneTemplateQuicActionOnInitial369(d.Get("action_on_initial").([]interface{}))
+	ret.Inst.ActionOnInitial = getObjectDdosZoneTemplateQuicActionOnInitial365(d.Get("action_on_initial").([]interface{}))
 	ret.Inst.CreateConnOnInitialOnly = d.Get("create_conn_on_initial_only").(int)
 	ret.Inst.DropOnNoVersionMatch = d.Get("drop_on_no_version_match").(int)
 	ret.Inst.FixedBitCheckDisable = d.Get("fixed_bit_check_disable").(int)

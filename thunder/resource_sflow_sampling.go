@@ -16,6 +16,9 @@ func resourceSflowSampling() *schema.Resource {
 		DeleteContext: resourceSflowSamplingDelete,
 
 		Schema: map[string]*schema.Schema{
+			"ddos_zone": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable DDOS Zone Packet Sampling",
+			},
 			"eth_list": {
 				Type: schema.TypeList, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -140,6 +143,7 @@ func getSliceSflowSamplingVeList(d []interface{}) []edpt.SflowSamplingVeList {
 
 func dataToEndpointSflowSampling(d *schema.ResourceData) edpt.SflowSampling {
 	var ret edpt.SflowSampling
+	ret.Inst.DdosZone = d.Get("ddos_zone").(int)
 	ret.Inst.EthList = getSliceSflowSamplingEthList(d.Get("eth_list").([]interface{}))
 	//omit uuid
 	ret.Inst.VeList = getSliceSflowSamplingVeList(d.Get("ve_list").([]interface{}))

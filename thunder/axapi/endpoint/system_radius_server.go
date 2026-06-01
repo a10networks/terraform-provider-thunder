@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemRadiusServer struct {
 	Inst struct {
 		AccountingInterimUpdate string `json:"accounting-interim-update" dval:"ignore"`
@@ -22,7 +22,7 @@ type SystemRadiusServer struct {
 
 		CustomAttributeName string `json:"custom-attribute-name"`
 
-		DerivedAttribute SystemRadiusServerDerivedAttribute1698 `json:"derived-attribute"`
+		DerivedAttribute SystemRadiusServerDerivedAttribute1699 `json:"derived-attribute"`
 
 		DisableReply int `json:"disable-reply"`
 
@@ -57,18 +57,18 @@ type SystemRadiusServerAttribute struct {
 	Number         int    `json:"number"`
 }
 
-type SystemRadiusServerDerivedAttribute1698 struct {
-	Usergroup SystemRadiusServerDerivedAttributeUsergroup1699 `json:"usergroup"`
-	Userid    SystemRadiusServerDerivedAttributeUserid1700    `json:"userid"`
+type SystemRadiusServerDerivedAttribute1699 struct {
+	Usergroup SystemRadiusServerDerivedAttributeUsergroup1700 `json:"usergroup"`
+	Userid    SystemRadiusServerDerivedAttributeUserid1701    `json:"userid"`
 }
 
-type SystemRadiusServerDerivedAttributeUsergroup1699 struct {
+type SystemRadiusServerDerivedAttributeUsergroup1700 struct {
 	Attribute string `json:"attribute"`
 	Regex     string `json:"regex"`
 	Uuid      string `json:"uuid"`
 }
 
-type SystemRadiusServerDerivedAttributeUserid1700 struct {
+type SystemRadiusServerDerivedAttributeUserid1701 struct {
 	Attribute string `json:"attribute"`
 	Regex     string `json:"regex"`
 	Uuid      string `json:"uuid"`

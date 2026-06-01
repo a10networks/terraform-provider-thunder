@@ -89,8 +89,6 @@ Optional:
 - `ipv4_frag_6rd_ok` (Number) IPv4 Frag 6RD OK
 - `ipv4_noroute_drop` (Number) IPv4 No Route Drop
 - `ipv4_novlanfwd_drop` (Number) IPv4 No L3 VLAN FWD Drop
-- `ipv4_rpf_drop` (Number) IPv4 RPF drop
-- `ipv4_src_routed_pkt_drop` (Number) IPv4 source routed packet drop
 - `ipv6_jumbo_frag_drop` (Number) IPv6 Jumbo Frag Drop
 - `ipv6_ndisc_dad_adverts` (Number) IPv6 DAD on Adverts
 - `ipv6_ndisc_dad_prefix_mismatch_drop` (Number) IPv6 DAD on Advertise drop for prefix mismatch
@@ -99,8 +97,6 @@ Optional:
 - `ipv6_ndisc_out_of_memory` (Number) IPv6 DAD Out-of-memory
 - `ipv6_noroute_drop` (Number) IPv6 No Route Drop
 - `ipv6_novlanfwd_drop` (Number) IPv6 No L3 VLAN FWD Drop
-- `ipv6_rpf_drop` (Number) IPv6 RPF drop
-- `ipv6_src_routed_pkt_drop` (Number) IPv6 source routed packet drop
 - `ipv6frag_esp` (Number) IPv6 Frag ESP
 - `ipv6frag_gre_dropped` (Number) IPv6 Frag gre Drop
 - `ipv6frag_icmp` (Number) IPv6 Frag ICMP

@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemMonTemplateMonitoringMode struct {
 	Inst struct {
-		Mmode string `json:"mmode" dval:"and"`
+		Mmode string `json:"mmode" dval:"interdependent"`
 
 		Uuid string `json:"uuid"`
 	} `json:"monitoring-mode"`

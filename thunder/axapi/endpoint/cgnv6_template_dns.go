@@ -6,16 +6,16 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6TemplateDns struct {
 	Inst struct {
-		ClassList Cgnv6TemplateDnsClassList113 `json:"class-list"`
+		ClassList Cgnv6TemplateDnsClassList114 `json:"class-list"`
 
 		DefaultPolicy string `json:"default-policy" dval:"nocache"`
 
 		DisableDnsTemplate int `json:"disable-dns-template"`
 
-		Dns64 Cgnv6TemplateDnsDns64116 `json:"dns64"`
+		Dns64 Cgnv6TemplateDnsDns64117 `json:"dns64"`
 
 		Drop int `json:"drop"`
 
@@ -33,13 +33,13 @@ type Cgnv6TemplateDns struct {
 	} `json:"dns"`
 }
 
-type Cgnv6TemplateDnsClassList113 struct {
+type Cgnv6TemplateDnsClassList114 struct {
 	Name    string                                `json:"name"`
 	Uuid    string                                `json:"uuid"`
-	LidList []Cgnv6TemplateDnsClassListLidList114 `json:"lid-list"`
+	LidList []Cgnv6TemplateDnsClassListLidList115 `json:"lid-list"`
 }
 
-type Cgnv6TemplateDnsClassListLidList114 struct {
+type Cgnv6TemplateDnsClassListLidList115 struct {
 	Lidnum          int                                    `json:"lidnum"`
 	ConnRateLimit   int                                    `json:"conn-rate-limit"`
 	Per             int                                    `json:"per"`
@@ -48,18 +48,18 @@ type Cgnv6TemplateDnsClassListLidList114 struct {
 	Lockout         int                                    `json:"lockout"`
 	Log             int                                    `json:"log"`
 	LogInterval     int                                    `json:"log-interval"`
-	Dns             Cgnv6TemplateDnsClassListLidListDns115 `json:"dns"`
+	Dns             Cgnv6TemplateDnsClassListLidListDns116 `json:"dns"`
 	Uuid            string                                 `json:"uuid"`
 	UserTag         string                                 `json:"user-tag"`
 }
 
-type Cgnv6TemplateDnsClassListLidListDns115 struct {
+type Cgnv6TemplateDnsClassListLidListDns116 struct {
 	CacheAction string `json:"cache-action" dval:"cache-disable"`
 	Ttl         int    `json:"ttl"`
 	Weight      int    `json:"weight"`
 }
 
-type Cgnv6TemplateDnsDns64116 struct {
+type Cgnv6TemplateDnsDns64117 struct {
 	Enable                int    `json:"enable"`
 	AnswerOnlyDisable     int    `json:"answer-only-disable"`
 	AuthData              int    `json:"auth-data"`

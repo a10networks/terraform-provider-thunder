@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type AamAuthenticationServerRadiusInstance struct {
 	Inst struct {
 		AccountingPort int `json:"accounting-port" dval:"1813"`

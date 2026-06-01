@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDnsCacheServerStats struct {
 	Stats DdosDnsCacheServerStatsStats `json:"stats"`
 }
@@ -64,6 +64,7 @@ type DdosDnsCacheServerStatsStats struct {
 	Alias_subtype_already_exist                    int `json:"alias_subtype_already_exist"`
 	Zone_apex_suffix_node_insert_fail              int `json:"zone_apex_suffix_node_insert_fail"`
 	Lookup_servfail_resp                           int `json:"lookup_servfail_resp"`
+	Zt_ixfr_attempts                               int `json:"zt_ixfr_attempts"`
 }
 
 func (p *DdosDnsCacheServerStats) GetId() string {

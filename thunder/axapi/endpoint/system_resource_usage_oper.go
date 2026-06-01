@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemResourceUsageOper struct {
 	Oper SystemResourceUsageOperOper `json:"oper"`
 }
@@ -70,6 +70,10 @@ type SystemResourceUsageOperOper struct {
 	RamCacheMemoryLimitMin            int `json:"ram-cache-memory-limit-min"`
 	RamCacheMemoryLimitMax            int `json:"ram-cache-memory-limit-max"`
 	RamCacheMemoryLimitDefault        int `json:"ram-cache-memory-limit-default"`
+	WafTemplateCur                    int `json:"waf-template-cur"`
+	WafTemplateMin                    int `json:"waf-template-min"`
+	WafTemplateMax                    int `json:"waf-template-max"`
+	WafTemplateDefault                int `json:"waf-template-default"`
 	AuthSessionCountCur               int `json:"auth-session-count-cur"`
 	AuthSessionCountMin               int `json:"auth-session-count-min"`
 	AuthSessionCountMax               int `json:"auth-session-count-max"`
@@ -82,6 +86,10 @@ type SystemResourceUsageOperOper struct {
 	NgwafCacheEntryMin                int `json:"ngwaf-cache-entry-min"`
 	NgwafCacheEntryMax                int `json:"ngwaf-cache-entry-max"`
 	NgwafCacheEntryDefault            int `json:"ngwaf-cache-entry-default"`
+	JwtCacheEntryCur                  int `json:"jwt-cache-entry-cur"`
+	JwtCacheEntryMin                  int `json:"jwt-cache-entry-min"`
+	JwtCacheEntryMax                  int `json:"jwt-cache-entry-max"`
+	JwtCacheEntryDefault              int `json:"jwt-cache-entry-default"`
 }
 
 func (p *SystemResourceUsageOper) GetId() string {

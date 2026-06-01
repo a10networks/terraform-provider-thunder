@@ -13,9 +13,6 @@ func resourceVpnIpsecSaStatsStats() *schema.Resource {
 		ReadContext: resourceVpnIpsecSaStatsStatsRead,
 
 		Schema: map[string]*schema.Schema{
-			"sampling_enable": {
-				Type: schema.TypeString, Required: true, Description: "Sampling Enable Key",
-			},
 			"stats": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -230,7 +227,7 @@ func getObjectVpnIpsecSaStatsStatsStats(d []interface{}) edpt.VpnIpsecSaStatsSta
 
 func dataToEndpointVpnIpsecSaStatsStats(d *schema.ResourceData) edpt.VpnIpsecSaStatsStats {
 	var ret edpt.VpnIpsecSaStatsStats
-	ret.SamplingEnable = d.Get("sampling_enable").(string)
+
 	ret.Stats = getObjectVpnIpsecSaStatsStatsStats(d.Get("stats").([]interface{}))
 	return ret
 }

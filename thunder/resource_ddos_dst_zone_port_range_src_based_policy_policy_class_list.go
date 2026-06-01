@@ -149,17 +149,17 @@ func resourceDdosDstZonePortRangeSrcBasedPolicyPolicyClassList() *schema.Resourc
 					},
 				},
 			},
-			"port_range_start": {
-				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
+			"src_based_policy_name": {
+				Type: schema.TypeString, Required: true, Description: "SrcBasedPolicyName",
 			},
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
-			"src_based_policy_name": {
-				Type: schema.TypeString, Required: true, Description: "SrcBasedPolicyName",
-			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			},
+			"port_range_start": {
+				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
 			},
 			"port_range_end": {
 				Type: schema.TypeString, Required: true, Description: "PortRangeEnd",
@@ -314,10 +314,10 @@ func dataToEndpointDdosDstZonePortRangeSrcBasedPolicyPolicyClassList(d *schema.R
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.ZoneTemplate = getObjectDdosDstZonePortRangeSrcBasedPolicyPolicyClassListZoneTemplate(d.Get("zone_template").([]interface{}))
-	ret.Inst.PortRangeStart = d.Get("port_range_start").(string)
-	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
+	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.ZoneName = d.Get("zone_name").(string)
+	ret.Inst.PortRangeStart = d.Get("port_range_start").(string)
 	ret.Inst.PortRangeEnd = d.Get("port_range_end").(string)
 	return ret
 }

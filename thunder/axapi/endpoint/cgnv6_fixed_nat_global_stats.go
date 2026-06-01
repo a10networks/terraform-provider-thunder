@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6FixedNatGlobalStats struct {
 	Stats Cgnv6FixedNatGlobalStatsStats `json:"stats"`
 }
@@ -229,24 +229,7 @@ type Cgnv6FixedNatGlobalStatsStats struct {
 	Fnatdslite_rev_egress_pkt_size_range4  int `json:"fnatdslite_rev_egress_pkt_size_range4"`
 	ActiveSubscriberAdded                  int `json:"active-subscriber-added"`
 	ActiveSubscriberRemoved                int `json:"active-subscriber-removed"`
-	Nat44DataSessionCreatedSby             int `json:"nat44-data-session-created-sby"`
-	Nat44DataSessionFreedSby               int `json:"nat44-data-session-freed-sby"`
-	Nat64DataSessionCreatedSby             int `json:"nat64-data-session-created-sby"`
-	Nat64DataSessionFreedSby               int `json:"nat64-data-session-freed-sby"`
-	DsliteDataSessionCreatedSby            int `json:"dslite-data-session-created-sby"`
-	DsliteDataSessionFreedSby              int `json:"dslite-data-session-freed-sby"`
-	DsliteTcpFullconeCreatedSby            int `json:"dslite-tcp-fullcone-created-sby"`
-	DsliteTcpFullconeFreedSby              int `json:"dslite-tcp-fullcone-freed-sby"`
-	DsliteUdpFullconeCreatedSby            int `json:"dslite-udp-fullcone-created-sby"`
-	DsliteUdpFullconeFreedSby              int `json:"dslite-udp-fullcone-freed-sby"`
-	Nat44TcpFullconeCreatedSby             int `json:"nat44-tcp-fullcone-created-sby"`
-	Nat44TcpFullconeFreedSby               int `json:"nat44-tcp-fullcone-freed-sby"`
-	Nat44UdpFullconeCreatedSby             int `json:"nat44-udp-fullcone-created-sby"`
-	Nat44UdpFullconeFreedSby               int `json:"nat44-udp-fullcone-freed-sby"`
-	Nat64TcpFullconeCreatedSby             int `json:"nat64-tcp-fullcone-created-sby"`
-	Nat64TcpFullconeFreedSby               int `json:"nat64-tcp-fullcone-freed-sby"`
-	Nat64UdpFullconeCreatedSby             int `json:"nat64-udp-fullcone-created-sby"`
-	Nat64UdpFullconeFreedSby               int `json:"nat64-udp-fullcone-freed-sby"`
+	UnusedIpDrop                           int `json:"unused-ip-drop"`
 }
 
 func (p *Cgnv6FixedNatGlobalStats) GetId() string {

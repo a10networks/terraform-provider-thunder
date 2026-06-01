@@ -5,13 +5,13 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZoneIpProtoProtoNamePortIndOper struct {
 	Oper DdosDstZoneIpProtoProtoNamePortIndOperOper `json:"oper"`
 
-	Protocol string
-
 	ZoneName string
+
+	Protocol string
 }
 type DataDdosDstZoneIpProtoProtoNamePortIndOper struct {
 	DtDdosDstZoneIpProtoProtoNamePortIndOper DdosDstZoneIpProtoProtoNamePortIndOper `json:"port-ind"`
@@ -26,6 +26,7 @@ type DdosDstZoneIpProtoProtoNamePortIndOperOper struct {
 	EscalationTimestamp string                                                   `json:"escalation-timestamp"`
 	InitialLearning     string                                                   `json:"initial-learning"`
 	ActiveTime          int                                                      `json:"active-time"`
+	BaselineWindowSize  int                                                      `json:"baseline-window-size"`
 	SourcesAllEntries   int                                                      `json:"sources-all-entries"`
 	SubnetIpAddr        string                                                   `json:"subnet-ip-addr"`
 	SubnetIpv6Addr      string                                                   `json:"subnet-ipv6-addr"`

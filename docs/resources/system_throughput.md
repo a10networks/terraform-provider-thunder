@@ -32,4 +32,4 @@ __PLACEHOLDER__
 
 Optional:
 
-- `counters1` (String) 'all': all; 'global-system-throughput-bits-per-sec': Global System throughput in bits/sec; 'per-part-throughput-bits-per-sec': Partition throughput in bits/sec;
+- `counters1` (String) 'all': all; 'global-system-throughput-bits-per-sec': Global System egress throughput in bits/sec; 'global-system-ingress-throughput-bits-per-sec': Global System ingress throughput in bits/sec; 'per-part-throughput-bits-per-sec': Partition throughput in bits/sec; 'global-client-ssl-count': global ssl count; 'global-server-ssl-count': global server ssl count; 'global-client-ssl-connections-per-sec': global ssl conneciton per sec; 'global-server-ssl-connections-per-sec': global server ssl conneciton;

@@ -41,6 +41,10 @@ resource "thunder_system_cpu_load_sharing" "thunder_system_cpu_load_sharing" {
 - `allow_l7_sessions` (Number) Allow L7 sessions forward to home cpu
 - `cpu_usage` (Block List, Max: 1) (see [below for nested schema](#nestedblock--cpu_usage))
 - `disable` (Number) Disable CPU load sharing in overload situations
+- `disallow_new_session_cpu_ewma_alpha` (Number) EWMA ALPHA value to control how responsive the system disallow new session to CPU usage changes (default: 18)
+- `disallow_new_session_cpu_probe_time` (Number) Probe time when CPU RR is trigged for disallow new session (default: 20)
+- `disallow_new_session_cpu_usage_high` (Number) CPU usage threshold (percentage) that fully disallow new sessions (default: 0, not enabled)
+- `disallow_new_session_cpu_usage_low` (Number) CPU usage threshold (percentage) that fully allow new sessions (default: 1/2 of cpu-usage-high configured)
 - `others` (Number) Disallow redistribution of new non TCP/UDP IP sessions
 - `packets_per_second` (Block List, Max: 1) (see [below for nested schema](#nestedblock--packets_per_second))
 - `tcp` (Number) Disallow redistribution of new TCP sessions

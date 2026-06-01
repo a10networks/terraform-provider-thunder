@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type IpAppProtocolPortUdpPortAddAppNameInterface struct {
 	Inst struct {
 		EthCfg []IpAppProtocolPortUdpPortAddAppNameInterfaceEthCfg `json:"eth-cfg"`
@@ -16,9 +16,9 @@ type IpAppProtocolPortUdpPortAddAppNameInterface struct {
 
 		VeCfg []IpAppProtocolPortUdpPortAddAppNameInterfaceVeCfg `json:"ve-cfg"`
 
-		App_name_name string
-
 		Port string
+
+		App_name_name string
 	} `json:"interface"`
 }
 

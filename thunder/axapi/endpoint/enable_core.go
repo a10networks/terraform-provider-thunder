@@ -5,16 +5,18 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type EnableCore struct {
-	Inst struct {
-		CoreLevel string `json:"core-level" dval:"a10"`
-
-		Full int `json:"full"`
-
-		Uuid string `json:"uuid"`
-	} `json:"enable-core"`
+	EnableCore EnableCoreInst `json:"enable-core"`
 }
+
+type EnableCoreInst struct {
+	CoreLevel             string `json:"core-level"`
+	DisallowAutoFullCore  int    `json:"disallow-auto-full-core"`
+	Full                  int    `json:"full"`
+	Uuid                  string `json:"uuid"`
+}
+
 
 func (p *EnableCore) GetId() string {
 	return "1"

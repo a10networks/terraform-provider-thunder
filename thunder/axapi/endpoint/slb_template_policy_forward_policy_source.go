@@ -6,10 +6,10 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbTemplatePolicyForwardPolicySource struct {
 	Inst struct {
-		Destination SlbTemplatePolicyForwardPolicySourceDestination1552 `json:"destination"`
+		Destination SlbTemplatePolicyForwardPolicySourceDestination1553 `json:"destination"`
 
 		MatchAny int `json:"match-any"`
 
@@ -31,12 +31,12 @@ type SlbTemplatePolicyForwardPolicySource struct {
 	} `json:"source"`
 }
 
-type SlbTemplatePolicyForwardPolicySourceDestination1552 struct {
+type SlbTemplatePolicyForwardPolicySourceDestination1553 struct {
 	AdvMatchList           []SlbTemplatePolicyForwardPolicySourceDestinationAdvMatchList           `json:"adv-match-list"`
 	ClassListList          []SlbTemplatePolicyForwardPolicySourceDestinationClassListList          `json:"class-list-list"`
 	WebReputationScopeList []SlbTemplatePolicyForwardPolicySourceDestinationWebReputationScopeList `json:"web-reputation-scope-list"`
 	WebCategoryListList    []SlbTemplatePolicyForwardPolicySourceDestinationWebCategoryListList    `json:"web-category-list-list"`
-	Any                    SlbTemplatePolicyForwardPolicySourceDestinationAny1553                  `json:"any"`
+	Any                    SlbTemplatePolicyForwardPolicySourceDestinationAny1554                  `json:"any"`
 }
 
 type SlbTemplatePolicyForwardPolicySourceDestinationAdvMatchList struct {
@@ -108,14 +108,14 @@ type SlbTemplatePolicyForwardPolicySourceDestinationWebCategoryListList struct {
 	Uuid            string `json:"uuid"`
 }
 
-type SlbTemplatePolicyForwardPolicySourceDestinationAny1553 struct {
+type SlbTemplatePolicyForwardPolicySourceDestinationAny1554 struct {
 	Action          string                                                                 `json:"action"`
 	DualStackAction string                                                                 `json:"dual-stack-action"`
 	Uuid            string                                                                 `json:"uuid"`
-	SamplingEnable  []SlbTemplatePolicyForwardPolicySourceDestinationAnySamplingEnable1554 `json:"sampling-enable"`
+	SamplingEnable  []SlbTemplatePolicyForwardPolicySourceDestinationAnySamplingEnable1555 `json:"sampling-enable"`
 }
 
-type SlbTemplatePolicyForwardPolicySourceDestinationAnySamplingEnable1554 struct {
+type SlbTemplatePolicyForwardPolicySourceDestinationAnySamplingEnable1555 struct {
 	Counters1 string `json:"counters1"`
 }
 

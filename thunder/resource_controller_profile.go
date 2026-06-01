@@ -9,7 +9,7 @@ import (
 
 func resourceControllerProfile() *schema.Resource {
 	return &schema.Resource{
-		Description:   "`thunder_controller_profile`: A10 controller profile\n\n__PLACEHOLDER__",
+		Description:   "`thunder_controller_profile`: A10 control profile\n\n__PLACEHOLDER__",
 		CreateContext: resourceControllerProfileCreate,
 		UpdateContext: resourceControllerProfileUpdate,
 		ReadContext:   resourceControllerProfileRead,
@@ -187,10 +187,10 @@ func resourceControllerProfileRead(ctx context.Context, d *schema.ResourceData, 
 	return diags
 }
 
-func getObjectControllerProfileForce140(d []interface{}) edpt.ControllerProfileForce140 {
+func getObjectControllerProfileForce141(d []interface{}) edpt.ControllerProfileForce141 {
 
 	count1 := len(d)
-	var ret edpt.ControllerProfileForce140
+	var ret edpt.ControllerProfileForce141
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Deregister = in["deregister"].(int)
@@ -198,10 +198,10 @@ func getObjectControllerProfileForce140(d []interface{}) edpt.ControllerProfileF
 	return ret
 }
 
-func getObjectControllerProfileReSync141(d []interface{}) edpt.ControllerProfileReSync141 {
+func getObjectControllerProfileReSync142(d []interface{}) edpt.ControllerProfileReSync142 {
 
 	count1 := len(d)
-	var ret edpt.ControllerProfileReSync141
+	var ret edpt.ControllerProfileReSync142
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SchemaRegistry = in["schema_registry"].(int)
@@ -210,10 +210,10 @@ func getObjectControllerProfileReSync141(d []interface{}) edpt.ControllerProfile
 	return ret
 }
 
-func getObjectControllerProfileThunderMgmtIp142(d []interface{}) edpt.ControllerProfileThunderMgmtIp142 {
+func getObjectControllerProfileThunderMgmtIp143(d []interface{}) edpt.ControllerProfileThunderMgmtIp143 {
 
 	count1 := len(d)
-	var ret edpt.ControllerProfileThunderMgmtIp142
+	var ret edpt.ControllerProfileThunderMgmtIp143
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.IpAddress = in["ip_address"].(string)
@@ -223,10 +223,10 @@ func getObjectControllerProfileThunderMgmtIp142(d []interface{}) edpt.Controller
 	return ret
 }
 
-func getObjectControllerProfileTunnel143(d []interface{}) edpt.ControllerProfileTunnel143 {
+func getObjectControllerProfileTunnel144(d []interface{}) edpt.ControllerProfileTunnel144 {
 
 	count1 := len(d)
-	var ret edpt.ControllerProfileTunnel143
+	var ret edpt.ControllerProfileTunnel144
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
@@ -245,18 +245,18 @@ func dataToEndpointControllerProfile(d *schema.ResourceData) edpt.ControllerProf
 	ret.Inst.AvailabilityZone = d.Get("availability_zone").(string)
 	ret.Inst.ClusterId = d.Get("cluster_id").(string)
 	ret.Inst.ClusterName = d.Get("cluster_name").(string)
-	ret.Inst.Force = getObjectControllerProfileForce140(d.Get("force").([]interface{}))
+	ret.Inst.Force = getObjectControllerProfileForce141(d.Get("force").([]interface{}))
 	ret.Inst.Host = d.Get("host").(string)
 	ret.Inst.HostIpv6 = d.Get("host_ipv6").(string)
 	ret.Inst.Interval = d.Get("interval").(int)
 	ret.Inst.Organization = d.Get("organization").(string)
 	//omit password_encrypted
 	ret.Inst.Port = d.Get("port").(int)
-	ret.Inst.ReSync = getObjectControllerProfileReSync141(d.Get("re_sync").([]interface{}))
+	ret.Inst.ReSync = getObjectControllerProfileReSync142(d.Get("re_sync").([]interface{}))
 	ret.Inst.Region = d.Get("region").(string)
 	ret.Inst.SecretValue = d.Get("secret_value").(string)
-	ret.Inst.ThunderMgmtIp = getObjectControllerProfileThunderMgmtIp142(d.Get("thunder_mgmt_ip").([]interface{}))
-	ret.Inst.Tunnel = getObjectControllerProfileTunnel143(d.Get("tunnel").([]interface{}))
+	ret.Inst.ThunderMgmtIp = getObjectControllerProfileThunderMgmtIp143(d.Get("thunder_mgmt_ip").([]interface{}))
+	ret.Inst.Tunnel = getObjectControllerProfileTunnel144(d.Get("tunnel").([]interface{}))
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)
 	ret.Inst.UserName = d.Get("user_name").(string)
 	//omit uuid

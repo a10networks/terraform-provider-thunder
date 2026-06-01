@@ -34,11 +34,11 @@ func resourceDdosZoneTemplateQuicVersionSupportedMalformedCheck() *schema.Resour
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"version_end": {
-				Type: schema.TypeString, Required: true, Description: "VersionEnd",
-			},
 			"version_start": {
 				Type: schema.TypeString, Required: true, Description: "VersionStart",
+			},
+			"version_end": {
+				Type: schema.TypeString, Required: true, Description: "VersionEnd",
 			},
 			"quic_tmpl_name": {
 				Type: schema.TypeString, Required: true, Description: "QuicTmplName",
@@ -116,8 +116,8 @@ func dataToEndpointDdosZoneTemplateQuicVersionSupportedMalformedCheck(d *schema.
 	ret.Inst.MaxDestinationCidLength = d.Get("max_destination_cid_length").(int)
 	ret.Inst.MaxSourceCidLength = d.Get("max_source_cid_length").(int)
 	//omit uuid
-	ret.Inst.VersionEnd = d.Get("version_end").(string)
 	ret.Inst.VersionStart = d.Get("version_start").(string)
+	ret.Inst.VersionEnd = d.Get("version_end").(string)
 	ret.Inst.QuicTmplName = d.Get("quic_tmpl_name").(string)
 	return ret
 }

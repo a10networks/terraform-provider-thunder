@@ -539,6 +539,21 @@ func resourceDdosDnsUdpPortStats() *schema.Resource {
 						"rrsig_expire_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "RRSIG Expire: Drop",
 						},
+						"pattern_filter1_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Extracted Filter1 Drop",
+						},
+						"pattern_filter2_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Extracted Filter2 Drop",
+						},
+						"pattern_filter3_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Extracted Filter3 Drop",
+						},
+						"pattern_filter4_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Extracted Filter4 Drop",
+						},
+						"pattern_filter5_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Extracted Filter5 Drop",
+						},
 					},
 				},
 			},
@@ -742,6 +757,11 @@ func setObjectDdosDnsUdpPortStatsStats(ret edpt.DataDdosDnsUdpPortStats) []inter
 			"alias_forward_rate_exceed":                 ret.DtDdosDnsUdpPortStats.Stats.Alias_forward_rate_exceed,
 			"dnssec_wildcard_forward_rate_exceed":       ret.DtDdosDnsUdpPortStats.Stats.Dnssec_wildcard_forward_rate_exceed,
 			"rrsig_expire_drop":                         ret.DtDdosDnsUdpPortStats.Stats.Rrsig_expire_drop,
+			"pattern_filter1_drop":                      ret.DtDdosDnsUdpPortStats.Stats.Pattern_filter1_drop,
+			"pattern_filter2_drop":                      ret.DtDdosDnsUdpPortStats.Stats.Pattern_filter2_drop,
+			"pattern_filter3_drop":                      ret.DtDdosDnsUdpPortStats.Stats.Pattern_filter3_drop,
+			"pattern_filter4_drop":                      ret.DtDdosDnsUdpPortStats.Stats.Pattern_filter4_drop,
+			"pattern_filter5_drop":                      ret.DtDdosDnsUdpPortStats.Stats.Pattern_filter5_drop,
 		},
 	}
 }
@@ -926,6 +946,11 @@ func getObjectDdosDnsUdpPortStatsStats(d []interface{}) edpt.DdosDnsUdpPortStats
 		ret.Alias_forward_rate_exceed = in["alias_forward_rate_exceed"].(int)
 		ret.Dnssec_wildcard_forward_rate_exceed = in["dnssec_wildcard_forward_rate_exceed"].(int)
 		ret.Rrsig_expire_drop = in["rrsig_expire_drop"].(int)
+		ret.Pattern_filter1_drop = in["pattern_filter1_drop"].(int)
+		ret.Pattern_filter2_drop = in["pattern_filter2_drop"].(int)
+		ret.Pattern_filter3_drop = in["pattern_filter3_drop"].(int)
+		ret.Pattern_filter4_drop = in["pattern_filter4_drop"].(int)
+		ret.Pattern_filter5_drop = in["pattern_filter5_drop"].(int)
 	}
 	return ret
 }

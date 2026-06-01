@@ -229,10 +229,10 @@ func resourceGslbSiteSlbDevRead(ctx context.Context, d *schema.ResourceData, met
 	return diags
 }
 
-func getObjectGslbSiteSlbDevVipServer489(d []interface{}) edpt.GslbSiteSlbDevVipServer489 {
+func getObjectGslbSiteSlbDevVipServer480(d []interface{}) edpt.GslbSiteSlbDevVipServer480 {
 
 	count1 := len(d)
-	var ret edpt.GslbSiteSlbDevVipServer489
+	var ret edpt.GslbSiteSlbDevVipServer480
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.VipServerV4List = getSliceGslbSiteSlbDevVipServerVipServerV4List(in["vip_server_v4_list"].([]interface{}))
@@ -351,7 +351,7 @@ func dataToEndpointGslbSiteSlbDev(d *schema.ResourceData) edpt.GslbSiteSlbDev {
 	ret.Inst.SessionUtilization = d.Get("session_utilization").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.VipServer = getObjectGslbSiteSlbDevVipServer489(d.Get("vip_server").([]interface{}))
+	ret.Inst.VipServer = getObjectGslbSiteSlbDevVipServer480(d.Get("vip_server").([]interface{}))
 	ret.Inst.SiteName = d.Get("site_name").(string)
 	return ret
 }

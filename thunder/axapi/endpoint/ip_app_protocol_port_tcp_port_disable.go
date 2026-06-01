@@ -6,10 +6,10 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type IpAppProtocolPortTcpPortDisable struct {
 	Inst struct {
-		Interface IpAppProtocolPortTcpPortDisableInterface1115 `json:"interface"`
+		Interface IpAppProtocolPortTcpPortDisableInterface1114 `json:"interface"`
 
 		Port int `json:"port"`
 
@@ -19,19 +19,19 @@ type IpAppProtocolPortTcpPortDisable struct {
 	} `json:"disable"`
 }
 
-type IpAppProtocolPortTcpPortDisableInterface1115 struct {
+type IpAppProtocolPortTcpPortDisableInterface1114 struct {
 	Management int                                                  `json:"management"`
-	VeCfg      []IpAppProtocolPortTcpPortDisableInterfaceVeCfg1116  `json:"ve-cfg"`
-	EthCfg     []IpAppProtocolPortTcpPortDisableInterfaceEthCfg1117 `json:"eth-cfg"`
+	VeCfg      []IpAppProtocolPortTcpPortDisableInterfaceVeCfg1115  `json:"ve-cfg"`
+	EthCfg     []IpAppProtocolPortTcpPortDisableInterfaceEthCfg1116 `json:"eth-cfg"`
 	Uuid       string                                               `json:"uuid"`
 }
 
-type IpAppProtocolPortTcpPortDisableInterfaceVeCfg1116 struct {
+type IpAppProtocolPortTcpPortDisableInterfaceVeCfg1115 struct {
 	VeStart int `json:"ve-start"`
 	VeEnd   int `json:"ve-end"`
 }
 
-type IpAppProtocolPortTcpPortDisableInterfaceEthCfg1117 struct {
+type IpAppProtocolPortTcpPortDisableInterfaceEthCfg1116 struct {
 	EthernetStart int `json:"ethernet-start"`
 	EthernetEnd   int `json:"ethernet-end"`
 }

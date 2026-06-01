@@ -8,14 +8,14 @@ import (
 	"os"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type FileTemplateLocal struct {
 	Inst struct {
 		ActType string `json:"act-type"`
 
 		Action string `json:"action"`
 
-		App FileTemplateApp423 `json:"app"`
+		App FileTemplateApp414 `json:"app"`
 
 		DstFile string `json:"dst-file"`
 
@@ -34,7 +34,7 @@ type DeleteFileTemplateLocal struct {
 	} `json:"template"`
 }
 
-type FileTemplateApp423 struct {
+type FileTemplateApp414 struct {
 	Action  string `json:"action"`
 	ActName string `json:"act-name"`
 	Version string `json:"version"`
@@ -51,16 +51,30 @@ func (p *FileTemplateLocal) getPath() string {
 func (p *FileTemplateLocal) Post(authToken string, host string, logger *axapi.ThunderLog) error {
 	logger.Println("FileTemplateLocal::Post")
 	headers := axapi.GenRequestHeader(authToken)
-	f, error := os.Open(p.Inst.FileHandle)
-	if error != nil {
-		logger.Println("Failed to open a file: ", error)
-		return error
+	if p.Inst.Action == "delete" {
+		payloadBytes, err := axapi.SerializeToJson(p)
+		if err != nil {
+			logger.Println("Failed to serialize struct as json", err)
+			return err
+		}
+		logger.Println("payload:", string(payloadBytes))
+		_, _, err = axapi.SendPost(host, p.getPath(), payloadBytes, headers, logger)
+		return err
 	}
-	data, error := ioutil.ReadAll(f)
+	filePath := p.Inst.FileHandle
+	if filePath == "" {
+		filePath = p.Inst.File
+	}
+	f, err := os.Open(filePath)
+	if err != nil {
+		logger.Println("Failed to open a file:", err)
+		return err
+	}
 	defer f.Close()
-	if error != nil {
-		logger.Println("Failed to read file: ", error)
-		return error
+	data, err := ioutil.ReadAll(f)
+	if err != nil {
+		logger.Println("Failed to read file:", err)
+		return err
 	}
 	s := &FileTemplateLocal{}
 	s.Inst.ActType = p.Inst.ActType
@@ -68,10 +82,12 @@ func (p *FileTemplateLocal) Post(authToken string, host string, logger *axapi.Th
 	s.Inst.App = p.Inst.App
 	s.Inst.DstFile = p.Inst.DstFile
 	s.Inst.File = p.Inst.File
-	s.Inst.FileHandle = p.Inst.File
+	if p.Inst.FileHandle != "" {
+		s.Inst.FileHandle = p.Inst.File
+	}
 	s.Inst.Uuid = p.Inst.Uuid
 	s.Inst.FileContent = data
-	_, err := axapi.NormalizeMultipartObject(http.MethodPost, p.getPath(), s.Inst.File, s.Inst.FileContent, s, headers, host, logger)
+	_, err = axapi.NormalizeMultipartObject(http.MethodPost, p.getPath(), s.Inst.File, s.Inst.FileContent, s, headers, host, logger)
 	return err
 }
 

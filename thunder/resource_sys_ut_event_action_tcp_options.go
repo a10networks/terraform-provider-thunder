@@ -34,11 +34,11 @@ func resourceSysUtEventActionTcpOptions() *schema.Resource {
 			"wscale": {
 				Type: schema.TypeInt, Optional: true, Description: "",
 			},
-			"direction": {
-				Type: schema.TypeString, Required: true, Description: "Direction",
-			},
 			"event_number": {
 				Type: schema.TypeString, Required: true, Description: "EventNumber",
+			},
+			"direction": {
+				Type: schema.TypeString, Required: true, Description: "Direction",
 			},
 		},
 	}
@@ -113,7 +113,7 @@ func dataToEndpointSysUtEventActionTcpOptions(d *schema.ResourceData) edpt.SysUt
 	ret.Inst.TimeStampEnable = d.Get("time_stamp_enable").(int)
 	//omit uuid
 	ret.Inst.Wscale = d.Get("wscale").(int)
-	ret.Inst.Direction = d.Get("direction").(string)
 	ret.Inst.EventNumber = d.Get("event_number").(string)
+	ret.Inst.Direction = d.Get("direction").(string)
 	return ret
 }

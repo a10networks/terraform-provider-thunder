@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZonePortRangeLevelIndicator struct {
 	Inst struct {
 		DataPacketSize int `json:"data-packet-size"`
@@ -36,13 +36,13 @@ type DdosDstZonePortRangeLevelIndicator struct {
 
 		ZoneViolationActions string `json:"zone-violation-actions"`
 
-		PortRangeStart string
-
 		Protocol string
+
+		ZoneName string
 
 		LevelNum string
 
-		ZoneName string
+		PortRangeStart string
 
 		PortRangeEnd string
 	} `json:"indicator"`

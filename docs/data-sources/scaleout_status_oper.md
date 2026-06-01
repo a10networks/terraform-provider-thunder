@@ -57,6 +57,9 @@ Optional:
 - `device_list` (Block List) (see [below for nested schema](#nestedblock--oper--device_list))
 - `exclude_interface_ip_list` (Block List) (see [below for nested schema](#nestedblock--oper--exclude_interface_ip_list))
 - `exclude_interface_ipv6_list` (Block List) (see [below for nested schema](#nestedblock--oper--exclude_interface_ipv6_list))
+- `failure_domain_list` (Block List) (see [below for nested schema](#nestedblock--oper--failure_domain_list))
+- `failure_safe` (String)
+- `fallback` (Number)
 - `follow_shared_redirection` (Number)
 - `follow_shared_session_sync` (Number)
 - `l2redirect` (Number)
@@ -162,3 +165,12 @@ Optional:
 Optional:
 
 - `ipv6` (String)
+
+
+<a id="nestedblock--oper--failure_domain_list"></a>
+### Nested Schema for `oper.failure_domain_list`
+
+Optional:
+
+- `dev_id` (Number)
+- `failure_domain_name` (String)

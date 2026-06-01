@@ -38,7 +38,7 @@ resource "thunder_ntp_auth_key" "thunderNtpAuthKeyTest" {
 
 ### Optional
 
-- `alg_type` (String) 'MD5': encryption using MD5; 'SHA1': encryption using SHA1; 'SHA256': encryption using SHA256; 'SHA384': encryption using SHA384; 'SHA512': encryption using SHA512;
+- `alg_type` (String) 'M': encryption using MD5; 'SHA': encryption using SHA; 'SHA1': encryption using SHA1;
 - `asc_key` (String)
 - `hex_key` (String)
 - `key_type` (String) 'ascii': key string in ASCII form; 'hex': key string in hex form;

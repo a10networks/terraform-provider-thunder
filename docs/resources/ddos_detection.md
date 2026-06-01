@@ -48,6 +48,7 @@ resource "thunder_ddos_detection" "thunder_ddos_detection" {
 - `statistics` (Block List, Max: 1) (see [below for nested schema](#nestedblock--statistics))
 - `trustlist` (Block List, Max: 1) (see [below for nested schema](#nestedblock--trustlist))
 - `uuid` (String) uuid of the object
+- `xflow_interface_selection_list` (Block List) (see [below for nested schema](#nestedblock--xflow_interface_selection_list))
 
 ### Read-Only
 
@@ -90,6 +91,7 @@ Optional:
 - `netflow` (Block List, Max: 1) (see [below for nested schema](#nestedblock--agent_list--netflow))
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--agent_list--sampling_enable))
 - `sflow` (Block List, Max: 1) (see [below for nested schema](#nestedblock--agent_list--sflow))
+- `snmp` (Block List, Max: 1) (see [below for nested schema](#nestedblock--agent_list--snmp))
 - `user_tag` (String) Customized tag
 - `uuid` (String) uuid of the object
 
@@ -110,7 +112,7 @@ Optional:
 
 Optional:
 
-- `counters1` (String) 'all': all; 'sflow-packets-received': sFlow Packets Received; 'sflow-samples-received': sFlow Samples Received; 'sflow-samples-bad-len': sFlow Samples Bad Length; 'sflow-samples-non-std': sFlow Samples Non-standard; 'sflow-samples-skipped': sFlow Samples Skipped; 'sflow-sample-record-bad-len': sFlow Sample Records Bad Length; 'sflow-samples-sent-for-detection': sFlow Samples Processed For Detection; 'sflow-sample-record-invalid-layer2': sFlow Sample Records Unknown Layer-2; 'sflow-sample-ipv6-hdr-parse-fail': sFlow Sample IPv6 Record Header Parse Failures; 'sflow-disabled': sFlow Packet Samples Processing Disabled; 'netflow-disabled': Netflow Flow Samples Processing Disabled; 'netflow-v5-packets-received': Netflow v5 Packets Received; 'netflow-v5-samples-received': Netflow v5 Samples Received; 'netflow-v5-samples-sent-for-detection': Netflow v5 Samples Processed For Detection; 'netflow-v5-sample-records-bad-len': Netflow v5 Sample Records Bad Length; 'netflow-v5-max-records-exceed': Netflow v5 Sample Max Records Error; 'netflow-v9-packets-received': Netflow v9 Packets Received; 'netflow-v9-samples-received': Netflow v9 Samples Received; 'netflow-v9-samples-sent-for-detection': Netflow v9 Samples Processed For Detection; 'netflow-v9-sample-records-bad-len': Netflow v9 Sample Records Bad Length; 'netflow-v9-sample-flowset-bad-padding': Netflow v9 Sample Flowset Bad Padding; 'netflow-v9-max-records-exceed': Netflow v9 Sample Max Records Error; 'netflow-v9-template-not-found': Netflow v9 Template Not Found; 'netflow-v10-packets-received': Netflow v10 Packets Received; 'netflow-v10-samples-received': Netflow v10 Samples Received; 'netflow-v10-samples-sent-for-detection': Netflow v10 Samples Procssed For Detection; 'netflow-v10-sample-records-bad-len': Netflow v10 Sample Records Bad Length; 'netflow-v10-max-records-exceed': Netflow v10 Sample Max records Error; 'netflow-tcp-sample-received': Netflow TCP Samples Received; 'netflow-udp-sample-received': Netflow UDP Samples received; 'netflow-icmp-sample-received': Netflow ICMP Samples Received; 'netflow-other-sample-received': Netflow OTHER Samples Received; 'netflow-record-copy-oom-error': Netflow Data Record Copy Fail, Local MEM size error; 'netflow-record-rse-invalid': Netflow Data Record Reduced Size Invalid; 'netflow-sample-flow-dur-error': Netflow Sample Flow Duration Error; 'flow-dst-entry-miss': DDoS Destination Entry Lookup Failures; 'flow-ip-proto-or-port-miss': DDoS Destination Service Lookup Failures; 'flow-detection-msgq-full': Detection Message Enqueue Failures; 'flow-network-entry-miss': DDoS Destination Network-object Entry Lookup Failures; 'xflow-extend-pkt-rcv': XFlow Sample Extend Packets Received; 'xflow-extend-byte-rcv': XFlow Sample Extend Bytes Received; 'xflow-dst-entry-miss-extend-pkt-rcv': Extend Packets Received of DDoS Destination Entry Miss; 'xflow-dst-entry-miss-extend-byte-rcv': Extend Bytes Received of DDoS Destination Entry Miss; 'xflow-dst-svc-miss-extend-pkt-rcv': Extend Packets Received of DDoS Destination Service Miss; 'xflow-dst-svc-miss-extend-byte-rcv': Extend Bytes Received of DDoS Destination Service Miss;
+- `counters1` (String) 'all': all; 'sflow-packets-received': sFlow Packets Received; 'sflow-samples-received': sFlow Samples Received; 'sflow-samples-bad-len': sFlow Samples Bad Length; 'sflow-samples-non-std': sFlow Samples Non-standard; 'sflow-samples-skipped': sFlow Samples Skipped; 'sflow-sample-record-bad-len': sFlow Sample Records Bad Length; 'sflow-samples-sent-for-detection': sFlow Samples Processed For Detection; 'sflow-sample-record-invalid-layer2': sFlow Sample Records Unknown Layer-2; 'sflow-sample-ipv6-hdr-parse-fail': sFlow Sample IPv6 Record Header Parse Failures; 'sflow-disabled': sFlow Packet Samples Processing Disabled; 'netflow-disabled': Netflow Flow Samples Processing Disabled; 'netflow-v5-packets-received': Netflow v5 Packets Received; 'netflow-v5-samples-received': Netflow v5 Samples Received; 'netflow-v5-samples-sent-for-detection': Netflow v5 Samples Processed For Detection; 'netflow-v5-sample-records-bad-len': Netflow v5 Sample Records Bad Length; 'netflow-v5-max-records-exceed': Netflow v5 Sample Max Records Error; 'netflow-v9-packets-received': Netflow v9 Packets Received; 'netflow-v9-samples-received': Netflow v9 Samples Received; 'netflow-v9-samples-sent-for-detection': Netflow v9 Samples Processed For Detection; 'netflow-v9-sample-records-bad-len': Netflow v9 Sample Records Bad Length; 'netflow-v9-sample-flowset-bad-padding': Netflow v9 Sample Flowset Bad Padding; 'netflow-v9-max-records-exceed': Netflow v9 Sample Max Records Error; 'netflow-v9-template-not-found': Netflow v9 Template Not Found; 'netflow-v10-packets-received': Netflow v10 Packets Received; 'netflow-v10-samples-received': Netflow v10 Samples Received; 'netflow-v10-samples-sent-for-detection': Netflow v10 Samples Procssed For Detection; 'netflow-v10-sample-records-bad-len': Netflow v10 Sample Records Bad Length; 'netflow-v10-max-records-exceed': Netflow v10 Sample Max records Error; 'netflow-tcp-sample-received': Netflow TCP Samples Received; 'netflow-udp-sample-received': Netflow UDP Samples received; 'netflow-icmp-sample-received': Netflow ICMP Samples Received; 'netflow-other-sample-received': Netflow OTHER Samples Received; 'netflow-record-copy-oom-error': Netflow Data Record Copy Fail, Local MEM size error; 'netflow-record-rse-invalid': Netflow Data Record Reduced Size Invalid; 'netflow-sample-flow-dur-error': Netflow Sample Flow Duration Error; 'flow-dst-entry-miss': DDoS Destination Entry Lookup Failures; 'flow-ip-proto-or-port-miss': DDoS Destination Service Lookup Failures; 'flow-detection-msgq-full': Detection Message Enqueue Failures; 'flow-network-entry-miss': DDoS Destination Network-object Entry Lookup Failures; 'xflow-extend-pkt-rcv': XFlow Sample Extend Packets Received; 'xflow-extend-byte-rcv': XFlow Sample Extend Bytes Received; 'xflow-dst-entry-miss-extend-pkt-rcv': Extend Packets Received of DDoS Destination Entry Miss; 'xflow-dst-entry-miss-extend-byte-rcv': Extend Bytes Received of DDoS Destination Entry Miss; 'xflow-dst-svc-miss-extend-pkt-rcv': Extend Packets Received of DDoS Destination Service Miss; 'xflow-dst-svc-miss-extend-byte-rcv': Extend Bytes Received of DDoS Destination Service Miss; 'xflow-sample-dropped-by-intf-select': Xflow Samples Dropped by Interface Selection;
 
 
 <a id="nestedblock--agent_list--sflow"></a>
@@ -119,6 +121,17 @@ Optional:
 Optional:
 
 - `sflow_pkt_samples_collection` (String) 'enable': Enable sflow packet samples collection(default); 'disable': Disable sflow packet samples collection;
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--agent_list--snmp"></a>
+### Nested Schema for `agent_list.snmp`
+
+Optional:
+
+- `community_string` (String) Configure agent's community-string for SNMP
+- `ipv4_addr` (String) Configure agent's IPv4 address for SNMP
+- `refresh` (Number) refresh SNMP information
 - `uuid` (String) uuid of the object
 
 
@@ -254,3 +267,32 @@ Optional:
 - `uuid` (String) uuid of the object
 - `v4_class_list` (String) IPv4 Class-list name
 - `v6_class_list` (String) IPv6 Class-list name
+
+
+<a id="nestedblock--xflow_interface_selection_list"></a>
+### Nested Schema for `xflow_interface_selection_list`
+
+Required:
+
+- `type` (String) 'internet-side': internet-side;
+
+Optional:
+
+- `regex` (Block List, Max: 1) (see [below for nested schema](#nestedblock--xflow_interface_selection_list--regex))
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--xflow_interface_selection_list--regex"></a>
+### Nested Schema for `xflow_interface_selection_list.regex`
+
+Optional:
+
+- `rule_list` (Block List) (see [below for nested schema](#nestedblock--xflow_interface_selection_list--regex--rule_list))
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--xflow_interface_selection_list--regex--rule_list"></a>
+### Nested Schema for `xflow_interface_selection_list.regex.rule_list`
+
+Optional:
+
+- `single_regex` (String) Specify the regular expression rules

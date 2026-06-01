@@ -216,10 +216,10 @@ func getSliceSlbTemplateDiameterMessageCodeList(d []interface{}) []edpt.SlbTempl
 	return ret
 }
 
-func getObjectSlbTemplateDiameterOriginHost1515(d []interface{}) edpt.SlbTemplateDiameterOriginHost1515 {
+func getObjectSlbTemplateDiameterOriginHost1516(d []interface{}) edpt.SlbTemplateDiameterOriginHost1516 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDiameterOriginHost1515
+	var ret edpt.SlbTemplateDiameterOriginHost1516
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.OriginHostName = in["origin_host_name"].(string)
@@ -243,7 +243,7 @@ func dataToEndpointSlbTemplateDiameter(d *schema.ResourceData) edpt.SlbTemplateD
 	ret.Inst.MessageCodeList = getSliceSlbTemplateDiameterMessageCodeList(d.Get("message_code_list").([]interface{}))
 	ret.Inst.MultipleOriginHost = d.Get("multiple_origin_host").(int)
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.OriginHost = getObjectSlbTemplateDiameterOriginHost1515(d.Get("origin_host").([]interface{}))
+	ret.Inst.OriginHost = getObjectSlbTemplateDiameterOriginHost1516(d.Get("origin_host").([]interface{}))
 	ret.Inst.OriginRealm = d.Get("origin_realm").(string)
 	ret.Inst.ProductName = d.Get("product_name").(string)
 	ret.Inst.RelaxedOriginHost = d.Get("relaxed_origin_host").(int)

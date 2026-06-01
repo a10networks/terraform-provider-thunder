@@ -110,25 +110,25 @@ func resourceDdosDstDynamicEntryRead(ctx context.Context, d *schema.ResourceData
 	return diags
 }
 
-func getObjectDdosDstDynamicEntryAllEntries176(d []interface{}) edpt.DdosDstDynamicEntryAllEntries176 {
+func getObjectDdosDstDynamicEntryAllEntries179(d []interface{}) edpt.DdosDstDynamicEntryAllEntries179 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstDynamicEntryAllEntries176
+	var ret edpt.DdosDstDynamicEntryAllEntries179
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceDdosDstDynamicEntryAllEntriesSamplingEnable177(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceDdosDstDynamicEntryAllEntriesSamplingEnable180(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDstDynamicEntryAllEntriesSamplingEnable177(d []interface{}) []edpt.DdosDstDynamicEntryAllEntriesSamplingEnable177 {
+func getSliceDdosDstDynamicEntryAllEntriesSamplingEnable180(d []interface{}) []edpt.DdosDstDynamicEntryAllEntriesSamplingEnable180 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstDynamicEntryAllEntriesSamplingEnable177, 0, count1)
+	ret := make([]edpt.DdosDstDynamicEntryAllEntriesSamplingEnable180, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstDynamicEntryAllEntriesSamplingEnable177
+		var oi edpt.DdosDstDynamicEntryAllEntriesSamplingEnable180
 		oi.Counters1 = in["counters1"].(string)
 		oi.Counters2 = in["counters2"].(string)
 		oi.Counters3 = in["counters3"].(string)
@@ -139,7 +139,7 @@ func getSliceDdosDstDynamicEntryAllEntriesSamplingEnable177(d []interface{}) []e
 
 func dataToEndpointDdosDstDynamicEntry(d *schema.ResourceData) edpt.DdosDstDynamicEntry {
 	var ret edpt.DdosDstDynamicEntry
-	ret.Inst.AllEntries = getObjectDdosDstDynamicEntryAllEntries176(d.Get("all_entries").([]interface{}))
+	ret.Inst.AllEntries = getObjectDdosDstDynamicEntryAllEntries179(d.Get("all_entries").([]interface{}))
 	//omit uuid
 	return ret
 }

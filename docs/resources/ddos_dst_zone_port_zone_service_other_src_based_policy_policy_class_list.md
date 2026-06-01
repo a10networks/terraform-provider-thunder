@@ -61,6 +61,7 @@ resource "thunder_ddos_dst_zone_port_zone_service_other_src_based_policy_policy_
 - `dynamic_entry_count_warn_threshold` (Number) Set threshold percentage of "max-src-dst-entry" for generating warning logs. Including start and end.
 - `glid` (String) Global limit ID
 - `glid_action` (String) 'drop': Drop packets for glid exceed (Default); 'blacklist-src': Blacklist-src for glid exceed; 'ignore': Do nothing for glid exceed;
+- `log_enable` (Number) Enable logging
 - `max_dynamic_entry_count` (Number) Maximum count for dynamic source zone service entry allowed for this class-list
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
 - `user_tag` (String) Customized tag

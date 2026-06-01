@@ -68,11 +68,11 @@ func resourceSysUtEventActionL3() *schema.Resource {
 			"value": {
 				Type: schema.TypeInt, Optional: true, Description: "protocol number",
 			},
-			"direction": {
-				Type: schema.TypeString, Required: true, Description: "Direction",
-			},
 			"event_number": {
 				Type: schema.TypeString, Required: true, Description: "EventNumber",
+			},
+			"direction": {
+				Type: schema.TypeString, Required: true, Description: "Direction",
 			},
 		},
 	}
@@ -169,7 +169,7 @@ func dataToEndpointSysUtEventActionL3(d *schema.ResourceData) edpt.SysUtEventAct
 	ret.Inst.Type = d.Get("type").(string)
 	//omit uuid
 	ret.Inst.Value = d.Get("value").(int)
-	ret.Inst.Direction = d.Get("direction").(string)
 	ret.Inst.EventNumber = d.Get("event_number").(string)
+	ret.Inst.Direction = d.Get("direction").(string)
 	return ret
 }

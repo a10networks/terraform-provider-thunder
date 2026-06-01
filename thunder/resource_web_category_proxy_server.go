@@ -17,7 +17,7 @@ func resourceWebCategoryProxyServer() *schema.Resource {
 
 		Schema: map[string]*schema.Schema{
 			"auth_type": {
-				Type: schema.TypeString, Optional: true, Default: "ntlm", Description: "'ntlm': NTLM authentication(default); 'basic': Basic authentication;",
+				Type: schema.TypeString, Optional: true, Default: "basic", Description: "'ntlm': NTLM authentication; 'basic': Basic authentication (default);",
 			},
 			"domain": {
 				Type: schema.TypeString, Optional: true, Description: "Realm for NTLM authentication",

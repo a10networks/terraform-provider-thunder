@@ -6,12 +6,12 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityTopnCgnv6NatPoolTopnTmpl struct {
 	Inst struct {
 		Interval string `json:"interval"`
 
-		Metrics VisibilityTopnCgnv6NatPoolTopnTmplMetrics3230 `json:"metrics"`
+		Metrics VisibilityTopnCgnv6NatPoolTopnTmplMetrics3258 `json:"metrics"`
 
 		Name string `json:"name"`
 
@@ -23,7 +23,7 @@ type VisibilityTopnCgnv6NatPoolTopnTmpl struct {
 	} `json:"cgnv6-nat-pool-topn-tmpl"`
 }
 
-type VisibilityTopnCgnv6NatPoolTopnTmplMetrics3230 struct {
+type VisibilityTopnCgnv6NatPoolTopnTmplMetrics3258 struct {
 	UdpTotal int    `json:"udp-total"`
 	TcpTotal int    `json:"tcp-total"`
 	Uuid     string `json:"uuid"`

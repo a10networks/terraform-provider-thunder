@@ -5,16 +5,16 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityMonitoredEntityMonTopk struct {
 	Inst struct {
-		Sources VisibilityMonitoredEntityMonTopkSources2050 `json:"sources"`
+		Sources VisibilityMonitoredEntityMonTopkSources2049 `json:"sources"`
 
 		Uuid string `json:"uuid"`
 	} `json:"mon-topk"`
 }
 
-type VisibilityMonitoredEntityMonTopkSources2050 struct {
+type VisibilityMonitoredEntityMonTopkSources2049 struct {
 	Uuid string `json:"uuid"`
 }
 

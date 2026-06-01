@@ -66,6 +66,9 @@ func resourceDdosDnsCache() *schema.Resource {
 									"dns_notify_enable_ipv6": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "DNS notify enabled",
 									},
+									"refresh_interval_by_soa": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Read by SOA record",
+									},
 									"refresh_interval_hours": {
 										Type: schema.TypeInt, Optional: true, Default: 4, Description: "Zone transfer refresh rate in hours (Default 4). 0 means no refresh",
 									},
@@ -86,6 +89,9 @@ func resourceDdosDnsCache() *schema.Resource {
 									},
 									"force": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Force update even the serial is the same",
+									},
+									"ixfr": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use IXFR to update",
 									},
 									"cache_all_records": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "cache all FQDN records including uncommon types",
@@ -218,6 +224,9 @@ func resourceDdosDnsCache() *schema.Resource {
 									},
 									"dns_notify_enable_ipv6": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "DNS notify enabled",
+									},
+									"refresh_interval_by_soa": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Read by SOA record",
 									},
 									"refresh_interval_hours": {
 										Type: schema.TypeInt, Optional: true, Default: 4, Description: "Zone transfer refresh rate in hours (Default 4). 0 means no refresh",
@@ -363,26 +372,26 @@ func resourceDdosDnsCacheRead(ctx context.Context, d *schema.ResourceData, meta 
 	return diags
 }
 
-func getObjectDdosDnsCacheDomainGroup171(d []interface{}) edpt.DdosDnsCacheDomainGroup171 {
+func getObjectDdosDnsCacheDomainGroup174(d []interface{}) edpt.DdosDnsCacheDomainGroup174 {
 
 	count1 := len(d)
-	var ret edpt.DdosDnsCacheDomainGroup171
+	var ret edpt.DdosDnsCacheDomainGroup174
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Name = in["name"].(string)
 		//omit uuid
-		ret.DomainListPolicyList = getSliceDdosDnsCacheDomainGroupDomainListPolicyList172(in["domain_list_policy_list"].([]interface{}))
+		ret.DomainListPolicyList = getSliceDdosDnsCacheDomainGroupDomainListPolicyList175(in["domain_list_policy_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDnsCacheDomainGroupDomainListPolicyList172(d []interface{}) []edpt.DdosDnsCacheDomainGroupDomainListPolicyList172 {
+func getSliceDdosDnsCacheDomainGroupDomainListPolicyList175(d []interface{}) []edpt.DdosDnsCacheDomainGroupDomainListPolicyList175 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDnsCacheDomainGroupDomainListPolicyList172, 0, count1)
+	ret := make([]edpt.DdosDnsCacheDomainGroupDomainListPolicyList175, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDnsCacheDomainGroupDomainListPolicyList172
+		var oi edpt.DdosDnsCacheDomainGroupDomainListPolicyList175
 		oi.Name = in["name"].(string)
 		oi.ServerIpv4 = in["server_ipv4"].(string)
 		oi.ServerV4Port = in["server_v4_port"].(int)
@@ -392,6 +401,7 @@ func getSliceDdosDnsCacheDomainGroupDomainListPolicyList172(d []interface{}) []e
 		oi.ServerV6Port = in["server_v6_port"].(int)
 		oi.ClientIpv6 = in["client_ipv6"].(string)
 		oi.DnsNotifyEnableIpv6 = in["dns_notify_enable_ipv6"].(int)
+		oi.RefreshIntervalBySoa = in["refresh_interval_by_soa"].(int)
 		oi.RefreshIntervalHours = in["refresh_interval_hours"].(int)
 		oi.TtlOverride = in["ttl_override"].(int)
 		oi.RespondWithAuthority = in["respond_with_authority"].(int)
@@ -399,35 +409,36 @@ func getSliceDdosDnsCacheDomainGroupDomainListPolicyList172(d []interface{}) []e
 		oi.ResolveCnameRecord = in["resolve_cname_record"].(int)
 		oi.ManualRefresh = in["manual_refresh"].(string)
 		oi.Force = in["force"].(int)
+		oi.Ixfr = in["ixfr"].(int)
 		oi.CacheAllRecords = in["cache_all_records"].(int)
 		oi.CacheDnssecRecords = in["cache_dnssec_records"].(int)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.PacketCapturing = getObjectDdosDnsCacheDomainGroupDomainListPolicyListPacketCapturing173(in["packet_capturing"].([]interface{}))
+		oi.PacketCapturing = getObjectDdosDnsCacheDomainGroupDomainListPolicyListPacketCapturing176(in["packet_capturing"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectDdosDnsCacheDomainGroupDomainListPolicyListPacketCapturing173(d []interface{}) edpt.DdosDnsCacheDomainGroupDomainListPolicyListPacketCapturing173 {
+func getObjectDdosDnsCacheDomainGroupDomainListPolicyListPacketCapturing176(d []interface{}) edpt.DdosDnsCacheDomainGroupDomainListPolicyListPacketCapturing176 {
 
 	count1 := len(d)
-	var ret edpt.DdosDnsCacheDomainGroupDomainListPolicyListPacketCapturing173
+	var ret edpt.DdosDnsCacheDomainGroupDomainListPolicyListPacketCapturing176
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.RootZoneList = getSliceDdosDnsCacheDomainGroupDomainListPolicyListPacketCapturingRootZoneList174(in["root_zone_list"].([]interface{}))
+		ret.RootZoneList = getSliceDdosDnsCacheDomainGroupDomainListPolicyListPacketCapturingRootZoneList177(in["root_zone_list"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceDdosDnsCacheDomainGroupDomainListPolicyListPacketCapturingRootZoneList174(d []interface{}) []edpt.DdosDnsCacheDomainGroupDomainListPolicyListPacketCapturingRootZoneList174 {
+func getSliceDdosDnsCacheDomainGroupDomainListPolicyListPacketCapturingRootZoneList177(d []interface{}) []edpt.DdosDnsCacheDomainGroupDomainListPolicyListPacketCapturingRootZoneList177 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDnsCacheDomainGroupDomainListPolicyListPacketCapturingRootZoneList174, 0, count1)
+	ret := make([]edpt.DdosDnsCacheDomainGroupDomainListPolicyListPacketCapturingRootZoneList177, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDnsCacheDomainGroupDomainListPolicyListPacketCapturingRootZoneList174
+		var oi edpt.DdosDnsCacheDomainGroupDomainListPolicyListPacketCapturingRootZoneList177
 		oi.RootZone = in["root_zone"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		oi.CaptureMode = in["capture_mode"].(string)
@@ -497,6 +508,7 @@ func getSliceDdosDnsCacheShardedDomainGroupListShardedDomainListPolicyList(d []i
 		oi.ServerV6Port = in["server_v6_port"].(int)
 		oi.ClientIpv6 = in["client_ipv6"].(string)
 		oi.DnsNotifyEnableIpv6 = in["dns_notify_enable_ipv6"].(int)
+		oi.RefreshIntervalBySoa = in["refresh_interval_by_soa"].(int)
 		oi.RefreshIntervalHours = in["refresh_interval_hours"].(int)
 		oi.ManualRefresh = in["manual_refresh"].(string)
 		oi.Force = in["force"].(int)
@@ -549,9 +561,9 @@ func getSliceDdosDnsCacheZoneManualOverrideActionList(d []interface{}) []edpt.Dd
 	return ret
 }
 
-func getObjectDdosDnsCacheZoneTransfer175(d []interface{}) edpt.DdosDnsCacheZoneTransfer175 {
+func getObjectDdosDnsCacheZoneTransfer178(d []interface{}) edpt.DdosDnsCacheZoneTransfer178 {
 
-	var ret edpt.DdosDnsCacheZoneTransfer175
+	var ret edpt.DdosDnsCacheZoneTransfer178
 	return ret
 }
 
@@ -560,7 +572,7 @@ func dataToEndpointDdosDnsCache(d *schema.ResourceData) edpt.DdosDnsCache {
 	ret.Inst.AnyQueryActionStr = d.Get("any_query_action_str").(string)
 	ret.Inst.DefaultServingAction = d.Get("default_serving_action").(string)
 	ret.Inst.DnsLogging = d.Get("dns_logging").(string)
-	ret.Inst.DomainGroup = getObjectDdosDnsCacheDomainGroup171(d.Get("domain_group").([]interface{}))
+	ret.Inst.DomainGroup = getObjectDdosDnsCacheDomainGroup174(d.Get("domain_group").([]interface{}))
 	ret.Inst.EdnsUdpSize = d.Get("edns_udp_size").(int)
 	ret.Inst.FqdnManualOverrideActionList = getSliceDdosDnsCacheFqdnManualOverrideActionList(d.Get("fqdn_manual_override_action_list").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
@@ -573,6 +585,6 @@ func dataToEndpointDdosDnsCache(d *schema.ResourceData) edpt.DdosDnsCache {
 	//omit uuid
 	ret.Inst.ZoneDomainLookupMissAction = d.Get("zone_domain_lookup_miss_action").(string)
 	ret.Inst.ZoneManualOverrideActionList = getSliceDdosDnsCacheZoneManualOverrideActionList(d.Get("zone_manual_override_action_list").([]interface{}))
-	ret.Inst.ZoneTransfer = getObjectDdosDnsCacheZoneTransfer175(d.Get("zone_transfer").([]interface{}))
+	ret.Inst.ZoneTransfer = getObjectDdosDnsCacheZoneTransfer178(d.Get("zone_transfer").([]interface{}))
 	return ret
 }

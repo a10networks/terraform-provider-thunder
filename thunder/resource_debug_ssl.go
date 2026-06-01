@@ -19,6 +19,9 @@ func resourceDebugSsl() *schema.Resource {
 			"client_server": {
 				Type: schema.TypeString, Optional: true, Description: "'clientside': clientside SSL connection; 'serverside': serverside SSL connection;",
 			},
+			"event_log": {
+				Type: schema.TypeString, Optional: true, Description: "'minimal': Minimal event logs, skip encryption/decryption hardware operations; 'basic': Basic event logs; 'detailed': Detailed event logs, including logs for encryption/decryption operations; 'verbose': Verbose event logs;",
+			},
 			"payload_dump_max": {
 				Type: schema.TypeInt, Optional: true, Description: "Application payloads exceeding this limit will be truncated to dump. Set to 0 to disable payload dumping",
 			},
@@ -105,6 +108,7 @@ func resourceDebugSslRead(ctx context.Context, d *schema.ResourceData, meta inte
 func dataToEndpointDebugSsl(d *schema.ResourceData) edpt.DebugSsl {
 	var ret edpt.DebugSsl
 	ret.Inst.ClientServer = d.Get("client_server").(string)
+	ret.Inst.EventLog = d.Get("event_log").(string)
 	ret.Inst.PayloadDumpMax = d.Get("payload_dump_max").(int)
 	ret.Inst.PayloadDumpString = d.Get("payload_dump_string").(int)
 	ret.Inst.ReadWrite = d.Get("read_write").(string)

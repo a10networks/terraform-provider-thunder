@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsInc2797 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsInc2815 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsRate2798 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsRate2816 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsSeverity2799 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsSeverity2817 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,7 +25,7 @@ type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmpl struct {
 	} `json:"netflow-monitor-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsInc2797 struct {
+type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsInc2815 struct {
 	Nat44RecordsSentFailure            int    `json:"nat44-records-sent-failure"`
 	Nat64RecordsSentFailure            int    `json:"nat64-records-sent-failure"`
 	DsliteRecordsSentFailure           int    `json:"dslite-records-sent-failure"`
@@ -89,7 +89,7 @@ type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsInc2797
 	Uuid                               string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsRate2798 struct {
+type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsRate2816 struct {
 	ThresholdExceededBy                int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                           int    `json:"duration" dval:"60"`
 	Nat44RecordsSentFailure            int    `json:"nat44-records-sent-failure"`
@@ -155,7 +155,7 @@ type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsRate279
 	Uuid                               string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsSeverity2799 struct {
+type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsSeverity2817 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

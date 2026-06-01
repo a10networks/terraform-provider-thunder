@@ -39,11 +39,35 @@ output "get_ddos_dst_zone_stats" {
 
 ### Optional
 
+- `src_ip_filtering` (Block List, Max: 1) (see [below for nested schema](#nestedblock--src_ip_filtering))
 - `stats` (Block List, Max: 1) (see [below for nested schema](#nestedblock--stats))
 
 ### Read-Only
 
 - `id` (String) The ID of this resource.
+
+<a id="nestedblock--src_ip_filtering"></a>
+### Nested Schema for `src_ip_filtering`
+
+Optional:
+
+- `stats` (Block List, Max: 1) (see [below for nested schema](#nestedblock--src_ip_filtering--stats))
+
+<a id="nestedblock--src_ip_filtering--stats"></a>
+### Nested Schema for `src_ip_filtering.stats`
+
+Optional:
+
+- `class_list_1_match` (Number) Packets Match Class-List 1
+- `class_list_2_match` (Number) Packets Match Class-List 2
+- `class_list_3_match` (Number) Packets Match Class-List 3
+- `class_list_4_match` (Number) Packets Match Class-List 4
+- `class_list_5_match` (Number) Packets Match Class-List 5
+- `class_list_6_match` (Number) Packets Match Class-List 6
+- `class_list_7_match` (Number) Packets Match Class-List 7
+- `class_list_8_match` (Number) Packets Match Class-List 8
+
+
 
 <a id="nestedblock--stats"></a>
 ### Nested Schema for `stats`
@@ -262,6 +286,7 @@ Optional:
 - `victim_ip_learned` (Number) Victim Identification: IP Entry Learned
 - `zone_blackhole_inject` (Number) Dst Blackhole Inject
 - `zone_blackhole_withdraw` (Number) Dst Blackhole Withdraw
+- `zone_dst_ip_bypass` (Number) Dst IP Bypass
 - `zone_frag_drop` (Number) Fragmented Packets Dropped
 - `zone_frag_rcvd` (Number) Fragmented Packets Received
 - `zone_icmp_bytes_drop` (Number) ICMP Total Bytes Dropped
@@ -304,6 +329,8 @@ Optional:
 - `zone_port_pkt_rate_exceed` (Number) Port Rate: Packet Exceeded
 - `zone_port_undef_drop` (Number) Dst Port Undefined Dropped
 - `zone_port_undef_hit` (Number) Dst Port undefined Hit
+- `zone_src_ip_filtering_bypass` (Number) Src IP Filtering Bypass
+- `zone_src_ip_filtering_deny` (Number) Src IP Filtering Deny
 - `zone_src_port_bl` (Number) Dst SrcPort Blacklist Packets Dropped
 - `zone_src_port_conn_limit_exceed` (Number) SrcPort Limit: Conn Exceeded
 - `zone_src_port_conn_rate_exceed` (Number) SrcPort Rate: Conn Exceeded

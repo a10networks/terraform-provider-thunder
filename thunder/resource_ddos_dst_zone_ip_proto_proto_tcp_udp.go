@@ -151,9 +151,9 @@ func getObjectDdosDstZoneIpProtoProtoTcpUdpGlidCfg(d []interface{}) edpt.DdosDst
 	return ret
 }
 
-func getObjectDdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyStatistics228(d []interface{}) edpt.DdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyStatistics228 {
+func getObjectDdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyStatistics231(d []interface{}) edpt.DdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyStatistics231 {
 
-	var ret edpt.DdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyStatistics228
+	var ret edpt.DdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyStatistics231
 	return ret
 }
 
@@ -163,7 +163,7 @@ func dataToEndpointDdosDstZoneIpProtoProtoTcpUdp(d *schema.ResourceData) edpt.Dd
 	ret.Inst.DropFragPkt = d.Get("drop_frag_pkt").(int)
 	ret.Inst.GlidCfg = getObjectDdosDstZoneIpProtoProtoTcpUdpGlidCfg(d.Get("glid_cfg").([]interface{}))
 	ret.Inst.IpFilteringPolicy = d.Get("ip_filtering_policy").(string)
-	ret.Inst.IpFilteringPolicyStatistics = getObjectDdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyStatistics228(d.Get("ip_filtering_policy_statistics").([]interface{}))
+	ret.Inst.IpFilteringPolicyStatistics = getObjectDdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyStatistics231(d.Get("ip_filtering_policy_statistics").([]interface{}))
 	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.SameSourceDestPortDrop = d.Get("same_source_dest_port_drop").(int)
 	ret.Inst.SetCounterBaseVal = d.Get("set_counter_base_val").(int)

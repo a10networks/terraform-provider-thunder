@@ -6,10 +6,10 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type IpAppProtocolPortUdpPortAddAppName struct {
 	Inst struct {
-		Interface IpAppProtocolPortUdpPortAddAppNameInterface1118 `json:"interface"`
+		Interface IpAppProtocolPortUdpPortAddAppNameInterface1117 `json:"interface"`
 
 		Name string `json:"name"`
 
@@ -21,19 +21,19 @@ type IpAppProtocolPortUdpPortAddAppName struct {
 	} `json:"app-name"`
 }
 
-type IpAppProtocolPortUdpPortAddAppNameInterface1118 struct {
+type IpAppProtocolPortUdpPortAddAppNameInterface1117 struct {
 	Management int                                                     `json:"management"`
-	VeCfg      []IpAppProtocolPortUdpPortAddAppNameInterfaceVeCfg1119  `json:"ve-cfg"`
-	EthCfg     []IpAppProtocolPortUdpPortAddAppNameInterfaceEthCfg1120 `json:"eth-cfg"`
+	VeCfg      []IpAppProtocolPortUdpPortAddAppNameInterfaceVeCfg1118  `json:"ve-cfg"`
+	EthCfg     []IpAppProtocolPortUdpPortAddAppNameInterfaceEthCfg1119 `json:"eth-cfg"`
 	Uuid       string                                                  `json:"uuid"`
 }
 
-type IpAppProtocolPortUdpPortAddAppNameInterfaceVeCfg1119 struct {
+type IpAppProtocolPortUdpPortAddAppNameInterfaceVeCfg1118 struct {
 	VeStart int `json:"ve-start"`
 	VeEnd   int `json:"ve-end"`
 }
 
-type IpAppProtocolPortUdpPortAddAppNameInterfaceEthCfg1120 struct {
+type IpAppProtocolPortUdpPortAddAppNameInterfaceEthCfg1119 struct {
 	EthernetStart int `json:"ethernet-start"`
 	EthernetEnd   int `json:"ethernet-end"`
 }

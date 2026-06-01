@@ -207,13 +207,13 @@ func resourceAcosCloudIntegrationEcosystemRead(ctx context.Context, d *schema.Re
 	return diags
 }
 
-func getObjectAcosCloudIntegrationEcosystemConsul41(d []interface{}) edpt.AcosCloudIntegrationEcosystemConsul41 {
+func getObjectAcosCloudIntegrationEcosystemConsul42(d []interface{}) edpt.AcosCloudIntegrationEcosystemConsul42 {
 
 	count1 := len(d)
-	var ret edpt.AcosCloudIntegrationEcosystemConsul41
+	var ret edpt.AcosCloudIntegrationEcosystemConsul42
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.ServiceLabel = getSliceAcosCloudIntegrationEcosystemConsulServiceLabel42(in["service_label"].([]interface{}))
+		ret.ServiceLabel = getSliceAcosCloudIntegrationEcosystemConsulServiceLabel43(in["service_label"].([]interface{}))
 		ret.Ipv4Address = in["ipv4_address"].(string)
 		ret.Ipv6Address = in["ipv6_address"].(string)
 		ret.HostName = in["host_name"].(string)
@@ -225,54 +225,54 @@ func getObjectAcosCloudIntegrationEcosystemConsul41(d []interface{}) edpt.AcosCl
 	return ret
 }
 
-func getSliceAcosCloudIntegrationEcosystemConsulServiceLabel42(d []interface{}) []edpt.AcosCloudIntegrationEcosystemConsulServiceLabel42 {
+func getSliceAcosCloudIntegrationEcosystemConsulServiceLabel43(d []interface{}) []edpt.AcosCloudIntegrationEcosystemConsulServiceLabel43 {
 
 	count1 := len(d)
-	ret := make([]edpt.AcosCloudIntegrationEcosystemConsulServiceLabel42, 0, count1)
+	ret := make([]edpt.AcosCloudIntegrationEcosystemConsulServiceLabel43, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.AcosCloudIntegrationEcosystemConsulServiceLabel42
+		var oi edpt.AcosCloudIntegrationEcosystemConsulServiceLabel43
 		oi.ServiceLabelName = in["service_label_name"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectAcosCloudIntegrationEcosystemK8s43(d []interface{}) edpt.AcosCloudIntegrationEcosystemK8s43 {
+func getObjectAcosCloudIntegrationEcosystemK8s44(d []interface{}) edpt.AcosCloudIntegrationEcosystemK8s44 {
 
 	count1 := len(d)
-	var ret edpt.AcosCloudIntegrationEcosystemK8s43
+	var ret edpt.AcosCloudIntegrationEcosystemK8s44
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
 		ret.HealthCheckInterval = in["health_check_interval"].(string)
 		ret.ClusterConfigFile = in["cluster_config_file"].(string)
-		ret.ServiceLabel = getSliceAcosCloudIntegrationEcosystemK8sServiceLabel44(in["service_label"].([]interface{}))
+		ret.ServiceLabel = getSliceAcosCloudIntegrationEcosystemK8sServiceLabel45(in["service_label"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceAcosCloudIntegrationEcosystemK8sServiceLabel44(d []interface{}) []edpt.AcosCloudIntegrationEcosystemK8sServiceLabel44 {
+func getSliceAcosCloudIntegrationEcosystemK8sServiceLabel45(d []interface{}) []edpt.AcosCloudIntegrationEcosystemK8sServiceLabel45 {
 
 	count1 := len(d)
-	ret := make([]edpt.AcosCloudIntegrationEcosystemK8sServiceLabel44, 0, count1)
+	ret := make([]edpt.AcosCloudIntegrationEcosystemK8sServiceLabel45, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.AcosCloudIntegrationEcosystemK8sServiceLabel44
+		var oi edpt.AcosCloudIntegrationEcosystemK8sServiceLabel45
 		oi.ServiceLabelName = in["service_label_name"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectAcosCloudIntegrationEcosystemOracle45(d []interface{}) edpt.AcosCloudIntegrationEcosystemOracle45 {
+func getObjectAcosCloudIntegrationEcosystemOracle46(d []interface{}) edpt.AcosCloudIntegrationEcosystemOracle46 {
 
 	count1 := len(d)
-	var ret edpt.AcosCloudIntegrationEcosystemOracle45
+	var ret edpt.AcosCloudIntegrationEcosystemOracle46
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.ServiceLabel = getSliceAcosCloudIntegrationEcosystemOracleServiceLabel46(in["service_label"].([]interface{}))
+		ret.ServiceLabel = getSliceAcosCloudIntegrationEcosystemOracleServiceLabel47(in["service_label"].([]interface{}))
 		ret.Ipv4Address = in["ipv4_address"].(string)
 		ret.Ipv6Address = in["ipv6_address"].(string)
 		ret.HostName = in["host_name"].(string)
@@ -289,13 +289,13 @@ func getObjectAcosCloudIntegrationEcosystemOracle45(d []interface{}) edpt.AcosCl
 	return ret
 }
 
-func getSliceAcosCloudIntegrationEcosystemOracleServiceLabel46(d []interface{}) []edpt.AcosCloudIntegrationEcosystemOracleServiceLabel46 {
+func getSliceAcosCloudIntegrationEcosystemOracleServiceLabel47(d []interface{}) []edpt.AcosCloudIntegrationEcosystemOracleServiceLabel47 {
 
 	count1 := len(d)
-	ret := make([]edpt.AcosCloudIntegrationEcosystemOracleServiceLabel46, 0, count1)
+	ret := make([]edpt.AcosCloudIntegrationEcosystemOracleServiceLabel47, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.AcosCloudIntegrationEcosystemOracleServiceLabel46
+		var oi edpt.AcosCloudIntegrationEcosystemOracleServiceLabel47
 		oi.ServiceLabelName = in["service_label_name"].(string)
 		ret = append(ret, oi)
 	}
@@ -304,10 +304,10 @@ func getSliceAcosCloudIntegrationEcosystemOracleServiceLabel46(d []interface{}) 
 
 func dataToEndpointAcosCloudIntegrationEcosystem(d *schema.ResourceData) edpt.AcosCloudIntegrationEcosystem {
 	var ret edpt.AcosCloudIntegrationEcosystem
-	ret.Inst.Consul = getObjectAcosCloudIntegrationEcosystemConsul41(d.Get("consul").([]interface{}))
+	ret.Inst.Consul = getObjectAcosCloudIntegrationEcosystemConsul42(d.Get("consul").([]interface{}))
 	ret.Inst.Dummy = d.Get("dummy").(int)
-	ret.Inst.K8s = getObjectAcosCloudIntegrationEcosystemK8s43(d.Get("k8s").([]interface{}))
-	ret.Inst.Oracle = getObjectAcosCloudIntegrationEcosystemOracle45(d.Get("oracle").([]interface{}))
+	ret.Inst.K8s = getObjectAcosCloudIntegrationEcosystemK8s44(d.Get("k8s").([]interface{}))
+	ret.Inst.Oracle = getObjectAcosCloudIntegrationEcosystemOracle46(d.Get("oracle").([]interface{}))
 	//omit uuid
 	return ret
 }

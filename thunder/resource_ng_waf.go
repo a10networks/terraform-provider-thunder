@@ -130,15 +130,15 @@ func resourceNgWafRead(ctx context.Context, d *schema.ResourceData, meta interfa
 	return diags
 }
 
-func getObjectNgWafCustomPage1158(d []interface{}) edpt.NgWafCustomPage1158 {
+func getObjectNgWafCustomPage1157(d []interface{}) edpt.NgWafCustomPage1157 {
 
-	var ret edpt.NgWafCustomPage1158
+	var ret edpt.NgWafCustomPage1157
 	return ret
 }
 
-func getObjectNgWafCustomSignals1159(d []interface{}) edpt.NgWafCustomSignals1159 {
+func getObjectNgWafCustomSignals1158(d []interface{}) edpt.NgWafCustomSignals1158 {
 
-	var ret edpt.NgWafCustomSignals1159
+	var ret edpt.NgWafCustomSignals1158
 	return ret
 }
 
@@ -157,18 +157,43 @@ func getSliceNgWafStatsList(d []interface{}) []edpt.NgWafStatsList {
 	return ret
 }
 
-func getObjectNgWafStatus1160(d []interface{}) edpt.NgWafStatus1160 {
+func getObjectNgWafStatus1159(d []interface{}) edpt.NgWafStatus1159 {
 
-	var ret edpt.NgWafStatus1160
+	var ret edpt.NgWafStatus1159
 	return ret
 }
 
 func dataToEndpointNgWaf(d *schema.ResourceData) edpt.NgWaf {
-	var ret edpt.NgWaf
-	ret.Inst.CustomPage = getObjectNgWafCustomPage1158(d.Get("custom_page").([]interface{}))
-	ret.Inst.CustomSignals = getObjectNgWafCustomSignals1159(d.Get("custom_signals").([]interface{}))
-	ret.Inst.StatsList = getSliceNgWafStatsList(d.Get("stats_list").([]interface{}))
-	ret.Inst.Status = getObjectNgWafStatus1160(d.Get("status").([]interface{}))
-	//omit uuid
-	return ret
+    var ret edpt.NgWaf
+    added := false
+
+    if _, ok := d.GetOk("custom_page"); ok {
+        ret.Inst.CustomPage = edpt.NgWafCustomPage1157{}
+        added = true
+    }
+
+    if _, ok := d.GetOk("custom_signals"); ok {
+        ret.Inst.CustomSignals = edpt.NgWafCustomSignals1158{}
+        added = true
+    }
+
+    if v, ok := d.GetOk("stats_list"); ok {
+        ret.Inst.StatsList = getSliceNgWafStatsList(v.([]interface{}))
+        if len(ret.Inst.StatsList) > 0 {
+            added = true
+        }
+    }
+
+    if _, ok := d.GetOk("status"); ok {
+        ret.Inst.Status = edpt.NgWafStatus1159{}
+        added = true
+    }
+
+    // Ensure AXAPI gets at least one object
+    if !added {
+        ret.Inst.Status = edpt.NgWafStatus1159{}
+    }
+
+    return ret
 }
+

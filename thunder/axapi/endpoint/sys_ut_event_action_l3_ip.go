@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SysUtEventActionL3Ip struct {
 	Inst struct {
 		Ethernet int `json:"ethernet"`
@@ -26,9 +26,9 @@ type SysUtEventActionL3Ip struct {
 
 		VirtualServer string `json:"virtual-server"`
 
-		Direction string
-
 		EventNumber string
+
+		Direction string
 	} `json:"ip"`
 }
 

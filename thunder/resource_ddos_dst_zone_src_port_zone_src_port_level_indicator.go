@@ -31,17 +31,17 @@ func resourceDdosDstZoneSrcPortZoneSrcPortLevelIndicator() *schema.Resource {
 			"zone_threshold_num": {
 				Type: schema.TypeInt, Optional: true, Description: "Threshold of the entire zone for the src-port",
 			},
+			"port_num": {
+				Type: schema.TypeString, Required: true, Description: "PortNum",
+			},
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
-			},
-			"level_num": {
-				Type: schema.TypeString, Required: true, Description: "LevelNum",
 			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
-			"port_num": {
-				Type: schema.TypeString, Required: true, Description: "PortNum",
+			"level_num": {
+				Type: schema.TypeString, Required: true, Description: "LevelNum",
 			},
 		},
 	}
@@ -115,9 +115,9 @@ func dataToEndpointDdosDstZoneSrcPortZoneSrcPortLevelIndicator(d *schema.Resourc
 	//omit uuid
 	ret.Inst.ZoneThresholdLargeNum = d.Get("zone_threshold_large_num").(int)
 	ret.Inst.ZoneThresholdNum = d.Get("zone_threshold_num").(int)
-	ret.Inst.Protocol = d.Get("protocol").(string)
-	ret.Inst.LevelNum = d.Get("level_num").(string)
-	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	ret.Inst.PortNum = d.Get("port_num").(string)
+	ret.Inst.Protocol = d.Get("protocol").(string)
+	ret.Inst.ZoneName = d.Get("zone_name").(string)
+	ret.Inst.LevelNum = d.Get("level_num").(string)
 	return ret
 }

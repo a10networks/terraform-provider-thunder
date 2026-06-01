@@ -6,10 +6,14 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type ImportPeriodicAuthPortal struct {
 	Inst struct {
 		AuthPortal string `json:"auth-portal"`
+
+		Encrypted string `json:"encrypted"`
+
+		Password string `json:"password"`
 
 		Period int `json:"period"`
 

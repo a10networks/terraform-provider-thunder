@@ -362,7 +362,7 @@ func resourceWebCategory() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Description: "Proxy server HTTPS port(HTTP port will be used if not configured)",
 						},
 						"auth_type": {
-							Type: schema.TypeString, Optional: true, Default: "ntlm", Description: "'ntlm': NTLM authentication(default); 'basic': Basic authentication;",
+							Type: schema.TypeString, Optional: true, Default: "basic", Description: "'ntlm': NTLM authentication; 'basic': Basic authentication (default);",
 						},
 						"domain": {
 							Type: schema.TypeString, Optional: true, Description: "Realm for NTLM authentication",
@@ -469,6 +469,9 @@ func resourceWebCategory() *schema.Resource {
 			},
 			"rtu_update_interval": {
 				Type: schema.TypeInt, Optional: true, Default: 60, Description: "Interval to check for real time updates if enabled in mins(default 60)",
+			},
+			"sdk_module": {
+				Type: schema.TypeString, Optional: true, Default: "new", Description: "'legacy': Legacy SDK module; 'new': New SDK module (default);",
 			},
 			"server": {
 				Type: schema.TypeString, Optional: true, Description: "BrightCloud Query Server",
@@ -620,9 +623,9 @@ func resourceWebCategoryRead(ctx context.Context, d *schema.ResourceData, meta i
 	return diags
 }
 
-func getObjectWebCategoryBypassedUrls3760(d []interface{}) edpt.WebCategoryBypassedUrls3760 {
+func getObjectWebCategoryBypassedUrls3798(d []interface{}) edpt.WebCategoryBypassedUrls3798 {
 
-	var ret edpt.WebCategoryBypassedUrls3760
+	var ret edpt.WebCategoryBypassedUrls3798
 	return ret
 }
 
@@ -740,22 +743,22 @@ func getSliceWebCategoryCategoryListListSamplingEnable(d []interface{}) []edpt.W
 	return ret
 }
 
-func getObjectWebCategoryInterceptedUrls3761(d []interface{}) edpt.WebCategoryInterceptedUrls3761 {
+func getObjectWebCategoryInterceptedUrls3799(d []interface{}) edpt.WebCategoryInterceptedUrls3799 {
 
-	var ret edpt.WebCategoryInterceptedUrls3761
+	var ret edpt.WebCategoryInterceptedUrls3799
 	return ret
 }
 
-func getObjectWebCategoryLicense3762(d []interface{}) edpt.WebCategoryLicense3762 {
+func getObjectWebCategoryLicense3800(d []interface{}) edpt.WebCategoryLicense3800 {
 
-	var ret edpt.WebCategoryLicense3762
+	var ret edpt.WebCategoryLicense3800
 	return ret
 }
 
-func getObjectWebCategoryProxyServer3763(d []interface{}) edpt.WebCategoryProxyServer3763 {
+func getObjectWebCategoryProxyServer3801(d []interface{}) edpt.WebCategoryProxyServer3801 {
 
 	count1 := len(d)
-	var ret edpt.WebCategoryProxyServer3763
+	var ret edpt.WebCategoryProxyServer3801
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ProxyHost = in["proxy_host"].(string)
@@ -835,95 +838,96 @@ func getSliceWebCategoryReputationScopeListSamplingEnable(d []interface{}) []edp
 	return ret
 }
 
-func getObjectWebCategoryStatistics3764(d []interface{}) edpt.WebCategoryStatistics3764 {
+func getObjectWebCategoryStatistics3802(d []interface{}) edpt.WebCategoryStatistics3802 {
 
 	count1 := len(d)
-	var ret edpt.WebCategoryStatistics3764
+	var ret edpt.WebCategoryStatistics3802
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceWebCategoryStatisticsSamplingEnable3765(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceWebCategoryStatisticsSamplingEnable3803(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceWebCategoryStatisticsSamplingEnable3765(d []interface{}) []edpt.WebCategoryStatisticsSamplingEnable3765 {
+func getSliceWebCategoryStatisticsSamplingEnable3803(d []interface{}) []edpt.WebCategoryStatisticsSamplingEnable3803 {
 
 	count1 := len(d)
-	ret := make([]edpt.WebCategoryStatisticsSamplingEnable3765, 0, count1)
+	ret := make([]edpt.WebCategoryStatisticsSamplingEnable3803, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.WebCategoryStatisticsSamplingEnable3765
+		var oi edpt.WebCategoryStatisticsSamplingEnable3803
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectWebCategoryUrl3766(d []interface{}) edpt.WebCategoryUrl3766 {
+func getObjectWebCategoryUrl3804(d []interface{}) edpt.WebCategoryUrl3804 {
 
-	var ret edpt.WebCategoryUrl3766
+	var ret edpt.WebCategoryUrl3804
 	return ret
 }
 
-func getObjectWebCategoryWebReputation3767(d []interface{}) edpt.WebCategoryWebReputation3767 {
+func getObjectWebCategoryWebReputation3805(d []interface{}) edpt.WebCategoryWebReputation3805 {
 
 	count1 := len(d)
-	var ret edpt.WebCategoryWebReputation3767
+	var ret edpt.WebCategoryWebReputation3805
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.InterceptedUrls = getObjectWebCategoryWebReputationInterceptedUrls3768(in["intercepted_urls"].([]interface{}))
-		ret.BypassedUrls = getObjectWebCategoryWebReputationBypassedUrls3769(in["bypassed_urls"].([]interface{}))
-		ret.Url = getObjectWebCategoryWebReputationUrl3770(in["url"].([]interface{}))
+		ret.InterceptedUrls = getObjectWebCategoryWebReputationInterceptedUrls3806(in["intercepted_urls"].([]interface{}))
+		ret.BypassedUrls = getObjectWebCategoryWebReputationBypassedUrls3807(in["bypassed_urls"].([]interface{}))
+		ret.Url = getObjectWebCategoryWebReputationUrl3808(in["url"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectWebCategoryWebReputationInterceptedUrls3768(d []interface{}) edpt.WebCategoryWebReputationInterceptedUrls3768 {
+func getObjectWebCategoryWebReputationInterceptedUrls3806(d []interface{}) edpt.WebCategoryWebReputationInterceptedUrls3806 {
 
-	var ret edpt.WebCategoryWebReputationInterceptedUrls3768
+	var ret edpt.WebCategoryWebReputationInterceptedUrls3806
 	return ret
 }
 
-func getObjectWebCategoryWebReputationBypassedUrls3769(d []interface{}) edpt.WebCategoryWebReputationBypassedUrls3769 {
+func getObjectWebCategoryWebReputationBypassedUrls3807(d []interface{}) edpt.WebCategoryWebReputationBypassedUrls3807 {
 
-	var ret edpt.WebCategoryWebReputationBypassedUrls3769
+	var ret edpt.WebCategoryWebReputationBypassedUrls3807
 	return ret
 }
 
-func getObjectWebCategoryWebReputationUrl3770(d []interface{}) edpt.WebCategoryWebReputationUrl3770 {
+func getObjectWebCategoryWebReputationUrl3808(d []interface{}) edpt.WebCategoryWebReputationUrl3808 {
 
-	var ret edpt.WebCategoryWebReputationUrl3770
+	var ret edpt.WebCategoryWebReputationUrl3808
 	return ret
 }
 
 func dataToEndpointWebCategory(d *schema.ResourceData) edpt.WebCategory {
 	var ret edpt.WebCategory
-	ret.Inst.BypassedUrls = getObjectWebCategoryBypassedUrls3760(d.Get("bypassed_urls").([]interface{}))
+	ret.Inst.BypassedUrls = getObjectWebCategoryBypassedUrls3798(d.Get("bypassed_urls").([]interface{}))
 	ret.Inst.CategoryListList = getSliceWebCategoryCategoryListList(d.Get("category_list_list").([]interface{}))
 	ret.Inst.CloudQueryCacheSize = d.Get("cloud_query_cache_size").(int)
 	ret.Inst.CloudQueryDisable = d.Get("cloud_query_disable").(int)
 	ret.Inst.DatabaseServer = d.Get("database_server").(string)
 	ret.Inst.DbUpdateTime = d.Get("db_update_time").(string)
 	ret.Inst.Enable = d.Get("enable").(int)
-	ret.Inst.InterceptedUrls = getObjectWebCategoryInterceptedUrls3761(d.Get("intercepted_urls").([]interface{}))
-	ret.Inst.License = getObjectWebCategoryLicense3762(d.Get("license").([]interface{}))
+	ret.Inst.InterceptedUrls = getObjectWebCategoryInterceptedUrls3799(d.Get("intercepted_urls").([]interface{}))
+	ret.Inst.License = getObjectWebCategoryLicense3800(d.Get("license").([]interface{}))
 	ret.Inst.OnlineCheckDisable = d.Get("online_check_disable").(int)
 	ret.Inst.Port = d.Get("port").(int)
-	ret.Inst.ProxyServer = getObjectWebCategoryProxyServer3763(d.Get("proxy_server").([]interface{}))
+	ret.Inst.ProxyServer = getObjectWebCategoryProxyServer3801(d.Get("proxy_server").([]interface{}))
 	ret.Inst.RemoteSyslogEnable = d.Get("remote_syslog_enable").(int)
 	ret.Inst.ReputationScopeList = getSliceWebCategoryReputationScopeList(d.Get("reputation_scope_list").([]interface{}))
 	ret.Inst.RtuCacheSize = d.Get("rtu_cache_size").(int)
 	ret.Inst.RtuUpdateDisable = d.Get("rtu_update_disable").(int)
 	ret.Inst.RtuUpdateInterval = d.Get("rtu_update_interval").(int)
+	ret.Inst.SdkModule = d.Get("sdk_module").(string)
 	ret.Inst.Server = d.Get("server").(string)
 	ret.Inst.ServerTimeout = d.Get("server_timeout").(int)
 	ret.Inst.SslPort = d.Get("ssl_port").(int)
-	ret.Inst.Statistics = getObjectWebCategoryStatistics3764(d.Get("statistics").([]interface{}))
-	ret.Inst.Url = getObjectWebCategoryUrl3766(d.Get("url").([]interface{}))
+	ret.Inst.Statistics = getObjectWebCategoryStatistics3802(d.Get("statistics").([]interface{}))
+	ret.Inst.Url = getObjectWebCategoryUrl3804(d.Get("url").([]interface{}))
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)
 	//omit uuid
-	ret.Inst.WebReputation = getObjectWebCategoryWebReputation3767(d.Get("web_reputation").([]interface{}))
+	ret.Inst.WebReputation = getObjectWebCategoryWebReputation3805(d.Get("web_reputation").([]interface{}))
 	return ret
 }

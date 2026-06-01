@@ -5,14 +5,14 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemHardwareAccelerate struct {
 	Inst struct {
 		SamplingEnable []SystemHardwareAccelerateSamplingEnable `json:"sampling-enable"`
 
 		SessionForwarding int `json:"session-forwarding"`
 
-		Slb SystemHardwareAccelerateSlb1679 `json:"slb"`
+		Slb SystemHardwareAccelerateSlb1680 `json:"slb"`
 
 		Uuid string `json:"uuid"`
 	} `json:"hardware-accelerate"`
@@ -22,12 +22,12 @@ type SystemHardwareAccelerateSamplingEnable struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemHardwareAccelerateSlb1679 struct {
+type SystemHardwareAccelerateSlb1680 struct {
 	Uuid           string                                          `json:"uuid"`
-	SamplingEnable []SystemHardwareAccelerateSlbSamplingEnable1680 `json:"sampling-enable"`
+	SamplingEnable []SystemHardwareAccelerateSlbSamplingEnable1681 `json:"sampling-enable"`
 }
 
-type SystemHardwareAccelerateSlbSamplingEnable1680 struct {
+type SystemHardwareAccelerateSlbSamplingEnable1681 struct {
 	Counters1 string `json:"counters1"`
 }
 

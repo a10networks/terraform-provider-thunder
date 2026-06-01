@@ -417,6 +417,18 @@ func resourceSystem() *schema.Resource {
 						"others": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disallow redistribution of new non TCP/UDP IP sessions",
 						},
+						"disallow_new_session_cpu_usage_high": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "CPU usage threshold (percentage) that fully disallow new sessions (default: 0, not enabled)",
+						},
+						"disallow_new_session_cpu_usage_low": {
+							Type: schema.TypeInt, Optional: true, Description: "CPU usage threshold (percentage) that fully allow new sessions (default: 1/2 of cpu-usage-high configured)",
+						},
+						"disallow_new_session_cpu_ewma_alpha": {
+							Type: schema.TypeInt, Optional: true, Default: 18, Description: "EWMA ALPHA value to control how responsive the system disallow new session to CPU usage changes (default: 18)",
+						},
+						"disallow_new_session_cpu_probe_time": {
+							Type: schema.TypeInt, Optional: true, Default: 20, Description: "Probe time when CPU RR is trigged for disallow new session (default: 20)",
+						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 						},
@@ -485,9 +497,6 @@ func resourceSystem() *schema.Resource {
 					},
 				},
 			},
-			"disable_ssh_agent_forwarding": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable sshd agent forwarding",
-			},
 			"dns": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -552,7 +561,7 @@ func resourceSystem() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"counters1": {
-										Type: schema.TypeString, Optional: true, Description: "'all': all; 'total_q': Total query; 'total_r': Total server response; 'hit': Total cache hit; 'bad_q': Query not passed; 'encode_q': Query encoded; 'multiple_q': Query with multiple questions; 'oversize_q': Query exceed cache size; 'bad_r': Response not passed; 'oversize_r': Response exceed cache size; 'encode_r': Response encoded; 'multiple_r': Response with multiple questions; 'answer_r': Response with multiple answers; 'ttl_r': Response with short TTL; 'ageout': Total aged out; 'bad_answer': Bad Answer; 'ageout_weight': Total aged for lower weight; 'total_log': Total stats log sent; 'total_alloc': Total allocated; 'total_freed': Total freed; 'current_allocate': Current allocate; 'current_data_allocate': Current data allocate; 'resolver_queue_full': Resolver task queue full; 'truncated_r': Response with Truncation bit set; 'qps': Cache Queries-per-second; 'hit_rate_per_sec': Cache hit rate per second;",
+										Type: schema.TypeString, Optional: true, Description: "'all': all; 'total_q': Total query; 'total_r': Total server response; 'hit': Total cache hit; 'bad_q': Query not passed; 'encode_q': Query encoded; 'multiple_q': Query with multiple questions; 'oversize_q': Query exceed cache size; 'bad_r': Response not passed; 'oversize_r': Response exceed cache size; 'encode_r': Response encoded; 'multiple_r': Response with multiple questions; 'answer_r': Response with multiple answers; 'ttl_r': Response with short TTL; 'ageout': Total aged out; 'bad_answer': Bad Answer; 'ageout_weight': Total aged for lower weight; 'total_log': Total stats log sent; 'total_alloc': Total allocated; 'total_freed': Total freed; 'current_allocate': Current allocate; 'current_data_allocate': Current data allocate; 'resolver_queue_full': Resolver task queue full; 'truncated_r': Response with Truncation bit set; 'qps': Cache Queries-per-second; 'hit_rate_per_sec': Cache hit rate per second; 'multiple_answer_no_cache': Response not cached due to multiple answers;",
 									},
 								},
 							},
@@ -666,37 +675,6 @@ func resourceSystem() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"enable": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "enable external only logging for packet driven DDOS logs",
-						},
-						"uuid": {
-							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-						},
-					},
-				},
-			},
-			"forced_group_speed_list": {
-				Type: schema.TypeList, Optional: true, Description: "",
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"eth01_to_04": {
-							Type: schema.TypeInt, Required: true, Description: "Set speed for interface ethernet  1 ~  4",
-						},
-						"eth05_to_08": {
-							Type: schema.TypeInt, Required: true, Description: "Set speed for interface ethernet  5 ~  8",
-						},
-						"eth09_to_12": {
-							Type: schema.TypeInt, Required: true, Description: "Set speed for interface ethernet  9 ~ 12",
-						},
-						"eth13_to_16": {
-							Type: schema.TypeInt, Required: true, Description: "Set speed for interface ethernet 13 ~ 16",
-						},
-						"eth17_to_20": {
-							Type: schema.TypeInt, Required: true, Description: "Set speed for interface ethernet 17 ~ 20",
-						},
-						"eth21_to_24": {
-							Type: schema.TypeInt, Required: true, Description: "Set speed for interface ethernet 21 ~ 24",
-						},
-						"speed": {
-							Type: schema.TypeString, Optional: true, Default: "10G", Description: "'1G': Speed 1G; '10G': Speed 10G (default); '25G': Speed 25G;",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -1202,17 +1180,8 @@ func resourceSystem() *schema.Resource {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
-						"icmp_unreachable_disable": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable icmp unreachable messages",
-						},
-						"icmp_redirect_disable": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable icmp redirect messages",
-						},
-						"rpf_check_enable": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable reverse path filter (strict mode)",
-						},
-						"source_route_pkt_drop_enable": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable IPv4 source routed packet drop",
+						"class_e_address_range_enable": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable class E (240.0.0.0/4) configuration",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -1567,28 +1536,6 @@ func resourceSystem() *schema.Resource {
 									},
 								},
 							},
-						},
-					},
-				},
-			},
-			"ipv6": {
-				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"icmpv6_unreachable_disable": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable icmpv6 unreachable messages",
-						},
-						"icmpv6_redirect_disable": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable icmpv6 redirect messages",
-						},
-						"rpf_check_enable": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable reverse path filter (strict mode)",
-						},
-						"source_route_pkt_drop_enable": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable IPv6 source routed packet drop",
-						},
-						"uuid": {
-							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 						},
 					},
 				},
@@ -1970,7 +1917,7 @@ func resourceSystem() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"mmode": {
-										Type: schema.TypeString, Optional: true, Default: "and", Description: "'interdependent': INTERDEPENDENT monitoring behaviour; 'and': AND monitoring behaviour, Default;",
+										Type: schema.TypeString, Optional: true, Default: "interdependent", Description: "'interdependent': INTERDEPENDENT monitoring behaviour, Default; 'and': AND monitoring behaviour;",
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -3133,6 +3080,12 @@ func resourceSystem() *schema.Resource {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"ssl_context_memory": {
+							Type: schema.TypeInt, Optional: true, Default: 2048, Description: "Total SSL context memory needed in units of MB. Will be rounded to closest multiple of 2MB",
+						},
+						"ssl_dma_memory": {
+							Type: schema.TypeInt, Optional: true, Default: 256, Description: "Total SSL DMA memory needed in units of MB. Will be rounded to closest multiple of 2MB",
+						},
 						"nat_pool_addr_count": {
 							Type: schema.TypeInt, Optional: true, Description: "Total configurable NAT Pool addresses in the System",
 						},
@@ -3180,6 +3133,9 @@ func resourceSystem() *schema.Resource {
 						},
 						"ngwaf_cache_entry": {
 							Type: schema.TypeInt, Optional: true, Description: "Specify the maximum cache entries for NGWAF",
+						},
+						"jwt_cache_entry": {
+							Type: schema.TypeInt, Optional: true, Description: "Specify the maximum cache entries for JWT",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -3369,29 +3325,6 @@ func resourceSystem() *schema.Resource {
 			"src_ip_hash_enable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable source ip hash",
 			},
-			"ssl_hw_memory": {
-				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"mem_block_cfg": {
-							Type: schema.TypeList, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"mem_block": {
-										Type: schema.TypeString, Optional: true, Description: "'ssl_mem': Shared SSL memory; 'ssl_context': Cipher session context memory for SSL engine 1; 'ssl_context_2': Cipher session context memory for SSL engine 2; 'ssl_context_3': Cipher session context memory for SSL engine 3; 'ssl_context_4': Cipher session context memory for SSL engine 4; 'ssl_context_5': Cipher session context memory for SSL engine 5; 'ssl_context_6': Cipher session context memory for SSL engine 6; 'ssl_context_7': Cipher session context memory for SSL engine 7; 'ssl_context_8': Cipher session context memory for SSL engine 8; 'ssl_context_9': Cipher session context memory for SSL engine 9; 'ssl_context_10': Cipher session context memory for SSL engine 10; 'ssl_context_11': Cipher session context memory for SSL engine 11; 'ssl_context_12': Cipher session context memory for SSL engine 12; 'ssl_context_13': Cipher session context memory for SSL engine 13; 'ssl_context_14': Cipher session context memory for SSL engine 14; 'ssl_context_15': Cipher session context memory for SSL engine 15; 'ssl_context_16': Cipher session context memory for SSL engine 16;",
-									},
-									"size": {
-										Type: schema.TypeInt, Optional: true, Description: "Size of the block",
-									},
-								},
-							},
-						},
-						"uuid": {
-							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-						},
-					},
-				},
-			},
 			"ssl_req_q": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -3570,7 +3503,7 @@ func resourceSystem() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"counters1": {
-										Type: schema.TypeString, Optional: true, Description: "'all': all; 'connattempt': Connect initiated; 'connects': Connect established; 'drops': Connect dropped; 'conndrops': Embryonic connect dropped; 'closed': Connect closed; 'segstimed': Segs to get RTT; 'rttupdated': Update RTT; 'delack': Delayed acks sent; 'timeoutdrop': Conn dropped in rxmt timeout; 'rexmttimeo': Retransmit timeout; 'persisttimeo': Persist timeout; 'keeptimeo': Keepalive timeout; 'keepprobe': Keepalive probe sent; 'keepdrops': Connect dropped in keepalive; 'sndtotal': Total packet sent; 'sndpack': Data packet sent; 'sndbyte': Data bytes sent; 'sndrexmitpack': Data packet retransmit; 'sndrexmitbyte': Data byte retransmit; 'sndrexmitbad': Unnecessary packet retransmit; 'sndacks': Ack packet sent; 'sndprobe': Window probe sent; 'sndurg': URG packet sent; 'sndwinup': Window update packet sent; 'sndctrl': SYN|FIN|RST packet sent; 'sndrst': RST packet sent; 'sndfin': FIN packet sent; 'sndsyn': SYN packet sent; 'rcvtotal': Total packet received; 'rcvpack': Packet received; 'rcvbyte': Bytes received; 'rcvbadoff': Packet received with bad offset; 'rcvmemdrop': Packet dropped for lack of memory; 'rcvduppack': Duplicate packet received; 'rcvdupbyte': Duplicate bytes received; 'rcvpartduppack': Packet with some duplicate data; 'rcvpartdupbyte': Dup. bytes in part-dup. packets; 'rcvoopack': Out-of-order packet received; 'rcvoobyte': Out-of-order bytes received; 'rcvpackafterwin': Packets with data after window; 'rcvbyteafterwin': Bytes rcvd after window; 'rcvwinprobe': Rcvd window probe packet; 'rcvdupack': Rcvd duplicate acks; 'rcvacktoomuch': Rcvd acks for unsent data; 'rcvackpack': Rcvd ack packets; 'rcvackbyte': Bytes acked by rcvd acks; 'rcvwinupd': Rcvd window update packets; 'pawsdrop': Segments dropped due to PAWS; 'predack': Hdr predict for acks; 'preddat': Hdr predict for data pkts; 'persistdrop': Timeout in persist state; 'badrst': Ignored RST; 'finwait2_drops': Drop FIN_WAIT_2 connection after time limit; 'sack_recovery_episode': SACK recovery episodes; 'sack_rexmits': SACK rexmit segments; 'sack_rexmit_bytes': SACK rexmit bytes; 'sack_rcv_blocks': SACK received; 'sack_send_blocks': SACK sent; 'sndcack': Challenge ACK sent; 'cacklim': Challenge ACK limited; 'reassmemdrop': Packet dropped during reassembly; 'reasstimeout': Reassembly Time Out; 'cc_idle': Congestion control window set do to idle; 'cc_reduce': Congestion control window reduced by event; 'rcvdsack': Rcvd DSACK packets; 'a2brcvwnd': ATCP to BTCP receive window; 'a2bsackpresent': ATCP to BTCP SACK options present; 'a2bdupack': ATCP to BTCP Dup/OO ACK; 'a2brxdata': ATCP to BTCP Rxmitted data; 'a2btcpoptions': ATCP to BTCP unsupported TCP options; 'a2boodata': ATCP to BTCP oo data received; 'a2bpartialack': ATCP to BTCP partial ack received; 'a2bfsmtransition': ATCP to BTCP state machine transition; 'a2btransitionnum': ATCP to BTCP total transitions; 'b2atransitionnum': ATCP to BTCP total transitions; 'bad_iochan': IO Channel Modified; 'atcpforward': Adaptive TCP forward; 'atcpsent': Adaptive TCP sent; 'atcprexmitsadrop': Adaptive TCP transmit SA drops; 'atcpsendbackack': Adaptive TCP sendback ACK; 'atcprexmit': Adaptive TCP retransmits; 'atcpbuffallocfail': Adaptive TCP buffer allocation fails; 'a2bappbuffering': Transition to full stack on when application buffers too much data; 'atcpsendfail': Adaptive TCP sent fails; 'earlyrexmit': Early Retransmission sent; 'mburstlim': Maxburst limited tx; 'a2bsndwnd': ATCP to BTCP send window; 'proxyheaderv1': Proxy header v1; 'proxyheaderv2': Proxy header v2;",
+										Type: schema.TypeString, Optional: true, Description: "'all': all; 'connattempt': Connect initiated; 'connects': Connect established; 'drops': Connect dropped; 'conndrops': Embryonic connect dropped; 'closed': Connect closed; 'segstimed': Segs to get RTT; 'rttupdated': Update RTT; 'delack': Delayed acks sent; 'timeoutdrop': Conn dropped in rxmt timeout; 'rexmttimeo': Retransmit timeout; 'persisttimeo': Persist timeout; 'keeptimeo': Keepalive timeout; 'keepprobe': Keepalive probe sent; 'keepdrops': Connect dropped in keepalive; 'sndtotal': Total packet sent; 'sndpack': Data packet sent; 'sndbyte': Data bytes sent; 'sndrexmitpack': Data packet retransmit; 'sndrexmitbyte': Data byte retransmit; 'sndrexmitbad': Unnecessary packet retransmit; 'sndacks': Ack packet sent; 'sndprobe': Window probe sent; 'sndurg': URG packet sent; 'sndwinup': Window update packet sent; 'sndctrl': SYN|FIN|RST packet sent; 'sndrst': RST packet sent; 'sndfin': FIN packet sent; 'sndsyn': SYN packet sent; 'rcvtotal': Total packet received; 'rcvpack': Packet received; 'rcvbyte': Bytes received; 'rcvbadoff': Packet received with bad offset; 'rcvmemdrop': Packet dropped for lack of memory; 'rcvduppack': Duplicate packet received; 'rcvdupbyte': Duplicate bytes received; 'rcvpartduppack': Packet with some duplicate data; 'rcvpartdupbyte': Dup. bytes in part-dup. packets; 'rcvoopack': Out-of-order packet received; 'rcvoobyte': Out-of-order bytes received; 'rcvpackafterwin': Packets with data after window; 'rcvbyteafterwin': Bytes rcvd after window; 'rcvwinprobe': Rcvd window probe packet; 'rcvdupack': Rcvd duplicate acks; 'rcvacktoomuch': Rcvd acks for unsent data; 'rcvackpack': Rcvd ack packets; 'rcvackbyte': Bytes acked by rcvd acks; 'rcvwinupd': Rcvd window update packets; 'pawsdrop': Segments dropped due to PAWS; 'predack': Hdr predict for acks; 'preddat': Hdr predict for data pkts; 'persistdrop': Timeout in persist state; 'badrst': Ignored RST; 'finwait2_drops': Drop FIN_WAIT_2 connection after time limit; 'sack_recovery_episode': SACK recovery episodes; 'sack_rexmits': SACK rexmit segments; 'sack_rexmit_bytes': SACK rexmit bytes; 'sack_rcv_blocks': SACK received; 'sack_send_blocks': SACK sent; 'sndcack': Challenge ACK sent; 'cacklim': Challenge ACK limited; 'reassmemdrop': Packet dropped during reassembly; 'reasstimeout': Reassembly Time Out; 'cc_idle': Congestion control window set do to idle; 'cc_reduce': Congestion control window reduced by event; 'rcvdsack': Rcvd DSACK packets; 'a2brcvwnd': ATCP to BTCP receive window; 'a2bsackpresent': ATCP to BTCP SACK options present; 'a2bdupack': ATCP to BTCP Dup/OO ACK; 'a2brxdata': ATCP to BTCP Rxmitted data; 'a2btcpoptions': ATCP to BTCP unsupported TCP options; 'a2boodata': ATCP to BTCP oo data received; 'a2bpartialack': ATCP to BTCP partial ack received; 'a2bfsmtransition': ATCP to BTCP state machine transition; 'a2btransitionnum': ATCP to BTCP total transitions; 'b2atransitionnum': ATCP to BTCP total transitions; 'bad_iochan': IO Channel Modified; 'atcpforward': Adaptive TCP forward; 'atcpsent': Adaptive TCP sent; 'atcprexmitsadrop': Adaptive TCP transmit SA drops; 'atcpsendbackack': Adaptive TCP sendback ACK; 'atcprexmit': Adaptive TCP retransmits; 'atcpbuffallocfail': Adaptive TCP buffer allocation fails; 'a2bappbuffering': Transition to full stack on when application buffers too much data; 'atcpsendfail': Adaptive TCP sent fails; 'earlyrexmit': Early Retransmission sent; 'mburstlim': Maxburst limited tx; 'a2bsndwnd': ATCP to BTCP send window; 'proxyheaderv1': Proxy header v1; 'proxyheaderv2': Proxy header v2; 'cpurrdrop': CPU round robin packet drop;",
 									},
 								},
 							},
@@ -3690,7 +3623,7 @@ func resourceSystem() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"counters1": {
-										Type: schema.TypeString, Optional: true, Description: "'all': all; 'global-system-throughput-bits-per-sec': Global System throughput in bits/sec; 'per-part-throughput-bits-per-sec': Partition throughput in bits/sec;",
+										Type: schema.TypeString, Optional: true, Description: "'all': all; 'global-system-throughput-bits-per-sec': Global System egress throughput in bits/sec; 'global-system-ingress-throughput-bits-per-sec': Global System ingress throughput in bits/sec; 'per-part-throughput-bits-per-sec': Partition throughput in bits/sec; 'global-client-ssl-count': global ssl count; 'global-server-ssl-count': global server ssl count; 'global-client-ssl-connections-per-sec': global ssl conneciton per sec; 'global-server-ssl-connections-per-sec': global server ssl conneciton;",
 									},
 								},
 							},
@@ -3719,6 +3652,19 @@ func resourceSystem() *schema.Resource {
 						},
 						"https": {
 							Type: schema.TypeInt, Optional: true, Default: 120, Description: "set timeout to stop https transfer in seconds",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
+			"tls_1_3_mgmt": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"enable": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable TLS 1.3 support on ACOS management plane",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -3905,10 +3851,10 @@ func resourceSystemRead(ctx context.Context, d *schema.ResourceData, meta interf
 	return diags
 }
 
-func getObjectSystemAddCpuCore1755(d []interface{}) edpt.SystemAddCpuCore1755 {
+func getObjectSystemAddCpuCore1756(d []interface{}) edpt.SystemAddCpuCore1756 {
 
 	count1 := len(d)
-	var ret edpt.SystemAddCpuCore1755
+	var ret edpt.SystemAddCpuCore1756
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.CoreIndex = in["core_index"].(int)
@@ -3916,10 +3862,10 @@ func getObjectSystemAddCpuCore1755(d []interface{}) edpt.SystemAddCpuCore1755 {
 	return ret
 }
 
-func getObjectSystemAddPort1756(d []interface{}) edpt.SystemAddPort1756 {
+func getObjectSystemAddPort1757(d []interface{}) edpt.SystemAddPort1757 {
 
 	count1 := len(d)
-	var ret edpt.SystemAddPort1756
+	var ret edpt.SystemAddPort1757
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PortIndex = in["port_index"].(int)
@@ -3927,10 +3873,10 @@ func getObjectSystemAddPort1756(d []interface{}) edpt.SystemAddPort1756 {
 	return ret
 }
 
-func getObjectSystemAllVlanLimit1757(d []interface{}) edpt.SystemAllVlanLimit1757 {
+func getObjectSystemAllVlanLimit1758(d []interface{}) edpt.SystemAllVlanLimit1758 {
 
 	count1 := len(d)
-	var ret edpt.SystemAllVlanLimit1757
+	var ret edpt.SystemAllVlanLimit1758
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Bcast = in["bcast"].(int)
@@ -3942,35 +3888,35 @@ func getObjectSystemAllVlanLimit1757(d []interface{}) edpt.SystemAllVlanLimit175
 	return ret
 }
 
-func getObjectSystemAppPerformance1758(d []interface{}) edpt.SystemAppPerformance1758 {
+func getObjectSystemAppPerformance1759(d []interface{}) edpt.SystemAppPerformance1759 {
 
 	count1 := len(d)
-	var ret edpt.SystemAppPerformance1758
+	var ret edpt.SystemAppPerformance1759
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemAppPerformanceSamplingEnable1759(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemAppPerformanceSamplingEnable1760(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemAppPerformanceSamplingEnable1759(d []interface{}) []edpt.SystemAppPerformanceSamplingEnable1759 {
+func getSliceSystemAppPerformanceSamplingEnable1760(d []interface{}) []edpt.SystemAppPerformanceSamplingEnable1760 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemAppPerformanceSamplingEnable1759, 0, count1)
+	ret := make([]edpt.SystemAppPerformanceSamplingEnable1760, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemAppPerformanceSamplingEnable1759
+		var oi edpt.SystemAppPerformanceSamplingEnable1760
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemAppsGlobal1760(d []interface{}) edpt.SystemAppsGlobal1760 {
+func getObjectSystemAppsGlobal1761(d []interface{}) edpt.SystemAppsGlobal1761 {
 
 	count1 := len(d)
-	var ret edpt.SystemAppsGlobal1760
+	var ret edpt.SystemAppsGlobal1761
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.LogSessionOnEstablished = in["log_session_on_established"].(int)
@@ -3983,10 +3929,10 @@ func getObjectSystemAppsGlobal1760(d []interface{}) edpt.SystemAppsGlobal1760 {
 	return ret
 }
 
-func getObjectSystemAsicDebugDump1761(d []interface{}) edpt.SystemAsicDebugDump1761 {
+func getObjectSystemAsicDebugDump1762(d []interface{}) edpt.SystemAsicDebugDump1762 {
 
 	count1 := len(d)
-	var ret edpt.SystemAsicDebugDump1761
+	var ret edpt.SystemAsicDebugDump1762
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
@@ -3995,10 +3941,10 @@ func getObjectSystemAsicDebugDump1761(d []interface{}) edpt.SystemAsicDebugDump1
 	return ret
 }
 
-func getObjectSystemAsicMmuFailSafe1762(d []interface{}) edpt.SystemAsicMmuFailSafe1762 {
+func getObjectSystemAsicMmuFailSafe1763(d []interface{}) edpt.SystemAsicMmuFailSafe1763 {
 
 	count1 := len(d)
-	var ret edpt.SystemAsicMmuFailSafe1762
+	var ret edpt.SystemAsicMmuFailSafe1763
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RecoveryThreshold = in["recovery_threshold"].(int)
@@ -4012,68 +3958,68 @@ func getObjectSystemAsicMmuFailSafe1762(d []interface{}) edpt.SystemAsicMmuFailS
 	return ret
 }
 
-func getObjectSystemBandwidth1763(d []interface{}) edpt.SystemBandwidth1763 {
+func getObjectSystemBandwidth1764(d []interface{}) edpt.SystemBandwidth1764 {
 
 	count1 := len(d)
-	var ret edpt.SystemBandwidth1763
+	var ret edpt.SystemBandwidth1764
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.WarningThreshold = in["warning_threshold"].(int)
 		ret.CriticalThreshold = in["critical_threshold"].(int)
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemBandwidthSamplingEnable1764(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemBandwidthSamplingEnable1765(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemBandwidthSamplingEnable1764(d []interface{}) []edpt.SystemBandwidthSamplingEnable1764 {
+func getSliceSystemBandwidthSamplingEnable1765(d []interface{}) []edpt.SystemBandwidthSamplingEnable1765 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemBandwidthSamplingEnable1764, 0, count1)
+	ret := make([]edpt.SystemBandwidthSamplingEnable1765, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemBandwidthSamplingEnable1764
+		var oi edpt.SystemBandwidthSamplingEnable1765
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemBfd1765(d []interface{}) edpt.SystemBfd1765 {
+func getObjectSystemBfd1766(d []interface{}) edpt.SystemBfd1766 {
 
 	count1 := len(d)
-	var ret edpt.SystemBfd1765
+	var ret edpt.SystemBfd1766
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemBfdSamplingEnable1766(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemBfdSamplingEnable1767(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemBfdSamplingEnable1766(d []interface{}) []edpt.SystemBfdSamplingEnable1766 {
+func getSliceSystemBfdSamplingEnable1767(d []interface{}) []edpt.SystemBfdSamplingEnable1767 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemBfdSamplingEnable1766, 0, count1)
+	ret := make([]edpt.SystemBfdSamplingEnable1767, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemBfdSamplingEnable1766
+		var oi edpt.SystemBfdSamplingEnable1767
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemClThreatCategory1767(d []interface{}) edpt.SystemClThreatCategory1767 {
+func getObjectSystemClThreatCategory1768(d []interface{}) edpt.SystemClThreatCategory1768 {
 
-	var ret edpt.SystemClThreatCategory1767
+	var ret edpt.SystemClThreatCategory1768
 	return ret
 }
 
-func getObjectSystemCliMonitorInterval1768(d []interface{}) edpt.SystemCliMonitorInterval1768 {
+func getObjectSystemCliMonitorInterval1769(d []interface{}) edpt.SystemCliMonitorInterval1769 {
 
 	count1 := len(d)
-	var ret edpt.SystemCliMonitorInterval1768
+	var ret edpt.SystemCliMonitorInterval1769
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Interval = in["interval"].(int)
@@ -4082,10 +4028,10 @@ func getObjectSystemCliMonitorInterval1768(d []interface{}) edpt.SystemCliMonito
 	return ret
 }
 
-func getObjectSystemCmUpdateFileNameRef1769(d []interface{}) edpt.SystemCmUpdateFileNameRef1769 {
+func getObjectSystemCmUpdateFileNameRef1770(d []interface{}) edpt.SystemCmUpdateFileNameRef1770 {
 
 	count1 := len(d)
-	var ret edpt.SystemCmUpdateFileNameRef1769
+	var ret edpt.SystemCmUpdateFileNameRef1770
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Source_name = in["source_name"].(string)
@@ -4095,25 +4041,25 @@ func getObjectSystemCmUpdateFileNameRef1769(d []interface{}) edpt.SystemCmUpdate
 	return ret
 }
 
-func getObjectSystemConfigMgmt1770(d []interface{}) edpt.SystemConfigMgmt1770 {
+func getObjectSystemConfigMgmt1771(d []interface{}) edpt.SystemConfigMgmt1771 {
 
 	count1 := len(d)
-	var ret edpt.SystemConfigMgmt1770
+	var ret edpt.SystemConfigMgmt1771
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DeleteReferencedTaggedObjects = in["delete_referenced_tagged_objects"].(string)
 		//omit uuid
-		ret.PuSyncDetection = getObjectSystemConfigMgmtPuSyncDetection1771(in["pu_sync_detection"].([]interface{}))
-		ret.Mpm = getObjectSystemConfigMgmtMpm1772(in["mpm"].([]interface{}))
-		ret.Notification = getObjectSystemConfigMgmtNotification1773(in["notification"].([]interface{}))
+		ret.PuSyncDetection = getObjectSystemConfigMgmtPuSyncDetection1772(in["pu_sync_detection"].([]interface{}))
+		ret.Mpm = getObjectSystemConfigMgmtMpm1773(in["mpm"].([]interface{}))
+		ret.Notification = getObjectSystemConfigMgmtNotification1774(in["notification"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSystemConfigMgmtPuSyncDetection1771(d []interface{}) edpt.SystemConfigMgmtPuSyncDetection1771 {
+func getObjectSystemConfigMgmtPuSyncDetection1772(d []interface{}) edpt.SystemConfigMgmtPuSyncDetection1772 {
 
 	count1 := len(d)
-	var ret edpt.SystemConfigMgmtPuSyncDetection1771
+	var ret edpt.SystemConfigMgmtPuSyncDetection1772
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Interval = in["interval"].(int)
@@ -4123,10 +4069,10 @@ func getObjectSystemConfigMgmtPuSyncDetection1771(d []interface{}) edpt.SystemCo
 	return ret
 }
 
-func getObjectSystemConfigMgmtMpm1772(d []interface{}) edpt.SystemConfigMgmtMpm1772 {
+func getObjectSystemConfigMgmtMpm1773(d []interface{}) edpt.SystemConfigMgmtMpm1773 {
 
 	count1 := len(d)
-	var ret edpt.SystemConfigMgmtMpm1772
+	var ret edpt.SystemConfigMgmtMpm1773
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MaxWorkers = in["max_workers"].(int)
@@ -4137,10 +4083,10 @@ func getObjectSystemConfigMgmtMpm1772(d []interface{}) edpt.SystemConfigMgmtMpm1
 	return ret
 }
 
-func getObjectSystemConfigMgmtNotification1773(d []interface{}) edpt.SystemConfigMgmtNotification1773 {
+func getObjectSystemConfigMgmtNotification1774(d []interface{}) edpt.SystemConfigMgmtNotification1774 {
 
 	count1 := len(d)
-	var ret edpt.SystemConfigMgmtNotification1773
+	var ret edpt.SystemConfigMgmtNotification1774
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Period = in["period"].(int)
@@ -4149,40 +4095,40 @@ func getObjectSystemConfigMgmtNotification1773(d []interface{}) edpt.SystemConfi
 	return ret
 }
 
-func getObjectSystemControlCpu1774(d []interface{}) edpt.SystemControlCpu1774 {
+func getObjectSystemControlCpu1775(d []interface{}) edpt.SystemControlCpu1775 {
 
-	var ret edpt.SystemControlCpu1774
+	var ret edpt.SystemControlCpu1775
 	return ret
 }
 
-func getObjectSystemCore1775(d []interface{}) edpt.SystemCore1775 {
+func getObjectSystemCore1776(d []interface{}) edpt.SystemCore1776 {
 
-	var ret edpt.SystemCore1775
+	var ret edpt.SystemCore1776
 	return ret
 }
 
-func getObjectSystemCosqShow1776(d []interface{}) edpt.SystemCosqShow1776 {
+func getObjectSystemCosqShow1777(d []interface{}) edpt.SystemCosqShow1777 {
 
-	var ret edpt.SystemCosqShow1776
+	var ret edpt.SystemCosqShow1777
 	return ret
 }
 
-func getObjectSystemCosqStats1777(d []interface{}) edpt.SystemCosqStats1777 {
+func getObjectSystemCosqStats1778(d []interface{}) edpt.SystemCosqStats1778 {
 
-	var ret edpt.SystemCosqStats1777
+	var ret edpt.SystemCosqStats1778
 	return ret
 }
 
-func getObjectSystemCounterLibAccounting1778(d []interface{}) edpt.SystemCounterLibAccounting1778 {
+func getObjectSystemCounterLibAccounting1779(d []interface{}) edpt.SystemCounterLibAccounting1779 {
 
-	var ret edpt.SystemCounterLibAccounting1778
+	var ret edpt.SystemCounterLibAccounting1779
 	return ret
 }
 
-func getObjectSystemCpuHyperThread1779(d []interface{}) edpt.SystemCpuHyperThread1779 {
+func getObjectSystemCpuHyperThread1780(d []interface{}) edpt.SystemCpuHyperThread1780 {
 
 	count1 := len(d)
-	var ret edpt.SystemCpuHyperThread1779
+	var ret edpt.SystemCpuHyperThread1780
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
@@ -4191,34 +4137,38 @@ func getObjectSystemCpuHyperThread1779(d []interface{}) edpt.SystemCpuHyperThrea
 	return ret
 }
 
-func getObjectSystemCpuList1780(d []interface{}) edpt.SystemCpuList1780 {
+func getObjectSystemCpuList1781(d []interface{}) edpt.SystemCpuList1781 {
 
-	var ret edpt.SystemCpuList1780
+	var ret edpt.SystemCpuList1781
 	return ret
 }
 
-func getObjectSystemCpuLoadSharing1781(d []interface{}) edpt.SystemCpuLoadSharing1781 {
+func getObjectSystemCpuLoadSharing1782(d []interface{}) edpt.SystemCpuLoadSharing1782 {
 
 	count1 := len(d)
-	var ret edpt.SystemCpuLoadSharing1781
+	var ret edpt.SystemCpuLoadSharing1782
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Disable = in["disable"].(int)
-		ret.PacketsPerSecond = getObjectSystemCpuLoadSharingPacketsPerSecond1782(in["packets_per_second"].([]interface{}))
-		ret.CpuUsage = getObjectSystemCpuLoadSharingCpuUsage1783(in["cpu_usage"].([]interface{}))
+		ret.PacketsPerSecond = getObjectSystemCpuLoadSharingPacketsPerSecond1783(in["packets_per_second"].([]interface{}))
+		ret.CpuUsage = getObjectSystemCpuLoadSharingCpuUsage1784(in["cpu_usage"].([]interface{}))
 		ret.AllowL7Sessions = in["allow_l7_sessions"].(int)
 		ret.Tcp = in["tcp"].(int)
 		ret.Udp = in["udp"].(int)
 		ret.Others = in["others"].(int)
+		ret.DisallowNewSessionCpuUsageHigh = in["disallow_new_session_cpu_usage_high"].(int)
+		ret.DisallowNewSessionCpuUsageLow = in["disallow_new_session_cpu_usage_low"].(int)
+		ret.DisallowNewSessionCpuEwmaAlpha = in["disallow_new_session_cpu_ewma_alpha"].(int)
+		ret.DisallowNewSessionCpuProbeTime = in["disallow_new_session_cpu_probe_time"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectSystemCpuLoadSharingPacketsPerSecond1782(d []interface{}) edpt.SystemCpuLoadSharingPacketsPerSecond1782 {
+func getObjectSystemCpuLoadSharingPacketsPerSecond1783(d []interface{}) edpt.SystemCpuLoadSharingPacketsPerSecond1783 {
 
 	count1 := len(d)
-	var ret edpt.SystemCpuLoadSharingPacketsPerSecond1782
+	var ret edpt.SystemCpuLoadSharingPacketsPerSecond1783
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Min = in["min"].(int)
@@ -4226,10 +4176,10 @@ func getObjectSystemCpuLoadSharingPacketsPerSecond1782(d []interface{}) edpt.Sys
 	return ret
 }
 
-func getObjectSystemCpuLoadSharingCpuUsage1783(d []interface{}) edpt.SystemCpuLoadSharingCpuUsage1783 {
+func getObjectSystemCpuLoadSharingCpuUsage1784(d []interface{}) edpt.SystemCpuLoadSharingCpuUsage1784 {
 
 	count1 := len(d)
-	var ret edpt.SystemCpuLoadSharingCpuUsage1783
+	var ret edpt.SystemCpuLoadSharingCpuUsage1784
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Low = in["low"].(int)
@@ -4238,16 +4188,16 @@ func getObjectSystemCpuLoadSharingCpuUsage1783(d []interface{}) edpt.SystemCpuLo
 	return ret
 }
 
-func getObjectSystemCpuMap1784(d []interface{}) edpt.SystemCpuMap1784 {
+func getObjectSystemCpuMap1785(d []interface{}) edpt.SystemCpuMap1785 {
 
-	var ret edpt.SystemCpuMap1784
+	var ret edpt.SystemCpuMap1785
 	return ret
 }
 
-func getObjectSystemCpuPacketPrioSupport1785(d []interface{}) edpt.SystemCpuPacketPrioSupport1785 {
+func getObjectSystemCpuPacketPrioSupport1786(d []interface{}) edpt.SystemCpuPacketPrioSupport1786 {
 
 	count1 := len(d)
-	var ret edpt.SystemCpuPacketPrioSupport1785
+	var ret edpt.SystemCpuPacketPrioSupport1786
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
@@ -4256,16 +4206,16 @@ func getObjectSystemCpuPacketPrioSupport1785(d []interface{}) edpt.SystemCpuPack
 	return ret
 }
 
-func getObjectSystemDataCpu1786(d []interface{}) edpt.SystemDataCpu1786 {
+func getObjectSystemDataCpu1787(d []interface{}) edpt.SystemDataCpu1787 {
 
-	var ret edpt.SystemDataCpu1786
+	var ret edpt.SystemDataCpu1787
 	return ret
 }
 
-func getObjectSystemDelPort1787(d []interface{}) edpt.SystemDelPort1787 {
+func getObjectSystemDelPort1788(d []interface{}) edpt.SystemDelPort1788 {
 
 	count1 := len(d)
-	var ret edpt.SystemDelPort1787
+	var ret edpt.SystemDelPort1788
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PortIndex = in["port_index"].(int)
@@ -4273,10 +4223,10 @@ func getObjectSystemDelPort1787(d []interface{}) edpt.SystemDelPort1787 {
 	return ret
 }
 
-func getObjectSystemDeleteCpuCore1788(d []interface{}) edpt.SystemDeleteCpuCore1788 {
+func getObjectSystemDeleteCpuCore1789(d []interface{}) edpt.SystemDeleteCpuCore1789 {
 
 	count1 := len(d)
-	var ret edpt.SystemDeleteCpuCore1788
+	var ret edpt.SystemDeleteCpuCore1789
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.CoreIndex = in["core_index"].(int)
@@ -4284,52 +4234,52 @@ func getObjectSystemDeleteCpuCore1788(d []interface{}) edpt.SystemDeleteCpuCore1
 	return ret
 }
 
-func getObjectSystemDns1789(d []interface{}) edpt.SystemDns1789 {
+func getObjectSystemDns1790(d []interface{}) edpt.SystemDns1790 {
 
 	count1 := len(d)
-	var ret edpt.SystemDns1789
+	var ret edpt.SystemDns1790
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemDnsSamplingEnable1790(in["sampling_enable"].([]interface{}))
-		ret.RecursiveNameserver = getObjectSystemDnsRecursiveNameserver1791(in["recursive_nameserver"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemDnsSamplingEnable1791(in["sampling_enable"].([]interface{}))
+		ret.RecursiveNameserver = getObjectSystemDnsRecursiveNameserver1792(in["recursive_nameserver"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemDnsSamplingEnable1790(d []interface{}) []edpt.SystemDnsSamplingEnable1790 {
+func getSliceSystemDnsSamplingEnable1791(d []interface{}) []edpt.SystemDnsSamplingEnable1791 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemDnsSamplingEnable1790, 0, count1)
+	ret := make([]edpt.SystemDnsSamplingEnable1791, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemDnsSamplingEnable1790
+		var oi edpt.SystemDnsSamplingEnable1791
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemDnsRecursiveNameserver1791(d []interface{}) edpt.SystemDnsRecursiveNameserver1791 {
+func getObjectSystemDnsRecursiveNameserver1792(d []interface{}) edpt.SystemDnsRecursiveNameserver1792 {
 
 	count1 := len(d)
-	var ret edpt.SystemDnsRecursiveNameserver1791
+	var ret edpt.SystemDnsRecursiveNameserver1792
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.FollowShared = in["follow_shared"].(int)
-		ret.ServerList = getSliceSystemDnsRecursiveNameserverServerList1792(in["server_list"].([]interface{}))
+		ret.ServerList = getSliceSystemDnsRecursiveNameserverServerList1793(in["server_list"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSystemDnsRecursiveNameserverServerList1792(d []interface{}) []edpt.SystemDnsRecursiveNameserverServerList1792 {
+func getSliceSystemDnsRecursiveNameserverServerList1793(d []interface{}) []edpt.SystemDnsRecursiveNameserverServerList1793 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemDnsRecursiveNameserverServerList1792, 0, count1)
+	ret := make([]edpt.SystemDnsRecursiveNameserverServerList1793, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemDnsRecursiveNameserverServerList1792
+		var oi edpt.SystemDnsRecursiveNameserverServerList1793
 		oi.Ipv4Addr = in["ipv4_addr"].(string)
 		oi.V4Desc = in["v4_desc"].(string)
 		oi.Ipv6Addr = in["ipv6_addr"].(string)
@@ -4339,41 +4289,41 @@ func getSliceSystemDnsRecursiveNameserverServerList1792(d []interface{}) []edpt.
 	return ret
 }
 
-func getObjectSystemDnsCache1793(d []interface{}) edpt.SystemDnsCache1793 {
+func getObjectSystemDnsCache1794(d []interface{}) edpt.SystemDnsCache1794 {
 
 	count1 := len(d)
-	var ret edpt.SystemDnsCache1793
+	var ret edpt.SystemDnsCache1794
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemDnsCacheSamplingEnable1794(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemDnsCacheSamplingEnable1795(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemDnsCacheSamplingEnable1794(d []interface{}) []edpt.SystemDnsCacheSamplingEnable1794 {
+func getSliceSystemDnsCacheSamplingEnable1795(d []interface{}) []edpt.SystemDnsCacheSamplingEnable1795 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemDnsCacheSamplingEnable1794, 0, count1)
+	ret := make([]edpt.SystemDnsCacheSamplingEnable1795, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemDnsCacheSamplingEnable1794
+		var oi edpt.SystemDnsCacheSamplingEnable1795
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemDomainListInfo1795(d []interface{}) edpt.SystemDomainListInfo1795 {
+func getObjectSystemDomainListInfo1796(d []interface{}) edpt.SystemDomainListInfo1796 {
 
-	var ret edpt.SystemDomainListInfo1795
+	var ret edpt.SystemDomainListInfo1796
 	return ret
 }
 
-func getObjectSystemDomainListSettings1796(d []interface{}) edpt.SystemDomainListSettings1796 {
+func getObjectSystemDomainListSettings1797(d []interface{}) edpt.SystemDomainListSettings1797 {
 
 	count1 := len(d)
-	var ret edpt.SystemDomainListSettings1796
+	var ret edpt.SystemDomainListSettings1797
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PollingInterval = in["polling_interval"].(string)
@@ -4384,35 +4334,35 @@ func getObjectSystemDomainListSettings1796(d []interface{}) edpt.SystemDomainLis
 	return ret
 }
 
-func getObjectSystemDpdkStats1797(d []interface{}) edpt.SystemDpdkStats1797 {
+func getObjectSystemDpdkStats1798(d []interface{}) edpt.SystemDpdkStats1798 {
 
 	count1 := len(d)
-	var ret edpt.SystemDpdkStats1797
+	var ret edpt.SystemDpdkStats1798
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemDpdkStatsSamplingEnable1798(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemDpdkStatsSamplingEnable1799(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemDpdkStatsSamplingEnable1798(d []interface{}) []edpt.SystemDpdkStatsSamplingEnable1798 {
+func getSliceSystemDpdkStatsSamplingEnable1799(d []interface{}) []edpt.SystemDpdkStatsSamplingEnable1799 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemDpdkStatsSamplingEnable1798, 0, count1)
+	ret := make([]edpt.SystemDpdkStatsSamplingEnable1799, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemDpdkStatsSamplingEnable1798
+		var oi edpt.SystemDpdkStatsSamplingEnable1799
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemEnableDiskEncryption1799(d []interface{}) edpt.SystemEnableDiskEncryption1799 {
+func getObjectSystemEnableDiskEncryption1800(d []interface{}) edpt.SystemEnableDiskEncryption1800 {
 
 	count1 := len(d)
-	var ret edpt.SystemEnableDiskEncryption1799
+	var ret edpt.SystemEnableDiskEncryption1800
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Cipher = in["cipher"].(string)
@@ -4422,10 +4372,10 @@ func getObjectSystemEnableDiskEncryption1799(d []interface{}) edpt.SystemEnableD
 	return ret
 }
 
-func getObjectSystemEnablePassword1800(d []interface{}) edpt.SystemEnablePassword1800 {
+func getObjectSystemEnablePassword1801(d []interface{}) edpt.SystemEnablePassword1801 {
 
 	count1 := len(d)
-	var ret edpt.SystemEnablePassword1800
+	var ret edpt.SystemEnablePassword1801
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.FollowPasswordPolicy = in["follow_password_policy"].(int)
@@ -4434,16 +4384,16 @@ func getObjectSystemEnablePassword1800(d []interface{}) edpt.SystemEnablePasswor
 	return ret
 }
 
-func getObjectSystemEnvironment1801(d []interface{}) edpt.SystemEnvironment1801 {
+func getObjectSystemEnvironment1802(d []interface{}) edpt.SystemEnvironment1802 {
 
-	var ret edpt.SystemEnvironment1801
+	var ret edpt.SystemEnvironment1802
 	return ret
 }
 
-func getObjectSystemExtOnlyLogging1802(d []interface{}) edpt.SystemExtOnlyLogging1802 {
+func getObjectSystemExtOnlyLogging1803(d []interface{}) edpt.SystemExtOnlyLogging1803 {
 
 	count1 := len(d)
-	var ret edpt.SystemExtOnlyLogging1802
+	var ret edpt.SystemExtOnlyLogging1803
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
@@ -4452,30 +4402,10 @@ func getObjectSystemExtOnlyLogging1802(d []interface{}) edpt.SystemExtOnlyLoggin
 	return ret
 }
 
-func getSliceSystemForcedGroupSpeedList(d []interface{}) []edpt.SystemForcedGroupSpeedList {
+func getObjectSystemFpgaCoreCrc1804(d []interface{}) edpt.SystemFpgaCoreCrc1804 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemForcedGroupSpeedList, 0, count1)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.SystemForcedGroupSpeedList
-		oi.Eth01_to_04 = in["eth01_to_04"].(int)
-		oi.Eth05_to_08 = in["eth05_to_08"].(int)
-		oi.Eth09_to_12 = in["eth09_to_12"].(int)
-		oi.Eth13_to_16 = in["eth13_to_16"].(int)
-		oi.Eth17_to_20 = in["eth17_to_20"].(int)
-		oi.Eth21_to_24 = in["eth21_to_24"].(int)
-		oi.Speed = in["speed"].(string)
-		//omit uuid
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getObjectSystemFpgaCoreCrc1803(d []interface{}) edpt.SystemFpgaCoreCrc1803 {
-
-	count1 := len(d)
-	var ret edpt.SystemFpgaCoreCrc1803
+	var ret edpt.SystemFpgaCoreCrc1804
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MonitorDisable = in["monitor_disable"].(int)
@@ -4485,35 +4415,35 @@ func getObjectSystemFpgaCoreCrc1803(d []interface{}) edpt.SystemFpgaCoreCrc1803 
 	return ret
 }
 
-func getObjectSystemFpgaDrop1804(d []interface{}) edpt.SystemFpgaDrop1804 {
+func getObjectSystemFpgaDrop1805(d []interface{}) edpt.SystemFpgaDrop1805 {
 
 	count1 := len(d)
-	var ret edpt.SystemFpgaDrop1804
+	var ret edpt.SystemFpgaDrop1805
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemFpgaDropSamplingEnable1805(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemFpgaDropSamplingEnable1806(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemFpgaDropSamplingEnable1805(d []interface{}) []edpt.SystemFpgaDropSamplingEnable1805 {
+func getSliceSystemFpgaDropSamplingEnable1806(d []interface{}) []edpt.SystemFpgaDropSamplingEnable1806 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemFpgaDropSamplingEnable1805, 0, count1)
+	ret := make([]edpt.SystemFpgaDropSamplingEnable1806, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemFpgaDropSamplingEnable1805
+		var oi edpt.SystemFpgaDropSamplingEnable1806
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemFw1806(d []interface{}) edpt.SystemFw1806 {
+func getObjectSystemFw1807(d []interface{}) edpt.SystemFw1807 {
 
 	count1 := len(d)
-	var ret edpt.SystemFw1806
+	var ret edpt.SystemFw1807
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ApplicationMempool = in["application_mempool"].(int)
@@ -4524,10 +4454,10 @@ func getObjectSystemFw1806(d []interface{}) edpt.SystemFw1806 {
 	return ret
 }
 
-func getObjectSystemGeoLocation1807(d []interface{}) edpt.SystemGeoLocation1807 {
+func getObjectSystemGeoLocation1808(d []interface{}) edpt.SystemGeoLocation1808 {
 
 	count1 := len(d)
-	var ret edpt.SystemGeoLocation1807
+	var ret edpt.SystemGeoLocation1808
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GeoLocationIana = in["geo_location_iana"].(int)
@@ -4538,20 +4468,20 @@ func getObjectSystemGeoLocation1807(d []interface{}) edpt.SystemGeoLocation1807 
 		ret.Geolite2CityIncludeIpv6 = in["geolite2_city_include_ipv6"].(int)
 		ret.GeoLocationGeolite2Country = in["geo_location_geolite2_country"].(int)
 		ret.Geolite2CountryIncludeIpv6 = in["geolite2_country_include_ipv6"].(int)
-		ret.GeolocLoadFileList = getSliceSystemGeoLocationGeolocLoadFileList1808(in["geoloc_load_file_list"].([]interface{}))
+		ret.GeolocLoadFileList = getSliceSystemGeoLocationGeolocLoadFileList1809(in["geoloc_load_file_list"].([]interface{}))
 		//omit uuid
-		ret.EntryList = getSliceSystemGeoLocationEntryList1809(in["entry_list"].([]interface{}))
+		ret.EntryList = getSliceSystemGeoLocationEntryList1810(in["entry_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemGeoLocationGeolocLoadFileList1808(d []interface{}) []edpt.SystemGeoLocationGeolocLoadFileList1808 {
+func getSliceSystemGeoLocationGeolocLoadFileList1809(d []interface{}) []edpt.SystemGeoLocationGeolocLoadFileList1809 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemGeoLocationGeolocLoadFileList1808, 0, count1)
+	ret := make([]edpt.SystemGeoLocationGeolocLoadFileList1809, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemGeoLocationGeolocLoadFileList1808
+		var oi edpt.SystemGeoLocationGeolocLoadFileList1809
 		oi.GeoLocationLoadFilename = in["geo_location_load_filename"].(string)
 		oi.GeoLocationLoadFileIncludeIpv6 = in["geo_location_load_file_include_ipv6"].(int)
 		oi.TemplateName = in["template_name"].(string)
@@ -4561,15 +4491,15 @@ func getSliceSystemGeoLocationGeolocLoadFileList1808(d []interface{}) []edpt.Sys
 	return ret
 }
 
-func getSliceSystemGeoLocationEntryList1809(d []interface{}) []edpt.SystemGeoLocationEntryList1809 {
+func getSliceSystemGeoLocationEntryList1810(d []interface{}) []edpt.SystemGeoLocationEntryList1810 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemGeoLocationEntryList1809, 0, count1)
+	ret := make([]edpt.SystemGeoLocationEntryList1810, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemGeoLocationEntryList1809
+		var oi edpt.SystemGeoLocationEntryList1810
 		oi.GeoLocnObjName = in["geo_locn_obj_name"].(string)
-		oi.GeoLocnMultipleAddresses = getSliceSystemGeoLocationEntryListGeoLocnMultipleAddresses1810(in["geo_locn_multiple_addresses"].([]interface{}))
+		oi.GeoLocnMultipleAddresses = getSliceSystemGeoLocationEntryListGeoLocnMultipleAddresses1811(in["geo_locn_multiple_addresses"].([]interface{}))
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		ret = append(ret, oi)
@@ -4577,13 +4507,13 @@ func getSliceSystemGeoLocationEntryList1809(d []interface{}) []edpt.SystemGeoLoc
 	return ret
 }
 
-func getSliceSystemGeoLocationEntryListGeoLocnMultipleAddresses1810(d []interface{}) []edpt.SystemGeoLocationEntryListGeoLocnMultipleAddresses1810 {
+func getSliceSystemGeoLocationEntryListGeoLocnMultipleAddresses1811(d []interface{}) []edpt.SystemGeoLocationEntryListGeoLocnMultipleAddresses1811 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemGeoLocationEntryListGeoLocnMultipleAddresses1810, 0, count1)
+	ret := make([]edpt.SystemGeoLocationEntryListGeoLocnMultipleAddresses1811, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemGeoLocationEntryListGeoLocnMultipleAddresses1810
+		var oi edpt.SystemGeoLocationEntryListGeoLocnMultipleAddresses1811
 		oi.FirstIpAddress = in["first_ip_address"].(string)
 		oi.GeolIpv4Mask = in["geol_ipv4_mask"].(string)
 		oi.IpAddr2 = in["ip_addr2"].(string)
@@ -4595,25 +4525,25 @@ func getSliceSystemGeoLocationEntryListGeoLocnMultipleAddresses1810(d []interfac
 	return ret
 }
 
-func getObjectSystemGeoloc1811(d []interface{}) edpt.SystemGeoloc1811 {
+func getObjectSystemGeoloc1812(d []interface{}) edpt.SystemGeoloc1812 {
 
 	count1 := len(d)
-	var ret edpt.SystemGeoloc1811
+	var ret edpt.SystemGeoloc1812
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemGeolocSamplingEnable1812(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemGeolocSamplingEnable1813(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemGeolocSamplingEnable1812(d []interface{}) []edpt.SystemGeolocSamplingEnable1812 {
+func getSliceSystemGeolocSamplingEnable1813(d []interface{}) []edpt.SystemGeolocSamplingEnable1813 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemGeolocSamplingEnable1812, 0, count1)
+	ret := make([]edpt.SystemGeolocSamplingEnable1813, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemGeolocSamplingEnable1812
+		var oi edpt.SystemGeolocSamplingEnable1813
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
@@ -4678,53 +4608,53 @@ func getSliceSystemGeolocListListSamplingEnable(d []interface{}) []edpt.SystemGe
 	return ret
 }
 
-func getObjectSystemGeolocNameHelper1813(d []interface{}) edpt.SystemGeolocNameHelper1813 {
+func getObjectSystemGeolocNameHelper1814(d []interface{}) edpt.SystemGeolocNameHelper1814 {
 
 	count1 := len(d)
-	var ret edpt.SystemGeolocNameHelper1813
+	var ret edpt.SystemGeolocNameHelper1814
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemGeolocNameHelperSamplingEnable1814(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemGeolocNameHelperSamplingEnable1815(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemGeolocNameHelperSamplingEnable1814(d []interface{}) []edpt.SystemGeolocNameHelperSamplingEnable1814 {
+func getSliceSystemGeolocNameHelperSamplingEnable1815(d []interface{}) []edpt.SystemGeolocNameHelperSamplingEnable1815 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemGeolocNameHelperSamplingEnable1814, 0, count1)
+	ret := make([]edpt.SystemGeolocNameHelperSamplingEnable1815, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemGeolocNameHelperSamplingEnable1814
+		var oi edpt.SystemGeolocNameHelperSamplingEnable1815
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemGeolocationFile1815(d []interface{}) edpt.SystemGeolocationFile1815 {
+func getObjectSystemGeolocationFile1816(d []interface{}) edpt.SystemGeolocationFile1816 {
 
 	count1 := len(d)
-	var ret edpt.SystemGeolocationFile1815
+	var ret edpt.SystemGeolocationFile1816
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.ErrorInfo = getObjectSystemGeolocationFileErrorInfo1816(in["error_info"].([]interface{}))
+		ret.ErrorInfo = getObjectSystemGeolocationFileErrorInfo1817(in["error_info"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSystemGeolocationFileErrorInfo1816(d []interface{}) edpt.SystemGeolocationFileErrorInfo1816 {
+func getObjectSystemGeolocationFileErrorInfo1817(d []interface{}) edpt.SystemGeolocationFileErrorInfo1817 {
 
-	var ret edpt.SystemGeolocationFileErrorInfo1816
+	var ret edpt.SystemGeolocationFileErrorInfo1817
 	return ret
 }
 
-func getObjectSystemGlid1817(d []interface{}) edpt.SystemGlid1817 {
+func getObjectSystemGlid1818(d []interface{}) edpt.SystemGlid1818 {
 
 	count1 := len(d)
-	var ret edpt.SystemGlid1817
+	var ret edpt.SystemGlid1818
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GlidId = in["glid_id"].(string)
@@ -4734,70 +4664,70 @@ func getObjectSystemGlid1817(d []interface{}) edpt.SystemGlid1817 {
 	return ret
 }
 
-func getObjectSystemGuestFile1818(d []interface{}) edpt.SystemGuestFile1818 {
+func getObjectSystemGuestFile1819(d []interface{}) edpt.SystemGuestFile1819 {
 
-	var ret edpt.SystemGuestFile1818
+	var ret edpt.SystemGuestFile1819
 	return ret
 }
 
-func getObjectSystemGuiImageList1819(d []interface{}) edpt.SystemGuiImageList1819 {
+func getObjectSystemGuiImageList1820(d []interface{}) edpt.SystemGuiImageList1820 {
 
-	var ret edpt.SystemGuiImageList1819
+	var ret edpt.SystemGuiImageList1820
 	return ret
 }
 
-func getObjectSystemHardware1820(d []interface{}) edpt.SystemHardware1820 {
+func getObjectSystemHardware1821(d []interface{}) edpt.SystemHardware1821 {
 
-	var ret edpt.SystemHardware1820
+	var ret edpt.SystemHardware1821
 	return ret
 }
 
-func getObjectSystemHardwareAccelerate1821(d []interface{}) edpt.SystemHardwareAccelerate1821 {
+func getObjectSystemHardwareAccelerate1822(d []interface{}) edpt.SystemHardwareAccelerate1822 {
 
 	count1 := len(d)
-	var ret edpt.SystemHardwareAccelerate1821
+	var ret edpt.SystemHardwareAccelerate1822
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SessionForwarding = in["session_forwarding"].(int)
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemHardwareAccelerateSamplingEnable1822(in["sampling_enable"].([]interface{}))
-		ret.Slb = getObjectSystemHardwareAccelerateSlb1823(in["slb"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemHardwareAccelerateSamplingEnable1823(in["sampling_enable"].([]interface{}))
+		ret.Slb = getObjectSystemHardwareAccelerateSlb1824(in["slb"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemHardwareAccelerateSamplingEnable1822(d []interface{}) []edpt.SystemHardwareAccelerateSamplingEnable1822 {
+func getSliceSystemHardwareAccelerateSamplingEnable1823(d []interface{}) []edpt.SystemHardwareAccelerateSamplingEnable1823 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemHardwareAccelerateSamplingEnable1822, 0, count1)
+	ret := make([]edpt.SystemHardwareAccelerateSamplingEnable1823, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemHardwareAccelerateSamplingEnable1822
+		var oi edpt.SystemHardwareAccelerateSamplingEnable1823
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemHardwareAccelerateSlb1823(d []interface{}) edpt.SystemHardwareAccelerateSlb1823 {
+func getObjectSystemHardwareAccelerateSlb1824(d []interface{}) edpt.SystemHardwareAccelerateSlb1824 {
 
 	count1 := len(d)
-	var ret edpt.SystemHardwareAccelerateSlb1823
+	var ret edpt.SystemHardwareAccelerateSlb1824
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemHardwareAccelerateSlbSamplingEnable1824(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemHardwareAccelerateSlbSamplingEnable1825(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemHardwareAccelerateSlbSamplingEnable1824(d []interface{}) []edpt.SystemHardwareAccelerateSlbSamplingEnable1824 {
+func getSliceSystemHardwareAccelerateSlbSamplingEnable1825(d []interface{}) []edpt.SystemHardwareAccelerateSlbSamplingEnable1825 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemHardwareAccelerateSlbSamplingEnable1824, 0, count1)
+	ret := make([]edpt.SystemHardwareAccelerateSlbSamplingEnable1825, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemHardwareAccelerateSlbSamplingEnable1824
+		var oi edpt.SystemHardwareAccelerateSlbSamplingEnable1825
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
@@ -4823,10 +4753,10 @@ func getSliceSystemHealthCheckList(d []interface{}) []edpt.SystemHealthCheckList
 	return ret
 }
 
-func getObjectSystemHighMemoryL4Session1825(d []interface{}) edpt.SystemHighMemoryL4Session1825 {
+func getObjectSystemHighMemoryL4Session1826(d []interface{}) edpt.SystemHighMemoryL4Session1826 {
 
 	count1 := len(d)
-	var ret edpt.SystemHighMemoryL4Session1825
+	var ret edpt.SystemHighMemoryL4Session1826
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
@@ -4835,103 +4765,103 @@ func getObjectSystemHighMemoryL4Session1825(d []interface{}) edpt.SystemHighMemo
 	return ret
 }
 
-func getObjectSystemHrxqStatus1826(d []interface{}) edpt.SystemHrxqStatus1826 {
+func getObjectSystemHrxqStatus1827(d []interface{}) edpt.SystemHrxqStatus1827 {
 
-	var ret edpt.SystemHrxqStatus1826
+	var ret edpt.SystemHrxqStatus1827
 	return ret
 }
 
-func getObjectSystemIcmp1827(d []interface{}) edpt.SystemIcmp1827 {
+func getObjectSystemIcmp1828(d []interface{}) edpt.SystemIcmp1828 {
 
 	count1 := len(d)
-	var ret edpt.SystemIcmp1827
+	var ret edpt.SystemIcmp1828
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemIcmpSamplingEnable1828(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemIcmpSamplingEnable1829(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemIcmpSamplingEnable1828(d []interface{}) []edpt.SystemIcmpSamplingEnable1828 {
+func getSliceSystemIcmpSamplingEnable1829(d []interface{}) []edpt.SystemIcmpSamplingEnable1829 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemIcmpSamplingEnable1828, 0, count1)
+	ret := make([]edpt.SystemIcmpSamplingEnable1829, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemIcmpSamplingEnable1828
+		var oi edpt.SystemIcmpSamplingEnable1829
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemIcmpRate1829(d []interface{}) edpt.SystemIcmpRate1829 {
+func getObjectSystemIcmpRate1830(d []interface{}) edpt.SystemIcmpRate1830 {
 
 	count1 := len(d)
-	var ret edpt.SystemIcmpRate1829
+	var ret edpt.SystemIcmpRate1830
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemIcmpRateSamplingEnable1830(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemIcmpRateSamplingEnable1831(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemIcmpRateSamplingEnable1830(d []interface{}) []edpt.SystemIcmpRateSamplingEnable1830 {
+func getSliceSystemIcmpRateSamplingEnable1831(d []interface{}) []edpt.SystemIcmpRateSamplingEnable1831 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemIcmpRateSamplingEnable1830, 0, count1)
+	ret := make([]edpt.SystemIcmpRateSamplingEnable1831, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemIcmpRateSamplingEnable1830
+		var oi edpt.SystemIcmpRateSamplingEnable1831
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemIcmp61831(d []interface{}) edpt.SystemIcmp61831 {
+func getObjectSystemIcmp61832(d []interface{}) edpt.SystemIcmp61832 {
 
 	count1 := len(d)
-	var ret edpt.SystemIcmp61831
+	var ret edpt.SystemIcmp61832
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemIcmp6SamplingEnable1832(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemIcmp6SamplingEnable1833(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemIcmp6SamplingEnable1832(d []interface{}) []edpt.SystemIcmp6SamplingEnable1832 {
+func getSliceSystemIcmp6SamplingEnable1833(d []interface{}) []edpt.SystemIcmp6SamplingEnable1833 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemIcmp6SamplingEnable1832, 0, count1)
+	ret := make([]edpt.SystemIcmp6SamplingEnable1833, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemIcmp6SamplingEnable1832
+		var oi edpt.SystemIcmp6SamplingEnable1833
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemInuseCpuList1833(d []interface{}) edpt.SystemInuseCpuList1833 {
+func getObjectSystemInuseCpuList1834(d []interface{}) edpt.SystemInuseCpuList1834 {
 
-	var ret edpt.SystemInuseCpuList1833
+	var ret edpt.SystemInuseCpuList1834
 	return ret
 }
 
-func getObjectSystemInusePortList1834(d []interface{}) edpt.SystemInusePortList1834 {
+func getObjectSystemInusePortList1835(d []interface{}) edpt.SystemInusePortList1835 {
 
-	var ret edpt.SystemInusePortList1834
+	var ret edpt.SystemInusePortList1835
 	return ret
 }
 
-func getObjectSystemIoCpu1835(d []interface{}) edpt.SystemIoCpu1835 {
+func getObjectSystemIoCpu1836(d []interface{}) edpt.SystemIoCpu1836 {
 
 	count1 := len(d)
-	var ret edpt.SystemIoCpu1835
+	var ret edpt.SystemIoCpu1836
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MaxCores = in["max_cores"].(int)
@@ -4939,102 +4869,99 @@ func getObjectSystemIoCpu1835(d []interface{}) edpt.SystemIoCpu1835 {
 	return ret
 }
 
-func getObjectSystemIp1836(d []interface{}) edpt.SystemIp1836 {
+func getObjectSystemIp1837(d []interface{}) edpt.SystemIp1837 {
 
 	count1 := len(d)
-	var ret edpt.SystemIp1836
+	var ret edpt.SystemIp1837
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.IcmpUnreachableDisable = in["icmp_unreachable_disable"].(int)
-		ret.IcmpRedirectDisable = in["icmp_redirect_disable"].(int)
-		ret.RpfCheckEnable = in["rpf_check_enable"].(int)
-		ret.SourceRoutePktDropEnable = in["source_route_pkt_drop_enable"].(int)
+		ret.ClassEAddressRangeEnable = in["class_e_address_range_enable"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectSystemIpDnsCache1837(d []interface{}) edpt.SystemIpDnsCache1837 {
+func getObjectSystemIpDnsCache1838(d []interface{}) edpt.SystemIpDnsCache1838 {
 
-	var ret edpt.SystemIpDnsCache1837
+	var ret edpt.SystemIpDnsCache1838
 	return ret
 }
 
-func getObjectSystemIpStats1838(d []interface{}) edpt.SystemIpStats1838 {
+func getObjectSystemIpStats1839(d []interface{}) edpt.SystemIpStats1839 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpStats1838
+	var ret edpt.SystemIpStats1839
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemIpStatsSamplingEnable1839(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemIpStatsSamplingEnable1840(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemIpStatsSamplingEnable1839(d []interface{}) []edpt.SystemIpStatsSamplingEnable1839 {
+func getSliceSystemIpStatsSamplingEnable1840(d []interface{}) []edpt.SystemIpStatsSamplingEnable1840 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemIpStatsSamplingEnable1839, 0, count1)
+	ret := make([]edpt.SystemIpStatsSamplingEnable1840, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemIpStatsSamplingEnable1839
+		var oi edpt.SystemIpStatsSamplingEnable1840
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemIpThreatList1840(d []interface{}) edpt.SystemIpThreatList1840 {
+func getObjectSystemIpThreatList1841(d []interface{}) edpt.SystemIpThreatList1841 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpThreatList1840
+	var ret edpt.SystemIpThreatList1841
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemIpThreatListSamplingEnable1841(in["sampling_enable"].([]interface{}))
-		ret.Ipv4SourceList = getObjectSystemIpThreatListIpv4SourceList1842(in["ipv4_source_list"].([]interface{}))
-		ret.Ipv4DestList = getObjectSystemIpThreatListIpv4DestList1844(in["ipv4_dest_list"].([]interface{}))
-		ret.Ipv6SourceList = getObjectSystemIpThreatListIpv6SourceList1846(in["ipv6_source_list"].([]interface{}))
-		ret.Ipv6DestList = getObjectSystemIpThreatListIpv6DestList1848(in["ipv6_dest_list"].([]interface{}))
-		ret.Ipv4InternetHostList = getObjectSystemIpThreatListIpv4InternetHostList1850(in["ipv4_internet_host_list"].([]interface{}))
-		ret.Ipv6InternetHostList = getObjectSystemIpThreatListIpv6InternetHostList1852(in["ipv6_internet_host_list"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemIpThreatListSamplingEnable1842(in["sampling_enable"].([]interface{}))
+		ret.Ipv4SourceList = getObjectSystemIpThreatListIpv4SourceList1843(in["ipv4_source_list"].([]interface{}))
+		ret.Ipv4DestList = getObjectSystemIpThreatListIpv4DestList1845(in["ipv4_dest_list"].([]interface{}))
+		ret.Ipv6SourceList = getObjectSystemIpThreatListIpv6SourceList1847(in["ipv6_source_list"].([]interface{}))
+		ret.Ipv6DestList = getObjectSystemIpThreatListIpv6DestList1849(in["ipv6_dest_list"].([]interface{}))
+		ret.Ipv4InternetHostList = getObjectSystemIpThreatListIpv4InternetHostList1851(in["ipv4_internet_host_list"].([]interface{}))
+		ret.Ipv6InternetHostList = getObjectSystemIpThreatListIpv6InternetHostList1853(in["ipv6_internet_host_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemIpThreatListSamplingEnable1841(d []interface{}) []edpt.SystemIpThreatListSamplingEnable1841 {
+func getSliceSystemIpThreatListSamplingEnable1842(d []interface{}) []edpt.SystemIpThreatListSamplingEnable1842 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemIpThreatListSamplingEnable1841, 0, count1)
+	ret := make([]edpt.SystemIpThreatListSamplingEnable1842, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemIpThreatListSamplingEnable1841
+		var oi edpt.SystemIpThreatListSamplingEnable1842
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemIpThreatListIpv4SourceList1842(d []interface{}) edpt.SystemIpThreatListIpv4SourceList1842 {
+func getObjectSystemIpThreatListIpv4SourceList1843(d []interface{}) edpt.SystemIpThreatListIpv4SourceList1843 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpThreatListIpv4SourceList1842
+	var ret edpt.SystemIpThreatListIpv4SourceList1843
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.ClassListCfg = getSliceSystemIpThreatListIpv4SourceListClassListCfg1843(in["class_list_cfg"].([]interface{}))
+		ret.ClassListCfg = getSliceSystemIpThreatListIpv4SourceListClassListCfg1844(in["class_list_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSystemIpThreatListIpv4SourceListClassListCfg1843(d []interface{}) []edpt.SystemIpThreatListIpv4SourceListClassListCfg1843 {
+func getSliceSystemIpThreatListIpv4SourceListClassListCfg1844(d []interface{}) []edpt.SystemIpThreatListIpv4SourceListClassListCfg1844 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemIpThreatListIpv4SourceListClassListCfg1843, 0, count1)
+	ret := make([]edpt.SystemIpThreatListIpv4SourceListClassListCfg1844, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemIpThreatListIpv4SourceListClassListCfg1843
+		var oi edpt.SystemIpThreatListIpv4SourceListClassListCfg1844
 		oi.ClassList = in["class_list"].(string)
 		oi.IpThreatActionTmpl = in["ip_threat_action_tmpl"].(int)
 		ret = append(ret, oi)
@@ -5042,25 +4969,25 @@ func getSliceSystemIpThreatListIpv4SourceListClassListCfg1843(d []interface{}) [
 	return ret
 }
 
-func getObjectSystemIpThreatListIpv4DestList1844(d []interface{}) edpt.SystemIpThreatListIpv4DestList1844 {
+func getObjectSystemIpThreatListIpv4DestList1845(d []interface{}) edpt.SystemIpThreatListIpv4DestList1845 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpThreatListIpv4DestList1844
+	var ret edpt.SystemIpThreatListIpv4DestList1845
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.ClassListCfg = getSliceSystemIpThreatListIpv4DestListClassListCfg1845(in["class_list_cfg"].([]interface{}))
+		ret.ClassListCfg = getSliceSystemIpThreatListIpv4DestListClassListCfg1846(in["class_list_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSystemIpThreatListIpv4DestListClassListCfg1845(d []interface{}) []edpt.SystemIpThreatListIpv4DestListClassListCfg1845 {
+func getSliceSystemIpThreatListIpv4DestListClassListCfg1846(d []interface{}) []edpt.SystemIpThreatListIpv4DestListClassListCfg1846 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemIpThreatListIpv4DestListClassListCfg1845, 0, count1)
+	ret := make([]edpt.SystemIpThreatListIpv4DestListClassListCfg1846, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemIpThreatListIpv4DestListClassListCfg1845
+		var oi edpt.SystemIpThreatListIpv4DestListClassListCfg1846
 		oi.ClassList = in["class_list"].(string)
 		oi.IpThreatActionTmpl = in["ip_threat_action_tmpl"].(int)
 		ret = append(ret, oi)
@@ -5068,25 +4995,25 @@ func getSliceSystemIpThreatListIpv4DestListClassListCfg1845(d []interface{}) []e
 	return ret
 }
 
-func getObjectSystemIpThreatListIpv6SourceList1846(d []interface{}) edpt.SystemIpThreatListIpv6SourceList1846 {
+func getObjectSystemIpThreatListIpv6SourceList1847(d []interface{}) edpt.SystemIpThreatListIpv6SourceList1847 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpThreatListIpv6SourceList1846
+	var ret edpt.SystemIpThreatListIpv6SourceList1847
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.ClassListCfg = getSliceSystemIpThreatListIpv6SourceListClassListCfg1847(in["class_list_cfg"].([]interface{}))
+		ret.ClassListCfg = getSliceSystemIpThreatListIpv6SourceListClassListCfg1848(in["class_list_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSystemIpThreatListIpv6SourceListClassListCfg1847(d []interface{}) []edpt.SystemIpThreatListIpv6SourceListClassListCfg1847 {
+func getSliceSystemIpThreatListIpv6SourceListClassListCfg1848(d []interface{}) []edpt.SystemIpThreatListIpv6SourceListClassListCfg1848 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemIpThreatListIpv6SourceListClassListCfg1847, 0, count1)
+	ret := make([]edpt.SystemIpThreatListIpv6SourceListClassListCfg1848, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemIpThreatListIpv6SourceListClassListCfg1847
+		var oi edpt.SystemIpThreatListIpv6SourceListClassListCfg1848
 		oi.ClassList = in["class_list"].(string)
 		oi.IpThreatActionTmpl = in["ip_threat_action_tmpl"].(int)
 		ret = append(ret, oi)
@@ -5094,25 +5021,25 @@ func getSliceSystemIpThreatListIpv6SourceListClassListCfg1847(d []interface{}) [
 	return ret
 }
 
-func getObjectSystemIpThreatListIpv6DestList1848(d []interface{}) edpt.SystemIpThreatListIpv6DestList1848 {
+func getObjectSystemIpThreatListIpv6DestList1849(d []interface{}) edpt.SystemIpThreatListIpv6DestList1849 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpThreatListIpv6DestList1848
+	var ret edpt.SystemIpThreatListIpv6DestList1849
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.ClassListCfg = getSliceSystemIpThreatListIpv6DestListClassListCfg1849(in["class_list_cfg"].([]interface{}))
+		ret.ClassListCfg = getSliceSystemIpThreatListIpv6DestListClassListCfg1850(in["class_list_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSystemIpThreatListIpv6DestListClassListCfg1849(d []interface{}) []edpt.SystemIpThreatListIpv6DestListClassListCfg1849 {
+func getSliceSystemIpThreatListIpv6DestListClassListCfg1850(d []interface{}) []edpt.SystemIpThreatListIpv6DestListClassListCfg1850 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemIpThreatListIpv6DestListClassListCfg1849, 0, count1)
+	ret := make([]edpt.SystemIpThreatListIpv6DestListClassListCfg1850, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemIpThreatListIpv6DestListClassListCfg1849
+		var oi edpt.SystemIpThreatListIpv6DestListClassListCfg1850
 		oi.ClassList = in["class_list"].(string)
 		oi.IpThreatActionTmpl = in["ip_threat_action_tmpl"].(int)
 		ret = append(ret, oi)
@@ -5120,26 +5047,26 @@ func getSliceSystemIpThreatListIpv6DestListClassListCfg1849(d []interface{}) []e
 	return ret
 }
 
-func getObjectSystemIpThreatListIpv4InternetHostList1850(d []interface{}) edpt.SystemIpThreatListIpv4InternetHostList1850 {
+func getObjectSystemIpThreatListIpv4InternetHostList1851(d []interface{}) edpt.SystemIpThreatListIpv4InternetHostList1851 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpThreatListIpv4InternetHostList1850
+	var ret edpt.SystemIpThreatListIpv4InternetHostList1851
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.WhiteList = in["white_list"].(string)
-		ret.ClassListCfg = getSliceSystemIpThreatListIpv4InternetHostListClassListCfg1851(in["class_list_cfg"].([]interface{}))
+		ret.ClassListCfg = getSliceSystemIpThreatListIpv4InternetHostListClassListCfg1852(in["class_list_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSystemIpThreatListIpv4InternetHostListClassListCfg1851(d []interface{}) []edpt.SystemIpThreatListIpv4InternetHostListClassListCfg1851 {
+func getSliceSystemIpThreatListIpv4InternetHostListClassListCfg1852(d []interface{}) []edpt.SystemIpThreatListIpv4InternetHostListClassListCfg1852 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemIpThreatListIpv4InternetHostListClassListCfg1851, 0, count1)
+	ret := make([]edpt.SystemIpThreatListIpv4InternetHostListClassListCfg1852, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemIpThreatListIpv4InternetHostListClassListCfg1851
+		var oi edpt.SystemIpThreatListIpv4InternetHostListClassListCfg1852
 		oi.ClassList = in["class_list"].(string)
 		oi.IpThreatActionTmpl = in["ip_threat_action_tmpl"].(int)
 		ret = append(ret, oi)
@@ -5147,26 +5074,26 @@ func getSliceSystemIpThreatListIpv4InternetHostListClassListCfg1851(d []interfac
 	return ret
 }
 
-func getObjectSystemIpThreatListIpv6InternetHostList1852(d []interface{}) edpt.SystemIpThreatListIpv6InternetHostList1852 {
+func getObjectSystemIpThreatListIpv6InternetHostList1853(d []interface{}) edpt.SystemIpThreatListIpv6InternetHostList1853 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpThreatListIpv6InternetHostList1852
+	var ret edpt.SystemIpThreatListIpv6InternetHostList1853
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.WhiteList = in["white_list"].(string)
-		ret.ClassListCfg = getSliceSystemIpThreatListIpv6InternetHostListClassListCfg1853(in["class_list_cfg"].([]interface{}))
+		ret.ClassListCfg = getSliceSystemIpThreatListIpv6InternetHostListClassListCfg1854(in["class_list_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSystemIpThreatListIpv6InternetHostListClassListCfg1853(d []interface{}) []edpt.SystemIpThreatListIpv6InternetHostListClassListCfg1853 {
+func getSliceSystemIpThreatListIpv6InternetHostListClassListCfg1854(d []interface{}) []edpt.SystemIpThreatListIpv6InternetHostListClassListCfg1854 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemIpThreatListIpv6InternetHostListClassListCfg1853, 0, count1)
+	ret := make([]edpt.SystemIpThreatListIpv6InternetHostListClassListCfg1854, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemIpThreatListIpv6InternetHostListClassListCfg1853
+		var oi edpt.SystemIpThreatListIpv6InternetHostListClassListCfg1854
 		oi.ClassList = in["class_list"].(string)
 		oi.IpThreatActionTmpl = in["ip_threat_action_tmpl"].(int)
 		ret = append(ret, oi)
@@ -5174,50 +5101,50 @@ func getSliceSystemIpThreatListIpv6InternetHostListClassListCfg1853(d []interfac
 	return ret
 }
 
-func getObjectSystemIp6Stats1854(d []interface{}) edpt.SystemIp6Stats1854 {
+func getObjectSystemIp6Stats1855(d []interface{}) edpt.SystemIp6Stats1855 {
 
 	count1 := len(d)
-	var ret edpt.SystemIp6Stats1854
+	var ret edpt.SystemIp6Stats1855
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemIp6StatsSamplingEnable1855(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemIp6StatsSamplingEnable1856(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemIp6StatsSamplingEnable1855(d []interface{}) []edpt.SystemIp6StatsSamplingEnable1855 {
+func getSliceSystemIp6StatsSamplingEnable1856(d []interface{}) []edpt.SystemIp6StatsSamplingEnable1856 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemIp6StatsSamplingEnable1855, 0, count1)
+	ret := make([]edpt.SystemIp6StatsSamplingEnable1856, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemIp6StatsSamplingEnable1855
+		var oi edpt.SystemIp6StatsSamplingEnable1856
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemIpmi1856(d []interface{}) edpt.SystemIpmi1856 {
+func getObjectSystemIpmi1857(d []interface{}) edpt.SystemIpmi1857 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpmi1856
+	var ret edpt.SystemIpmi1857
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Reset = in["reset"].(int)
-		ret.Ip = getObjectSystemIpmiIp1857(in["ip"].([]interface{}))
-		ret.Ipsrc = getObjectSystemIpmiIpsrc1858(in["ipsrc"].([]interface{}))
-		ret.User = getObjectSystemIpmiUser1859(in["user"].([]interface{}))
-		ret.Tool = getObjectSystemIpmiTool1860(in["tool"].([]interface{}))
+		ret.Ip = getObjectSystemIpmiIp1858(in["ip"].([]interface{}))
+		ret.Ipsrc = getObjectSystemIpmiIpsrc1859(in["ipsrc"].([]interface{}))
+		ret.User = getObjectSystemIpmiUser1860(in["user"].([]interface{}))
+		ret.Tool = getObjectSystemIpmiTool1861(in["tool"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSystemIpmiIp1857(d []interface{}) edpt.SystemIpmiIp1857 {
+func getObjectSystemIpmiIp1858(d []interface{}) edpt.SystemIpmiIp1858 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpmiIp1857
+	var ret edpt.SystemIpmiIp1858
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ipv4Address = in["ipv4_address"].(string)
@@ -5227,10 +5154,10 @@ func getObjectSystemIpmiIp1857(d []interface{}) edpt.SystemIpmiIp1857 {
 	return ret
 }
 
-func getObjectSystemIpmiIpsrc1858(d []interface{}) edpt.SystemIpmiIpsrc1858 {
+func getObjectSystemIpmiIpsrc1859(d []interface{}) edpt.SystemIpmiIpsrc1859 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpmiIpsrc1858
+	var ret edpt.SystemIpmiIpsrc1859
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Dhcp = in["dhcp"].(int)
@@ -5239,10 +5166,10 @@ func getObjectSystemIpmiIpsrc1858(d []interface{}) edpt.SystemIpmiIpsrc1858 {
 	return ret
 }
 
-func getObjectSystemIpmiUser1859(d []interface{}) edpt.SystemIpmiUser1859 {
+func getObjectSystemIpmiUser1860(d []interface{}) edpt.SystemIpmiUser1860 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpmiUser1859
+	var ret edpt.SystemIpmiUser1860
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Add = in["add"].(string)
@@ -5261,10 +5188,10 @@ func getObjectSystemIpmiUser1859(d []interface{}) edpt.SystemIpmiUser1859 {
 	return ret
 }
 
-func getObjectSystemIpmiTool1860(d []interface{}) edpt.SystemIpmiTool1860 {
+func getObjectSystemIpmiTool1861(d []interface{}) edpt.SystemIpmiTool1861 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpmiTool1860
+	var ret edpt.SystemIpmiTool1861
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Cmd = in["cmd"].(string)
@@ -5272,10 +5199,10 @@ func getObjectSystemIpmiTool1860(d []interface{}) edpt.SystemIpmiTool1860 {
 	return ret
 }
 
-func getObjectSystemIpmiService1861(d []interface{}) edpt.SystemIpmiService1861 {
+func getObjectSystemIpmiService1862(d []interface{}) edpt.SystemIpmiService1862 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpmiService1861
+	var ret edpt.SystemIpmiService1862
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Disable = in["disable"].(int)
@@ -5284,10 +5211,10 @@ func getObjectSystemIpmiService1861(d []interface{}) edpt.SystemIpmiService1861 
 	return ret
 }
 
-func getObjectSystemIpsec1862(d []interface{}) edpt.SystemIpsec1862 {
+func getObjectSystemIpsec1863(d []interface{}) edpt.SystemIpsec1863 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpsec1862
+	var ret edpt.SystemIpsec1863
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PacketRoundRobin = in["packet_round_robin"].(int)
@@ -5295,33 +5222,18 @@ func getObjectSystemIpsec1862(d []interface{}) edpt.SystemIpsec1862 {
 		ret.CryptoMem = in["crypto_mem"].(int)
 		ret.Qat = in["qat"].(int)
 		//omit uuid
-		ret.FpgaDecrypt = getObjectSystemIpsecFpgaDecrypt1863(in["fpga_decrypt"].([]interface{}))
+		ret.FpgaDecrypt = getObjectSystemIpsecFpgaDecrypt1864(in["fpga_decrypt"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSystemIpsecFpgaDecrypt1863(d []interface{}) edpt.SystemIpsecFpgaDecrypt1863 {
+func getObjectSystemIpsecFpgaDecrypt1864(d []interface{}) edpt.SystemIpsecFpgaDecrypt1864 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpsecFpgaDecrypt1863
+	var ret edpt.SystemIpsecFpgaDecrypt1864
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
-	}
-	return ret
-}
-
-func getObjectSystemIpv61864(d []interface{}) edpt.SystemIpv61864 {
-
-	count1 := len(d)
-	var ret edpt.SystemIpv61864
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Icmpv6UnreachableDisable = in["icmpv6_unreachable_disable"].(int)
-		ret.Icmpv6RedirectDisable = in["icmpv6_redirect_disable"].(int)
-		ret.RpfCheckEnable = in["rpf_check_enable"].(int)
-		ret.SourceRoutePktDropEnable = in["source_route_pkt_drop_enable"].(int)
-		//omit uuid
 	}
 	return ret
 }
@@ -6750,6 +6662,8 @@ func getObjectSystemResourceUsage1967(d []interface{}) edpt.SystemResourceUsage1
 	var ret edpt.SystemResourceUsage1967
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
+		ret.SslContextMemory = in["ssl_context_memory"].(int)
+		ret.SslDmaMemory = in["ssl_dma_memory"].(int)
 		ret.NatPoolAddrCount = in["nat_pool_addr_count"].(int)
 		ret.L4SessionCount = in["l4_session_count"].(int)
 		ret.AuthPortalHtmlFileSize = in["auth_portal_html_file_size"].(int)
@@ -6766,6 +6680,7 @@ func getObjectSystemResourceUsage1967(d []interface{}) edpt.SystemResourceUsage1
 		ret.RamCacheMemoryLimit = in["ram_cache_memory_limit"].(int)
 		ret.AuthSessionCount = in["auth_session_count"].(int)
 		ret.NgwafCacheEntry = in["ngwaf_cache_entry"].(int)
+		ret.JwtCacheEntry = in["jwt_cache_entry"].(int)
 		//omit uuid
 		ret.Visibility = getObjectSystemResourceUsageVisibility1968(in["visibility"].([]interface{}))
 	}
@@ -6931,61 +6846,35 @@ func getObjectSystemSpeStatus1981(d []interface{}) edpt.SystemSpeStatus1981 {
 	return ret
 }
 
-func getObjectSystemSslHwMemory1982(d []interface{}) edpt.SystemSslHwMemory1982 {
+func getObjectSystemSslReqQ1982(d []interface{}) edpt.SystemSslReqQ1982 {
 
 	count1 := len(d)
-	var ret edpt.SystemSslHwMemory1982
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.MemBlockCfg = getSliceSystemSslHwMemoryMemBlockCfg1983(in["mem_block_cfg"].([]interface{}))
-		//omit uuid
-	}
-	return ret
-}
-
-func getSliceSystemSslHwMemoryMemBlockCfg1983(d []interface{}) []edpt.SystemSslHwMemoryMemBlockCfg1983 {
-
-	count1 := len(d)
-	ret := make([]edpt.SystemSslHwMemoryMemBlockCfg1983, 0, count1)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.SystemSslHwMemoryMemBlockCfg1983
-		oi.MemBlock = in["mem_block"].(string)
-		oi.Size = in["size"].(int)
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getObjectSystemSslReqQ1984(d []interface{}) edpt.SystemSslReqQ1984 {
-
-	count1 := len(d)
-	var ret edpt.SystemSslReqQ1984
+	var ret edpt.SystemSslReqQ1982
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemSslReqQSamplingEnable1985(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemSslReqQSamplingEnable1983(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemSslReqQSamplingEnable1985(d []interface{}) []edpt.SystemSslReqQSamplingEnable1985 {
+func getSliceSystemSslReqQSamplingEnable1983(d []interface{}) []edpt.SystemSslReqQSamplingEnable1983 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemSslReqQSamplingEnable1985, 0, count1)
+	ret := make([]edpt.SystemSslReqQSamplingEnable1983, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemSslReqQSamplingEnable1985
+		var oi edpt.SystemSslReqQSamplingEnable1983
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemSslScv1986(d []interface{}) edpt.SystemSslScv1986 {
+func getObjectSystemSslScv1984(d []interface{}) edpt.SystemSslScv1984 {
 
 	count1 := len(d)
-	var ret edpt.SystemSslScv1986
+	var ret edpt.SystemSslScv1984
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
@@ -6994,10 +6883,10 @@ func getObjectSystemSslScv1986(d []interface{}) edpt.SystemSslScv1986 {
 	return ret
 }
 
-func getObjectSystemSslScvVerifyCrlSign1987(d []interface{}) edpt.SystemSslScvVerifyCrlSign1987 {
+func getObjectSystemSslScvVerifyCrlSign1985(d []interface{}) edpt.SystemSslScvVerifyCrlSign1985 {
 
 	count1 := len(d)
-	var ret edpt.SystemSslScvVerifyCrlSign1987
+	var ret edpt.SystemSslScvVerifyCrlSign1985
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
@@ -7006,10 +6895,10 @@ func getObjectSystemSslScvVerifyCrlSign1987(d []interface{}) edpt.SystemSslScvVe
 	return ret
 }
 
-func getObjectSystemSslScvVerifyHost1988(d []interface{}) edpt.SystemSslScvVerifyHost1988 {
+func getObjectSystemSslScvVerifyHost1986(d []interface{}) edpt.SystemSslScvVerifyHost1986 {
 
 	count1 := len(d)
-	var ret edpt.SystemSslScvVerifyHost1988
+	var ret edpt.SystemSslScvVerifyHost1986
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Disable = in["disable"].(int)
@@ -7018,10 +6907,10 @@ func getObjectSystemSslScvVerifyHost1988(d []interface{}) edpt.SystemSslScvVerif
 	return ret
 }
 
-func getObjectSystemSslSetCompatibleCipher1989(d []interface{}) edpt.SystemSslSetCompatibleCipher1989 {
+func getObjectSystemSslSetCompatibleCipher1987(d []interface{}) edpt.SystemSslSetCompatibleCipher1987 {
 
 	count1 := len(d)
-	var ret edpt.SystemSslSetCompatibleCipher1989
+	var ret edpt.SystemSslSetCompatibleCipher1987
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Disable = in["disable"].(int)
@@ -7030,16 +6919,16 @@ func getObjectSystemSslSetCompatibleCipher1989(d []interface{}) edpt.SystemSslSe
 	return ret
 }
 
-func getObjectSystemSslStatus1990(d []interface{}) edpt.SystemSslStatus1990 {
+func getObjectSystemSslStatus1988(d []interface{}) edpt.SystemSslStatus1988 {
 
-	var ret edpt.SystemSslStatus1990
+	var ret edpt.SystemSslStatus1988
 	return ret
 }
 
-func getObjectSystemSyslogTimeMsec1991(d []interface{}) edpt.SystemSyslogTimeMsec1991 {
+func getObjectSystemSyslogTimeMsec1989(d []interface{}) edpt.SystemSyslogTimeMsec1989 {
 
 	count1 := len(d)
-	var ret edpt.SystemSyslogTimeMsec1991
+	var ret edpt.SystemSyslogTimeMsec1989
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.EnableFlag = in["enable_flag"].(int)
@@ -7047,28 +6936,28 @@ func getObjectSystemSyslogTimeMsec1991(d []interface{}) edpt.SystemSyslogTimeMse
 	return ret
 }
 
-func getObjectSystemTableIntegrity1992(d []interface{}) edpt.SystemTableIntegrity1992 {
+func getObjectSystemTableIntegrity1990(d []interface{}) edpt.SystemTableIntegrity1990 {
 
 	count1 := len(d)
-	var ret edpt.SystemTableIntegrity1992
+	var ret edpt.SystemTableIntegrity1990
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Table = in["table"].(string)
 		ret.AuditAction = in["audit_action"].(string)
 		ret.AutoSyncAction = in["auto_sync_action"].(string)
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemTableIntegritySamplingEnable1993(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemTableIntegritySamplingEnable1991(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemTableIntegritySamplingEnable1993(d []interface{}) []edpt.SystemTableIntegritySamplingEnable1993 {
+func getSliceSystemTableIntegritySamplingEnable1991(d []interface{}) []edpt.SystemTableIntegritySamplingEnable1991 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemTableIntegritySamplingEnable1993, 0, count1)
+	ret := make([]edpt.SystemTableIntegritySamplingEnable1991, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemTableIntegritySamplingEnable1993
+		var oi edpt.SystemTableIntegritySamplingEnable1991
 		oi.Counters1 = in["counters1"].(string)
 		oi.Counters2 = in["counters2"].(string)
 		oi.Counters3 = in["counters3"].(string)
@@ -7077,36 +6966,36 @@ func getSliceSystemTableIntegritySamplingEnable1993(d []interface{}) []edpt.Syst
 	return ret
 }
 
-func getObjectSystemTcp1994(d []interface{}) edpt.SystemTcp1994 {
+func getObjectSystemTcp1992(d []interface{}) edpt.SystemTcp1992 {
 
 	count1 := len(d)
-	var ret edpt.SystemTcp1994
+	var ret edpt.SystemTcp1992
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemTcpSamplingEnable1995(in["sampling_enable"].([]interface{}))
-		ret.RateLimitResetUnknownConn = getObjectSystemTcpRateLimitResetUnknownConn1996(in["rate_limit_reset_unknown_conn"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemTcpSamplingEnable1993(in["sampling_enable"].([]interface{}))
+		ret.RateLimitResetUnknownConn = getObjectSystemTcpRateLimitResetUnknownConn1994(in["rate_limit_reset_unknown_conn"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemTcpSamplingEnable1995(d []interface{}) []edpt.SystemTcpSamplingEnable1995 {
+func getSliceSystemTcpSamplingEnable1993(d []interface{}) []edpt.SystemTcpSamplingEnable1993 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemTcpSamplingEnable1995, 0, count1)
+	ret := make([]edpt.SystemTcpSamplingEnable1993, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemTcpSamplingEnable1995
+		var oi edpt.SystemTcpSamplingEnable1993
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemTcpRateLimitResetUnknownConn1996(d []interface{}) edpt.SystemTcpRateLimitResetUnknownConn1996 {
+func getObjectSystemTcpRateLimitResetUnknownConn1994(d []interface{}) edpt.SystemTcpRateLimitResetUnknownConn1994 {
 
 	count1 := len(d)
-	var ret edpt.SystemTcpRateLimitResetUnknownConn1996
+	var ret edpt.SystemTcpRateLimitResetUnknownConn1994
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PktRateForResetUnknownConn = in["pkt_rate_for_reset_unknown_conn"].(int)
@@ -7116,86 +7005,86 @@ func getObjectSystemTcpRateLimitResetUnknownConn1996(d []interface{}) edpt.Syste
 	return ret
 }
 
-func getObjectSystemTcpStats1997(d []interface{}) edpt.SystemTcpStats1997 {
+func getObjectSystemTcpStats1995(d []interface{}) edpt.SystemTcpStats1995 {
 
 	count1 := len(d)
-	var ret edpt.SystemTcpStats1997
+	var ret edpt.SystemTcpStats1995
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemTcpStatsSamplingEnable1998(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemTcpStatsSamplingEnable1996(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemTcpStatsSamplingEnable1998(d []interface{}) []edpt.SystemTcpStatsSamplingEnable1998 {
+func getSliceSystemTcpStatsSamplingEnable1996(d []interface{}) []edpt.SystemTcpStatsSamplingEnable1996 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemTcpStatsSamplingEnable1998, 0, count1)
+	ret := make([]edpt.SystemTcpStatsSamplingEnable1996, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemTcpStatsSamplingEnable1998
+		var oi edpt.SystemTcpStatsSamplingEnable1996
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemTcpSynPerSec1999(d []interface{}) edpt.SystemTcpSynPerSec1999 {
+func getObjectSystemTcpSynPerSec1997(d []interface{}) edpt.SystemTcpSynPerSec1997 {
 
-	var ret edpt.SystemTcpSynPerSec1999
+	var ret edpt.SystemTcpSynPerSec1997
 	return ret
 }
 
-func getObjectSystemTelemetryLog2000(d []interface{}) edpt.SystemTelemetryLog2000 {
+func getObjectSystemTelemetryLog1998(d []interface{}) edpt.SystemTelemetryLog1998 {
 
 	count1 := len(d)
-	var ret edpt.SystemTelemetryLog2000
+	var ret edpt.SystemTelemetryLog1998
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.TopKSourceList = getObjectSystemTelemetryLogTopKSourceList2001(in["top_k_source_list"].([]interface{}))
-		ret.TopKAppSvcList = getObjectSystemTelemetryLogTopKAppSvcList2002(in["top_k_app_svc_list"].([]interface{}))
-		ret.DeviceStatus = getObjectSystemTelemetryLogDeviceStatus2003(in["device_status"].([]interface{}))
-		ret.Environment = getObjectSystemTelemetryLogEnvironment2004(in["environment"].([]interface{}))
-		ret.PartitionMetrics = getObjectSystemTelemetryLogPartitionMetrics2005(in["partition_metrics"].([]interface{}))
+		ret.TopKSourceList = getObjectSystemTelemetryLogTopKSourceList1999(in["top_k_source_list"].([]interface{}))
+		ret.TopKAppSvcList = getObjectSystemTelemetryLogTopKAppSvcList2000(in["top_k_app_svc_list"].([]interface{}))
+		ret.DeviceStatus = getObjectSystemTelemetryLogDeviceStatus2001(in["device_status"].([]interface{}))
+		ret.Environment = getObjectSystemTelemetryLogEnvironment2002(in["environment"].([]interface{}))
+		ret.PartitionMetrics = getObjectSystemTelemetryLogPartitionMetrics2003(in["partition_metrics"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSystemTelemetryLogTopKSourceList2001(d []interface{}) edpt.SystemTelemetryLogTopKSourceList2001 {
+func getObjectSystemTelemetryLogTopKSourceList1999(d []interface{}) edpt.SystemTelemetryLogTopKSourceList1999 {
 
-	var ret edpt.SystemTelemetryLogTopKSourceList2001
+	var ret edpt.SystemTelemetryLogTopKSourceList1999
 	return ret
 }
 
-func getObjectSystemTelemetryLogTopKAppSvcList2002(d []interface{}) edpt.SystemTelemetryLogTopKAppSvcList2002 {
+func getObjectSystemTelemetryLogTopKAppSvcList2000(d []interface{}) edpt.SystemTelemetryLogTopKAppSvcList2000 {
 
-	var ret edpt.SystemTelemetryLogTopKAppSvcList2002
+	var ret edpt.SystemTelemetryLogTopKAppSvcList2000
 	return ret
 }
 
-func getObjectSystemTelemetryLogDeviceStatus2003(d []interface{}) edpt.SystemTelemetryLogDeviceStatus2003 {
+func getObjectSystemTelemetryLogDeviceStatus2001(d []interface{}) edpt.SystemTelemetryLogDeviceStatus2001 {
 
-	var ret edpt.SystemTelemetryLogDeviceStatus2003
+	var ret edpt.SystemTelemetryLogDeviceStatus2001
 	return ret
 }
 
-func getObjectSystemTelemetryLogEnvironment2004(d []interface{}) edpt.SystemTelemetryLogEnvironment2004 {
+func getObjectSystemTelemetryLogEnvironment2002(d []interface{}) edpt.SystemTelemetryLogEnvironment2002 {
 
-	var ret edpt.SystemTelemetryLogEnvironment2004
+	var ret edpt.SystemTelemetryLogEnvironment2002
 	return ret
 }
 
-func getObjectSystemTelemetryLogPartitionMetrics2005(d []interface{}) edpt.SystemTelemetryLogPartitionMetrics2005 {
+func getObjectSystemTelemetryLogPartitionMetrics2003(d []interface{}) edpt.SystemTelemetryLogPartitionMetrics2003 {
 
-	var ret edpt.SystemTelemetryLogPartitionMetrics2005
+	var ret edpt.SystemTelemetryLogPartitionMetrics2003
 	return ret
 }
 
-func getObjectSystemTemplate2006(d []interface{}) edpt.SystemTemplate2006 {
+func getObjectSystemTemplate2004(d []interface{}) edpt.SystemTemplate2004 {
 
 	count1 := len(d)
-	var ret edpt.SystemTemplate2006
+	var ret edpt.SystemTemplate2004
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TemplatePolicy = in["template_policy"].(string)
@@ -7204,10 +7093,10 @@ func getObjectSystemTemplate2006(d []interface{}) edpt.SystemTemplate2006 {
 	return ret
 }
 
-func getObjectSystemTemplateBind2007(d []interface{}) edpt.SystemTemplateBind2007 {
+func getObjectSystemTemplateBind2005(d []interface{}) edpt.SystemTemplateBind2005 {
 
 	count1 := len(d)
-	var ret edpt.SystemTemplateBind2007
+	var ret edpt.SystemTemplateBind2005
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MonitorList = getSliceSystemTemplateBindMonitorList(in["monitor_list"].([]interface{}))
@@ -7229,35 +7118,35 @@ func getSliceSystemTemplateBindMonitorList(d []interface{}) []edpt.SystemTemplat
 	return ret
 }
 
-func getObjectSystemThroughput2008(d []interface{}) edpt.SystemThroughput2008 {
+func getObjectSystemThroughput2006(d []interface{}) edpt.SystemThroughput2006 {
 
 	count1 := len(d)
-	var ret edpt.SystemThroughput2008
+	var ret edpt.SystemThroughput2006
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemThroughputSamplingEnable2009(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemThroughputSamplingEnable2007(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemThroughputSamplingEnable2009(d []interface{}) []edpt.SystemThroughputSamplingEnable2009 {
+func getSliceSystemThroughputSamplingEnable2007(d []interface{}) []edpt.SystemThroughputSamplingEnable2007 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemThroughputSamplingEnable2009, 0, count1)
+	ret := make([]edpt.SystemThroughputSamplingEnable2007, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemThroughputSamplingEnable2009
+		var oi edpt.SystemThroughputSamplingEnable2007
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSystemTimeoutValue2010(d []interface{}) edpt.SystemTimeoutValue2010 {
+func getObjectSystemTimeoutValue2008(d []interface{}) edpt.SystemTimeoutValue2008 {
 
 	count1 := len(d)
-	var ret edpt.SystemTimeoutValue2010
+	var ret edpt.SystemTimeoutValue2008
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ftp = in["ftp"].(int)
@@ -7271,21 +7160,33 @@ func getObjectSystemTimeoutValue2010(d []interface{}) edpt.SystemTimeoutValue201
 	return ret
 }
 
-func getObjectSystemTrunk2011(d []interface{}) edpt.SystemTrunk2011 {
+func getObjectSystemTls13Mgmt2009(d []interface{}) edpt.SystemTls13Mgmt2009 {
 
 	count1 := len(d)
-	var ret edpt.SystemTrunk2011
+	var ret edpt.SystemTls13Mgmt2009
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.LoadBalance = getObjectSystemTrunkLoadBalance2012(in["load_balance"].([]interface{}))
+		ret.Enable = in["enable"].(int)
+		//omit uuid
 	}
 	return ret
 }
 
-func getObjectSystemTrunkLoadBalance2012(d []interface{}) edpt.SystemTrunkLoadBalance2012 {
+func getObjectSystemTrunk2010(d []interface{}) edpt.SystemTrunk2010 {
 
 	count1 := len(d)
-	var ret edpt.SystemTrunkLoadBalance2012
+	var ret edpt.SystemTrunk2010
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.LoadBalance = getObjectSystemTrunkLoadBalance2011(in["load_balance"].([]interface{}))
+	}
+	return ret
+}
+
+func getObjectSystemTrunkLoadBalance2011(d []interface{}) edpt.SystemTrunkLoadBalance2011 {
+
+	count1 := len(d)
+	var ret edpt.SystemTrunkLoadBalance2011
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.UseL3 = in["use_l3"].(int)
@@ -7295,10 +7196,10 @@ func getObjectSystemTrunkLoadBalance2012(d []interface{}) edpt.SystemTrunkLoadBa
 	return ret
 }
 
-func getObjectSystemTrunkHwHash2013(d []interface{}) edpt.SystemTrunkHwHash2013 {
+func getObjectSystemTrunkHwHash2012(d []interface{}) edpt.SystemTrunkHwHash2012 {
 
 	count1 := len(d)
-	var ret edpt.SystemTrunkHwHash2013
+	var ret edpt.SystemTrunkHwHash2012
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mode = in["mode"].(int)
@@ -7307,10 +7208,10 @@ func getObjectSystemTrunkHwHash2013(d []interface{}) edpt.SystemTrunkHwHash2013 
 	return ret
 }
 
-func getObjectSystemTrunkXauiHwHash2014(d []interface{}) edpt.SystemTrunkXauiHwHash2014 {
+func getObjectSystemTrunkXauiHwHash2013(d []interface{}) edpt.SystemTrunkXauiHwHash2013 {
 
 	count1 := len(d)
-	var ret edpt.SystemTrunkXauiHwHash2014
+	var ret edpt.SystemTrunkXauiHwHash2013
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mode = in["mode"].(int)
@@ -7319,10 +7220,10 @@ func getObjectSystemTrunkXauiHwHash2014(d []interface{}) edpt.SystemTrunkXauiHwH
 	return ret
 }
 
-func getObjectSystemTso2015(d []interface{}) edpt.SystemTso2015 {
+func getObjectSystemTso2014(d []interface{}) edpt.SystemTso2014 {
 
 	count1 := len(d)
-	var ret edpt.SystemTso2015
+	var ret edpt.SystemTso2014
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
@@ -7331,10 +7232,10 @@ func getObjectSystemTso2015(d []interface{}) edpt.SystemTso2015 {
 	return ret
 }
 
-func getObjectSystemUdp2016(d []interface{}) edpt.SystemUdp2016 {
+func getObjectSystemUdp2015(d []interface{}) edpt.SystemUdp2015 {
 
 	count1 := len(d)
-	var ret edpt.SystemUdp2016
+	var ret edpt.SystemUdp2015
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SkipChecksumWhenZero = in["skip_checksum_when_zero"].(int)
@@ -7343,16 +7244,16 @@ func getObjectSystemUdp2016(d []interface{}) edpt.SystemUdp2016 {
 	return ret
 }
 
-func getObjectSystemUpgradeStatus2017(d []interface{}) edpt.SystemUpgradeStatus2017 {
+func getObjectSystemUpgradeStatus2016(d []interface{}) edpt.SystemUpgradeStatus2016 {
 
-	var ret edpt.SystemUpgradeStatus2017
+	var ret edpt.SystemUpgradeStatus2016
 	return ret
 }
 
-func getObjectSystemVeMacScheme2018(d []interface{}) edpt.SystemVeMacScheme2018 {
+func getObjectSystemVeMacScheme2017(d []interface{}) edpt.SystemVeMacScheme2017 {
 
 	count1 := len(d)
-	var ret edpt.SystemVeMacScheme2018
+	var ret edpt.SystemVeMacScheme2017
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.VeMacSchemeVal = in["ve_mac_scheme_val"].(string)
@@ -7361,10 +7262,10 @@ func getObjectSystemVeMacScheme2018(d []interface{}) edpt.SystemVeMacScheme2018 
 	return ret
 }
 
-func getObjectSystemXauiDlbMode2019(d []interface{}) edpt.SystemXauiDlbMode2019 {
+func getObjectSystemXauiDlbMode2018(d []interface{}) edpt.SystemXauiDlbMode2018 {
 
 	count1 := len(d)
-	var ret edpt.SystemXauiDlbMode2019
+	var ret edpt.SystemXauiDlbMode2018
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
@@ -7375,87 +7276,84 @@ func getObjectSystemXauiDlbMode2019(d []interface{}) edpt.SystemXauiDlbMode2019 
 
 func dataToEndpointSystem(d *schema.ResourceData) edpt.System {
 	var ret edpt.System
-	ret.Inst.AddCpuCore = getObjectSystemAddCpuCore1755(d.Get("add_cpu_core").([]interface{}))
-	ret.Inst.AddPort = getObjectSystemAddPort1756(d.Get("add_port").([]interface{}))
-	ret.Inst.AllVlanLimit = getObjectSystemAllVlanLimit1757(d.Get("all_vlan_limit").([]interface{}))
+	ret.Inst.AddCpuCore = getObjectSystemAddCpuCore1756(d.Get("add_cpu_core").([]interface{}))
+	ret.Inst.AddPort = getObjectSystemAddPort1757(d.Get("add_port").([]interface{}))
+	ret.Inst.AllVlanLimit = getObjectSystemAllVlanLimit1758(d.Get("all_vlan_limit").([]interface{}))
 	ret.Inst.AnomalyLog = d.Get("anomaly_log").(int)
 	ret.Inst.AnomalyLogRateLimit = d.Get("anomaly_log_rate_limit").(int)
-	ret.Inst.AppPerformance = getObjectSystemAppPerformance1758(d.Get("app_performance").([]interface{}))
-	ret.Inst.AppsGlobal = getObjectSystemAppsGlobal1760(d.Get("apps_global").([]interface{}))
-	ret.Inst.AsicDebugDump = getObjectSystemAsicDebugDump1761(d.Get("asic_debug_dump").([]interface{}))
-	ret.Inst.AsicMmuFailSafe = getObjectSystemAsicMmuFailSafe1762(d.Get("asic_mmu_fail_safe").([]interface{}))
+	ret.Inst.AppPerformance = getObjectSystemAppPerformance1759(d.Get("app_performance").([]interface{}))
+	ret.Inst.AppsGlobal = getObjectSystemAppsGlobal1761(d.Get("apps_global").([]interface{}))
+	ret.Inst.AsicDebugDump = getObjectSystemAsicDebugDump1762(d.Get("asic_debug_dump").([]interface{}))
+	ret.Inst.AsicMmuFailSafe = getObjectSystemAsicMmuFailSafe1763(d.Get("asic_mmu_fail_safe").([]interface{}))
 	ret.Inst.AttackLog = d.Get("attack_log").(int)
-	ret.Inst.Bandwidth = getObjectSystemBandwidth1763(d.Get("bandwidth").([]interface{}))
-	ret.Inst.Bfd = getObjectSystemBfd1765(d.Get("bfd").([]interface{}))
-	ret.Inst.ClThreatCategory = getObjectSystemClThreatCategory1767(d.Get("cl_threat_category").([]interface{}))
+	ret.Inst.Bandwidth = getObjectSystemBandwidth1764(d.Get("bandwidth").([]interface{}))
+	ret.Inst.Bfd = getObjectSystemBfd1766(d.Get("bfd").([]interface{}))
+	ret.Inst.ClThreatCategory = getObjectSystemClThreatCategory1768(d.Get("cl_threat_category").([]interface{}))
 	ret.Inst.ClassListHitcountEnable = d.Get("class_list_hitcount_enable").(int)
-	ret.Inst.CliMonitorInterval = getObjectSystemCliMonitorInterval1768(d.Get("cli_monitor_interval").([]interface{}))
-	ret.Inst.CmUpdateFileNameRef = getObjectSystemCmUpdateFileNameRef1769(d.Get("cm_update_file_name_ref").([]interface{}))
-	ret.Inst.ConfigMgmt = getObjectSystemConfigMgmt1770(d.Get("config_mgmt").([]interface{}))
-	ret.Inst.ControlCpu = getObjectSystemControlCpu1774(d.Get("control_cpu").([]interface{}))
-	ret.Inst.Core = getObjectSystemCore1775(d.Get("core").([]interface{}))
-	ret.Inst.CosqShow = getObjectSystemCosqShow1776(d.Get("cosq_show").([]interface{}))
-	ret.Inst.CosqStats = getObjectSystemCosqStats1777(d.Get("cosq_stats").([]interface{}))
-	ret.Inst.CounterLibAccounting = getObjectSystemCounterLibAccounting1778(d.Get("counter_lib_accounting").([]interface{}))
-	ret.Inst.CpuHyperThread = getObjectSystemCpuHyperThread1779(d.Get("cpu_hyper_thread").([]interface{}))
-	ret.Inst.CpuList = getObjectSystemCpuList1780(d.Get("cpu_list").([]interface{}))
-	ret.Inst.CpuLoadSharing = getObjectSystemCpuLoadSharing1781(d.Get("cpu_load_sharing").([]interface{}))
-	ret.Inst.CpuMap = getObjectSystemCpuMap1784(d.Get("cpu_map").([]interface{}))
-	ret.Inst.CpuPacketPrioSupport = getObjectSystemCpuPacketPrioSupport1785(d.Get("cpu_packet_prio_support").([]interface{}))
-	ret.Inst.DataCpu = getObjectSystemDataCpu1786(d.Get("data_cpu").([]interface{}))
+	ret.Inst.CliMonitorInterval = getObjectSystemCliMonitorInterval1769(d.Get("cli_monitor_interval").([]interface{}))
+	ret.Inst.CmUpdateFileNameRef = getObjectSystemCmUpdateFileNameRef1770(d.Get("cm_update_file_name_ref").([]interface{}))
+	ret.Inst.ConfigMgmt = getObjectSystemConfigMgmt1771(d.Get("config_mgmt").([]interface{}))
+	ret.Inst.ControlCpu = getObjectSystemControlCpu1775(d.Get("control_cpu").([]interface{}))
+	ret.Inst.Core = getObjectSystemCore1776(d.Get("core").([]interface{}))
+	ret.Inst.CosqShow = getObjectSystemCosqShow1777(d.Get("cosq_show").([]interface{}))
+	ret.Inst.CosqStats = getObjectSystemCosqStats1778(d.Get("cosq_stats").([]interface{}))
+	ret.Inst.CounterLibAccounting = getObjectSystemCounterLibAccounting1779(d.Get("counter_lib_accounting").([]interface{}))
+	ret.Inst.CpuHyperThread = getObjectSystemCpuHyperThread1780(d.Get("cpu_hyper_thread").([]interface{}))
+	ret.Inst.CpuList = getObjectSystemCpuList1781(d.Get("cpu_list").([]interface{}))
+	ret.Inst.CpuLoadSharing = getObjectSystemCpuLoadSharing1782(d.Get("cpu_load_sharing").([]interface{}))
+	ret.Inst.CpuMap = getObjectSystemCpuMap1785(d.Get("cpu_map").([]interface{}))
+	ret.Inst.CpuPacketPrioSupport = getObjectSystemCpuPacketPrioSupport1786(d.Get("cpu_packet_prio_support").([]interface{}))
+	ret.Inst.DataCpu = getObjectSystemDataCpu1787(d.Get("data_cpu").([]interface{}))
 	ret.Inst.DdosAttack = d.Get("ddos_attack").(int)
 	ret.Inst.DdosLog = d.Get("ddos_log").(int)
 	ret.Inst.DefaultMtu = d.Get("default_mtu").(int)
-	ret.Inst.DelPort = getObjectSystemDelPort1787(d.Get("del_port").([]interface{}))
-	ret.Inst.DeleteCpuCore = getObjectSystemDeleteCpuCore1788(d.Get("delete_cpu_core").([]interface{}))
-	ret.Inst.DisableSshAgentForwarding = d.Get("disable_ssh_agent_forwarding").(int)
-	ret.Inst.Dns = getObjectSystemDns1789(d.Get("dns").([]interface{}))
-	ret.Inst.DnsCache = getObjectSystemDnsCache1793(d.Get("dns_cache").([]interface{}))
+	ret.Inst.DelPort = getObjectSystemDelPort1788(d.Get("del_port").([]interface{}))
+	ret.Inst.DeleteCpuCore = getObjectSystemDeleteCpuCore1789(d.Get("delete_cpu_core").([]interface{}))
+	ret.Inst.Dns = getObjectSystemDns1790(d.Get("dns").([]interface{}))
+	ret.Inst.DnsCache = getObjectSystemDnsCache1794(d.Get("dns_cache").([]interface{}))
 	ret.Inst.DomainListHitcountEnable = d.Get("domain_list_hitcount_enable").(int)
-	ret.Inst.DomainListInfo = getObjectSystemDomainListInfo1795(d.Get("domain_list_info").([]interface{}))
-	ret.Inst.DomainListSettings = getObjectSystemDomainListSettings1796(d.Get("domain_list_settings").([]interface{}))
-	ret.Inst.DpdkStats = getObjectSystemDpdkStats1797(d.Get("dpdk_stats").([]interface{}))
+	ret.Inst.DomainListInfo = getObjectSystemDomainListInfo1796(d.Get("domain_list_info").([]interface{}))
+	ret.Inst.DomainListSettings = getObjectSystemDomainListSettings1797(d.Get("domain_list_settings").([]interface{}))
+	ret.Inst.DpdkStats = getObjectSystemDpdkStats1798(d.Get("dpdk_stats").([]interface{}))
 	ret.Inst.DropLinuxClosedPortSyn = d.Get("drop_linux_closed_port_syn").(string)
 	ret.Inst.DynamicServiceDnsSocketPool = d.Get("dynamic_service_dns_socket_pool").(int)
-	ret.Inst.EnableDiskEncryption = getObjectSystemEnableDiskEncryption1799(d.Get("enable_disk_encryption").([]interface{}))
-	ret.Inst.EnablePassword = getObjectSystemEnablePassword1800(d.Get("enable_password").([]interface{}))
-	ret.Inst.Environment = getObjectSystemEnvironment1801(d.Get("environment").([]interface{}))
+	ret.Inst.EnableDiskEncryption = getObjectSystemEnableDiskEncryption1800(d.Get("enable_disk_encryption").([]interface{}))
+	ret.Inst.EnablePassword = getObjectSystemEnablePassword1801(d.Get("enable_password").([]interface{}))
+	ret.Inst.Environment = getObjectSystemEnvironment1802(d.Get("environment").([]interface{}))
 	ret.Inst.EvenPortHashEnable = d.Get("even_port_hash_enable").(int)
-	ret.Inst.ExtOnlyLogging = getObjectSystemExtOnlyLogging1802(d.Get("ext_only_logging").([]interface{}))
-	ret.Inst.ForcedGroupSpeedList = getSliceSystemForcedGroupSpeedList(d.Get("forced_group_speed_list").([]interface{}))
-	ret.Inst.FpgaCoreCrc = getObjectSystemFpgaCoreCrc1803(d.Get("fpga_core_crc").([]interface{}))
-	ret.Inst.FpgaDrop = getObjectSystemFpgaDrop1804(d.Get("fpga_drop").([]interface{}))
-	ret.Inst.Fw = getObjectSystemFw1806(d.Get("fw").([]interface{}))
+	ret.Inst.ExtOnlyLogging = getObjectSystemExtOnlyLogging1803(d.Get("ext_only_logging").([]interface{}))
+	ret.Inst.FpgaCoreCrc = getObjectSystemFpgaCoreCrc1804(d.Get("fpga_core_crc").([]interface{}))
+	ret.Inst.FpgaDrop = getObjectSystemFpgaDrop1805(d.Get("fpga_drop").([]interface{}))
+	ret.Inst.Fw = getObjectSystemFw1807(d.Get("fw").([]interface{}))
 	ret.Inst.GeoDbHitcountEnable = d.Get("geo_db_hitcount_enable").(int)
-	ret.Inst.GeoLocation = getObjectSystemGeoLocation1807(d.Get("geo_location").([]interface{}))
-	ret.Inst.Geoloc = getObjectSystemGeoloc1811(d.Get("geoloc").([]interface{}))
+	ret.Inst.GeoLocation = getObjectSystemGeoLocation1808(d.Get("geo_location").([]interface{}))
+	ret.Inst.Geoloc = getObjectSystemGeoloc1812(d.Get("geoloc").([]interface{}))
 	ret.Inst.GeolocListList = getSliceSystemGeolocListList(d.Get("geoloc_list_list").([]interface{}))
-	ret.Inst.GeolocNameHelper = getObjectSystemGeolocNameHelper1813(d.Get("geoloc_name_helper").([]interface{}))
-	ret.Inst.GeolocationFile = getObjectSystemGeolocationFile1815(d.Get("geolocation_file").([]interface{}))
-	ret.Inst.Glid = getObjectSystemGlid1817(d.Get("glid").([]interface{}))
-	ret.Inst.GuestFile = getObjectSystemGuestFile1818(d.Get("guest_file").([]interface{}))
-	ret.Inst.GuiImageList = getObjectSystemGuiImageList1819(d.Get("gui_image_list").([]interface{}))
-	ret.Inst.Hardware = getObjectSystemHardware1820(d.Get("hardware").([]interface{}))
-	ret.Inst.HardwareAccelerate = getObjectSystemHardwareAccelerate1821(d.Get("hardware_accelerate").([]interface{}))
+	ret.Inst.GeolocNameHelper = getObjectSystemGeolocNameHelper1814(d.Get("geoloc_name_helper").([]interface{}))
+	ret.Inst.GeolocationFile = getObjectSystemGeolocationFile1816(d.Get("geolocation_file").([]interface{}))
+	ret.Inst.Glid = getObjectSystemGlid1818(d.Get("glid").([]interface{}))
+	ret.Inst.GuestFile = getObjectSystemGuestFile1819(d.Get("guest_file").([]interface{}))
+	ret.Inst.GuiImageList = getObjectSystemGuiImageList1820(d.Get("gui_image_list").([]interface{}))
+	ret.Inst.Hardware = getObjectSystemHardware1821(d.Get("hardware").([]interface{}))
+	ret.Inst.HardwareAccelerate = getObjectSystemHardwareAccelerate1822(d.Get("hardware_accelerate").([]interface{}))
 	ret.Inst.HealthCheckList = getSliceSystemHealthCheckList(d.Get("health_check_list").([]interface{}))
-	ret.Inst.HighMemoryL4Session = getObjectSystemHighMemoryL4Session1825(d.Get("high_memory_l4_session").([]interface{}))
-	ret.Inst.HrxqStatus = getObjectSystemHrxqStatus1826(d.Get("hrxq_status").([]interface{}))
+	ret.Inst.HighMemoryL4Session = getObjectSystemHighMemoryL4Session1826(d.Get("high_memory_l4_session").([]interface{}))
+	ret.Inst.HrxqStatus = getObjectSystemHrxqStatus1827(d.Get("hrxq_status").([]interface{}))
 	ret.Inst.HwBlockingEnable = d.Get("hw_blocking_enable").(int)
-	ret.Inst.Icmp = getObjectSystemIcmp1827(d.Get("icmp").([]interface{}))
-	ret.Inst.IcmpRate = getObjectSystemIcmpRate1829(d.Get("icmp_rate").([]interface{}))
-	ret.Inst.Icmp6 = getObjectSystemIcmp61831(d.Get("icmp6").([]interface{}))
-	ret.Inst.InuseCpuList = getObjectSystemInuseCpuList1833(d.Get("inuse_cpu_list").([]interface{}))
-	ret.Inst.InusePortList = getObjectSystemInusePortList1834(d.Get("inuse_port_list").([]interface{}))
-	ret.Inst.IoCpu = getObjectSystemIoCpu1835(d.Get("io_cpu").([]interface{}))
-	ret.Inst.Ip = getObjectSystemIp1836(d.Get("ip").([]interface{}))
-	ret.Inst.IpDnsCache = getObjectSystemIpDnsCache1837(d.Get("ip_dns_cache").([]interface{}))
-	ret.Inst.IpStats = getObjectSystemIpStats1838(d.Get("ip_stats").([]interface{}))
-	ret.Inst.IpThreatList = getObjectSystemIpThreatList1840(d.Get("ip_threat_list").([]interface{}))
-	ret.Inst.Ip6Stats = getObjectSystemIp6Stats1854(d.Get("ip6_stats").([]interface{}))
-	ret.Inst.Ipmi = getObjectSystemIpmi1856(d.Get("ipmi").([]interface{}))
-	ret.Inst.IpmiService = getObjectSystemIpmiService1861(d.Get("ipmi_service").([]interface{}))
-	ret.Inst.Ipsec = getObjectSystemIpsec1862(d.Get("ipsec").([]interface{}))
-	ret.Inst.Ipv6 = getObjectSystemIpv61864(d.Get("ipv6").([]interface{}))
+	ret.Inst.Icmp = getObjectSystemIcmp1828(d.Get("icmp").([]interface{}))
+	ret.Inst.IcmpRate = getObjectSystemIcmpRate1830(d.Get("icmp_rate").([]interface{}))
+	ret.Inst.Icmp6 = getObjectSystemIcmp61832(d.Get("icmp6").([]interface{}))
+	ret.Inst.InuseCpuList = getObjectSystemInuseCpuList1834(d.Get("inuse_cpu_list").([]interface{}))
+	ret.Inst.InusePortList = getObjectSystemInusePortList1835(d.Get("inuse_port_list").([]interface{}))
+	ret.Inst.IoCpu = getObjectSystemIoCpu1836(d.Get("io_cpu").([]interface{}))
+	ret.Inst.Ip = getObjectSystemIp1837(d.Get("ip").([]interface{}))
+	ret.Inst.IpDnsCache = getObjectSystemIpDnsCache1838(d.Get("ip_dns_cache").([]interface{}))
+	ret.Inst.IpStats = getObjectSystemIpStats1839(d.Get("ip_stats").([]interface{}))
+	ret.Inst.IpThreatList = getObjectSystemIpThreatList1841(d.Get("ip_threat_list").([]interface{}))
+	ret.Inst.Ip6Stats = getObjectSystemIp6Stats1855(d.Get("ip6_stats").([]interface{}))
+	ret.Inst.Ipmi = getObjectSystemIpmi1857(d.Get("ipmi").([]interface{}))
+	ret.Inst.IpmiService = getObjectSystemIpmiService1862(d.Get("ipmi_service").([]interface{}))
+	ret.Inst.Ipsec = getObjectSystemIpsec1863(d.Get("ipsec").([]interface{}))
 	ret.Inst.Ipv6PrefixLength = d.Get("ipv6_prefix_length").(int)
 	ret.Inst.JobOffload = getObjectSystemJobOffload1865(d.Get("job_offload").([]interface{}))
 	ret.Inst.LinkCapability = getObjectSystemLinkCapability1867(d.Get("link_capability").([]interface{}))
@@ -7509,32 +7407,32 @@ func dataToEndpointSystem(d *schema.ResourceData) edpt.System {
 	ret.Inst.SpeProfile = getObjectSystemSpeProfile1980(d.Get("spe_profile").([]interface{}))
 	ret.Inst.SpeStatus = getObjectSystemSpeStatus1981(d.Get("spe_status").([]interface{}))
 	ret.Inst.SrcIpHashEnable = d.Get("src_ip_hash_enable").(int)
-	ret.Inst.SslHwMemory = getObjectSystemSslHwMemory1982(d.Get("ssl_hw_memory").([]interface{}))
-	ret.Inst.SslReqQ = getObjectSystemSslReqQ1984(d.Get("ssl_req_q").([]interface{}))
-	ret.Inst.SslScv = getObjectSystemSslScv1986(d.Get("ssl_scv").([]interface{}))
-	ret.Inst.SslScvVerifyCrlSign = getObjectSystemSslScvVerifyCrlSign1987(d.Get("ssl_scv_verify_crl_sign").([]interface{}))
-	ret.Inst.SslScvVerifyHost = getObjectSystemSslScvVerifyHost1988(d.Get("ssl_scv_verify_host").([]interface{}))
-	ret.Inst.SslSetCompatibleCipher = getObjectSystemSslSetCompatibleCipher1989(d.Get("ssl_set_compatible_cipher").([]interface{}))
-	ret.Inst.SslStatus = getObjectSystemSslStatus1990(d.Get("ssl_status").([]interface{}))
-	ret.Inst.SyslogTimeMsec = getObjectSystemSyslogTimeMsec1991(d.Get("syslog_time_msec").([]interface{}))
+	ret.Inst.SslReqQ = getObjectSystemSslReqQ1982(d.Get("ssl_req_q").([]interface{}))
+	ret.Inst.SslScv = getObjectSystemSslScv1984(d.Get("ssl_scv").([]interface{}))
+	ret.Inst.SslScvVerifyCrlSign = getObjectSystemSslScvVerifyCrlSign1985(d.Get("ssl_scv_verify_crl_sign").([]interface{}))
+	ret.Inst.SslScvVerifyHost = getObjectSystemSslScvVerifyHost1986(d.Get("ssl_scv_verify_host").([]interface{}))
+	ret.Inst.SslSetCompatibleCipher = getObjectSystemSslSetCompatibleCipher1987(d.Get("ssl_set_compatible_cipher").([]interface{}))
+	ret.Inst.SslStatus = getObjectSystemSslStatus1988(d.Get("ssl_status").([]interface{}))
+	ret.Inst.SyslogTimeMsec = getObjectSystemSyslogTimeMsec1989(d.Get("syslog_time_msec").([]interface{}))
 	ret.Inst.SystemChassisPortSplitEnable = d.Get("system_chassis_port_split_enable").(int)
-	ret.Inst.TableIntegrity = getObjectSystemTableIntegrity1992(d.Get("table_integrity").([]interface{}))
-	ret.Inst.Tcp = getObjectSystemTcp1994(d.Get("tcp").([]interface{}))
-	ret.Inst.TcpStats = getObjectSystemTcpStats1997(d.Get("tcp_stats").([]interface{}))
-	ret.Inst.TcpSynPerSec = getObjectSystemTcpSynPerSec1999(d.Get("tcp_syn_per_sec").([]interface{}))
-	ret.Inst.TelemetryLog = getObjectSystemTelemetryLog2000(d.Get("telemetry_log").([]interface{}))
-	ret.Inst.Template = getObjectSystemTemplate2006(d.Get("template").([]interface{}))
-	ret.Inst.TemplateBind = getObjectSystemTemplateBind2007(d.Get("template_bind").([]interface{}))
-	ret.Inst.Throughput = getObjectSystemThroughput2008(d.Get("throughput").([]interface{}))
-	ret.Inst.TimeoutValue = getObjectSystemTimeoutValue2010(d.Get("timeout_value").([]interface{}))
-	ret.Inst.Trunk = getObjectSystemTrunk2011(d.Get("trunk").([]interface{}))
-	ret.Inst.TrunkHwHash = getObjectSystemTrunkHwHash2013(d.Get("trunk_hw_hash").([]interface{}))
-	ret.Inst.TrunkXauiHwHash = getObjectSystemTrunkXauiHwHash2014(d.Get("trunk_xaui_hw_hash").([]interface{}))
-	ret.Inst.Tso = getObjectSystemTso2015(d.Get("tso").([]interface{}))
-	ret.Inst.Udp = getObjectSystemUdp2016(d.Get("udp").([]interface{}))
-	ret.Inst.UpgradeStatus = getObjectSystemUpgradeStatus2017(d.Get("upgrade_status").([]interface{}))
+	ret.Inst.TableIntegrity = getObjectSystemTableIntegrity1990(d.Get("table_integrity").([]interface{}))
+	ret.Inst.Tcp = getObjectSystemTcp1992(d.Get("tcp").([]interface{}))
+	ret.Inst.TcpStats = getObjectSystemTcpStats1995(d.Get("tcp_stats").([]interface{}))
+	ret.Inst.TcpSynPerSec = getObjectSystemTcpSynPerSec1997(d.Get("tcp_syn_per_sec").([]interface{}))
+	ret.Inst.TelemetryLog = getObjectSystemTelemetryLog1998(d.Get("telemetry_log").([]interface{}))
+	ret.Inst.Template = getObjectSystemTemplate2004(d.Get("template").([]interface{}))
+	ret.Inst.TemplateBind = getObjectSystemTemplateBind2005(d.Get("template_bind").([]interface{}))
+	ret.Inst.Throughput = getObjectSystemThroughput2006(d.Get("throughput").([]interface{}))
+	ret.Inst.TimeoutValue = getObjectSystemTimeoutValue2008(d.Get("timeout_value").([]interface{}))
+	ret.Inst.Tls13Mgmt = getObjectSystemTls13Mgmt2009(d.Get("tls_1_3_mgmt").([]interface{}))
+	ret.Inst.Trunk = getObjectSystemTrunk2010(d.Get("trunk").([]interface{}))
+	ret.Inst.TrunkHwHash = getObjectSystemTrunkHwHash2012(d.Get("trunk_hw_hash").([]interface{}))
+	ret.Inst.TrunkXauiHwHash = getObjectSystemTrunkXauiHwHash2013(d.Get("trunk_xaui_hw_hash").([]interface{}))
+	ret.Inst.Tso = getObjectSystemTso2014(d.Get("tso").([]interface{}))
+	ret.Inst.Udp = getObjectSystemUdp2015(d.Get("udp").([]interface{}))
+	ret.Inst.UpgradeStatus = getObjectSystemUpgradeStatus2016(d.Get("upgrade_status").([]interface{}))
 	//omit uuid
-	ret.Inst.VeMacScheme = getObjectSystemVeMacScheme2018(d.Get("ve_mac_scheme").([]interface{}))
-	ret.Inst.XauiDlbMode = getObjectSystemXauiDlbMode2019(d.Get("xaui_dlb_mode").([]interface{}))
+	ret.Inst.VeMacScheme = getObjectSystemVeMacScheme2017(d.Get("ve_mac_scheme").([]interface{}))
+	ret.Inst.XauiDlbMode = getObjectSystemXauiDlbMode2018(d.Get("xaui_dlb_mode").([]interface{}))
 	return ret
 }

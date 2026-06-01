@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Accounting struct {
 	Inst struct {
 		Commands int `json:"commands"`
@@ -18,6 +18,8 @@ type Accounting struct {
 
 		Tacplus int `json:"tacplus"`
 
+		ThreatLogs AccountingThreatLogs41 `json:"threat-logs"`
+
 		Uuid string `json:"uuid"`
 	} `json:"accounting"`
 }
@@ -26,6 +28,12 @@ type AccountingExec40 struct {
 	AccountingExecType   string `json:"accounting-exec-type"`
 	AccountingExecMethod string `json:"accounting-exec-method"`
 	Uuid                 string `json:"uuid"`
+}
+
+type AccountingThreatLogs41 struct {
+	Check int    `json:"check"`
+	Days  int    `json:"days" dval:"30"`
+	Uuid  string `json:"uuid"`
 }
 
 func (p *Accounting) GetId() string {

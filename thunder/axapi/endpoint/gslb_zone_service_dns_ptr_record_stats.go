@@ -5,17 +5,17 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type GslbZoneServiceDnsPtrRecordStats struct {
 	PtrName string `json:"ptr-name"`
 
 	Stats GslbZoneServiceDnsPtrRecordStatsStats `json:"stats"`
 
-	ServicePort string
-
 	ServiceName string
 
 	Zone_name string
+
+	ServicePort string
 }
 type DataGslbZoneServiceDnsPtrRecordStats struct {
 	DtGslbZoneServiceDnsPtrRecordStats GslbZoneServiceDnsPtrRecordStats `json:"dns-ptr-record"`

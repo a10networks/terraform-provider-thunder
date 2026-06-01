@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SysUtEventActionTcpFlags struct {
 	Inst struct {
 		Ack int `json:"ack"`
@@ -26,9 +26,9 @@ type SysUtEventActionTcpFlags struct {
 
 		Uuid string `json:"uuid"`
 
-		Direction string
-
 		EventNumber string
+
+		Direction string
 	} `json:"flags"`
 }
 

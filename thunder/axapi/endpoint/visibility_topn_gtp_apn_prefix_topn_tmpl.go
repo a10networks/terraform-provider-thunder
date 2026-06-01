@@ -6,12 +6,12 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityTopnGtpApnPrefixTopnTmpl struct {
 	Inst struct {
 		Interval string `json:"interval"`
 
-		Metrics VisibilityTopnGtpApnPrefixTopnTmplMetrics3231 `json:"metrics"`
+		Metrics VisibilityTopnGtpApnPrefixTopnTmplMetrics3259 `json:"metrics"`
 
 		Name string `json:"name"`
 
@@ -23,7 +23,7 @@ type VisibilityTopnGtpApnPrefixTopnTmpl struct {
 	} `json:"gtp-apn-prefix-topn-tmpl"`
 }
 
-type VisibilityTopnGtpApnPrefixTopnTmplMetrics3231 struct {
+type VisibilityTopnGtpApnPrefixTopnTmplMetrics3259 struct {
 	UplinkBytes                        int    `json:"uplink-bytes"`
 	DownlinkBytes                      int    `json:"downlink-bytes"`
 	UplinkPkts                         int    `json:"uplink-pkts"`

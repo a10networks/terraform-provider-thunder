@@ -34,8 +34,8 @@ func resourceSysUtStateNextStateCaseActionTcpOptions() *schema.Resource {
 			"wscale": {
 				Type: schema.TypeInt, Optional: true, Description: "",
 			},
-			"state_name": {
-				Type: schema.TypeString, Required: true, Description: "State_name",
+			"next_state_name": {
+				Type: schema.TypeString, Required: true, Description: "Next_state_name",
 			},
 			"direction": {
 				Type: schema.TypeString, Required: true, Description: "Direction",
@@ -43,8 +43,8 @@ func resourceSysUtStateNextStateCaseActionTcpOptions() *schema.Resource {
 			"case_number": {
 				Type: schema.TypeString, Required: true, Description: "CaseNumber",
 			},
-			"next_state_name": {
-				Type: schema.TypeString, Required: true, Description: "Next_state_name",
+			"state_name": {
+				Type: schema.TypeString, Required: true, Description: "State_name",
 			},
 		},
 	}
@@ -119,9 +119,9 @@ func dataToEndpointSysUtStateNextStateCaseActionTcpOptions(d *schema.ResourceDat
 	ret.Inst.TimeStampEnable = d.Get("time_stamp_enable").(int)
 	//omit uuid
 	ret.Inst.Wscale = d.Get("wscale").(int)
-	ret.Inst.State_name = d.Get("state_name").(string)
+	ret.Inst.Next_state_name = d.Get("next_state_name").(string)
 	ret.Inst.Direction = d.Get("direction").(string)
 	ret.Inst.CaseNumber = d.Get("case_number").(string)
-	ret.Inst.Next_state_name = d.Get("next_state_name").(string)
+	ret.Inst.State_name = d.Get("state_name").(string)
 	return ret
 }

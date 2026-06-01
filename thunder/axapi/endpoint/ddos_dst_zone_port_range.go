@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZonePortRange struct {
 	Inst struct {
 		Age int `json:"age" dval:"5"`
@@ -35,7 +35,7 @@ type DdosDstZonePortRange struct {
 
 		IpFilteringPolicy string `json:"ip-filtering-policy"`
 
-		IpFilteringPolicyStatistics DdosDstZonePortRangeIpFilteringPolicyStatistics229 `json:"ip-filtering-policy-statistics"`
+		IpFilteringPolicyStatistics DdosDstZonePortRangeIpFilteringPolicyStatistics232 `json:"ip-filtering-policy-statistics"`
 
 		LevelList []DdosDstZonePortRangeLevelList `json:"level-list"`
 
@@ -47,17 +47,17 @@ type DdosDstZonePortRange struct {
 
 		OutboundOnly int `json:"outbound-only"`
 
-		PatternRecognition DdosDstZonePortRangePatternRecognition230 `json:"pattern-recognition"`
+		PatternRecognition DdosDstZonePortRangePatternRecognition233 `json:"pattern-recognition"`
 
-		PatternRecognitionPuDetails DdosDstZonePortRangePatternRecognitionPuDetails231 `json:"pattern-recognition-pu-details"`
+		PatternRecognitionPuDetails DdosDstZonePortRangePatternRecognitionPuDetails234 `json:"pattern-recognition-pu-details"`
 
-		PortInd DdosDstZonePortRangePortInd232 `json:"port-ind"`
+		PortInd DdosDstZonePortRangePortInd235 `json:"port-ind"`
 
 		PortRangeEnd int `json:"port-range-end"`
 
 		PortRangeStart int `json:"port-range-start"`
 
-		ProgressionTracking DdosDstZonePortRangeProgressionTracking234 `json:"progression-tracking"`
+		ProgressionTracking DdosDstZonePortRangeProgressionTracking237 `json:"progression-tracking"`
 
 		Protocol string `json:"protocol"`
 
@@ -79,7 +79,7 @@ type DdosDstZonePortRange struct {
 
 		Stateful int `json:"stateful"`
 
-		TopkDestinations DdosDstZonePortRangeTopkDestinations235 `json:"topk-destinations"`
+		TopkDestinations DdosDstZonePortRangeTopkDestinations238 `json:"topk-destinations"`
 
 		TopkDstNumRecords int `json:"topk-dst-num-records" dval:"20"`
 
@@ -89,7 +89,7 @@ type DdosDstZonePortRange struct {
 
 		TopkSortKey string `json:"topk-sort-key" dval:"avg"`
 
-		TopkSources DdosDstZonePortRangeTopkSources236 `json:"topk-sources"`
+		TopkSources DdosDstZonePortRangeTopkSources239 `json:"topk-sources"`
 
 		UnlimitedDynamicEntryCount int `json:"unlimited-dynamic-entry-count"`
 
@@ -97,7 +97,7 @@ type DdosDstZonePortRange struct {
 
 		Uuid string `json:"uuid"`
 
-		Virtualhosts DdosDstZonePortRangeVirtualhosts237 `json:"virtualhosts"`
+		Virtualhosts DdosDstZonePortRangeVirtualhosts240 `json:"virtualhosts"`
 
 		ZoneName string
 	} `json:"port-range"`
@@ -138,7 +138,7 @@ type DdosDstZonePortRangeGlidCfg struct {
 	PerAddrGlid string `json:"per-addr-glid"`
 }
 
-type DdosDstZonePortRangeIpFilteringPolicyStatistics229 struct {
+type DdosDstZonePortRangeIpFilteringPolicyStatistics232 struct {
 	Uuid string `json:"uuid"`
 }
 
@@ -211,7 +211,7 @@ type DdosDstZonePortRangeManualModeListZoneTemplate struct {
 	Encap string `json:"encap"`
 }
 
-type DdosDstZonePortRangePatternRecognition230 struct {
+type DdosDstZonePortRangePatternRecognition233 struct {
 	Algorithm               string `json:"algorithm"`
 	Mode                    string `json:"mode"`
 	Sensitivity             string `json:"sensitivity"`
@@ -223,20 +223,20 @@ type DdosDstZonePortRangePatternRecognition230 struct {
 	Uuid                    string `json:"uuid"`
 }
 
-type DdosDstZonePortRangePatternRecognitionPuDetails231 struct {
+type DdosDstZonePortRangePatternRecognitionPuDetails234 struct {
 	Uuid string `json:"uuid"`
 }
 
-type DdosDstZonePortRangePortInd232 struct {
+type DdosDstZonePortRangePortInd235 struct {
 	Uuid           string                                         `json:"uuid"`
-	SamplingEnable []DdosDstZonePortRangePortIndSamplingEnable233 `json:"sampling-enable"`
+	SamplingEnable []DdosDstZonePortRangePortIndSamplingEnable236 `json:"sampling-enable"`
 }
 
-type DdosDstZonePortRangePortIndSamplingEnable233 struct {
+type DdosDstZonePortRangePortIndSamplingEnable236 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type DdosDstZonePortRangeProgressionTracking234 struct {
+type DdosDstZonePortRangeProgressionTracking237 struct {
 	Uuid string `json:"uuid"`
 }
 
@@ -306,54 +306,54 @@ type DdosDstZonePortRangeSrcBasedPolicyListPolicyClassListListClassListOverflowP
 	Logging string `json:"logging"`
 }
 
-type DdosDstZonePortRangeTopkDestinations235 struct {
+type DdosDstZonePortRangeTopkDestinations238 struct {
 	Uuid string `json:"uuid"`
 }
 
-type DdosDstZonePortRangeTopkSources236 struct {
+type DdosDstZonePortRangeTopkSources239 struct {
 	Uuid string `json:"uuid"`
 }
 
-type DdosDstZonePortRangeVirtualhosts237 struct {
+type DdosDstZonePortRangeVirtualhosts240 struct {
 	VhostsConfig      string                                               `json:"vhosts-config"`
 	SourceTrackingAll int                                                  `json:"source-tracking-all"`
 	Uuid              string                                               `json:"uuid"`
-	VirtualhostList   []DdosDstZonePortRangeVirtualhostsVirtualhostList238 `json:"virtualhost-list"`
+	VirtualhostList   []DdosDstZonePortRangeVirtualhostsVirtualhostList241 `json:"virtualhost-list"`
 }
 
-type DdosDstZonePortRangeVirtualhostsVirtualhostList238 struct {
+type DdosDstZonePortRangeVirtualhostsVirtualhostList241 struct {
 	Vhost              string                                                         `json:"vhost"`
-	Servername         []DdosDstZonePortRangeVirtualhostsVirtualhostListServername239 `json:"servername"`
+	Servername         []DdosDstZonePortRangeVirtualhostsVirtualhostListServername242 `json:"servername"`
 	ServernameList     string                                                         `json:"servername-list"`
 	ServernameMatchAny int                                                            `json:"servername-match-any"`
 	SourceTracking     string                                                         `json:"source-tracking" dval:"follow"`
-	GlidCfg            DdosDstZonePortRangeVirtualhostsVirtualhostListGlidCfg240      `json:"glid-cfg"`
+	GlidCfg            DdosDstZonePortRangeVirtualhostsVirtualhostListGlidCfg243      `json:"glid-cfg"`
 	Deny               int                                                            `json:"deny"`
 	Uuid               string                                                         `json:"uuid"`
 	UserTag            string                                                         `json:"user-tag"`
-	LevelList          []DdosDstZonePortRangeVirtualhostsVirtualhostListLevelList241  `json:"level-list"`
+	LevelList          []DdosDstZonePortRangeVirtualhostsVirtualhostListLevelList244  `json:"level-list"`
 }
 
-type DdosDstZonePortRangeVirtualhostsVirtualhostListServername239 struct {
+type DdosDstZonePortRangeVirtualhostsVirtualhostListServername242 struct {
 	MatchType       string `json:"match-type"`
 	HostMatchString string `json:"host-match-string"`
 }
 
-type DdosDstZonePortRangeVirtualhostsVirtualhostListGlidCfg240 struct {
+type DdosDstZonePortRangeVirtualhostsVirtualhostListGlidCfg243 struct {
 	Glid       string `json:"glid"`
 	GlidAction string `json:"glid-action"`
 }
 
-type DdosDstZonePortRangeVirtualhostsVirtualhostListLevelList241 struct {
+type DdosDstZonePortRangeVirtualhostsVirtualhostListLevelList244 struct {
 	LevelNum       string                                                                  `json:"level-num"`
 	SrcDefaultGlid string                                                                  `json:"src-default-glid"`
 	GlidAction     string                                                                  `json:"glid-action"`
-	ZoneTemplate   DdosDstZonePortRangeVirtualhostsVirtualhostListLevelListZoneTemplate242 `json:"zone-template"`
+	ZoneTemplate   DdosDstZonePortRangeVirtualhostsVirtualhostListLevelListZoneTemplate245 `json:"zone-template"`
 	Uuid           string                                                                  `json:"uuid"`
 	UserTag        string                                                                  `json:"user-tag"`
 }
 
-type DdosDstZonePortRangeVirtualhostsVirtualhostListLevelListZoneTemplate242 struct {
+type DdosDstZonePortRangeVirtualhostsVirtualhostListLevelListZoneTemplate245 struct {
 	SslL4 string `json:"ssl-l4"`
 	Tcp   string `json:"tcp"`
 }

@@ -5,12 +5,14 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type AxdebugPcapngConfig struct {
 	Inst struct {
 		Exit int `json:"exit"`
 
 		PcapngEnable int `json:"pcapng-enable"`
+
+		PcapngEnhancedLogEnable int `json:"pcapng-enhanced-log-enable"`
 
 		SslKeyEnable int `json:"ssl-key-enable"`
 

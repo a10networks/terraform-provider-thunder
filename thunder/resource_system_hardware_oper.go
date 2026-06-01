@@ -198,9 +198,6 @@ func resourceSystemHardwareOper() *schema.Resource {
 						"mcpld_date": {
 							Type: schema.TypeString, Optional: true, Description: "",
 						},
-						"hw_gpus": {
-							Type: schema.TypeString, Optional: true, Description: "",
-						},
 					},
 				},
 			},
@@ -266,7 +263,6 @@ func setObjectSystemHardwareOperOper(ret edpt.DataSystemHardwareOper) []interfac
 			"alldynamic":           ret.DtSystemHardwareOper.Oper.Alldynamic,
 			"mcpld_type":           ret.DtSystemHardwareOper.Oper.McpldType,
 			"mcpld_date":           ret.DtSystemHardwareOper.Oper.McpldDate,
-			"hw_gpus":              ret.DtSystemHardwareOper.Oper.HwGpus,
 		},
 	}
 }
@@ -378,7 +374,6 @@ func getObjectSystemHardwareOperOper(d []interface{}) edpt.SystemHardwareOperOpe
 		ret.Alldynamic = in["alldynamic"].(int)
 		ret.McpldType = in["mcpld_type"].(int)
 		ret.McpldDate = in["mcpld_date"].(string)
-		ret.HwGpus = in["hw_gpus"].(string)
 	}
 	return ret
 }

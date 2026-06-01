@@ -115,10 +115,10 @@ func resourceFileTemplateLocalRead(ctx context.Context, d *schema.ResourceData, 
 	return diags
 }
 
-func getObjectFileTemplateApp423(d []interface{}) edpt.FileTemplateApp423 {
+func getObjectFileTemplateApp414(d []interface{}) edpt.FileTemplateApp414 {
 
 	count1 := len(d)
-	var ret edpt.FileTemplateApp423
+	var ret edpt.FileTemplateApp414
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
@@ -132,7 +132,7 @@ func dataToEndpointFileTemplateLocal(d *schema.ResourceData) edpt.FileTemplateLo
 	var ret edpt.FileTemplateLocal
 	ret.Inst.ActType = d.Get("act_type").(string)
 	ret.Inst.Action = d.Get("action").(string)
-	ret.Inst.App = getObjectFileTemplateApp423(d.Get("app").([]interface{}))
+	ret.Inst.App = getObjectFileTemplateApp414(d.Get("app").([]interface{}))
 	ret.Inst.DstFile = d.Get("dst_file").(string)
 	ret.Inst.File = d.Get("file").(string)
 	ret.Inst.FileHandle = d.Get("file_handle").(string)

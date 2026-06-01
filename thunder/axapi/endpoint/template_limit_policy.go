@@ -6,20 +6,20 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type TemplateLimitPolicy struct {
 	Inst struct {
 		Attribute string `json:"attribute"`
 
 		LimitConcurrentSessions int `json:"limit-concurrent-sessions"`
 
-		LimitCps TemplateLimitPolicyLimitCps2027 `json:"limit-cps"`
+		LimitCps TemplateLimitPolicyLimitCps2026 `json:"limit-cps"`
 
-		LimitPps TemplateLimitPolicyLimitPps2028 `json:"limit-pps"`
+		LimitPps TemplateLimitPolicyLimitPps2027 `json:"limit-pps"`
 
 		LimitScope string `json:"limit-scope" dval:"subscriber-ip"`
 
-		LimitThroughput TemplateLimitPolicyLimitThroughput2029 `json:"limit-throughput"`
+		LimitThroughput TemplateLimitPolicyLimitThroughput2028 `json:"limit-throughput"`
 
 		Log int `json:"log"`
 
@@ -37,14 +37,14 @@ type TemplateLimitPolicy struct {
 	} `json:"limit-policy"`
 }
 
-type TemplateLimitPolicyLimitCps2027 struct {
+type TemplateLimitPolicyLimitCps2026 struct {
 	Value     int    `json:"value"`
 	Burstsize int    `json:"burstsize"`
 	Relaxed   int    `json:"relaxed"`
 	Uuid      string `json:"uuid"`
 }
 
-type TemplateLimitPolicyLimitPps2028 struct {
+type TemplateLimitPolicyLimitPps2027 struct {
 	Uplink               int    `json:"uplink"`
 	UplinkBurstsize      int    `json:"uplink-burstsize"`
 	UplinkRelaxed        int    `json:"uplink-relaxed"`
@@ -58,7 +58,7 @@ type TemplateLimitPolicyLimitPps2028 struct {
 	Uuid                 string `json:"uuid"`
 }
 
-type TemplateLimitPolicyLimitThroughput2029 struct {
+type TemplateLimitPolicyLimitThroughput2028 struct {
 	Uplink                int    `json:"uplink"`
 	UplinkUnit            string `json:"uplink-unit" dval:"Mbps"`
 	UplinkBurstsize       int    `json:"uplink-burstsize"`

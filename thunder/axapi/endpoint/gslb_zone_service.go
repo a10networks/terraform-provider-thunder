@@ -7,14 +7,14 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type GslbZoneService struct {
 	Inst struct {
 		Action string `json:"action"`
 
 		Disable int `json:"disable"`
 
-		DnsARecord GslbZoneServiceDnsARecord492 `json:"dns-a-record"`
+		DnsARecord GslbZoneServiceDnsARecord483 `json:"dns-a-record"`
 
 		DnsCaaRecordList []GslbZoneServiceDnsCaaRecordList `json:"dns-caa-record-list"`
 
@@ -58,7 +58,7 @@ type GslbZoneService struct {
 	} `json:"service"`
 }
 
-type GslbZoneServiceDnsARecord492 struct {
+type GslbZoneServiceDnsARecord483 struct {
 	DnsARecordSrvList  []GslbZoneServiceDnsARecordDnsARecordSrvList  `json:"dns-a-record-srv-list"`
 	DnsARecordIpv4List []GslbZoneServiceDnsARecordDnsARecordIpv4List `json:"dns-a-record-ipv4-list"`
 	DnsARecordIpv6List []GslbZoneServiceDnsARecordDnsARecordIpv6List `json:"dns-a-record-ipv6-list"`

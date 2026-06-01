@@ -223,10 +223,10 @@ func resourceRadiusServerRead(ctx context.Context, d *schema.ResourceData, meta 
 	return diags
 }
 
-func getObjectRadiusServerHost1177(d []interface{}) edpt.RadiusServerHost1177 {
+func getObjectRadiusServerHost1176(d []interface{}) edpt.RadiusServerHost1176 {
 
 	count1 := len(d)
-	var ret edpt.RadiusServerHost1177
+	var ret edpt.RadiusServerHost1176
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ipv4List = getSliceRadiusServerHostIpv4List(in["ipv4_list"].([]interface{}))
@@ -365,7 +365,7 @@ func getObjectRadiusServerHostNameListSecretPortCfg(d []interface{}) edpt.Radius
 func dataToEndpointRadiusServer(d *schema.ResourceData) edpt.RadiusServer {
 	var ret edpt.RadiusServer
 	ret.Inst.DefaultPrivilegeReadWrite = d.Get("default_privilege_read_write").(int)
-	ret.Inst.Host = getObjectRadiusServerHost1177(d.Get("host").([]interface{}))
+	ret.Inst.Host = getObjectRadiusServerHost1176(d.Get("host").([]interface{}))
 	ret.Inst.MessageAuthenticatorVerifyEnable = d.Get("message_authenticator_verify_enable").(int)
 	//omit uuid
 	return ret

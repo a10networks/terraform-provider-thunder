@@ -228,10 +228,10 @@ func resourceCgnv6MapTranslationDomainRead(ctx context.Context, d *schema.Resour
 	return diags
 }
 
-func getObjectCgnv6MapTranslationDomainBasicMappingRule104(d []interface{}) edpt.Cgnv6MapTranslationDomainBasicMappingRule104 {
+func getObjectCgnv6MapTranslationDomainBasicMappingRule105(d []interface{}) edpt.Cgnv6MapTranslationDomainBasicMappingRule105 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6MapTranslationDomainBasicMappingRule104
+	var ret edpt.Cgnv6MapTranslationDomainBasicMappingRule105
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RuleIpv4AddressPortSettings = in["rule_ipv4_address_port_settings"].(string)
@@ -239,18 +239,18 @@ func getObjectCgnv6MapTranslationDomainBasicMappingRule104(d []interface{}) edpt
 		ret.ShareRatio = in["share_ratio"].(int)
 		ret.PortStart = in["port_start"].(int)
 		//omit uuid
-		ret.PrefixRuleList = getSliceCgnv6MapTranslationDomainBasicMappingRulePrefixRuleList105(in["prefix_rule_list"].([]interface{}))
+		ret.PrefixRuleList = getSliceCgnv6MapTranslationDomainBasicMappingRulePrefixRuleList106(in["prefix_rule_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceCgnv6MapTranslationDomainBasicMappingRulePrefixRuleList105(d []interface{}) []edpt.Cgnv6MapTranslationDomainBasicMappingRulePrefixRuleList105 {
+func getSliceCgnv6MapTranslationDomainBasicMappingRulePrefixRuleList106(d []interface{}) []edpt.Cgnv6MapTranslationDomainBasicMappingRulePrefixRuleList106 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6MapTranslationDomainBasicMappingRulePrefixRuleList105, 0, count1)
+	ret := make([]edpt.Cgnv6MapTranslationDomainBasicMappingRulePrefixRuleList106, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6MapTranslationDomainBasicMappingRulePrefixRuleList105
+		var oi edpt.Cgnv6MapTranslationDomainBasicMappingRulePrefixRuleList106
 		oi.Name = in["name"].(string)
 		oi.RuleIpv6Prefix = in["rule_ipv6_prefix"].(string)
 		oi.RuleIpv4Prefix = in["rule_ipv4_prefix"].(string)
@@ -262,10 +262,10 @@ func getSliceCgnv6MapTranslationDomainBasicMappingRulePrefixRuleList105(d []inte
 	return ret
 }
 
-func getObjectCgnv6MapTranslationDomainDefaultMappingRule106(d []interface{}) edpt.Cgnv6MapTranslationDomainDefaultMappingRule106 {
+func getObjectCgnv6MapTranslationDomainDefaultMappingRule107(d []interface{}) edpt.Cgnv6MapTranslationDomainDefaultMappingRule107 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6MapTranslationDomainDefaultMappingRule106
+	var ret edpt.Cgnv6MapTranslationDomainDefaultMappingRule107
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RuleIpv6Prefix = in["rule_ipv6_prefix"].(string)
@@ -274,40 +274,40 @@ func getObjectCgnv6MapTranslationDomainDefaultMappingRule106(d []interface{}) ed
 	return ret
 }
 
-func getObjectCgnv6MapTranslationDomainHealthCheckGateway107(d []interface{}) edpt.Cgnv6MapTranslationDomainHealthCheckGateway107 {
+func getObjectCgnv6MapTranslationDomainHealthCheckGateway108(d []interface{}) edpt.Cgnv6MapTranslationDomainHealthCheckGateway108 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6MapTranslationDomainHealthCheckGateway107
+	var ret edpt.Cgnv6MapTranslationDomainHealthCheckGateway108
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.AddressList = getSliceCgnv6MapTranslationDomainHealthCheckGatewayAddressList108(in["address_list"].([]interface{}))
-		ret.Ipv6AddressList = getSliceCgnv6MapTranslationDomainHealthCheckGatewayIpv6AddressList109(in["ipv6_address_list"].([]interface{}))
+		ret.AddressList = getSliceCgnv6MapTranslationDomainHealthCheckGatewayAddressList109(in["address_list"].([]interface{}))
+		ret.Ipv6AddressList = getSliceCgnv6MapTranslationDomainHealthCheckGatewayIpv6AddressList110(in["ipv6_address_list"].([]interface{}))
 		ret.WithdrawRoute = in["withdraw_route"].(string)
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceCgnv6MapTranslationDomainHealthCheckGatewayAddressList108(d []interface{}) []edpt.Cgnv6MapTranslationDomainHealthCheckGatewayAddressList108 {
+func getSliceCgnv6MapTranslationDomainHealthCheckGatewayAddressList109(d []interface{}) []edpt.Cgnv6MapTranslationDomainHealthCheckGatewayAddressList109 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6MapTranslationDomainHealthCheckGatewayAddressList108, 0, count1)
+	ret := make([]edpt.Cgnv6MapTranslationDomainHealthCheckGatewayAddressList109, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6MapTranslationDomainHealthCheckGatewayAddressList108
+		var oi edpt.Cgnv6MapTranslationDomainHealthCheckGatewayAddressList109
 		oi.Ipv4Gateway = in["ipv4_gateway"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceCgnv6MapTranslationDomainHealthCheckGatewayIpv6AddressList109(d []interface{}) []edpt.Cgnv6MapTranslationDomainHealthCheckGatewayIpv6AddressList109 {
+func getSliceCgnv6MapTranslationDomainHealthCheckGatewayIpv6AddressList110(d []interface{}) []edpt.Cgnv6MapTranslationDomainHealthCheckGatewayIpv6AddressList110 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6MapTranslationDomainHealthCheckGatewayIpv6AddressList109, 0, count1)
+	ret := make([]edpt.Cgnv6MapTranslationDomainHealthCheckGatewayIpv6AddressList110, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6MapTranslationDomainHealthCheckGatewayIpv6AddressList109
+		var oi edpt.Cgnv6MapTranslationDomainHealthCheckGatewayIpv6AddressList110
 		oi.Ipv6Gateway = in["ipv6_gateway"].(string)
 		ret = append(ret, oi)
 	}
@@ -354,10 +354,10 @@ func getObjectCgnv6MapTranslationDomainTcpMssClamp(d []interface{}) edpt.Cgnv6Ma
 
 func dataToEndpointCgnv6MapTranslationDomain(d *schema.ResourceData) edpt.Cgnv6MapTranslationDomain {
 	var ret edpt.Cgnv6MapTranslationDomain
-	ret.Inst.BasicMappingRule = getObjectCgnv6MapTranslationDomainBasicMappingRule104(d.Get("basic_mapping_rule").([]interface{}))
-	ret.Inst.DefaultMappingRule = getObjectCgnv6MapTranslationDomainDefaultMappingRule106(d.Get("default_mapping_rule").([]interface{}))
+	ret.Inst.BasicMappingRule = getObjectCgnv6MapTranslationDomainBasicMappingRule105(d.Get("basic_mapping_rule").([]interface{}))
+	ret.Inst.DefaultMappingRule = getObjectCgnv6MapTranslationDomainDefaultMappingRule107(d.Get("default_mapping_rule").([]interface{}))
 	ret.Inst.Description = d.Get("description").(string)
-	ret.Inst.HealthCheckGateway = getObjectCgnv6MapTranslationDomainHealthCheckGateway107(d.Get("health_check_gateway").([]interface{}))
+	ret.Inst.HealthCheckGateway = getObjectCgnv6MapTranslationDomainHealthCheckGateway108(d.Get("health_check_gateway").([]interface{}))
 	ret.Inst.Mtu = d.Get("mtu").(int)
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.PacketCaptureTemplate = d.Get("packet_capture_template").(string)

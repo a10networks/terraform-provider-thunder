@@ -22,11 +22,11 @@ func resourceOverlayTunnelVtepRemoteIpAddressVni() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"id1": {
-				Type: schema.TypeString, Required: true, Description: "Id1",
-			},
 			"ip_address": {
 				Type: schema.TypeString, Required: true, Description: "IpAddress",
+			},
+			"id1": {
+				Type: schema.TypeString, Required: true, Description: "Id1",
 			},
 		},
 	}
@@ -97,7 +97,7 @@ func dataToEndpointOverlayTunnelVtepRemoteIpAddressVni(d *schema.ResourceData) e
 	var ret edpt.OverlayTunnelVtepRemoteIpAddressVni
 	ret.Inst.Segment = d.Get("segment").(int)
 	//omit uuid
-	ret.Inst.Id1 = d.Get("id1").(string)
 	ret.Inst.IpAddress = d.Get("ip_address").(string)
+	ret.Inst.Id1 = d.Get("id1").(string)
 	return ret
 }

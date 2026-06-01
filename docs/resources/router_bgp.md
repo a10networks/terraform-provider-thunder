@@ -152,6 +152,7 @@ Optional:
 - `neighbor` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor))
 - `network` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--network))
 - `originate` (Number) Distribute an IPv6 default route
+- `prefer_global` (Number) Prefer Global IPv6 Nexthop address
 - `redistribute` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute))
 - `synchronization` (Number) Perform IGP synchronization
 - `uuid` (String) uuid of the object

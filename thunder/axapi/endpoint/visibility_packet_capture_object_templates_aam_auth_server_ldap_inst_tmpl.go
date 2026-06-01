@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplTriggerStatsInc2743 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplTriggerStatsInc2758 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplTriggerStatsRate2744 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplTriggerStatsRate2759 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplTriggerStatsSeverity2745 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplTriggerStatsSeverity2760 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,7 +25,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmpl struct {
 	} `json:"aam-auth-server-ldap-inst-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplTriggerStatsInc2743 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplTriggerStatsInc2758 struct {
 	AdminBindFailure  int    `json:"admin-bind-failure"`
 	BindFailure       int    `json:"bind-failure"`
 	SearchFailure     int    `json:"search-failure"`
@@ -37,7 +37,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplTriggerStats
 	Uuid              string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplTriggerStatsRate2744 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplTriggerStatsRate2759 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	AdminBindFailure    int    `json:"admin-bind-failure"`
@@ -51,7 +51,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplTriggerStats
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplTriggerStatsSeverity2745 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplTriggerStatsSeverity2760 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

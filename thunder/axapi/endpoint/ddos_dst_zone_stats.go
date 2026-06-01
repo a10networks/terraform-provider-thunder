@@ -5,14 +5,31 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZoneStats struct {
+	SrcIpFiltering DdosDstZoneStatsSrcIpFiltering `json:"src-ip-filtering"`
+
 	Stats DdosDstZoneStatsStats `json:"stats"`
 
 	ZoneName string `json:"zone-name"`
 }
 type DataDdosDstZoneStats struct {
 	DtDdosDstZoneStats DdosDstZoneStats `json:"zone"`
+}
+
+type DdosDstZoneStatsSrcIpFiltering struct {
+	Stats DdosDstZoneStatsSrcIpFilteringStats `json:"stats"`
+}
+
+type DdosDstZoneStatsSrcIpFilteringStats struct {
+	ClassList1Match int `json:"class-list-1-match"`
+	ClassList2Match int `json:"class-list-2-match"`
+	ClassList3Match int `json:"class-list-3-match"`
+	ClassList4Match int `json:"class-list-4-match"`
+	ClassList5Match int `json:"class-list-5-match"`
+	ClassList6Match int `json:"class-list-6-match"`
+	ClassList7Match int `json:"class-list-7-match"`
+	ClassList8Match int `json:"class-list-8-match"`
 }
 
 type DdosDstZoneStatsStats struct {
@@ -350,6 +367,9 @@ type DdosDstZoneStatsStats struct {
 	Service_miss_fwd_byte_rcvd                int `json:"service_miss_fwd_byte_rcvd"`
 	Service_miss_rev_pkt_rcvd                 int `json:"service_miss_rev_pkt_rcvd"`
 	Service_miss_rev_byte_rcvd                int `json:"service_miss_rev_byte_rcvd"`
+	Zone_dst_ip_bypass                        int `json:"zone_dst_ip_bypass"`
+	Zone_src_ip_filtering_bypass              int `json:"zone_src_ip_filtering_bypass"`
+	Zone_src_ip_filtering_deny                int `json:"zone_src_ip_filtering_deny"`
 }
 
 func (p *DdosDstZoneStats) GetId() string {

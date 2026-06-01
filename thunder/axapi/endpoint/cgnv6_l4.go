@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6L4 struct {
 	Inst struct {
 		SamplingEnable []Cgnv6L4SamplingEnable `json:"sampling-enable"`

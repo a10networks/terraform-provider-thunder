@@ -263,10 +263,10 @@ func resourceDebugGslbRead(ctx context.Context, d *schema.ResourceData, meta int
 	return diags
 }
 
-func getObjectDebugGslbGroup394(d []interface{}) edpt.DebugGslbGroup394 {
+func getObjectDebugGslbGroup385(d []interface{}) edpt.DebugGslbGroup385 {
 
 	count1 := len(d)
-	var ret edpt.DebugGslbGroup394
+	var ret edpt.DebugGslbGroup385
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Cache = in["cache"].(int)
@@ -295,10 +295,10 @@ func getObjectDebugGslbGroup394(d []interface{}) edpt.DebugGslbGroup394 {
 	return ret
 }
 
-func getObjectDebugGslbProtocol395(d []interface{}) edpt.DebugGslbProtocol395 {
+func getObjectDebugGslbProtocol386(d []interface{}) edpt.DebugGslbProtocol386 {
 
 	count1 := len(d)
-	var ret edpt.DebugGslbProtocol395
+	var ret edpt.DebugGslbProtocol386
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Cache = in["cache"].(int)
@@ -334,13 +334,13 @@ func dataToEndpointDebugGslb(d *schema.ResourceData) edpt.DebugGslb {
 	var ret edpt.DebugGslb
 	ret.Inst.Extended = d.Get("extended").(int)
 	ret.Inst.Glname = d.Get("glname").(string)
-	ret.Inst.Group = getObjectDebugGslbGroup394(d.Get("group").([]interface{}))
+	ret.Inst.Group = getObjectDebugGslbGroup385(d.Get("group").([]interface{}))
 	ret.Inst.Id1 = d.Get("id1").(int)
 	ret.Inst.IpAddr = d.Get("ip_addr").(string)
 	ret.Inst.Ipv6Addr = d.Get("ipv6_addr").(string)
 	ret.Inst.Memory = d.Get("memory").(int)
 	ret.Inst.OneShot = d.Get("one_shot").(int)
-	ret.Inst.Protocol = getObjectDebugGslbProtocol395(d.Get("protocol").([]interface{}))
+	ret.Inst.Protocol = getObjectDebugGslbProtocol386(d.Get("protocol").([]interface{}))
 	ret.Inst.State = d.Get("state").(int)
 	//omit uuid
 	return ret

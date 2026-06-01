@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type RouterIpv6Rip struct {
 	Inst struct {
 		AggregateAddressCfg []RouterIpv6RipAggregateAddressCfg `json:"aggregate-address-cfg"`
@@ -16,21 +16,21 @@ type RouterIpv6Rip struct {
 
 		DefaultMetric int `json:"default-metric" dval:"1"`
 
-		DistributeList RouterIpv6RipDistributeList1344 `json:"distribute-list"`
+		DistributeList RouterIpv6RipDistributeList1343 `json:"distribute-list"`
 
-		OffsetList RouterIpv6RipOffsetList1348 `json:"offset-list"`
+		OffsetList RouterIpv6RipOffsetList1347 `json:"offset-list"`
 
 		PassiveInterfaceList []RouterIpv6RipPassiveInterfaceList `json:"passive-interface-list"`
 
 		RecvBufferSize int `json:"recv-buffer-size"`
 
-		Redistribute RouterIpv6RipRedistribute1350 `json:"redistribute"`
+		Redistribute RouterIpv6RipRedistribute1349 `json:"redistribute"`
 
 		RipngNeighbor RouterIpv6RipRipngNeighbor `json:"ripng-neighbor"`
 
 		RouteCfg []RouterIpv6RipRouteCfg `json:"route-cfg"`
 
-		RouteMap RouterIpv6RipRouteMap1353 `json:"route-map"`
+		RouteMap RouterIpv6RipRouteMap1352 `json:"route-map"`
 
 		Timers RouterIpv6RipTimers `json:"timers"`
 
@@ -42,13 +42,13 @@ type RouterIpv6RipAggregateAddressCfg struct {
 	AggregateAddress string `json:"aggregate-address"`
 }
 
-type RouterIpv6RipDistributeList1344 struct {
-	AclCfg []RouterIpv6RipDistributeListAclCfg1345 `json:"acl-cfg"`
+type RouterIpv6RipDistributeList1343 struct {
+	AclCfg []RouterIpv6RipDistributeListAclCfg1344 `json:"acl-cfg"`
 	Uuid   string                                  `json:"uuid"`
-	Prefix RouterIpv6RipDistributeListPrefix1346   `json:"prefix"`
+	Prefix RouterIpv6RipDistributeListPrefix1345   `json:"prefix"`
 }
 
-type RouterIpv6RipDistributeListAclCfg1345 struct {
+type RouterIpv6RipDistributeListAclCfg1344 struct {
 	Acl          string `json:"acl"`
 	AclDirection string `json:"acl-direction"`
 	Ethernet     int    `json:"ethernet"`
@@ -58,12 +58,12 @@ type RouterIpv6RipDistributeListAclCfg1345 struct {
 	Ve           int    `json:"ve"`
 }
 
-type RouterIpv6RipDistributeListPrefix1346 struct {
-	PrefixCfg []RouterIpv6RipDistributeListPrefixPrefixCfg1347 `json:"prefix-cfg"`
+type RouterIpv6RipDistributeListPrefix1345 struct {
+	PrefixCfg []RouterIpv6RipDistributeListPrefixPrefixCfg1346 `json:"prefix-cfg"`
 	Uuid      string                                           `json:"uuid"`
 }
 
-type RouterIpv6RipDistributeListPrefixPrefixCfg1347 struct {
+type RouterIpv6RipDistributeListPrefixPrefixCfg1346 struct {
 	PrefixList          string `json:"prefix-list"`
 	PrefixListDirection string `json:"prefix-list-direction"`
 	Ethernet            int    `json:"ethernet"`
@@ -73,12 +73,12 @@ type RouterIpv6RipDistributeListPrefixPrefixCfg1347 struct {
 	Ve                  int    `json:"ve"`
 }
 
-type RouterIpv6RipOffsetList1348 struct {
-	AclCfg []RouterIpv6RipOffsetListAclCfg1349 `json:"acl-cfg"`
+type RouterIpv6RipOffsetList1347 struct {
+	AclCfg []RouterIpv6RipOffsetListAclCfg1348 `json:"acl-cfg"`
 	Uuid   string                              `json:"uuid"`
 }
 
-type RouterIpv6RipOffsetListAclCfg1349 struct {
+type RouterIpv6RipOffsetListAclCfg1348 struct {
 	Acl                 string `json:"acl"`
 	OffsetListDirection string `json:"offset-list-direction"`
 	Metric              int    `json:"metric"`
@@ -97,19 +97,19 @@ type RouterIpv6RipPassiveInterfaceList struct {
 	Ve       int `json:"ve"`
 }
 
-type RouterIpv6RipRedistribute1350 struct {
-	RedistList []RouterIpv6RipRedistributeRedistList1351 `json:"redist-list"`
-	VipList    []RouterIpv6RipRedistributeVipList1352    `json:"vip-list"`
+type RouterIpv6RipRedistribute1349 struct {
+	RedistList []RouterIpv6RipRedistributeRedistList1350 `json:"redist-list"`
+	VipList    []RouterIpv6RipRedistributeVipList1351    `json:"vip-list"`
 	Uuid       string                                    `json:"uuid"`
 }
 
-type RouterIpv6RipRedistributeRedistList1351 struct {
+type RouterIpv6RipRedistributeRedistList1350 struct {
 	Type     string `json:"type"`
 	Metric   int    `json:"metric"`
 	RouteMap string `json:"route-map"`
 }
 
-type RouterIpv6RipRedistributeVipList1352 struct {
+type RouterIpv6RipRedistributeVipList1351 struct {
 	VipType     string `json:"vip-type"`
 	VipMetric   int    `json:"vip-metric"`
 	VipRouteMap string `json:"vip-route-map"`
@@ -132,12 +132,12 @@ type RouterIpv6RipRouteCfg struct {
 	Route string `json:"route"`
 }
 
-type RouterIpv6RipRouteMap1353 struct {
-	MapCfg []RouterIpv6RipRouteMapMapCfg1354 `json:"map-cfg"`
+type RouterIpv6RipRouteMap1352 struct {
+	MapCfg []RouterIpv6RipRouteMapMapCfg1353 `json:"map-cfg"`
 	Uuid   string                            `json:"uuid"`
 }
 
-type RouterIpv6RipRouteMapMapCfg1354 struct {
+type RouterIpv6RipRouteMapMapCfg1353 struct {
 	Map               string `json:"map"`
 	RouteMapDirection string `json:"route-map-direction"`
 	Ethernet          int    `json:"ethernet"`

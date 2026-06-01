@@ -19,6 +19,9 @@ func resourceImportPeriodicAuthPortal() *schema.Resource {
 			"auth_portal": {
 				Type: schema.TypeString, Required: true, Description: "Portal file for http authentication",
 			},
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "Config remote server  password",
+			},
 			"period": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the period in second",
 			},
@@ -99,6 +102,8 @@ func resourceImportPeriodicAuthPortalRead(ctx context.Context, d *schema.Resourc
 func dataToEndpointImportPeriodicAuthPortal(d *schema.ResourceData) edpt.ImportPeriodicAuthPortal {
 	var ret edpt.ImportPeriodicAuthPortal
 	ret.Inst.AuthPortal = d.Get("auth_portal").(string)
+	//omit encrypted
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)

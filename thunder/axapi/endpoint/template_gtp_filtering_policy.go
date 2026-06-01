@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type TemplateGtpFilteringPolicy struct {
 	Inst struct {
 		ApnImsiFiltAction string `json:"apn-imsi-filt-action" dval:"drop"`

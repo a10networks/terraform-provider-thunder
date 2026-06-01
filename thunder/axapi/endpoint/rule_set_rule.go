@@ -6,12 +6,12 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type RuleSetRule struct {
 	Inst struct {
 		Action string `json:"action"`
 
-		ActionGroup RuleSetRuleActionGroup1402 `json:"action-group"`
+		ActionGroup RuleSetRuleActionGroup1401 `json:"action-group"`
 
 		AppList []RuleSetRuleAppList `json:"app-list"`
 
@@ -85,7 +85,7 @@ type RuleSetRule struct {
 
 		Log int `json:"log"`
 
-		MoveRule RuleSetRuleMoveRule1404 `json:"move-rule"`
+		MoveRule RuleSetRuleMoveRule1403 `json:"move-rule"`
 
 		Name string `json:"name"`
 
@@ -141,12 +141,12 @@ type RuleSetRule struct {
 	} `json:"rule"`
 }
 
-type RuleSetRuleActionGroup1402 struct {
+type RuleSetRuleActionGroup1401 struct {
 	Type                   string                                          `json:"type"`
 	PermitLog              int                                             `json:"permit-log"`
 	ResetLog               int                                             `json:"reset-log"`
 	DenyLog                int                                             `json:"deny-log"`
-	LoggingTemplateList    []RuleSetRuleActionGroupLoggingTemplateList1403 `json:"logging-template-list"`
+	LoggingTemplateList    []RuleSetRuleActionGroupLoggingTemplateList1402 `json:"logging-template-list"`
 	ResetLogTemplateType   string                                          `json:"reset-log-template-type"`
 	ResetFwLog             string                                          `json:"reset-fw-log"`
 	DenyLogTemplateType    string                                          `json:"deny-log-template-type"`
@@ -179,7 +179,7 @@ type RuleSetRuleActionGroup1402 struct {
 	Uuid                   string                                          `json:"uuid"`
 }
 
-type RuleSetRuleActionGroupLoggingTemplateList1403 struct {
+type RuleSetRuleActionGroupLoggingTemplateList1402 struct {
 	PermitLogTemplateType string `json:"permit-log-template-type"`
 	PermitFwLog           string `json:"permit-fw-log"`
 	PermitCgnv6Log        string `json:"permit-cgnv6-log"`
@@ -207,7 +207,7 @@ type RuleSetRuleDscpList struct {
 	DscpRangeEnd   int    `json:"dscp-range-end"`
 }
 
-type RuleSetRuleMoveRule1404 struct {
+type RuleSetRuleMoveRule1403 struct {
 	Location   string `json:"location" dval:"bottom"`
 	TargetRule string `json:"target-rule"`
 }

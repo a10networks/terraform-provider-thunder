@@ -6,10 +6,10 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type GslbSite struct {
 	Inst struct {
-		ActiveRdt GslbSiteActiveRdt490 `json:"active-rdt"`
+		ActiveRdt GslbSiteActiveRdt481 `json:"active-rdt"`
 
 		AutoMap int `json:"auto-map" dval:"1"`
 
@@ -19,7 +19,7 @@ type GslbSite struct {
 
 		Disable int `json:"disable"`
 
-		EasyRdt GslbSiteEasyRdt491 `json:"easy-rdt"`
+		EasyRdt GslbSiteEasyRdt482 `json:"easy-rdt"`
 
 		IpServerList []GslbSiteIpServerList `json:"ip-server-list"`
 
@@ -47,7 +47,7 @@ type GslbSite struct {
 	} `json:"site"`
 }
 
-type GslbSiteActiveRdt490 struct {
+type GslbSiteActiveRdt481 struct {
 	AgingTime    int    `json:"aging-time" dval:"10"`
 	SmoothFactor int    `json:"smooth-factor" dval:"10"`
 	RangeFactor  int    `json:"range-factor" dval:"25"`
@@ -60,7 +60,7 @@ type GslbSiteActiveRdt490 struct {
 	Uuid         string `json:"uuid"`
 }
 
-type GslbSiteEasyRdt491 struct {
+type GslbSiteEasyRdt482 struct {
 	AgingTime    int    `json:"aging-time" dval:"10"`
 	SmoothFactor int    `json:"smooth-factor" dval:"10"`
 	RangeFactor  int    `json:"range-factor" dval:"25"`

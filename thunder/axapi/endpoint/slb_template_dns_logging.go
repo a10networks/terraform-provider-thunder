@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbTemplateDnsLogging struct {
 	Inst struct {
 		CustomLogList []SlbTemplateDnsLoggingCustomLogList `json:"custom-log-list"`
@@ -27,7 +27,9 @@ type SlbTemplateDnsLogging struct {
 
 		ResponseTuple string `json:"response-tuple" dval:"client-side"`
 
-		ResponseType SlbTemplateDnsLoggingResponseType1516 `json:"response-type"`
+		ResponseType SlbTemplateDnsLoggingResponseType1517 `json:"response-type"`
+
+		StandardLogList []SlbTemplateDnsLoggingStandardLogList `json:"standard-log-list"`
 
 		UserTag string `json:"user-tag"`
 
@@ -36,20 +38,27 @@ type SlbTemplateDnsLogging struct {
 }
 
 type SlbTemplateDnsLoggingCustomLogList struct {
-	TriggerReason string `json:"trigger-reason"`
-	Format        string `json:"format"`
-	Enable        int    `json:"enable"`
-	Uuid          string `json:"uuid"`
-	UserTag       string `json:"user-tag"`
+	TriggerReason string                                            `json:"trigger-reason"`
+	Format        string                                            `json:"format"`
+	Enable        int                                               `json:"enable"`
+	Uuid          string                                            `json:"uuid"`
+	UserTag       string                                            `json:"user-tag"`
+	LogFilterList []SlbTemplateDnsLoggingCustomLogListLogFilterList `json:"log-filter-list"`
 }
 
-type SlbTemplateDnsLoggingResponseType1516 struct {
+type SlbTemplateDnsLoggingCustomLogListLogFilterList struct {
+	Feature string `json:"feature"`
+	Uuid    string `json:"uuid"`
+	UserTag string `json:"user-tag"`
+}
+
+type SlbTemplateDnsLoggingResponseType1517 struct {
 	Config   int                                             `json:"config"`
 	Uuid     string                                          `json:"uuid"`
-	TypeList []SlbTemplateDnsLoggingResponseTypeTypeList1517 `json:"type-list"`
+	TypeList []SlbTemplateDnsLoggingResponseTypeTypeList1518 `json:"type-list"`
 }
 
-type SlbTemplateDnsLoggingResponseTypeTypeList1517 struct {
+type SlbTemplateDnsLoggingResponseTypeTypeList1518 struct {
 	ResponseTypeName   string `json:"response-type-name"`
 	LengthLimitFlag    int    `json:"length-limit-flag"`
 	TxtData            int    `json:"txt-data"`
@@ -78,6 +87,19 @@ type SlbTemplateDnsLoggingResponseTypeTypeList1517 struct {
 	OptTypeNoLimit     int    `json:"opt-type-no-limit"`
 	Uuid               string `json:"uuid"`
 	UserTag            string `json:"user-tag"`
+}
+
+type SlbTemplateDnsLoggingStandardLogList struct {
+	TriggerReason string                                              `json:"trigger-reason"`
+	Uuid          string                                              `json:"uuid"`
+	UserTag       string                                              `json:"user-tag"`
+	LogFilterList []SlbTemplateDnsLoggingStandardLogListLogFilterList `json:"log-filter-list"`
+}
+
+type SlbTemplateDnsLoggingStandardLogListLogFilterList struct {
+	Feature string `json:"feature"`
+	Uuid    string `json:"uuid"`
+	UserTag string `json:"user-tag"`
 }
 
 func (p *SlbTemplateDnsLogging) GetId() string {

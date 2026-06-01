@@ -5,18 +5,18 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZonePortZoneServicePortInd struct {
 	Inst struct {
 		SamplingEnable []DdosDstZonePortZoneServicePortIndSamplingEnable `json:"sampling-enable"`
 
 		Uuid string `json:"uuid"`
 
-		Protocol string
+		ZoneName string
 
 		PortNum string
 
-		ZoneName string
+		Protocol string
 	} `json:"port-ind"`
 }
 

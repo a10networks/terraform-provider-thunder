@@ -61,7 +61,6 @@ Optional:
 - `disk_used` (Number)
 - `fpga_date` (String)
 - `fpga_summary` (String)
-- `hw_gpus` (String)
 - `ipmi` (String)
 - `l23_asic` (String)
 - `mcpld_date` (String)

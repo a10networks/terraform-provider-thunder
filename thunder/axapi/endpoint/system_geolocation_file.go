@@ -5,16 +5,16 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemGeolocationFile struct {
 	Inst struct {
-		ErrorInfo SystemGeolocationFileErrorInfo1678 `json:"error-info"`
+		ErrorInfo SystemGeolocationFileErrorInfo1679 `json:"error-info"`
 
 		Uuid string `json:"uuid"`
 	} `json:"geolocation-file"`
 }
 
-type SystemGeolocationFileErrorInfo1678 struct {
+type SystemGeolocationFileErrorInfo1679 struct {
 	Uuid string `json:"uuid"`
 }
 

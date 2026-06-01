@@ -5,12 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbSslExpireCheck struct {
 	Inst struct {
 		Before int `json:"before" dval:"5"`
 
-		Exception SlbSslExpireCheckException1513 `json:"exception"`
+		Exception SlbSslExpireCheckException1514 `json:"exception"`
 
 		ExpireAddress1 string `json:"expire-address1"`
 
@@ -22,7 +22,7 @@ type SlbSslExpireCheck struct {
 	} `json:"ssl-expire-check"`
 }
 
-type SlbSslExpireCheckException1513 struct {
+type SlbSslExpireCheckException1514 struct {
 	Action          string `json:"action"`
 	CertificateName string `json:"certificate-name"`
 }

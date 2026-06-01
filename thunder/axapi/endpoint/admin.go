@@ -6,28 +6,28 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Admin struct {
 	Inst struct {
-		Access AdminAccess60 `json:"access"`
+		Access AdminAccess61 `json:"access"`
 
 		AccessList int `json:"access-list"`
 
 		Action string `json:"action" dval:"enable"`
 
-		AwsAccesskey AdminAwsAccesskey61 `json:"aws-accesskey"`
+		AwsAccesskey AdminAwsAccesskey62 `json:"aws-accesskey"`
 
-		AzureCred AdminAzureCred62 `json:"azure-cred"`
+		AzureCred AdminAzureCred63 `json:"azure-cred"`
 
-		CloudCred AdminCloudCred63 `json:"cloud-cred"`
+		CloudCred AdminCloudCred64 `json:"cloud-cred"`
 
 		Encrypted string `json:"encrypted"`
 
-		GcpCred AdminGcpCred64 `json:"gcp-cred"`
+		GcpCred AdminGcpCred65 `json:"gcp-cred"`
 
 		PasswdString string `json:"passwd-string"`
 
-		Password AdminPassword65 `json:"password"`
+		Password AdminPassword66 `json:"password"`
 
 		PasswordKey int `json:"password-key"`
 
@@ -37,7 +37,7 @@ type Admin struct {
 
 		PrivilegeShellRoot int `json:"privilege-shell-root"`
 
-		SshPubkey AdminSshPubkey66 `json:"ssh-pubkey"`
+		SshPubkey AdminSshPubkey67 `json:"ssh-pubkey"`
 
 		TrustedHost int `json:"trusted-host"`
 
@@ -53,12 +53,12 @@ type Admin struct {
 	} `json:"admin"`
 }
 
-type AdminAccess60 struct {
+type AdminAccess61 struct {
 	AccessType string `json:"access-type" dval:"axapi,cli,web"`
 	Uuid       string `json:"uuid"`
 }
 
-type AdminAwsAccesskey61 struct {
+type AdminAwsAccesskey62 struct {
 	Import      int    `json:"import"`
 	UseMgmtPort int    `json:"use-mgmt-port"`
 	FileUrl     string `json:"file-url"`
@@ -66,7 +66,7 @@ type AdminAwsAccesskey61 struct {
 	Show        int    `json:"show"`
 }
 
-type AdminAzureCred62 struct {
+type AdminAzureCred63 struct {
 	Import      int    `json:"import"`
 	UseMgmtPort int    `json:"use-mgmt-port"`
 	FileUrl     string `json:"file-url"`
@@ -74,7 +74,7 @@ type AdminAzureCred62 struct {
 	Show        int    `json:"show"`
 }
 
-type AdminCloudCred63 struct {
+type AdminCloudCred64 struct {
 	Type        string `json:"type"`
 	Import      int    `json:"import"`
 	UseMgmtPort int    `json:"use-mgmt-port"`
@@ -83,7 +83,7 @@ type AdminCloudCred63 struct {
 	Show        int    `json:"show"`
 }
 
-type AdminGcpCred64 struct {
+type AdminGcpCred65 struct {
 	Import      int    `json:"import"`
 	UseMgmtPort int    `json:"use-mgmt-port"`
 	FileUrl     string `json:"file-url"`
@@ -91,7 +91,7 @@ type AdminGcpCred64 struct {
 	Show        int    `json:"show"`
 }
 
-type AdminPassword65 struct {
+type AdminPassword66 struct {
 	PasswordInModule  string `json:"password-in-module"`
 	EncryptedInModule string `json:"encrypted-in-module"`
 	Uuid              string `json:"uuid"`
@@ -102,7 +102,7 @@ type AdminPrivilegeList struct {
 	PartitionName      string `json:"partition-name"`
 }
 
-type AdminSshPubkey66 struct {
+type AdminSshPubkey67 struct {
 	Import      int    `json:"import"`
 	UseMgmtPort int    `json:"use-mgmt-port"`
 	FileUrl     string `json:"file-url"`

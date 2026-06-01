@@ -709,44 +709,44 @@ func resourceInterfaceTunnelRead(ctx context.Context, d *schema.ResourceData, me
 	return diags
 }
 
-func getObjectInterfaceTunnelIp972(d []interface{}) edpt.InterfaceTunnelIp972 {
+func getObjectInterfaceTunnelIp967(d []interface{}) edpt.InterfaceTunnelIp967 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIp972
+	var ret edpt.InterfaceTunnelIp967
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Address = getObjectInterfaceTunnelIpAddress973(in["address"].([]interface{}))
+		ret.Address = getObjectInterfaceTunnelIpAddress968(in["address"].([]interface{}))
 		ret.GenerateMembershipQuery = in["generate_membership_query"].(int)
 		ret.GenerateMembershipQueryVal = in["generate_membership_query_val"].(int)
 		ret.MaxRespTime = in["max_resp_time"].(int)
 		ret.Inside = in["inside"].(int)
 		ret.Outside = in["outside"].(int)
 		//omit uuid
-		ret.Rip = getObjectInterfaceTunnelIpRip975(in["rip"].([]interface{}))
-		ret.Ospf = getObjectInterfaceTunnelIpOspf983(in["ospf"].([]interface{}))
+		ret.Rip = getObjectInterfaceTunnelIpRip970(in["rip"].([]interface{}))
+		ret.Ospf = getObjectInterfaceTunnelIpOspf978(in["ospf"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceTunnelIpAddress973(d []interface{}) edpt.InterfaceTunnelIpAddress973 {
+func getObjectInterfaceTunnelIpAddress968(d []interface{}) edpt.InterfaceTunnelIpAddress968 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpAddress973
+	var ret edpt.InterfaceTunnelIpAddress968
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Dhcp = in["dhcp"].(int)
-		ret.IpCfg = getSliceInterfaceTunnelIpAddressIpCfg974(in["ip_cfg"].([]interface{}))
+		ret.IpCfg = getSliceInterfaceTunnelIpAddressIpCfg969(in["ip_cfg"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceInterfaceTunnelIpAddressIpCfg974(d []interface{}) []edpt.InterfaceTunnelIpAddressIpCfg974 {
+func getSliceInterfaceTunnelIpAddressIpCfg969(d []interface{}) []edpt.InterfaceTunnelIpAddressIpCfg969 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceTunnelIpAddressIpCfg974, 0, count1)
+	ret := make([]edpt.InterfaceTunnelIpAddressIpCfg969, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceTunnelIpAddressIpCfg974
+		var oi edpt.InterfaceTunnelIpAddressIpCfg969
 		oi.Ipv4Address = in["ipv4_address"].(string)
 		oi.Ipv4Netmask = in["ipv4_netmask"].(string)
 		ret = append(ret, oi)
@@ -754,40 +754,40 @@ func getSliceInterfaceTunnelIpAddressIpCfg974(d []interface{}) []edpt.InterfaceT
 	return ret
 }
 
-func getObjectInterfaceTunnelIpRip975(d []interface{}) edpt.InterfaceTunnelIpRip975 {
+func getObjectInterfaceTunnelIpRip970(d []interface{}) edpt.InterfaceTunnelIpRip970 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpRip975
+	var ret edpt.InterfaceTunnelIpRip970
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Authentication = getObjectInterfaceTunnelIpRipAuthentication976(in["authentication"].([]interface{}))
+		ret.Authentication = getObjectInterfaceTunnelIpRipAuthentication971(in["authentication"].([]interface{}))
 		ret.SendPacket = in["send_packet"].(int)
 		ret.ReceivePacket = in["receive_packet"].(int)
-		ret.SendCfg = getObjectInterfaceTunnelIpRipSendCfg980(in["send_cfg"].([]interface{}))
-		ret.ReceiveCfg = getObjectInterfaceTunnelIpRipReceiveCfg981(in["receive_cfg"].([]interface{}))
-		ret.SplitHorizonCfg = getObjectInterfaceTunnelIpRipSplitHorizonCfg982(in["split_horizon_cfg"].([]interface{}))
+		ret.SendCfg = getObjectInterfaceTunnelIpRipSendCfg975(in["send_cfg"].([]interface{}))
+		ret.ReceiveCfg = getObjectInterfaceTunnelIpRipReceiveCfg976(in["receive_cfg"].([]interface{}))
+		ret.SplitHorizonCfg = getObjectInterfaceTunnelIpRipSplitHorizonCfg977(in["split_horizon_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectInterfaceTunnelIpRipAuthentication976(d []interface{}) edpt.InterfaceTunnelIpRipAuthentication976 {
+func getObjectInterfaceTunnelIpRipAuthentication971(d []interface{}) edpt.InterfaceTunnelIpRipAuthentication971 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpRipAuthentication976
+	var ret edpt.InterfaceTunnelIpRipAuthentication971
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Str = getObjectInterfaceTunnelIpRipAuthenticationStr977(in["str"].([]interface{}))
-		ret.Mode = getObjectInterfaceTunnelIpRipAuthenticationMode978(in["mode"].([]interface{}))
-		ret.KeyChain = getObjectInterfaceTunnelIpRipAuthenticationKeyChain979(in["key_chain"].([]interface{}))
+		ret.Str = getObjectInterfaceTunnelIpRipAuthenticationStr972(in["str"].([]interface{}))
+		ret.Mode = getObjectInterfaceTunnelIpRipAuthenticationMode973(in["mode"].([]interface{}))
+		ret.KeyChain = getObjectInterfaceTunnelIpRipAuthenticationKeyChain974(in["key_chain"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceTunnelIpRipAuthenticationStr977(d []interface{}) edpt.InterfaceTunnelIpRipAuthenticationStr977 {
+func getObjectInterfaceTunnelIpRipAuthenticationStr972(d []interface{}) edpt.InterfaceTunnelIpRipAuthenticationStr972 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpRipAuthenticationStr977
+	var ret edpt.InterfaceTunnelIpRipAuthenticationStr972
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.String = in["string"].(string)
@@ -795,10 +795,10 @@ func getObjectInterfaceTunnelIpRipAuthenticationStr977(d []interface{}) edpt.Int
 	return ret
 }
 
-func getObjectInterfaceTunnelIpRipAuthenticationMode978(d []interface{}) edpt.InterfaceTunnelIpRipAuthenticationMode978 {
+func getObjectInterfaceTunnelIpRipAuthenticationMode973(d []interface{}) edpt.InterfaceTunnelIpRipAuthenticationMode973 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpRipAuthenticationMode978
+	var ret edpt.InterfaceTunnelIpRipAuthenticationMode973
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mode = in["mode"].(string)
@@ -806,10 +806,10 @@ func getObjectInterfaceTunnelIpRipAuthenticationMode978(d []interface{}) edpt.In
 	return ret
 }
 
-func getObjectInterfaceTunnelIpRipAuthenticationKeyChain979(d []interface{}) edpt.InterfaceTunnelIpRipAuthenticationKeyChain979 {
+func getObjectInterfaceTunnelIpRipAuthenticationKeyChain974(d []interface{}) edpt.InterfaceTunnelIpRipAuthenticationKeyChain974 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpRipAuthenticationKeyChain979
+	var ret edpt.InterfaceTunnelIpRipAuthenticationKeyChain974
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.KeyChain = in["key_chain"].(string)
@@ -817,10 +817,10 @@ func getObjectInterfaceTunnelIpRipAuthenticationKeyChain979(d []interface{}) edp
 	return ret
 }
 
-func getObjectInterfaceTunnelIpRipSendCfg980(d []interface{}) edpt.InterfaceTunnelIpRipSendCfg980 {
+func getObjectInterfaceTunnelIpRipSendCfg975(d []interface{}) edpt.InterfaceTunnelIpRipSendCfg975 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpRipSendCfg980
+	var ret edpt.InterfaceTunnelIpRipSendCfg975
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Send = in["send"].(int)
@@ -829,10 +829,10 @@ func getObjectInterfaceTunnelIpRipSendCfg980(d []interface{}) edpt.InterfaceTunn
 	return ret
 }
 
-func getObjectInterfaceTunnelIpRipReceiveCfg981(d []interface{}) edpt.InterfaceTunnelIpRipReceiveCfg981 {
+func getObjectInterfaceTunnelIpRipReceiveCfg976(d []interface{}) edpt.InterfaceTunnelIpRipReceiveCfg976 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpRipReceiveCfg981
+	var ret edpt.InterfaceTunnelIpRipReceiveCfg976
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Receive = in["receive"].(int)
@@ -841,10 +841,10 @@ func getObjectInterfaceTunnelIpRipReceiveCfg981(d []interface{}) edpt.InterfaceT
 	return ret
 }
 
-func getObjectInterfaceTunnelIpRipSplitHorizonCfg982(d []interface{}) edpt.InterfaceTunnelIpRipSplitHorizonCfg982 {
+func getObjectInterfaceTunnelIpRipSplitHorizonCfg977(d []interface{}) edpt.InterfaceTunnelIpRipSplitHorizonCfg977 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpRipSplitHorizonCfg982
+	var ret edpt.InterfaceTunnelIpRipSplitHorizonCfg977
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.State = in["state"].(string)
@@ -852,36 +852,36 @@ func getObjectInterfaceTunnelIpRipSplitHorizonCfg982(d []interface{}) edpt.Inter
 	return ret
 }
 
-func getObjectInterfaceTunnelIpOspf983(d []interface{}) edpt.InterfaceTunnelIpOspf983 {
+func getObjectInterfaceTunnelIpOspf978(d []interface{}) edpt.InterfaceTunnelIpOspf978 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpOspf983
+	var ret edpt.InterfaceTunnelIpOspf978
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.OspfGlobal = getObjectInterfaceTunnelIpOspfOspfGlobal984(in["ospf_global"].([]interface{}))
-		ret.OspfIpList = getSliceInterfaceTunnelIpOspfOspfIpList991(in["ospf_ip_list"].([]interface{}))
+		ret.OspfGlobal = getObjectInterfaceTunnelIpOspfOspfGlobal979(in["ospf_global"].([]interface{}))
+		ret.OspfIpList = getSliceInterfaceTunnelIpOspfOspfIpList986(in["ospf_ip_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceTunnelIpOspfOspfGlobal984(d []interface{}) edpt.InterfaceTunnelIpOspfOspfGlobal984 {
+func getObjectInterfaceTunnelIpOspfOspfGlobal979(d []interface{}) edpt.InterfaceTunnelIpOspfOspfGlobal979 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpOspfOspfGlobal984
+	var ret edpt.InterfaceTunnelIpOspfOspfGlobal979
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.AuthenticationCfg = getObjectInterfaceTunnelIpOspfOspfGlobalAuthenticationCfg985(in["authentication_cfg"].([]interface{}))
+		ret.AuthenticationCfg = getObjectInterfaceTunnelIpOspfOspfGlobalAuthenticationCfg980(in["authentication_cfg"].([]interface{}))
 		ret.AuthenticationKey = in["authentication_key"].(string)
-		ret.BfdCfg = getObjectInterfaceTunnelIpOspfOspfGlobalBfdCfg986(in["bfd_cfg"].([]interface{}))
+		ret.BfdCfg = getObjectInterfaceTunnelIpOspfOspfGlobalBfdCfg981(in["bfd_cfg"].([]interface{}))
 		ret.Cost = in["cost"].(int)
-		ret.DatabaseFilterCfg = getObjectInterfaceTunnelIpOspfOspfGlobalDatabaseFilterCfg987(in["database_filter_cfg"].([]interface{}))
+		ret.DatabaseFilterCfg = getObjectInterfaceTunnelIpOspfOspfGlobalDatabaseFilterCfg982(in["database_filter_cfg"].([]interface{}))
 		ret.DeadInterval = in["dead_interval"].(int)
 		ret.Disable = in["disable"].(string)
 		ret.HelloInterval = in["hello_interval"].(int)
-		ret.MessageDigestCfg = getSliceInterfaceTunnelIpOspfOspfGlobalMessageDigestCfg988(in["message_digest_cfg"].([]interface{}))
+		ret.MessageDigestCfg = getSliceInterfaceTunnelIpOspfOspfGlobalMessageDigestCfg983(in["message_digest_cfg"].([]interface{}))
 		ret.Mtu = in["mtu"].(int)
 		ret.MtuIgnore = in["mtu_ignore"].(int)
-		ret.Network = getObjectInterfaceTunnelIpOspfOspfGlobalNetwork990(in["network"].([]interface{}))
+		ret.Network = getObjectInterfaceTunnelIpOspfOspfGlobalNetwork985(in["network"].([]interface{}))
 		ret.Priority = in["priority"].(int)
 		ret.RetransmitInterval = in["retransmit_interval"].(int)
 		ret.TransmitDelay = in["transmit_delay"].(int)
@@ -890,10 +890,10 @@ func getObjectInterfaceTunnelIpOspfOspfGlobal984(d []interface{}) edpt.Interface
 	return ret
 }
 
-func getObjectInterfaceTunnelIpOspfOspfGlobalAuthenticationCfg985(d []interface{}) edpt.InterfaceTunnelIpOspfOspfGlobalAuthenticationCfg985 {
+func getObjectInterfaceTunnelIpOspfOspfGlobalAuthenticationCfg980(d []interface{}) edpt.InterfaceTunnelIpOspfOspfGlobalAuthenticationCfg980 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpOspfOspfGlobalAuthenticationCfg985
+	var ret edpt.InterfaceTunnelIpOspfOspfGlobalAuthenticationCfg980
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Authentication = in["authentication"].(int)
@@ -902,10 +902,10 @@ func getObjectInterfaceTunnelIpOspfOspfGlobalAuthenticationCfg985(d []interface{
 	return ret
 }
 
-func getObjectInterfaceTunnelIpOspfOspfGlobalBfdCfg986(d []interface{}) edpt.InterfaceTunnelIpOspfOspfGlobalBfdCfg986 {
+func getObjectInterfaceTunnelIpOspfOspfGlobalBfdCfg981(d []interface{}) edpt.InterfaceTunnelIpOspfOspfGlobalBfdCfg981 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpOspfOspfGlobalBfdCfg986
+	var ret edpt.InterfaceTunnelIpOspfOspfGlobalBfdCfg981
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Bfd = in["bfd"].(int)
@@ -914,10 +914,10 @@ func getObjectInterfaceTunnelIpOspfOspfGlobalBfdCfg986(d []interface{}) edpt.Int
 	return ret
 }
 
-func getObjectInterfaceTunnelIpOspfOspfGlobalDatabaseFilterCfg987(d []interface{}) edpt.InterfaceTunnelIpOspfOspfGlobalDatabaseFilterCfg987 {
+func getObjectInterfaceTunnelIpOspfOspfGlobalDatabaseFilterCfg982(d []interface{}) edpt.InterfaceTunnelIpOspfOspfGlobalDatabaseFilterCfg982 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpOspfOspfGlobalDatabaseFilterCfg987
+	var ret edpt.InterfaceTunnelIpOspfOspfGlobalDatabaseFilterCfg982
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DatabaseFilter = in["database_filter"].(string)
@@ -926,24 +926,24 @@ func getObjectInterfaceTunnelIpOspfOspfGlobalDatabaseFilterCfg987(d []interface{
 	return ret
 }
 
-func getSliceInterfaceTunnelIpOspfOspfGlobalMessageDigestCfg988(d []interface{}) []edpt.InterfaceTunnelIpOspfOspfGlobalMessageDigestCfg988 {
+func getSliceInterfaceTunnelIpOspfOspfGlobalMessageDigestCfg983(d []interface{}) []edpt.InterfaceTunnelIpOspfOspfGlobalMessageDigestCfg983 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceTunnelIpOspfOspfGlobalMessageDigestCfg988, 0, count1)
+	ret := make([]edpt.InterfaceTunnelIpOspfOspfGlobalMessageDigestCfg983, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceTunnelIpOspfOspfGlobalMessageDigestCfg988
+		var oi edpt.InterfaceTunnelIpOspfOspfGlobalMessageDigestCfg983
 		oi.MessageDigestKey = in["message_digest_key"].(int)
-		oi.Md5 = getObjectInterfaceTunnelIpOspfOspfGlobalMessageDigestCfgMd5989(in["md5"].([]interface{}))
+		oi.Md5 = getObjectInterfaceTunnelIpOspfOspfGlobalMessageDigestCfgMd5984(in["md5"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectInterfaceTunnelIpOspfOspfGlobalMessageDigestCfgMd5989(d []interface{}) edpt.InterfaceTunnelIpOspfOspfGlobalMessageDigestCfgMd5989 {
+func getObjectInterfaceTunnelIpOspfOspfGlobalMessageDigestCfgMd5984(d []interface{}) edpt.InterfaceTunnelIpOspfOspfGlobalMessageDigestCfgMd5984 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpOspfOspfGlobalMessageDigestCfgMd5989
+	var ret edpt.InterfaceTunnelIpOspfOspfGlobalMessageDigestCfgMd5984
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Md5Value = in["md5_value"].(string)
@@ -952,10 +952,10 @@ func getObjectInterfaceTunnelIpOspfOspfGlobalMessageDigestCfgMd5989(d []interfac
 	return ret
 }
 
-func getObjectInterfaceTunnelIpOspfOspfGlobalNetwork990(d []interface{}) edpt.InterfaceTunnelIpOspfOspfGlobalNetwork990 {
+func getObjectInterfaceTunnelIpOspfOspfGlobalNetwork985(d []interface{}) edpt.InterfaceTunnelIpOspfOspfGlobalNetwork985 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpOspfOspfGlobalNetwork990
+	var ret edpt.InterfaceTunnelIpOspfOspfGlobalNetwork985
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Broadcast = in["broadcast"].(int)
@@ -967,13 +967,13 @@ func getObjectInterfaceTunnelIpOspfOspfGlobalNetwork990(d []interface{}) edpt.In
 	return ret
 }
 
-func getSliceInterfaceTunnelIpOspfOspfIpList991(d []interface{}) []edpt.InterfaceTunnelIpOspfOspfIpList991 {
+func getSliceInterfaceTunnelIpOspfOspfIpList986(d []interface{}) []edpt.InterfaceTunnelIpOspfOspfIpList986 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceTunnelIpOspfOspfIpList991, 0, count1)
+	ret := make([]edpt.InterfaceTunnelIpOspfOspfIpList986, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceTunnelIpOspfOspfIpList991
+		var oi edpt.InterfaceTunnelIpOspfOspfIpList986
 		oi.IpAddr = in["ip_addr"].(string)
 		oi.Authentication = in["authentication"].(int)
 		oi.Value = in["value"].(string)
@@ -983,7 +983,7 @@ func getSliceInterfaceTunnelIpOspfOspfIpList991(d []interface{}) []edpt.Interfac
 		oi.Out = in["out"].(int)
 		oi.DeadInterval = in["dead_interval"].(int)
 		oi.HelloInterval = in["hello_interval"].(int)
-		oi.MessageDigestCfg = getSliceInterfaceTunnelIpOspfOspfIpListMessageDigestCfg992(in["message_digest_cfg"].([]interface{}))
+		oi.MessageDigestCfg = getSliceInterfaceTunnelIpOspfOspfIpListMessageDigestCfg987(in["message_digest_cfg"].([]interface{}))
 		oi.MtuIgnore = in["mtu_ignore"].(int)
 		oi.Priority = in["priority"].(int)
 		oi.RetransmitInterval = in["retransmit_interval"].(int)
@@ -994,13 +994,13 @@ func getSliceInterfaceTunnelIpOspfOspfIpList991(d []interface{}) []edpt.Interfac
 	return ret
 }
 
-func getSliceInterfaceTunnelIpOspfOspfIpListMessageDigestCfg992(d []interface{}) []edpt.InterfaceTunnelIpOspfOspfIpListMessageDigestCfg992 {
+func getSliceInterfaceTunnelIpOspfOspfIpListMessageDigestCfg987(d []interface{}) []edpt.InterfaceTunnelIpOspfOspfIpListMessageDigestCfg987 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceTunnelIpOspfOspfIpListMessageDigestCfg992, 0, count1)
+	ret := make([]edpt.InterfaceTunnelIpOspfOspfIpListMessageDigestCfg987, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceTunnelIpOspfOspfIpListMessageDigestCfg992
+		var oi edpt.InterfaceTunnelIpOspfOspfIpListMessageDigestCfg987
 		oi.MessageDigestKey = in["message_digest_key"].(int)
 		oi.Md5Value = in["md5_value"].(string)
 		//omit encrypted
@@ -1009,30 +1009,30 @@ func getSliceInterfaceTunnelIpOspfOspfIpListMessageDigestCfg992(d []interface{})
 	return ret
 }
 
-func getObjectInterfaceTunnelIpv6993(d []interface{}) edpt.InterfaceTunnelIpv6993 {
+func getObjectInterfaceTunnelIpv6988(d []interface{}) edpt.InterfaceTunnelIpv6988 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpv6993
+	var ret edpt.InterfaceTunnelIpv6988
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.AddressCfg = getSliceInterfaceTunnelIpv6AddressCfg994(in["address_cfg"].([]interface{}))
+		ret.AddressCfg = getSliceInterfaceTunnelIpv6AddressCfg989(in["address_cfg"].([]interface{}))
 		ret.Ipv6Enable = in["ipv6_enable"].(int)
 		ret.Inside = in["inside"].(int)
 		ret.Outside = in["outside"].(int)
 		//omit uuid
-		ret.Router = getObjectInterfaceTunnelIpv6Router995(in["router"].([]interface{}))
-		ret.Ospf = getObjectInterfaceTunnelIpv6Ospf999(in["ospf"].([]interface{}))
+		ret.Router = getObjectInterfaceTunnelIpv6Router990(in["router"].([]interface{}))
+		ret.Ospf = getObjectInterfaceTunnelIpv6Ospf994(in["ospf"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceInterfaceTunnelIpv6AddressCfg994(d []interface{}) []edpt.InterfaceTunnelIpv6AddressCfg994 {
+func getSliceInterfaceTunnelIpv6AddressCfg989(d []interface{}) []edpt.InterfaceTunnelIpv6AddressCfg989 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceTunnelIpv6AddressCfg994, 0, count1)
+	ret := make([]edpt.InterfaceTunnelIpv6AddressCfg989, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceTunnelIpv6AddressCfg994
+		var oi edpt.InterfaceTunnelIpv6AddressCfg989
 		oi.Ipv6Addr = in["ipv6_addr"].(string)
 		oi.AddressType = in["address_type"].(string)
 		ret = append(ret, oi)
@@ -1040,22 +1040,22 @@ func getSliceInterfaceTunnelIpv6AddressCfg994(d []interface{}) []edpt.InterfaceT
 	return ret
 }
 
-func getObjectInterfaceTunnelIpv6Router995(d []interface{}) edpt.InterfaceTunnelIpv6Router995 {
+func getObjectInterfaceTunnelIpv6Router990(d []interface{}) edpt.InterfaceTunnelIpv6Router990 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpv6Router995
+	var ret edpt.InterfaceTunnelIpv6Router990
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Ripng = getObjectInterfaceTunnelIpv6RouterRipng996(in["ripng"].([]interface{}))
-		ret.Ospf = getObjectInterfaceTunnelIpv6RouterOspf997(in["ospf"].([]interface{}))
+		ret.Ripng = getObjectInterfaceTunnelIpv6RouterRipng991(in["ripng"].([]interface{}))
+		ret.Ospf = getObjectInterfaceTunnelIpv6RouterOspf992(in["ospf"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceTunnelIpv6RouterRipng996(d []interface{}) edpt.InterfaceTunnelIpv6RouterRipng996 {
+func getObjectInterfaceTunnelIpv6RouterRipng991(d []interface{}) edpt.InterfaceTunnelIpv6RouterRipng991 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpv6RouterRipng996
+	var ret edpt.InterfaceTunnelIpv6RouterRipng991
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Rip = in["rip"].(int)
@@ -1064,25 +1064,25 @@ func getObjectInterfaceTunnelIpv6RouterRipng996(d []interface{}) edpt.InterfaceT
 	return ret
 }
 
-func getObjectInterfaceTunnelIpv6RouterOspf997(d []interface{}) edpt.InterfaceTunnelIpv6RouterOspf997 {
+func getObjectInterfaceTunnelIpv6RouterOspf992(d []interface{}) edpt.InterfaceTunnelIpv6RouterOspf992 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpv6RouterOspf997
+	var ret edpt.InterfaceTunnelIpv6RouterOspf992
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.AreaList = getSliceInterfaceTunnelIpv6RouterOspfAreaList998(in["area_list"].([]interface{}))
+		ret.AreaList = getSliceInterfaceTunnelIpv6RouterOspfAreaList993(in["area_list"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceInterfaceTunnelIpv6RouterOspfAreaList998(d []interface{}) []edpt.InterfaceTunnelIpv6RouterOspfAreaList998 {
+func getSliceInterfaceTunnelIpv6RouterOspfAreaList993(d []interface{}) []edpt.InterfaceTunnelIpv6RouterOspfAreaList993 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceTunnelIpv6RouterOspfAreaList998, 0, count1)
+	ret := make([]edpt.InterfaceTunnelIpv6RouterOspfAreaList993, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceTunnelIpv6RouterOspfAreaList998
+		var oi edpt.InterfaceTunnelIpv6RouterOspfAreaList993
 		oi.AreaIdNum = in["area_id_num"].(int)
 		oi.AreaIdAddr = in["area_id_addr"].(string)
 		oi.Tag = in["tag"].(string)
@@ -1092,35 +1092,35 @@ func getSliceInterfaceTunnelIpv6RouterOspfAreaList998(d []interface{}) []edpt.In
 	return ret
 }
 
-func getObjectInterfaceTunnelIpv6Ospf999(d []interface{}) edpt.InterfaceTunnelIpv6Ospf999 {
+func getObjectInterfaceTunnelIpv6Ospf994(d []interface{}) edpt.InterfaceTunnelIpv6Ospf994 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelIpv6Ospf999
+	var ret edpt.InterfaceTunnelIpv6Ospf994
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.NetworkList = getSliceInterfaceTunnelIpv6OspfNetworkList1000(in["network_list"].([]interface{}))
+		ret.NetworkList = getSliceInterfaceTunnelIpv6OspfNetworkList995(in["network_list"].([]interface{}))
 		ret.Bfd = in["bfd"].(int)
 		ret.Disable = in["disable"].(int)
-		ret.CostCfg = getSliceInterfaceTunnelIpv6OspfCostCfg1001(in["cost_cfg"].([]interface{}))
-		ret.DeadIntervalCfg = getSliceInterfaceTunnelIpv6OspfDeadIntervalCfg1002(in["dead_interval_cfg"].([]interface{}))
-		ret.HelloIntervalCfg = getSliceInterfaceTunnelIpv6OspfHelloIntervalCfg1003(in["hello_interval_cfg"].([]interface{}))
-		ret.MtuIgnoreCfg = getSliceInterfaceTunnelIpv6OspfMtuIgnoreCfg1004(in["mtu_ignore_cfg"].([]interface{}))
-		ret.NeighborCfg = getSliceInterfaceTunnelIpv6OspfNeighborCfg1005(in["neighbor_cfg"].([]interface{}))
-		ret.PriorityCfg = getSliceInterfaceTunnelIpv6OspfPriorityCfg1006(in["priority_cfg"].([]interface{}))
-		ret.RetransmitIntervalCfg = getSliceInterfaceTunnelIpv6OspfRetransmitIntervalCfg1007(in["retransmit_interval_cfg"].([]interface{}))
-		ret.TransmitDelayCfg = getSliceInterfaceTunnelIpv6OspfTransmitDelayCfg1008(in["transmit_delay_cfg"].([]interface{}))
+		ret.CostCfg = getSliceInterfaceTunnelIpv6OspfCostCfg996(in["cost_cfg"].([]interface{}))
+		ret.DeadIntervalCfg = getSliceInterfaceTunnelIpv6OspfDeadIntervalCfg997(in["dead_interval_cfg"].([]interface{}))
+		ret.HelloIntervalCfg = getSliceInterfaceTunnelIpv6OspfHelloIntervalCfg998(in["hello_interval_cfg"].([]interface{}))
+		ret.MtuIgnoreCfg = getSliceInterfaceTunnelIpv6OspfMtuIgnoreCfg999(in["mtu_ignore_cfg"].([]interface{}))
+		ret.NeighborCfg = getSliceInterfaceTunnelIpv6OspfNeighborCfg1000(in["neighbor_cfg"].([]interface{}))
+		ret.PriorityCfg = getSliceInterfaceTunnelIpv6OspfPriorityCfg1001(in["priority_cfg"].([]interface{}))
+		ret.RetransmitIntervalCfg = getSliceInterfaceTunnelIpv6OspfRetransmitIntervalCfg1002(in["retransmit_interval_cfg"].([]interface{}))
+		ret.TransmitDelayCfg = getSliceInterfaceTunnelIpv6OspfTransmitDelayCfg1003(in["transmit_delay_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceInterfaceTunnelIpv6OspfNetworkList1000(d []interface{}) []edpt.InterfaceTunnelIpv6OspfNetworkList1000 {
+func getSliceInterfaceTunnelIpv6OspfNetworkList995(d []interface{}) []edpt.InterfaceTunnelIpv6OspfNetworkList995 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceTunnelIpv6OspfNetworkList1000, 0, count1)
+	ret := make([]edpt.InterfaceTunnelIpv6OspfNetworkList995, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceTunnelIpv6OspfNetworkList1000
+		var oi edpt.InterfaceTunnelIpv6OspfNetworkList995
 		oi.BroadcastType = in["broadcast_type"].(string)
 		oi.P2mpNbma = in["p2mp_nbma"].(int)
 		oi.NetworkInstanceId = in["network_instance_id"].(int)
@@ -1129,13 +1129,13 @@ func getSliceInterfaceTunnelIpv6OspfNetworkList1000(d []interface{}) []edpt.Inte
 	return ret
 }
 
-func getSliceInterfaceTunnelIpv6OspfCostCfg1001(d []interface{}) []edpt.InterfaceTunnelIpv6OspfCostCfg1001 {
+func getSliceInterfaceTunnelIpv6OspfCostCfg996(d []interface{}) []edpt.InterfaceTunnelIpv6OspfCostCfg996 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceTunnelIpv6OspfCostCfg1001, 0, count1)
+	ret := make([]edpt.InterfaceTunnelIpv6OspfCostCfg996, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceTunnelIpv6OspfCostCfg1001
+		var oi edpt.InterfaceTunnelIpv6OspfCostCfg996
 		oi.Cost = in["cost"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -1143,13 +1143,13 @@ func getSliceInterfaceTunnelIpv6OspfCostCfg1001(d []interface{}) []edpt.Interfac
 	return ret
 }
 
-func getSliceInterfaceTunnelIpv6OspfDeadIntervalCfg1002(d []interface{}) []edpt.InterfaceTunnelIpv6OspfDeadIntervalCfg1002 {
+func getSliceInterfaceTunnelIpv6OspfDeadIntervalCfg997(d []interface{}) []edpt.InterfaceTunnelIpv6OspfDeadIntervalCfg997 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceTunnelIpv6OspfDeadIntervalCfg1002, 0, count1)
+	ret := make([]edpt.InterfaceTunnelIpv6OspfDeadIntervalCfg997, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceTunnelIpv6OspfDeadIntervalCfg1002
+		var oi edpt.InterfaceTunnelIpv6OspfDeadIntervalCfg997
 		oi.DeadInterval = in["dead_interval"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -1157,13 +1157,13 @@ func getSliceInterfaceTunnelIpv6OspfDeadIntervalCfg1002(d []interface{}) []edpt.
 	return ret
 }
 
-func getSliceInterfaceTunnelIpv6OspfHelloIntervalCfg1003(d []interface{}) []edpt.InterfaceTunnelIpv6OspfHelloIntervalCfg1003 {
+func getSliceInterfaceTunnelIpv6OspfHelloIntervalCfg998(d []interface{}) []edpt.InterfaceTunnelIpv6OspfHelloIntervalCfg998 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceTunnelIpv6OspfHelloIntervalCfg1003, 0, count1)
+	ret := make([]edpt.InterfaceTunnelIpv6OspfHelloIntervalCfg998, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceTunnelIpv6OspfHelloIntervalCfg1003
+		var oi edpt.InterfaceTunnelIpv6OspfHelloIntervalCfg998
 		oi.HelloInterval = in["hello_interval"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -1171,13 +1171,13 @@ func getSliceInterfaceTunnelIpv6OspfHelloIntervalCfg1003(d []interface{}) []edpt
 	return ret
 }
 
-func getSliceInterfaceTunnelIpv6OspfMtuIgnoreCfg1004(d []interface{}) []edpt.InterfaceTunnelIpv6OspfMtuIgnoreCfg1004 {
+func getSliceInterfaceTunnelIpv6OspfMtuIgnoreCfg999(d []interface{}) []edpt.InterfaceTunnelIpv6OspfMtuIgnoreCfg999 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceTunnelIpv6OspfMtuIgnoreCfg1004, 0, count1)
+	ret := make([]edpt.InterfaceTunnelIpv6OspfMtuIgnoreCfg999, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceTunnelIpv6OspfMtuIgnoreCfg1004
+		var oi edpt.InterfaceTunnelIpv6OspfMtuIgnoreCfg999
 		oi.MtuIgnore = in["mtu_ignore"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -1185,13 +1185,13 @@ func getSliceInterfaceTunnelIpv6OspfMtuIgnoreCfg1004(d []interface{}) []edpt.Int
 	return ret
 }
 
-func getSliceInterfaceTunnelIpv6OspfNeighborCfg1005(d []interface{}) []edpt.InterfaceTunnelIpv6OspfNeighborCfg1005 {
+func getSliceInterfaceTunnelIpv6OspfNeighborCfg1000(d []interface{}) []edpt.InterfaceTunnelIpv6OspfNeighborCfg1000 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceTunnelIpv6OspfNeighborCfg1005, 0, count1)
+	ret := make([]edpt.InterfaceTunnelIpv6OspfNeighborCfg1000, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceTunnelIpv6OspfNeighborCfg1005
+		var oi edpt.InterfaceTunnelIpv6OspfNeighborCfg1000
 		oi.Neighbor = in["neighbor"].(string)
 		oi.NeigInst = in["neig_inst"].(int)
 		oi.NeighborCost = in["neighbor_cost"].(int)
@@ -1202,13 +1202,13 @@ func getSliceInterfaceTunnelIpv6OspfNeighborCfg1005(d []interface{}) []edpt.Inte
 	return ret
 }
 
-func getSliceInterfaceTunnelIpv6OspfPriorityCfg1006(d []interface{}) []edpt.InterfaceTunnelIpv6OspfPriorityCfg1006 {
+func getSliceInterfaceTunnelIpv6OspfPriorityCfg1001(d []interface{}) []edpt.InterfaceTunnelIpv6OspfPriorityCfg1001 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceTunnelIpv6OspfPriorityCfg1006, 0, count1)
+	ret := make([]edpt.InterfaceTunnelIpv6OspfPriorityCfg1001, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceTunnelIpv6OspfPriorityCfg1006
+		var oi edpt.InterfaceTunnelIpv6OspfPriorityCfg1001
 		oi.Priority = in["priority"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -1216,13 +1216,13 @@ func getSliceInterfaceTunnelIpv6OspfPriorityCfg1006(d []interface{}) []edpt.Inte
 	return ret
 }
 
-func getSliceInterfaceTunnelIpv6OspfRetransmitIntervalCfg1007(d []interface{}) []edpt.InterfaceTunnelIpv6OspfRetransmitIntervalCfg1007 {
+func getSliceInterfaceTunnelIpv6OspfRetransmitIntervalCfg1002(d []interface{}) []edpt.InterfaceTunnelIpv6OspfRetransmitIntervalCfg1002 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceTunnelIpv6OspfRetransmitIntervalCfg1007, 0, count1)
+	ret := make([]edpt.InterfaceTunnelIpv6OspfRetransmitIntervalCfg1002, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceTunnelIpv6OspfRetransmitIntervalCfg1007
+		var oi edpt.InterfaceTunnelIpv6OspfRetransmitIntervalCfg1002
 		oi.RetransmitInterval = in["retransmit_interval"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -1230,13 +1230,13 @@ func getSliceInterfaceTunnelIpv6OspfRetransmitIntervalCfg1007(d []interface{}) [
 	return ret
 }
 
-func getSliceInterfaceTunnelIpv6OspfTransmitDelayCfg1008(d []interface{}) []edpt.InterfaceTunnelIpv6OspfTransmitDelayCfg1008 {
+func getSliceInterfaceTunnelIpv6OspfTransmitDelayCfg1003(d []interface{}) []edpt.InterfaceTunnelIpv6OspfTransmitDelayCfg1003 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceTunnelIpv6OspfTransmitDelayCfg1008, 0, count1)
+	ret := make([]edpt.InterfaceTunnelIpv6OspfTransmitDelayCfg1003, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceTunnelIpv6OspfTransmitDelayCfg1008
+		var oi edpt.InterfaceTunnelIpv6OspfTransmitDelayCfg1003
 		oi.TransmitDelay = in["transmit_delay"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -1244,10 +1244,10 @@ func getSliceInterfaceTunnelIpv6OspfTransmitDelayCfg1008(d []interface{}) []edpt
 	return ret
 }
 
-func getObjectInterfaceTunnelLw4o61009(d []interface{}) edpt.InterfaceTunnelLw4o61009 {
+func getObjectInterfaceTunnelLw4o61004(d []interface{}) edpt.InterfaceTunnelLw4o61004 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelLw4o61009
+	var ret edpt.InterfaceTunnelLw4o61004
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Outside = in["outside"].(int)
@@ -1257,10 +1257,10 @@ func getObjectInterfaceTunnelLw4o61009(d []interface{}) edpt.InterfaceTunnelLw4o
 	return ret
 }
 
-func getObjectInterfaceTunnelMap1010(d []interface{}) edpt.InterfaceTunnelMap1010 {
+func getObjectInterfaceTunnelMap1005(d []interface{}) edpt.InterfaceTunnelMap1005 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTunnelMap1010
+	var ret edpt.InterfaceTunnelMap1005
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Inside = in["inside"].(int)
@@ -1289,11 +1289,11 @@ func dataToEndpointInterfaceTunnel(d *schema.ResourceData) edpt.InterfaceTunnel 
 	var ret edpt.InterfaceTunnel
 	ret.Inst.Action = d.Get("action").(string)
 	ret.Inst.Ifnum = d.Get("ifnum").(int)
-	ret.Inst.Ip = getObjectInterfaceTunnelIp972(d.Get("ip").([]interface{}))
-	ret.Inst.Ipv6 = getObjectInterfaceTunnelIpv6993(d.Get("ipv6").([]interface{}))
+	ret.Inst.Ip = getObjectInterfaceTunnelIp967(d.Get("ip").([]interface{}))
+	ret.Inst.Ipv6 = getObjectInterfaceTunnelIpv6988(d.Get("ipv6").([]interface{}))
 	ret.Inst.LoadInterval = d.Get("load_interval").(int)
-	ret.Inst.Lw4o6 = getObjectInterfaceTunnelLw4o61009(d.Get("lw_4o6").([]interface{}))
-	ret.Inst.Map = getObjectInterfaceTunnelMap1010(d.Get("map").([]interface{}))
+	ret.Inst.Lw4o6 = getObjectInterfaceTunnelLw4o61004(d.Get("lw_4o6").([]interface{}))
+	ret.Inst.Map = getObjectInterfaceTunnelMap1005(d.Get("map").([]interface{}))
 	ret.Inst.Mtu = d.Get("mtu").(int)
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.PacketCaptureTemplate = d.Get("packet_capture_template").(string)

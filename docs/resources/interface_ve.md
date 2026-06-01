@@ -143,6 +143,7 @@ Optional:
 - `router` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip--router))
 - `server` (Number) Server facing interface for IPv4/v6 traffic
 - `slb_partition_redirect` (Number) Redirect SLB traffic across partition
+- `stateful_firewall` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip--stateful_firewall))
 - `syn_cookie` (Number) Enable SYN-cookie on the interface
 - `ttl_ignore` (Number) Ignore TTL decrement for a received packet
 - `unnumbered` (Number) Set the interface as unnumbered
@@ -378,6 +379,19 @@ Optional:
 
 
 
+<a id="nestedblock--ip--stateful_firewall"></a>
+### Nested Schema for `ip.stateful_firewall`
+
+Optional:
+
+- `access_list` (Number) Access-list for traffic from the outside
+- `acl_id` (Number) ACL id
+- `class_list` (String) Class List (Class List Name)
+- `inside` (Number) Inside (private) interface for stateful firewall
+- `outside` (Number) Outside (public) interface for stateful firewall
+- `uuid` (String) uuid of the object
+
+
 
 <a id="nestedblock--ipv6"></a>
 ### Nested Schema for `ipv6`
@@ -393,6 +407,7 @@ Optional:
 - `rip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipv6--rip))
 - `router` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipv6--router))
 - `router_adver` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipv6--router_adver))
+- `stateful_firewall` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipv6--stateful_firewall))
 - `ttl_ignore` (Number) Ignore TTL decrement for a received packet
 - `uuid` (String) uuid of the object
 - `v6_acl_name` (String) Apply ACL rules to incoming packets on this interface (Named Access List)
@@ -611,6 +626,19 @@ Optional:
 - `prefix` (String) Set Router Advertisement On-Link Prefix (IPv6 On-Link Prefix)
 - `valid_lifetime` (Number) Specify Valid Lifetime (default:2592000) (Prefix Advertised Valid Lifetime (default: 2592000))
 
+
+
+<a id="nestedblock--ipv6--stateful_firewall"></a>
+### Nested Schema for `ipv6.stateful_firewall`
+
+Optional:
+
+- `access_list` (Number) Access-list for traffic from the outside
+- `acl_name` (String) Access-list Name
+- `class_list` (String) Class List (Class List Name)
+- `inside` (Number) Inside (private) interface for stateful firewall
+- `outside` (Number) Outside (public) interface for stateful firewall
+- `uuid` (String) uuid of the object
 
 
 

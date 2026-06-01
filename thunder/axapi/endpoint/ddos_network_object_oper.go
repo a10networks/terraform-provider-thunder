@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosNetworkObjectOper struct {
 	ObjectName string `json:"object-name"`
 
@@ -25,18 +25,19 @@ type DdosNetworkObjectOperOper struct {
 	TotalDetails              int                                  `json:"total-details"`
 	VictimList                int                                  `json:"victim-list"`
 	DiscoveredList            int                                  `json:"discovered-list"`
-	SportList                 int                                  `json:"sport-list"`
+	SrcServiceList            int                                  `json:"src-service-list"`
 	SubnetIpAddr              string                               `json:"subnet-ip-addr"`
 	SubnetIpv6Addr            string                               `json:"subnet-ipv6-addr"`
 	Ipv4                      string                               `json:"ipv4"`
 	DiscoveredIpList          int                                  `json:"discovered-ip-list"`
 	AnomalyIpList             int                                  `json:"anomaly-ip-list"`
-	Sport                     int                                  `json:"sport"`
+	SrcPort                   int                                  `json:"src-port"`
 	PortStart                 int                                  `json:"port-start"`
 	PortEnd                   int                                  `json:"port-end"`
 	Protocol                  int                                  `json:"protocol"`
 	SingleLayerDiscoveredList int                                  `json:"single-layer-discovered-list"`
 	AgentGroupDetails         int                                  `json:"agent-group-details"`
+	AggregatedDetails         int                                  `json:"aggregated-details"`
 }
 
 type DdosNetworkObjectOperOperEntryList struct {
@@ -56,6 +57,7 @@ type DdosNetworkObjectOperOperEntryList struct {
 	DisplayFilter           string                                         `json:"display-filter"`
 	EsTimestamp             string                                         `json:"es-timestamp"`
 	DeEsTimestamp           string                                         `json:"de-es-timestamp"`
+	Estimated_bit_rate      string                                         `json:"estimated_bit_rate"`
 }
 
 type DdosNetworkObjectOperOperEntryListIndicators struct {

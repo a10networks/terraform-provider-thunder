@@ -5,17 +5,17 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstEntryPortRangePortIndOper struct {
 	Oper DdosDstEntryPortRangePortIndOperOper `json:"oper"`
 
 	Protocol string
 
-	PortRangeEnd string
-
 	DstEntryName string
 
 	PortRangeStart string
+
+	PortRangeEnd string
 }
 type DataDdosDstEntryPortRangePortIndOper struct {
 	DtDdosDstEntryPortRangePortIndOper DdosDstEntryPortRangePortIndOper `json:"port-ind"`

@@ -25,14 +25,14 @@ func resourceCgnv6Lw4o6BindingTableTunnelAddressNatAddressPortRange() *schema.Re
 			"tunnel_endpoint_address": {
 				Type: schema.TypeString, Required: true, Description: "Configure LW-4over6 IPIP Tunnel Endpoint Address (LW-4over6 Tunnel Endpoint Address)",
 			},
-			"ipv6_tunnel_addr": {
-				Type: schema.TypeString, Required: true, Description: "Ipv6TunnelAddr",
-			},
 			"binding_table_name": {
 				Type: schema.TypeString, Required: true, Description: "Binding_table_name",
 			},
 			"ipv4_nat_addr": {
 				Type: schema.TypeString, Required: true, Description: "Ipv4NatAddr",
+			},
+			"ipv6_tunnel_addr": {
+				Type: schema.TypeString, Required: true, Description: "Ipv6TunnelAddr",
 			},
 		},
 	}
@@ -104,8 +104,8 @@ func dataToEndpointCgnv6Lw4o6BindingTableTunnelAddressNatAddressPortRange(d *sch
 	ret.Inst.PortEnd = d.Get("port_end").(int)
 	ret.Inst.PortStart = d.Get("port_start").(int)
 	ret.Inst.TunnelEndpointAddress = d.Get("tunnel_endpoint_address").(string)
-	ret.Inst.Ipv6TunnelAddr = d.Get("ipv6_tunnel_addr").(string)
 	ret.Inst.Binding_table_name = d.Get("binding_table_name").(string)
 	ret.Inst.Ipv4NatAddr = d.Get("ipv4_nat_addr").(string)
+	ret.Inst.Ipv6TunnelAddr = d.Get("ipv6_tunnel_addr").(string)
 	return ret
 }

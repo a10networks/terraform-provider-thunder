@@ -128,25 +128,25 @@ func resourceAcosEventsLogParameterizationRead(ctx context.Context, d *schema.Re
 	return diags
 }
 
-func getObjectAcosEventsLogParameterizationMessageSelector54(d []interface{}) edpt.AcosEventsLogParameterizationMessageSelector54 {
+func getObjectAcosEventsLogParameterizationMessageSelector55(d []interface{}) edpt.AcosEventsLogParameterizationMessageSelector55 {
 
 	count1 := len(d)
-	var ret edpt.AcosEventsLogParameterizationMessageSelector54
+	var ret edpt.AcosEventsLogParameterizationMessageSelector55
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.RuleList = getSliceAcosEventsLogParameterizationMessageSelectorRuleList55(in["rule_list"].([]interface{}))
+		ret.RuleList = getSliceAcosEventsLogParameterizationMessageSelectorRuleList56(in["rule_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceAcosEventsLogParameterizationMessageSelectorRuleList55(d []interface{}) []edpt.AcosEventsLogParameterizationMessageSelectorRuleList55 {
+func getSliceAcosEventsLogParameterizationMessageSelectorRuleList56(d []interface{}) []edpt.AcosEventsLogParameterizationMessageSelectorRuleList56 {
 
 	count1 := len(d)
-	ret := make([]edpt.AcosEventsLogParameterizationMessageSelectorRuleList55, 0, count1)
+	ret := make([]edpt.AcosEventsLogParameterizationMessageSelectorRuleList56, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.AcosEventsLogParameterizationMessageSelectorRuleList55
+		var oi edpt.AcosEventsLogParameterizationMessageSelectorRuleList56
 		oi.Index = in["index"].(int)
 		oi.Action = in["action"].(string)
 		oi.MessageId = in["message_id"].(string)
@@ -163,7 +163,7 @@ func getSliceAcosEventsLogParameterizationMessageSelectorRuleList55(d []interfac
 func dataToEndpointAcosEventsLogParameterization(d *schema.ResourceData) edpt.AcosEventsLogParameterization {
 	var ret edpt.AcosEventsLogParameterization
 	ret.Inst.LogRate = d.Get("log_rate").(int)
-	ret.Inst.MessageSelector = getObjectAcosEventsLogParameterizationMessageSelector54(d.Get("message_selector").([]interface{}))
+	ret.Inst.MessageSelector = getObjectAcosEventsLogParameterizationMessageSelector55(d.Get("message_selector").([]interface{}))
 	//omit uuid
 	return ret
 }

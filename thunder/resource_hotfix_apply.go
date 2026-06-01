@@ -22,6 +22,9 @@ func resourceHotfixApply() *schema.Resource {
 			"image_file": {
 				Type: schema.TypeString, Optional: true, Description: "image file from AXAPI",
 			},
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "password for the remote site",
+			},
 			"source_ip_address": {
 				Type: schema.TypeString, Optional: true, Description: "Source ip address",
 			},
@@ -97,6 +100,7 @@ func dataToEndpointHotfixApply(d *schema.ResourceData) edpt.HotfixApply {
 	var ret edpt.HotfixApply
 	ret.Inst.FileUrl = d.Get("file_url").(string)
 	ret.Inst.ImageFile = d.Get("image_file").(string)
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.SourceIpAddress = d.Get("source_ip_address").(string)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)
 	return ret

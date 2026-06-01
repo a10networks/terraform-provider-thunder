@@ -6,16 +6,16 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6MapTranslationDomain struct {
 	Inst struct {
-		BasicMappingRule Cgnv6MapTranslationDomainBasicMappingRule104 `json:"basic-mapping-rule"`
+		BasicMappingRule Cgnv6MapTranslationDomainBasicMappingRule105 `json:"basic-mapping-rule"`
 
-		DefaultMappingRule Cgnv6MapTranslationDomainDefaultMappingRule106 `json:"default-mapping-rule"`
+		DefaultMappingRule Cgnv6MapTranslationDomainDefaultMappingRule107 `json:"default-mapping-rule"`
 
 		Description string `json:"description"`
 
-		HealthCheckGateway Cgnv6MapTranslationDomainHealthCheckGateway107 `json:"health-check-gateway"`
+		HealthCheckGateway Cgnv6MapTranslationDomainHealthCheckGateway108 `json:"health-check-gateway"`
 
 		Mtu int `json:"mtu"`
 
@@ -33,16 +33,16 @@ type Cgnv6MapTranslationDomain struct {
 	} `json:"domain"`
 }
 
-type Cgnv6MapTranslationDomainBasicMappingRule104 struct {
+type Cgnv6MapTranslationDomainBasicMappingRule105 struct {
 	RuleIpv4AddressPortSettings string                                                       `json:"rule-ipv4-address-port-settings"`
 	EaLength                    int                                                          `json:"ea-length"`
 	ShareRatio                  int                                                          `json:"share-ratio"`
 	PortStart                   int                                                          `json:"port-start"`
 	Uuid                        string                                                       `json:"uuid"`
-	PrefixRuleList              []Cgnv6MapTranslationDomainBasicMappingRulePrefixRuleList105 `json:"prefix-rule-list"`
+	PrefixRuleList              []Cgnv6MapTranslationDomainBasicMappingRulePrefixRuleList106 `json:"prefix-rule-list"`
 }
 
-type Cgnv6MapTranslationDomainBasicMappingRulePrefixRuleList105 struct {
+type Cgnv6MapTranslationDomainBasicMappingRulePrefixRuleList106 struct {
 	Name           string `json:"name"`
 	RuleIpv6Prefix string `json:"rule-ipv6-prefix"`
 	RuleIpv4Prefix string `json:"rule-ipv4-prefix"`
@@ -51,23 +51,23 @@ type Cgnv6MapTranslationDomainBasicMappingRulePrefixRuleList105 struct {
 	UserTag        string `json:"user-tag"`
 }
 
-type Cgnv6MapTranslationDomainDefaultMappingRule106 struct {
+type Cgnv6MapTranslationDomainDefaultMappingRule107 struct {
 	RuleIpv6Prefix string `json:"rule-ipv6-prefix"`
 	Uuid           string `json:"uuid"`
 }
 
-type Cgnv6MapTranslationDomainHealthCheckGateway107 struct {
-	AddressList     []Cgnv6MapTranslationDomainHealthCheckGatewayAddressList108     `json:"address-list"`
-	Ipv6AddressList []Cgnv6MapTranslationDomainHealthCheckGatewayIpv6AddressList109 `json:"ipv6-address-list"`
+type Cgnv6MapTranslationDomainHealthCheckGateway108 struct {
+	AddressList     []Cgnv6MapTranslationDomainHealthCheckGatewayAddressList109     `json:"address-list"`
+	Ipv6AddressList []Cgnv6MapTranslationDomainHealthCheckGatewayIpv6AddressList110 `json:"ipv6-address-list"`
 	WithdrawRoute   string                                                          `json:"withdraw-route" dval:"any-link-failure"`
 	Uuid            string                                                          `json:"uuid"`
 }
 
-type Cgnv6MapTranslationDomainHealthCheckGatewayAddressList108 struct {
+type Cgnv6MapTranslationDomainHealthCheckGatewayAddressList109 struct {
 	Ipv4Gateway string `json:"ipv4-gateway"`
 }
 
-type Cgnv6MapTranslationDomainHealthCheckGatewayIpv6AddressList109 struct {
+type Cgnv6MapTranslationDomainHealthCheckGatewayIpv6AddressList110 struct {
 	Ipv6Gateway string `json:"ipv6-gateway"`
 }
 

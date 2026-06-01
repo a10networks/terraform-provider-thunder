@@ -33,6 +33,7 @@ __PLACEHOLDER__
 - `force` (Number) Force update even the serial is the same
 - `manual_refresh` (String) Manually refresh the particular zone
 - `packet_capturing` (Block List, Max: 1) (see [below for nested schema](#nestedblock--packet_capturing))
+- `refresh_interval_by_soa` (Number) Read by SOA record
 - `refresh_interval_hours` (Number) Zone transfer refresh rate in hours (Default 4). 0 means no refresh
 - `server_ipv4` (String) Master ipv4 address
 - `server_ipv6` (String) Master ipv6 address

@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesPop3VportTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesPop3VportTmplTriggerStatsInc2800 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesPop3VportTmplTriggerStatsInc2818 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesPop3VportTmplTriggerStatsRate2801 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesPop3VportTmplTriggerStatsRate2819 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesPop3VportTmplTriggerStatsSeverity2802 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesPop3VportTmplTriggerStatsSeverity2820 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,7 +25,7 @@ type VisibilityPacketCaptureObjectTemplatesPop3VportTmpl struct {
 	} `json:"pop3-vport-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesPop3VportTmplTriggerStatsInc2800 struct {
+type VisibilityPacketCaptureObjectTemplatesPop3VportTmplTriggerStatsInc2818 struct {
 	Svrsel_fail           int    `json:"svrsel_fail"`
 	No_route              int    `json:"no_route"`
 	Snat_fail             int    `json:"snat_fail"`
@@ -43,7 +43,7 @@ type VisibilityPacketCaptureObjectTemplatesPop3VportTmplTriggerStatsInc2800 stru
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesPop3VportTmplTriggerStatsRate2801 struct {
+type VisibilityPacketCaptureObjectTemplatesPop3VportTmplTriggerStatsRate2819 struct {
 	ThresholdExceededBy   int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration              int    `json:"duration" dval:"60"`
 	Svrsel_fail           int    `json:"svrsel_fail"`
@@ -63,7 +63,7 @@ type VisibilityPacketCaptureObjectTemplatesPop3VportTmplTriggerStatsRate2801 str
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesPop3VportTmplTriggerStatsSeverity2802 struct {
+type VisibilityPacketCaptureObjectTemplatesPop3VportTmplTriggerStatsSeverity2820 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

@@ -5,12 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type RadiusServer struct {
 	Inst struct {
 		DefaultPrivilegeReadWrite int `json:"default-privilege-read-write"`
 
-		Host RadiusServerHost1177 `json:"host"`
+		Host RadiusServerHost1176 `json:"host"`
 
 		MessageAuthenticatorVerifyEnable int `json:"message-authenticator-verify-enable"`
 
@@ -18,7 +18,7 @@ type RadiusServer struct {
 	} `json:"radius-server"`
 }
 
-type RadiusServerHost1177 struct {
+type RadiusServerHost1176 struct {
 	Ipv4List []RadiusServerHostIpv4List `json:"ipv4-list"`
 	Ipv6List []RadiusServerHostIpv6List `json:"ipv6-list"`
 	NameList []RadiusServerHostNameList `json:"name-list"`

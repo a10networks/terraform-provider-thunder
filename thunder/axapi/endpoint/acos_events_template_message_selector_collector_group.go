@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type AcosEventsTemplateMessageSelectorCollectorGroup struct {
 	Inst struct {
 		Name string `json:"name"`
@@ -14,9 +14,9 @@ type AcosEventsTemplateMessageSelectorCollectorGroup struct {
 
 		Uuid string `json:"uuid"`
 
-		Message_selector_name string
-
 		Template_name string
+
+		Message_selector_name string
 	} `json:"collector-group"`
 }
 

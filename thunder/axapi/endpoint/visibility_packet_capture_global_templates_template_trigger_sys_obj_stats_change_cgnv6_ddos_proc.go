@@ -5,12 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6DdosProc struct {
 	Inst struct {
-		TriggerStatsInc VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsInc2080 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsInc2079 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsRate2081 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsRate2080 `json:"trigger-stats-rate"`
 
 		Uuid string `json:"uuid"`
 
@@ -18,7 +18,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6
 	} `json:"cgnv6-ddos-proc"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsInc2080 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsInc2079 struct {
 	L3_entry_match_drop              int    `json:"l3_entry_match_drop"`
 	L3_entry_match_drop_hw           int    `json:"l3_entry_match_drop_hw"`
 	L3_entry_drop_max_hw_exceeded    int    `json:"l3_entry_drop_max_hw_exceeded"`
@@ -33,13 +33,10 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6
 	L3_entry_remove_from_bgp_failure int    `json:"l3_entry_remove_from_bgp_failure"`
 	L3_entry_add_to_hw_failure       int    `json:"l3_entry_add_to_hw_failure"`
 	Syn_cookie_verification_failed   int    `json:"syn_cookie_verification_failed"`
-	L3_entry_del_to_hw_failure       int    `json:"l3_entry_del_to_hw_failure"`
-	L4_entry_del_to_hw_failure       int    `json:"l4_entry_del_to_hw_failure"`
-	L4_entry_add_to_hw_failure       int    `json:"l4_entry_add_to_hw_failure"`
 	Uuid                             string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsRate2081 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsRate2080 struct {
 	ThresholdExceededBy              int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                         int    `json:"duration" dval:"60"`
 	L3_entry_match_drop              int    `json:"l3_entry_match_drop"`
@@ -56,9 +53,6 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6
 	L3_entry_remove_from_bgp_failure int    `json:"l3_entry_remove_from_bgp_failure"`
 	L3_entry_add_to_hw_failure       int    `json:"l3_entry_add_to_hw_failure"`
 	Syn_cookie_verification_failed   int    `json:"syn_cookie_verification_failed"`
-	L3_entry_del_to_hw_failure       int    `json:"l3_entry_del_to_hw_failure"`
-	L4_entry_del_to_hw_failure       int    `json:"l4_entry_del_to_hw_failure"`
-	L4_entry_add_to_hw_failure       int    `json:"l4_entry_add_to_hw_failure"`
 	Uuid                             string `json:"uuid"`
 }
 

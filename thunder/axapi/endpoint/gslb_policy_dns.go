@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type GslbPolicyDns struct {
 	Inst struct {
 		Action int `json:"action"`
@@ -114,7 +114,7 @@ type GslbPolicyDns struct {
 
 		StickyMask string `json:"sticky-mask" dval:"/32"`
 
-		StickyOptions GslbPolicyDnsStickyOptions474 `json:"sticky-options"`
+		StickyOptions GslbPolicyDnsStickyOptions465 `json:"sticky-options"`
 
 		Template string `json:"template"`
 
@@ -144,7 +144,7 @@ type GslbPolicyDnsProxyBlockPortRangeList struct {
 	ProxyBlockRangeTo   int `json:"proxy-block-range-to"`
 }
 
-type GslbPolicyDnsStickyOptions474 struct {
+type GslbPolicyDnsStickyOptions465 struct {
 	EdnsClientSubnet int    `json:"edns-client-subnet"`
 	OnlyEcs          int    `json:"only-ecs"`
 	Uuid             string `json:"uuid"`

@@ -130,25 +130,25 @@ func getSliceSystemHardwareAccelerateSamplingEnable(d []interface{}) []edpt.Syst
 	return ret
 }
 
-func getObjectSystemHardwareAccelerateSlb1679(d []interface{}) edpt.SystemHardwareAccelerateSlb1679 {
+func getObjectSystemHardwareAccelerateSlb1680(d []interface{}) edpt.SystemHardwareAccelerateSlb1680 {
 
 	count1 := len(d)
-	var ret edpt.SystemHardwareAccelerateSlb1679
+	var ret edpt.SystemHardwareAccelerateSlb1680
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceSystemHardwareAccelerateSlbSamplingEnable1680(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSystemHardwareAccelerateSlbSamplingEnable1681(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSystemHardwareAccelerateSlbSamplingEnable1680(d []interface{}) []edpt.SystemHardwareAccelerateSlbSamplingEnable1680 {
+func getSliceSystemHardwareAccelerateSlbSamplingEnable1681(d []interface{}) []edpt.SystemHardwareAccelerateSlbSamplingEnable1681 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemHardwareAccelerateSlbSamplingEnable1680, 0, count1)
+	ret := make([]edpt.SystemHardwareAccelerateSlbSamplingEnable1681, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemHardwareAccelerateSlbSamplingEnable1680
+		var oi edpt.SystemHardwareAccelerateSlbSamplingEnable1681
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
@@ -159,7 +159,7 @@ func dataToEndpointSystemHardwareAccelerate(d *schema.ResourceData) edpt.SystemH
 	var ret edpt.SystemHardwareAccelerate
 	ret.Inst.SamplingEnable = getSliceSystemHardwareAccelerateSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.SessionForwarding = d.Get("session_forwarding").(int)
-	ret.Inst.Slb = getObjectSystemHardwareAccelerateSlb1679(d.Get("slb").([]interface{}))
+	ret.Inst.Slb = getObjectSystemHardwareAccelerateSlb1680(d.Get("slb").([]interface{}))
 	//omit uuid
 	return ret
 }

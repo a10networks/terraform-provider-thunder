@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplTriggerStatsInc2728 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplTriggerStatsInc2743 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplTriggerStatsRate2729 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplTriggerStatsRate2744 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplTriggerStatsSeverity2730 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplTriggerStatsSeverity2745 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,7 +25,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmpl struct {
 	} `json:"aam-auth-relay-form-inst-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplTriggerStatsInc2728 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplTriggerStatsInc2743 struct {
 	Invalid_srv_rsp int    `json:"invalid_srv_rsp"`
 	Post_fail       int    `json:"post_fail"`
 	Invalid_cred    int    `json:"invalid_cred"`
@@ -36,7 +36,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplTriggerStatsI
 	Uuid            string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplTriggerStatsRate2729 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplTriggerStatsRate2744 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Invalid_srv_rsp     int    `json:"invalid_srv_rsp"`
@@ -49,7 +49,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplTriggerStatsR
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplTriggerStatsSeverity2730 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplTriggerStatsSeverity2745 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

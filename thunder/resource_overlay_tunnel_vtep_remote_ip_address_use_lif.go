@@ -25,11 +25,11 @@ func resourceOverlayTunnelVtepRemoteIpAddressUseLif() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"id1": {
-				Type: schema.TypeString, Required: true, Description: "Id1",
-			},
 			"ip_address": {
 				Type: schema.TypeString, Required: true, Description: "IpAddress",
+			},
+			"id1": {
+				Type: schema.TypeString, Required: true, Description: "Id1",
 			},
 		},
 	}
@@ -101,7 +101,7 @@ func dataToEndpointOverlayTunnelVtepRemoteIpAddressUseLif(d *schema.ResourceData
 	ret.Inst.Lif = d.Get("lif").(string)
 	ret.Inst.Partition = d.Get("partition").(string)
 	//omit uuid
-	ret.Inst.Id1 = d.Get("id1").(string)
 	ret.Inst.IpAddress = d.Get("ip_address").(string)
+	ret.Inst.Id1 = d.Get("id1").(string)
 	return ret
 }

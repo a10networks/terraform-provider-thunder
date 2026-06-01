@@ -25,7 +25,6 @@ __PLACEHOLDER__
 - `auth_portal` (String) Portal file for http authentication
 - `auth_portal_image` (String) Image file for default portal
 - `auth_saml_idp` (Block List, Max: 1) (see [below for nested schema](#nestedblock--auth_saml_idp))
-- `background` (Number) Background mode for importing class-list
 - `bios_file` (String) BIOS Image file
 - `bw_list` (String) Black white List File
 - `ca_cert` (String) CA Cert File(enter bulk when import an archive file)

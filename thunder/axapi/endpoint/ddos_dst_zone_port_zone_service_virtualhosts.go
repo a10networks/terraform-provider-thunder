@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZonePortZoneServiceVirtualhosts struct {
 	Inst struct {
 		SourceTrackingAll int `json:"source-tracking-all"`
@@ -16,11 +16,11 @@ type DdosDstZonePortZoneServiceVirtualhosts struct {
 
 		VirtualhostList []DdosDstZonePortZoneServiceVirtualhostsVirtualhostList `json:"virtualhost-list"`
 
-		Protocol string
+		ZoneName string
 
 		PortNum string
 
-		ZoneName string
+		Protocol string
 	} `json:"virtualhosts"`
 }
 

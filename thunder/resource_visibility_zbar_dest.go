@@ -94,15 +94,15 @@ func resourceVisibilityZbarDestRead(ctx context.Context, d *schema.ResourceData,
 	return diags
 }
 
-func getObjectVisibilityZbarDestBadSources3238(d []interface{}) edpt.VisibilityZbarDestBadSources3238 {
+func getObjectVisibilityZbarDestBadSources3266(d []interface{}) edpt.VisibilityZbarDestBadSources3266 {
 
-	var ret edpt.VisibilityZbarDestBadSources3238
+	var ret edpt.VisibilityZbarDestBadSources3266
 	return ret
 }
 
 func dataToEndpointVisibilityZbarDest(d *schema.ResourceData) edpt.VisibilityZbarDest {
 	var ret edpt.VisibilityZbarDest
-	ret.Inst.BadSources = getObjectVisibilityZbarDestBadSources3238(d.Get("bad_sources").([]interface{}))
+	ret.Inst.BadSources = getObjectVisibilityZbarDestBadSources3266(d.Get("bad_sources").([]interface{}))
 	//omit uuid
 	return ret
 }

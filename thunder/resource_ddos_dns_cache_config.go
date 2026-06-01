@@ -115,10 +115,10 @@ func resourceDdosDnsCacheConfigRead(ctx context.Context, d *schema.ResourceData,
 	return diags
 }
 
-func getObjectDdosDnsCacheConfigMaxConcurrentZoneTransfers166(d []interface{}) edpt.DdosDnsCacheConfigMaxConcurrentZoneTransfers166 {
+func getObjectDdosDnsCacheConfigMaxConcurrentZoneTransfers169(d []interface{}) edpt.DdosDnsCacheConfigMaxConcurrentZoneTransfers169 {
 
 	count1 := len(d)
-	var ret edpt.DdosDnsCacheConfigMaxConcurrentZoneTransfers166
+	var ret edpt.DdosDnsCacheConfigMaxConcurrentZoneTransfers169
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.WarmUpMode = in["warm_up_mode"].(int)
@@ -134,7 +134,7 @@ func dataToEndpointDdosDnsCacheConfig(d *schema.ResourceData) edpt.DdosDnsCacheC
 	ret.Inst.DisableZoneTransferInWarmUpMode = d.Get("disable_zone_transfer_in_warm_up_mode").(int)
 	ret.Inst.EdnsUdpSize = d.Get("edns_udp_size").(int)
 	ret.Inst.EnableCacheWarmUpBgpAdvertise = d.Get("enable_cache_warm_up_bgp_advertise").(int)
-	ret.Inst.MaxConcurrentZoneTransfers = getObjectDdosDnsCacheConfigMaxConcurrentZoneTransfers166(d.Get("max_concurrent_zone_transfers").([]interface{}))
+	ret.Inst.MaxConcurrentZoneTransfers = getObjectDdosDnsCacheConfigMaxConcurrentZoneTransfers169(d.Get("max_concurrent_zone_transfers").([]interface{}))
 	ret.Inst.MinimalTruncationResponses = d.Get("minimal_truncation_responses").(int)
 	//omit uuid
 	return ret

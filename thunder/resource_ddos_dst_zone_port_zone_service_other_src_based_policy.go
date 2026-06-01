@@ -35,6 +35,9 @@ func resourceDdosDstZonePortZoneServiceOtherSrcBasedPolicy() *schema.Resource {
 						"action": {
 							Type: schema.TypeString, Optional: true, Description: "'bypass': Always permit for the Source to bypass all feature & limit checks; 'deny': Blacklist incoming packets for service;",
 						},
+						"log_enable": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable logging",
+						},
 						"max_dynamic_entry_count": {
 							Type: schema.TypeInt, Optional: true, Description: "Maximum count for dynamic source zone service entry allowed for this class-list",
 						},
@@ -147,14 +150,14 @@ func resourceDdosDstZonePortZoneServiceOtherSrcBasedPolicy() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
-			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 			"port_other": {
 				Type: schema.TypeString, Required: true, Description: "PortOther",
+			},
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 		},
 	}
@@ -233,6 +236,7 @@ func getSliceDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassListList(d 
 		oi.Glid = in["glid"].(string)
 		oi.GlidAction = in["glid_action"].(string)
 		oi.Action = in["action"].(string)
+		oi.LogEnable = in["log_enable"].(int)
 		oi.MaxDynamicEntryCount = in["max_dynamic_entry_count"].(int)
 		oi.DynamicEntryCountWarnThreshold = in["dynamic_entry_count_warn_threshold"].(int)
 		oi.ZoneTemplate = getObjectDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassListListZoneTemplate(in["zone_template"].([]interface{}))
@@ -316,8 +320,8 @@ func dataToEndpointDdosDstZonePortZoneServiceOtherSrcBasedPolicy(d *schema.Resou
 	ret.Inst.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	ret.Inst.PortOther = d.Get("port_other").(string)
+	ret.Inst.Protocol = d.Get("protocol").(string)
 	return ret
 }

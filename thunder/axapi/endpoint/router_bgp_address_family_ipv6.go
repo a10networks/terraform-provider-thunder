@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type RouterBgpAddressFamilyIpv6 struct {
 	Inst struct {
 		AggregateAddressList []RouterBgpAddressFamilyIpv6AggregateAddressList `json:"aggregate-address-list"`
@@ -18,13 +18,15 @@ type RouterBgpAddressFamilyIpv6 struct {
 
 		MaximumPathsValue int `json:"maximum-paths-value" dval:"1"`
 
-		Neighbor RouterBgpAddressFamilyIpv6Neighbor1237 `json:"neighbor"`
+		Neighbor RouterBgpAddressFamilyIpv6Neighbor1236 `json:"neighbor"`
 
-		Network RouterBgpAddressFamilyIpv6Network1238 `json:"network"`
+		Network RouterBgpAddressFamilyIpv6Network1237 `json:"network"`
 
 		Originate int `json:"originate"`
 
-		Redistribute RouterBgpAddressFamilyIpv6Redistribute1242 `json:"redistribute"`
+		PreferGlobal int `json:"prefer-global"`
+
+		Redistribute RouterBgpAddressFamilyIpv6Redistribute1241 `json:"redistribute"`
 
 		Synchronization int `json:"synchronization"`
 
@@ -56,7 +58,7 @@ type RouterBgpAddressFamilyIpv6Distance struct {
 	DistanceLocal int `json:"distance-local"`
 }
 
-type RouterBgpAddressFamilyIpv6Neighbor1237 struct {
+type RouterBgpAddressFamilyIpv6Neighbor1236 struct {
 	PeerGroupNeighborList    []RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborList    `json:"peer-group-neighbor-list"`
 	Ipv4NeighborList         []RouterBgpAddressFamilyIpv6NeighborIpv4NeighborList         `json:"ipv4-neighbor-list"`
 	Ipv6NeighborList         []RouterBgpAddressFamilyIpv6NeighborIpv6NeighborList         `json:"ipv6-neighbor-list"`
@@ -195,22 +197,22 @@ type RouterBgpAddressFamilyIpv6NeighborTrunkNeighborIpv6List struct {
 	Uuid          string `json:"uuid"`
 }
 
-type RouterBgpAddressFamilyIpv6Network1238 struct {
-	Synchronization RouterBgpAddressFamilyIpv6NetworkSynchronization1239 `json:"synchronization"`
-	Monitor         RouterBgpAddressFamilyIpv6NetworkMonitor1240         `json:"monitor"`
+type RouterBgpAddressFamilyIpv6Network1237 struct {
+	Synchronization RouterBgpAddressFamilyIpv6NetworkSynchronization1238 `json:"synchronization"`
+	Monitor         RouterBgpAddressFamilyIpv6NetworkMonitor1239         `json:"monitor"`
 	Ipv6NetworkList []RouterBgpAddressFamilyIpv6NetworkIpv6NetworkList   `json:"ipv6-network-list"`
 }
 
-type RouterBgpAddressFamilyIpv6NetworkSynchronization1239 struct {
+type RouterBgpAddressFamilyIpv6NetworkSynchronization1238 struct {
 	NetworkSynchronization int    `json:"network-synchronization"`
 	Uuid                   string `json:"uuid"`
 }
 
-type RouterBgpAddressFamilyIpv6NetworkMonitor1240 struct {
-	Default RouterBgpAddressFamilyIpv6NetworkMonitorDefault1241 `json:"default"`
+type RouterBgpAddressFamilyIpv6NetworkMonitor1239 struct {
+	Default RouterBgpAddressFamilyIpv6NetworkMonitorDefault1240 `json:"default"`
 }
 
-type RouterBgpAddressFamilyIpv6NetworkMonitorDefault1241 struct {
+type RouterBgpAddressFamilyIpv6NetworkMonitorDefault1240 struct {
 	NetworkMonitorDefault int    `json:"network-monitor-default"`
 	Uuid                  string `json:"uuid"`
 }
@@ -225,100 +227,100 @@ type RouterBgpAddressFamilyIpv6NetworkIpv6NetworkList struct {
 	Uuid        string `json:"uuid"`
 }
 
-type RouterBgpAddressFamilyIpv6Redistribute1242 struct {
-	ConnectedCfg  RouterBgpAddressFamilyIpv6RedistributeConnectedCfg1243  `json:"connected-cfg"`
-	FloatingIpCfg RouterBgpAddressFamilyIpv6RedistributeFloatingIpCfg1244 `json:"floating-ip-cfg"`
-	Nat64Cfg      RouterBgpAddressFamilyIpv6RedistributeNat64Cfg1245      `json:"nat64-cfg"`
-	NatMapCfg     RouterBgpAddressFamilyIpv6RedistributeNatMapCfg1246     `json:"nat-map-cfg"`
-	Lw4o6Cfg      RouterBgpAddressFamilyIpv6RedistributeLw4o6Cfg1247      `json:"lw4o6-cfg"`
-	StaticNatCfg  RouterBgpAddressFamilyIpv6RedistributeStaticNatCfg1248  `json:"static-nat-cfg"`
-	IpNatCfg      RouterBgpAddressFamilyIpv6RedistributeIpNatCfg1249      `json:"ip-nat-cfg"`
-	IpNatListCfg  RouterBgpAddressFamilyIpv6RedistributeIpNatListCfg1250  `json:"ip-nat-list-cfg"`
-	IsisCfg       RouterBgpAddressFamilyIpv6RedistributeIsisCfg1251       `json:"isis-cfg"`
-	OspfCfg       RouterBgpAddressFamilyIpv6RedistributeOspfCfg1252       `json:"ospf-cfg"`
-	RipCfg        RouterBgpAddressFamilyIpv6RedistributeRipCfg1253        `json:"rip-cfg"`
-	StaticCfg     RouterBgpAddressFamilyIpv6RedistributeStaticCfg1254     `json:"static-cfg"`
-	PublicIpCfg   RouterBgpAddressFamilyIpv6RedistributePublicIpCfg1255   `json:"public-ip-cfg"`
-	Vip           RouterBgpAddressFamilyIpv6RedistributeVip1256           `json:"vip"`
+type RouterBgpAddressFamilyIpv6Redistribute1241 struct {
+	ConnectedCfg  RouterBgpAddressFamilyIpv6RedistributeConnectedCfg1242  `json:"connected-cfg"`
+	FloatingIpCfg RouterBgpAddressFamilyIpv6RedistributeFloatingIpCfg1243 `json:"floating-ip-cfg"`
+	Nat64Cfg      RouterBgpAddressFamilyIpv6RedistributeNat64Cfg1244      `json:"nat64-cfg"`
+	NatMapCfg     RouterBgpAddressFamilyIpv6RedistributeNatMapCfg1245     `json:"nat-map-cfg"`
+	Lw4o6Cfg      RouterBgpAddressFamilyIpv6RedistributeLw4o6Cfg1246      `json:"lw4o6-cfg"`
+	StaticNatCfg  RouterBgpAddressFamilyIpv6RedistributeStaticNatCfg1247  `json:"static-nat-cfg"`
+	IpNatCfg      RouterBgpAddressFamilyIpv6RedistributeIpNatCfg1248      `json:"ip-nat-cfg"`
+	IpNatListCfg  RouterBgpAddressFamilyIpv6RedistributeIpNatListCfg1249  `json:"ip-nat-list-cfg"`
+	IsisCfg       RouterBgpAddressFamilyIpv6RedistributeIsisCfg1250       `json:"isis-cfg"`
+	OspfCfg       RouterBgpAddressFamilyIpv6RedistributeOspfCfg1251       `json:"ospf-cfg"`
+	RipCfg        RouterBgpAddressFamilyIpv6RedistributeRipCfg1252        `json:"rip-cfg"`
+	StaticCfg     RouterBgpAddressFamilyIpv6RedistributeStaticCfg1253     `json:"static-cfg"`
+	PublicIpCfg   RouterBgpAddressFamilyIpv6RedistributePublicIpCfg1254   `json:"public-ip-cfg"`
+	Vip           RouterBgpAddressFamilyIpv6RedistributeVip1255           `json:"vip"`
 	Uuid          string                                                  `json:"uuid"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeConnectedCfg1243 struct {
+type RouterBgpAddressFamilyIpv6RedistributeConnectedCfg1242 struct {
 	Connected int    `json:"connected"`
 	RouteMap  string `json:"route-map"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeFloatingIpCfg1244 struct {
+type RouterBgpAddressFamilyIpv6RedistributeFloatingIpCfg1243 struct {
 	FloatingIp int    `json:"floating-ip"`
 	RouteMap   string `json:"route-map"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeNat64Cfg1245 struct {
+type RouterBgpAddressFamilyIpv6RedistributeNat64Cfg1244 struct {
 	Nat64    int    `json:"nat64"`
 	RouteMap string `json:"route-map"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeNatMapCfg1246 struct {
+type RouterBgpAddressFamilyIpv6RedistributeNatMapCfg1245 struct {
 	NatMap   int    `json:"nat-map"`
 	RouteMap string `json:"route-map"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeLw4o6Cfg1247 struct {
+type RouterBgpAddressFamilyIpv6RedistributeLw4o6Cfg1246 struct {
 	Lw4o6    int    `json:"lw4o6"`
 	RouteMap string `json:"route-map"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeStaticNatCfg1248 struct {
+type RouterBgpAddressFamilyIpv6RedistributeStaticNatCfg1247 struct {
 	StaticNat int    `json:"static-nat"`
 	RouteMap  string `json:"route-map"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeIpNatCfg1249 struct {
+type RouterBgpAddressFamilyIpv6RedistributeIpNatCfg1248 struct {
 	IpNat    int    `json:"ip-nat"`
 	RouteMap string `json:"route-map"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeIpNatListCfg1250 struct {
+type RouterBgpAddressFamilyIpv6RedistributeIpNatListCfg1249 struct {
 	IpNatList int    `json:"ip-nat-list"`
 	RouteMap  string `json:"route-map"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeIsisCfg1251 struct {
+type RouterBgpAddressFamilyIpv6RedistributeIsisCfg1250 struct {
 	Isis     int    `json:"isis"`
 	RouteMap string `json:"route-map"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeOspfCfg1252 struct {
+type RouterBgpAddressFamilyIpv6RedistributeOspfCfg1251 struct {
 	Ospf     int    `json:"ospf"`
 	RouteMap string `json:"route-map"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeRipCfg1253 struct {
+type RouterBgpAddressFamilyIpv6RedistributeRipCfg1252 struct {
 	Rip      int    `json:"rip"`
 	RouteMap string `json:"route-map"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeStaticCfg1254 struct {
+type RouterBgpAddressFamilyIpv6RedistributeStaticCfg1253 struct {
 	Static   int    `json:"static"`
 	RouteMap string `json:"route-map"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributePublicIpCfg1255 struct {
+type RouterBgpAddressFamilyIpv6RedistributePublicIpCfg1254 struct {
 	PublicIp int    `json:"public-ip"`
 	RouteMap string `json:"route-map"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeVip1256 struct {
-	OnlyFlaggedCfg    RouterBgpAddressFamilyIpv6RedistributeVipOnlyFlaggedCfg1257    `json:"only-flagged-cfg"`
-	OnlyNotFlaggedCfg RouterBgpAddressFamilyIpv6RedistributeVipOnlyNotFlaggedCfg1258 `json:"only-not-flagged-cfg"`
+type RouterBgpAddressFamilyIpv6RedistributeVip1255 struct {
+	OnlyFlaggedCfg    RouterBgpAddressFamilyIpv6RedistributeVipOnlyFlaggedCfg1256    `json:"only-flagged-cfg"`
+	OnlyNotFlaggedCfg RouterBgpAddressFamilyIpv6RedistributeVipOnlyNotFlaggedCfg1257 `json:"only-not-flagged-cfg"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeVipOnlyFlaggedCfg1257 struct {
+type RouterBgpAddressFamilyIpv6RedistributeVipOnlyFlaggedCfg1256 struct {
 	OnlyFlagged int    `json:"only-flagged"`
 	RouteMap    string `json:"route-map"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeVipOnlyNotFlaggedCfg1258 struct {
+type RouterBgpAddressFamilyIpv6RedistributeVipOnlyNotFlaggedCfg1257 struct {
 	OnlyNotFlagged int    `json:"only-not-flagged"`
 	RouteMap       string `json:"route-map"`
 }

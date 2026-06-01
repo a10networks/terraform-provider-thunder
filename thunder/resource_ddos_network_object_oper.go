@@ -101,6 +101,9 @@ func resourceDdosNetworkObjectOper() *schema.Resource {
 									"de_es_timestamp": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
+									"estimated_bit_rate": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
 								},
 							},
 						},
@@ -122,7 +125,7 @@ func resourceDdosNetworkObjectOper() *schema.Resource {
 						"discovered_list": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
-						"sport_list": {
+						"src_service_list": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
 						"subnet_ip_addr": {
@@ -140,7 +143,7 @@ func resourceDdosNetworkObjectOper() *schema.Resource {
 						"anomaly_ip_list": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
-						"sport": {
+						"src_port": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
 						"port_start": {
@@ -156,6 +159,9 @@ func resourceDdosNetworkObjectOper() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
 						"agent_group_details": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"aggregated_details": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
 					},
@@ -242,18 +248,19 @@ func setObjectDdosNetworkObjectOperOper(ret edpt.DataDdosNetworkObjectOper) []in
 			"total_details":                ret.DtDdosNetworkObjectOper.Oper.TotalDetails,
 			"victim_list":                  ret.DtDdosNetworkObjectOper.Oper.VictimList,
 			"discovered_list":              ret.DtDdosNetworkObjectOper.Oper.DiscoveredList,
-			"sport_list":                   ret.DtDdosNetworkObjectOper.Oper.SportList,
+			"src_service_list":             ret.DtDdosNetworkObjectOper.Oper.SrcServiceList,
 			"subnet_ip_addr":               ret.DtDdosNetworkObjectOper.Oper.SubnetIpAddr,
 			"subnet_ipv6_addr":             ret.DtDdosNetworkObjectOper.Oper.SubnetIpv6Addr,
 			"ipv4":                         ret.DtDdosNetworkObjectOper.Oper.Ipv4,
 			"discovered_ip_list":           ret.DtDdosNetworkObjectOper.Oper.DiscoveredIpList,
 			"anomaly_ip_list":              ret.DtDdosNetworkObjectOper.Oper.AnomalyIpList,
-			"sport":                        ret.DtDdosNetworkObjectOper.Oper.Sport,
+			"src_port":                     ret.DtDdosNetworkObjectOper.Oper.SrcPort,
 			"port_start":                   ret.DtDdosNetworkObjectOper.Oper.PortStart,
 			"port_end":                     ret.DtDdosNetworkObjectOper.Oper.PortEnd,
 			"protocol":                     ret.DtDdosNetworkObjectOper.Oper.Protocol,
 			"single_layer_discovered_list": ret.DtDdosNetworkObjectOper.Oper.SingleLayerDiscoveredList,
 			"agent_group_details":          ret.DtDdosNetworkObjectOper.Oper.AgentGroupDetails,
+			"aggregated_details":           ret.DtDdosNetworkObjectOper.Oper.AggregatedDetails,
 		},
 	}
 }
@@ -278,6 +285,7 @@ func setSliceDdosNetworkObjectOperOperEntryList(d []edpt.DdosNetworkObjectOperOp
 		in["display_filter"] = item.DisplayFilter
 		in["es_timestamp"] = item.EsTimestamp
 		in["de_es_timestamp"] = item.DeEsTimestamp
+		in["estimated_bit_rate"] = item.Estimated_bit_rate
 		result = append(result, in)
 	}
 	return result
@@ -364,18 +372,19 @@ func getObjectDdosNetworkObjectOperOper(d []interface{}) edpt.DdosNetworkObjectO
 		ret.TotalDetails = in["total_details"].(int)
 		ret.VictimList = in["victim_list"].(int)
 		ret.DiscoveredList = in["discovered_list"].(int)
-		ret.SportList = in["sport_list"].(int)
+		ret.SrcServiceList = in["src_service_list"].(int)
 		ret.SubnetIpAddr = in["subnet_ip_addr"].(string)
 		ret.SubnetIpv6Addr = in["subnet_ipv6_addr"].(string)
 		ret.Ipv4 = in["ipv4"].(string)
 		ret.DiscoveredIpList = in["discovered_ip_list"].(int)
 		ret.AnomalyIpList = in["anomaly_ip_list"].(int)
-		ret.Sport = in["sport"].(int)
+		ret.SrcPort = in["src_port"].(int)
 		ret.PortStart = in["port_start"].(int)
 		ret.PortEnd = in["port_end"].(int)
 		ret.Protocol = in["protocol"].(int)
 		ret.SingleLayerDiscoveredList = in["single_layer_discovered_list"].(int)
 		ret.AgentGroupDetails = in["agent_group_details"].(int)
+		ret.AggregatedDetails = in["aggregated_details"].(int)
 	}
 	return ret
 }
@@ -403,6 +412,7 @@ func getSliceDdosNetworkObjectOperOperEntryList(d []interface{}) []edpt.DdosNetw
 		oi.DisplayFilter = in["display_filter"].(string)
 		oi.EsTimestamp = in["es_timestamp"].(string)
 		oi.DeEsTimestamp = in["de_es_timestamp"].(string)
+		oi.Estimated_bit_rate = in["estimated_bit_rate"].(string)
 		ret = append(ret, oi)
 	}
 	return ret

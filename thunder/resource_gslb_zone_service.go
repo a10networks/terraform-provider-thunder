@@ -556,10 +556,10 @@ func resourceGslbZoneServiceRead(ctx context.Context, d *schema.ResourceData, me
 	return diags
 }
 
-func getObjectGslbZoneServiceDnsARecord492(d []interface{}) edpt.GslbZoneServiceDnsARecord492 {
+func getObjectGslbZoneServiceDnsARecord483(d []interface{}) edpt.GslbZoneServiceDnsARecord483 {
 
 	count1 := len(d)
-	var ret edpt.GslbZoneServiceDnsARecord492
+	var ret edpt.GslbZoneServiceDnsARecord483
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DnsARecordSrvList = getSliceGslbZoneServiceDnsARecordDnsARecordSrvList(in["dns_a_record_srv_list"].([]interface{}))
@@ -960,7 +960,7 @@ func dataToEndpointGslbZoneService(d *schema.ResourceData) edpt.GslbZoneService 
 	var ret edpt.GslbZoneService
 	ret.Inst.Action = d.Get("action").(string)
 	ret.Inst.Disable = d.Get("disable").(int)
-	ret.Inst.DnsARecord = getObjectGslbZoneServiceDnsARecord492(d.Get("dns_a_record").([]interface{}))
+	ret.Inst.DnsARecord = getObjectGslbZoneServiceDnsARecord483(d.Get("dns_a_record").([]interface{}))
 	ret.Inst.DnsCaaRecordList = getSliceGslbZoneServiceDnsCaaRecordList(d.Get("dns_caa_record_list").([]interface{}))
 	ret.Inst.DnsCnameRecordList = getSliceGslbZoneServiceDnsCnameRecordList(d.Get("dns_cname_record_list").([]interface{}))
 	ret.Inst.DnsMxRecordList = getSliceGslbZoneServiceDnsMxRecordList(d.Get("dns_mx_record_list").([]interface{}))

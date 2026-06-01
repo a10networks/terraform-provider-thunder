@@ -330,6 +330,12 @@ func resourceDdosDstZoneIpProtoProtoNameStats() *schema.Resource {
 									"same_sport_dport_drop": {
 										Type: schema.TypeInt, Optional: true, Description: "Same Source and Destination Port Drop",
 									},
+									"src_ip_filtering_drop": {
+										Type: schema.TypeInt, Optional: true, Description: "Src-ip-filtering Drop",
+									},
+									"src_ip_filtering_bypass": {
+										Type: schema.TypeInt, Optional: true, Description: "Src-ip-filtering Bypass",
+									},
 								},
 							},
 						},
@@ -522,6 +528,8 @@ func getObjectDdosDstZoneIpProtoProtoNameStatsStatsIpprotoIcmp(d []interface{}) 
 		ret.Dynamic_count_warn = in["dynamic_count_warn"].(int)
 		ret.Src_zone_service_entry_hit = in["src_zone_service_entry_hit"].(int)
 		ret.Same_sport_dport_drop = in["same_sport_dport_drop"].(int)
+		ret.Src_ip_filtering_drop = in["src_ip_filtering_drop"].(int)
+		ret.Src_ip_filtering_bypass = in["src_ip_filtering_bypass"].(int)
 	}
 	return ret
 }

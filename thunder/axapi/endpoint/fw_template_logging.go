@@ -6,14 +6,14 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type FwTemplateLogging struct {
 	Inst struct {
 		Custom FwTemplateLoggingCustom `json:"custom"`
 
-		DisableLogByDestination FwTemplateLoggingDisableLogByDestination450 `json:"disable-log-by-destination"`
+		DisableLogByDestination FwTemplateLoggingDisableLogByDestination441 `json:"disable-log-by-destination"`
 
-		EnableLogByDestination FwTemplateLoggingEnableLogByDestination459 `json:"enable-log-by-destination"`
+		EnableLogByDestination FwTemplateLoggingEnableLogByDestination450 `json:"enable-log-by-destination"`
 
 		Facility string `json:"facility" dval:"local0"`
 
@@ -39,11 +39,11 @@ type FwTemplateLogging struct {
 
 		ServiceGroup string `json:"service-group"`
 
-		SessionPeriodicLog FwTemplateLoggingSessionPeriodicLog468 `json:"session-periodic-log"`
+		SessionPeriodicLog FwTemplateLoggingSessionPeriodicLog459 `json:"session-periodic-log"`
 
 		Severity string `json:"severity" dval:"informational"`
 
-		SourceAddress FwTemplateLoggingSourceAddress469 `json:"source-address"`
+		SourceAddress FwTemplateLoggingSourceAddress460 `json:"source-address"`
 
 		UserTag string `json:"user-tag"`
 
@@ -60,122 +60,122 @@ type FwTemplateLoggingCustomCustomMessage struct {
 	CustomSessionDeleted string `json:"custom-session-deleted"`
 }
 
-type FwTemplateLoggingDisableLogByDestination450 struct {
-	TcpList []FwTemplateLoggingDisableLogByDestinationTcpList451 `json:"tcp-list"`
-	UdpList []FwTemplateLoggingDisableLogByDestinationUdpList452 `json:"udp-list"`
+type FwTemplateLoggingDisableLogByDestination441 struct {
+	TcpList []FwTemplateLoggingDisableLogByDestinationTcpList442 `json:"tcp-list"`
+	UdpList []FwTemplateLoggingDisableLogByDestinationUdpList443 `json:"udp-list"`
 	Icmp    int                                                  `json:"icmp"`
 	Others  int                                                  `json:"others"`
 	Uuid    string                                               `json:"uuid"`
-	IpList  []FwTemplateLoggingDisableLogByDestinationIpList453  `json:"ip-list"`
-	Ip6List []FwTemplateLoggingDisableLogByDestinationIp6List456 `json:"ip6-list"`
+	IpList  []FwTemplateLoggingDisableLogByDestinationIpList444  `json:"ip-list"`
+	Ip6List []FwTemplateLoggingDisableLogByDestinationIp6List447 `json:"ip6-list"`
 }
 
-type FwTemplateLoggingDisableLogByDestinationTcpList451 struct {
+type FwTemplateLoggingDisableLogByDestinationTcpList442 struct {
 	TcpPortStart int `json:"tcp-port-start"`
 	TcpPortEnd   int `json:"tcp-port-end"`
 }
 
-type FwTemplateLoggingDisableLogByDestinationUdpList452 struct {
+type FwTemplateLoggingDisableLogByDestinationUdpList443 struct {
 	UdpPortStart int `json:"udp-port-start"`
 	UdpPortEnd   int `json:"udp-port-end"`
 }
 
-type FwTemplateLoggingDisableLogByDestinationIpList453 struct {
+type FwTemplateLoggingDisableLogByDestinationIpList444 struct {
 	Ipv4Addr string                                                     `json:"ipv4-addr"`
-	TcpList  []FwTemplateLoggingDisableLogByDestinationIpListTcpList454 `json:"tcp-list"`
-	UdpList  []FwTemplateLoggingDisableLogByDestinationIpListUdpList455 `json:"udp-list"`
+	TcpList  []FwTemplateLoggingDisableLogByDestinationIpListTcpList445 `json:"tcp-list"`
+	UdpList  []FwTemplateLoggingDisableLogByDestinationIpListUdpList446 `json:"udp-list"`
 	Icmp     int                                                        `json:"icmp"`
 	Others   int                                                        `json:"others"`
 	Uuid     string                                                     `json:"uuid"`
 	UserTag  string                                                     `json:"user-tag"`
 }
 
-type FwTemplateLoggingDisableLogByDestinationIpListTcpList454 struct {
+type FwTemplateLoggingDisableLogByDestinationIpListTcpList445 struct {
 	TcpPortStart int `json:"tcp-port-start"`
 	TcpPortEnd   int `json:"tcp-port-end"`
 }
 
-type FwTemplateLoggingDisableLogByDestinationIpListUdpList455 struct {
+type FwTemplateLoggingDisableLogByDestinationIpListUdpList446 struct {
 	UdpPortStart int `json:"udp-port-start"`
 	UdpPortEnd   int `json:"udp-port-end"`
 }
 
-type FwTemplateLoggingDisableLogByDestinationIp6List456 struct {
+type FwTemplateLoggingDisableLogByDestinationIp6List447 struct {
 	Ipv6Addr string                                                      `json:"ipv6-addr"`
-	TcpList  []FwTemplateLoggingDisableLogByDestinationIp6ListTcpList457 `json:"tcp-list"`
-	UdpList  []FwTemplateLoggingDisableLogByDestinationIp6ListUdpList458 `json:"udp-list"`
+	TcpList  []FwTemplateLoggingDisableLogByDestinationIp6ListTcpList448 `json:"tcp-list"`
+	UdpList  []FwTemplateLoggingDisableLogByDestinationIp6ListUdpList449 `json:"udp-list"`
 	Icmp     int                                                         `json:"icmp"`
 	Others   int                                                         `json:"others"`
 	Uuid     string                                                      `json:"uuid"`
 	UserTag  string                                                      `json:"user-tag"`
 }
 
-type FwTemplateLoggingDisableLogByDestinationIp6ListTcpList457 struct {
+type FwTemplateLoggingDisableLogByDestinationIp6ListTcpList448 struct {
 	TcpPortStart int `json:"tcp-port-start"`
 	TcpPortEnd   int `json:"tcp-port-end"`
 }
 
-type FwTemplateLoggingDisableLogByDestinationIp6ListUdpList458 struct {
+type FwTemplateLoggingDisableLogByDestinationIp6ListUdpList449 struct {
 	UdpPortStart int `json:"udp-port-start"`
 	UdpPortEnd   int `json:"udp-port-end"`
 }
 
-type FwTemplateLoggingEnableLogByDestination459 struct {
-	TcpList []FwTemplateLoggingEnableLogByDestinationTcpList460 `json:"tcp-list"`
-	UdpList []FwTemplateLoggingEnableLogByDestinationUdpList461 `json:"udp-list"`
+type FwTemplateLoggingEnableLogByDestination450 struct {
+	TcpList []FwTemplateLoggingEnableLogByDestinationTcpList451 `json:"tcp-list"`
+	UdpList []FwTemplateLoggingEnableLogByDestinationUdpList452 `json:"udp-list"`
 	Icmp    int                                                 `json:"icmp"`
 	Others  int                                                 `json:"others"`
 	Uuid    string                                              `json:"uuid"`
-	IpList  []FwTemplateLoggingEnableLogByDestinationIpList462  `json:"ip-list"`
-	Ip6List []FwTemplateLoggingEnableLogByDestinationIp6List465 `json:"ip6-list"`
+	IpList  []FwTemplateLoggingEnableLogByDestinationIpList453  `json:"ip-list"`
+	Ip6List []FwTemplateLoggingEnableLogByDestinationIp6List456 `json:"ip6-list"`
 }
 
-type FwTemplateLoggingEnableLogByDestinationTcpList460 struct {
+type FwTemplateLoggingEnableLogByDestinationTcpList451 struct {
 	TcpPortStart int `json:"tcp-port-start"`
 	TcpPortEnd   int `json:"tcp-port-end"`
 }
 
-type FwTemplateLoggingEnableLogByDestinationUdpList461 struct {
+type FwTemplateLoggingEnableLogByDestinationUdpList452 struct {
 	UdpPortStart int `json:"udp-port-start"`
 	UdpPortEnd   int `json:"udp-port-end"`
 }
 
-type FwTemplateLoggingEnableLogByDestinationIpList462 struct {
+type FwTemplateLoggingEnableLogByDestinationIpList453 struct {
 	Ipv4Addr string                                                    `json:"ipv4-addr"`
-	TcpList  []FwTemplateLoggingEnableLogByDestinationIpListTcpList463 `json:"tcp-list"`
-	UdpList  []FwTemplateLoggingEnableLogByDestinationIpListUdpList464 `json:"udp-list"`
+	TcpList  []FwTemplateLoggingEnableLogByDestinationIpListTcpList454 `json:"tcp-list"`
+	UdpList  []FwTemplateLoggingEnableLogByDestinationIpListUdpList455 `json:"udp-list"`
 	Icmp     int                                                       `json:"icmp"`
 	Others   int                                                       `json:"others"`
 	Uuid     string                                                    `json:"uuid"`
 	UserTag  string                                                    `json:"user-tag"`
 }
 
-type FwTemplateLoggingEnableLogByDestinationIpListTcpList463 struct {
+type FwTemplateLoggingEnableLogByDestinationIpListTcpList454 struct {
 	TcpPortStart int `json:"tcp-port-start"`
 	TcpPortEnd   int `json:"tcp-port-end"`
 }
 
-type FwTemplateLoggingEnableLogByDestinationIpListUdpList464 struct {
+type FwTemplateLoggingEnableLogByDestinationIpListUdpList455 struct {
 	UdpPortStart int `json:"udp-port-start"`
 	UdpPortEnd   int `json:"udp-port-end"`
 }
 
-type FwTemplateLoggingEnableLogByDestinationIp6List465 struct {
+type FwTemplateLoggingEnableLogByDestinationIp6List456 struct {
 	Ipv6Addr string                                                     `json:"ipv6-addr"`
-	TcpList  []FwTemplateLoggingEnableLogByDestinationIp6ListTcpList466 `json:"tcp-list"`
-	UdpList  []FwTemplateLoggingEnableLogByDestinationIp6ListUdpList467 `json:"udp-list"`
+	TcpList  []FwTemplateLoggingEnableLogByDestinationIp6ListTcpList457 `json:"tcp-list"`
+	UdpList  []FwTemplateLoggingEnableLogByDestinationIp6ListUdpList458 `json:"udp-list"`
 	Icmp     int                                                        `json:"icmp"`
 	Others   int                                                        `json:"others"`
 	Uuid     string                                                     `json:"uuid"`
 	UserTag  string                                                     `json:"user-tag"`
 }
 
-type FwTemplateLoggingEnableLogByDestinationIp6ListTcpList466 struct {
+type FwTemplateLoggingEnableLogByDestinationIp6ListTcpList457 struct {
 	TcpPortStart int `json:"tcp-port-start"`
 	TcpPortEnd   int `json:"tcp-port-end"`
 }
 
-type FwTemplateLoggingEnableLogByDestinationIp6ListUdpList467 struct {
+type FwTemplateLoggingEnableLogByDestinationIp6ListUdpList458 struct {
 	UdpPortStart int `json:"udp-port-start"`
 	UdpPortEnd   int `json:"udp-port-end"`
 }
@@ -230,12 +230,12 @@ type FwTemplateLoggingRuleRuleHttpRequestsDestPort struct {
 	IncludeByteCount int `json:"include-byte-count"`
 }
 
-type FwTemplateLoggingSessionPeriodicLog468 struct {
+type FwTemplateLoggingSessionPeriodicLog459 struct {
 	Interval int    `json:"interval"`
 	Uuid     string `json:"uuid"`
 }
 
-type FwTemplateLoggingSourceAddress469 struct {
+type FwTemplateLoggingSourceAddress460 struct {
 	Ip   string `json:"ip"`
 	Ipv6 string `json:"ipv6"`
 	Uuid string `json:"uuid"`

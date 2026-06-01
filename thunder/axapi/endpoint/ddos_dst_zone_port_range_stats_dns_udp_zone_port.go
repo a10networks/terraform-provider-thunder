@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZonePortRangeStats24 struct {
 	Inst struct {
 		PortRangeEnd int `json:"port-range-end"`
@@ -240,6 +240,13 @@ type DdosDstZonePortRangeStats24StatsDnsUdpZonePort struct {
 	Rrsig_expire_drop                         int `json:"rrsig_expire_drop"`
 	Src_zone_service_entry_hit                int `json:"src_zone_service_entry_hit"`
 	Same_sport_dport_drop                     int `json:"same_sport_dport_drop"`
+	Pattern_filter1_drop                      int `json:"pattern_filter1_drop"`
+	Pattern_filter2_drop                      int `json:"pattern_filter2_drop"`
+	Pattern_filter3_drop                      int `json:"pattern_filter3_drop"`
+	Pattern_filter4_drop                      int `json:"pattern_filter4_drop"`
+	Pattern_filter5_drop                      int `json:"pattern_filter5_drop"`
+	Src_ip_filtering_drop                     int `json:"src_ip_filtering_drop"`
+	Src_ip_filtering_bypass                   int `json:"src_ip_filtering_bypass"`
 }
 
 func (p *DdosDstZonePortRangeStats24) GetId() string {

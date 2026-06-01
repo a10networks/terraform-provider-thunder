@@ -312,11 +312,11 @@ func resourceRouteMapSet() *schema.Resource {
 					},
 				},
 			},
-			"sequence": {
-				Type: schema.TypeString, Required: true, Description: "Sequence",
-			},
 			"action": {
 				Type: schema.TypeString, Required: true, Description: "Action",
+			},
+			"sequence": {
+				Type: schema.TypeString, Required: true, Description: "Sequence",
 			},
 		},
 	}
@@ -683,7 +683,7 @@ func dataToEndpointRouteMapSet(d *schema.ResourceData) edpt.RouteMapSet {
 	ret.Inst.Tag = getObjectRouteMapSetTag(d.Get("tag").([]interface{}))
 	//omit uuid
 	ret.Inst.Weight = getObjectRouteMapSetWeight(d.Get("weight").([]interface{}))
-	ret.Inst.Sequence = d.Get("sequence").(string)
 	ret.Inst.Action = d.Get("action").(string)
+	ret.Inst.Sequence = d.Get("sequence").(string)
 	return ret
 }

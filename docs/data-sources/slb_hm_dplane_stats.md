@@ -49,6 +49,7 @@ Optional:
 - `curr_ready_to_free` (Number) Current HM entries ready to free
 - `entry_deleted` (Number) Entry deleted
 - `err_create_ssl_ctx_fail` (Number) Error in creating SSL CTX
+- `err_entry_check_slb_failed` (Number) Error in checking HM internal SLB Resource
 - `err_entry_create_failed` (Number) Entry Creation Failure
 - `err_entry_create_oom` (Number) Entry creation out of memory
 - `err_entry_create_slb_failed` (Number) Error in creating HM internal SLB Resource

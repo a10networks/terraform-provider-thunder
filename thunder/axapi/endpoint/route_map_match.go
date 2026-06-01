@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type RouteMapMatch struct {
 	Inst struct {
 		AsPath RouteMapMatchAsPath `json:"as-path"`
@@ -39,9 +39,9 @@ type RouteMapMatch struct {
 
 		Uuid string `json:"uuid"`
 
-		Sequence string
-
 		Action string
+
+		Sequence string
 	} `json:"match"`
 }
 

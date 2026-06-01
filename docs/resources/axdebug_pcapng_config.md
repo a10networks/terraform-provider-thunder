@@ -35,6 +35,7 @@ resource "thunder_axdebug_pcapng_config" "thunder_axdebug_pcapng_config" {
 
 - `exit` (Number) Exit from axdebug pcapng mode
 - `pcapng_enable` (Number) Enable pcapng
+- `pcapng_enhanced_log_enable` (Number) Enable pcapng enhanced logs
 - `ssl_key_enable` (Number) Enable ssl key tracking
 - `uuid` (String) uuid of the object
 

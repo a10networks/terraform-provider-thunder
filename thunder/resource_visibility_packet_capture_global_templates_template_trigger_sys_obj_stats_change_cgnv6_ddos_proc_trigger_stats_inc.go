@@ -31,9 +31,6 @@ func resourceVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsCha
 			"l3_entry_add_to_hw_failure": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L3 entry HW add failure",
 			},
-			"l3_entry_del_to_hw_failure": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L3 entry HW del failure",
-			},
 			"l3_entry_drop_max_hw_exceeded": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L3 Entry Drop due to HW Limit Exceeded",
 			},
@@ -45,12 +42,6 @@ func resourceVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsCha
 			},
 			"l3_entry_remove_from_bgp_failure": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L3 entry BGP remove failures",
-			},
-			"l4_entry_add_to_hw_failure": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L4 entry HW add failure",
-			},
-			"l4_entry_del_to_hw_failure": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L4 entry HW del failure",
 			},
 			"l4_entry_drop_max_hw_exceeded": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L4 Entry Drop due to HW Limit Exceeded",
@@ -145,13 +136,10 @@ func dataToEndpointVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjSt
 	ret.Inst.Ip_port_block_alloc_failure = d.Get("ip_port_block_alloc_failure").(int)
 	ret.Inst.L3_entry_add_to_bgp_failure = d.Get("l3_entry_add_to_bgp_failure").(int)
 	ret.Inst.L3_entry_add_to_hw_failure = d.Get("l3_entry_add_to_hw_failure").(int)
-	ret.Inst.L3_entry_del_to_hw_failure = d.Get("l3_entry_del_to_hw_failure").(int)
 	ret.Inst.L3_entry_drop_max_hw_exceeded = d.Get("l3_entry_drop_max_hw_exceeded").(int)
 	ret.Inst.L3_entry_match_drop = d.Get("l3_entry_match_drop").(int)
 	ret.Inst.L3_entry_match_drop_hw = d.Get("l3_entry_match_drop_hw").(int)
 	ret.Inst.L3_entry_remove_from_bgp_failure = d.Get("l3_entry_remove_from_bgp_failure").(int)
-	ret.Inst.L4_entry_add_to_hw_failure = d.Get("l4_entry_add_to_hw_failure").(int)
-	ret.Inst.L4_entry_del_to_hw_failure = d.Get("l4_entry_del_to_hw_failure").(int)
 	ret.Inst.L4_entry_drop_max_hw_exceeded = d.Get("l4_entry_drop_max_hw_exceeded").(int)
 	ret.Inst.L4_entry_list_alloc_failure = d.Get("l4_entry_list_alloc_failure").(int)
 	ret.Inst.L4_entry_match_drop = d.Get("l4_entry_match_drop").(int)

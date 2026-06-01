@@ -870,10 +870,10 @@ func resourceSlbVirtualServerRead(ctx context.Context, d *schema.ResourceData, m
 	return diags
 }
 
-func getObjectSlbVirtualServerMigrateVip1578(d []interface{}) edpt.SlbVirtualServerMigrateVip1578 {
+func getObjectSlbVirtualServerMigrateVip1579(d []interface{}) edpt.SlbVirtualServerMigrateVip1579 {
 
 	count1 := len(d)
-	var ret edpt.SlbVirtualServerMigrateVip1578
+	var ret edpt.SlbVirtualServerMigrateVip1579
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TargetDataCpu = in["target_data_cpu"].(int)
@@ -1174,7 +1174,7 @@ func dataToEndpointSlbVirtualServer(d *schema.ResourceData) edpt.SlbVirtualServe
 	ret.Inst.Ipv6Acl = d.Get("ipv6_acl").(string)
 	ret.Inst.Ipv6AclShared = d.Get("ipv6_acl_shared").(string)
 	ret.Inst.Ipv6Address = d.Get("ipv6_address").(string)
-	ret.Inst.MigrateVip = getObjectSlbVirtualServerMigrateVip1578(d.Get("migrate_vip").([]interface{}))
+	ret.Inst.MigrateVip = getObjectSlbVirtualServerMigrateVip1579(d.Get("migrate_vip").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.Netmask = d.Get("netmask").(string)
 	ret.Inst.PortList = getSliceSlbVirtualServerPortList(d.Get("port_list").([]interface{}))

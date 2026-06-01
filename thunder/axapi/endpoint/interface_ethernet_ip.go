@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type InterfaceEthernetIp struct {
 	Inst struct {
 		AddressList []InterfaceEthernetIpAddressList `json:"address-list"`
@@ -28,19 +28,21 @@ type InterfaceEthernetIp struct {
 
 		MaxRespTime int `json:"max-resp-time" dval:"100"`
 
-		Ospf InterfaceEthernetIpOspf541 `json:"ospf"`
+		Ospf InterfaceEthernetIpOspf528 `json:"ospf"`
 
 		Outside int `json:"outside"`
 
 		QueryInterval int `json:"query-interval" dval:"125"`
 
-		Rip InterfaceEthernetIpRip549 `json:"rip"`
+		Rip InterfaceEthernetIpRip536 `json:"rip"`
 
-		Router InterfaceEthernetIpRouter557 `json:"router"`
+		Router InterfaceEthernetIpRouter544 `json:"router"`
 
 		Server int `json:"server"`
 
 		SlbPartitionRedirect int `json:"slb-partition-redirect"`
+
+		StatefulFirewall InterfaceEthernetIpStatefulFirewall546 `json:"stateful-firewall"`
 
 		SynCookie int `json:"syn-cookie"`
 
@@ -63,56 +65,56 @@ type InterfaceEthernetIpHelperAddressList struct {
 	HelperAddress string `json:"helper-address"`
 }
 
-type InterfaceEthernetIpOspf541 struct {
-	OspfGlobal InterfaceEthernetIpOspfOspfGlobal542 `json:"ospf-global"`
+type InterfaceEthernetIpOspf528 struct {
+	OspfGlobal InterfaceEthernetIpOspfOspfGlobal529 `json:"ospf-global"`
 	OspfIpList []InterfaceEthernetIpOspfOspfIpList  `json:"ospf-ip-list"`
 }
 
-type InterfaceEthernetIpOspfOspfGlobal542 struct {
-	AuthenticationCfg  InterfaceEthernetIpOspfOspfGlobalAuthenticationCfg543  `json:"authentication-cfg"`
+type InterfaceEthernetIpOspfOspfGlobal529 struct {
+	AuthenticationCfg  InterfaceEthernetIpOspfOspfGlobalAuthenticationCfg530  `json:"authentication-cfg"`
 	AuthenticationKey  string                                                 `json:"authentication-key"`
-	BfdCfg             InterfaceEthernetIpOspfOspfGlobalBfdCfg544             `json:"bfd-cfg"`
+	BfdCfg             InterfaceEthernetIpOspfOspfGlobalBfdCfg531             `json:"bfd-cfg"`
 	Cost               int                                                    `json:"cost"`
-	DatabaseFilterCfg  InterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg545  `json:"database-filter-cfg"`
+	DatabaseFilterCfg  InterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg532  `json:"database-filter-cfg"`
 	DeadInterval       int                                                    `json:"dead-interval" dval:"40"`
 	Disable            string                                                 `json:"disable"`
 	HelloInterval      int                                                    `json:"hello-interval" dval:"10"`
-	MessageDigestCfg   []InterfaceEthernetIpOspfOspfGlobalMessageDigestCfg546 `json:"message-digest-cfg"`
+	MessageDigestCfg   []InterfaceEthernetIpOspfOspfGlobalMessageDigestCfg533 `json:"message-digest-cfg"`
 	Mtu                int                                                    `json:"mtu"`
 	MtuIgnore          int                                                    `json:"mtu-ignore"`
-	Network            InterfaceEthernetIpOspfOspfGlobalNetwork548            `json:"network"`
+	Network            InterfaceEthernetIpOspfOspfGlobalNetwork535            `json:"network"`
 	Priority           int                                                    `json:"priority" dval:"1"`
 	RetransmitInterval int                                                    `json:"retransmit-interval" dval:"5"`
 	TransmitDelay      int                                                    `json:"transmit-delay" dval:"1"`
 	Uuid               string                                                 `json:"uuid"`
 }
 
-type InterfaceEthernetIpOspfOspfGlobalAuthenticationCfg543 struct {
+type InterfaceEthernetIpOspfOspfGlobalAuthenticationCfg530 struct {
 	Authentication int    `json:"authentication"`
 	Value          string `json:"value"`
 }
 
-type InterfaceEthernetIpOspfOspfGlobalBfdCfg544 struct {
+type InterfaceEthernetIpOspfOspfGlobalBfdCfg531 struct {
 	Bfd     int `json:"bfd"`
 	Disable int `json:"disable"`
 }
 
-type InterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg545 struct {
+type InterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg532 struct {
 	DatabaseFilter string `json:"database-filter"`
 	Out            int    `json:"out"`
 }
 
-type InterfaceEthernetIpOspfOspfGlobalMessageDigestCfg546 struct {
+type InterfaceEthernetIpOspfOspfGlobalMessageDigestCfg533 struct {
 	MessageDigestKey int                                                     `json:"message-digest-key"`
-	Md5              InterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5547 `json:"md5"`
+	Md5              InterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5534 `json:"md5"`
 }
 
-type InterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5547 struct {
+type InterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5534 struct {
 	Md5Value  string `json:"md5-value"`
 	Encrypted string `json:"encrypted"`
 }
 
-type InterfaceEthernetIpOspfOspfGlobalNetwork548 struct {
+type InterfaceEthernetIpOspfOspfGlobalNetwork535 struct {
 	Broadcast         int `json:"broadcast"`
 	NonBroadcast      int `json:"non-broadcast"`
 	PointToPoint      int `json:"point-to-point"`
@@ -144,55 +146,64 @@ type InterfaceEthernetIpOspfOspfIpListMessageDigestCfg struct {
 	Encrypted        string `json:"encrypted"`
 }
 
-type InterfaceEthernetIpRip549 struct {
-	Authentication  InterfaceEthernetIpRipAuthentication550  `json:"authentication"`
+type InterfaceEthernetIpRip536 struct {
+	Authentication  InterfaceEthernetIpRipAuthentication537  `json:"authentication"`
 	SendPacket      int                                      `json:"send-packet" dval:"1"`
 	ReceivePacket   int                                      `json:"receive-packet" dval:"1"`
-	SendCfg         InterfaceEthernetIpRipSendCfg554         `json:"send-cfg"`
-	ReceiveCfg      InterfaceEthernetIpRipReceiveCfg555      `json:"receive-cfg"`
-	SplitHorizonCfg InterfaceEthernetIpRipSplitHorizonCfg556 `json:"split-horizon-cfg"`
+	SendCfg         InterfaceEthernetIpRipSendCfg541         `json:"send-cfg"`
+	ReceiveCfg      InterfaceEthernetIpRipReceiveCfg542      `json:"receive-cfg"`
+	SplitHorizonCfg InterfaceEthernetIpRipSplitHorizonCfg543 `json:"split-horizon-cfg"`
 	Uuid            string                                   `json:"uuid"`
 }
 
-type InterfaceEthernetIpRipAuthentication550 struct {
-	Str      InterfaceEthernetIpRipAuthenticationStr551      `json:"str"`
-	Mode     InterfaceEthernetIpRipAuthenticationMode552     `json:"mode"`
-	KeyChain InterfaceEthernetIpRipAuthenticationKeyChain553 `json:"key-chain"`
+type InterfaceEthernetIpRipAuthentication537 struct {
+	Str      InterfaceEthernetIpRipAuthenticationStr538      `json:"str"`
+	Mode     InterfaceEthernetIpRipAuthenticationMode539     `json:"mode"`
+	KeyChain InterfaceEthernetIpRipAuthenticationKeyChain540 `json:"key-chain"`
 }
 
-type InterfaceEthernetIpRipAuthenticationStr551 struct {
+type InterfaceEthernetIpRipAuthenticationStr538 struct {
 	String string `json:"string"`
 }
 
-type InterfaceEthernetIpRipAuthenticationMode552 struct {
+type InterfaceEthernetIpRipAuthenticationMode539 struct {
 	Mode string `json:"mode" dval:"text"`
 }
 
-type InterfaceEthernetIpRipAuthenticationKeyChain553 struct {
+type InterfaceEthernetIpRipAuthenticationKeyChain540 struct {
 	KeyChain string `json:"key-chain"`
 }
 
-type InterfaceEthernetIpRipSendCfg554 struct {
+type InterfaceEthernetIpRipSendCfg541 struct {
 	Send    int    `json:"send"`
 	Version string `json:"version"`
 }
 
-type InterfaceEthernetIpRipReceiveCfg555 struct {
+type InterfaceEthernetIpRipReceiveCfg542 struct {
 	Receive int    `json:"receive"`
 	Version string `json:"version"`
 }
 
-type InterfaceEthernetIpRipSplitHorizonCfg556 struct {
+type InterfaceEthernetIpRipSplitHorizonCfg543 struct {
 	State string `json:"state" dval:"poisoned"`
 }
 
-type InterfaceEthernetIpRouter557 struct {
-	Isis InterfaceEthernetIpRouterIsis558 `json:"isis"`
+type InterfaceEthernetIpRouter544 struct {
+	Isis InterfaceEthernetIpRouterIsis545 `json:"isis"`
 }
 
-type InterfaceEthernetIpRouterIsis558 struct {
+type InterfaceEthernetIpRouterIsis545 struct {
 	Tag  string `json:"tag"`
 	Uuid string `json:"uuid"`
+}
+
+type InterfaceEthernetIpStatefulFirewall546 struct {
+	Inside     int    `json:"inside"`
+	ClassList  string `json:"class-list"`
+	Outside    int    `json:"outside"`
+	AccessList int    `json:"access-list"`
+	AclId      int    `json:"acl-id"`
+	Uuid       string `json:"uuid"`
 }
 
 func (p *InterfaceEthernetIp) GetId() string {

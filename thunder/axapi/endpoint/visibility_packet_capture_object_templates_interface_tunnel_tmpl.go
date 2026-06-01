@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc2794 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc2812 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsRate2795 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsRate2813 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsSeverity2796 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsSeverity2814 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,13 +25,13 @@ type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmpl struct {
 	} `json:"interface-tunnel-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc2794 struct {
+type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc2812 struct {
 	NumRxErrPkts int    `json:"num-rx-err-pkts"`
 	NumTxErrPkts int    `json:"num-tx-err-pkts"`
 	Uuid         string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsRate2795 struct {
+type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsRate2813 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	NumRxErrPkts        int    `json:"num-rx-err-pkts"`
@@ -39,7 +39,7 @@ type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsRate27
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsSeverity2796 struct {
+type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsSeverity2814 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

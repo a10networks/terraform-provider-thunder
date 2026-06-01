@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SysUtStateNextStateCaseActionTcp struct {
 	Inst struct {
 		AckSeqNumber string `json:"ack-seq-number" dval:"valid"`
@@ -16,11 +16,11 @@ type SysUtStateNextStateCaseActionTcp struct {
 
 		DestPortValue int `json:"dest-port-value"`
 
-		Flags SysUtStateNextStateCaseActionTcpFlags1642 `json:"flags"`
+		Flags SysUtStateNextStateCaseActionTcpFlags1643 `json:"flags"`
 
 		NatPool string `json:"nat-pool"`
 
-		Options SysUtStateNextStateCaseActionTcpOptions1643 `json:"options"`
+		Options SysUtStateNextStateCaseActionTcpOptions1644 `json:"options"`
 
 		SeqNumber string `json:"seq-number" dval:"valid"`
 
@@ -32,17 +32,17 @@ type SysUtStateNextStateCaseActionTcp struct {
 
 		Window string `json:"window" dval:"valid"`
 
-		State_name string
+		Next_state_name string
 
 		Direction string
 
 		CaseNumber string
 
-		Next_state_name string
+		State_name string
 	} `json:"tcp"`
 }
 
-type SysUtStateNextStateCaseActionTcpFlags1642 struct {
+type SysUtStateNextStateCaseActionTcpFlags1643 struct {
 	Syn  int    `json:"syn"`
 	Ack  int    `json:"ack"`
 	Fin  int    `json:"fin"`
@@ -54,7 +54,7 @@ type SysUtStateNextStateCaseActionTcpFlags1642 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SysUtStateNextStateCaseActionTcpOptions1643 struct {
+type SysUtStateNextStateCaseActionTcpOptions1644 struct {
 	Mss             int    `json:"mss"`
 	Wscale          int    `json:"wscale"`
 	SackType        string `json:"sack-type"`

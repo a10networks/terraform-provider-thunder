@@ -19,6 +19,9 @@ func resourceImportPeriodicSslCert() *schema.Resource {
 			"certificate_type": {
 				Type: schema.TypeString, Optional: true, Description: "'pem': pem; 'der': der; 'pfx': pfx; 'p7b': p7b;",
 			},
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "Config remote server  password",
+			},
 			"period": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the period in second",
 			},
@@ -105,11 +108,13 @@ func resourceImportPeriodicSslCertRead(ctx context.Context, d *schema.ResourceDa
 func dataToEndpointImportPeriodicSslCert(d *schema.ResourceData) edpt.ImportPeriodicSslCert {
 	var ret edpt.ImportPeriodicSslCert
 	ret.Inst.CertificateType = d.Get("certificate_type").(string)
-	//omit encrypted
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.Period = d.Get("period").(int)
+	//omit pfx_encrypted
 	ret.Inst.PfxPassword = d.Get("pfx_password").(string)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)
 	ret.Inst.SslCert = d.Get("ssl_cert").(string)
+	//omit string_encrypted
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)
 	//omit uuid
 	return ret

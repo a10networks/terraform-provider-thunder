@@ -41,6 +41,8 @@ resource "thunder_import_periodic_ca_cert" "thunder_import_periodic_ca_cert" {
 ### Optional
 
 - `certificate_type` (String) 'pem': pem; 'der': der; 'pfx': pfx; 'p7b': p7b;
+- `password` (String) Config remote server  password
+- `password_key` (Number) Config remote server password
 - `period` (Number) Specify the period in second
 - `pfx_password` (String) The password for certificate file (pfx type only)
 - `remote_file` (String) profile name for remote url

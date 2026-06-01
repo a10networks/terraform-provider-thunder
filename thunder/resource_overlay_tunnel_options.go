@@ -121,10 +121,10 @@ func resourceOverlayTunnelOptionsRead(ctx context.Context, d *schema.ResourceDat
 	return diags
 }
 
-func getObjectOverlayTunnelOptionsSrcPortRange1161(d []interface{}) edpt.OverlayTunnelOptionsSrcPortRange1161 {
+func getObjectOverlayTunnelOptionsSrcPortRange1160(d []interface{}) edpt.OverlayTunnelOptionsSrcPortRange1160 {
 
 	count1 := len(d)
-	var ret edpt.OverlayTunnelOptionsSrcPortRange1161
+	var ret edpt.OverlayTunnelOptionsSrcPortRange1160
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MinPort = in["min_port"].(int)
@@ -141,7 +141,7 @@ func dataToEndpointOverlayTunnelOptions(d *schema.ResourceData) edpt.OverlayTunn
 	ret.Inst.IpDscpPreserve = d.Get("ip_dscp_preserve").(int)
 	ret.Inst.NvgreDisableFlowId = d.Get("nvgre_disable_flow_id").(int)
 	ret.Inst.NvgreKeyModeLower24 = d.Get("nvgre_key_mode_lower24").(int)
-	ret.Inst.SrcPortRange = getObjectOverlayTunnelOptionsSrcPortRange1161(d.Get("src_port_range").([]interface{}))
+	ret.Inst.SrcPortRange = getObjectOverlayTunnelOptionsSrcPortRange1160(d.Get("src_port_range").([]interface{}))
 	ret.Inst.TcpMssAdjustDisable = d.Get("tcp_mss_adjust_disable").(int)
 	//omit uuid
 	ret.Inst.VxlanDestPort = d.Get("vxlan_dest_port").(int)

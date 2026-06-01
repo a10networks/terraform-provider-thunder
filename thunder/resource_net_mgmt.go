@@ -108,32 +108,32 @@ func resourceNetMgmtRead(ctx context.Context, d *schema.ResourceData, meta inter
 	return diags
 }
 
-func getObjectNetMgmtSnmp1134(d []interface{}) edpt.NetMgmtSnmp1134 {
+func getObjectNetMgmtSnmp1133(d []interface{}) edpt.NetMgmtSnmp1133 {
 
 	count1 := len(d)
-	var ret edpt.NetMgmtSnmp1134
+	var ret edpt.NetMgmtSnmp1133
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Engineid = getObjectNetMgmtSnmpEngineid1135(in["engineid"].([]interface{}))
-		ret.Stats = getObjectNetMgmtSnmpStats1136(in["stats"].([]interface{}))
+		ret.Engineid = getObjectNetMgmtSnmpEngineid1134(in["engineid"].([]interface{}))
+		ret.Stats = getObjectNetMgmtSnmpStats1135(in["stats"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectNetMgmtSnmpEngineid1135(d []interface{}) edpt.NetMgmtSnmpEngineid1135 {
+func getObjectNetMgmtSnmpEngineid1134(d []interface{}) edpt.NetMgmtSnmpEngineid1134 {
 
-	var ret edpt.NetMgmtSnmpEngineid1135
+	var ret edpt.NetMgmtSnmpEngineid1134
 	return ret
 }
 
-func getObjectNetMgmtSnmpStats1136(d []interface{}) edpt.NetMgmtSnmpStats1136 {
+func getObjectNetMgmtSnmpStats1135(d []interface{}) edpt.NetMgmtSnmpStats1135 {
 
-	var ret edpt.NetMgmtSnmpStats1136
+	var ret edpt.NetMgmtSnmpStats1135
 	return ret
 }
 
 func dataToEndpointNetMgmt(d *schema.ResourceData) edpt.NetMgmt {
 	var ret edpt.NetMgmt
-	ret.Inst.Snmp = getObjectNetMgmtSnmp1134(d.Get("snmp").([]interface{}))
+	ret.Inst.Snmp = getObjectNetMgmtSnmp1133(d.Get("snmp").([]interface{}))
 	return ret
 }

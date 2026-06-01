@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZoneDetectionOutboundDetection struct {
 	Inst struct {
 		Configuration string `json:"configuration"`
@@ -20,7 +20,7 @@ type DdosDstZoneDetectionOutboundDetection struct {
 
 		Toggle string `json:"toggle" dval:"disable"`
 
-		TopkSourceSubnet DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet204 `json:"topk-source-subnet"`
+		TopkSourceSubnet DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet207 `json:"topk-source-subnet"`
 
 		Uuid string `json:"uuid"`
 
@@ -45,7 +45,7 @@ type DdosDstZoneDetectionOutboundDetectionIndicatorList struct {
 	UserTag           string `json:"user-tag"`
 }
 
-type DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet204 struct {
+type DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet207 struct {
 	Uuid string `json:"uuid"`
 }
 

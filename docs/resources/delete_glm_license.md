@@ -39,12 +39,9 @@ resource "thunder_delete_glm_license" "thunder_delete_glm_license" {
 ### Optional
 
 - `a10_ti` (Number) only remove A10 Threat Intel license
-- `hw_accelerated_blocking` (Number) only remove HW accelerated blocking license
 - `ipsec_vpn` (Number) only remove IPSEC VPN license
-- `ngen_low_latency` (Number) only remove low latency NHA license
 - `ngwaf` (Number) only remove NGWAF license
 - `qosmos` (Number) only remove QOSMOS license
-- `rhel_support` (Number) only remove redhat license
 - `secure_gaming` (Number) only remove Secure gaming license
 - `threatstop` (Number) only remove ThreatSTOP license
 - `webroot` (Number) only remove Webroot license

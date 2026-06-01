@@ -5,27 +5,27 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type AcosCloudIntegration struct {
 	Inst struct {
 		Dummy int `json:"dummy"`
 
-		Ecosystem AcosCloudIntegrationEcosystem47 `json:"ecosystem"`
+		Ecosystem AcosCloudIntegrationEcosystem48 `json:"ecosystem"`
 
 		Uuid string `json:"uuid"`
 	} `json:"acos-cloud-integration"`
 }
 
-type AcosCloudIntegrationEcosystem47 struct {
+type AcosCloudIntegrationEcosystem48 struct {
 	Dummy  int                                   `json:"dummy"`
 	Uuid   string                                `json:"uuid"`
-	Consul AcosCloudIntegrationEcosystemConsul48 `json:"consul"`
-	Oracle AcosCloudIntegrationEcosystemOracle50 `json:"oracle"`
-	K8s    AcosCloudIntegrationEcosystemK8s52    `json:"k8s"`
+	Consul AcosCloudIntegrationEcosystemConsul49 `json:"consul"`
+	Oracle AcosCloudIntegrationEcosystemOracle51 `json:"oracle"`
+	K8s    AcosCloudIntegrationEcosystemK8s53    `json:"k8s"`
 }
 
-type AcosCloudIntegrationEcosystemConsul48 struct {
-	ServiceLabel        []AcosCloudIntegrationEcosystemConsulServiceLabel49 `json:"service-label"`
+type AcosCloudIntegrationEcosystemConsul49 struct {
+	ServiceLabel        []AcosCloudIntegrationEcosystemConsulServiceLabel50 `json:"service-label"`
 	Ipv4Address         string                                              `json:"ipv4-address"`
 	Ipv6Address         string                                              `json:"ipv6-address"`
 	HostName            string                                              `json:"host-name"`
@@ -35,12 +35,12 @@ type AcosCloudIntegrationEcosystemConsul48 struct {
 	Uuid                string                                              `json:"uuid"`
 }
 
-type AcosCloudIntegrationEcosystemConsulServiceLabel49 struct {
+type AcosCloudIntegrationEcosystemConsulServiceLabel50 struct {
 	ServiceLabelName string `json:"service-label-name"`
 }
 
-type AcosCloudIntegrationEcosystemOracle50 struct {
-	ServiceLabel        []AcosCloudIntegrationEcosystemOracleServiceLabel51 `json:"service-label"`
+type AcosCloudIntegrationEcosystemOracle51 struct {
+	ServiceLabel        []AcosCloudIntegrationEcosystemOracleServiceLabel52 `json:"service-label"`
 	Ipv4Address         string                                              `json:"ipv4-address"`
 	Ipv6Address         string                                              `json:"ipv6-address"`
 	HostName            string                                              `json:"host-name"`
@@ -55,19 +55,19 @@ type AcosCloudIntegrationEcosystemOracle50 struct {
 	Uuid                string                                              `json:"uuid"`
 }
 
-type AcosCloudIntegrationEcosystemOracleServiceLabel51 struct {
+type AcosCloudIntegrationEcosystemOracleServiceLabel52 struct {
 	ServiceLabelName string `json:"service-label-name"`
 }
 
-type AcosCloudIntegrationEcosystemK8s52 struct {
+type AcosCloudIntegrationEcosystemK8s53 struct {
 	Action              string                                           `json:"action" dval:"disable"`
 	HealthCheckInterval string                                           `json:"health-check-interval"`
 	ClusterConfigFile   string                                           `json:"cluster-config-file"`
-	ServiceLabel        []AcosCloudIntegrationEcosystemK8sServiceLabel53 `json:"service-label"`
+	ServiceLabel        []AcosCloudIntegrationEcosystemK8sServiceLabel54 `json:"service-label"`
 	Uuid                string                                           `json:"uuid"`
 }
 
-type AcosCloudIntegrationEcosystemK8sServiceLabel53 struct {
+type AcosCloudIntegrationEcosystemK8sServiceLabel54 struct {
 	ServiceLabelName string `json:"service-label-name"`
 }
 

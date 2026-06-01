@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDetectionAgentStats struct {
 	AgentName string `json:"agent-name"`
 
@@ -61,6 +61,7 @@ type DdosDetectionAgentStatsStats struct {
 	XflowDstEntryMissExtendByteRcv    int `json:"xflow-dst-entry-miss-extend-byte-rcv"`
 	XflowDstSvcMissExtendPktRcv       int `json:"xflow-dst-svc-miss-extend-pkt-rcv"`
 	XflowDstSvcMissExtendByteRcv      int `json:"xflow-dst-svc-miss-extend-byte-rcv"`
+	XflowSampleDroppedByIntfSelect    int `json:"xflow-sample-dropped-by-intf-select"`
 }
 
 func (p *DdosDetectionAgentStats) GetId() string {

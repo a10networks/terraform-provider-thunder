@@ -216,10 +216,10 @@ func resourceDdosDetectionSettingsRead(ctx context.Context, d *schema.ResourceDa
 	return diags
 }
 
-func getObjectDdosDetectionSettingsEntrySaving149(d []interface{}) edpt.DdosDetectionSettingsEntrySaving149 {
+func getObjectDdosDetectionSettingsEntrySaving150(d []interface{}) edpt.DdosDetectionSettingsEntrySaving150 {
 
 	count1 := len(d)
-	var ret edpt.DdosDetectionSettingsEntrySaving149
+	var ret edpt.DdosDetectionSettingsEntrySaving150
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DisableBootupRestore = in["disable_bootup_restore"].(int)
@@ -243,24 +243,24 @@ func getSliceDdosDetectionSettingsPktSampling(d []interface{}) []edpt.DdosDetect
 	return ret
 }
 
-func getObjectDdosDetectionSettingsStandaloneSettings150(d []interface{}) edpt.DdosDetectionSettingsStandaloneSettings150 {
+func getObjectDdosDetectionSettingsStandaloneSettings151(d []interface{}) edpt.DdosDetectionSettingsStandaloneSettings151 {
 
 	count1 := len(d)
-	var ret edpt.DdosDetectionSettingsStandaloneSettings150
+	var ret edpt.DdosDetectionSettingsStandaloneSettings151
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
 		//omit uuid
-		ret.Sflow = getObjectDdosDetectionSettingsStandaloneSettingsSflow151(in["sflow"].([]interface{}))
-		ret.Netflow = getObjectDdosDetectionSettingsStandaloneSettingsNetflow152(in["netflow"].([]interface{}))
+		ret.Sflow = getObjectDdosDetectionSettingsStandaloneSettingsSflow152(in["sflow"].([]interface{}))
+		ret.Netflow = getObjectDdosDetectionSettingsStandaloneSettingsNetflow153(in["netflow"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectDdosDetectionSettingsStandaloneSettingsSflow151(d []interface{}) edpt.DdosDetectionSettingsStandaloneSettingsSflow151 {
+func getObjectDdosDetectionSettingsStandaloneSettingsSflow152(d []interface{}) edpt.DdosDetectionSettingsStandaloneSettingsSflow152 {
 
 	count1 := len(d)
-	var ret edpt.DdosDetectionSettingsStandaloneSettingsSflow151
+	var ret edpt.DdosDetectionSettingsStandaloneSettingsSflow152
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ListeningPort = in["listening_port"].(int)
@@ -269,10 +269,10 @@ func getObjectDdosDetectionSettingsStandaloneSettingsSflow151(d []interface{}) e
 	return ret
 }
 
-func getObjectDdosDetectionSettingsStandaloneSettingsNetflow152(d []interface{}) edpt.DdosDetectionSettingsStandaloneSettingsNetflow152 {
+func getObjectDdosDetectionSettingsStandaloneSettingsNetflow153(d []interface{}) edpt.DdosDetectionSettingsStandaloneSettingsNetflow153 {
 
 	count1 := len(d)
-	var ret edpt.DdosDetectionSettingsStandaloneSettingsNetflow152
+	var ret edpt.DdosDetectionSettingsStandaloneSettingsNetflow153
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ListeningPort = in["listening_port"].(int)
@@ -283,10 +283,10 @@ func getObjectDdosDetectionSettingsStandaloneSettingsNetflow152(d []interface{})
 	return ret
 }
 
-func getObjectDdosDetectionSettingsZoneNotifications153(d []interface{}) edpt.DdosDetectionSettingsZoneNotifications153 {
+func getObjectDdosDetectionSettingsZoneNotifications154(d []interface{}) edpt.DdosDetectionSettingsZoneNotifications154 {
 
 	count1 := len(d)
-	var ret edpt.DdosDetectionSettingsZoneNotifications153
+	var ret edpt.DdosDetectionSettingsZoneNotifications154
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SourceEntry = in["source_entry"].(string)
@@ -302,7 +302,7 @@ func dataToEndpointDdosDetectionSettings(d *schema.ResourceData) edpt.DdosDetect
 	ret.Inst.DedicatedCpus = d.Get("dedicated_cpus").(int)
 	ret.Inst.DetectionWindowSize = d.Get("detection_window_size").(int)
 	ret.Inst.DetectorMode = d.Get("detector_mode").(string)
-	ret.Inst.EntrySaving = getObjectDdosDetectionSettingsEntrySaving149(d.Get("entry_saving").([]interface{}))
+	ret.Inst.EntrySaving = getObjectDdosDetectionSettingsEntrySaving150(d.Get("entry_saving").([]interface{}))
 	ret.Inst.ExportInterval = d.Get("export_interval").(int)
 	ret.Inst.FullCoreEnable = d.Get("full_core_enable").(int)
 	ret.Inst.HistogramDeEscalatePercentage = d.Get("histogram_de_escalate_percentage").(int)
@@ -313,9 +313,9 @@ func dataToEndpointDdosDetectionSettings(d *schema.ResourceData) edpt.DdosDetect
 	ret.Inst.NetworkObjectWindowSize = d.Get("network_object_window_size").(string)
 	ret.Inst.NotificationDebugLog = d.Get("notification_debug_log").(string)
 	ret.Inst.PktSampling = getSliceDdosDetectionSettingsPktSampling(d.Get("pkt_sampling").([]interface{}))
-	ret.Inst.StandaloneSettings = getObjectDdosDetectionSettingsStandaloneSettings150(d.Get("standalone_settings").([]interface{}))
+	ret.Inst.StandaloneSettings = getObjectDdosDetectionSettingsStandaloneSettings151(d.Get("standalone_settings").([]interface{}))
 	ret.Inst.TopKResetInterval = d.Get("top_k_reset_interval").(int)
 	//omit uuid
-	ret.Inst.ZoneNotifications = getObjectDdosDetectionSettingsZoneNotifications153(d.Get("zone_notifications").([]interface{}))
+	ret.Inst.ZoneNotifications = getObjectDdosDetectionSettingsZoneNotifications154(d.Get("zone_notifications").([]interface{}))
 	return ret
 }

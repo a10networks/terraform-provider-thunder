@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemDns struct {
 	Inst struct {
-		RecursiveNameserver SystemDnsRecursiveNameserver1676 `json:"recursive-nameserver"`
+		RecursiveNameserver SystemDnsRecursiveNameserver1677 `json:"recursive-nameserver"`
 
 		SamplingEnable []SystemDnsSamplingEnable `json:"sampling-enable"`
 
@@ -16,13 +16,13 @@ type SystemDns struct {
 	} `json:"dns"`
 }
 
-type SystemDnsRecursiveNameserver1676 struct {
+type SystemDnsRecursiveNameserver1677 struct {
 	FollowShared int                                          `json:"follow-shared"`
-	ServerList   []SystemDnsRecursiveNameserverServerList1677 `json:"server-list"`
+	ServerList   []SystemDnsRecursiveNameserverServerList1678 `json:"server-list"`
 	Uuid         string                                       `json:"uuid"`
 }
 
-type SystemDnsRecursiveNameserverServerList1677 struct {
+type SystemDnsRecursiveNameserverServerList1678 struct {
 	Ipv4Addr string `json:"ipv4-addr"`
 	V4Desc   string `json:"v4-desc"`
 	Ipv6Addr string `json:"ipv6-addr"`

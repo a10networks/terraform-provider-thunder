@@ -136,6 +136,9 @@ func resourceWebService() *schema.Resource {
 									"use_mgmt_port": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use management port as source port",
 									},
+									"passphrase": {
+										Type: schema.TypeString, Optional: true, Description: "Password Phrase",
+									},
 									"file_url": {
 										Type: schema.TypeString, Optional: true, Description: "File URL",
 									},
@@ -235,26 +238,26 @@ func getSliceWebServicePublicApis(d []interface{}) []edpt.WebServicePublicApis {
 	return ret
 }
 
-func getObjectWebServiceSecure3775(d []interface{}) edpt.WebServiceSecure3775 {
+func getObjectWebServiceSecure3813(d []interface{}) edpt.WebServiceSecure3813 {
 
 	count1 := len(d)
-	var ret edpt.WebServiceSecure3775
+	var ret edpt.WebServiceSecure3813
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Restart = in["restart"].(int)
 		ret.Wipe = in["wipe"].(int)
-		ret.Generate = getObjectWebServiceSecureGenerate3776(in["generate"].([]interface{}))
-		ret.Regenerate = getObjectWebServiceSecureRegenerate3777(in["regenerate"].([]interface{}))
-		ret.Certificate = getObjectWebServiceSecureCertificate3778(in["certificate"].([]interface{}))
-		ret.PrivateKey = getObjectWebServiceSecurePrivateKey3779(in["private_key"].([]interface{}))
+		ret.Generate = getObjectWebServiceSecureGenerate3814(in["generate"].([]interface{}))
+		ret.Regenerate = getObjectWebServiceSecureRegenerate3815(in["regenerate"].([]interface{}))
+		ret.Certificate = getObjectWebServiceSecureCertificate3816(in["certificate"].([]interface{}))
+		ret.PrivateKey = getObjectWebServiceSecurePrivateKey3817(in["private_key"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectWebServiceSecureGenerate3776(d []interface{}) edpt.WebServiceSecureGenerate3776 {
+func getObjectWebServiceSecureGenerate3814(d []interface{}) edpt.WebServiceSecureGenerate3814 {
 
 	count1 := len(d)
-	var ret edpt.WebServiceSecureGenerate3776
+	var ret edpt.WebServiceSecureGenerate3814
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DomainName = in["domain_name"].(string)
@@ -264,10 +267,10 @@ func getObjectWebServiceSecureGenerate3776(d []interface{}) edpt.WebServiceSecur
 	return ret
 }
 
-func getObjectWebServiceSecureRegenerate3777(d []interface{}) edpt.WebServiceSecureRegenerate3777 {
+func getObjectWebServiceSecureRegenerate3815(d []interface{}) edpt.WebServiceSecureRegenerate3815 {
 
 	count1 := len(d)
-	var ret edpt.WebServiceSecureRegenerate3777
+	var ret edpt.WebServiceSecureRegenerate3815
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DomainName = in["domain_name"].(string)
@@ -277,10 +280,10 @@ func getObjectWebServiceSecureRegenerate3777(d []interface{}) edpt.WebServiceSec
 	return ret
 }
 
-func getObjectWebServiceSecureCertificate3778(d []interface{}) edpt.WebServiceSecureCertificate3778 {
+func getObjectWebServiceSecureCertificate3816(d []interface{}) edpt.WebServiceSecureCertificate3816 {
 
 	count1 := len(d)
-	var ret edpt.WebServiceSecureCertificate3778
+	var ret edpt.WebServiceSecureCertificate3816
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Load = in["load"].(int)
@@ -290,14 +293,15 @@ func getObjectWebServiceSecureCertificate3778(d []interface{}) edpt.WebServiceSe
 	return ret
 }
 
-func getObjectWebServiceSecurePrivateKey3779(d []interface{}) edpt.WebServiceSecurePrivateKey3779 {
+func getObjectWebServiceSecurePrivateKey3817(d []interface{}) edpt.WebServiceSecurePrivateKey3817 {
 
 	count1 := len(d)
-	var ret edpt.WebServiceSecurePrivateKey3779
+	var ret edpt.WebServiceSecurePrivateKey3817
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Load = in["load"].(int)
 		ret.UseMgmtPort = in["use_mgmt_port"].(int)
+		ret.Passphrase = in["passphrase"].(string)
 		ret.FileUrl = in["file_url"].(string)
 	}
 	return ret
@@ -320,7 +324,7 @@ func dataToEndpointWebService(d *schema.ResourceData) edpt.WebService {
 	ret.Inst.Port = d.Get("port").(int)
 	ret.Inst.PreLoginMessage = d.Get("pre_login_message").(string)
 	ret.Inst.PublicApis = getSliceWebServicePublicApis(d.Get("public_apis").([]interface{}))
-	ret.Inst.Secure = getObjectWebServiceSecure3775(d.Get("secure").([]interface{}))
+	ret.Inst.Secure = getObjectWebServiceSecure3813(d.Get("secure").([]interface{}))
 	ret.Inst.SecurePort = d.Get("secure_port").(int)
 	ret.Inst.SecureServerDisable = d.Get("secure_server_disable").(int)
 	ret.Inst.ServerDisable = d.Get("server_disable").(int)

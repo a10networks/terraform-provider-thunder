@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type RouterLog struct {
 	Inst struct {
-		File RouterLogFile1383 `json:"file"`
+		File RouterLogFile1382 `json:"file"`
 
 		LogBuffer int `json:"log-buffer" dval:"1"`
 
@@ -20,7 +20,7 @@ type RouterLog struct {
 	} `json:"log"`
 }
 
-type RouterLogFile1383 struct {
+type RouterLogFile1382 struct {
 	PerProtocol int    `json:"per-protocol"`
 	Name        string `json:"name"`
 	Rotate      int    `json:"rotate"`

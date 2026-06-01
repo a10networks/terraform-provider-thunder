@@ -5,16 +5,16 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SnmpServerEnableTrapsScaleoutInfrastructure struct {
 	Inst struct {
 		All int `json:"all"`
 
-		Cluster SnmpServerEnableTrapsScaleoutInfrastructureCluster1581 `json:"cluster"`
+		Cluster SnmpServerEnableTrapsScaleoutInfrastructureCluster1582 `json:"cluster"`
 
-		MasterNode SnmpServerEnableTrapsScaleoutInfrastructureMasterNode1582 `json:"master-node"`
+		MasterNode SnmpServerEnableTrapsScaleoutInfrastructureMasterNode1583 `json:"master-node"`
 
-		ServiceNode SnmpServerEnableTrapsScaleoutInfrastructureServiceNode1583 `json:"service-node"`
+		ServiceNode SnmpServerEnableTrapsScaleoutInfrastructureServiceNode1584 `json:"service-node"`
 
 		TestSendAllTraps int `json:"test-send-all-traps"`
 
@@ -22,20 +22,20 @@ type SnmpServerEnableTrapsScaleoutInfrastructure struct {
 	} `json:"infrastructure"`
 }
 
-type SnmpServerEnableTrapsScaleoutInfrastructureCluster1581 struct {
+type SnmpServerEnableTrapsScaleoutInfrastructureCluster1582 struct {
 	Election                int    `json:"election"`
 	MasterCallingReElection int    `json:"master-calling-re-election"`
 	NodeStatus              int    `json:"node-status"`
 	Uuid                    string `json:"uuid"`
 }
 
-type SnmpServerEnableTrapsScaleoutInfrastructureMasterNode1582 struct {
+type SnmpServerEnableTrapsScaleoutInfrastructureMasterNode1583 struct {
 	TrafficMapDistribution  int    `json:"traffic-map-distribution"`
 	VserverTrafficMapUpdate int    `json:"vserver-traffic-map-update"`
 	Uuid                    string `json:"uuid"`
 }
 
-type SnmpServerEnableTrapsScaleoutInfrastructureServiceNode1583 struct {
+type SnmpServerEnableTrapsScaleoutInfrastructureServiceNode1584 struct {
 	LocalDeviceDisabled int    `json:"local-device-disabled"`
 	ServiceMaster       int    `json:"service-master"`
 	TrafficMapUpdate    int    `json:"traffic-map-update"`

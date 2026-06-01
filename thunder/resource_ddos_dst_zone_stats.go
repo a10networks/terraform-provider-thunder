@@ -13,6 +13,44 @@ func resourceDdosDstZoneStats() *schema.Resource {
 		ReadContext: resourceDdosDstZoneStatsRead,
 
 		Schema: map[string]*schema.Schema{
+			"src_ip_filtering": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"stats": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"class_list_1_match": {
+										Type: schema.TypeInt, Optional: true, Description: "Packets Match Class-List 1",
+									},
+									"class_list_2_match": {
+										Type: schema.TypeInt, Optional: true, Description: "Packets Match Class-List 2",
+									},
+									"class_list_3_match": {
+										Type: schema.TypeInt, Optional: true, Description: "Packets Match Class-List 3",
+									},
+									"class_list_4_match": {
+										Type: schema.TypeInt, Optional: true, Description: "Packets Match Class-List 4",
+									},
+									"class_list_5_match": {
+										Type: schema.TypeInt, Optional: true, Description: "Packets Match Class-List 5",
+									},
+									"class_list_6_match": {
+										Type: schema.TypeInt, Optional: true, Description: "Packets Match Class-List 6",
+									},
+									"class_list_7_match": {
+										Type: schema.TypeInt, Optional: true, Description: "Packets Match Class-List 7",
+									},
+									"class_list_8_match": {
+										Type: schema.TypeInt, Optional: true, Description: "Packets Match Class-List 8",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 			"stats": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -1019,6 +1057,15 @@ func resourceDdosDstZoneStats() *schema.Resource {
 						"service_miss_rev_byte_rcvd": {
 							Type: schema.TypeInt, Optional: true, Description: "Service Match Miss: Outbound Byte Received",
 						},
+						"zone_dst_ip_bypass": {
+							Type: schema.TypeInt, Optional: true, Description: "Dst IP Bypass",
+						},
+						"zone_src_ip_filtering_bypass": {
+							Type: schema.TypeInt, Optional: true, Description: "Src IP Filtering Bypass",
+						},
+						"zone_src_ip_filtering_deny": {
+							Type: schema.TypeInt, Optional: true, Description: "Src IP Filtering Deny",
+						},
 					},
 				},
 			},
@@ -1039,6 +1086,8 @@ func resourceDdosDstZoneStatsRead(ctx context.Context, d *schema.ResourceData, m
 		res, err := obj.Get(client.Token, client.Host, d.Id(), logger)
 		d.SetId(obj.GetId())
 		logger.Println(res)
+		DdosDstZoneStatsSrcIpFiltering := setObjectDdosDstZoneStatsSrcIpFiltering(res)
+		d.Set("src_ip_filtering", DdosDstZoneStatsSrcIpFiltering)
 		DdosDstZoneStatsStats := setObjectDdosDstZoneStatsStats(res)
 		d.Set("stats", DdosDstZoneStatsStats)
 		if err != nil {
@@ -1046,6 +1095,37 @@ func resourceDdosDstZoneStatsRead(ctx context.Context, d *schema.ResourceData, m
 		}
 	}
 	return diags
+}
+
+func setObjectDdosDstZoneStatsSrcIpFiltering(ret edpt.DataDdosDstZoneStats) []interface{} {
+	return []interface{}{
+		map[string]interface{}{
+			"stats": setObjectDdosDstZoneStatsSrcIpFilteringStats(ret.DtDdosDstZoneStats.SrcIpFiltering.Stats),
+		},
+	}
+}
+
+func setObjectDdosDstZoneStatsSrcIpFilteringStats(d edpt.DdosDstZoneStatsSrcIpFilteringStats) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+
+	in["class_list_1_match"] = d.ClassList1Match
+
+	in["class_list_2_match"] = d.ClassList2Match
+
+	in["class_list_3_match"] = d.ClassList3Match
+
+	in["class_list_4_match"] = d.ClassList4Match
+
+	in["class_list_5_match"] = d.ClassList5Match
+
+	in["class_list_6_match"] = d.ClassList6Match
+
+	in["class_list_7_match"] = d.ClassList7Match
+
+	in["class_list_8_match"] = d.ClassList8Match
+	result = append(result, in)
+	return result
 }
 
 func setObjectDdosDstZoneStatsStats(ret edpt.DataDdosDstZoneStats) []interface{} {
@@ -1385,8 +1465,40 @@ func setObjectDdosDstZoneStatsStats(ret edpt.DataDdosDstZoneStats) []interface{}
 			"service_miss_fwd_byte_rcvd":                ret.DtDdosDstZoneStats.Stats.Service_miss_fwd_byte_rcvd,
 			"service_miss_rev_pkt_rcvd":                 ret.DtDdosDstZoneStats.Stats.Service_miss_rev_pkt_rcvd,
 			"service_miss_rev_byte_rcvd":                ret.DtDdosDstZoneStats.Stats.Service_miss_rev_byte_rcvd,
+			"zone_dst_ip_bypass":                        ret.DtDdosDstZoneStats.Stats.Zone_dst_ip_bypass,
+			"zone_src_ip_filtering_bypass":              ret.DtDdosDstZoneStats.Stats.Zone_src_ip_filtering_bypass,
+			"zone_src_ip_filtering_deny":                ret.DtDdosDstZoneStats.Stats.Zone_src_ip_filtering_deny,
 		},
 	}
+}
+
+func getObjectDdosDstZoneStatsSrcIpFiltering(d []interface{}) edpt.DdosDstZoneStatsSrcIpFiltering {
+
+	count1 := len(d)
+	var ret edpt.DdosDstZoneStatsSrcIpFiltering
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Stats = getObjectDdosDstZoneStatsSrcIpFilteringStats(in["stats"].([]interface{}))
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneStatsSrcIpFilteringStats(d []interface{}) edpt.DdosDstZoneStatsSrcIpFilteringStats {
+
+	count1 := len(d)
+	var ret edpt.DdosDstZoneStatsSrcIpFilteringStats
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.ClassList1Match = in["class_list_1_match"].(int)
+		ret.ClassList2Match = in["class_list_2_match"].(int)
+		ret.ClassList3Match = in["class_list_3_match"].(int)
+		ret.ClassList4Match = in["class_list_4_match"].(int)
+		ret.ClassList5Match = in["class_list_5_match"].(int)
+		ret.ClassList6Match = in["class_list_6_match"].(int)
+		ret.ClassList7Match = in["class_list_7_match"].(int)
+		ret.ClassList8Match = in["class_list_8_match"].(int)
+	}
+	return ret
 }
 
 func getObjectDdosDstZoneStatsStats(d []interface{}) edpt.DdosDstZoneStatsStats {
@@ -1729,12 +1841,17 @@ func getObjectDdosDstZoneStatsStats(d []interface{}) edpt.DdosDstZoneStatsStats 
 		ret.Service_miss_fwd_byte_rcvd = in["service_miss_fwd_byte_rcvd"].(int)
 		ret.Service_miss_rev_pkt_rcvd = in["service_miss_rev_pkt_rcvd"].(int)
 		ret.Service_miss_rev_byte_rcvd = in["service_miss_rev_byte_rcvd"].(int)
+		ret.Zone_dst_ip_bypass = in["zone_dst_ip_bypass"].(int)
+		ret.Zone_src_ip_filtering_bypass = in["zone_src_ip_filtering_bypass"].(int)
+		ret.Zone_src_ip_filtering_deny = in["zone_src_ip_filtering_deny"].(int)
 	}
 	return ret
 }
 
 func dataToEndpointDdosDstZoneStats(d *schema.ResourceData) edpt.DdosDstZoneStats {
 	var ret edpt.DdosDstZoneStats
+
+	ret.SrcIpFiltering = getObjectDdosDstZoneStatsSrcIpFiltering(d.Get("src_ip_filtering").([]interface{}))
 
 	ret.Stats = getObjectDdosDstZoneStatsStats(d.Get("stats").([]interface{}))
 

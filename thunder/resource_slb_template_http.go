@@ -543,10 +543,10 @@ func getSliceSlbTemplateHttpHostSwitching(d []interface{}) []edpt.SlbTemplateHtt
 	return ret
 }
 
-func getObjectSlbTemplateHttpHttpProtocolCheck1549(d []interface{}) edpt.SlbTemplateHttpHttpProtocolCheck1549 {
+func getObjectSlbTemplateHttpHttpProtocolCheck1550(d []interface{}) edpt.SlbTemplateHttpHttpProtocolCheck1550 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateHttpHttpProtocolCheck1549
+	var ret edpt.SlbTemplateHttpHttpProtocolCheck1550
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.H2upContentLengthAlias = in["h2up_content_length_alias"].(string)
@@ -559,18 +559,18 @@ func getObjectSlbTemplateHttpHttpProtocolCheck1549(d []interface{}) edpt.SlbTemp
 		ret.GetAndPayload = in["get_and_payload"].(string)
 		ret.H2upWithHostAndAuth = in["h2up_with_host_and_auth"].(string)
 		//omit uuid
-		ret.HeaderFilterRuleList = getSliceSlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1550(in["header_filter_rule_list"].([]interface{}))
+		ret.HeaderFilterRuleList = getSliceSlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1551(in["header_filter_rule_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1550(d []interface{}) []edpt.SlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1550 {
+func getSliceSlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1551(d []interface{}) []edpt.SlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1551 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1550, 0, count1)
+	ret := make([]edpt.SlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1551, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1550
+		var oi edpt.SlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1551
 		oi.SeqNum = in["seq_num"].(int)
 		oi.MatchTypeValue = in["match_type_value"].(string)
 		oi.HeaderNameValue = in["header_name_value"].(string)
@@ -733,7 +733,7 @@ func dataToEndpointSlbTemplateHttp(d *schema.ResourceData) edpt.SlbTemplateHttp 
 	ret.Inst.FailoverUrl = d.Get("failover_url").(string)
 	ret.Inst.FrameLimit = d.Get("frame_limit").(int)
 	ret.Inst.HostSwitching = getSliceSlbTemplateHttpHostSwitching(d.Get("host_switching").([]interface{}))
-	ret.Inst.HttpProtocolCheck = getObjectSlbTemplateHttpHttpProtocolCheck1549(d.Get("http_protocol_check").([]interface{}))
+	ret.Inst.HttpProtocolCheck = getObjectSlbTemplateHttpHttpProtocolCheck1550(d.Get("http_protocol_check").([]interface{}))
 	ret.Inst.Http2ClientNoSnat = d.Get("http2_client_no_snat").(int)
 	ret.Inst.InsertClientIp = d.Get("insert_client_ip").(int)
 	ret.Inst.InsertClientIpHeaderName = d.Get("insert_client_ip_header_name").(string)

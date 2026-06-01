@@ -1537,6 +1537,109 @@ func resourceVisibilityPacketCaptureObjectTemplates() *schema.Resource {
 					},
 				},
 			},
+			"captcha_template_inst_tmpl_list": {
+				Type: schema.TypeList, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"name": {
+							Type: schema.TypeString, Required: true, Description: "Packet Capture Template Name",
+						},
+						"capture_config": {
+							Type: schema.TypeString, Optional: true, Description: "Specify name of the capture-config to use with this template",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+						"user_tag": {
+							Type: schema.TypeString, Optional: true, Description: "Customized tag",
+						},
+						"trigger_stats_severity": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"error": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all error counters (Default disabled)",
+									},
+									"error_alert": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all alert error counters (Default disabled)",
+									},
+									"error_warning": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all warning error counters (Default disabled)",
+									},
+									"error_critical": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all critical error counters (Default disabled)",
+									},
+									"drop": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all drop counters (Default disabled)",
+									},
+									"drop_alert": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all alert drop counters (Default disabled)",
+									},
+									"drop_warning": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all warning drop counters (Default disabled)",
+									},
+									"drop_critical": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all critical drop counters (Default disabled)",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
+						},
+						"trigger_stats_inc": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"parse_fail": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total JSON Response Parse Failure",
+									},
+									"json_fail": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Failure JSON Response",
+									},
+									"timeout_error": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Timeout",
+									},
+									"other_error": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Other Error",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
+						},
+						"trigger_stats_rate": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"threshold_exceeded_by": {
+										Type: schema.TypeInt, Optional: true, Default: 5, Description: "Set the threshold to the number of times greater than the previous duration to start the capture, default is 5",
+									},
+									"duration": {
+										Type: schema.TypeInt, Optional: true, Default: 60, Description: "Time in seconds to look for the anomaly, default is 60",
+									},
+									"parse_fail": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total JSON Response Parse Failure",
+									},
+									"json_fail": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Failure JSON Response",
+									},
+									"timeout_error": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Timeout",
+									},
+									"other_error": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Other Error",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 			"cgnv6_dns64_vs_port_tmpl_list": {
 				Type: schema.TypeList, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -5734,6 +5837,76 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListT
 	return ret
 }
 
+func getSliceVisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplList(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplList {
+
+	count1 := len(d)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplList
+		oi.Name = in["name"].(string)
+		oi.CaptureConfig = in["capture_config"].(string)
+		//omit uuid
+		oi.UserTag = in["user_tag"].(string)
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsSeverity(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsInc(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsRate(in["trigger_stats_rate"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsSeverity(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsSeverity {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsSeverity
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Error = in["error"].(int)
+		ret.ErrorAlert = in["error_alert"].(int)
+		ret.ErrorWarning = in["error_warning"].(int)
+		ret.ErrorCritical = in["error_critical"].(int)
+		ret.Drop = in["drop"].(int)
+		ret.DropAlert = in["drop_alert"].(int)
+		ret.DropWarning = in["drop_warning"].(int)
+		ret.DropCritical = in["drop_critical"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsInc(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsInc {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsInc
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.ParseFail = in["parse_fail"].(int)
+		ret.JsonFail = in["json_fail"].(int)
+		ret.TimeoutError = in["timeout_error"].(int)
+		ret.OtherError = in["other_error"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsRate(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsRate {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsRate
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
+		ret.Duration = in["duration"].(int)
+		ret.ParseFail = in["parse_fail"].(int)
+		ret.JsonFail = in["json_fail"].(int)
+		ret.TimeoutError = in["timeout_error"].(int)
+		ret.OtherError = in["other_error"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
 func getSliceVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplList(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplList {
 
 	count1 := len(d)
@@ -7529,6 +7702,7 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplates(d *schema.ResourceData
 	ret.Inst.AamAuthServiceGroupMemTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplList(d.Get("aam_auth_service_group_mem_tmpl_list").([]interface{}))
 	ret.Inst.AamAuthServiceGroupTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplList(d.Get("aam_auth_service_group_tmpl_list").([]interface{}))
 	ret.Inst.AamJwtAuthorizationTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplList(d.Get("aam_jwt_authorization_tmpl_list").([]interface{}))
+	ret.Inst.CaptchaTemplateInstTmplList = getSliceVisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplList(d.Get("captcha_template_inst_tmpl_list").([]interface{}))
 	ret.Inst.Cgnv6Dns64VsPortTmplList = getSliceVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplList(d.Get("cgnv6_dns64_vs_port_tmpl_list").([]interface{}))
 	ret.Inst.Cgnv6EncapDomainTmplList = getSliceVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplList(d.Get("cgnv6_encap_domain_tmpl_list").([]interface{}))
 	ret.Inst.Cgnv6MapTransDomainTmplList = getSliceVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplList(d.Get("cgnv6_map_trans_domain_tmpl_list").([]interface{}))

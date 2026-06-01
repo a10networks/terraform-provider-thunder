@@ -69,6 +69,7 @@ resource "thunder_slb_template_dns_recursive_dns_resolution" "thunder_slb_templa
 - `csubnet_retry` (Number) retry when server REFUSED AX inserted EDNS(0) subnet, works only when insert-client-subnet is configured
 - `default_recursive` (Number) Default recursive mode, forward query to bound service-group if hostnames matched
 - `dnssec_validation` (String) 'enabled': Enable DNSSEC validation; 'disabled': Disable DNSSEC validation;
+- `edns_udp_size` (Number) Set EDNS UDP payload size of queries sent during resolution (EDNS UDP payload size of queries, default:4096 bytes)
 - `fast_ns_selection` (String) 'enabled': Enable fast NS selection; 'disabled': Disable fast NS selection;
 - `force_cname_resolution` (String) 'enabled': Force CNAME resolution always; 'disabled': Use answer record in CNAME response if it exists, else resolve;
 - `full_response` (Number) Serve all records (authority and additional) when applicable
@@ -77,6 +78,9 @@ resource "thunder_slb_template_dns_recursive_dns_resolution" "thunder_slb_templa
 - `ipv4_nat_pool` (String) IPv4 Source NAT pool or pool group
 - `ipv6_nat_pool` (String) IPv6 Source NAT pool or pool group
 - `lookup_order` (Block List, Max: 1) (see [below for nested schema](#nestedblock--lookup_order))
+- `max_key_digest_validation_failures` (Number) Set maximum number of times DNSSEC key-digest validation failures allowed per resolution
+- `max_signature_validation_attempts` (Number) Set maximum number of times DNSSEC signature validation attempts allowed per resolution
+- `max_signature_validation_failures` (Number) Set maximum number of times DNSSEC signature validation failures allowed per resolution
 - `max_trials` (Number) Total number of times to try DNS query to server before closing client connection, default 255
 - `ns_cache_lookup` (String) 'disabled': Disable NS Cache Lookup; 'enabled': Enable NS Cache Lookup;
 - `ns_longest_match` (String) 'disabled': Look up NS of top level label, do a nearly-full resolution; 'enabled': Enable NS cache longest match;

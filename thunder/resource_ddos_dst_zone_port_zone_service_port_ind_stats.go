@@ -248,17 +248,35 @@ func resourceDdosDstZonePortZoneServicePortIndStats() *schema.Resource {
 						"ddet_ind_syn_ack_rate_adaptive_threshold": {
 							Type: schema.TypeInt, Optional: true, Description: "TCP SYN ACK Adaptive Threshold",
 						},
+						"ddet_ind_inside_out_concurrent_conns_current": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP/UDP Inside Out Concurrent Sessions Current",
+						},
+						"ddet_ind_inside_out_concurrent_conns_min": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP/UDP Inside Out Concurrent Sessions Min",
+						},
+						"ddet_ind_inside_out_concurrent_conns_max": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP/UDP Inside Out Concurrent Sessions Max",
+						},
+						"ddet_ind_inside_out_concurrent_conns_adaptive_threshold": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP/UDP Inside Out Concurrent Sessions Adaptive Threshold",
+						},
+						"ddet_ind_pkt_rate_adaptive_baseline": {
+							Type: schema.TypeInt, Optional: true, Description: "Pkt Rate Adaptive Baseline",
+						},
+						"ddet_ind_bit_rate_adaptive_baseline": {
+							Type: schema.TypeInt, Optional: true, Description: "Bit Rate Adaptive Baseline",
+						},
 					},
 				},
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 			"port_num": {
 				Type: schema.TypeString, Required: true, Description: "PortNum",
 			},
-			"zone_name": {
-				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 		},
 	}
@@ -286,83 +304,89 @@ func resourceDdosDstZonePortZoneServicePortIndStatsRead(ctx context.Context, d *
 func setObjectDdosDstZonePortZoneServicePortIndStatsStats(ret edpt.DataDdosDstZonePortZoneServicePortIndStats) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"ip_proto_type":                                     ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.IpProtoType,
-			"ddet_ind_pkt_rate_current":                         ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_rate_current,
-			"ddet_ind_pkt_rate_min":                             ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_rate_min,
-			"ddet_ind_pkt_rate_max":                             ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_rate_max,
-			"ddet_ind_pkt_rate_adaptive_threshold":              ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_rate_adaptive_threshold,
-			"ddet_ind_pkt_drop_rate_current":                    ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_drop_rate_current,
-			"ddet_ind_pkt_drop_rate_min":                        ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_drop_rate_min,
-			"ddet_ind_pkt_drop_rate_max":                        ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_drop_rate_max,
-			"ddet_ind_pkt_drop_rate_adaptive_threshold":         ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_drop_rate_adaptive_threshold,
-			"ddet_ind_syn_rate_current":                         ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_rate_current,
-			"ddet_ind_syn_rate_min":                             ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_rate_min,
-			"ddet_ind_syn_rate_max":                             ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_rate_max,
-			"ddet_ind_syn_rate_adaptive_threshold":              ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_rate_adaptive_threshold,
-			"ddet_ind_fin_rate_current":                         ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_fin_rate_current,
-			"ddet_ind_fin_rate_min":                             ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_fin_rate_min,
-			"ddet_ind_fin_rate_max":                             ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_fin_rate_max,
-			"ddet_ind_fin_rate_adaptive_threshold":              ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_fin_rate_adaptive_threshold,
-			"ddet_ind_rst_rate_current":                         ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_rst_rate_current,
-			"ddet_ind_rst_rate_min":                             ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_rst_rate_min,
-			"ddet_ind_rst_rate_max":                             ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_rst_rate_max,
-			"ddet_ind_rst_rate_adaptive_threshold":              ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_rst_rate_adaptive_threshold,
-			"ddet_ind_small_window_ack_rate_current":            ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_small_window_ack_rate_current,
-			"ddet_ind_small_window_ack_rate_min":                ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_small_window_ack_rate_min,
-			"ddet_ind_small_window_ack_rate_max":                ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_small_window_ack_rate_max,
-			"ddet_ind_small_window_ack_rate_adaptive_threshold": ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_small_window_ack_rate_adaptive_threshold,
-			"ddet_ind_empty_ack_rate_current":                   ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_empty_ack_rate_current,
-			"ddet_ind_empty_ack_rate_min":                       ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_empty_ack_rate_min,
-			"ddet_ind_empty_ack_rate_max":                       ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_empty_ack_rate_max,
-			"ddet_ind_empty_ack_rate_adaptive_threshold":        ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_empty_ack_rate_adaptive_threshold,
-			"ddet_ind_small_payload_rate_current":               ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_small_payload_rate_current,
-			"ddet_ind_small_payload_rate_min":                   ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_small_payload_rate_min,
-			"ddet_ind_small_payload_rate_max":                   ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_small_payload_rate_max,
-			"ddet_ind_small_payload_rate_adaptive_threshold":    ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_small_payload_rate_adaptive_threshold,
-			"ddet_ind_pkt_drop_ratio_current":                   ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_drop_ratio_current,
-			"ddet_ind_pkt_drop_ratio_min":                       ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_drop_ratio_min,
-			"ddet_ind_pkt_drop_ratio_max":                       ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_drop_ratio_max,
-			"ddet_ind_pkt_drop_ratio_adaptive_threshold":        ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_drop_ratio_adaptive_threshold,
-			"ddet_ind_inb_per_outb_current":                     ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_inb_per_outb_current,
-			"ddet_ind_inb_per_outb_min":                         ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_inb_per_outb_min,
-			"ddet_ind_inb_per_outb_max":                         ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_inb_per_outb_max,
-			"ddet_ind_inb_per_outb_adaptive_threshold":          ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_inb_per_outb_adaptive_threshold,
-			"ddet_ind_syn_per_fin_rate_current":                 ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_per_fin_rate_current,
-			"ddet_ind_syn_per_fin_rate_min":                     ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_per_fin_rate_min,
-			"ddet_ind_syn_per_fin_rate_max":                     ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_per_fin_rate_max,
-			"ddet_ind_syn_per_fin_rate_adaptive_threshold":      ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_per_fin_rate_adaptive_threshold,
-			"ddet_ind_conn_miss_rate_current":                   ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_conn_miss_rate_current,
-			"ddet_ind_conn_miss_rate_min":                       ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_conn_miss_rate_min,
-			"ddet_ind_conn_miss_rate_max":                       ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_conn_miss_rate_max,
-			"ddet_ind_conn_miss_rate_adaptive_threshold":        ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_conn_miss_rate_adaptive_threshold,
-			"ddet_ind_concurrent_conns_current":                 ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_concurrent_conns_current,
-			"ddet_ind_concurrent_conns_min":                     ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_concurrent_conns_min,
-			"ddet_ind_concurrent_conns_max":                     ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_concurrent_conns_max,
-			"ddet_ind_concurrent_conns_adaptive_threshold":      ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_concurrent_conns_adaptive_threshold,
-			"ddet_ind_data_cpu_util_current":                    ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_data_cpu_util_current,
-			"ddet_ind_data_cpu_util_min":                        ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_data_cpu_util_min,
-			"ddet_ind_data_cpu_util_max":                        ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_data_cpu_util_max,
-			"ddet_ind_data_cpu_util_adaptive_threshold":         ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_data_cpu_util_adaptive_threshold,
-			"ddet_ind_outside_intf_util_current":                ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_outside_intf_util_current,
-			"ddet_ind_outside_intf_util_min":                    ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_outside_intf_util_min,
-			"ddet_ind_outside_intf_util_max":                    ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_outside_intf_util_max,
-			"ddet_ind_outside_intf_util_adaptive_threshold":     ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_outside_intf_util_adaptive_threshold,
-			"ddet_ind_frag_rate_current":                        ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_frag_rate_current,
-			"ddet_ind_frag_rate_min":                            ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_frag_rate_min,
-			"ddet_ind_frag_rate_max":                            ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_frag_rate_max,
-			"ddet_ind_frag_rate_adaptive_threshold":             ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_frag_rate_adaptive_threshold,
-			"ddet_ind_bit_rate_current":                         ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_bit_rate_current,
-			"ddet_ind_bit_rate_min":                             ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_bit_rate_min,
-			"ddet_ind_bit_rate_max":                             ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_bit_rate_max,
-			"ddet_ind_bit_rate_adaptive_threshold":              ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_bit_rate_adaptive_threshold,
-			"ddet_ind_total_szp_current":                        ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_total_szp_current,
-			"ddet_ind_total_szp_min":                            ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_total_szp_min,
-			"ddet_ind_total_szp_max":                            ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_total_szp_max,
-			"ddet_ind_total_szp_adaptive_threshold":             ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_total_szp_adaptive_threshold,
-			"ddet_ind_syn_ack_rate_current":                     ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_ack_rate_current,
-			"ddet_ind_syn_ack_rate_min":                         ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_ack_rate_min,
-			"ddet_ind_syn_ack_rate_max":                         ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_ack_rate_max,
-			"ddet_ind_syn_ack_rate_adaptive_threshold":          ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_ack_rate_adaptive_threshold,
+			"ip_proto_type":                                           ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.IpProtoType,
+			"ddet_ind_pkt_rate_current":                               ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_rate_current,
+			"ddet_ind_pkt_rate_min":                                   ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_rate_min,
+			"ddet_ind_pkt_rate_max":                                   ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_rate_max,
+			"ddet_ind_pkt_rate_adaptive_threshold":                    ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_rate_adaptive_threshold,
+			"ddet_ind_pkt_drop_rate_current":                          ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_drop_rate_current,
+			"ddet_ind_pkt_drop_rate_min":                              ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_drop_rate_min,
+			"ddet_ind_pkt_drop_rate_max":                              ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_drop_rate_max,
+			"ddet_ind_pkt_drop_rate_adaptive_threshold":               ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_drop_rate_adaptive_threshold,
+			"ddet_ind_syn_rate_current":                               ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_rate_current,
+			"ddet_ind_syn_rate_min":                                   ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_rate_min,
+			"ddet_ind_syn_rate_max":                                   ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_rate_max,
+			"ddet_ind_syn_rate_adaptive_threshold":                    ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_rate_adaptive_threshold,
+			"ddet_ind_fin_rate_current":                               ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_fin_rate_current,
+			"ddet_ind_fin_rate_min":                                   ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_fin_rate_min,
+			"ddet_ind_fin_rate_max":                                   ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_fin_rate_max,
+			"ddet_ind_fin_rate_adaptive_threshold":                    ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_fin_rate_adaptive_threshold,
+			"ddet_ind_rst_rate_current":                               ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_rst_rate_current,
+			"ddet_ind_rst_rate_min":                                   ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_rst_rate_min,
+			"ddet_ind_rst_rate_max":                                   ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_rst_rate_max,
+			"ddet_ind_rst_rate_adaptive_threshold":                    ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_rst_rate_adaptive_threshold,
+			"ddet_ind_small_window_ack_rate_current":                  ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_small_window_ack_rate_current,
+			"ddet_ind_small_window_ack_rate_min":                      ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_small_window_ack_rate_min,
+			"ddet_ind_small_window_ack_rate_max":                      ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_small_window_ack_rate_max,
+			"ddet_ind_small_window_ack_rate_adaptive_threshold":       ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_small_window_ack_rate_adaptive_threshold,
+			"ddet_ind_empty_ack_rate_current":                         ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_empty_ack_rate_current,
+			"ddet_ind_empty_ack_rate_min":                             ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_empty_ack_rate_min,
+			"ddet_ind_empty_ack_rate_max":                             ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_empty_ack_rate_max,
+			"ddet_ind_empty_ack_rate_adaptive_threshold":              ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_empty_ack_rate_adaptive_threshold,
+			"ddet_ind_small_payload_rate_current":                     ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_small_payload_rate_current,
+			"ddet_ind_small_payload_rate_min":                         ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_small_payload_rate_min,
+			"ddet_ind_small_payload_rate_max":                         ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_small_payload_rate_max,
+			"ddet_ind_small_payload_rate_adaptive_threshold":          ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_small_payload_rate_adaptive_threshold,
+			"ddet_ind_pkt_drop_ratio_current":                         ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_drop_ratio_current,
+			"ddet_ind_pkt_drop_ratio_min":                             ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_drop_ratio_min,
+			"ddet_ind_pkt_drop_ratio_max":                             ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_drop_ratio_max,
+			"ddet_ind_pkt_drop_ratio_adaptive_threshold":              ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_drop_ratio_adaptive_threshold,
+			"ddet_ind_inb_per_outb_current":                           ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_inb_per_outb_current,
+			"ddet_ind_inb_per_outb_min":                               ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_inb_per_outb_min,
+			"ddet_ind_inb_per_outb_max":                               ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_inb_per_outb_max,
+			"ddet_ind_inb_per_outb_adaptive_threshold":                ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_inb_per_outb_adaptive_threshold,
+			"ddet_ind_syn_per_fin_rate_current":                       ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_per_fin_rate_current,
+			"ddet_ind_syn_per_fin_rate_min":                           ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_per_fin_rate_min,
+			"ddet_ind_syn_per_fin_rate_max":                           ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_per_fin_rate_max,
+			"ddet_ind_syn_per_fin_rate_adaptive_threshold":            ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_per_fin_rate_adaptive_threshold,
+			"ddet_ind_conn_miss_rate_current":                         ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_conn_miss_rate_current,
+			"ddet_ind_conn_miss_rate_min":                             ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_conn_miss_rate_min,
+			"ddet_ind_conn_miss_rate_max":                             ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_conn_miss_rate_max,
+			"ddet_ind_conn_miss_rate_adaptive_threshold":              ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_conn_miss_rate_adaptive_threshold,
+			"ddet_ind_concurrent_conns_current":                       ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_concurrent_conns_current,
+			"ddet_ind_concurrent_conns_min":                           ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_concurrent_conns_min,
+			"ddet_ind_concurrent_conns_max":                           ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_concurrent_conns_max,
+			"ddet_ind_concurrent_conns_adaptive_threshold":            ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_concurrent_conns_adaptive_threshold,
+			"ddet_ind_data_cpu_util_current":                          ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_data_cpu_util_current,
+			"ddet_ind_data_cpu_util_min":                              ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_data_cpu_util_min,
+			"ddet_ind_data_cpu_util_max":                              ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_data_cpu_util_max,
+			"ddet_ind_data_cpu_util_adaptive_threshold":               ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_data_cpu_util_adaptive_threshold,
+			"ddet_ind_outside_intf_util_current":                      ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_outside_intf_util_current,
+			"ddet_ind_outside_intf_util_min":                          ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_outside_intf_util_min,
+			"ddet_ind_outside_intf_util_max":                          ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_outside_intf_util_max,
+			"ddet_ind_outside_intf_util_adaptive_threshold":           ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_outside_intf_util_adaptive_threshold,
+			"ddet_ind_frag_rate_current":                              ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_frag_rate_current,
+			"ddet_ind_frag_rate_min":                                  ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_frag_rate_min,
+			"ddet_ind_frag_rate_max":                                  ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_frag_rate_max,
+			"ddet_ind_frag_rate_adaptive_threshold":                   ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_frag_rate_adaptive_threshold,
+			"ddet_ind_bit_rate_current":                               ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_bit_rate_current,
+			"ddet_ind_bit_rate_min":                                   ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_bit_rate_min,
+			"ddet_ind_bit_rate_max":                                   ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_bit_rate_max,
+			"ddet_ind_bit_rate_adaptive_threshold":                    ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_bit_rate_adaptive_threshold,
+			"ddet_ind_total_szp_current":                              ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_total_szp_current,
+			"ddet_ind_total_szp_min":                                  ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_total_szp_min,
+			"ddet_ind_total_szp_max":                                  ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_total_szp_max,
+			"ddet_ind_total_szp_adaptive_threshold":                   ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_total_szp_adaptive_threshold,
+			"ddet_ind_syn_ack_rate_current":                           ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_ack_rate_current,
+			"ddet_ind_syn_ack_rate_min":                               ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_ack_rate_min,
+			"ddet_ind_syn_ack_rate_max":                               ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_ack_rate_max,
+			"ddet_ind_syn_ack_rate_adaptive_threshold":                ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_syn_ack_rate_adaptive_threshold,
+			"ddet_ind_inside_out_concurrent_conns_current":            ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_inside_out_concurrent_conns_current,
+			"ddet_ind_inside_out_concurrent_conns_min":                ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_inside_out_concurrent_conns_min,
+			"ddet_ind_inside_out_concurrent_conns_max":                ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_inside_out_concurrent_conns_max,
+			"ddet_ind_inside_out_concurrent_conns_adaptive_threshold": ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_inside_out_concurrent_conns_adaptive_threshold,
+			"ddet_ind_pkt_rate_adaptive_baseline":                     ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_pkt_rate_adaptive_baseline,
+			"ddet_ind_bit_rate_adaptive_baseline":                     ret.DtDdosDstZonePortZoneServicePortIndStats.Stats.Ddet_ind_bit_rate_adaptive_baseline,
 		},
 	}
 }
@@ -450,6 +474,12 @@ func getObjectDdosDstZonePortZoneServicePortIndStatsStats(d []interface{}) edpt.
 		ret.Ddet_ind_syn_ack_rate_min = in["ddet_ind_syn_ack_rate_min"].(int)
 		ret.Ddet_ind_syn_ack_rate_max = in["ddet_ind_syn_ack_rate_max"].(int)
 		ret.Ddet_ind_syn_ack_rate_adaptive_threshold = in["ddet_ind_syn_ack_rate_adaptive_threshold"].(int)
+		ret.Ddet_ind_inside_out_concurrent_conns_current = in["ddet_ind_inside_out_concurrent_conns_current"].(int)
+		ret.Ddet_ind_inside_out_concurrent_conns_min = in["ddet_ind_inside_out_concurrent_conns_min"].(int)
+		ret.Ddet_ind_inside_out_concurrent_conns_max = in["ddet_ind_inside_out_concurrent_conns_max"].(int)
+		ret.Ddet_ind_inside_out_concurrent_conns_adaptive_threshold = in["ddet_ind_inside_out_concurrent_conns_adaptive_threshold"].(int)
+		ret.Ddet_ind_pkt_rate_adaptive_baseline = in["ddet_ind_pkt_rate_adaptive_baseline"].(int)
+		ret.Ddet_ind_bit_rate_adaptive_baseline = in["ddet_ind_bit_rate_adaptive_baseline"].(int)
 	}
 	return ret
 }
@@ -459,10 +489,10 @@ func dataToEndpointDdosDstZonePortZoneServicePortIndStats(d *schema.ResourceData
 
 	ret.Stats = getObjectDdosDstZonePortZoneServicePortIndStatsStats(d.Get("stats").([]interface{}))
 
-	ret.Protocol = d.Get("protocol").(string)
+	ret.ZoneName = d.Get("zone_name").(string)
 
 	ret.PortNum = d.Get("port_num").(string)
 
-	ret.ZoneName = d.Get("zone_name").(string)
+	ret.Protocol = d.Get("protocol").(string)
 	return ret
 }

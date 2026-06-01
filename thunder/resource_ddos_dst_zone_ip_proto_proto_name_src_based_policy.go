@@ -144,11 +144,11 @@ func resourceDdosDstZoneIpProtoProtoNameSrcBasedPolicy() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
-			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			},
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 		},
 	}
@@ -309,7 +309,7 @@ func dataToEndpointDdosDstZoneIpProtoProtoNameSrcBasedPolicy(d *schema.ResourceD
 	ret.Inst.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.ZoneName = d.Get("zone_name").(string)
+	ret.Inst.Protocol = d.Get("protocol").(string)
 	return ret
 }

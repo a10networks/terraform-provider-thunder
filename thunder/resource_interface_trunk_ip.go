@@ -381,6 +381,31 @@ func resourceInterfaceTrunkIp() *schema.Resource {
 			"slb_partition_redirect": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Redirect SLB traffic across partition",
 			},
+			"stateful_firewall": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"inside": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Inside (private) interface for stateful firewall",
+						},
+						"class_list": {
+							Type: schema.TypeString, Optional: true, Description: "Class List (Class List Name)",
+						},
+						"outside": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Outside (public) interface for stateful firewall",
+						},
+						"access_list": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Access-list for traffic from the outside",
+						},
+						"acl_id": {
+							Type: schema.TypeInt, Optional: true, Description: "ACL id",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
 			"syn_cookie": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SYN-cookie on the interface",
 			},
@@ -500,36 +525,36 @@ func getObjectInterfaceTrunkIpNat(d []interface{}) edpt.InterfaceTrunkIpNat {
 	return ret
 }
 
-func getObjectInterfaceTrunkIpOspf833(d []interface{}) edpt.InterfaceTrunkIpOspf833 {
+func getObjectInterfaceTrunkIpOspf824(d []interface{}) edpt.InterfaceTrunkIpOspf824 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTrunkIpOspf833
+	var ret edpt.InterfaceTrunkIpOspf824
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.OspfGlobal = getObjectInterfaceTrunkIpOspfOspfGlobal834(in["ospf_global"].([]interface{}))
+		ret.OspfGlobal = getObjectInterfaceTrunkIpOspfOspfGlobal825(in["ospf_global"].([]interface{}))
 		ret.OspfIpList = getSliceInterfaceTrunkIpOspfOspfIpList(in["ospf_ip_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceTrunkIpOspfOspfGlobal834(d []interface{}) edpt.InterfaceTrunkIpOspfOspfGlobal834 {
+func getObjectInterfaceTrunkIpOspfOspfGlobal825(d []interface{}) edpt.InterfaceTrunkIpOspfOspfGlobal825 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTrunkIpOspfOspfGlobal834
+	var ret edpt.InterfaceTrunkIpOspfOspfGlobal825
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.AuthenticationCfg = getObjectInterfaceTrunkIpOspfOspfGlobalAuthenticationCfg835(in["authentication_cfg"].([]interface{}))
+		ret.AuthenticationCfg = getObjectInterfaceTrunkIpOspfOspfGlobalAuthenticationCfg826(in["authentication_cfg"].([]interface{}))
 		ret.AuthenticationKey = in["authentication_key"].(string)
-		ret.BfdCfg = getObjectInterfaceTrunkIpOspfOspfGlobalBfdCfg836(in["bfd_cfg"].([]interface{}))
+		ret.BfdCfg = getObjectInterfaceTrunkIpOspfOspfGlobalBfdCfg827(in["bfd_cfg"].([]interface{}))
 		ret.Cost = in["cost"].(int)
-		ret.DatabaseFilterCfg = getObjectInterfaceTrunkIpOspfOspfGlobalDatabaseFilterCfg837(in["database_filter_cfg"].([]interface{}))
+		ret.DatabaseFilterCfg = getObjectInterfaceTrunkIpOspfOspfGlobalDatabaseFilterCfg828(in["database_filter_cfg"].([]interface{}))
 		ret.DeadInterval = in["dead_interval"].(int)
 		ret.Disable = in["disable"].(string)
 		ret.HelloInterval = in["hello_interval"].(int)
-		ret.MessageDigestCfg = getSliceInterfaceTrunkIpOspfOspfGlobalMessageDigestCfg838(in["message_digest_cfg"].([]interface{}))
+		ret.MessageDigestCfg = getSliceInterfaceTrunkIpOspfOspfGlobalMessageDigestCfg829(in["message_digest_cfg"].([]interface{}))
 		ret.Mtu = in["mtu"].(int)
 		ret.MtuIgnore = in["mtu_ignore"].(int)
-		ret.Network = getObjectInterfaceTrunkIpOspfOspfGlobalNetwork840(in["network"].([]interface{}))
+		ret.Network = getObjectInterfaceTrunkIpOspfOspfGlobalNetwork831(in["network"].([]interface{}))
 		ret.Priority = in["priority"].(int)
 		ret.RetransmitInterval = in["retransmit_interval"].(int)
 		ret.TransmitDelay = in["transmit_delay"].(int)
@@ -538,10 +563,10 @@ func getObjectInterfaceTrunkIpOspfOspfGlobal834(d []interface{}) edpt.InterfaceT
 	return ret
 }
 
-func getObjectInterfaceTrunkIpOspfOspfGlobalAuthenticationCfg835(d []interface{}) edpt.InterfaceTrunkIpOspfOspfGlobalAuthenticationCfg835 {
+func getObjectInterfaceTrunkIpOspfOspfGlobalAuthenticationCfg826(d []interface{}) edpt.InterfaceTrunkIpOspfOspfGlobalAuthenticationCfg826 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTrunkIpOspfOspfGlobalAuthenticationCfg835
+	var ret edpt.InterfaceTrunkIpOspfOspfGlobalAuthenticationCfg826
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Authentication = in["authentication"].(int)
@@ -550,10 +575,10 @@ func getObjectInterfaceTrunkIpOspfOspfGlobalAuthenticationCfg835(d []interface{}
 	return ret
 }
 
-func getObjectInterfaceTrunkIpOspfOspfGlobalBfdCfg836(d []interface{}) edpt.InterfaceTrunkIpOspfOspfGlobalBfdCfg836 {
+func getObjectInterfaceTrunkIpOspfOspfGlobalBfdCfg827(d []interface{}) edpt.InterfaceTrunkIpOspfOspfGlobalBfdCfg827 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTrunkIpOspfOspfGlobalBfdCfg836
+	var ret edpt.InterfaceTrunkIpOspfOspfGlobalBfdCfg827
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Bfd = in["bfd"].(int)
@@ -562,10 +587,10 @@ func getObjectInterfaceTrunkIpOspfOspfGlobalBfdCfg836(d []interface{}) edpt.Inte
 	return ret
 }
 
-func getObjectInterfaceTrunkIpOspfOspfGlobalDatabaseFilterCfg837(d []interface{}) edpt.InterfaceTrunkIpOspfOspfGlobalDatabaseFilterCfg837 {
+func getObjectInterfaceTrunkIpOspfOspfGlobalDatabaseFilterCfg828(d []interface{}) edpt.InterfaceTrunkIpOspfOspfGlobalDatabaseFilterCfg828 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTrunkIpOspfOspfGlobalDatabaseFilterCfg837
+	var ret edpt.InterfaceTrunkIpOspfOspfGlobalDatabaseFilterCfg828
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DatabaseFilter = in["database_filter"].(string)
@@ -574,24 +599,24 @@ func getObjectInterfaceTrunkIpOspfOspfGlobalDatabaseFilterCfg837(d []interface{}
 	return ret
 }
 
-func getSliceInterfaceTrunkIpOspfOspfGlobalMessageDigestCfg838(d []interface{}) []edpt.InterfaceTrunkIpOspfOspfGlobalMessageDigestCfg838 {
+func getSliceInterfaceTrunkIpOspfOspfGlobalMessageDigestCfg829(d []interface{}) []edpt.InterfaceTrunkIpOspfOspfGlobalMessageDigestCfg829 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceTrunkIpOspfOspfGlobalMessageDigestCfg838, 0, count1)
+	ret := make([]edpt.InterfaceTrunkIpOspfOspfGlobalMessageDigestCfg829, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceTrunkIpOspfOspfGlobalMessageDigestCfg838
+		var oi edpt.InterfaceTrunkIpOspfOspfGlobalMessageDigestCfg829
 		oi.MessageDigestKey = in["message_digest_key"].(int)
-		oi.Md5 = getObjectInterfaceTrunkIpOspfOspfGlobalMessageDigestCfgMd5839(in["md5"].([]interface{}))
+		oi.Md5 = getObjectInterfaceTrunkIpOspfOspfGlobalMessageDigestCfgMd5830(in["md5"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectInterfaceTrunkIpOspfOspfGlobalMessageDigestCfgMd5839(d []interface{}) edpt.InterfaceTrunkIpOspfOspfGlobalMessageDigestCfgMd5839 {
+func getObjectInterfaceTrunkIpOspfOspfGlobalMessageDigestCfgMd5830(d []interface{}) edpt.InterfaceTrunkIpOspfOspfGlobalMessageDigestCfgMd5830 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTrunkIpOspfOspfGlobalMessageDigestCfgMd5839
+	var ret edpt.InterfaceTrunkIpOspfOspfGlobalMessageDigestCfgMd5830
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Md5Value = in["md5_value"].(string)
@@ -600,10 +625,10 @@ func getObjectInterfaceTrunkIpOspfOspfGlobalMessageDigestCfgMd5839(d []interface
 	return ret
 }
 
-func getObjectInterfaceTrunkIpOspfOspfGlobalNetwork840(d []interface{}) edpt.InterfaceTrunkIpOspfOspfGlobalNetwork840 {
+func getObjectInterfaceTrunkIpOspfOspfGlobalNetwork831(d []interface{}) edpt.InterfaceTrunkIpOspfOspfGlobalNetwork831 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTrunkIpOspfOspfGlobalNetwork840
+	var ret edpt.InterfaceTrunkIpOspfOspfGlobalNetwork831
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Broadcast = in["broadcast"].(int)
@@ -657,40 +682,40 @@ func getSliceInterfaceTrunkIpOspfOspfIpListMessageDigestCfg(d []interface{}) []e
 	return ret
 }
 
-func getObjectInterfaceTrunkIpRip841(d []interface{}) edpt.InterfaceTrunkIpRip841 {
+func getObjectInterfaceTrunkIpRip832(d []interface{}) edpt.InterfaceTrunkIpRip832 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTrunkIpRip841
+	var ret edpt.InterfaceTrunkIpRip832
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Authentication = getObjectInterfaceTrunkIpRipAuthentication842(in["authentication"].([]interface{}))
+		ret.Authentication = getObjectInterfaceTrunkIpRipAuthentication833(in["authentication"].([]interface{}))
 		ret.SendPacket = in["send_packet"].(int)
 		ret.ReceivePacket = in["receive_packet"].(int)
-		ret.SendCfg = getObjectInterfaceTrunkIpRipSendCfg846(in["send_cfg"].([]interface{}))
-		ret.ReceiveCfg = getObjectInterfaceTrunkIpRipReceiveCfg847(in["receive_cfg"].([]interface{}))
-		ret.SplitHorizonCfg = getObjectInterfaceTrunkIpRipSplitHorizonCfg848(in["split_horizon_cfg"].([]interface{}))
+		ret.SendCfg = getObjectInterfaceTrunkIpRipSendCfg837(in["send_cfg"].([]interface{}))
+		ret.ReceiveCfg = getObjectInterfaceTrunkIpRipReceiveCfg838(in["receive_cfg"].([]interface{}))
+		ret.SplitHorizonCfg = getObjectInterfaceTrunkIpRipSplitHorizonCfg839(in["split_horizon_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectInterfaceTrunkIpRipAuthentication842(d []interface{}) edpt.InterfaceTrunkIpRipAuthentication842 {
+func getObjectInterfaceTrunkIpRipAuthentication833(d []interface{}) edpt.InterfaceTrunkIpRipAuthentication833 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTrunkIpRipAuthentication842
+	var ret edpt.InterfaceTrunkIpRipAuthentication833
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Str = getObjectInterfaceTrunkIpRipAuthenticationStr843(in["str"].([]interface{}))
-		ret.Mode = getObjectInterfaceTrunkIpRipAuthenticationMode844(in["mode"].([]interface{}))
-		ret.KeyChain = getObjectInterfaceTrunkIpRipAuthenticationKeyChain845(in["key_chain"].([]interface{}))
+		ret.Str = getObjectInterfaceTrunkIpRipAuthenticationStr834(in["str"].([]interface{}))
+		ret.Mode = getObjectInterfaceTrunkIpRipAuthenticationMode835(in["mode"].([]interface{}))
+		ret.KeyChain = getObjectInterfaceTrunkIpRipAuthenticationKeyChain836(in["key_chain"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceTrunkIpRipAuthenticationStr843(d []interface{}) edpt.InterfaceTrunkIpRipAuthenticationStr843 {
+func getObjectInterfaceTrunkIpRipAuthenticationStr834(d []interface{}) edpt.InterfaceTrunkIpRipAuthenticationStr834 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTrunkIpRipAuthenticationStr843
+	var ret edpt.InterfaceTrunkIpRipAuthenticationStr834
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.String = in["string"].(string)
@@ -698,10 +723,10 @@ func getObjectInterfaceTrunkIpRipAuthenticationStr843(d []interface{}) edpt.Inte
 	return ret
 }
 
-func getObjectInterfaceTrunkIpRipAuthenticationMode844(d []interface{}) edpt.InterfaceTrunkIpRipAuthenticationMode844 {
+func getObjectInterfaceTrunkIpRipAuthenticationMode835(d []interface{}) edpt.InterfaceTrunkIpRipAuthenticationMode835 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTrunkIpRipAuthenticationMode844
+	var ret edpt.InterfaceTrunkIpRipAuthenticationMode835
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mode = in["mode"].(string)
@@ -709,10 +734,10 @@ func getObjectInterfaceTrunkIpRipAuthenticationMode844(d []interface{}) edpt.Int
 	return ret
 }
 
-func getObjectInterfaceTrunkIpRipAuthenticationKeyChain845(d []interface{}) edpt.InterfaceTrunkIpRipAuthenticationKeyChain845 {
+func getObjectInterfaceTrunkIpRipAuthenticationKeyChain836(d []interface{}) edpt.InterfaceTrunkIpRipAuthenticationKeyChain836 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTrunkIpRipAuthenticationKeyChain845
+	var ret edpt.InterfaceTrunkIpRipAuthenticationKeyChain836
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.KeyChain = in["key_chain"].(string)
@@ -720,10 +745,10 @@ func getObjectInterfaceTrunkIpRipAuthenticationKeyChain845(d []interface{}) edpt
 	return ret
 }
 
-func getObjectInterfaceTrunkIpRipSendCfg846(d []interface{}) edpt.InterfaceTrunkIpRipSendCfg846 {
+func getObjectInterfaceTrunkIpRipSendCfg837(d []interface{}) edpt.InterfaceTrunkIpRipSendCfg837 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTrunkIpRipSendCfg846
+	var ret edpt.InterfaceTrunkIpRipSendCfg837
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Send = in["send"].(int)
@@ -732,10 +757,10 @@ func getObjectInterfaceTrunkIpRipSendCfg846(d []interface{}) edpt.InterfaceTrunk
 	return ret
 }
 
-func getObjectInterfaceTrunkIpRipReceiveCfg847(d []interface{}) edpt.InterfaceTrunkIpRipReceiveCfg847 {
+func getObjectInterfaceTrunkIpRipReceiveCfg838(d []interface{}) edpt.InterfaceTrunkIpRipReceiveCfg838 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTrunkIpRipReceiveCfg847
+	var ret edpt.InterfaceTrunkIpRipReceiveCfg838
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Receive = in["receive"].(int)
@@ -744,10 +769,10 @@ func getObjectInterfaceTrunkIpRipReceiveCfg847(d []interface{}) edpt.InterfaceTr
 	return ret
 }
 
-func getObjectInterfaceTrunkIpRipSplitHorizonCfg848(d []interface{}) edpt.InterfaceTrunkIpRipSplitHorizonCfg848 {
+func getObjectInterfaceTrunkIpRipSplitHorizonCfg839(d []interface{}) edpt.InterfaceTrunkIpRipSplitHorizonCfg839 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTrunkIpRipSplitHorizonCfg848
+	var ret edpt.InterfaceTrunkIpRipSplitHorizonCfg839
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.State = in["state"].(string)
@@ -755,24 +780,40 @@ func getObjectInterfaceTrunkIpRipSplitHorizonCfg848(d []interface{}) edpt.Interf
 	return ret
 }
 
-func getObjectInterfaceTrunkIpRouter849(d []interface{}) edpt.InterfaceTrunkIpRouter849 {
+func getObjectInterfaceTrunkIpRouter840(d []interface{}) edpt.InterfaceTrunkIpRouter840 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTrunkIpRouter849
+	var ret edpt.InterfaceTrunkIpRouter840
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Isis = getObjectInterfaceTrunkIpRouterIsis850(in["isis"].([]interface{}))
+		ret.Isis = getObjectInterfaceTrunkIpRouterIsis841(in["isis"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceTrunkIpRouterIsis850(d []interface{}) edpt.InterfaceTrunkIpRouterIsis850 {
+func getObjectInterfaceTrunkIpRouterIsis841(d []interface{}) edpt.InterfaceTrunkIpRouterIsis841 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTrunkIpRouterIsis850
+	var ret edpt.InterfaceTrunkIpRouterIsis841
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Tag = in["tag"].(string)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectInterfaceTrunkIpStatefulFirewall842(d []interface{}) edpt.InterfaceTrunkIpStatefulFirewall842 {
+
+	count1 := len(d)
+	var ret edpt.InterfaceTrunkIpStatefulFirewall842
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Inside = in["inside"].(int)
+		ret.ClassList = in["class_list"].(string)
+		ret.Outside = in["outside"].(int)
+		ret.AccessList = in["access_list"].(int)
+		ret.AclId = in["acl_id"].(int)
 		//omit uuid
 	}
 	return ret
@@ -790,12 +831,13 @@ func dataToEndpointInterfaceTrunkIp(d *schema.ResourceData) edpt.InterfaceTrunkI
 	ret.Inst.HelperAddressList = getSliceInterfaceTrunkIpHelperAddressList(d.Get("helper_address_list").([]interface{}))
 	ret.Inst.MaxRespTime = d.Get("max_resp_time").(int)
 	ret.Inst.Nat = getObjectInterfaceTrunkIpNat(d.Get("nat").([]interface{}))
-	ret.Inst.Ospf = getObjectInterfaceTrunkIpOspf833(d.Get("ospf").([]interface{}))
+	ret.Inst.Ospf = getObjectInterfaceTrunkIpOspf824(d.Get("ospf").([]interface{}))
 	ret.Inst.QueryInterval = d.Get("query_interval").(int)
-	ret.Inst.Rip = getObjectInterfaceTrunkIpRip841(d.Get("rip").([]interface{}))
-	ret.Inst.Router = getObjectInterfaceTrunkIpRouter849(d.Get("router").([]interface{}))
+	ret.Inst.Rip = getObjectInterfaceTrunkIpRip832(d.Get("rip").([]interface{}))
+	ret.Inst.Router = getObjectInterfaceTrunkIpRouter840(d.Get("router").([]interface{}))
 	ret.Inst.Server = d.Get("server").(int)
 	ret.Inst.SlbPartitionRedirect = d.Get("slb_partition_redirect").(int)
+	ret.Inst.StatefulFirewall = getObjectInterfaceTrunkIpStatefulFirewall842(d.Get("stateful_firewall").([]interface{}))
 	ret.Inst.SynCookie = d.Get("syn_cookie").(int)
 	ret.Inst.TtlIgnore = d.Get("ttl_ignore").(int)
 	ret.Inst.Unnumbered = d.Get("unnumbered").(int)

@@ -339,6 +339,21 @@ func resourceDdosDstEntryL4TypeStats3() *schema.Resource {
 									"exceed_action_drop": {
 										Type: schema.TypeInt, Optional: true, Description: "Exceed Action: Dropped",
 									},
+									"pattern_filter1_drop": {
+										Type: schema.TypeInt, Optional: true, Description: "Extracted Filter1 Drop",
+									},
+									"pattern_filter2_drop": {
+										Type: schema.TypeInt, Optional: true, Description: "Extracted Filter2 Drop",
+									},
+									"pattern_filter3_drop": {
+										Type: schema.TypeInt, Optional: true, Description: "Extracted Filter3 Drop",
+									},
+									"pattern_filter4_drop": {
+										Type: schema.TypeInt, Optional: true, Description: "Extracted Filter4 Drop",
+									},
+									"pattern_filter5_drop": {
+										Type: schema.TypeInt, Optional: true, Description: "Extracted Filter5 Drop",
+									},
 								},
 							},
 						},
@@ -534,6 +549,11 @@ func getObjectDdosDstEntryL4TypeStats3StatsUdpPort(d []interface{}) edpt.DdosDst
 		ret.Token_authentication_session_created_fail = in["token_authentication_session_created_fail"].(int)
 		ret.Snat_fail = in["snat_fail"].(int)
 		ret.Exceed_action_drop = in["exceed_action_drop"].(int)
+		ret.Pattern_filter1_drop = in["pattern_filter1_drop"].(int)
+		ret.Pattern_filter2_drop = in["pattern_filter2_drop"].(int)
+		ret.Pattern_filter3_drop = in["pattern_filter3_drop"].(int)
+		ret.Pattern_filter4_drop = in["pattern_filter4_drop"].(int)
+		ret.Pattern_filter5_drop = in["pattern_filter5_drop"].(int)
 	}
 	return ret
 }

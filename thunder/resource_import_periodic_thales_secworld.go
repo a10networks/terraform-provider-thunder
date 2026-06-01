@@ -19,6 +19,9 @@ func resourceImportPeriodicThalesSecworld() *schema.Resource {
 			"overwrite": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Overwrite existing file",
 			},
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "Config remote server  password",
+			},
 			"period": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the period in second",
 			},
@@ -101,7 +104,9 @@ func resourceImportPeriodicThalesSecworldRead(ctx context.Context, d *schema.Res
 
 func dataToEndpointImportPeriodicThalesSecworld(d *schema.ResourceData) edpt.ImportPeriodicThalesSecworld {
 	var ret edpt.ImportPeriodicThalesSecworld
+	//omit encrypted
 	ret.Inst.Overwrite = d.Get("overwrite").(int)
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)
 	ret.Inst.ThalesSecworld = d.Get("thales_secworld").(string)

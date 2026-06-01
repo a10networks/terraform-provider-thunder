@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type FileXmlSchemaOper struct {
 	Inst struct {
 		Oper FileXmlSchemaOperOper `json:"oper"`

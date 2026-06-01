@@ -43,6 +43,9 @@ func resourceSystemResourceUsage() *schema.Resource {
 			"ipsec_sa_number": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the maximum number of IPsec SA",
 			},
+			"jwt_cache_entry": {
+				Type: schema.TypeInt, Optional: true, Description: "Specify the maximum cache entries for JWT",
+			},
 			"l4_session_count": {
 				Type: schema.TypeInt, Optional: true, Description: "Total Sessions in the System",
 			},
@@ -63,6 +66,12 @@ func resourceSystemResourceUsage() *schema.Resource {
 			},
 			"ram_cache_memory_limit": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the maximum memory used by ram cache",
+			},
+			"ssl_context_memory": {
+				Type: schema.TypeInt, Optional: true, Default: 2048, Description: "Total SSL context memory needed in units of MB. Will be rounded to closest multiple of 2MB",
+			},
+			"ssl_dma_memory": {
+				Type: schema.TypeInt, Optional: true, Default: 256, Description: "Total SSL DMA memory needed in units of MB. Will be rounded to closest multiple of 2MB",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -145,10 +154,10 @@ func resourceSystemResourceUsageRead(ctx context.Context, d *schema.ResourceData
 	return diags
 }
 
-func getObjectSystemResourceUsageVisibility1753(d []interface{}) edpt.SystemResourceUsageVisibility1753 {
+func getObjectSystemResourceUsageVisibility1754(d []interface{}) edpt.SystemResourceUsageVisibility1754 {
 
 	count1 := len(d)
-	var ret edpt.SystemResourceUsageVisibility1753
+	var ret edpt.SystemResourceUsageVisibility1754
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MonitoredEntityCount = in["monitored_entity_count"].(int)
@@ -168,6 +177,7 @@ func dataToEndpointSystemResourceUsage(d *schema.ResourceData) edpt.SystemResour
 	ret.Inst.ClassListEntryCount = d.Get("class_list_entry_count").(int)
 	ret.Inst.ClassListIpv6AddrCount = d.Get("class_list_ipv6_addr_count").(int)
 	ret.Inst.IpsecSaNumber = d.Get("ipsec_sa_number").(int)
+	ret.Inst.JwtCacheEntry = d.Get("jwt_cache_entry").(int)
 	ret.Inst.L4SessionCount = d.Get("l4_session_count").(int)
 	ret.Inst.MaxAflexAuthzCollectionNumber = d.Get("max_aflex_authz_collection_number").(int)
 	ret.Inst.MaxAflexFileSize = d.Get("max_aflex_file_size").(int)
@@ -175,7 +185,9 @@ func dataToEndpointSystemResourceUsage(d *schema.ResourceData) edpt.SystemResour
 	ret.Inst.NgwafCacheEntry = d.Get("ngwaf_cache_entry").(int)
 	ret.Inst.RadiusTableSize = d.Get("radius_table_size").(int)
 	ret.Inst.RamCacheMemoryLimit = d.Get("ram_cache_memory_limit").(int)
+	ret.Inst.SslContextMemory = d.Get("ssl_context_memory").(int)
+	ret.Inst.SslDmaMemory = d.Get("ssl_dma_memory").(int)
 	//omit uuid
-	ret.Inst.Visibility = getObjectSystemResourceUsageVisibility1753(d.Get("visibility").([]interface{}))
+	ret.Inst.Visibility = getObjectSystemResourceUsageVisibility1754(d.Get("visibility").([]interface{}))
 	return ret
 }

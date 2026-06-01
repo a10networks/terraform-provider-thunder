@@ -1073,6 +1073,21 @@ func resourceDdosSipTcpPortStats() *schema.Resource {
 						"tcp_fin_psh_ack_fwd": {
 							Type: schema.TypeInt, Optional: true, Description: "TCP FIN PSH ACK Forward",
 						},
+						"pattern_filter1_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Extracted Filter1 Drop",
+						},
+						"pattern_filter2_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Extracted Filter2 Drop",
+						},
+						"pattern_filter3_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Extracted Filter3 Drop",
+						},
+						"pattern_filter4_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Extracted Filter4 Drop",
+						},
+						"pattern_filter5_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Extracted Filter5 Drop",
+						},
 					},
 				},
 			},
@@ -1454,6 +1469,11 @@ func setObjectDdosSipTcpPortStatsStats(ret edpt.DataDdosSipTcpPortStats) []inter
 			"tcp_fin_psh_ack_rcvd":                     ret.DtDdosSipTcpPortStats.Stats.Tcp_fin_psh_ack_rcvd,
 			"tcp_fin_psh_ack_drop":                     ret.DtDdosSipTcpPortStats.Stats.Tcp_fin_psh_ack_drop,
 			"tcp_fin_psh_ack_fwd":                      ret.DtDdosSipTcpPortStats.Stats.Tcp_fin_psh_ack_fwd,
+			"pattern_filter1_drop":                     ret.DtDdosSipTcpPortStats.Stats.Pattern_filter1_drop,
+			"pattern_filter2_drop":                     ret.DtDdosSipTcpPortStats.Stats.Pattern_filter2_drop,
+			"pattern_filter3_drop":                     ret.DtDdosSipTcpPortStats.Stats.Pattern_filter3_drop,
+			"pattern_filter4_drop":                     ret.DtDdosSipTcpPortStats.Stats.Pattern_filter4_drop,
+			"pattern_filter5_drop":                     ret.DtDdosSipTcpPortStats.Stats.Pattern_filter5_drop,
 		},
 	}
 }
@@ -1816,6 +1836,11 @@ func getObjectDdosSipTcpPortStatsStats(d []interface{}) edpt.DdosSipTcpPortStats
 		ret.Tcp_fin_psh_ack_rcvd = in["tcp_fin_psh_ack_rcvd"].(int)
 		ret.Tcp_fin_psh_ack_drop = in["tcp_fin_psh_ack_drop"].(int)
 		ret.Tcp_fin_psh_ack_fwd = in["tcp_fin_psh_ack_fwd"].(int)
+		ret.Pattern_filter1_drop = in["pattern_filter1_drop"].(int)
+		ret.Pattern_filter2_drop = in["pattern_filter2_drop"].(int)
+		ret.Pattern_filter3_drop = in["pattern_filter3_drop"].(int)
+		ret.Pattern_filter4_drop = in["pattern_filter4_drop"].(int)
+		ret.Pattern_filter5_drop = in["pattern_filter5_drop"].(int)
 	}
 	return ret
 }

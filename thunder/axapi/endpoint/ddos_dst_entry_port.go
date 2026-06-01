@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstEntryPort struct {
 	Inst struct {
 		CaptureConfig DdosDstEntryPortCaptureConfig `json:"capture-config"`
@@ -23,15 +23,15 @@ type DdosDstEntryPort struct {
 
 		GlidExceedAction DdosDstEntryPortGlidExceedAction `json:"glid-exceed-action"`
 
-		PatternRecognition DdosDstEntryPortPatternRecognition188 `json:"pattern-recognition"`
+		PatternRecognition DdosDstEntryPortPatternRecognition191 `json:"pattern-recognition"`
 
-		PatternRecognitionPuDetails DdosDstEntryPortPatternRecognitionPuDetails189 `json:"pattern-recognition-pu-details"`
+		PatternRecognitionPuDetails DdosDstEntryPortPatternRecognitionPuDetails192 `json:"pattern-recognition-pu-details"`
 
-		PortInd DdosDstEntryPortPortInd190 `json:"port-ind"`
+		PortInd DdosDstEntryPortPortInd193 `json:"port-ind"`
 
 		PortNum int `json:"port-num"`
 
-		ProgressionTracking DdosDstEntryPortProgressionTracking192 `json:"progression-tracking"`
+		ProgressionTracking DdosDstEntryPortProgressionTracking195 `json:"progression-tracking"`
 
 		Protocol string `json:"protocol"`
 
@@ -39,7 +39,7 @@ type DdosDstEntryPort struct {
 
 		Sflow DdosDstEntryPortSflow `json:"sflow"`
 
-		SignatureExtraction DdosDstEntryPortSignatureExtraction193 `json:"signature-extraction"`
+		SignatureExtraction DdosDstEntryPortSignatureExtraction196 `json:"signature-extraction"`
 
 		Template DdosDstEntryPortTemplate `json:"template"`
 
@@ -47,7 +47,7 @@ type DdosDstEntryPort struct {
 
 		TopkSortKey string `json:"topk-sort-key" dval:"avg"`
 
-		TopkSources DdosDstEntryPortTopkSources194 `json:"topk-sources"`
+		TopkSources DdosDstEntryPortTopkSources197 `json:"topk-sources"`
 
 		UserTag string `json:"user-tag"`
 
@@ -71,7 +71,7 @@ type DdosDstEntryPortGlidExceedActionStatelessEncapActionCfg struct {
 	EncapTemplate        string `json:"encap-template"`
 }
 
-type DdosDstEntryPortPatternRecognition188 struct {
+type DdosDstEntryPortPatternRecognition191 struct {
 	Algorithm               string `json:"algorithm"`
 	Mode                    string `json:"mode"`
 	Sensitivity             string `json:"sensitivity"`
@@ -80,20 +80,20 @@ type DdosDstEntryPortPatternRecognition188 struct {
 	Uuid                    string `json:"uuid"`
 }
 
-type DdosDstEntryPortPatternRecognitionPuDetails189 struct {
+type DdosDstEntryPortPatternRecognitionPuDetails192 struct {
 	Uuid string `json:"uuid"`
 }
 
-type DdosDstEntryPortPortInd190 struct {
+type DdosDstEntryPortPortInd193 struct {
 	Uuid           string                                     `json:"uuid"`
-	SamplingEnable []DdosDstEntryPortPortIndSamplingEnable191 `json:"sampling-enable"`
+	SamplingEnable []DdosDstEntryPortPortIndSamplingEnable194 `json:"sampling-enable"`
 }
 
-type DdosDstEntryPortPortIndSamplingEnable191 struct {
+type DdosDstEntryPortPortIndSamplingEnable194 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type DdosDstEntryPortProgressionTracking192 struct {
+type DdosDstEntryPortProgressionTracking195 struct {
 	Uuid string `json:"uuid"`
 }
 
@@ -112,7 +112,7 @@ type DdosDstEntryPortSflowPollingSflowTcp struct {
 	SflowTcpStateful int `json:"sflow-tcp-stateful"`
 }
 
-type DdosDstEntryPortSignatureExtraction193 struct {
+type DdosDstEntryPortSignatureExtraction196 struct {
 	Algorithm  string `json:"algorithm"`
 	ManualMode int    `json:"manual-mode"`
 	Uuid       string `json:"uuid"`
@@ -127,7 +127,7 @@ type DdosDstEntryPortTemplate struct {
 	Udp   string `json:"udp"`
 }
 
-type DdosDstEntryPortTopkSources194 struct {
+type DdosDstEntryPortTopkSources197 struct {
 	Uuid string `json:"uuid"`
 }
 

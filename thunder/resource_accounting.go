@@ -44,6 +44,22 @@ func resourceAccounting() *schema.Resource {
 			"tacplus": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use TACACS+ servers for accounting",
 			},
+			"threat_logs": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"check": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Check if the system is under threat from a specific user",
+						},
+						"days": {
+							Type: schema.TypeInt, Optional: true, Default: 30, Description: "Set min-days to go back",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
@@ -125,6 +141,19 @@ func getObjectAccountingExec40(d []interface{}) edpt.AccountingExec40 {
 	return ret
 }
 
+func getObjectAccountingThreatLogs41(d []interface{}) edpt.AccountingThreatLogs41 {
+
+	count1 := len(d)
+	var ret edpt.AccountingThreatLogs41
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Check = in["check"].(int)
+		ret.Days = in["days"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
 func dataToEndpointAccounting(d *schema.ResourceData) edpt.Accounting {
 	var ret edpt.Accounting
 	ret.Inst.Commands = d.Get("commands").(int)
@@ -132,6 +161,7 @@ func dataToEndpointAccounting(d *schema.ResourceData) edpt.Accounting {
 	ret.Inst.Exec = getObjectAccountingExec40(d.Get("exec").([]interface{}))
 	ret.Inst.StopOnly = d.Get("stop_only").(int)
 	ret.Inst.Tacplus = d.Get("tacplus").(int)
+	ret.Inst.ThreatLogs = getObjectAccountingThreatLogs41(d.Get("threat_logs").([]interface{}))
 	//omit uuid
 	return ret
 }

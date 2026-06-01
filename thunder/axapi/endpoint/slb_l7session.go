@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbL7session struct {
 	Inst struct {
 		SamplingEnable []SlbL7sessionSamplingEnable `json:"sampling-enable"`

@@ -5,12 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZoneWebGuiProtection struct {
 	Inst struct {
-		IpProto DdosDstZoneWebGuiProtectionIpProto268 `json:"ip-proto"`
+		IpProto DdosDstZoneWebGuiProtectionIpProto271 `json:"ip-proto"`
 
-		Port DdosDstZoneWebGuiProtectionPort269 `json:"port"`
+		Port DdosDstZoneWebGuiProtectionPort272 `json:"port"`
 
 		PortRangeList []DdosDstZoneWebGuiProtectionPortRangeList `json:"port-range-list"`
 
@@ -18,7 +18,7 @@ type DdosDstZoneWebGuiProtection struct {
 	} `json:"protection"`
 }
 
-type DdosDstZoneWebGuiProtectionIpProto268 struct {
+type DdosDstZoneWebGuiProtectionIpProto271 struct {
 	ProtoNameList []DdosDstZoneWebGuiProtectionIpProtoProtoNameList `json:"proto-name-list"`
 }
 
@@ -29,7 +29,7 @@ type DdosDstZoneWebGuiProtectionIpProtoProtoNameList struct {
 	UserTag  string `json:"user-tag"`
 }
 
-type DdosDstZoneWebGuiProtectionPort269 struct {
+type DdosDstZoneWebGuiProtectionPort272 struct {
 	ZoneServiceList      []DdosDstZoneWebGuiProtectionPortZoneServiceList      `json:"zone-service-list"`
 	ZoneServiceOtherList []DdosDstZoneWebGuiProtectionPortZoneServiceOtherList `json:"zone-service-other-list"`
 }

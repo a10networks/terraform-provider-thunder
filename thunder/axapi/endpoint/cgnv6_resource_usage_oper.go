@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6ResourceUsageOper struct {
 	Oper Cgnv6ResourceUsageOperOper `json:"oper"`
 }
@@ -23,6 +23,9 @@ type Cgnv6ResourceUsageOperOper struct {
 	FixedNatInsideUserCountMin     int `json:"fixed-nat-inside-user-count-min"`
 	FixedNatInsideUserCountMax     int `json:"fixed-nat-inside-user-count-max"`
 	FixedNatInsideUserCountDefault int `json:"fixed-nat-inside-user-count-default"`
+	RadiusTableSizeMin             int `json:"radius-table-size-min"`
+	RadiusTableSizeMax             int `json:"radius-table-size-max"`
+	RadiusTableSizeDefault         int `json:"radius-table-size-default"`
 }
 
 func (p *Cgnv6ResourceUsageOper) GetId() string {

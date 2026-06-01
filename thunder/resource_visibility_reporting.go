@@ -234,10 +234,10 @@ func getSliceVisibilityReportingSamplingEnable(d []interface{}) []edpt.Visibilit
 	return ret
 }
 
-func getObjectVisibilityReportingTelemetryExportInterval3226(d []interface{}) edpt.VisibilityReportingTelemetryExportInterval3226 {
+func getObjectVisibilityReportingTelemetryExportInterval3254(d []interface{}) edpt.VisibilityReportingTelemetryExportInterval3254 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityReportingTelemetryExportInterval3226
+	var ret edpt.VisibilityReportingTelemetryExportInterval3254
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(int)
@@ -246,25 +246,25 @@ func getObjectVisibilityReportingTelemetryExportInterval3226(d []interface{}) ed
 	return ret
 }
 
-func getObjectVisibilityReportingTemplate3227(d []interface{}) edpt.VisibilityReportingTemplate3227 {
+func getObjectVisibilityReportingTemplate3255(d []interface{}) edpt.VisibilityReportingTemplate3255 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityReportingTemplate3227
+	var ret edpt.VisibilityReportingTemplate3255
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Notification = getObjectVisibilityReportingTemplateNotification3228(in["notification"].([]interface{}))
+		ret.Notification = getObjectVisibilityReportingTemplateNotification3256(in["notification"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityReportingTemplateNotification3228(d []interface{}) edpt.VisibilityReportingTemplateNotification3228 {
+func getObjectVisibilityReportingTemplateNotification3256(d []interface{}) edpt.VisibilityReportingTemplateNotification3256 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityReportingTemplateNotification3228
+	var ret edpt.VisibilityReportingTemplateNotification3256
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TemplateNameList = getSliceVisibilityReportingTemplateNotificationTemplateNameList(in["template_name_list"].([]interface{}))
-		ret.Debug = getObjectVisibilityReportingTemplateNotificationDebug3229(in["debug"].([]interface{}))
+		ret.Debug = getObjectVisibilityReportingTemplateNotificationDebug3257(in["debug"].([]interface{}))
 	}
 	return ret
 }
@@ -329,9 +329,9 @@ func getObjectVisibilityReportingTemplateNotificationTemplateNameListAuthenticat
 	return ret
 }
 
-func getObjectVisibilityReportingTemplateNotificationDebug3229(d []interface{}) edpt.VisibilityReportingTemplateNotificationDebug3229 {
+func getObjectVisibilityReportingTemplateNotificationDebug3257(d []interface{}) edpt.VisibilityReportingTemplateNotificationDebug3257 {
 
-	var ret edpt.VisibilityReportingTemplateNotificationDebug3229
+	var ret edpt.VisibilityReportingTemplateNotificationDebug3257
 	return ret
 }
 
@@ -339,8 +339,8 @@ func dataToEndpointVisibilityReporting(d *schema.ResourceData) edpt.VisibilityRe
 	var ret edpt.VisibilityReporting
 	ret.Inst.SamplingEnable = getSliceVisibilityReportingSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.SessionLogging = d.Get("session_logging").(string)
-	ret.Inst.TelemetryExportInterval = getObjectVisibilityReportingTelemetryExportInterval3226(d.Get("telemetry_export_interval").([]interface{}))
-	ret.Inst.Template = getObjectVisibilityReportingTemplate3227(d.Get("template").([]interface{}))
+	ret.Inst.TelemetryExportInterval = getObjectVisibilityReportingTelemetryExportInterval3254(d.Get("telemetry_export_interval").([]interface{}))
+	ret.Inst.Template = getObjectVisibilityReportingTemplate3255(d.Get("template").([]interface{}))
 	//omit uuid
 	return ret
 }

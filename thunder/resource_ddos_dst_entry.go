@@ -2118,10 +2118,10 @@ func getObjectDdosDstEntryGlidExceedActionStatelessEncapActionCfg(d []interface{
 	return ret
 }
 
-func getObjectDdosDstEntryHwBlacklistBlocking195(d []interface{}) edpt.DdosDstEntryHwBlacklistBlocking195 {
+func getObjectDdosDstEntryHwBlacklistBlocking198(d []interface{}) edpt.DdosDstEntryHwBlacklistBlocking198 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstEntryHwBlacklistBlocking195
+	var ret edpt.DdosDstEntryHwBlacklistBlocking198
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DstEnable = in["dst_enable"].(int)
@@ -2803,29 +2803,29 @@ func getSliceDdosDstEntrySflowCollector(d []interface{}) []edpt.DdosDstEntrySflo
 	return ret
 }
 
-func getObjectDdosDstEntrySrcDstPair196(d []interface{}) edpt.DdosDstEntrySrcDstPair196 {
+func getObjectDdosDstEntrySrcDstPair199(d []interface{}) edpt.DdosDstEntrySrcDstPair199 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstEntrySrcDstPair196
+	var ret edpt.DdosDstEntrySrcDstPair199
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Default = in["default"].(int)
 		ret.Bypass = in["bypass"].(int)
-		ret.ExceedLogCfg = getObjectDdosDstEntrySrcDstPairExceedLogCfg197(in["exceed_log_cfg"].([]interface{}))
+		ret.ExceedLogCfg = getObjectDdosDstEntrySrcDstPairExceedLogCfg200(in["exceed_log_cfg"].([]interface{}))
 		ret.LogPeriodic = in["log_periodic"].(int)
-		ret.Template = getObjectDdosDstEntrySrcDstPairTemplate198(in["template"].([]interface{}))
+		ret.Template = getObjectDdosDstEntrySrcDstPairTemplate201(in["template"].([]interface{}))
 		ret.Glid = in["glid"].(string)
 		//omit uuid
-		ret.L4TypeSrcDstList = getSliceDdosDstEntrySrcDstPairL4TypeSrcDstList199(in["l4_type_src_dst_list"].([]interface{}))
-		ret.AppTypeSrcDstList = getSliceDdosDstEntrySrcDstPairAppTypeSrcDstList201(in["app_type_src_dst_list"].([]interface{}))
+		ret.L4TypeSrcDstList = getSliceDdosDstEntrySrcDstPairL4TypeSrcDstList202(in["l4_type_src_dst_list"].([]interface{}))
+		ret.AppTypeSrcDstList = getSliceDdosDstEntrySrcDstPairAppTypeSrcDstList204(in["app_type_src_dst_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectDdosDstEntrySrcDstPairExceedLogCfg197(d []interface{}) edpt.DdosDstEntrySrcDstPairExceedLogCfg197 {
+func getObjectDdosDstEntrySrcDstPairExceedLogCfg200(d []interface{}) edpt.DdosDstEntrySrcDstPairExceedLogCfg200 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstEntrySrcDstPairExceedLogCfg197
+	var ret edpt.DdosDstEntrySrcDstPairExceedLogCfg200
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.LogEnable = in["log_enable"].(int)
@@ -2833,10 +2833,10 @@ func getObjectDdosDstEntrySrcDstPairExceedLogCfg197(d []interface{}) edpt.DdosDs
 	return ret
 }
 
-func getObjectDdosDstEntrySrcDstPairTemplate198(d []interface{}) edpt.DdosDstEntrySrcDstPairTemplate198 {
+func getObjectDdosDstEntrySrcDstPairTemplate201(d []interface{}) edpt.DdosDstEntrySrcDstPairTemplate201 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstEntrySrcDstPairTemplate198
+	var ret edpt.DdosDstEntrySrcDstPairTemplate201
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Logging = in["logging"].(string)
@@ -2844,17 +2844,17 @@ func getObjectDdosDstEntrySrcDstPairTemplate198(d []interface{}) edpt.DdosDstEnt
 	return ret
 }
 
-func getSliceDdosDstEntrySrcDstPairL4TypeSrcDstList199(d []interface{}) []edpt.DdosDstEntrySrcDstPairL4TypeSrcDstList199 {
+func getSliceDdosDstEntrySrcDstPairL4TypeSrcDstList202(d []interface{}) []edpt.DdosDstEntrySrcDstPairL4TypeSrcDstList202 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstEntrySrcDstPairL4TypeSrcDstList199, 0, count1)
+	ret := make([]edpt.DdosDstEntrySrcDstPairL4TypeSrcDstList202, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstEntrySrcDstPairL4TypeSrcDstList199
+		var oi edpt.DdosDstEntrySrcDstPairL4TypeSrcDstList202
 		oi.Protocol = in["protocol"].(string)
 		oi.Deny = in["deny"].(int)
 		oi.Glid = in["glid"].(string)
-		oi.Template = getObjectDdosDstEntrySrcDstPairL4TypeSrcDstListTemplate200(in["template"].([]interface{}))
+		oi.Template = getObjectDdosDstEntrySrcDstPairL4TypeSrcDstListTemplate203(in["template"].([]interface{}))
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		ret = append(ret, oi)
@@ -2862,10 +2862,10 @@ func getSliceDdosDstEntrySrcDstPairL4TypeSrcDstList199(d []interface{}) []edpt.D
 	return ret
 }
 
-func getObjectDdosDstEntrySrcDstPairL4TypeSrcDstListTemplate200(d []interface{}) edpt.DdosDstEntrySrcDstPairL4TypeSrcDstListTemplate200 {
+func getObjectDdosDstEntrySrcDstPairL4TypeSrcDstListTemplate203(d []interface{}) edpt.DdosDstEntrySrcDstPairL4TypeSrcDstListTemplate203 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstEntrySrcDstPairL4TypeSrcDstListTemplate200
+	var ret edpt.DdosDstEntrySrcDstPairL4TypeSrcDstListTemplate203
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Tcp = in["tcp"].(string)
@@ -2877,15 +2877,15 @@ func getObjectDdosDstEntrySrcDstPairL4TypeSrcDstListTemplate200(d []interface{})
 	return ret
 }
 
-func getSliceDdosDstEntrySrcDstPairAppTypeSrcDstList201(d []interface{}) []edpt.DdosDstEntrySrcDstPairAppTypeSrcDstList201 {
+func getSliceDdosDstEntrySrcDstPairAppTypeSrcDstList204(d []interface{}) []edpt.DdosDstEntrySrcDstPairAppTypeSrcDstList204 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstEntrySrcDstPairAppTypeSrcDstList201, 0, count1)
+	ret := make([]edpt.DdosDstEntrySrcDstPairAppTypeSrcDstList204, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstEntrySrcDstPairAppTypeSrcDstList201
+		var oi edpt.DdosDstEntrySrcDstPairAppTypeSrcDstList204
 		oi.Protocol = in["protocol"].(string)
-		oi.Template = getObjectDdosDstEntrySrcDstPairAppTypeSrcDstListTemplate202(in["template"].([]interface{}))
+		oi.Template = getObjectDdosDstEntrySrcDstPairAppTypeSrcDstListTemplate205(in["template"].([]interface{}))
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		ret = append(ret, oi)
@@ -2893,10 +2893,10 @@ func getSliceDdosDstEntrySrcDstPairAppTypeSrcDstList201(d []interface{}) []edpt.
 	return ret
 }
 
-func getObjectDdosDstEntrySrcDstPairAppTypeSrcDstListTemplate202(d []interface{}) edpt.DdosDstEntrySrcDstPairAppTypeSrcDstListTemplate202 {
+func getObjectDdosDstEntrySrcDstPairAppTypeSrcDstListTemplate205(d []interface{}) edpt.DdosDstEntrySrcDstPairAppTypeSrcDstListTemplate205 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstEntrySrcDstPairAppTypeSrcDstListTemplate202
+	var ret edpt.DdosDstEntrySrcDstPairAppTypeSrcDstListTemplate205
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SslL4 = in["ssl_l4"].(string)
@@ -3457,9 +3457,9 @@ func getObjectDdosDstEntryTemplate(d []interface{}) edpt.DdosDstEntryTemplate {
 	return ret
 }
 
-func getObjectDdosDstEntryTopkDestinations203(d []interface{}) edpt.DdosDstEntryTopkDestinations203 {
+func getObjectDdosDstEntryTopkDestinations206(d []interface{}) edpt.DdosDstEntryTopkDestinations206 {
 
-	var ret edpt.DdosDstEntryTopkDestinations203
+	var ret edpt.DdosDstEntryTopkDestinations206
 	return ret
 }
 
@@ -3482,7 +3482,7 @@ func dataToEndpointDdosDstEntry(d *schema.ResourceData) edpt.DdosDstEntry {
 	ret.Inst.ExceedLogDepCfg = getObjectDdosDstEntryExceedLogDepCfg(d.Get("exceed_log_dep_cfg").([]interface{}))
 	ret.Inst.Glid = d.Get("glid").(string)
 	ret.Inst.GlidExceedAction = getObjectDdosDstEntryGlidExceedAction(d.Get("glid_exceed_action").([]interface{}))
-	ret.Inst.HwBlacklistBlocking = getObjectDdosDstEntryHwBlacklistBlocking195(d.Get("hw_blacklist_blocking").([]interface{}))
+	ret.Inst.HwBlacklistBlocking = getObjectDdosDstEntryHwBlacklistBlocking198(d.Get("hw_blacklist_blocking").([]interface{}))
 	ret.Inst.InboundForwardDscp = d.Get("inbound_forward_dscp").(int)
 	ret.Inst.IpAddr = d.Get("ip_addr").(string)
 	ret.Inst.IpProtoList = getSliceDdosDstEntryIpProtoList(d.Get("ip_proto_list").([]interface{}))
@@ -3500,7 +3500,7 @@ func dataToEndpointDdosDstEntry(d *schema.ResourceData) edpt.DdosDstEntry {
 	ret.Inst.SetCounterBaseVal = d.Get("set_counter_base_val").(int)
 	ret.Inst.Sflow = getObjectDdosDstEntrySflow(d.Get("sflow").([]interface{}))
 	ret.Inst.SourceNatPool = d.Get("source_nat_pool").(string)
-	ret.Inst.SrcDstPair = getObjectDdosDstEntrySrcDstPair196(d.Get("src_dst_pair").([]interface{}))
+	ret.Inst.SrcDstPair = getObjectDdosDstEntrySrcDstPair199(d.Get("src_dst_pair").([]interface{}))
 	ret.Inst.SrcDstPairClassListList = getSliceDdosDstEntrySrcDstPairClassListList(d.Get("src_dst_pair_class_list_list").([]interface{}))
 	ret.Inst.SrcDstPairPolicyList = getSliceDdosDstEntrySrcDstPairPolicyList(d.Get("src_dst_pair_policy_list").([]interface{}))
 	ret.Inst.SrcDstPairSettingsList = getSliceDdosDstEntrySrcDstPairSettingsList(d.Get("src_dst_pair_settings_list").([]interface{}))
@@ -3509,7 +3509,7 @@ func dataToEndpointDdosDstEntry(d *schema.ResourceData) edpt.DdosDstEntry {
 	ret.Inst.SubnetIpAddr = d.Get("subnet_ip_addr").(string)
 	ret.Inst.SubnetIpv6Addr = d.Get("subnet_ipv6_addr").(string)
 	ret.Inst.Template = getObjectDdosDstEntryTemplate(d.Get("template").([]interface{}))
-	ret.Inst.TopkDestinations = getObjectDdosDstEntryTopkDestinations203(d.Get("topk_destinations").([]interface{}))
+	ret.Inst.TopkDestinations = getObjectDdosDstEntryTopkDestinations206(d.Get("topk_destinations").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

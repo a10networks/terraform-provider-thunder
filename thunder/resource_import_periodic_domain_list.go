@@ -19,6 +19,9 @@ func resourceImportPeriodicDomainList() *schema.Resource {
 			"domain_list": {
 				Type: schema.TypeString, Required: true, Description: "Domain List Name",
 			},
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "Config remote server  password",
+			},
 			"period": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the period in second",
 			},
@@ -99,6 +102,8 @@ func resourceImportPeriodicDomainListRead(ctx context.Context, d *schema.Resourc
 func dataToEndpointImportPeriodicDomainList(d *schema.ResourceData) edpt.ImportPeriodicDomainList {
 	var ret edpt.ImportPeriodicDomainList
 	ret.Inst.DomainList = d.Get("domain_list").(string)
+	//omit encrypted
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)

@@ -412,10 +412,10 @@ func getSliceFlowspecDscpList(d []interface{}) []edpt.FlowspecDscpList {
 	return ret
 }
 
-func getObjectFlowspecFilteringAction424(d []interface{}) edpt.FlowspecFilteringAction424 {
+func getObjectFlowspecFilteringAction415(d []interface{}) edpt.FlowspecFilteringAction415 {
 
 	count1 := len(d)
-	var ret edpt.FlowspecFilteringAction424
+	var ret edpt.FlowspecFilteringAction415
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TerminalAction = in["terminal_action"].(int)
@@ -491,10 +491,10 @@ func getSliceFlowspecIcmpTypeList(d []interface{}) []edpt.FlowspecIcmpTypeList {
 	return ret
 }
 
-func getObjectFlowspecOperationalMode425(d []interface{}) edpt.FlowspecOperationalMode425 {
+func getObjectFlowspecOperationalMode416(d []interface{}) edpt.FlowspecOperationalMode416 {
 
 	count1 := len(d)
-	var ret edpt.FlowspecOperationalMode425
+	var ret edpt.FlowspecOperationalMode416
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mode = in["mode"].(string)
@@ -576,12 +576,12 @@ func dataToEndpointFlowspec(d *schema.ResourceData) edpt.Flowspec {
 	ret.Inst.DestIpv6Subnet = d.Get("dest_ipv6_subnet").(string)
 	ret.Inst.DestinationPortList = getSliceFlowspecDestinationPortList(d.Get("destination_port_list").([]interface{}))
 	ret.Inst.DscpList = getSliceFlowspecDscpList(d.Get("dscp_list").([]interface{}))
-	ret.Inst.FilteringAction = getObjectFlowspecFilteringAction424(d.Get("filtering_action").([]interface{}))
+	ret.Inst.FilteringAction = getObjectFlowspecFilteringAction415(d.Get("filtering_action").([]interface{}))
 	ret.Inst.FragmentationOptionList = getSliceFlowspecFragmentationOptionList(d.Get("fragmentation_option_list").([]interface{}))
 	ret.Inst.IcmpCodeList = getSliceFlowspecIcmpCodeList(d.Get("icmp_code_list").([]interface{}))
 	ret.Inst.IcmpTypeList = getSliceFlowspecIcmpTypeList(d.Get("icmp_type_list").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.OperationalMode = getObjectFlowspecOperationalMode425(d.Get("operational_mode").([]interface{}))
+	ret.Inst.OperationalMode = getObjectFlowspecOperationalMode416(d.Get("operational_mode").([]interface{}))
 	ret.Inst.PacketLengthList = getSliceFlowspecPacketLengthList(d.Get("packet_length_list").([]interface{}))
 	ret.Inst.PortList = getSliceFlowspecPortList(d.Get("port_list").([]interface{}))
 	ret.Inst.ProtocolList = getSliceFlowspecProtocolList(d.Get("protocol_list").([]interface{}))

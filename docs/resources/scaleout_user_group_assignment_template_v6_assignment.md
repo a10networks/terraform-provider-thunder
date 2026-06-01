@@ -25,7 +25,9 @@ __PLACEHOLDER__
 
 ### Optional
 
+- `assignment_prefix_auto` (Number) Automatically break down the prefix so that each user-group is assigned one and only one subnet
 - `assignment_prefix_length` (Number) User group assignment prefix length, default is 128
+- `private_ip` (Number) Set the assignment as private, and no BGP route will be advertised for it
 - `service_config_template` (String) Configure a scaleout service config template to use
 - `user_group_range_end` (Number) User group range end
 - `user_group_range_start` (Number) User group range start

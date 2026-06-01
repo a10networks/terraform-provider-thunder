@@ -5,12 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type FwRateLimit struct {
 	Inst struct {
 		SamplingEnable []FwRateLimitSamplingEnable `json:"sampling-enable"`
 
-		Summary FwRateLimitSummary445 `json:"summary"`
+		Summary FwRateLimitSummary436 `json:"summary"`
 
 		Uuid string `json:"uuid"`
 	} `json:"rate-limit"`
@@ -20,7 +20,7 @@ type FwRateLimitSamplingEnable struct {
 	Counters1 string `json:"counters1"`
 }
 
-type FwRateLimitSummary445 struct {
+type FwRateLimitSummary436 struct {
 	Uuid string `json:"uuid"`
 }
 

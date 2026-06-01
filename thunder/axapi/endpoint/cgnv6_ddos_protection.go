@@ -5,16 +5,16 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6DdosProtection struct {
 	Inst struct {
-		DisableNatIpByBgp Cgnv6DdosProtectionDisableNatIpByBgp81 `json:"disable-nat-ip-by-bgp"`
+		DisableNatIpByBgp Cgnv6DdosProtectionDisableNatIpByBgp82 `json:"disable-nat-ip-by-bgp"`
 
 		EnableAction string `json:"enable-action" dval:"local"`
 
-		IpEntries Cgnv6DdosProtectionIpEntries82 `json:"ip-entries"`
+		IpEntries Cgnv6DdosProtectionIpEntries83 `json:"ip-entries"`
 
-		L4Entries Cgnv6DdosProtectionL4Entries83 `json:"l4-entries"`
+		L4Entries Cgnv6DdosProtectionL4Entries84 `json:"l4-entries"`
 
 		LoggingAction string `json:"logging-action" dval:"enable"`
 
@@ -34,15 +34,15 @@ type Cgnv6DdosProtection struct {
 	} `json:"ddos-protection"`
 }
 
-type Cgnv6DdosProtectionDisableNatIpByBgp81 struct {
+type Cgnv6DdosProtectionDisableNatIpByBgp82 struct {
 	Uuid string `json:"uuid"`
 }
 
-type Cgnv6DdosProtectionIpEntries82 struct {
+type Cgnv6DdosProtectionIpEntries83 struct {
 	Uuid string `json:"uuid"`
 }
 
-type Cgnv6DdosProtectionL4Entries83 struct {
+type Cgnv6DdosProtectionL4Entries84 struct {
 	Uuid string `json:"uuid"`
 }
 

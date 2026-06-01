@@ -217,10 +217,10 @@ func resourceAutomaticUpdateRead(ctx context.Context, d *schema.ResourceData, me
 	return diags
 }
 
-func getObjectAutomaticUpdateCheckNow69(d []interface{}) edpt.AutomaticUpdateCheckNow69 {
+func getObjectAutomaticUpdateCheckNow70(d []interface{}) edpt.AutomaticUpdateCheckNow70 {
 
 	count1 := len(d)
-	var ret edpt.AutomaticUpdateCheckNow69
+	var ret edpt.AutomaticUpdateCheckNow70
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.FeatureName = in["feature_name"].(string)
@@ -231,9 +231,9 @@ func getObjectAutomaticUpdateCheckNow69(d []interface{}) edpt.AutomaticUpdateChe
 	return ret
 }
 
-func getObjectAutomaticUpdateChecknow70(d []interface{}) edpt.AutomaticUpdateChecknow70 {
+func getObjectAutomaticUpdateChecknow71(d []interface{}) edpt.AutomaticUpdateChecknow71 {
 
-	var ret edpt.AutomaticUpdateChecknow70
+	var ret edpt.AutomaticUpdateChecknow71
 	return ret
 }
 
@@ -259,16 +259,16 @@ func getSliceAutomaticUpdateConfigList(d []interface{}) []edpt.AutomaticUpdateCo
 	return ret
 }
 
-func getObjectAutomaticUpdateInfo71(d []interface{}) edpt.AutomaticUpdateInfo71 {
+func getObjectAutomaticUpdateInfo72(d []interface{}) edpt.AutomaticUpdateInfo72 {
 
-	var ret edpt.AutomaticUpdateInfo71
+	var ret edpt.AutomaticUpdateInfo72
 	return ret
 }
 
-func getObjectAutomaticUpdateProxyServer72(d []interface{}) edpt.AutomaticUpdateProxyServer72 {
+func getObjectAutomaticUpdateProxyServer73(d []interface{}) edpt.AutomaticUpdateProxyServer73 {
 
 	count1 := len(d)
-	var ret edpt.AutomaticUpdateProxyServer72
+	var ret edpt.AutomaticUpdateProxyServer73
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ProxyHost = in["proxy_host"].(string)
@@ -284,10 +284,10 @@ func getObjectAutomaticUpdateProxyServer72(d []interface{}) edpt.AutomaticUpdate
 	return ret
 }
 
-func getObjectAutomaticUpdateReset73(d []interface{}) edpt.AutomaticUpdateReset73 {
+func getObjectAutomaticUpdateReset74(d []interface{}) edpt.AutomaticUpdateReset74 {
 
 	count1 := len(d)
-	var ret edpt.AutomaticUpdateReset73
+	var ret edpt.AutomaticUpdateReset74
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.FeatureName = in["feature_name"].(string)
@@ -295,10 +295,10 @@ func getObjectAutomaticUpdateReset73(d []interface{}) edpt.AutomaticUpdateReset7
 	return ret
 }
 
-func getObjectAutomaticUpdateRevert74(d []interface{}) edpt.AutomaticUpdateRevert74 {
+func getObjectAutomaticUpdateRevert75(d []interface{}) edpt.AutomaticUpdateRevert75 {
 
 	count1 := len(d)
-	var ret edpt.AutomaticUpdateRevert74
+	var ret edpt.AutomaticUpdateRevert75
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.FeatureName = in["feature_name"].(string)
@@ -308,14 +308,14 @@ func getObjectAutomaticUpdateRevert74(d []interface{}) edpt.AutomaticUpdateRever
 
 func dataToEndpointAutomaticUpdate(d *schema.ResourceData) edpt.AutomaticUpdate {
 	var ret edpt.AutomaticUpdate
-	ret.Inst.CheckNow = getObjectAutomaticUpdateCheckNow69(d.Get("check_now").([]interface{}))
-	ret.Inst.Checknow = getObjectAutomaticUpdateChecknow70(d.Get("checknow").([]interface{}))
+	ret.Inst.CheckNow = getObjectAutomaticUpdateCheckNow70(d.Get("check_now").([]interface{}))
+	ret.Inst.Checknow = getObjectAutomaticUpdateChecknow71(d.Get("checknow").([]interface{}))
 	ret.Inst.ConfigList = getSliceAutomaticUpdateConfigList(d.Get("config_list").([]interface{}))
 	ret.Inst.GlmSourceUrl = d.Get("glm_source_url").(string)
-	ret.Inst.Info = getObjectAutomaticUpdateInfo71(d.Get("info").([]interface{}))
-	ret.Inst.ProxyServer = getObjectAutomaticUpdateProxyServer72(d.Get("proxy_server").([]interface{}))
-	ret.Inst.Reset = getObjectAutomaticUpdateReset73(d.Get("reset").([]interface{}))
-	ret.Inst.Revert = getObjectAutomaticUpdateRevert74(d.Get("revert").([]interface{}))
+	ret.Inst.Info = getObjectAutomaticUpdateInfo72(d.Get("info").([]interface{}))
+	ret.Inst.ProxyServer = getObjectAutomaticUpdateProxyServer73(d.Get("proxy_server").([]interface{}))
+	ret.Inst.Reset = getObjectAutomaticUpdateReset74(d.Get("reset").([]interface{}))
+	ret.Inst.Revert = getObjectAutomaticUpdateRevert75(d.Get("revert").([]interface{}))
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)
 	//omit uuid
 	return ret

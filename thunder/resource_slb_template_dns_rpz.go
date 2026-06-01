@@ -119,26 +119,26 @@ func resourceSlbTemplateDnsRpzRead(ctx context.Context, d *schema.ResourceData, 
 	return diags
 }
 
-func getObjectSlbTemplateDnsRpzLogging1521(d []interface{}) edpt.SlbTemplateDnsRpzLogging1521 {
+func getObjectSlbTemplateDnsRpzLogging1522(d []interface{}) edpt.SlbTemplateDnsRpzLogging1522 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsRpzLogging1521
+	var ret edpt.SlbTemplateDnsRpzLogging1522
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
-		ret.RpzAction = getSliceSlbTemplateDnsRpzLoggingRpzAction1522(in["rpz_action"].([]interface{}))
+		ret.RpzAction = getSliceSlbTemplateDnsRpzLoggingRpzAction1523(in["rpz_action"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsRpzLoggingRpzAction1522(d []interface{}) []edpt.SlbTemplateDnsRpzLoggingRpzAction1522 {
+func getSliceSlbTemplateDnsRpzLoggingRpzAction1523(d []interface{}) []edpt.SlbTemplateDnsRpzLoggingRpzAction1523 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsRpzLoggingRpzAction1522, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsRpzLoggingRpzAction1523, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsRpzLoggingRpzAction1522
+		var oi edpt.SlbTemplateDnsRpzLoggingRpzAction1523
 		oi.StrRpzAction = in["str_rpz_action"].(string)
 		ret = append(ret, oi)
 	}
@@ -147,7 +147,7 @@ func getSliceSlbTemplateDnsRpzLoggingRpzAction1522(d []interface{}) []edpt.SlbTe
 
 func dataToEndpointSlbTemplateDnsRpz(d *schema.ResourceData) edpt.SlbTemplateDnsRpz {
 	var ret edpt.SlbTemplateDnsRpz
-	ret.Inst.Logging = getObjectSlbTemplateDnsRpzLogging1521(d.Get("logging").([]interface{}))
+	ret.Inst.Logging = getObjectSlbTemplateDnsRpzLogging1522(d.Get("logging").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.SeqId = d.Get("seq_id").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)

@@ -5,64 +5,64 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type System struct {
 	Inst struct {
-		AddCpuCore SystemAddCpuCore1755 `json:"add-cpu-core"`
+		AddCpuCore SystemAddCpuCore1756 `json:"add-cpu-core"`
 
-		AddPort SystemAddPort1756 `json:"add-port"`
+		AddPort SystemAddPort1757 `json:"add-port"`
 
-		AllVlanLimit SystemAllVlanLimit1757 `json:"all-vlan-limit"`
+		AllVlanLimit SystemAllVlanLimit1758 `json:"all-vlan-limit"`
 
 		AnomalyLog int `json:"anomaly-log"`
 
 		AnomalyLogRateLimit int `json:"anomaly-log-rate-limit"`
 
-		AppPerformance SystemAppPerformance1758 `json:"app-performance"`
+		AppPerformance SystemAppPerformance1759 `json:"app-performance"`
 
-		AppsGlobal SystemAppsGlobal1760 `json:"apps-global"`
+		AppsGlobal SystemAppsGlobal1761 `json:"apps-global"`
 
-		AsicDebugDump SystemAsicDebugDump1761 `json:"asic-debug-dump"`
+		AsicDebugDump SystemAsicDebugDump1762 `json:"asic-debug-dump"`
 
-		AsicMmuFailSafe SystemAsicMmuFailSafe1762 `json:"asic-mmu-fail-safe"`
+		AsicMmuFailSafe SystemAsicMmuFailSafe1763 `json:"asic-mmu-fail-safe"`
 
 		AttackLog int `json:"attack-log"`
 
-		Bandwidth SystemBandwidth1763 `json:"bandwidth"`
+		Bandwidth SystemBandwidth1764 `json:"bandwidth"`
 
-		Bfd SystemBfd1765 `json:"bfd"`
+		Bfd SystemBfd1766 `json:"bfd"`
 
-		ClThreatCategory SystemClThreatCategory1767 `json:"cl-threat-category"`
+		ClThreatCategory SystemClThreatCategory1768 `json:"cl-threat-category"`
 
 		ClassListHitcountEnable int `json:"class-list-hitcount-enable"`
 
-		CliMonitorInterval SystemCliMonitorInterval1768 `json:"cli-monitor-interval"`
+		CliMonitorInterval SystemCliMonitorInterval1769 `json:"cli-monitor-interval"`
 
-		CmUpdateFileNameRef SystemCmUpdateFileNameRef1769 `json:"cm-update-file-name-ref"`
+		CmUpdateFileNameRef SystemCmUpdateFileNameRef1770 `json:"cm-update-file-name-ref"`
 
-		ConfigMgmt SystemConfigMgmt1770 `json:"config-mgmt"`
+		ConfigMgmt SystemConfigMgmt1771 `json:"config-mgmt"`
 
-		ControlCpu SystemControlCpu1774 `json:"control-cpu"`
+		ControlCpu SystemControlCpu1775 `json:"control-cpu"`
 
-		Core SystemCore1775 `json:"core"`
+		Core SystemCore1776 `json:"core"`
 
-		CosqShow SystemCosqShow1776 `json:"cosq-show"`
+		CosqShow SystemCosqShow1777 `json:"cosq-show"`
 
-		CosqStats SystemCosqStats1777 `json:"cosq-stats"`
+		CosqStats SystemCosqStats1778 `json:"cosq-stats"`
 
-		CounterLibAccounting SystemCounterLibAccounting1778 `json:"counter-lib-accounting"`
+		CounterLibAccounting SystemCounterLibAccounting1779 `json:"counter-lib-accounting"`
 
-		CpuHyperThread SystemCpuHyperThread1779 `json:"cpu-hyper-thread"`
+		CpuHyperThread SystemCpuHyperThread1780 `json:"cpu-hyper-thread"`
 
-		CpuList SystemCpuList1780 `json:"cpu-list"`
+		CpuList SystemCpuList1781 `json:"cpu-list"`
 
-		CpuLoadSharing SystemCpuLoadSharing1781 `json:"cpu-load-sharing"`
+		CpuLoadSharing SystemCpuLoadSharing1782 `json:"cpu-load-sharing"`
 
-		CpuMap SystemCpuMap1784 `json:"cpu-map"`
+		CpuMap SystemCpuMap1785 `json:"cpu-map"`
 
-		CpuPacketPrioSupport SystemCpuPacketPrioSupport1785 `json:"cpu-packet-prio-support"`
+		CpuPacketPrioSupport SystemCpuPacketPrioSupport1786 `json:"cpu-packet-prio-support"`
 
-		DataCpu SystemDataCpu1786 `json:"data-cpu"`
+		DataCpu SystemDataCpu1787 `json:"data-cpu"`
 
 		DdosAttack int `json:"ddos-attack"`
 
@@ -70,105 +70,99 @@ type System struct {
 
 		DefaultMtu int `json:"default-mtu"`
 
-		DelPort SystemDelPort1787 `json:"del-port"`
+		DelPort SystemDelPort1788 `json:"del-port"`
 
-		DeleteCpuCore SystemDeleteCpuCore1788 `json:"delete-cpu-core"`
+		DeleteCpuCore SystemDeleteCpuCore1789 `json:"delete-cpu-core"`
 
-		DisableSshAgentForwarding int `json:"disable-ssh-agent-forwarding"`
+		Dns SystemDns1790 `json:"dns"`
 
-		Dns SystemDns1789 `json:"dns"`
-
-		DnsCache SystemDnsCache1793 `json:"dns-cache"`
+		DnsCache SystemDnsCache1794 `json:"dns-cache"`
 
 		DomainListHitcountEnable int `json:"domain-list-hitcount-enable"`
 
-		DomainListInfo SystemDomainListInfo1795 `json:"domain-list-info"`
+		DomainListInfo SystemDomainListInfo1796 `json:"domain-list-info"`
 
-		DomainListSettings SystemDomainListSettings1796 `json:"domain-list-settings"`
+		DomainListSettings SystemDomainListSettings1797 `json:"domain-list-settings"`
 
-		DpdkStats SystemDpdkStats1797 `json:"dpdk-stats"`
+		DpdkStats SystemDpdkStats1798 `json:"dpdk-stats"`
 
 		DropLinuxClosedPortSyn string `json:"drop-linux-closed-port-syn" dval:"enable"`
 
 		DynamicServiceDnsSocketPool int `json:"dynamic-service-dns-socket-pool"`
 
-		EnableDiskEncryption SystemEnableDiskEncryption1799 `json:"enable-disk-encryption"`
+		EnableDiskEncryption SystemEnableDiskEncryption1800 `json:"enable-disk-encryption"`
 
-		EnablePassword SystemEnablePassword1800 `json:"enable-password"`
+		EnablePassword SystemEnablePassword1801 `json:"enable-password"`
 
-		Environment SystemEnvironment1801 `json:"environment"`
+		Environment SystemEnvironment1802 `json:"environment"`
 
 		EvenPortHashEnable int `json:"even-port-hash-enable"`
 
-		ExtOnlyLogging SystemExtOnlyLogging1802 `json:"ext-only-logging"`
+		ExtOnlyLogging SystemExtOnlyLogging1803 `json:"ext-only-logging"`
 
-		ForcedGroupSpeedList []SystemForcedGroupSpeedList `json:"forced-group-speed-list"`
+		FpgaCoreCrc SystemFpgaCoreCrc1804 `json:"fpga-core-crc"`
 
-		FpgaCoreCrc SystemFpgaCoreCrc1803 `json:"fpga-core-crc"`
+		FpgaDrop SystemFpgaDrop1805 `json:"fpga-drop"`
 
-		FpgaDrop SystemFpgaDrop1804 `json:"fpga-drop"`
-
-		Fw SystemFw1806 `json:"fw"`
+		Fw SystemFw1807 `json:"fw"`
 
 		GeoDbHitcountEnable int `json:"geo-db-hitcount-enable"`
 
-		GeoLocation SystemGeoLocation1807 `json:"geo-location"`
+		GeoLocation SystemGeoLocation1808 `json:"geo-location"`
 
-		Geoloc SystemGeoloc1811 `json:"geoloc"`
+		Geoloc SystemGeoloc1812 `json:"geoloc"`
 
 		GeolocListList []SystemGeolocListList `json:"geoloc-list-list"`
 
-		GeolocNameHelper SystemGeolocNameHelper1813 `json:"geoloc-name-helper"`
+		GeolocNameHelper SystemGeolocNameHelper1814 `json:"geoloc-name-helper"`
 
-		GeolocationFile SystemGeolocationFile1815 `json:"geolocation-file"`
+		GeolocationFile SystemGeolocationFile1816 `json:"geolocation-file"`
 
-		Glid SystemGlid1817 `json:"glid"`
+		Glid SystemGlid1818 `json:"glid"`
 
-		GuestFile SystemGuestFile1818 `json:"guest-file"`
+		GuestFile SystemGuestFile1819 `json:"guest-file"`
 
-		GuiImageList SystemGuiImageList1819 `json:"gui-image-list"`
+		GuiImageList SystemGuiImageList1820 `json:"gui-image-list"`
 
-		Hardware SystemHardware1820 `json:"hardware"`
+		Hardware SystemHardware1821 `json:"hardware"`
 
-		HardwareAccelerate SystemHardwareAccelerate1821 `json:"hardware-accelerate"`
+		HardwareAccelerate SystemHardwareAccelerate1822 `json:"hardware-accelerate"`
 
 		HealthCheckList []SystemHealthCheckList `json:"health-check-list"`
 
-		HighMemoryL4Session SystemHighMemoryL4Session1825 `json:"high-memory-l4-session"`
+		HighMemoryL4Session SystemHighMemoryL4Session1826 `json:"high-memory-l4-session"`
 
-		HrxqStatus SystemHrxqStatus1826 `json:"hrxq-status"`
+		HrxqStatus SystemHrxqStatus1827 `json:"hrxq-status"`
 
 		HwBlockingEnable int `json:"hw-blocking-enable"`
 
-		Icmp SystemIcmp1827 `json:"icmp"`
+		Icmp SystemIcmp1828 `json:"icmp"`
 
-		IcmpRate SystemIcmpRate1829 `json:"icmp-rate"`
+		IcmpRate SystemIcmpRate1830 `json:"icmp-rate"`
 
-		Icmp6 SystemIcmp61831 `json:"icmp6"`
+		Icmp6 SystemIcmp61832 `json:"icmp6"`
 
-		InuseCpuList SystemInuseCpuList1833 `json:"inuse-cpu-list"`
+		InuseCpuList SystemInuseCpuList1834 `json:"inuse-cpu-list"`
 
-		InusePortList SystemInusePortList1834 `json:"inuse-port-list"`
+		InusePortList SystemInusePortList1835 `json:"inuse-port-list"`
 
-		IoCpu SystemIoCpu1835 `json:"io-cpu"`
+		IoCpu SystemIoCpu1836 `json:"io-cpu"`
 
-		Ip SystemIp1836 `json:"ip"`
+		Ip SystemIp1837 `json:"ip"`
 
-		IpDnsCache SystemIpDnsCache1837 `json:"ip-dns-cache"`
+		IpDnsCache SystemIpDnsCache1838 `json:"ip-dns-cache"`
 
-		IpStats SystemIpStats1838 `json:"ip-stats"`
+		IpStats SystemIpStats1839 `json:"ip-stats"`
 
-		IpThreatList SystemIpThreatList1840 `json:"ip-threat-list"`
+		IpThreatList SystemIpThreatList1841 `json:"ip-threat-list"`
 
-		Ip6Stats SystemIp6Stats1854 `json:"ip6-stats"`
+		Ip6Stats SystemIp6Stats1855 `json:"ip6-stats"`
 
-		Ipmi SystemIpmi1856 `json:"ipmi"`
+		Ipmi SystemIpmi1857 `json:"ipmi"`
 
-		IpmiService SystemIpmiService1861 `json:"ipmi-service"`
+		IpmiService SystemIpmiService1862 `json:"ipmi-service"`
 
-		Ipsec SystemIpsec1862 `json:"ipsec"`
-
-		Ipv6 SystemIpv61864 `json:"ipv6"`
+		Ipsec SystemIpsec1863 `json:"ipsec"`
 
 		Ipv6PrefixLength int `json:"ipv6-prefix-length" dval:"128"`
 
@@ -276,71 +270,71 @@ type System struct {
 
 		SrcIpHashEnable int `json:"src-ip-hash-enable"`
 
-		SslHwMemory SystemSslHwMemory1982 `json:"ssl-hw-memory"`
+		SslReqQ SystemSslReqQ1982 `json:"ssl-req-q"`
 
-		SslReqQ SystemSslReqQ1984 `json:"ssl-req-q"`
+		SslScv SystemSslScv1984 `json:"ssl-scv"`
 
-		SslScv SystemSslScv1986 `json:"ssl-scv"`
+		SslScvVerifyCrlSign SystemSslScvVerifyCrlSign1985 `json:"ssl-scv-verify-crl-sign"`
 
-		SslScvVerifyCrlSign SystemSslScvVerifyCrlSign1987 `json:"ssl-scv-verify-crl-sign"`
+		SslScvVerifyHost SystemSslScvVerifyHost1986 `json:"ssl-scv-verify-host"`
 
-		SslScvVerifyHost SystemSslScvVerifyHost1988 `json:"ssl-scv-verify-host"`
+		SslSetCompatibleCipher SystemSslSetCompatibleCipher1987 `json:"ssl-set-compatible-cipher"`
 
-		SslSetCompatibleCipher SystemSslSetCompatibleCipher1989 `json:"ssl-set-compatible-cipher"`
+		SslStatus SystemSslStatus1988 `json:"ssl-status"`
 
-		SslStatus SystemSslStatus1990 `json:"ssl-status"`
-
-		SyslogTimeMsec SystemSyslogTimeMsec1991 `json:"syslog-time-msec"`
+		SyslogTimeMsec SystemSyslogTimeMsec1989 `json:"syslog-time-msec"`
 
 		SystemChassisPortSplitEnable int `json:"system-chassis-port-split-enable"`
 
-		TableIntegrity SystemTableIntegrity1992 `json:"table-integrity"`
+		TableIntegrity SystemTableIntegrity1990 `json:"table-integrity"`
 
-		Tcp SystemTcp1994 `json:"tcp"`
+		Tcp SystemTcp1992 `json:"tcp"`
 
-		TcpStats SystemTcpStats1997 `json:"tcp-stats"`
+		TcpStats SystemTcpStats1995 `json:"tcp-stats"`
 
-		TcpSynPerSec SystemTcpSynPerSec1999 `json:"tcp-syn-per-sec"`
+		TcpSynPerSec SystemTcpSynPerSec1997 `json:"tcp-syn-per-sec"`
 
-		TelemetryLog SystemTelemetryLog2000 `json:"telemetry-log"`
+		TelemetryLog SystemTelemetryLog1998 `json:"telemetry-log"`
 
-		Template SystemTemplate2006 `json:"template"`
+		Template SystemTemplate2004 `json:"template"`
 
-		TemplateBind SystemTemplateBind2007 `json:"template-bind"`
+		TemplateBind SystemTemplateBind2005 `json:"template-bind"`
 
-		Throughput SystemThroughput2008 `json:"throughput"`
+		Throughput SystemThroughput2006 `json:"throughput"`
 
-		TimeoutValue SystemTimeoutValue2010 `json:"timeout-value"`
+		TimeoutValue SystemTimeoutValue2008 `json:"timeout-value"`
 
-		Trunk SystemTrunk2011 `json:"trunk"`
+		Tls13Mgmt SystemTls13Mgmt2009 `json:"tls-1-3-mgmt"`
 
-		TrunkHwHash SystemTrunkHwHash2013 `json:"trunk-hw-hash"`
+		Trunk SystemTrunk2010 `json:"trunk"`
 
-		TrunkXauiHwHash SystemTrunkXauiHwHash2014 `json:"trunk-xaui-hw-hash"`
+		TrunkHwHash SystemTrunkHwHash2012 `json:"trunk-hw-hash"`
 
-		Tso SystemTso2015 `json:"tso"`
+		TrunkXauiHwHash SystemTrunkXauiHwHash2013 `json:"trunk-xaui-hw-hash"`
 
-		Udp SystemUdp2016 `json:"udp"`
+		Tso SystemTso2014 `json:"tso"`
 
-		UpgradeStatus SystemUpgradeStatus2017 `json:"upgrade-status"`
+		Udp SystemUdp2015 `json:"udp"`
+
+		UpgradeStatus SystemUpgradeStatus2016 `json:"upgrade-status"`
 
 		Uuid string `json:"uuid"`
 
-		VeMacScheme SystemVeMacScheme2018 `json:"ve-mac-scheme"`
+		VeMacScheme SystemVeMacScheme2017 `json:"ve-mac-scheme"`
 
-		XauiDlbMode SystemXauiDlbMode2019 `json:"xaui-dlb-mode"`
+		XauiDlbMode SystemXauiDlbMode2018 `json:"xaui-dlb-mode"`
 	} `json:"system"`
 }
 
-type SystemAddCpuCore1755 struct {
+type SystemAddCpuCore1756 struct {
 	CoreIndex int `json:"core-index"`
 }
 
-type SystemAddPort1756 struct {
+type SystemAddPort1757 struct {
 	PortIndex int `json:"port-index"`
 }
 
-type SystemAllVlanLimit1757 struct {
+type SystemAllVlanLimit1758 struct {
 	Bcast        int    `json:"bcast" dval:"5000"`
 	Ipmcast      int    `json:"ipmcast" dval:"5000"`
 	Mcast        int    `json:"mcast" dval:"5000"`
@@ -348,16 +342,16 @@ type SystemAllVlanLimit1757 struct {
 	Uuid         string `json:"uuid"`
 }
 
-type SystemAppPerformance1758 struct {
+type SystemAppPerformance1759 struct {
 	Uuid           string                                   `json:"uuid"`
-	SamplingEnable []SystemAppPerformanceSamplingEnable1759 `json:"sampling-enable"`
+	SamplingEnable []SystemAppPerformanceSamplingEnable1760 `json:"sampling-enable"`
 }
 
-type SystemAppPerformanceSamplingEnable1759 struct {
+type SystemAppPerformanceSamplingEnable1760 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemAppsGlobal1760 struct {
+type SystemAppsGlobal1761 struct {
 	LogSessionOnEstablished int    `json:"log-session-on-established"`
 	MslTime                 int    `json:"msl-time" dval:"2"`
 	TimerWheelWalkLimit     int    `json:"timer-wheel-walk-limit" dval:"100"`
@@ -366,12 +360,12 @@ type SystemAppsGlobal1760 struct {
 	Uuid                    string `json:"uuid"`
 }
 
-type SystemAsicDebugDump1761 struct {
+type SystemAsicDebugDump1762 struct {
 	Enable int    `json:"enable"`
 	Uuid   string `json:"uuid"`
 }
 
-type SystemAsicMmuFailSafe1762 struct {
+type SystemAsicMmuFailSafe1763 struct {
 	RecoveryThreshold int    `json:"recovery-threshold" dval:"2"`
 	MonitorInterval   int    `json:"monitor-interval" dval:"60"`
 	MonitorDisable    int    `json:"monitor-disable"`
@@ -381,243 +375,236 @@ type SystemAsicMmuFailSafe1762 struct {
 	Uuid              string `json:"uuid"`
 }
 
-type SystemBandwidth1763 struct {
+type SystemBandwidth1764 struct {
 	WarningThreshold  int                                 `json:"warning-threshold" dval:"75"`
 	CriticalThreshold int                                 `json:"critical-threshold" dval:"95"`
 	Uuid              string                              `json:"uuid"`
-	SamplingEnable    []SystemBandwidthSamplingEnable1764 `json:"sampling-enable"`
+	SamplingEnable    []SystemBandwidthSamplingEnable1765 `json:"sampling-enable"`
 }
 
-type SystemBandwidthSamplingEnable1764 struct {
+type SystemBandwidthSamplingEnable1765 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemBfd1765 struct {
+type SystemBfd1766 struct {
 	Uuid           string                        `json:"uuid"`
-	SamplingEnable []SystemBfdSamplingEnable1766 `json:"sampling-enable"`
+	SamplingEnable []SystemBfdSamplingEnable1767 `json:"sampling-enable"`
 }
 
-type SystemBfdSamplingEnable1766 struct {
+type SystemBfdSamplingEnable1767 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemClThreatCategory1767 struct {
+type SystemClThreatCategory1768 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemCliMonitorInterval1768 struct {
+type SystemCliMonitorInterval1769 struct {
 	Interval int    `json:"interval"`
 	Uuid     string `json:"uuid"`
 }
 
-type SystemCmUpdateFileNameRef1769 struct {
+type SystemCmUpdateFileNameRef1770 struct {
 	Source_name string `json:"source_name"`
 	Dest_name   string `json:"dest_name"`
 	Id1         int    `json:"id1"`
 }
 
-type SystemConfigMgmt1770 struct {
+type SystemConfigMgmt1771 struct {
 	DeleteReferencedTaggedObjects string                              `json:"delete-referenced-tagged-objects" dval:"enable"`
 	Uuid                          string                              `json:"uuid"`
-	PuSyncDetection               SystemConfigMgmtPuSyncDetection1771 `json:"pu-sync-detection"`
-	Mpm                           SystemConfigMgmtMpm1772             `json:"mpm"`
-	Notification                  SystemConfigMgmtNotification1773    `json:"notification"`
+	PuSyncDetection               SystemConfigMgmtPuSyncDetection1772 `json:"pu-sync-detection"`
+	Mpm                           SystemConfigMgmtMpm1773             `json:"mpm"`
+	Notification                  SystemConfigMgmtNotification1774    `json:"notification"`
 }
 
-type SystemConfigMgmtPuSyncDetection1771 struct {
+type SystemConfigMgmtPuSyncDetection1772 struct {
 	Interval int    `json:"interval" dval:"30"`
 	Action   string `json:"action" dval:"disable"`
 	Uuid     string `json:"uuid"`
 }
 
-type SystemConfigMgmtMpm1772 struct {
+type SystemConfigMgmtMpm1773 struct {
 	MaxWorkers     int    `json:"max-workers" dval:"1"`
 	MinIdleWorkers int    `json:"min-idle-workers" dval:"1"`
 	StartWorkers   int    `json:"start-workers" dval:"1"`
 	Uuid           string `json:"uuid"`
 }
 
-type SystemConfigMgmtNotification1773 struct {
+type SystemConfigMgmtNotification1774 struct {
 	Period int    `json:"period" dval:"15"`
 	Uuid   string `json:"uuid"`
 }
 
-type SystemControlCpu1774 struct {
+type SystemControlCpu1775 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemCore1775 struct {
+type SystemCore1776 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemCosqShow1776 struct {
+type SystemCosqShow1777 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemCosqStats1777 struct {
+type SystemCosqStats1778 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemCounterLibAccounting1778 struct {
+type SystemCounterLibAccounting1779 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemCpuHyperThread1779 struct {
+type SystemCpuHyperThread1780 struct {
 	Enable  int `json:"enable"`
 	Disable int `json:"disable"`
 }
 
-type SystemCpuList1780 struct {
+type SystemCpuList1781 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemCpuLoadSharing1781 struct {
-	Disable          int                                      `json:"disable"`
-	PacketsPerSecond SystemCpuLoadSharingPacketsPerSecond1782 `json:"packets-per-second"`
-	CpuUsage         SystemCpuLoadSharingCpuUsage1783         `json:"cpu-usage"`
-	AllowL7Sessions  int                                      `json:"allow-l7-sessions"`
-	Tcp              int                                      `json:"tcp"`
-	Udp              int                                      `json:"udp"`
-	Others           int                                      `json:"others"`
-	Uuid             string                                   `json:"uuid"`
+type SystemCpuLoadSharing1782 struct {
+	Disable                        int                                      `json:"disable"`
+	PacketsPerSecond               SystemCpuLoadSharingPacketsPerSecond1783 `json:"packets-per-second"`
+	CpuUsage                       SystemCpuLoadSharingCpuUsage1784         `json:"cpu-usage"`
+	AllowL7Sessions                int                                      `json:"allow-l7-sessions"`
+	Tcp                            int                                      `json:"tcp"`
+	Udp                            int                                      `json:"udp"`
+	Others                         int                                      `json:"others"`
+	DisallowNewSessionCpuUsageHigh int                                      `json:"disallow-new-session-cpu-usage-high"`
+	DisallowNewSessionCpuUsageLow  int                                      `json:"disallow-new-session-cpu-usage-low"`
+	DisallowNewSessionCpuEwmaAlpha int                                      `json:"disallow-new-session-cpu-ewma-alpha" dval:"18"`
+	DisallowNewSessionCpuProbeTime int                                      `json:"disallow-new-session-cpu-probe-time" dval:"20"`
+	Uuid                           string                                   `json:"uuid"`
 }
 
-type SystemCpuLoadSharingPacketsPerSecond1782 struct {
+type SystemCpuLoadSharingPacketsPerSecond1783 struct {
 	Min int `json:"min" dval:"100000"`
 }
 
-type SystemCpuLoadSharingCpuUsage1783 struct {
+type SystemCpuLoadSharingCpuUsage1784 struct {
 	Low  int `json:"low" dval:"60"`
 	High int `json:"high" dval:"75"`
 }
 
-type SystemCpuMap1784 struct {
+type SystemCpuMap1785 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemCpuPacketPrioSupport1785 struct {
+type SystemCpuPacketPrioSupport1786 struct {
 	Enable  int `json:"enable"`
 	Disable int `json:"disable"`
 }
 
-type SystemDataCpu1786 struct {
+type SystemDataCpu1787 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemDelPort1787 struct {
+type SystemDelPort1788 struct {
 	PortIndex int `json:"port-index"`
 }
 
-type SystemDeleteCpuCore1788 struct {
+type SystemDeleteCpuCore1789 struct {
 	CoreIndex int `json:"core-index"`
 }
 
-type SystemDns1789 struct {
+type SystemDns1790 struct {
 	Uuid                string                           `json:"uuid"`
-	SamplingEnable      []SystemDnsSamplingEnable1790    `json:"sampling-enable"`
-	RecursiveNameserver SystemDnsRecursiveNameserver1791 `json:"recursive-nameserver"`
+	SamplingEnable      []SystemDnsSamplingEnable1791    `json:"sampling-enable"`
+	RecursiveNameserver SystemDnsRecursiveNameserver1792 `json:"recursive-nameserver"`
 }
 
-type SystemDnsSamplingEnable1790 struct {
+type SystemDnsSamplingEnable1791 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemDnsRecursiveNameserver1791 struct {
+type SystemDnsRecursiveNameserver1792 struct {
 	FollowShared int                                          `json:"follow-shared"`
-	ServerList   []SystemDnsRecursiveNameserverServerList1792 `json:"server-list"`
+	ServerList   []SystemDnsRecursiveNameserverServerList1793 `json:"server-list"`
 	Uuid         string                                       `json:"uuid"`
 }
 
-type SystemDnsRecursiveNameserverServerList1792 struct {
+type SystemDnsRecursiveNameserverServerList1793 struct {
 	Ipv4Addr string `json:"ipv4-addr"`
 	V4Desc   string `json:"v4-desc"`
 	Ipv6Addr string `json:"ipv6-addr"`
 	V6Desc   string `json:"v6-desc"`
 }
 
-type SystemDnsCache1793 struct {
+type SystemDnsCache1794 struct {
 	Uuid           string                             `json:"uuid"`
-	SamplingEnable []SystemDnsCacheSamplingEnable1794 `json:"sampling-enable"`
+	SamplingEnable []SystemDnsCacheSamplingEnable1795 `json:"sampling-enable"`
 }
 
-type SystemDnsCacheSamplingEnable1794 struct {
+type SystemDnsCacheSamplingEnable1795 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemDomainListInfo1795 struct {
+type SystemDomainListInfo1796 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemDomainListSettings1796 struct {
+type SystemDomainListSettings1797 struct {
 	PollingInterval    string `json:"polling-interval" dval:"10-second"`
 	ConcurrentTask     int    `json:"concurrent-task" dval:"6"`
 	DomainListPerGroup string `json:"domain-list-per-group" dval:"16"`
 	Uuid               string `json:"uuid"`
 }
 
-type SystemDpdkStats1797 struct {
+type SystemDpdkStats1798 struct {
 	Uuid           string                              `json:"uuid"`
-	SamplingEnable []SystemDpdkStatsSamplingEnable1798 `json:"sampling-enable"`
+	SamplingEnable []SystemDpdkStatsSamplingEnable1799 `json:"sampling-enable"`
 }
 
-type SystemDpdkStatsSamplingEnable1798 struct {
+type SystemDpdkStatsSamplingEnable1799 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemEnableDiskEncryption1799 struct {
+type SystemEnableDiskEncryption1800 struct {
 	Cipher           string `json:"cipher" dval:"aes"`
 	Passphrase       string `json:"passphrase"`
 	PassphraseBase64 string `json:"passphrase-base64"`
 }
 
-type SystemEnablePassword1800 struct {
+type SystemEnablePassword1801 struct {
 	FollowPasswordPolicy int    `json:"follow-password-policy"`
 	Uuid                 string `json:"uuid"`
 }
 
-type SystemEnvironment1801 struct {
+type SystemEnvironment1802 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemExtOnlyLogging1802 struct {
+type SystemExtOnlyLogging1803 struct {
 	Enable int    `json:"enable"`
 	Uuid   string `json:"uuid"`
 }
 
-type SystemForcedGroupSpeedList struct {
-	Eth01_to_04 int    `json:"eth01_to_04"`
-	Eth05_to_08 int    `json:"eth05_to_08"`
-	Eth09_to_12 int    `json:"eth09_to_12"`
-	Eth13_to_16 int    `json:"eth13_to_16"`
-	Eth17_to_20 int    `json:"eth17_to_20"`
-	Eth21_to_24 int    `json:"eth21_to_24"`
-	Speed       string `json:"speed" dval:"10G"`
-	Uuid        string `json:"uuid"`
-}
-
-type SystemFpgaCoreCrc1803 struct {
+type SystemFpgaCoreCrc1804 struct {
 	MonitorDisable int    `json:"monitor-disable"`
 	RebootEnable   int    `json:"reboot-enable"`
 	Uuid           string `json:"uuid"`
 }
 
-type SystemFpgaDrop1804 struct {
+type SystemFpgaDrop1805 struct {
 	Uuid           string                             `json:"uuid"`
-	SamplingEnable []SystemFpgaDropSamplingEnable1805 `json:"sampling-enable"`
+	SamplingEnable []SystemFpgaDropSamplingEnable1806 `json:"sampling-enable"`
 }
 
-type SystemFpgaDropSamplingEnable1805 struct {
+type SystemFpgaDropSamplingEnable1806 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemFw1806 struct {
+type SystemFw1807 struct {
 	ApplicationMempool int    `json:"application-mempool"`
 	ApplicationFlow    int    `json:"application-flow"`
 	BasicDpiEnable     int    `json:"basic-dpi-enable"`
 	Uuid               string `json:"uuid"`
 }
 
-type SystemGeoLocation1807 struct {
+type SystemGeoLocation1808 struct {
 	GeoLocationIana            int                                       `json:"geo-location-iana" dval:"1"`
 	GeoLocationIanaSystem      int                                       `json:"geo-location-iana-system"`
 	GeoLocationGeolite2Asn     int                                       `json:"geo-location-geolite2-asn"`
@@ -626,26 +613,26 @@ type SystemGeoLocation1807 struct {
 	Geolite2CityIncludeIpv6    int                                       `json:"geolite2-city-include-ipv6"`
 	GeoLocationGeolite2Country int                                       `json:"geo-location-geolite2-country"`
 	Geolite2CountryIncludeIpv6 int                                       `json:"geolite2-country-include-ipv6"`
-	GeolocLoadFileList         []SystemGeoLocationGeolocLoadFileList1808 `json:"geoloc-load-file-list"`
+	GeolocLoadFileList         []SystemGeoLocationGeolocLoadFileList1809 `json:"geoloc-load-file-list"`
 	Uuid                       string                                    `json:"uuid"`
-	EntryList                  []SystemGeoLocationEntryList1809          `json:"entry-list"`
+	EntryList                  []SystemGeoLocationEntryList1810          `json:"entry-list"`
 }
 
-type SystemGeoLocationGeolocLoadFileList1808 struct {
+type SystemGeoLocationGeolocLoadFileList1809 struct {
 	GeoLocationLoadFilename        string `json:"geo-location-load-filename"`
 	GeoLocationLoadFileIncludeIpv6 int    `json:"geo-location-load-file-include-ipv6"`
 	TemplateName                   string `json:"template-name"`
 	GeoLocationLoadTempIncludeIpv6 int    `json:"geo-location-load-temp-include-ipv6"`
 }
 
-type SystemGeoLocationEntryList1809 struct {
+type SystemGeoLocationEntryList1810 struct {
 	GeoLocnObjName           string                                                   `json:"geo-locn-obj-name"`
-	GeoLocnMultipleAddresses []SystemGeoLocationEntryListGeoLocnMultipleAddresses1810 `json:"geo-locn-multiple-addresses"`
+	GeoLocnMultipleAddresses []SystemGeoLocationEntryListGeoLocnMultipleAddresses1811 `json:"geo-locn-multiple-addresses"`
 	Uuid                     string                                                   `json:"uuid"`
 	UserTag                  string                                                   `json:"user-tag"`
 }
 
-type SystemGeoLocationEntryListGeoLocnMultipleAddresses1810 struct {
+type SystemGeoLocationEntryListGeoLocnMultipleAddresses1811 struct {
 	FirstIpAddress   string `json:"first-ip-address"`
 	GeolIpv4Mask     string `json:"geol-ipv4-mask"`
 	IpAddr2          string `json:"ip-addr2"`
@@ -654,12 +641,12 @@ type SystemGeoLocationEntryListGeoLocnMultipleAddresses1810 struct {
 	Ipv6Addr2        string `json:"ipv6-addr2"`
 }
 
-type SystemGeoloc1811 struct {
+type SystemGeoloc1812 struct {
 	Uuid           string                           `json:"uuid"`
-	SamplingEnable []SystemGeolocSamplingEnable1812 `json:"sampling-enable"`
+	SamplingEnable []SystemGeolocSamplingEnable1813 `json:"sampling-enable"`
 }
 
-type SystemGeolocSamplingEnable1812 struct {
+type SystemGeolocSamplingEnable1813 struct {
 	Counters1 string `json:"counters1"`
 }
 
@@ -685,59 +672,59 @@ type SystemGeolocListListSamplingEnable struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemGeolocNameHelper1813 struct {
+type SystemGeolocNameHelper1814 struct {
 	Uuid           string                                     `json:"uuid"`
-	SamplingEnable []SystemGeolocNameHelperSamplingEnable1814 `json:"sampling-enable"`
+	SamplingEnable []SystemGeolocNameHelperSamplingEnable1815 `json:"sampling-enable"`
 }
 
-type SystemGeolocNameHelperSamplingEnable1814 struct {
+type SystemGeolocNameHelperSamplingEnable1815 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemGeolocationFile1815 struct {
+type SystemGeolocationFile1816 struct {
 	Uuid      string                             `json:"uuid"`
-	ErrorInfo SystemGeolocationFileErrorInfo1816 `json:"error-info"`
+	ErrorInfo SystemGeolocationFileErrorInfo1817 `json:"error-info"`
 }
 
-type SystemGeolocationFileErrorInfo1816 struct {
+type SystemGeolocationFileErrorInfo1817 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemGlid1817 struct {
+type SystemGlid1818 struct {
 	GlidId    string `json:"glid-id"`
 	NonShared int    `json:"non-shared"`
 	Uuid      string `json:"uuid"`
 }
 
-type SystemGuestFile1818 struct {
+type SystemGuestFile1819 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemGuiImageList1819 struct {
+type SystemGuiImageList1820 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemHardware1820 struct {
+type SystemHardware1821 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemHardwareAccelerate1821 struct {
+type SystemHardwareAccelerate1822 struct {
 	SessionForwarding int                                          `json:"session-forwarding"`
 	Uuid              string                                       `json:"uuid"`
-	SamplingEnable    []SystemHardwareAccelerateSamplingEnable1822 `json:"sampling-enable"`
-	Slb               SystemHardwareAccelerateSlb1823              `json:"slb"`
+	SamplingEnable    []SystemHardwareAccelerateSamplingEnable1823 `json:"sampling-enable"`
+	Slb               SystemHardwareAccelerateSlb1824              `json:"slb"`
 }
 
-type SystemHardwareAccelerateSamplingEnable1822 struct {
+type SystemHardwareAccelerateSamplingEnable1823 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemHardwareAccelerateSlb1823 struct {
+type SystemHardwareAccelerateSlb1824 struct {
 	Uuid           string                                          `json:"uuid"`
-	SamplingEnable []SystemHardwareAccelerateSlbSamplingEnable1824 `json:"sampling-enable"`
+	SamplingEnable []SystemHardwareAccelerateSlbSamplingEnable1825 `json:"sampling-enable"`
 }
 
-type SystemHardwareAccelerateSlbSamplingEnable1824 struct {
+type SystemHardwareAccelerateSlbSamplingEnable1825 struct {
 	Counters1 string `json:"counters1"`
 }
 
@@ -751,181 +738,178 @@ type SystemHealthCheckList struct {
 	UserTag         string `json:"user-tag"`
 }
 
-type SystemHighMemoryL4Session1825 struct {
+type SystemHighMemoryL4Session1826 struct {
 	Enable int    `json:"enable"`
 	Uuid   string `json:"uuid"`
 }
 
-type SystemHrxqStatus1826 struct {
+type SystemHrxqStatus1827 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemIcmp1827 struct {
+type SystemIcmp1828 struct {
 	Uuid           string                         `json:"uuid"`
-	SamplingEnable []SystemIcmpSamplingEnable1828 `json:"sampling-enable"`
+	SamplingEnable []SystemIcmpSamplingEnable1829 `json:"sampling-enable"`
 }
 
-type SystemIcmpSamplingEnable1828 struct {
+type SystemIcmpSamplingEnable1829 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemIcmpRate1829 struct {
+type SystemIcmpRate1830 struct {
 	Uuid           string                             `json:"uuid"`
-	SamplingEnable []SystemIcmpRateSamplingEnable1830 `json:"sampling-enable"`
+	SamplingEnable []SystemIcmpRateSamplingEnable1831 `json:"sampling-enable"`
 }
 
-type SystemIcmpRateSamplingEnable1830 struct {
+type SystemIcmpRateSamplingEnable1831 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemIcmp61831 struct {
+type SystemIcmp61832 struct {
 	Uuid           string                          `json:"uuid"`
-	SamplingEnable []SystemIcmp6SamplingEnable1832 `json:"sampling-enable"`
+	SamplingEnable []SystemIcmp6SamplingEnable1833 `json:"sampling-enable"`
 }
 
-type SystemIcmp6SamplingEnable1832 struct {
+type SystemIcmp6SamplingEnable1833 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemInuseCpuList1833 struct {
+type SystemInuseCpuList1834 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemInusePortList1834 struct {
+type SystemInusePortList1835 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemIoCpu1835 struct {
+type SystemIoCpu1836 struct {
 	MaxCores int `json:"max-cores"`
 }
 
-type SystemIp1836 struct {
-	IcmpUnreachableDisable   int    `json:"icmp-unreachable-disable"`
-	IcmpRedirectDisable      int    `json:"icmp-redirect-disable"`
-	RpfCheckEnable           int    `json:"rpf-check-enable"`
-	SourceRoutePktDropEnable int    `json:"source-route-pkt-drop-enable"`
+type SystemIp1837 struct {
+	ClassEAddressRangeEnable int    `json:"class-e-address-range-enable"`
 	Uuid                     string `json:"uuid"`
 }
 
-type SystemIpDnsCache1837 struct {
+type SystemIpDnsCache1838 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemIpStats1838 struct {
+type SystemIpStats1839 struct {
 	Uuid           string                            `json:"uuid"`
-	SamplingEnable []SystemIpStatsSamplingEnable1839 `json:"sampling-enable"`
+	SamplingEnable []SystemIpStatsSamplingEnable1840 `json:"sampling-enable"`
 }
 
-type SystemIpStatsSamplingEnable1839 struct {
+type SystemIpStatsSamplingEnable1840 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemIpThreatList1840 struct {
+type SystemIpThreatList1841 struct {
 	Uuid                 string                                     `json:"uuid"`
-	SamplingEnable       []SystemIpThreatListSamplingEnable1841     `json:"sampling-enable"`
-	Ipv4SourceList       SystemIpThreatListIpv4SourceList1842       `json:"ipv4-source-list"`
-	Ipv4DestList         SystemIpThreatListIpv4DestList1844         `json:"ipv4-dest-list"`
-	Ipv6SourceList       SystemIpThreatListIpv6SourceList1846       `json:"ipv6-source-list"`
-	Ipv6DestList         SystemIpThreatListIpv6DestList1848         `json:"ipv6-dest-list"`
-	Ipv4InternetHostList SystemIpThreatListIpv4InternetHostList1850 `json:"ipv4-internet-host-list"`
-	Ipv6InternetHostList SystemIpThreatListIpv6InternetHostList1852 `json:"ipv6-internet-host-list"`
+	SamplingEnable       []SystemIpThreatListSamplingEnable1842     `json:"sampling-enable"`
+	Ipv4SourceList       SystemIpThreatListIpv4SourceList1843       `json:"ipv4-source-list"`
+	Ipv4DestList         SystemIpThreatListIpv4DestList1845         `json:"ipv4-dest-list"`
+	Ipv6SourceList       SystemIpThreatListIpv6SourceList1847       `json:"ipv6-source-list"`
+	Ipv6DestList         SystemIpThreatListIpv6DestList1849         `json:"ipv6-dest-list"`
+	Ipv4InternetHostList SystemIpThreatListIpv4InternetHostList1851 `json:"ipv4-internet-host-list"`
+	Ipv6InternetHostList SystemIpThreatListIpv6InternetHostList1853 `json:"ipv6-internet-host-list"`
 }
 
-type SystemIpThreatListSamplingEnable1841 struct {
+type SystemIpThreatListSamplingEnable1842 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemIpThreatListIpv4SourceList1842 struct {
-	ClassListCfg []SystemIpThreatListIpv4SourceListClassListCfg1843 `json:"class-list-cfg"`
+type SystemIpThreatListIpv4SourceList1843 struct {
+	ClassListCfg []SystemIpThreatListIpv4SourceListClassListCfg1844 `json:"class-list-cfg"`
 	Uuid         string                                             `json:"uuid"`
 }
 
-type SystemIpThreatListIpv4SourceListClassListCfg1843 struct {
+type SystemIpThreatListIpv4SourceListClassListCfg1844 struct {
 	ClassList          string `json:"class-list"`
 	IpThreatActionTmpl int    `json:"ip-threat-action-tmpl"`
 }
 
-type SystemIpThreatListIpv4DestList1844 struct {
-	ClassListCfg []SystemIpThreatListIpv4DestListClassListCfg1845 `json:"class-list-cfg"`
+type SystemIpThreatListIpv4DestList1845 struct {
+	ClassListCfg []SystemIpThreatListIpv4DestListClassListCfg1846 `json:"class-list-cfg"`
 	Uuid         string                                           `json:"uuid"`
 }
 
-type SystemIpThreatListIpv4DestListClassListCfg1845 struct {
+type SystemIpThreatListIpv4DestListClassListCfg1846 struct {
 	ClassList          string `json:"class-list"`
 	IpThreatActionTmpl int    `json:"ip-threat-action-tmpl"`
 }
 
-type SystemIpThreatListIpv6SourceList1846 struct {
-	ClassListCfg []SystemIpThreatListIpv6SourceListClassListCfg1847 `json:"class-list-cfg"`
+type SystemIpThreatListIpv6SourceList1847 struct {
+	ClassListCfg []SystemIpThreatListIpv6SourceListClassListCfg1848 `json:"class-list-cfg"`
 	Uuid         string                                             `json:"uuid"`
 }
 
-type SystemIpThreatListIpv6SourceListClassListCfg1847 struct {
+type SystemIpThreatListIpv6SourceListClassListCfg1848 struct {
 	ClassList          string `json:"class-list"`
 	IpThreatActionTmpl int    `json:"ip-threat-action-tmpl"`
 }
 
-type SystemIpThreatListIpv6DestList1848 struct {
-	ClassListCfg []SystemIpThreatListIpv6DestListClassListCfg1849 `json:"class-list-cfg"`
+type SystemIpThreatListIpv6DestList1849 struct {
+	ClassListCfg []SystemIpThreatListIpv6DestListClassListCfg1850 `json:"class-list-cfg"`
 	Uuid         string                                           `json:"uuid"`
 }
 
-type SystemIpThreatListIpv6DestListClassListCfg1849 struct {
+type SystemIpThreatListIpv6DestListClassListCfg1850 struct {
 	ClassList          string `json:"class-list"`
 	IpThreatActionTmpl int    `json:"ip-threat-action-tmpl"`
 }
 
-type SystemIpThreatListIpv4InternetHostList1850 struct {
+type SystemIpThreatListIpv4InternetHostList1851 struct {
 	WhiteList    string                                                   `json:"white-list"`
-	ClassListCfg []SystemIpThreatListIpv4InternetHostListClassListCfg1851 `json:"class-list-cfg"`
+	ClassListCfg []SystemIpThreatListIpv4InternetHostListClassListCfg1852 `json:"class-list-cfg"`
 	Uuid         string                                                   `json:"uuid"`
 }
 
-type SystemIpThreatListIpv4InternetHostListClassListCfg1851 struct {
+type SystemIpThreatListIpv4InternetHostListClassListCfg1852 struct {
 	ClassList          string `json:"class-list"`
 	IpThreatActionTmpl int    `json:"ip-threat-action-tmpl"`
 }
 
-type SystemIpThreatListIpv6InternetHostList1852 struct {
+type SystemIpThreatListIpv6InternetHostList1853 struct {
 	WhiteList    string                                                   `json:"white-list"`
-	ClassListCfg []SystemIpThreatListIpv6InternetHostListClassListCfg1853 `json:"class-list-cfg"`
+	ClassListCfg []SystemIpThreatListIpv6InternetHostListClassListCfg1854 `json:"class-list-cfg"`
 	Uuid         string                                                   `json:"uuid"`
 }
 
-type SystemIpThreatListIpv6InternetHostListClassListCfg1853 struct {
+type SystemIpThreatListIpv6InternetHostListClassListCfg1854 struct {
 	ClassList          string `json:"class-list"`
 	IpThreatActionTmpl int    `json:"ip-threat-action-tmpl"`
 }
 
-type SystemIp6Stats1854 struct {
+type SystemIp6Stats1855 struct {
 	Uuid           string                             `json:"uuid"`
-	SamplingEnable []SystemIp6StatsSamplingEnable1855 `json:"sampling-enable"`
+	SamplingEnable []SystemIp6StatsSamplingEnable1856 `json:"sampling-enable"`
 }
 
-type SystemIp6StatsSamplingEnable1855 struct {
+type SystemIp6StatsSamplingEnable1856 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemIpmi1856 struct {
+type SystemIpmi1857 struct {
 	Reset int                 `json:"reset"`
-	Ip    SystemIpmiIp1857    `json:"ip"`
-	Ipsrc SystemIpmiIpsrc1858 `json:"ipsrc"`
-	User  SystemIpmiUser1859  `json:"user"`
-	Tool  SystemIpmiTool1860  `json:"tool"`
+	Ip    SystemIpmiIp1858    `json:"ip"`
+	Ipsrc SystemIpmiIpsrc1859 `json:"ipsrc"`
+	User  SystemIpmiUser1860  `json:"user"`
+	Tool  SystemIpmiTool1861  `json:"tool"`
 }
 
-type SystemIpmiIp1857 struct {
+type SystemIpmiIp1858 struct {
 	Ipv4Address    string `json:"ipv4-address"`
 	Ipv4Netmask    string `json:"ipv4-netmask"`
 	DefaultGateway string `json:"default-gateway"`
 }
 
-type SystemIpmiIpsrc1858 struct {
+type SystemIpmiIpsrc1859 struct {
 	Dhcp   int `json:"dhcp"`
 	Static int `json:"static"`
 }
 
-type SystemIpmiUser1859 struct {
+type SystemIpmiUser1860 struct {
 	Add           string `json:"add"`
 	Password      string `json:"password"`
 	Administrator int    `json:"administrator"`
@@ -940,34 +924,26 @@ type SystemIpmiUser1859 struct {
 	Newpass       string `json:"newpass"`
 }
 
-type SystemIpmiTool1860 struct {
+type SystemIpmiTool1861 struct {
 	Cmd string `json:"cmd"`
 }
 
-type SystemIpmiService1861 struct {
+type SystemIpmiService1862 struct {
 	Disable int    `json:"disable"`
 	Uuid    string `json:"uuid"`
 }
 
-type SystemIpsec1862 struct {
+type SystemIpsec1863 struct {
 	PacketRoundRobin int                        `json:"packet-round-robin"`
 	CryptoCore       int                        `json:"crypto-core"`
 	CryptoMem        int                        `json:"crypto-mem"`
 	Qat              int                        `json:"QAT"`
 	Uuid             string                     `json:"uuid"`
-	FpgaDecrypt      SystemIpsecFpgaDecrypt1863 `json:"fpga-decrypt"`
+	FpgaDecrypt      SystemIpsecFpgaDecrypt1864 `json:"fpga-decrypt"`
 }
 
-type SystemIpsecFpgaDecrypt1863 struct {
+type SystemIpsecFpgaDecrypt1864 struct {
 	Action string `json:"action" dval:"disable"`
-}
-
-type SystemIpv61864 struct {
-	Icmpv6UnreachableDisable int    `json:"icmpv6-unreachable-disable"`
-	Icmpv6RedirectDisable    int    `json:"icmpv6-redirect-disable"`
-	RpfCheckEnable           int    `json:"rpf-check-enable"`
-	SourceRoutePktDropEnable int    `json:"source-route-pkt-drop-enable"`
-	Uuid                     string `json:"uuid"`
 }
 
 type SystemJobOffload1865 struct {
@@ -1122,7 +1098,7 @@ type SystemMonTemplateLinkDownOnRestart1882 struct {
 }
 
 type SystemMonTemplateMonitoringMode1883 struct {
-	Mmode string `json:"mmode" dval:"and"`
+	Mmode string `json:"mmode" dval:"interdependent"`
 	Uuid  string `json:"uuid"`
 }
 
@@ -1630,6 +1606,8 @@ type SystemResourceAccountingTemplateListSystemResourcesSslcpsLimitCfg1966 struc
 }
 
 type SystemResourceUsage1967 struct {
+	SslContextMemory              int                               `json:"ssl-context-memory" dval:"2048"`
+	SslDmaMemory                  int                               `json:"ssl-dma-memory" dval:"256"`
 	NatPoolAddrCount              int                               `json:"nat-pool-addr-count"`
 	L4SessionCount                int                               `json:"l4-session-count"`
 	AuthPortalHtmlFileSize        int                               `json:"auth-portal-html-file-size" dval:"20"`
@@ -1646,6 +1624,7 @@ type SystemResourceUsage1967 struct {
 	RamCacheMemoryLimit           int                               `json:"ram-cache-memory-limit"`
 	AuthSessionCount              int                               `json:"auth-session-count"`
 	NgwafCacheEntry               int                               `json:"ngwaf-cache-entry"`
+	JwtCacheEntry                 int                               `json:"jwt-cache-entry"`
 	Uuid                          string                            `json:"uuid"`
 	Visibility                    SystemResourceUsageVisibility1968 `json:"visibility"`
 }
@@ -1719,130 +1698,120 @@ type SystemSpeStatus1981 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemSslHwMemory1982 struct {
-	MemBlockCfg []SystemSslHwMemoryMemBlockCfg1983 `json:"mem-block-cfg"`
-	Uuid        string                             `json:"uuid"`
-}
-
-type SystemSslHwMemoryMemBlockCfg1983 struct {
-	MemBlock string `json:"mem-block"`
-	Size     int    `json:"size"`
-}
-
-type SystemSslReqQ1984 struct {
+type SystemSslReqQ1982 struct {
 	Uuid           string                            `json:"uuid"`
-	SamplingEnable []SystemSslReqQSamplingEnable1985 `json:"sampling-enable"`
+	SamplingEnable []SystemSslReqQSamplingEnable1983 `json:"sampling-enable"`
 }
 
-type SystemSslReqQSamplingEnable1985 struct {
+type SystemSslReqQSamplingEnable1983 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemSslScv1986 struct {
+type SystemSslScv1984 struct {
 	Enable int    `json:"enable"`
 	Uuid   string `json:"uuid"`
 }
 
-type SystemSslScvVerifyCrlSign1987 struct {
+type SystemSslScvVerifyCrlSign1985 struct {
 	Enable int    `json:"enable"`
 	Uuid   string `json:"uuid"`
 }
 
-type SystemSslScvVerifyHost1988 struct {
+type SystemSslScvVerifyHost1986 struct {
 	Disable int    `json:"disable"`
 	Uuid    string `json:"uuid"`
 }
 
-type SystemSslSetCompatibleCipher1989 struct {
+type SystemSslSetCompatibleCipher1987 struct {
 	Disable int    `json:"disable"`
 	Uuid    string `json:"uuid"`
 }
 
-type SystemSslStatus1990 struct {
+type SystemSslStatus1988 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemSyslogTimeMsec1991 struct {
+type SystemSyslogTimeMsec1989 struct {
 	EnableFlag int `json:"enable-flag"`
 }
 
-type SystemTableIntegrity1992 struct {
+type SystemTableIntegrity1990 struct {
 	Table          string                                   `json:"table" dval:"all"`
 	AuditAction    string                                   `json:"audit-action" dval:"enable"`
 	AutoSyncAction string                                   `json:"auto-sync-action" dval:"enable"`
 	Uuid           string                                   `json:"uuid"`
-	SamplingEnable []SystemTableIntegritySamplingEnable1993 `json:"sampling-enable"`
+	SamplingEnable []SystemTableIntegritySamplingEnable1991 `json:"sampling-enable"`
 }
 
-type SystemTableIntegritySamplingEnable1993 struct {
+type SystemTableIntegritySamplingEnable1991 struct {
 	Counters1 string `json:"counters1"`
 	Counters2 string `json:"counters2"`
 	Counters3 string `json:"counters3"`
 }
 
-type SystemTcp1994 struct {
+type SystemTcp1992 struct {
 	Uuid                      string                                 `json:"uuid"`
-	SamplingEnable            []SystemTcpSamplingEnable1995          `json:"sampling-enable"`
-	RateLimitResetUnknownConn SystemTcpRateLimitResetUnknownConn1996 `json:"rate-limit-reset-unknown-conn"`
+	SamplingEnable            []SystemTcpSamplingEnable1993          `json:"sampling-enable"`
+	RateLimitResetUnknownConn SystemTcpRateLimitResetUnknownConn1994 `json:"rate-limit-reset-unknown-conn"`
 }
 
-type SystemTcpSamplingEnable1995 struct {
+type SystemTcpSamplingEnable1993 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemTcpRateLimitResetUnknownConn1996 struct {
+type SystemTcpRateLimitResetUnknownConn1994 struct {
 	PktRateForResetUnknownConn int    `json:"pkt-rate-for-reset-unknown-conn"`
 	LogForResetUnknownConn     int    `json:"log-for-reset-unknown-conn"`
 	Uuid                       string `json:"uuid"`
 }
 
-type SystemTcpStats1997 struct {
+type SystemTcpStats1995 struct {
 	Uuid           string                             `json:"uuid"`
-	SamplingEnable []SystemTcpStatsSamplingEnable1998 `json:"sampling-enable"`
+	SamplingEnable []SystemTcpStatsSamplingEnable1996 `json:"sampling-enable"`
 }
 
-type SystemTcpStatsSamplingEnable1998 struct {
+type SystemTcpStatsSamplingEnable1996 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemTcpSynPerSec1999 struct {
+type SystemTcpSynPerSec1997 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemTelemetryLog2000 struct {
-	TopKSourceList   SystemTelemetryLogTopKSourceList2001   `json:"top-k-source-list"`
-	TopKAppSvcList   SystemTelemetryLogTopKAppSvcList2002   `json:"top-k-app-svc-list"`
-	DeviceStatus     SystemTelemetryLogDeviceStatus2003     `json:"device-status"`
-	Environment      SystemTelemetryLogEnvironment2004      `json:"environment"`
-	PartitionMetrics SystemTelemetryLogPartitionMetrics2005 `json:"partition-metrics"`
+type SystemTelemetryLog1998 struct {
+	TopKSourceList   SystemTelemetryLogTopKSourceList1999   `json:"top-k-source-list"`
+	TopKAppSvcList   SystemTelemetryLogTopKAppSvcList2000   `json:"top-k-app-svc-list"`
+	DeviceStatus     SystemTelemetryLogDeviceStatus2001     `json:"device-status"`
+	Environment      SystemTelemetryLogEnvironment2002      `json:"environment"`
+	PartitionMetrics SystemTelemetryLogPartitionMetrics2003 `json:"partition-metrics"`
 }
 
-type SystemTelemetryLogTopKSourceList2001 struct {
+type SystemTelemetryLogTopKSourceList1999 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemTelemetryLogTopKAppSvcList2002 struct {
+type SystemTelemetryLogTopKAppSvcList2000 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemTelemetryLogDeviceStatus2003 struct {
+type SystemTelemetryLogDeviceStatus2001 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemTelemetryLogEnvironment2004 struct {
+type SystemTelemetryLogEnvironment2002 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemTelemetryLogPartitionMetrics2005 struct {
+type SystemTelemetryLogPartitionMetrics2003 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemTemplate2006 struct {
+type SystemTemplate2004 struct {
 	TemplatePolicy string `json:"template-policy"`
 	Uuid           string `json:"uuid"`
 }
 
-type SystemTemplateBind2007 struct {
+type SystemTemplateBind2005 struct {
 	MonitorList []SystemTemplateBindMonitorList `json:"monitor-list"`
 }
 
@@ -1851,16 +1820,16 @@ type SystemTemplateBindMonitorList struct {
 	Uuid            string `json:"uuid"`
 }
 
-type SystemThroughput2008 struct {
+type SystemThroughput2006 struct {
 	Uuid           string                               `json:"uuid"`
-	SamplingEnable []SystemThroughputSamplingEnable2009 `json:"sampling-enable"`
+	SamplingEnable []SystemThroughputSamplingEnable2007 `json:"sampling-enable"`
 }
 
-type SystemThroughputSamplingEnable2009 struct {
+type SystemThroughputSamplingEnable2007 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemTimeoutValue2010 struct {
+type SystemTimeoutValue2008 struct {
 	Ftp   int    `json:"ftp" dval:"120"`
 	Scp   int    `json:"scp" dval:"300"`
 	Sftp  int    `json:"sftp"`
@@ -1870,46 +1839,51 @@ type SystemTimeoutValue2010 struct {
 	Uuid  string `json:"uuid"`
 }
 
-type SystemTrunk2011 struct {
-	LoadBalance SystemTrunkLoadBalance2012 `json:"load-balance"`
+type SystemTls13Mgmt2009 struct {
+	Enable int    `json:"enable"`
+	Uuid   string `json:"uuid"`
 }
 
-type SystemTrunkLoadBalance2012 struct {
+type SystemTrunk2010 struct {
+	LoadBalance SystemTrunkLoadBalance2011 `json:"load-balance"`
+}
+
+type SystemTrunkLoadBalance2011 struct {
 	UseL3 int    `json:"use-l3"`
 	UseL4 int    `json:"use-l4"`
 	Uuid  string `json:"uuid"`
 }
 
-type SystemTrunkHwHash2013 struct {
+type SystemTrunkHwHash2012 struct {
 	Mode int    `json:"mode" dval:"6"`
 	Uuid string `json:"uuid"`
 }
 
-type SystemTrunkXauiHwHash2014 struct {
+type SystemTrunkXauiHwHash2013 struct {
 	Mode int    `json:"mode" dval:"6"`
 	Uuid string `json:"uuid"`
 }
 
-type SystemTso2015 struct {
+type SystemTso2014 struct {
 	Enable  int `json:"enable"`
 	Disable int `json:"disable"`
 }
 
-type SystemUdp2016 struct {
+type SystemUdp2015 struct {
 	SkipChecksumWhenZero int    `json:"skip-checksum-when-zero"`
 	Uuid                 string `json:"uuid"`
 }
 
-type SystemUpgradeStatus2017 struct {
+type SystemUpgradeStatus2016 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemVeMacScheme2018 struct {
+type SystemVeMacScheme2017 struct {
 	VeMacSchemeVal string `json:"ve-mac-scheme-val" dval:"hash-based"`
 	Uuid           string `json:"uuid"`
 }
 
-type SystemXauiDlbMode2019 struct {
+type SystemXauiDlbMode2018 struct {
 	Enable int    `json:"enable"`
 	Uuid   string `json:"uuid"`
 }

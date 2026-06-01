@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbHmDplaneStats struct {
 	Stats SlbHmDplaneStatsStats `json:"stats"`
 }
@@ -51,6 +51,7 @@ type SlbHmDplaneStatsStats struct {
 	Err_missing_server_ssl_template      int `json:"err_missing_server_ssl_template"`
 	Err_create_ssl_ctx_fail              int `json:"err_create_ssl_ctx_fail"`
 	Err_entry_missing_vport              int `json:"err_entry_missing_vport"`
+	Err_entry_check_slb_failed           int `json:"err_entry_check_slb_failed"`
 }
 
 func (p *SlbHmDplaneStats) GetId() string {

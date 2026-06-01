@@ -499,10 +499,10 @@ func getSliceRouterIpv6OspfAreaListVirtualLinkList(d []interface{}) []edpt.Route
 	return ret
 }
 
-func getObjectRouterIpv6OspfDefaultInformation1335(d []interface{}) edpt.RouterIpv6OspfDefaultInformation1335 {
+func getObjectRouterIpv6OspfDefaultInformation1334(d []interface{}) edpt.RouterIpv6OspfDefaultInformation1334 {
 
 	count1 := len(d)
-	var ret edpt.RouterIpv6OspfDefaultInformation1335
+	var ret edpt.RouterIpv6OspfDefaultInformation1334
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Originate = in["originate"].(int)
@@ -648,33 +648,33 @@ func getSliceRouterIpv6OspfPassiveInterfaceEthCfg(d []interface{}) []edpt.Router
 	return ret
 }
 
-func getObjectRouterIpv6OspfRedistribute1336(d []interface{}) edpt.RouterIpv6OspfRedistribute1336 {
+func getObjectRouterIpv6OspfRedistribute1335(d []interface{}) edpt.RouterIpv6OspfRedistribute1335 {
 
 	count1 := len(d)
-	var ret edpt.RouterIpv6OspfRedistribute1336
+	var ret edpt.RouterIpv6OspfRedistribute1335
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.RedistList = getSliceRouterIpv6OspfRedistributeRedistList1337(in["redist_list"].([]interface{}))
-		ret.OspfList = getSliceRouterIpv6OspfRedistributeOspfList1338(in["ospf_list"].([]interface{}))
+		ret.RedistList = getSliceRouterIpv6OspfRedistributeRedistList1336(in["redist_list"].([]interface{}))
+		ret.OspfList = getSliceRouterIpv6OspfRedistributeOspfList1337(in["ospf_list"].([]interface{}))
 		ret.IpNat = in["ip_nat"].(int)
 		ret.MetricIpNat = in["metric_ip_nat"].(int)
 		ret.MetricTypeIpNat = in["metric_type_ip_nat"].(string)
 		ret.RouteMapIpNat = in["route_map_ip_nat"].(string)
-		ret.IpNatFloatingList = getSliceRouterIpv6OspfRedistributeIpNatFloatingList1339(in["ip_nat_floating_list"].([]interface{}))
-		ret.VipList = getSliceRouterIpv6OspfRedistributeVipList1340(in["vip_list"].([]interface{}))
-		ret.VipFloatingList = getSliceRouterIpv6OspfRedistributeVipFloatingList1341(in["vip_floating_list"].([]interface{}))
+		ret.IpNatFloatingList = getSliceRouterIpv6OspfRedistributeIpNatFloatingList1338(in["ip_nat_floating_list"].([]interface{}))
+		ret.VipList = getSliceRouterIpv6OspfRedistributeVipList1339(in["vip_list"].([]interface{}))
+		ret.VipFloatingList = getSliceRouterIpv6OspfRedistributeVipFloatingList1340(in["vip_floating_list"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceRouterIpv6OspfRedistributeRedistList1337(d []interface{}) []edpt.RouterIpv6OspfRedistributeRedistList1337 {
+func getSliceRouterIpv6OspfRedistributeRedistList1336(d []interface{}) []edpt.RouterIpv6OspfRedistributeRedistList1336 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterIpv6OspfRedistributeRedistList1337, 0, count1)
+	ret := make([]edpt.RouterIpv6OspfRedistributeRedistList1336, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterIpv6OspfRedistributeRedistList1337
+		var oi edpt.RouterIpv6OspfRedistributeRedistList1336
 		oi.Type = in["type"].(string)
 		oi.Metric = in["metric"].(int)
 		oi.MetricType = in["metric_type"].(string)
@@ -684,13 +684,13 @@ func getSliceRouterIpv6OspfRedistributeRedistList1337(d []interface{}) []edpt.Ro
 	return ret
 }
 
-func getSliceRouterIpv6OspfRedistributeOspfList1338(d []interface{}) []edpt.RouterIpv6OspfRedistributeOspfList1338 {
+func getSliceRouterIpv6OspfRedistributeOspfList1337(d []interface{}) []edpt.RouterIpv6OspfRedistributeOspfList1337 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterIpv6OspfRedistributeOspfList1338, 0, count1)
+	ret := make([]edpt.RouterIpv6OspfRedistributeOspfList1337, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterIpv6OspfRedistributeOspfList1338
+		var oi edpt.RouterIpv6OspfRedistributeOspfList1337
 		oi.Ospf = in["ospf"].(int)
 		oi.ProcessId = in["process_id"].(string)
 		oi.MetricOspf = in["metric_ospf"].(int)
@@ -701,13 +701,13 @@ func getSliceRouterIpv6OspfRedistributeOspfList1338(d []interface{}) []edpt.Rout
 	return ret
 }
 
-func getSliceRouterIpv6OspfRedistributeIpNatFloatingList1339(d []interface{}) []edpt.RouterIpv6OspfRedistributeIpNatFloatingList1339 {
+func getSliceRouterIpv6OspfRedistributeIpNatFloatingList1338(d []interface{}) []edpt.RouterIpv6OspfRedistributeIpNatFloatingList1338 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterIpv6OspfRedistributeIpNatFloatingList1339, 0, count1)
+	ret := make([]edpt.RouterIpv6OspfRedistributeIpNatFloatingList1338, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterIpv6OspfRedistributeIpNatFloatingList1339
+		var oi edpt.RouterIpv6OspfRedistributeIpNatFloatingList1338
 		oi.IpNatPrefix = in["ip_nat_prefix"].(string)
 		oi.IpNatFloatingIpForward = in["ip_nat_floating_ip_forward"].(string)
 		ret = append(ret, oi)
@@ -715,13 +715,13 @@ func getSliceRouterIpv6OspfRedistributeIpNatFloatingList1339(d []interface{}) []
 	return ret
 }
 
-func getSliceRouterIpv6OspfRedistributeVipList1340(d []interface{}) []edpt.RouterIpv6OspfRedistributeVipList1340 {
+func getSliceRouterIpv6OspfRedistributeVipList1339(d []interface{}) []edpt.RouterIpv6OspfRedistributeVipList1339 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterIpv6OspfRedistributeVipList1340, 0, count1)
+	ret := make([]edpt.RouterIpv6OspfRedistributeVipList1339, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterIpv6OspfRedistributeVipList1340
+		var oi edpt.RouterIpv6OspfRedistributeVipList1339
 		oi.TypeVip = in["type_vip"].(string)
 		oi.MetricVip = in["metric_vip"].(int)
 		oi.MetricTypeVip = in["metric_type_vip"].(string)
@@ -731,13 +731,13 @@ func getSliceRouterIpv6OspfRedistributeVipList1340(d []interface{}) []edpt.Route
 	return ret
 }
 
-func getSliceRouterIpv6OspfRedistributeVipFloatingList1341(d []interface{}) []edpt.RouterIpv6OspfRedistributeVipFloatingList1341 {
+func getSliceRouterIpv6OspfRedistributeVipFloatingList1340(d []interface{}) []edpt.RouterIpv6OspfRedistributeVipFloatingList1340 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterIpv6OspfRedistributeVipFloatingList1341, 0, count1)
+	ret := make([]edpt.RouterIpv6OspfRedistributeVipFloatingList1340, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterIpv6OspfRedistributeVipFloatingList1341
+		var oi edpt.RouterIpv6OspfRedistributeVipFloatingList1340
 		oi.VipAddress = in["vip_address"].(string)
 		oi.VipFloatingIpForward = in["vip_floating_ip_forward"].(string)
 		ret = append(ret, oi)
@@ -785,7 +785,7 @@ func dataToEndpointRouterIpv6Ospf(d *schema.ResourceData) edpt.RouterIpv6Ospf {
 	ret.Inst.AreaList = getSliceRouterIpv6OspfAreaList(d.Get("area_list").([]interface{}))
 	ret.Inst.AutoCostReferenceBandwidth = d.Get("auto_cost_reference_bandwidth").(int)
 	ret.Inst.BfdAllInterfaces = d.Get("bfd_all_interfaces").(int)
-	ret.Inst.DefaultInformation = getObjectRouterIpv6OspfDefaultInformation1335(d.Get("default_information").([]interface{}))
+	ret.Inst.DefaultInformation = getObjectRouterIpv6OspfDefaultInformation1334(d.Get("default_information").([]interface{}))
 	ret.Inst.DefaultMetric = d.Get("default_metric").(int)
 	ret.Inst.DistributeInternalList = getSliceRouterIpv6OspfDistributeInternalList(d.Get("distribute_internal_list").([]interface{}))
 	ret.Inst.DistributeList = getObjectRouterIpv6OspfDistributeList(d.Get("distribute_list").([]interface{}))
@@ -794,7 +794,7 @@ func dataToEndpointRouterIpv6Ospf(d *schema.ResourceData) edpt.RouterIpv6Ospf {
 	ret.Inst.MaxConcurrentDd = d.Get("max_concurrent_dd").(int)
 	ret.Inst.PassiveInterface = getObjectRouterIpv6OspfPassiveInterface(d.Get("passive_interface").([]interface{}))
 	ret.Inst.ProcessId = d.Get("process_id").(string)
-	ret.Inst.Redistribute = getObjectRouterIpv6OspfRedistribute1336(d.Get("redistribute").([]interface{}))
+	ret.Inst.Redistribute = getObjectRouterIpv6OspfRedistribute1335(d.Get("redistribute").([]interface{}))
 	ret.Inst.RouterId = d.Get("router_id").(string)
 	ret.Inst.Timers = getObjectRouterIpv6OspfTimers(d.Get("timers").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)

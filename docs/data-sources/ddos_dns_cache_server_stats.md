@@ -86,6 +86,7 @@ Optional:
 - `zt_completed_no_update` (Number) Zone Transfer Completed No Update
 - `zt_completed_ok` (Number) Zone Transfer Completed
 - `zt_dns_process_err` (Number) Zone Transfer DNS Processing Errors
+- `zt_ixfr_attempts` (Number) Zone Transfer IXFR Started
 - `zt_msg_rcode_notauth` (Number) Zone Transfer Server Not Auth Fail
 - `zt_ongoing_tasks` (Number) Zone Transfer Ongoing tasks
 - `zt_records_processed` (Number) Zone Transfer Records Processed

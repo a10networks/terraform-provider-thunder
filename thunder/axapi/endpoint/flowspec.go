@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Flowspec struct {
 	Inst struct {
 		DestAddrType string `json:"dest-addr-type"`
@@ -23,7 +23,7 @@ type Flowspec struct {
 
 		DscpList []FlowspecDscpList `json:"dscp-list"`
 
-		FilteringAction FlowspecFilteringAction424 `json:"filtering-action"`
+		FilteringAction FlowspecFilteringAction415 `json:"filtering-action"`
 
 		FragmentationOptionList []FlowspecFragmentationOptionList `json:"fragmentation-option-list"`
 
@@ -33,7 +33,7 @@ type Flowspec struct {
 
 		Name string `json:"name"`
 
-		OperationalMode FlowspecOperationalMode425 `json:"operational-mode"`
+		OperationalMode FlowspecOperationalMode416 `json:"operational-mode"`
 
 		PacketLengthList []FlowspecPacketLengthList `json:"packet-length-list"`
 
@@ -77,7 +77,7 @@ type FlowspecDscpList struct {
 	Uuid          string `json:"uuid"`
 }
 
-type FlowspecFilteringAction424 struct {
+type FlowspecFilteringAction415 struct {
 	TerminalAction   int    `json:"terminal-action"`
 	SampleLog        int    `json:"sample-log"`
 	TrafficRate      int    `json:"traffic-rate"`
@@ -122,7 +122,7 @@ type FlowspecIcmpTypeList struct {
 	Uuid              string `json:"uuid"`
 }
 
-type FlowspecOperationalMode425 struct {
+type FlowspecOperationalMode416 struct {
 	Mode string `json:"mode" dval:"disabled"`
 	Uuid string `json:"uuid"`
 }

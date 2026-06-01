@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Export struct {
 	Inst struct {
 		Aflex string `json:"aflex"`
@@ -52,7 +52,7 @@ type Export struct {
 
 		GeoLocation string `json:"geo-location"`
 
-		GeoLocationArchive ExportGeoLocationArchive418 `json:"geo-location-archive"`
+		GeoLocationArchive ExportGeoLocationArchive409 `json:"geo-location-archive"`
 
 		IpMapList string `json:"ip-map-list"`
 
@@ -98,7 +98,7 @@ type Export struct {
 
 		StatusCheck int `json:"status-check"`
 
-		Store ExportStore419 `json:"store"`
+		Store ExportStore410 `json:"store"`
 
 		StoreName string `json:"store-name"`
 
@@ -120,14 +120,14 @@ type Export struct {
 	} `json:"export"`
 }
 
-type ExportGeoLocationArchive418 struct {
+type ExportGeoLocationArchive409 struct {
 	GeoLocationArchiveName string `json:"geo-location-archive-name"`
 	UseMgmtPort            int    `json:"use-mgmt-port"`
 	RemoteFile             string `json:"remote-file"`
 	Password               string `json:"password"`
 }
 
-type ExportStore419 struct {
+type ExportStore410 struct {
 	Delete     int    `json:"delete"`
 	Create     int    `json:"create"`
 	Name       string `json:"name"`

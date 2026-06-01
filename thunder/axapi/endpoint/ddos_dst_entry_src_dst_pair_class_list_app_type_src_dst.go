@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstEntrySrcDstPairClassListAppTypeSrcDst struct {
 	Inst struct {
 		Protocol string `json:"protocol"`
@@ -16,9 +16,9 @@ type DdosDstEntrySrcDstPairClassListAppTypeSrcDst struct {
 
 		Uuid string `json:"uuid"`
 
-		DstEntryName string
-
 		ClassListName string
+
+		DstEntryName string
 	} `json:"app-type-src-dst"`
 }
 

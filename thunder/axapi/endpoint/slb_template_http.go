@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbTemplateHttp struct {
 	Inst struct {
 		AllowedMethods string `json:"allowed-methods"`
@@ -63,7 +63,7 @@ type SlbTemplateHttp struct {
 
 		HostSwitching []SlbTemplateHttpHostSwitching `json:"host-switching"`
 
-		HttpProtocolCheck SlbTemplateHttpHttpProtocolCheck1549 `json:"http-protocol-check"`
+		HttpProtocolCheck SlbTemplateHttpHttpProtocolCheck1550 `json:"http-protocol-check"`
 
 		Http2ClientNoSnat int `json:"http2-client-no-snat"`
 
@@ -179,7 +179,7 @@ type SlbTemplateHttpHostSwitching struct {
 	HostServiceGroup  string `json:"host-service-group"`
 }
 
-type SlbTemplateHttpHttpProtocolCheck1549 struct {
+type SlbTemplateHttpHttpProtocolCheck1550 struct {
 	H2upContentLengthAlias           string                                                     `json:"h2up-content-length-alias"`
 	MalformedH2upHeaderValue         string                                                     `json:"malformed-h2up-header-value"`
 	MalformedH2upSchemeValue         string                                                     `json:"malformed-h2up-scheme-value"`
@@ -190,10 +190,10 @@ type SlbTemplateHttpHttpProtocolCheck1549 struct {
 	GetAndPayload                    string                                                     `json:"get-and-payload"`
 	H2upWithHostAndAuth              string                                                     `json:"h2up-with-host-and-auth"`
 	Uuid                             string                                                     `json:"uuid"`
-	HeaderFilterRuleList             []SlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1550 `json:"header-filter-rule-list"`
+	HeaderFilterRuleList             []SlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1551 `json:"header-filter-rule-list"`
 }
 
-type SlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1550 struct {
+type SlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1551 struct {
 	SeqNum           int    `json:"seq-num"`
 	MatchTypeValue   string `json:"match-type-value"`
 	HeaderNameValue  string `json:"header-name-value"`

@@ -19,6 +19,9 @@ func resourceImportPeriodicLocalUriFile() *schema.Resource {
 			"local_uri_file": {
 				Type: schema.TypeString, Required: true, Description: "Local URI files for http response",
 			},
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "Config remote server  password",
+			},
 			"period": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the period in second",
 			},
@@ -98,7 +101,9 @@ func resourceImportPeriodicLocalUriFileRead(ctx context.Context, d *schema.Resou
 
 func dataToEndpointImportPeriodicLocalUriFile(d *schema.ResourceData) edpt.ImportPeriodicLocalUriFile {
 	var ret edpt.ImportPeriodicLocalUriFile
+	//omit encrypted
 	ret.Inst.LocalUriFile = d.Get("local_uri_file").(string)
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)

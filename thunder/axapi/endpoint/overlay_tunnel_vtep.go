@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type OverlayTunnelVtep struct {
 	Inst struct {
 		DestPort int `json:"dest-port"`
@@ -17,9 +17,9 @@ type OverlayTunnelVtep struct {
 
 		Id1 int `json:"id"`
 
-		LocalIpAddress OverlayTunnelVtepLocalIpAddress1168 `json:"local-ip-address"`
+		LocalIpAddress OverlayTunnelVtepLocalIpAddress1167 `json:"local-ip-address"`
 
-		LocalIpv6Address OverlayTunnelVtepLocalIpv6Address1170 `json:"local-ipv6-address"`
+		LocalIpv6Address OverlayTunnelVtepLocalIpv6Address1169 `json:"local-ipv6-address"`
 
 		RemoteIpAddressList []OverlayTunnelVtepRemoteIpAddressList `json:"remote-ip-address-list"`
 
@@ -27,7 +27,7 @@ type OverlayTunnelVtep struct {
 
 		SamplingEnable []OverlayTunnelVtepSamplingEnable `json:"sampling-enable"`
 
-		SrcPortRange OverlayTunnelVtepSrcPortRange1172 `json:"src-port-range"`
+		SrcPortRange OverlayTunnelVtepSrcPortRange1171 `json:"src-port-range"`
 
 		UserTag string `json:"user-tag"`
 
@@ -45,13 +45,13 @@ type OverlayTunnelVtepHostList struct {
 	Uuid           string `json:"uuid"`
 }
 
-type OverlayTunnelVtepLocalIpAddress1168 struct {
+type OverlayTunnelVtepLocalIpAddress1167 struct {
 	IpAddress string                                       `json:"ip-address"`
 	Uuid      string                                       `json:"uuid"`
-	VniList   []OverlayTunnelVtepLocalIpAddressVniList1169 `json:"vni-list"`
+	VniList   []OverlayTunnelVtepLocalIpAddressVniList1168 `json:"vni-list"`
 }
 
-type OverlayTunnelVtepLocalIpAddressVniList1169 struct {
+type OverlayTunnelVtepLocalIpAddressVniList1168 struct {
 	Segment   int    `json:"segment"`
 	Partition string `json:"partition"`
 	Gateway   int    `json:"gateway"`
@@ -59,13 +59,13 @@ type OverlayTunnelVtepLocalIpAddressVniList1169 struct {
 	Uuid      string `json:"uuid"`
 }
 
-type OverlayTunnelVtepLocalIpv6Address1170 struct {
+type OverlayTunnelVtepLocalIpv6Address1169 struct {
 	Ipv6Address string                                         `json:"ipv6-address"`
 	Uuid        string                                         `json:"uuid"`
-	VniList     []OverlayTunnelVtepLocalIpv6AddressVniList1171 `json:"vni-list"`
+	VniList     []OverlayTunnelVtepLocalIpv6AddressVniList1170 `json:"vni-list"`
 }
 
-type OverlayTunnelVtepLocalIpv6AddressVniList1171 struct {
+type OverlayTunnelVtepLocalIpv6AddressVniList1170 struct {
 	Segment   int    `json:"segment"`
 	Partition string `json:"partition"`
 	Gateway   int    `json:"gateway"`
@@ -145,7 +145,7 @@ type OverlayTunnelVtepSamplingEnable struct {
 	Counters1 string `json:"counters1"`
 }
 
-type OverlayTunnelVtepSrcPortRange1172 struct {
+type OverlayTunnelVtepSrcPortRange1171 struct {
 	MinPort int    `json:"min-port" dval:"1"`
 	MaxPort int    `json:"max-port" dval:"65535"`
 	Uuid    string `json:"uuid"`

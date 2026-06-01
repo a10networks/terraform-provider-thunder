@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type ScaleoutStatusOper struct {
 	Oper ScaleoutStatusOperOper `json:"oper"`
 }
@@ -16,6 +16,7 @@ type DataScaleoutStatusOper struct {
 type ScaleoutStatusOperOper struct {
 	Db_role                       string                                                `json:"db_role"`
 	Role                          string                                                `json:"role"`
+	Failure_safe                  string                                                `json:"failure_safe"`
 	DeviceList                    []ScaleoutStatusOperOperDeviceList                    `json:"device-list"`
 	ClusterMode                   string                                                `json:"cluster-mode"`
 	FollowSharedRedirection       int                                                   `json:"follow-shared-redirection"`
@@ -36,6 +37,8 @@ type ScaleoutStatusOperOper struct {
 	DestSessionSyncIpList         []ScaleoutStatusOperOperDestSessionSyncIpList         `json:"dest-session-sync-ip-list"`
 	ExcludeInterfaceIpList        []ScaleoutStatusOperOperExcludeInterfaceIpList        `json:"exclude-interface-ip-list"`
 	ExcludeInterfaceIpv6List      []ScaleoutStatusOperOperExcludeInterfaceIpv6List      `json:"exclude-interface-ipv6-list"`
+	Fallback                      int                                                   `json:"fallback"`
+	FailureDomainList             []ScaleoutStatusOperOperFailureDomainList             `json:"failure-domain-list"`
 }
 
 type ScaleoutStatusOperOperDeviceList struct {
@@ -89,6 +92,11 @@ type ScaleoutStatusOperOperExcludeInterfaceIpList struct {
 
 type ScaleoutStatusOperOperExcludeInterfaceIpv6List struct {
 	Ipv6 string `json:"ipv6"`
+}
+
+type ScaleoutStatusOperOperFailureDomainList struct {
+	DevId             int    `json:"dev-id"`
+	FailureDomainName string `json:"failure-domain-name"`
 }
 
 func (p *ScaleoutStatusOper) GetId() string {

@@ -284,6 +284,9 @@ func resourceSystemTcpStatsStats() *schema.Resource {
 						"proxyheaderv2": {
 							Type: schema.TypeInt, Optional: true, Description: "Proxy header v2",
 						},
+						"cpurrdrop": {
+							Type: schema.TypeInt, Optional: true, Description: "CPU round robin packet drop",
+						},
 					},
 				},
 			},
@@ -402,6 +405,7 @@ func setObjectSystemTcpStatsStatsStats(ret edpt.DataSystemTcpStatsStats) []inter
 			"a2bsndwnd":             ret.DtSystemTcpStatsStats.Stats.A2bsndwnd,
 			"proxyheaderv1":         ret.DtSystemTcpStatsStats.Stats.Proxyheaderv1,
 			"proxyheaderv2":         ret.DtSystemTcpStatsStats.Stats.Proxyheaderv2,
+			"cpurrdrop":             ret.DtSystemTcpStatsStats.Stats.Cpurrdrop,
 		},
 	}
 }
@@ -501,6 +505,7 @@ func getObjectSystemTcpStatsStatsStats(d []interface{}) edpt.SystemTcpStatsStats
 		ret.A2bsndwnd = in["a2bsndwnd"].(int)
 		ret.Proxyheaderv1 = in["proxyheaderv1"].(int)
 		ret.Proxyheaderv2 = in["proxyheaderv2"].(int)
+		ret.Cpurrdrop = in["cpurrdrop"].(int)
 	}
 	return ret
 }

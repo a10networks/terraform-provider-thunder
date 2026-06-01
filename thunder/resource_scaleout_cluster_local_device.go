@@ -72,6 +72,12 @@ func resourceScaleoutClusterLocalDevice() *schema.Resource {
 					},
 				},
 			},
+			"failure_domain": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "configure failure-domain",
+			},
+			"failure_domain_string": {
+				Type: schema.TypeString, Optional: true, Description: "Specify the failure-domain name",
+			},
 			"id1": {
 				Type: schema.TypeInt, Optional: true, Description: "",
 			},
@@ -782,6 +788,8 @@ func dataToEndpointScaleoutClusterLocalDevice(d *schema.ResourceData) edpt.Scale
 	ret.Inst.Action = d.Get("action").(string)
 	ret.Inst.ClusterMode = d.Get("cluster_mode").(string)
 	ret.Inst.ExcludeInterfaces = getObjectScaleoutClusterLocalDeviceExcludeInterfaces1427(d.Get("exclude_interfaces").([]interface{}))
+	ret.Inst.FailureDomain = d.Get("failure_domain").(int)
+	ret.Inst.FailureDomainString = d.Get("failure_domain_string").(string)
 	ret.Inst.Id1 = d.Get("id1").(int)
 	ret.Inst.L2Redirect = getObjectScaleoutClusterLocalDeviceL2Redirect1432(d.Get("l2_redirect").([]interface{}))
 	ret.Inst.Priority = d.Get("priority").(int)

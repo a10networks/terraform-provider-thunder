@@ -97,10 +97,10 @@ func resourceIpUnnumberedRead(ctx context.Context, d *schema.ResourceData, meta 
 	return diags
 }
 
-func getObjectIpUnnumberedUseSourceIp1125(d []interface{}) edpt.IpUnnumberedUseSourceIp1125 {
+func getObjectIpUnnumberedUseSourceIp1124(d []interface{}) edpt.IpUnnumberedUseSourceIp1124 {
 
 	count1 := len(d)
-	var ret edpt.IpUnnumberedUseSourceIp1125
+	var ret edpt.IpUnnumberedUseSourceIp1124
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.UpdateSourceIp = in["update_source_ip"].(string)
@@ -111,7 +111,7 @@ func getObjectIpUnnumberedUseSourceIp1125(d []interface{}) edpt.IpUnnumberedUseS
 
 func dataToEndpointIpUnnumbered(d *schema.ResourceData) edpt.IpUnnumbered {
 	var ret edpt.IpUnnumbered
-	ret.Inst.UseSourceIp = getObjectIpUnnumberedUseSourceIp1125(d.Get("use_source_ip").([]interface{}))
+	ret.Inst.UseSourceIp = getObjectIpUnnumberedUseSourceIp1124(d.Get("use_source_ip").([]interface{}))
 	//omit uuid
 	return ret
 }

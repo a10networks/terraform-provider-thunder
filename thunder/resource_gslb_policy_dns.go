@@ -342,10 +342,10 @@ func getSliceGslbPolicyDnsProxyBlockPortRangeList(d []interface{}) []edpt.GslbPo
 	return ret
 }
 
-func getObjectGslbPolicyDnsStickyOptions474(d []interface{}) edpt.GslbPolicyDnsStickyOptions474 {
+func getObjectGslbPolicyDnsStickyOptions465(d []interface{}) edpt.GslbPolicyDnsStickyOptions465 {
 
 	count1 := len(d)
-	var ret edpt.GslbPolicyDnsStickyOptions474
+	var ret edpt.GslbPolicyDnsStickyOptions465
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.EdnsClientSubnet = in["edns_client_subnet"].(int)
@@ -410,7 +410,7 @@ func dataToEndpointGslbPolicyDns(d *schema.ResourceData) edpt.GslbPolicyDns {
 	ret.Inst.StickyAgingTime = d.Get("sticky_aging_time").(int)
 	ret.Inst.StickyIpv6Mask = d.Get("sticky_ipv6_mask").(int)
 	ret.Inst.StickyMask = d.Get("sticky_mask").(string)
-	ret.Inst.StickyOptions = getObjectGslbPolicyDnsStickyOptions474(d.Get("sticky_options").([]interface{}))
+	ret.Inst.StickyOptions = getObjectGslbPolicyDnsStickyOptions465(d.Get("sticky_options").([]interface{}))
 	ret.Inst.Template = d.Get("template").(string)
 	ret.Inst.Ttl = d.Get("ttl").(int)
 	ret.Inst.UseServerTtl = d.Get("use_server_ttl").(int)

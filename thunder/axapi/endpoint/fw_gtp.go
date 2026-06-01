@@ -5,12 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type FwGtp struct {
 	Inst struct {
 		ApnLogPeriodicity int `json:"apn-log-periodicity"`
 
-		ApnPrefix FwGtpApnPrefix441 `json:"apn-prefix"`
+		ApnPrefix FwGtpApnPrefix432 `json:"apn-prefix"`
 
 		ApnPrefixList string `json:"apn-prefix-list"`
 
@@ -24,7 +24,7 @@ type FwGtp struct {
 
 		NeV6LogPeriodicity int `json:"ne-v6-log-periodicity"`
 
-		NetworkElement FwGtpNetworkElement442 `json:"network-element"`
+		NetworkElement FwGtpNetworkElement433 `json:"network-element"`
 
 		NetworkElementListV4 string `json:"network-element-list-v4"`
 
@@ -38,11 +38,11 @@ type FwGtp struct {
 	} `json:"gtp"`
 }
 
-type FwGtpApnPrefix441 struct {
+type FwGtpApnPrefix432 struct {
 	Uuid string `json:"uuid"`
 }
 
-type FwGtpNetworkElement442 struct {
+type FwGtpNetworkElement433 struct {
 	Uuid string `json:"uuid"`
 }
 

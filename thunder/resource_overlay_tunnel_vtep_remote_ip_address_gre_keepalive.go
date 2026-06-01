@@ -25,11 +25,11 @@ func resourceOverlayTunnelVtepRemoteIpAddressGreKeepalive() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"id1": {
-				Type: schema.TypeString, Required: true, Description: "Id1",
-			},
 			"ip_address": {
 				Type: schema.TypeString, Required: true, Description: "IpAddress",
+			},
+			"id1": {
+				Type: schema.TypeString, Required: true, Description: "Id1",
 			},
 		},
 	}
@@ -101,7 +101,7 @@ func dataToEndpointOverlayTunnelVtepRemoteIpAddressGreKeepalive(d *schema.Resour
 	ret.Inst.RetryCount = d.Get("retry_count").(int)
 	ret.Inst.RetryTime = d.Get("retry_time").(int)
 	//omit uuid
-	ret.Inst.Id1 = d.Get("id1").(string)
 	ret.Inst.IpAddress = d.Get("ip_address").(string)
+	ret.Inst.Id1 = d.Get("id1").(string)
 	return ret
 }

@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttack struct {
 	Inst struct {
 		InitRequestMaxTime int `json:"init-request-max-time"`
@@ -18,7 +18,9 @@ type DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttack struct {
 
 		ResponsePktRateMax int `json:"response-pkt-rate-max"`
 
-		SlowAttackerIdentification DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification373 `json:"slow-attacker-identification"`
+		SlowAttack string `json:"slow-attack"`
+
+		SlowAttackerIdentification DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification369 `json:"slow-attacker-identification"`
 
 		Uuid string `json:"uuid"`
 
@@ -26,7 +28,7 @@ type DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttack struct {
 	} `json:"slow-attack"`
 }
 
-type DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification373 struct {
+type DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification369 struct {
 	EnableIdentification int    `json:"enable-identification"`
 	ActiveConnection     int    `json:"active-connection" dval:"3"`
 	BadConnection        int    `json:"bad-connection" dval:"75"`

@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type ScaleoutCluster struct {
 	Inst struct {
 		ClusterDevices ScaleoutClusterClusterDevices1449 `json:"cluster-devices"`
@@ -86,17 +86,19 @@ type ScaleoutClusterDeviceGroupsDeviceGroupListDeviceIdList1456 struct {
 }
 
 type ScaleoutClusterLocalDevice1457 struct {
-	Priority           int                                              `json:"priority"`
-	Id1                int                                              `json:"id1"`
-	Action             string                                           `json:"action" dval:"enable"`
-	StartDelay         int                                              `json:"start-delay"`
-	ClusterMode        string                                           `json:"cluster-mode" dval:"layer-2"`
-	Uuid               string                                           `json:"uuid"`
-	L2Redirect         ScaleoutClusterLocalDeviceL2Redirect1458         `json:"l2-redirect"`
-	TrafficRedirection ScaleoutClusterLocalDeviceTrafficRedirection1459 `json:"traffic-redirection"`
-	SessionSync        ScaleoutClusterLocalDeviceSessionSync1467        `json:"session-sync"`
-	ExcludeInterfaces  ScaleoutClusterLocalDeviceExcludeInterfaces1474  `json:"exclude-interfaces"`
-	TrackingTemplate   ScaleoutClusterLocalDeviceTrackingTemplate1479   `json:"tracking-template"`
+	Priority            int                                              `json:"priority"`
+	Id1                 int                                              `json:"id1"`
+	Action              string                                           `json:"action" dval:"enable"`
+	FailureDomain       int                                              `json:"failure-domain"`
+	FailureDomainString string                                           `json:"failure-domain-string"`
+	StartDelay          int                                              `json:"start-delay"`
+	ClusterMode         string                                           `json:"cluster-mode" dval:"layer-2"`
+	Uuid                string                                           `json:"uuid"`
+	L2Redirect          ScaleoutClusterLocalDeviceL2Redirect1458         `json:"l2-redirect"`
+	TrafficRedirection  ScaleoutClusterLocalDeviceTrafficRedirection1459 `json:"traffic-redirection"`
+	SessionSync         ScaleoutClusterLocalDeviceSessionSync1467        `json:"session-sync"`
+	ExcludeInterfaces   ScaleoutClusterLocalDeviceExcludeInterfaces1474  `json:"exclude-interfaces"`
+	TrackingTemplate    ScaleoutClusterLocalDeviceTrackingTemplate1479   `json:"tracking-template"`
 }
 
 type ScaleoutClusterLocalDeviceL2Redirect1458 struct {

@@ -44,6 +44,7 @@ resource "thunder_aam_jwt_authorization" "thunder_aam_jwt_authorization" {
 
 ### Optional
 
+- `client_error_resp_code` (Number) Specify the HTTP response code to return when client JWT authorization fails
 - `exp_claim_requried` (Number) Specify the exp claim is required for JWT authorization
 - `jwt_cache_enable` (Number) Enable caching authorized JWT token and skip verification and authorization for cached tokens
 - `jwt_exp_default` (Number) Specify the default token expiration if exp claim is not available (default 1800)

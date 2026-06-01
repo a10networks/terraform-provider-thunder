@@ -5,16 +5,16 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityZbarDest struct {
 	Inst struct {
-		BadSources VisibilityZbarDestBadSources3238 `json:"bad-sources"`
+		BadSources VisibilityZbarDestBadSources3266 `json:"bad-sources"`
 
 		Uuid string `json:"uuid"`
 	} `json:"dest"`
 }
 
-type VisibilityZbarDestBadSources3238 struct {
+type VisibilityZbarDestBadSources3266 struct {
 	Uuid string `json:"uuid"`
 }
 

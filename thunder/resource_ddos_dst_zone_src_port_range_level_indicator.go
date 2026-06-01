@@ -31,20 +31,20 @@ func resourceDdosDstZoneSrcPortRangeLevelIndicator() *schema.Resource {
 			"zone_threshold_num": {
 				Type: schema.TypeInt, Optional: true, Description: "Threshold of the entire zone for the port-range",
 			},
-			"src_port_range_start": {
-				Type: schema.TypeString, Required: true, Description: "SrcPortRangeStart",
-			},
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
-			"src_port_range_end": {
-				Type: schema.TypeString, Required: true, Description: "SrcPortRangeEnd",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 			"level_num": {
 				Type: schema.TypeString, Required: true, Description: "LevelNum",
 			},
-			"zone_name": {
-				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			"src_port_range_end": {
+				Type: schema.TypeString, Required: true, Description: "SrcPortRangeEnd",
+			},
+			"src_port_range_start": {
+				Type: schema.TypeString, Required: true, Description: "SrcPortRangeStart",
 			},
 		},
 	}
@@ -118,10 +118,10 @@ func dataToEndpointDdosDstZoneSrcPortRangeLevelIndicator(d *schema.ResourceData)
 	//omit uuid
 	ret.Inst.ZoneThresholdLargeNum = d.Get("zone_threshold_large_num").(int)
 	ret.Inst.ZoneThresholdNum = d.Get("zone_threshold_num").(int)
-	ret.Inst.SrcPortRangeStart = d.Get("src_port_range_start").(string)
 	ret.Inst.Protocol = d.Get("protocol").(string)
-	ret.Inst.SrcPortRangeEnd = d.Get("src_port_range_end").(string)
-	ret.Inst.LevelNum = d.Get("level_num").(string)
 	ret.Inst.ZoneName = d.Get("zone_name").(string)
+	ret.Inst.LevelNum = d.Get("level_num").(string)
+	ret.Inst.SrcPortRangeEnd = d.Get("src_port_range_end").(string)
+	ret.Inst.SrcPortRangeStart = d.Get("src_port_range_start").(string)
 	return ret
 }

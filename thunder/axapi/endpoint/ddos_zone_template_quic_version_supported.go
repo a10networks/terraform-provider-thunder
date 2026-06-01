@@ -3,12 +3,13 @@ package endpoint
 import (
 	"github.com/a10networks/terraform-provider-thunder/thunder/axapi"
 	"github.com/clarketm/json"
+	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosZoneTemplateQuicVersionSupported struct {
 	Inst struct {
-		MalformedCheck DdosZoneTemplateQuicVersionSupportedMalformedCheck368 `json:"malformed-check"`
+		MalformedCheck DdosZoneTemplateQuicVersionSupportedMalformedCheck364 `json:"malformed-check"`
 
 		UserTag string `json:"user-tag"`
 
@@ -18,15 +19,15 @@ type DdosZoneTemplateQuicVersionSupported struct {
 
 		VersionActionListName string `json:"version-action-list-name"`
 
-		VersionEnd string `json:"version-end"`
-
-		VersionStart string `json:"version-start"`
+		VersionEnd   int `json:"version-end"`
+        
+		VersionStart int `json:"version-start"`
 
 		QuicTmplName string
 	} `json:"version-supported"`
 }
 
-type DdosZoneTemplateQuicVersionSupportedMalformedCheck368 struct {
+type DdosZoneTemplateQuicVersionSupportedMalformedCheck364 struct {
 	MalformedEnable              string `json:"malformed-enable" dval:"enable"`
 	MaxSourceCidLength           int    `json:"max-source-cid-length" dval:"255"`
 	MaxDestinationCidLength      int    `json:"max-destination-cid-length" dval:"255"`
@@ -36,7 +37,7 @@ type DdosZoneTemplateQuicVersionSupportedMalformedCheck368 struct {
 }
 
 func (p *DdosZoneTemplateQuicVersionSupported) GetId() string {
-	return p.Inst.VersionStart + "+" + p.Inst.VersionEnd
+	return strconv.Itoa(p.Inst.VersionStart) + "+" + strconv.Itoa(p.Inst.VersionEnd)
 }
 
 func (p *DdosZoneTemplateQuicVersionSupported) getPath() string {

@@ -252,6 +252,7 @@ resource "thunder_slb_common" "thunder_slb_common" {
 - `dns_cache_sync_ttl_threshold` (Number) Only sync DNS cache with longer TTL (0-10000000 seconds, default is 0 second)
 - `dns_cache_ttl_adjustment_enable` (Number) Enable DNS cache response ttl adjustment
 - `dns_cookie_cache_policy` (String) 'served-by-cache': Answer from cache for requests with cookie; 'served-by-backend': Answer from server for requests with cookie;
+- `dns_max_udp_size` (Number) Set maximum DNS response message size that ACOS sends by UDP (Maximum DNS response message size (bytes))
 - `dns_negative_cache_bypass_threshold` (Number) Query bypass threshold of negative cache entry, default is 100
 - `dns_negative_cache_caching_non_valid` (Number) Enable caching non-valid negative response, otherwise will only cache valid negative response
 - `dns_negative_cache_enable` (Number) Enable DNS negative cache
@@ -293,6 +294,8 @@ resource "thunder_slb_common" "thunder_slb_common" {
 - `monitor_mode_enable` (Number) Enable NG-WAF monitor mode
 - `msl_time` (Number) Configure maximum session life, default is 2 seconds (1-39 seconds, default is 2 seconds)
 - `mss_table` (Number) Set MSS table (128-750, default is 536)
+- `n5_new` (Number) HW assisted N5 SSL module with TLS 1.3 and TLS 1.2 support using OpenSSL 1.1.1
+- `n5_old` (Number) HW assisted N5 SSL module with TLS 1.2 support using OpenSSL 0.9.7
 - `ngwaf_proxy_ipv4` (String) IPv4 address
 - `ngwaf_proxy_ipv6` (String) IPv6 address
 - `ngwaf_proxy_port` (Number) Port
@@ -334,9 +337,13 @@ resource "thunder_slb_common" "thunder_slb_common" {
 - `snat_gwy_for_l3` (Number) Use source NAT gateway for L3 traffic for transparent mode
 - `snat_on_vip` (Number) Enable source NAT traffic against VIP
 - `snat_preserve` (Block List, Max: 1) (see [below for nested schema](#nestedblock--snat_preserve))
-- `software` (Number) Software(includes TLS 1.3 support)
+- `software` (Number) Software
+- `software_tls13` (Number) Software TLS1.3
 - `software_tls13_offload` (Number) Software TLS1.3 with CPU Offload Support
+- `sort_res` (Number) Enable SLB sorting of resource names
 - `ssl_module_usage_enable` (Number) Enable SSL module usage calculations for QAT
+- `ssl_n5_delay_tx_enable` (Number) Enable delay transmission for N5-new
+- `ssl_ratelimit_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ssl_ratelimit_cfg))
 - `ssli_cert_not_ready_inspect_limit` (Number) SSLI asynchronized connection max number, default is 2000 (set to 0 for unlimited size)
 - `ssli_cert_not_ready_inspect_timeout` (Number) SSLI asynchronized connection timeout, default is 10 seconds (seconds, set to 0 for never timeout)
 - `ssli_silent_termination_enable` (Number) Terminate the SSLi sessions silently without sending RST/FIN packet
@@ -541,3 +548,14 @@ Optional:
 
 - `port1` (Number) start port
 - `port2` (Number) end port which is greater than start
+
+
+
+<a id="nestedblock--ssl_ratelimit_cfg"></a>
+### Nested Schema for `ssl_ratelimit_cfg`
+
+Optional:
+
+- `disable_rate` (Number) Disable HW SSL Rate limit for N5-new
+- `tls12_rate` (Number) Enabling Rateliming for TLS1.2 HW requests per chip in 1K - default 120
+- `tls13_rate` (Number) Enabling Rateliming for TLS1.3 HW requests per chip in 1K - default 72

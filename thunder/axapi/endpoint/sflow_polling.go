@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SflowPolling struct {
 	Inst struct {
 		A10Proprietary SflowPollingA10Proprietary1493 `json:"a10-proprietary"`
@@ -26,7 +26,9 @@ type SflowPolling struct {
 
 		HttpCounter int `json:"http-counter"`
 
-		SystemHealth SflowPollingSystemHealth1497 `json:"system-health"`
+		MgmtSvcAcl SflowPollingMgmtSvcAcl1497 `json:"mgmt-svc-acl"`
+
+		SystemHealth SflowPollingSystemHealth1498 `json:"system-health"`
 
 		Uuid string `json:"uuid"`
 
@@ -74,7 +76,12 @@ type SflowPollingHttp1496 struct {
 	Uuid   string `json:"uuid"`
 }
 
-type SflowPollingSystemHealth1497 struct {
+type SflowPollingMgmtSvcAcl1497 struct {
+	Toggle string `json:"toggle" dval:"disable"`
+	Uuid   string `json:"uuid"`
+}
+
+type SflowPollingSystemHealth1498 struct {
 	SystemHealthUsage  string `json:"system-health-usage" dval:"disable"`
 	PerControlCpuUsage string `json:"per-control-cpu-usage" dval:"disable"`
 	PerDataCpuUsage    string `json:"per-data-cpu-usage" dval:"disable"`

@@ -3,13 +3,13 @@
 page_title: "thunder_controller_telemetry Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  thunder_controller_telemetry: Controller telemetry config
+  thunder_controller_telemetry: A10 Control telemetry config
   PLACEHOLDER
 ---
 
 # thunder_controller_telemetry (Resource)
 
-`thunder_controller_telemetry`: Controller telemetry config
+`thunder_controller_telemetry`: A10 Control telemetry config
 
 __PLACEHOLDER__
 
@@ -21,21 +21,8 @@ __PLACEHOLDER__
 ### Optional
 
 - `log_rate` (Number) Max number of session logs sent by the partition per second
-- `probe` (Block List, Max: 1) (see [below for nested schema](#nestedblock--probe))
 - `uuid` (String) uuid of the object
 
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-
-<a id="nestedblock--probe"></a>
-### Nested Schema for `probe`
-
-Optional:
-
-- `action` (String) 'enable': Enable the probe functionality; 'disable': Disable the probe functionality;
-- `export_policy` (String) 'snapshots-all': Export historical/missed snapshots.; 'snapshots-new': Export only new snapshots(default).;
-- `interval` (Number) snapshot export interval in minute,default is 15.
-- `log_level` (String) 'ERROR': show errors only(default).; 'WARNING': show warnings; 'INFO': show info messages; 'DEBUG': show debug logs;
-- `target` (String) 'remote': Export data to remote. This is the default value.; 'local': Export data local.;
-- `uuid` (String) uuid of the object

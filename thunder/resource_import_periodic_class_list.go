@@ -16,11 +16,11 @@ func resourceImportPeriodicClassList() *schema.Resource {
 		DeleteContext: resourceImportPeriodicClassListDelete,
 
 		Schema: map[string]*schema.Schema{
-			"background": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "background mode for importing class-list",
-			},
 			"class_list": {
 				Type: schema.TypeString, Required: true, Description: "Class List File",
+			},
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "Config remote server  password",
 			},
 			"period": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the period in second",
@@ -104,8 +104,9 @@ func resourceImportPeriodicClassListRead(ctx context.Context, d *schema.Resource
 
 func dataToEndpointImportPeriodicClassList(d *schema.ResourceData) edpt.ImportPeriodicClassList {
 	var ret edpt.ImportPeriodicClassList
-	ret.Inst.Background = d.Get("background").(int)
 	ret.Inst.ClassList = d.Get("class_list").(string)
+	//omit encrypted
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)

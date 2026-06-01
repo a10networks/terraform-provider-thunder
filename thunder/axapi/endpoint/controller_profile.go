@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type ControllerProfile struct {
 	Inst struct {
 		Action string `json:"action"`
@@ -24,7 +24,7 @@ type ControllerProfile struct {
 
 		ClusterName string `json:"cluster-name"`
 
-		Force ControllerProfileForce140 `json:"force"`
+		Force ControllerProfileForce141 `json:"force"`
 
 		Host string `json:"host"`
 
@@ -38,15 +38,15 @@ type ControllerProfile struct {
 
 		Port int `json:"port"`
 
-		ReSync ControllerProfileReSync141 `json:"re-sync"`
+		ReSync ControllerProfileReSync142 `json:"re-sync"`
 
 		Region string `json:"region"`
 
 		SecretValue string `json:"secret-value"`
 
-		ThunderMgmtIp ControllerProfileThunderMgmtIp142 `json:"thunder-mgmt-ip"`
+		ThunderMgmtIp ControllerProfileThunderMgmtIp143 `json:"thunder-mgmt-ip"`
 
-		Tunnel ControllerProfileTunnel143 `json:"tunnel"`
+		Tunnel ControllerProfileTunnel144 `json:"tunnel"`
 
 		UseMgmtPort int `json:"use-mgmt-port"`
 
@@ -56,22 +56,22 @@ type ControllerProfile struct {
 	} `json:"profile"`
 }
 
-type ControllerProfileForce140 struct {
+type ControllerProfileForce141 struct {
 	Deregister int `json:"deregister"`
 }
 
-type ControllerProfileReSync141 struct {
+type ControllerProfileReSync142 struct {
 	SchemaRegistry int `json:"schema-registry"`
 	AnalyticsBus   int `json:"analytics-bus"`
 }
 
-type ControllerProfileThunderMgmtIp142 struct {
+type ControllerProfileThunderMgmtIp143 struct {
 	IpAddress string `json:"ip-address"`
 	Ipv6Addr  string `json:"ipv6-addr"`
 	Uuid      string `json:"uuid"`
 }
 
-type ControllerProfileTunnel143 struct {
+type ControllerProfileTunnel144 struct {
 	Action string `json:"action" dval:"disable"`
 	Uuid   string `json:"uuid"`
 }

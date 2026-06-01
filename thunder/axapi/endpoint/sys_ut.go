@@ -5,16 +5,16 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SysUt struct {
 	Inst struct {
 		Action string `json:"action" dval:"disable"`
 
-		Common SysUtCommon1671 `json:"common"`
+		Common SysUtCommon1672 `json:"common"`
 
 		EventList []SysUtEventList `json:"event-list"`
 
-		RunTest SysUtRunTest1672 `json:"run-test"`
+		RunTest SysUtRunTest1673 `json:"run-test"`
 
 		SecondaryName string `json:"secondary-name"`
 
@@ -28,7 +28,7 @@ type SysUt struct {
 	} `json:"sys-ut"`
 }
 
-type SysUtCommon1671 struct {
+type SysUtCommon1672 struct {
 	ProceedOnError int    `json:"proceed-on-error"`
 	Delay          int    `json:"delay"`
 	Uuid           string `json:"uuid"`
@@ -172,7 +172,7 @@ type SysUtEventListActionListIgnoreValidation struct {
 	Uuid string `json:"uuid"`
 }
 
-type SysUtRunTest1672 struct {
+type SysUtRunTest1673 struct {
 	Mode string `json:"mode"`
 }
 

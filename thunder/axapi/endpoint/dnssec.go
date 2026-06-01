@@ -5,16 +5,16 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Dnssec struct {
 	Inst struct {
-		Dnskey DnssecDnskey414 `json:"dnskey"`
+		Dnskey DnssecDnskey405 `json:"dnskey"`
 
-		Ds DnssecDs415 `json:"ds"`
+		Ds DnssecDs406 `json:"ds"`
 
-		KeyRollover DnssecKeyRollover416 `json:"key-rollover"`
+		KeyRollover DnssecKeyRollover407 `json:"key-rollover"`
 
-		SignZoneNow DnssecSignZoneNow417 `json:"sign-zone-now"`
+		SignZoneNow DnssecSignZoneNow408 `json:"sign-zone-now"`
 
 		Standalone int `json:"standalone"`
 
@@ -24,17 +24,17 @@ type Dnssec struct {
 	} `json:"dnssec"`
 }
 
-type DnssecDnskey414 struct {
+type DnssecDnskey405 struct {
 	KeyDelete int    `json:"key-delete"`
 	ZoneName  string `json:"zone-name"`
 }
 
-type DnssecDs415 struct {
+type DnssecDs406 struct {
 	DsDelete int    `json:"ds-delete"`
 	ZoneName string `json:"zone-name"`
 }
 
-type DnssecKeyRollover416 struct {
+type DnssecKeyRollover407 struct {
 	ZoneName            string `json:"zone-name"`
 	DnssecKeyType       string `json:"dnssec-key-type"`
 	ZskStart            int    `json:"zsk-start"`
@@ -42,7 +42,7 @@ type DnssecKeyRollover416 struct {
 	DsReadyInParentZone int    `json:"ds-ready-in-parent-zone"`
 }
 
-type DnssecSignZoneNow417 struct {
+type DnssecSignZoneNow408 struct {
 	ZoneName string `json:"zone-name"`
 }
 

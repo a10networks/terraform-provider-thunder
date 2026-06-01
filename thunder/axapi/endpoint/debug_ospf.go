@@ -5,42 +5,42 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DebugOspf struct {
 	Inst struct {
-		All DebugOspfAll405 `json:"all"`
+		All DebugOspfAll396 `json:"all"`
 
-		Bfd DebugOspfBfd406 `json:"bfd"`
+		Bfd DebugOspfBfd397 `json:"bfd"`
 
 		Dumy int `json:"dumy"`
 
-		Events DebugOspfEvents407 `json:"events"`
+		Events DebugOspfEvents398 `json:"events"`
 
-		Ifsm DebugOspfIfsm408 `json:"ifsm"`
+		Ifsm DebugOspfIfsm399 `json:"ifsm"`
 
-		Lsa DebugOspfLsa409 `json:"lsa"`
+		Lsa DebugOspfLsa400 `json:"lsa"`
 
-		Nfsm DebugOspfNfsm410 `json:"nfsm"`
+		Nfsm DebugOspfNfsm401 `json:"nfsm"`
 
-		Nsm DebugOspfNsm411 `json:"nsm"`
+		Nsm DebugOspfNsm402 `json:"nsm"`
 
-		Packet DebugOspfPacket412 `json:"packet"`
+		Packet DebugOspfPacket403 `json:"packet"`
 
-		Route DebugOspfRoute413 `json:"route"`
+		Route DebugOspfRoute404 `json:"route"`
 	} `json:"ospf"`
 }
 
-type DebugOspfAll405 struct {
+type DebugOspfAll396 struct {
 	Dumy int    `json:"dumy"`
 	Uuid string `json:"uuid"`
 }
 
-type DebugOspfBfd406 struct {
+type DebugOspfBfd397 struct {
 	Dumy int    `json:"dumy"`
 	Uuid string `json:"uuid"`
 }
 
-type DebugOspfEvents407 struct {
+type DebugOspfEvents398 struct {
 	Abr    int    `json:"abr"`
 	Asbr   int    `json:"asbr"`
 	Os     int    `json:"os"`
@@ -49,14 +49,14 @@ type DebugOspfEvents407 struct {
 	Uuid   string `json:"uuid"`
 }
 
-type DebugOspfIfsm408 struct {
+type DebugOspfIfsm399 struct {
 	Events int    `json:"events"`
 	Status int    `json:"status"`
 	Timers int    `json:"timers"`
 	Uuid   string `json:"uuid"`
 }
 
-type DebugOspfLsa409 struct {
+type DebugOspfLsa400 struct {
 	Flooding int    `json:"flooding"`
 	Gererate int    `json:"gererate"`
 	Install  int    `json:"install"`
@@ -65,20 +65,20 @@ type DebugOspfLsa409 struct {
 	Uuid     string `json:"uuid"`
 }
 
-type DebugOspfNfsm410 struct {
+type DebugOspfNfsm401 struct {
 	Events int    `json:"events"`
 	Status int    `json:"status"`
 	Timers int    `json:"timers"`
 	Uuid   string `json:"uuid"`
 }
 
-type DebugOspfNsm411 struct {
+type DebugOspfNsm402 struct {
 	Interface    int    `json:"interface"`
 	Redistribute int    `json:"redistribute"`
 	Uuid         string `json:"uuid"`
 }
 
-type DebugOspfPacket412 struct {
+type DebugOspfPacket403 struct {
 	Dd        int    `json:"dd"`
 	Detail    int    `json:"detail"`
 	Hello     int    `json:"hello"`
@@ -90,7 +90,7 @@ type DebugOspfPacket412 struct {
 	Uuid      string `json:"uuid"`
 }
 
-type DebugOspfRoute413 struct {
+type DebugOspfRoute404 struct {
 	Ase     int    `json:"ase"`
 	Ia      int    `json:"ia"`
 	Install int    `json:"install"`

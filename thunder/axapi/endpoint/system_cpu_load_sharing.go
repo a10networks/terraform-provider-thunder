@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemCpuLoadSharing struct {
 	Inst struct {
 		AllowL7Sessions int `json:"allow-l7-sessions"`
@@ -13,6 +13,14 @@ type SystemCpuLoadSharing struct {
 		CpuUsage SystemCpuLoadSharingCpuUsage `json:"cpu-usage"`
 
 		Disable int `json:"disable"`
+
+		DisallowNewSessionCpuEwmaAlpha int `json:"disallow-new-session-cpu-ewma-alpha" dval:"18"`
+
+		DisallowNewSessionCpuProbeTime int `json:"disallow-new-session-cpu-probe-time" dval:"20"`
+
+		DisallowNewSessionCpuUsageHigh int `json:"disallow-new-session-cpu-usage-high"`
+
+		DisallowNewSessionCpuUsageLow int `json:"disallow-new-session-cpu-usage-low"`
 
 		Others int `json:"others"`
 

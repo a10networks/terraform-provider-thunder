@@ -48,7 +48,6 @@ resource "thunder_configure_sync" "thunder_configure_sync" {
 - `timeout` (Number) Specify the timeout (in second)
 - `type` (String) 'running': Sync local running to peer's running configuration; 'all': Sync local running to peer's running configuration, and local startup to peer's startup configuration;
 - `usr` (String)
-- `uuid` (String) uuid of the object
 
 ### Read-Only
 

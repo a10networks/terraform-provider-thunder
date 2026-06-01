@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosSwitchStats struct {
 	Stats DdosSwitchStatsStats `json:"stats"`
 }
@@ -34,6 +34,7 @@ type DdosSwitchStatsStats struct {
 	Mpls_malformed                 int `json:"mpls_malformed"`
 	Jumbo_frag_drop_by_filter      int `json:"jumbo_frag_drop_by_filter"`
 	Jumbo_frag_drop_before_slb     int `json:"jumbo_frag_drop_before_slb"`
+	Outgoing_mtu_exceed_drop       int `json:"outgoing_mtu_exceed_drop"`
 	Jumbo_outgoing_mtu_exceed_drop int `json:"jumbo_outgoing_mtu_exceed_drop"`
 }
 

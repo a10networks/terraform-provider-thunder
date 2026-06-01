@@ -5,14 +5,14 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type FailSafe struct {
 	Inst struct {
-		Config FailSafeConfig420 `json:"config"`
+		Config FailSafeConfig411 `json:"config"`
 
 		DataplaneRecoveryTimeout int `json:"dataplane-recovery-timeout" dval:"5"`
 
-		DisableFailsafe FailSafeDisableFailsafe421 `json:"disable-failsafe"`
+		DisableFailsafe FailSafeDisableFailsafe412 `json:"disable-failsafe"`
 
 		FpgaBuffRecoveryThreshold int `json:"fpga-buff-recovery-threshold" dval:"2"`
 
@@ -46,11 +46,11 @@ type FailSafe struct {
 	} `json:"fail-safe"`
 }
 
-type FailSafeConfig420 struct {
+type FailSafeConfig411 struct {
 	Uuid string `json:"uuid"`
 }
 
-type FailSafeDisableFailsafe421 struct {
+type FailSafeDisableFailsafe412 struct {
 	Action string `json:"action" dval:"all"`
 	Uuid   string `json:"uuid"`
 }

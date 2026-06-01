@@ -183,10 +183,10 @@ func resourceSysUtTemplateTcpRead(ctx context.Context, d *schema.ResourceData, m
 	return diags
 }
 
-func getObjectSysUtTemplateTcpFlags1655(d []interface{}) edpt.SysUtTemplateTcpFlags1655 {
+func getObjectSysUtTemplateTcpFlags1656(d []interface{}) edpt.SysUtTemplateTcpFlags1656 {
 
 	count1 := len(d)
-	var ret edpt.SysUtTemplateTcpFlags1655
+	var ret edpt.SysUtTemplateTcpFlags1656
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Syn = in["syn"].(int)
@@ -202,10 +202,10 @@ func getObjectSysUtTemplateTcpFlags1655(d []interface{}) edpt.SysUtTemplateTcpFl
 	return ret
 }
 
-func getObjectSysUtTemplateTcpOptions1656(d []interface{}) edpt.SysUtTemplateTcpOptions1656 {
+func getObjectSysUtTemplateTcpOptions1657(d []interface{}) edpt.SysUtTemplateTcpOptions1657 {
 
 	count1 := len(d)
-	var ret edpt.SysUtTemplateTcpOptions1656
+	var ret edpt.SysUtTemplateTcpOptions1657
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mss = in["mss"].(int)
@@ -238,9 +238,9 @@ func dataToEndpointSysUtTemplateTcp(d *schema.ResourceData) edpt.SysUtTemplateTc
 	ret.Inst.Checksum = d.Get("checksum").(string)
 	ret.Inst.DestPort = d.Get("dest_port").(int)
 	ret.Inst.DestPortValue = d.Get("dest_port_value").(int)
-	ret.Inst.Flags = getObjectSysUtTemplateTcpFlags1655(d.Get("flags").([]interface{}))
+	ret.Inst.Flags = getObjectSysUtTemplateTcpFlags1656(d.Get("flags").([]interface{}))
 	ret.Inst.NatPool = d.Get("nat_pool").(string)
-	ret.Inst.Options = getObjectSysUtTemplateTcpOptions1656(d.Get("options").([]interface{}))
+	ret.Inst.Options = getObjectSysUtTemplateTcpOptions1657(d.Get("options").([]interface{}))
 	ret.Inst.SeqNumber = d.Get("seq_number").(string)
 	ret.Inst.SrcPortRange = getSliceSysUtTemplateTcpSrcPortRange(d.Get("src_port_range").([]interface{}))
 	ret.Inst.Urgent = d.Get("urgent").(string)

@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosNetworkObjectSubNetworkSubNetworkV4 struct {
 	Inst struct {
 		BreakdownSubnetThreshold DdosNetworkObjectSubNetworkSubNetworkV4BreakdownSubnetThreshold `json:"breakdown-subnet-threshold"`

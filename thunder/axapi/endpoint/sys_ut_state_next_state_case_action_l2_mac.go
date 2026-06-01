@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SysUtStateNextStateCaseActionL2Mac struct {
 	Inst struct {
 		AddressType string `json:"address-type"`
@@ -26,13 +26,13 @@ type SysUtStateNextStateCaseActionL2Mac struct {
 
 		VirtualServer string `json:"virtual-server"`
 
-		State_name string
+		CaseNumber string
 
 		Direction string
 
 		Next_state_name string
 
-		CaseNumber string
+		State_name string
 	} `json:"mac"`
 }
 

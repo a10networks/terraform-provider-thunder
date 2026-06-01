@@ -105,11 +105,11 @@ func resourceSysUtEventActionTcp() *schema.Resource {
 			"window": {
 				Type: schema.TypeString, Optional: true, Default: "valid", Description: "'valid': valid; 'invalid': invalid;",
 			},
-			"direction": {
-				Type: schema.TypeString, Required: true, Description: "Direction",
-			},
 			"event_number": {
 				Type: schema.TypeString, Required: true, Description: "EventNumber",
+			},
+			"direction": {
+				Type: schema.TypeString, Required: true, Description: "Direction",
 			},
 		},
 	}
@@ -176,10 +176,10 @@ func resourceSysUtEventActionTcpRead(ctx context.Context, d *schema.ResourceData
 	return diags
 }
 
-func getObjectSysUtEventActionTcpFlags1628(d []interface{}) edpt.SysUtEventActionTcpFlags1628 {
+func getObjectSysUtEventActionTcpFlags1629(d []interface{}) edpt.SysUtEventActionTcpFlags1629 {
 
 	count1 := len(d)
-	var ret edpt.SysUtEventActionTcpFlags1628
+	var ret edpt.SysUtEventActionTcpFlags1629
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Syn = in["syn"].(int)
@@ -195,10 +195,10 @@ func getObjectSysUtEventActionTcpFlags1628(d []interface{}) edpt.SysUtEventActio
 	return ret
 }
 
-func getObjectSysUtEventActionTcpOptions1629(d []interface{}) edpt.SysUtEventActionTcpOptions1629 {
+func getObjectSysUtEventActionTcpOptions1630(d []interface{}) edpt.SysUtEventActionTcpOptions1630 {
 
 	count1 := len(d)
-	var ret edpt.SysUtEventActionTcpOptions1629
+	var ret edpt.SysUtEventActionTcpOptions1630
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mss = in["mss"].(int)
@@ -217,15 +217,15 @@ func dataToEndpointSysUtEventActionTcp(d *schema.ResourceData) edpt.SysUtEventAc
 	ret.Inst.Checksum = d.Get("checksum").(string)
 	ret.Inst.DestPort = d.Get("dest_port").(int)
 	ret.Inst.DestPortValue = d.Get("dest_port_value").(int)
-	ret.Inst.Flags = getObjectSysUtEventActionTcpFlags1628(d.Get("flags").([]interface{}))
+	ret.Inst.Flags = getObjectSysUtEventActionTcpFlags1629(d.Get("flags").([]interface{}))
 	ret.Inst.NatPool = d.Get("nat_pool").(string)
-	ret.Inst.Options = getObjectSysUtEventActionTcpOptions1629(d.Get("options").([]interface{}))
+	ret.Inst.Options = getObjectSysUtEventActionTcpOptions1630(d.Get("options").([]interface{}))
 	ret.Inst.SeqNumber = d.Get("seq_number").(string)
 	ret.Inst.SrcPort = d.Get("src_port").(int)
 	ret.Inst.Urgent = d.Get("urgent").(string)
 	//omit uuid
 	ret.Inst.Window = d.Get("window").(string)
-	ret.Inst.Direction = d.Get("direction").(string)
 	ret.Inst.EventNumber = d.Get("event_number").(string)
+	ret.Inst.Direction = d.Get("direction").(string)
 	return ret
 }

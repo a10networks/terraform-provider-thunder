@@ -24,12 +24,12 @@ __PLACEHOLDER__
 
 ### Optional
 
+- `anomaly_child_percentage` (Number) percentage of anomaly child's threshold used in delayed notification sending check (default 75)
 - `anomaly_detection_trigger` (String) 'all': Use both learned and static thresholds (static thresholds take precedence); 'static-threshold-only': Use static thresholds only;
 - `enable_top_k` (Block List) (see [below for nested schema](#nestedblock--enable_top_k))
 - `flooding_multiplier` (Number) multiplier for flooding detection threshold in network objects (default 2x threshold)
 - `histogram_mode` (String) 'off': histogram feature disabled; 'monitor': histogram feature enabled with anomaly escalation; 'observe': histogram feature enabled and observe only;
 - `host_anomaly_threshold` (Block List, Max: 1) (see [below for nested schema](#nestedblock--host_anomaly_threshold))
-- `host_sport_discovery` (String) 'enable': Enable source port discovery.; 'disable': Disable source port discovery.;
 - `indicators_to_monitor` (Block List, Max: 1) (see [below for nested schema](#nestedblock--indicators_to_monitor))
 - `ip_list` (Block List) (see [below for nested schema](#nestedblock--ip_list))
 - `ipv6_list` (Block List) (see [below for nested schema](#nestedblock--ipv6_list))
@@ -41,10 +41,8 @@ __PLACEHOLDER__
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
 - `service_break_down_threshold_local` (Block List, Max: 1) (see [below for nested schema](#nestedblock--service_break_down_threshold_local))
 - `service_discovery` (String) 'disable': Disable service discovery for hosts (default: enabled);
-- `sport_anomaly_detection` (String) 'disable': Disable source port anomaly detection (default: enabled);
-- `sport_anomaly_threshold` (Block List, Max: 1) (see [below for nested schema](#nestedblock--sport_anomaly_threshold))
-- `sport_discovery_threshold` (Block List, Max: 1) (see [below for nested schema](#nestedblock--sport_discovery_threshold))
-- `sport_list` (Block List) (see [below for nested schema](#nestedblock--sport_list))
+- `src_service_discovery` (String) 'enable': Enable source service discovery.; 'disable': Disable source service discovery.;
+- `src_service_discovery_threshold` (Number) Percentage of the bit rate of undiscovered source services (default: 10)
 - `static_auto_break_down_threshold` (Block List, Max: 1) (see [below for nested schema](#nestedblock--static_auto_break_down_threshold))
 - `sub_network` (Block List, Max: 1) (see [below for nested schema](#nestedblock--sub_network))
 - `threshold_sensitivity` (String) tune threshold ranges with levels LOW/MEDIUM/HIGH/OFF(default) or multiplier of threshold value (available options are LOW=5x/MEDIUM=3x/HIGH=1.5x/OFF=1x, or float value between 1.0-10.0)
@@ -120,6 +118,7 @@ Optional:
 
 - `prefix_anomaly_threshold` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_list--prefix_anomaly_threshold))
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--ip_list--sampling_enable))
+- `src_port_list` (Block List) (see [below for nested schema](#nestedblock--ip_list--src_port_list))
 - `user_tag` (String) Customized tag
 - `uuid` (String) uuid of the object
 
@@ -140,6 +139,40 @@ Optional:
 - `counters1` (String) 'all': all; 'packet_rate': PPS; 'bit_rate': B(bits)PS;
 
 
+<a id="nestedblock--ip_list--src_port_list"></a>
+### Nested Schema for `ip_list.src_port_list`
+
+Required:
+
+- `port_num` (Number) Port Number
+- `protocol` (String) 'udp': UDP port; 'tcp': TCP Port;
+
+Optional:
+
+- `host_src_port_anomaly_threshold` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_list--src_port_list--host_src_port_anomaly_threshold))
+- `subnet_src_port_anomaly_threshold` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_list--src_port_list--subnet_src_port_anomaly_threshold))
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--ip_list--src_port_list--host_src_port_anomaly_threshold"></a>
+### Nested Schema for `ip_list.src_port_list.host_src_port_anomaly_threshold`
+
+Optional:
+
+- `host_src_port_bit_rate` (Number) Forward bit rate of per-host source port entries
+- `host_src_port_pkt_rate` (Number) Forward packet rate of per-host source port entries
+
+
+<a id="nestedblock--ip_list--src_port_list--subnet_src_port_anomaly_threshold"></a>
+### Nested Schema for `ip_list.src_port_list.subnet_src_port_anomaly_threshold`
+
+Optional:
+
+- `subnet_src_port_bit_rate` (Number) Forward bit rate of per-subnet source port entries
+- `subnet_src_port_pkt_rate` (Number) Forward packet rate of per-subnet source port entries
+
+
+
 
 <a id="nestedblock--ipv6_list"></a>
 ### Nested Schema for `ipv6_list`
@@ -152,6 +185,7 @@ Optional:
 
 - `prefix_anomaly_threshold` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipv6_list--prefix_anomaly_threshold))
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--ipv6_list--sampling_enable))
+- `src_port_list` (Block List) (see [below for nested schema](#nestedblock--ipv6_list--src_port_list))
 - `user_tag` (String) Customized tag
 - `uuid` (String) uuid of the object
 
@@ -170,6 +204,40 @@ Optional:
 Optional:
 
 - `counters1` (String) 'all': all; 'packet_rate': PPS; 'bit_rate': B(bits)PS;
+
+
+<a id="nestedblock--ipv6_list--src_port_list"></a>
+### Nested Schema for `ipv6_list.src_port_list`
+
+Required:
+
+- `port_num` (Number) Port Number
+- `protocol` (String) 'udp': UDP port; 'tcp': TCP Port;
+
+Optional:
+
+- `host_src_port_anomaly_threshold` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipv6_list--src_port_list--host_src_port_anomaly_threshold))
+- `subnet_src_port_anomaly_threshold` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipv6_list--src_port_list--subnet_src_port_anomaly_threshold))
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--ipv6_list--src_port_list--host_src_port_anomaly_threshold"></a>
+### Nested Schema for `ipv6_list.src_port_list.host_src_port_anomaly_threshold`
+
+Optional:
+
+- `host_src_port_bit_rate` (Number) Forward bit rate of per-host source port entries
+- `host_src_port_pkt_rate` (Number) Forward packet rate of per-host source port entries
+
+
+<a id="nestedblock--ipv6_list--src_port_list--subnet_src_port_anomaly_threshold"></a>
+### Nested Schema for `ipv6_list.src_port_list.subnet_src_port_anomaly_threshold`
+
+Optional:
+
+- `subnet_src_port_bit_rate` (Number) Forward bit rate of per-subnet source port entries
+- `subnet_src_port_pkt_rate` (Number) Forward packet rate of per-subnet source port entries
+
 
 
 
@@ -223,159 +291,6 @@ Optional:
 Optional:
 
 - `svc_percentage` (Number) percentage of parent ip node
-
-
-<a id="nestedblock--sport_anomaly_threshold"></a>
-### Nested Schema for `sport_anomaly_threshold`
-
-Optional:
-
-- `bit_rate` (Block List, Max: 1) (see [below for nested schema](#nestedblock--sport_anomaly_threshold--bit_rate))
-- `bit_rate_percentage` (Block List, Max: 1) (see [below for nested schema](#nestedblock--sport_anomaly_threshold--bit_rate_percentage))
-- `ip_list` (Block List) (see [below for nested schema](#nestedblock--sport_anomaly_threshold--ip_list))
-- `ipv6_list` (Block List) (see [below for nested schema](#nestedblock--sport_anomaly_threshold--ipv6_list))
-- `packet_rate` (Block List, Max: 1) (see [below for nested schema](#nestedblock--sport_anomaly_threshold--packet_rate))
-- `packet_rate_percentage` (Block List, Max: 1) (see [below for nested schema](#nestedblock--sport_anomaly_threshold--packet_rate_percentage))
-- `sport_list` (Block List) (see [below for nested schema](#nestedblock--sport_anomaly_threshold--sport_list))
-
-<a id="nestedblock--sport_anomaly_threshold--bit_rate"></a>
-### Nested Schema for `sport_anomaly_threshold.bit_rate`
-
-Optional:
-
-- `uuid` (String) uuid of the object
-- `value` (Number) Bit rate of a source port entry
-
-
-<a id="nestedblock--sport_anomaly_threshold--bit_rate_percentage"></a>
-### Nested Schema for `sport_anomaly_threshold.bit_rate_percentage`
-
-Optional:
-
-- `uuid` (String) uuid of the object
-- `value` (Number) Percentage of source port entry's parent entry
-
-
-<a id="nestedblock--sport_anomaly_threshold--ip_list"></a>
-### Nested Schema for `sport_anomaly_threshold.ip_list`
-
-Required:
-
-- `bit_rate_percentage_str` (String) 'bit-rate-percentage': Percentage of source port entry's parent entry;
-- `bit_rate_str` (String) 'bit-rate': Bit rate of a source port entry;
-- `ip_addr` (String) Override threshold
-- `ip_sport_bit_rate_percentage_str` (String) 'bit-rate-percentage': Percentage of source port entry's parent entry;
-- `ip_sport_bit_rate_str` (String) 'bit-rate': Bit rate of a source port entry;
-- `ip_sport_packet_rate_percentage_str` (String) 'packet-rate-percentage': Percentage of source port entry's parent entry;
-- `ip_sport_packet_rate_str` (String) 'packet-rate': Packet rate of a source port entry;
-- `packet_rate_percentage_str` (String) 'packet-rate-percentage': Percentage of source port entry's parent entry;
-- `packet_rate_str` (String) 'packet-rate': Packet rate of a source port entry;
-- `protocol` (String) 'udp': UDP port; 'tcp': TCP Port;
-- `sport_num` (Number) Source port number
-
-Optional:
-
-- `bit_rate` (Number) Bit rate of a source port entry
-- `bit_rate_percentage` (Number) Percentage of source port entry's parent entry
-- `ip_sport_bit_rate` (Number) Bit rate of a source port entry
-- `ip_sport_bit_rate_percentage` (Number) Percentage of source port entry's parent entry
-- `ip_sport_packet_rate` (Number) Packet rate of a source port entry
-- `ip_sport_packet_rate_percentage` (Number) Percentage of source port entry's parent entry
-- `packet_rate` (Number) Packet rate of a source port entry
-- `packet_rate_percentage` (Number) Percentage of source port entry's parent entry
-- `uuid` (String) uuid of the object
-
-
-<a id="nestedblock--sport_anomaly_threshold--ipv6_list"></a>
-### Nested Schema for `sport_anomaly_threshold.ipv6_list`
-
-Required:
-
-- `bit_rate_percentage_str` (String) 'bit-rate-percentage': Percentage of source port entry's parent entry;
-- `bit_rate_str` (String) 'bit-rate': Bit rate of a source port entry;
-- `ip_addr` (String) Override threshold
-- `ip_sport_bit_rate_percentage_str` (String) 'bit-rate-percentage': Percentage of source port entry's parent entry;
-- `ip_sport_bit_rate_str` (String) 'bit-rate': Bit rate of a source port entry;
-- `ip_sport_packet_rate_percentage_str` (String) 'packet-rate-percentage': Percentage of source port entry's parent entry;
-- `ip_sport_packet_rate_str` (String) 'packet-rate': Packet rate of a source port entry;
-- `packet_rate_percentage_str` (String) 'packet-rate-percentage': Percentage of source port entry's parent entry;
-- `packet_rate_str` (String) 'packet-rate': Packet rate of a source port entry;
-- `protocol` (String) 'udp': UDP port; 'tcp': TCP Port;
-- `sport_num` (Number) Source port number
-
-Optional:
-
-- `bit_rate` (Number) Bit rate of a source port entry
-- `bit_rate_percentage` (Number) Percentage of source port entry's parent entry
-- `ip_sport_bit_rate` (Number) Bit rate of a source port entry
-- `ip_sport_bit_rate_percentage` (Number) Percentage of source port entry's parent entry
-- `ip_sport_packet_rate` (Number) Packet rate of a source port entry
-- `ip_sport_packet_rate_percentage` (Number) Percentage of source port entry's parent entry
-- `packet_rate` (Number) Packet rate of a source port entry
-- `packet_rate_percentage` (Number) Percentage of source port entry's parent entry
-- `uuid` (String) uuid of the object
-
-
-<a id="nestedblock--sport_anomaly_threshold--packet_rate"></a>
-### Nested Schema for `sport_anomaly_threshold.packet_rate`
-
-Optional:
-
-- `uuid` (String) uuid of the object
-- `value` (Number) Packet rate of a source port entry
-
-
-<a id="nestedblock--sport_anomaly_threshold--packet_rate_percentage"></a>
-### Nested Schema for `sport_anomaly_threshold.packet_rate_percentage`
-
-Optional:
-
-- `uuid` (String) uuid of the object
-- `value` (Number) Percentage of source port entry's parent entry
-
-
-<a id="nestedblock--sport_anomaly_threshold--sport_list"></a>
-### Nested Schema for `sport_anomaly_threshold.sport_list`
-
-Required:
-
-- `bit_rate_percentage_str` (String) 'bit-rate-percentage': Percentage of source port entry's parent entry;
-- `bit_rate_str` (String) 'bit-rate': Bit rate of a source port entry;
-- `packet_rate_percentage_str` (String) 'packet-rate-percentage': Percentage of source port entry's parent entry;
-- `packet_rate_str` (String) 'packet-rate': Packet rate of a source port entry;
-- `protocol` (String) 'udp': UDP port; 'tcp': TCP Port;
-- `sport_num` (Number) Port Number
-
-Optional:
-
-- `bit_rate` (Number) Bit rate of a source port entry
-- `bit_rate_percentage` (Number) Percentage of source port entry's parent entry
-- `packet_rate` (Number) Packet rate of a source port entry
-- `packet_rate_percentage` (Number) Percentage of source port entry's parent entry
-- `uuid` (String) uuid of the object
-
-
-
-<a id="nestedblock--sport_discovery_threshold"></a>
-### Nested Schema for `sport_discovery_threshold`
-
-Optional:
-
-- `sport_discovery_bit_rate_percentage` (Number) Percentage of the bit rate of source port's parent entry
-- `sport_heavy_hitter_percentage` (Number) Percentage of the bit rate of undiscovered source ports (default: 10)
-
-
-<a id="nestedblock--sport_list"></a>
-### Nested Schema for `sport_list`
-
-Required:
-
-- `port_num` (Number) Port Number
-- `protocol` (String) 'udp': UDP port; 'tcp': TCP Port;
-
-Optional:
-
-- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--static_auto_break_down_threshold"></a>

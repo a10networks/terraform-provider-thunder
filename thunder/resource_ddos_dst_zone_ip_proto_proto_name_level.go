@@ -108,11 +108,11 @@ func resourceDdosDstZoneIpProtoProtoNameLevel() *schema.Resource {
 			"zone_violation_actions": {
 				Type: schema.TypeString, Optional: true, Description: "Violation actions apply due to zone escalate from this level",
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
-			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			},
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 		},
 	}
@@ -231,7 +231,7 @@ func dataToEndpointDdosDstZoneIpProtoProtoNameLevel(d *schema.ResourceData) edpt
 	ret.Inst.ZoneEscalationScore = d.Get("zone_escalation_score").(int)
 	ret.Inst.ZoneTemplate = getObjectDdosDstZoneIpProtoProtoNameLevelZoneTemplate(d.Get("zone_template").([]interface{}))
 	ret.Inst.ZoneViolationActions = d.Get("zone_violation_actions").(string)
-	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.ZoneName = d.Get("zone_name").(string)
+	ret.Inst.Protocol = d.Get("protocol").(string)
 	return ret
 }

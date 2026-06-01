@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosTemplateTcp struct {
 	Inst struct {
 		AckAuthenticationSynackReset int `json:"ack-authentication-synack-reset"`
@@ -63,7 +63,7 @@ type DdosTemplateTcp struct {
 
 		PerConnZeroWinRateLimit int `json:"per-conn-zero-win-rate-limit"`
 
-		ProgressionTracking DdosTemplateTcpProgressionTracking351 `json:"progression-tracking"`
+		ProgressionTracking DdosTemplateTcpProgressionTracking347 `json:"progression-tracking"`
 
 		Src DdosTemplateTcpSrc `json:"src"`
 
@@ -128,23 +128,23 @@ type DdosTemplateTcpFilterList struct {
 	UserTag            string `json:"user-tag"`
 }
 
-type DdosTemplateTcpProgressionTracking351 struct {
-	ProgressionTrackingEnabled string                                          `json:"progression-tracking-enabled"`
+type DdosTemplateTcpProgressionTracking347 struct {
+	ProgressionTrackingEnabled string                                          `json:"progression-tracking-enabled" dval:"enable-check"`
 	IgnoreTlsHandshake         int                                             `json:"ignore-TLS-handshake"`
 	Uuid                       string                                          `json:"uuid"`
-	Mitigation                 DdosTemplateTcpProgressionTrackingMitigation352 `json:"mitigation"`
-	Profiling                  DdosTemplateTcpProgressionTrackingProfiling357  `json:"profiling"`
+	Mitigation                 DdosTemplateTcpProgressionTrackingMitigation348 `json:"mitigation"`
+	Profiling                  DdosTemplateTcpProgressionTrackingProfiling353  `json:"profiling"`
 }
 
-type DdosTemplateTcpProgressionTrackingMitigation352 struct {
-	RequestTracking    DdosTemplateTcpProgressionTrackingMitigationRequestTracking353    `json:"request-tracking"`
-	ConnectionTracking DdosTemplateTcpProgressionTrackingMitigationConnectionTracking354 `json:"connection-tracking"`
-	TimeWindowTracking DdosTemplateTcpProgressionTrackingMitigationTimeWindowTracking355 `json:"time-window-tracking"`
-	SlowAttack         DdosTemplateTcpProgressionTrackingMitigationSlowAttack356         `json:"slow-attack"`
+type DdosTemplateTcpProgressionTrackingMitigation348 struct {
+	RequestTracking    DdosTemplateTcpProgressionTrackingMitigationRequestTracking349    `json:"request-tracking"`
+	ConnectionTracking DdosTemplateTcpProgressionTrackingMitigationConnectionTracking350 `json:"connection-tracking"`
+	TimeWindowTracking DdosTemplateTcpProgressionTrackingMitigationTimeWindowTracking351 `json:"time-window-tracking"`
+	SlowAttack         DdosTemplateTcpProgressionTrackingMitigationSlowAttack352         `json:"slow-attack"`
 }
 
-type DdosTemplateTcpProgressionTrackingMitigationRequestTracking353 struct {
-	ProgressionTrackingReqEnabled        string `json:"progression-tracking-req-enabled"`
+type DdosTemplateTcpProgressionTrackingMitigationRequestTracking349 struct {
+	ProgressionTrackingReqEnabled        string `json:"progression-tracking-req-enabled" dval:"enable-check"`
 	RequestResponseModel                 string `json:"request-response-model" dval:"enable"`
 	ResponseLengthMax                    int    `json:"response-length-max"`
 	ResponseLengthMin                    int    `json:"response-length-min"`
@@ -159,8 +159,8 @@ type DdosTemplateTcpProgressionTrackingMitigationRequestTracking353 struct {
 	Uuid                                 string `json:"uuid"`
 }
 
-type DdosTemplateTcpProgressionTrackingMitigationConnectionTracking354 struct {
-	ProgressionTrackingConnEnabled        string `json:"progression-tracking-conn-enabled"`
+type DdosTemplateTcpProgressionTrackingMitigationConnectionTracking350 struct {
+	ProgressionTrackingConnEnabled        string `json:"progression-tracking-conn-enabled" dval:"enable-check"`
 	ConnSentMax                           int    `json:"conn-sent-max"`
 	ConnSentMin                           int    `json:"conn-sent-min"`
 	ConnRcvdMax                           int    `json:"conn-rcvd-max"`
@@ -175,8 +175,8 @@ type DdosTemplateTcpProgressionTrackingMitigationConnectionTracking354 struct {
 	Uuid                                  string `json:"uuid"`
 }
 
-type DdosTemplateTcpProgressionTrackingMitigationTimeWindowTracking355 struct {
-	ProgressionTrackingWinEnabled            string `json:"progression-tracking-win-enabled"`
+type DdosTemplateTcpProgressionTrackingMitigationTimeWindowTracking351 struct {
+	ProgressionTrackingWinEnabled            string `json:"progression-tracking-win-enabled" dval:"enable-check"`
 	WindowSentMax                            int    `json:"window-sent-max"`
 	WindowSentMin                            int    `json:"window-sent-min"`
 	WindowRcvdMax                            int    `json:"window-rcvd-max"`
@@ -189,7 +189,7 @@ type DdosTemplateTcpProgressionTrackingMitigationTimeWindowTracking355 struct {
 	Uuid                                     string `json:"uuid"`
 }
 
-type DdosTemplateTcpProgressionTrackingMitigationSlowAttack356 struct {
+type DdosTemplateTcpProgressionTrackingMitigationSlowAttack352 struct {
 	ResponsePktRateMax                    int    `json:"response-pkt-rate-max"`
 	InitResponseMaxTime                   int    `json:"init-response-max-time"`
 	InitRequestMaxTime                    int    `json:"init-request-max-time"`
@@ -198,7 +198,7 @@ type DdosTemplateTcpProgressionTrackingMitigationSlowAttack356 struct {
 	Uuid                                  string `json:"uuid"`
 }
 
-type DdosTemplateTcpProgressionTrackingProfiling357 struct {
+type DdosTemplateTcpProgressionTrackingProfiling353 struct {
 	ProfilingRequestResponseModel int    `json:"profiling-request-response-model"`
 	ProfilingConnectionLifeModel  int    `json:"profiling-connection-life-model"`
 	ProfilingTimeWindowModel      int    `json:"profiling-time-window-model"`

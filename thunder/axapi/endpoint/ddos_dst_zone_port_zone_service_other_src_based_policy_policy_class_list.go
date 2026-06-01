@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassList struct {
 	Inst struct {
 		Action string `json:"action"`
@@ -23,6 +23,8 @@ type DdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassList struct {
 
 		GlidAction string `json:"glid-action"`
 
+		LogEnable int `json:"log-enable"`
+
 		MaxDynamicEntryCount int `json:"max-dynamic-entry-count"`
 
 		SamplingEnable []DdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassListSamplingEnable `json:"sampling-enable"`
@@ -33,11 +35,11 @@ type DdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassList struct {
 
 		ZoneTemplate DdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassListZoneTemplate `json:"zone-template"`
 
+		SrcBasedPolicyName string
+
 		PortOther string
 
 		Protocol string
-
-		SrcBasedPolicyName string
 
 		ZoneName string
 	} `json:"policy-class-list"`

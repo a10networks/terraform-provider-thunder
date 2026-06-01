@@ -77,6 +77,9 @@ func resourceDdosSwitchStats() *schema.Resource {
 						"jumbo_frag_drop_before_slb": {
 							Type: schema.TypeInt, Optional: true, Description: "Jumbo Fragment Non Data Plane Drop",
 						},
+						"outgoing_mtu_exceed_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Outgoing MTU Exceed Drop",
+						},
 						"jumbo_outgoing_mtu_exceed_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "Jumbo Outgoing MTU Exceed Drop",
 						},
@@ -129,6 +132,7 @@ func setObjectDdosSwitchStatsStats(ret edpt.DataDdosSwitchStats) []interface{} {
 			"mpls_malformed":                 ret.DtDdosSwitchStats.Stats.Mpls_malformed,
 			"jumbo_frag_drop_by_filter":      ret.DtDdosSwitchStats.Stats.Jumbo_frag_drop_by_filter,
 			"jumbo_frag_drop_before_slb":     ret.DtDdosSwitchStats.Stats.Jumbo_frag_drop_before_slb,
+			"outgoing_mtu_exceed_drop":       ret.DtDdosSwitchStats.Stats.Outgoing_mtu_exceed_drop,
 			"jumbo_outgoing_mtu_exceed_drop": ret.DtDdosSwitchStats.Stats.Jumbo_outgoing_mtu_exceed_drop,
 		},
 	}
@@ -160,6 +164,7 @@ func getObjectDdosSwitchStatsStats(d []interface{}) edpt.DdosSwitchStatsStats {
 		ret.Mpls_malformed = in["mpls_malformed"].(int)
 		ret.Jumbo_frag_drop_by_filter = in["jumbo_frag_drop_by_filter"].(int)
 		ret.Jumbo_frag_drop_before_slb = in["jumbo_frag_drop_before_slb"].(int)
+		ret.Outgoing_mtu_exceed_drop = in["outgoing_mtu_exceed_drop"].(int)
 		ret.Jumbo_outgoing_mtu_exceed_drop = in["jumbo_outgoing_mtu_exceed_drop"].(int)
 	}
 	return ret

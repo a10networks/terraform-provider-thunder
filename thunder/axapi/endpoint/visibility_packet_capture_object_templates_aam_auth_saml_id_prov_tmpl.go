@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplTriggerStatsInc2737 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplTriggerStatsInc2752 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplTriggerStatsRate2738 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplTriggerStatsRate2753 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplTriggerStatsSeverity2739 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplTriggerStatsSeverity2754 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,13 +25,13 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmpl struct {
 	} `json:"aam-auth-saml-id-prov-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplTriggerStatsInc2737 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplTriggerStatsInc2752 struct {
 	MdFail  int    `json:"md-fail"`
 	AcsFail int    `json:"acs-fail"`
 	Uuid    string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplTriggerStatsRate2738 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplTriggerStatsRate2753 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	MdFail              int    `json:"md-fail"`
@@ -39,7 +39,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplTriggerStatsRate
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplTriggerStatsSeverity2739 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplTriggerStatsSeverity2754 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

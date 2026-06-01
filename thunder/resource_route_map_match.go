@@ -372,11 +372,11 @@ func resourceRouteMapMatch() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"sequence": {
-				Type: schema.TypeString, Required: true, Description: "Sequence",
-			},
 			"action": {
 				Type: schema.TypeString, Required: true, Description: "Action",
+			},
+			"sequence": {
+				Type: schema.TypeString, Required: true, Description: "Sequence",
 			},
 		},
 	}
@@ -815,7 +815,7 @@ func dataToEndpointRouteMapMatch(d *schema.ResourceData) edpt.RouteMapMatch {
 	ret.Inst.Scaleout = getObjectRouteMapMatchScaleout(d.Get("scaleout").([]interface{}))
 	ret.Inst.Tag = getObjectRouteMapMatchTag(d.Get("tag").([]interface{}))
 	//omit uuid
-	ret.Inst.Sequence = d.Get("sequence").(string)
 	ret.Inst.Action = d.Get("action").(string)
+	ret.Inst.Sequence = d.Get("sequence").(string)
 	return ret
 }

@@ -5,18 +5,18 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Techreport struct {
 	Inst struct {
 		Disable int `json:"disable"`
 
 		EnableFullHistory int `json:"enable-full-history"`
 
-		Interval TechreportInterval2021 `json:"interval"`
+		Interval TechreportInterval2020 `json:"interval"`
 
-		MaxLogfileSize TechreportMaxLogfileSize2022 `json:"max-logfile-size"`
+		MaxLogfileSize TechreportMaxLogfileSize2021 `json:"max-logfile-size"`
 
-		MaxPartitions TechreportMaxPartitions2023 `json:"max-partitions"`
+		MaxPartitions TechreportMaxPartitions2022 `json:"max-partitions"`
 
 		PriorityPartitionList []TechreportPriorityPartitionList `json:"priority-partition-list"`
 
@@ -24,17 +24,17 @@ type Techreport struct {
 	} `json:"techreport"`
 }
 
-type TechreportInterval2021 struct {
+type TechreportInterval2020 struct {
 	Value int    `json:"value" dval:"15"`
 	Uuid  string `json:"uuid"`
 }
 
-type TechreportMaxLogfileSize2022 struct {
+type TechreportMaxLogfileSize2021 struct {
 	Value int    `json:"value" dval:"1"`
 	Uuid  string `json:"uuid"`
 }
 
-type TechreportMaxPartitions2023 struct {
+type TechreportMaxPartitions2022 struct {
 	Value int    `json:"value" dval:"30"`
 	Uuid  string `json:"uuid"`
 }

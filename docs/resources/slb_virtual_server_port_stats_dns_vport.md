@@ -76,6 +76,7 @@ Optional:
 - `dns_filter_type_srv_drop` (Number) counters DNS Filter Type SRV Drop
 - `dns_filter_type_txt_drop` (Number) counters DNS Filter Type TXT Drop
 - `dns_full_response_from_cache` (Number) DNS Full Response from Cache
+- `dns_max_udp_size_sent_tc_response` (Number) TC Response Sent Due to max-udp-size
 - `dns_negative_served` (Number) DNS negative cache return to client
 - `dns_recursive_resolution_buff_alloc_failed` (Number) DNS Recursive Resolution Buffer Allocation Failed
 - `dns_recursive_resolution_full_response` (Number) DNS Recursive Resolution Serving Full Response
@@ -96,6 +97,7 @@ Optional:
 - `dns_recursive_resolution_query_dropped` (Number) DNS Recursive Resolution Query Dropped
 - `dns_recursive_resolution_query_not_sent` (Number) DNS Recursive Resolution Query Not Sent
 - `dns_recursive_resolution_reach_max_depth` (Number) DNS Recursive Resolution Reach Max Depth
+- `dns_recursive_resolution_received_tc_response` (Number) DNS Recursive Resolution TC Response Received
 - `dns_recursive_resolution_request_send` (Number) DNS Recursive Resolution Request Send
 - `dns_recursive_resolution_res_check_err` (Number) DNS Recursive Resolution Resolver Check Err
 - `dns_recursive_resolution_res_submit_err` (Number) DNS Recursive Resolution Resolver Submit Err
@@ -153,6 +155,9 @@ Optional:
 - `dns_rr_dnssec_val_rrsig_signer_err` (Number) DNS Recursive Resolution DNSSEC Validation RRSIG Signer's Name Error
 - `dns_rr_dnssec_val_with_trust_anchor_failed` (Number) DNS Recursive Resolution DNSSEC Validation with Trust Anchor Failed
 - `dns_rr_dnssec_validation_failed` (Number) DNS Recursive Resolution DNSSEC Validation Failed
+- `dns_rr_exceed_per_resolv_max_dgst_val_failures` (Number) DNS Recursive Resolution exceed per-resolution maximum key-digest validation failures
+- `dns_rr_exceed_per_resolv_max_sig_val_attempts` (Number) DNS Recursive Resolution exceed per-resolution maximum signature validation attempts
+- `dns_rr_exceed_per_resolv_max_sig_val_failures` (Number) DNS Recursive Resolution exceed per-resolution maximum signature validation failures
 - `dns_tcp_pipeline_request_drop` (Number) DNS TCP Pipeline Request Drop
 - `dns_total_drop` (Number) total drop
 - `dns_total_request` (Number) total request

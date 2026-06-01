@@ -56,6 +56,7 @@ Optional:
 - `encode_r` (Number) Response encoded
 - `hit` (Number) Total cache hit
 - `hit_rate_per_sec` (Number) Cache hit rate per second
+- `multiple_answer_no_cache` (Number) Response not cached due to multiple answers
 - `multiple_q` (Number) Query with multiple questions
 - `multiple_r` (Number) Response with multiple questions
 - `oversize_q` (Number) Query exceed cache size

@@ -175,10 +175,15 @@ Optional:
 - `parse_too_many_headers` (Number) Malform Too Many Headers
 - `parsereq_fail` (Number) Parse Request Failed
 - `partial_header` (Number) Partial Header
+- `pattern_filter1_drop` (Number) Extracted Filter1 Drop
 - `pattern_filter1_match` (Number) Extracted Filter1 Match
+- `pattern_filter2_drop` (Number) Extracted Filter2 Drop
 - `pattern_filter2_match` (Number) Extracted Filter2 Match
+- `pattern_filter3_drop` (Number) Extracted Filter3 Drop
 - `pattern_filter3_match` (Number) Extracted Filter3 Match
+- `pattern_filter4_drop` (Number) Extracted Filter4 Drop
 - `pattern_filter4_match` (Number) Extracted Filter4 Match
+- `pattern_filter5_drop` (Number) Extracted Filter5 Drop
 - `pattern_filter5_match` (Number) Extracted Filter5 Match
 - `pattern_filter_drop` (Number) Extracted Filter Drop
 - `pattern_not_found` (Number) Pattern Recognition: Pattern Not Found

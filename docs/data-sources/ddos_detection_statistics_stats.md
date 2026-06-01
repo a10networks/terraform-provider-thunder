@@ -80,6 +80,8 @@ Optional:
 - `frag_rcvd` (Number) Fragment Received
 - `geo_age` (Number) Geolocation Entry Aged
 - `geo_learn` (Number) Geolocation Entry Learned
+- `intf_name_regex_match_error` (Number) Regex matching error for Interface Names
+- `intf_select_sample_dropped` (Number) Xflow Samples Dropped by Interface Selection
 - `invalid_event` (Number) Invalid Event in Notification
 - `invalid_proto` (Number) Invalid Proto in Notification
 - `ip_rcvd` (Number) IPv4 Received

@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosZoneTemplateSip struct {
 	Inst struct {
 		Dst DdosZoneTemplateSipDst `json:"dst"`
@@ -15,7 +15,7 @@ type DdosZoneTemplateSip struct {
 
 		IdleTimeout DdosZoneTemplateSipIdleTimeout `json:"idle-timeout"`
 
-		MalformedSip DdosZoneTemplateSipMalformedSip370 `json:"malformed-sip"`
+		MalformedSip DdosZoneTemplateSipMalformedSip366 `json:"malformed-sip"`
 
 		MultiPuThresholdDistribution DdosZoneTemplateSipMultiPuThresholdDistribution `json:"multi-pu-threshold-distribution"`
 
@@ -118,7 +118,7 @@ type DdosZoneTemplateSipIdleTimeout struct {
 	IdleTimeoutAction         string `json:"idle-timeout-action"`
 }
 
-type DdosZoneTemplateSipMalformedSip370 struct {
+type DdosZoneTemplateSipMalformedSip366 struct {
 	MalformedSipCheck                string `json:"malformed-sip-check"`
 	MalformedSipMaxLineSize          int    `json:"malformed-sip-max-line-size" dval:"32511"`
 	MalformedSipMaxUriLength         int    `json:"malformed-sip-max-uri-length" dval:"32511"`

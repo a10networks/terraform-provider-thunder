@@ -428,10 +428,10 @@ func resourceSysUtTemplateRead(ctx context.Context, d *schema.ResourceData, meta
 	return diags
 }
 
-func getObjectSysUtTemplateIgnoreValidation1657(d []interface{}) edpt.SysUtTemplateIgnoreValidation1657 {
+func getObjectSysUtTemplateIgnoreValidation1658(d []interface{}) edpt.SysUtTemplateIgnoreValidation1658 {
 
 	count1 := len(d)
-	var ret edpt.SysUtTemplateIgnoreValidation1657
+	var ret edpt.SysUtTemplateIgnoreValidation1658
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.L1 = in["l1"].(int)
@@ -444,14 +444,14 @@ func getObjectSysUtTemplateIgnoreValidation1657(d []interface{}) edpt.SysUtTempl
 	return ret
 }
 
-func getObjectSysUtTemplateL11658(d []interface{}) edpt.SysUtTemplateL11658 {
+func getObjectSysUtTemplateL11659(d []interface{}) edpt.SysUtTemplateL11659 {
 
 	count1 := len(d)
-	var ret edpt.SysUtTemplateL11658
+	var ret edpt.SysUtTemplateL11659
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.EthList = getSliceSysUtTemplateL1EthList1659(in["eth_list"].([]interface{}))
-		ret.Trunk_list = getSliceSysUtTemplateL1Trunk_list1660(in["trunk_list"].([]interface{}))
+		ret.EthList = getSliceSysUtTemplateL1EthList1660(in["eth_list"].([]interface{}))
+		ret.Trunk_list = getSliceSysUtTemplateL1Trunk_list1661(in["trunk_list"].([]interface{}))
 		ret.Drop = in["drop"].(int)
 		ret.Length = in["length"].(int)
 		ret.Value = in["value"].(int)
@@ -461,13 +461,13 @@ func getObjectSysUtTemplateL11658(d []interface{}) edpt.SysUtTemplateL11658 {
 	return ret
 }
 
-func getSliceSysUtTemplateL1EthList1659(d []interface{}) []edpt.SysUtTemplateL1EthList1659 {
+func getSliceSysUtTemplateL1EthList1660(d []interface{}) []edpt.SysUtTemplateL1EthList1660 {
 
 	count1 := len(d)
-	ret := make([]edpt.SysUtTemplateL1EthList1659, 0, count1)
+	ret := make([]edpt.SysUtTemplateL1EthList1660, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SysUtTemplateL1EthList1659
+		var oi edpt.SysUtTemplateL1EthList1660
 		oi.EthernetStart = in["ethernet_start"].(int)
 		oi.EthernetEnd = in["ethernet_end"].(int)
 		ret = append(ret, oi)
@@ -475,13 +475,13 @@ func getSliceSysUtTemplateL1EthList1659(d []interface{}) []edpt.SysUtTemplateL1E
 	return ret
 }
 
-func getSliceSysUtTemplateL1Trunk_list1660(d []interface{}) []edpt.SysUtTemplateL1Trunk_list1660 {
+func getSliceSysUtTemplateL1Trunk_list1661(d []interface{}) []edpt.SysUtTemplateL1Trunk_list1661 {
 
 	count1 := len(d)
-	ret := make([]edpt.SysUtTemplateL1Trunk_list1660, 0, count1)
+	ret := make([]edpt.SysUtTemplateL1Trunk_list1661, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SysUtTemplateL1Trunk_list1660
+		var oi edpt.SysUtTemplateL1Trunk_list1661
 		oi.TrunkStart = in["trunk_start"].(int)
 		oi.TrunkEnd = in["trunk_end"].(int)
 		ret = append(ret, oi)
@@ -489,10 +489,10 @@ func getSliceSysUtTemplateL1Trunk_list1660(d []interface{}) []edpt.SysUtTemplate
 	return ret
 }
 
-func getObjectSysUtTemplateL21661(d []interface{}) edpt.SysUtTemplateL21661 {
+func getObjectSysUtTemplateL21662(d []interface{}) edpt.SysUtTemplateL21662 {
 
 	count1 := len(d)
-	var ret edpt.SysUtTemplateL21661
+	var ret edpt.SysUtTemplateL21662
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ethertype = in["ethertype"].(int)
@@ -500,18 +500,18 @@ func getObjectSysUtTemplateL21661(d []interface{}) edpt.SysUtTemplateL21661 {
 		ret.Value = in["value"].(int)
 		ret.Vlan = in["vlan"].(int)
 		//omit uuid
-		ret.MacList = getSliceSysUtTemplateL2MacList1662(in["mac_list"].([]interface{}))
+		ret.MacList = getSliceSysUtTemplateL2MacList1663(in["mac_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSysUtTemplateL2MacList1662(d []interface{}) []edpt.SysUtTemplateL2MacList1662 {
+func getSliceSysUtTemplateL2MacList1663(d []interface{}) []edpt.SysUtTemplateL2MacList1663 {
 
 	count1 := len(d)
-	ret := make([]edpt.SysUtTemplateL2MacList1662, 0, count1)
+	ret := make([]edpt.SysUtTemplateL2MacList1663, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SysUtTemplateL2MacList1662
+		var oi edpt.SysUtTemplateL2MacList1663
 		oi.SrcDst = in["src_dst"].(string)
 		oi.AddressType = in["address_type"].(string)
 		oi.VirtualServer = in["virtual_server"].(string)
@@ -526,10 +526,10 @@ func getSliceSysUtTemplateL2MacList1662(d []interface{}) []edpt.SysUtTemplateL2M
 	return ret
 }
 
-func getObjectSysUtTemplateL31663(d []interface{}) edpt.SysUtTemplateL31663 {
+func getObjectSysUtTemplateL31664(d []interface{}) edpt.SysUtTemplateL31664 {
 
 	count1 := len(d)
-	var ret edpt.SysUtTemplateL31663
+	var ret edpt.SysUtTemplateL31664
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Protocol = in["protocol"].(int)
@@ -538,18 +538,18 @@ func getObjectSysUtTemplateL31663(d []interface{}) edpt.SysUtTemplateL31663 {
 		ret.Checksum = in["checksum"].(string)
 		ret.Ttl = in["ttl"].(int)
 		//omit uuid
-		ret.IpList = getSliceSysUtTemplateL3IpList1664(in["ip_list"].([]interface{}))
+		ret.IpList = getSliceSysUtTemplateL3IpList1665(in["ip_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSysUtTemplateL3IpList1664(d []interface{}) []edpt.SysUtTemplateL3IpList1664 {
+func getSliceSysUtTemplateL3IpList1665(d []interface{}) []edpt.SysUtTemplateL3IpList1665 {
 
 	count1 := len(d)
-	ret := make([]edpt.SysUtTemplateL3IpList1664, 0, count1)
+	ret := make([]edpt.SysUtTemplateL3IpList1665, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SysUtTemplateL3IpList1664
+		var oi edpt.SysUtTemplateL3IpList1665
 		oi.SrcDst = in["src_dst"].(string)
 		oi.Ipv4StartAddress = in["ipv4_start_address"].(string)
 		oi.Ipv4EndAddress = in["ipv4_end_address"].(string)
@@ -566,13 +566,13 @@ func getSliceSysUtTemplateL3IpList1664(d []interface{}) []edpt.SysUtTemplateL3Ip
 	return ret
 }
 
-func getObjectSysUtTemplateTcp1665(d []interface{}) edpt.SysUtTemplateTcp1665 {
+func getObjectSysUtTemplateTcp1666(d []interface{}) edpt.SysUtTemplateTcp1666 {
 
 	count1 := len(d)
-	var ret edpt.SysUtTemplateTcp1665
+	var ret edpt.SysUtTemplateTcp1666
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.SrcPortRange = getSliceSysUtTemplateTcpSrcPortRange1666(in["src_port_range"].([]interface{}))
+		ret.SrcPortRange = getSliceSysUtTemplateTcpSrcPortRange1667(in["src_port_range"].([]interface{}))
 		ret.DestPort = in["dest_port"].(int)
 		ret.DestPortValue = in["dest_port_value"].(int)
 		ret.NatPool = in["nat_pool"].(string)
@@ -582,19 +582,19 @@ func getObjectSysUtTemplateTcp1665(d []interface{}) edpt.SysUtTemplateTcp1665 {
 		ret.Urgent = in["urgent"].(string)
 		ret.Window = in["window"].(string)
 		//omit uuid
-		ret.Flags = getObjectSysUtTemplateTcpFlags1667(in["flags"].([]interface{}))
-		ret.Options = getObjectSysUtTemplateTcpOptions1668(in["options"].([]interface{}))
+		ret.Flags = getObjectSysUtTemplateTcpFlags1668(in["flags"].([]interface{}))
+		ret.Options = getObjectSysUtTemplateTcpOptions1669(in["options"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSysUtTemplateTcpSrcPortRange1666(d []interface{}) []edpt.SysUtTemplateTcpSrcPortRange1666 {
+func getSliceSysUtTemplateTcpSrcPortRange1667(d []interface{}) []edpt.SysUtTemplateTcpSrcPortRange1667 {
 
 	count1 := len(d)
-	ret := make([]edpt.SysUtTemplateTcpSrcPortRange1666, 0, count1)
+	ret := make([]edpt.SysUtTemplateTcpSrcPortRange1667, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SysUtTemplateTcpSrcPortRange1666
+		var oi edpt.SysUtTemplateTcpSrcPortRange1667
 		oi.SrcPortStart = in["src_port_start"].(int)
 		oi.SrcPortEnd = in["src_port_end"].(int)
 		ret = append(ret, oi)
@@ -602,10 +602,10 @@ func getSliceSysUtTemplateTcpSrcPortRange1666(d []interface{}) []edpt.SysUtTempl
 	return ret
 }
 
-func getObjectSysUtTemplateTcpFlags1667(d []interface{}) edpt.SysUtTemplateTcpFlags1667 {
+func getObjectSysUtTemplateTcpFlags1668(d []interface{}) edpt.SysUtTemplateTcpFlags1668 {
 
 	count1 := len(d)
-	var ret edpt.SysUtTemplateTcpFlags1667
+	var ret edpt.SysUtTemplateTcpFlags1668
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Syn = in["syn"].(int)
@@ -621,10 +621,10 @@ func getObjectSysUtTemplateTcpFlags1667(d []interface{}) edpt.SysUtTemplateTcpFl
 	return ret
 }
 
-func getObjectSysUtTemplateTcpOptions1668(d []interface{}) edpt.SysUtTemplateTcpOptions1668 {
+func getObjectSysUtTemplateTcpOptions1669(d []interface{}) edpt.SysUtTemplateTcpOptions1669 {
 
 	count1 := len(d)
-	var ret edpt.SysUtTemplateTcpOptions1668
+	var ret edpt.SysUtTemplateTcpOptions1669
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mss = in["mss"].(int)
@@ -637,13 +637,13 @@ func getObjectSysUtTemplateTcpOptions1668(d []interface{}) edpt.SysUtTemplateTcp
 	return ret
 }
 
-func getObjectSysUtTemplateUdp1669(d []interface{}) edpt.SysUtTemplateUdp1669 {
+func getObjectSysUtTemplateUdp1670(d []interface{}) edpt.SysUtTemplateUdp1670 {
 
 	count1 := len(d)
-	var ret edpt.SysUtTemplateUdp1669
+	var ret edpt.SysUtTemplateUdp1670
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.SrcPortRange = getSliceSysUtTemplateUdpSrcPortRange1670(in["src_port_range"].([]interface{}))
+		ret.SrcPortRange = getSliceSysUtTemplateUdpSrcPortRange1671(in["src_port_range"].([]interface{}))
 		ret.DestPort = in["dest_port"].(int)
 		ret.DestPortValue = in["dest_port_value"].(int)
 		ret.NatPool = in["nat_pool"].(string)
@@ -654,13 +654,13 @@ func getObjectSysUtTemplateUdp1669(d []interface{}) edpt.SysUtTemplateUdp1669 {
 	return ret
 }
 
-func getSliceSysUtTemplateUdpSrcPortRange1670(d []interface{}) []edpt.SysUtTemplateUdpSrcPortRange1670 {
+func getSliceSysUtTemplateUdpSrcPortRange1671(d []interface{}) []edpt.SysUtTemplateUdpSrcPortRange1671 {
 
 	count1 := len(d)
-	ret := make([]edpt.SysUtTemplateUdpSrcPortRange1670, 0, count1)
+	ret := make([]edpt.SysUtTemplateUdpSrcPortRange1671, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SysUtTemplateUdpSrcPortRange1670
+		var oi edpt.SysUtTemplateUdpSrcPortRange1671
 		oi.SrcPortStart = in["src_port_start"].(int)
 		oi.SrcPortEnd = in["src_port_end"].(int)
 		ret = append(ret, oi)
@@ -670,13 +670,13 @@ func getSliceSysUtTemplateUdpSrcPortRange1670(d []interface{}) []edpt.SysUtTempl
 
 func dataToEndpointSysUtTemplate(d *schema.ResourceData) edpt.SysUtTemplate {
 	var ret edpt.SysUtTemplate
-	ret.Inst.IgnoreValidation = getObjectSysUtTemplateIgnoreValidation1657(d.Get("ignore_validation").([]interface{}))
-	ret.Inst.L1 = getObjectSysUtTemplateL11658(d.Get("l1").([]interface{}))
-	ret.Inst.L2 = getObjectSysUtTemplateL21661(d.Get("l2").([]interface{}))
-	ret.Inst.L3 = getObjectSysUtTemplateL31663(d.Get("l3").([]interface{}))
+	ret.Inst.IgnoreValidation = getObjectSysUtTemplateIgnoreValidation1658(d.Get("ignore_validation").([]interface{}))
+	ret.Inst.L1 = getObjectSysUtTemplateL11659(d.Get("l1").([]interface{}))
+	ret.Inst.L2 = getObjectSysUtTemplateL21662(d.Get("l2").([]interface{}))
+	ret.Inst.L3 = getObjectSysUtTemplateL31664(d.Get("l3").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.Tcp = getObjectSysUtTemplateTcp1665(d.Get("tcp").([]interface{}))
-	ret.Inst.Udp = getObjectSysUtTemplateUdp1669(d.Get("udp").([]interface{}))
+	ret.Inst.Tcp = getObjectSysUtTemplateTcp1666(d.Get("tcp").([]interface{}))
+	ret.Inst.Udp = getObjectSysUtTemplateUdp1670(d.Get("udp").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

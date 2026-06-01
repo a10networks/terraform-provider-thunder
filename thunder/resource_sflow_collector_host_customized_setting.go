@@ -34,11 +34,11 @@ func resourceSflowCollectorHostCustomizedSetting() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"host_name": {
-				Type: schema.TypeString, Required: true, Description: "Host_name",
-			},
 			"port": {
 				Type: schema.TypeString, Required: true, Description: "Port",
+			},
+			"host_name": {
+				Type: schema.TypeString, Required: true, Description: "Host_name",
 			},
 		},
 	}
@@ -113,7 +113,7 @@ func dataToEndpointSflowCollectorHostCustomizedSetting(d *schema.ResourceData) e
 	ret.Inst.ExportEnable = d.Get("export_enable").(string)
 	ret.Inst.PacketSampling = d.Get("packet_sampling").(int)
 	//omit uuid
-	ret.Inst.Host_name = d.Get("host_name").(string)
 	ret.Inst.Port = d.Get("port").(string)
+	ret.Inst.Host_name = d.Get("host_name").(string)
 	return ret
 }

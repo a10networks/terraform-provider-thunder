@@ -37,6 +37,7 @@ __PLACEHOLDER__
 
 Optional:
 
+- `ddet_ind_bit_rate_adaptive_baseline` (Number) Bit Rate Adaptive Baseline
 - `ddet_ind_bit_rate_adaptive_threshold` (Number) Bit Rate Adaptive Threshold
 - `ddet_ind_bit_rate_current` (Number) Bit Rate Current
 - `ddet_ind_bit_rate_max` (Number) Bit Rate Max
@@ -69,6 +70,10 @@ Optional:
 - `ddet_ind_inb_per_outb_current` (Number) Bytes-to / Bytes-from Current
 - `ddet_ind_inb_per_outb_max` (Number) Bytes-to / Bytes-from Max
 - `ddet_ind_inb_per_outb_min` (Number) Bytes-to / Bytes-from Min
+- `ddet_ind_inside_out_concurrent_conns_adaptive_threshold` (Number) TCP/UDP Inside Out Concurrent Sessions Adaptive Threshold
+- `ddet_ind_inside_out_concurrent_conns_current` (Number) TCP/UDP Inside Out Concurrent Sessions Current
+- `ddet_ind_inside_out_concurrent_conns_max` (Number) TCP/UDP Inside Out Concurrent Sessions Max
+- `ddet_ind_inside_out_concurrent_conns_min` (Number) TCP/UDP Inside Out Concurrent Sessions Min
 - `ddet_ind_outside_intf_util_adaptive_threshold` (Number) Outside Interface Utilization Adaptive Threshold
 - `ddet_ind_outside_intf_util_current` (Number) Outside Interface Utilization Current
 - `ddet_ind_outside_intf_util_max` (Number) Outside Interface Utilization Max
@@ -81,6 +86,7 @@ Optional:
 - `ddet_ind_pkt_drop_ratio_current` (Number) Pkt Drop / Pkt Rcvd Current
 - `ddet_ind_pkt_drop_ratio_max` (Number) Pkt Drop / Pkt Rcvd Max
 - `ddet_ind_pkt_drop_ratio_min` (Number) Pkt Drop / Pkt Rcvd Min
+- `ddet_ind_pkt_rate_adaptive_baseline` (Number) Pkt Rate Adaptive Baseline
 - `ddet_ind_pkt_rate_adaptive_threshold` (Number) Pkt Rate Adaptive Threshold
 - `ddet_ind_pkt_rate_current` (Number) Pkt Rate Current
 - `ddet_ind_pkt_rate_max` (Number) Pkt Rate Max

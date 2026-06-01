@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type KeyKey struct {
 	Inst struct {
 		KeyNumber int `json:"key-number"`
@@ -17,9 +17,9 @@ type KeyKey struct {
 
 		Uuid string `json:"uuid"`
 
-		KeyChainName string
-
 		KeyChainFlag string
+
+		KeyChainName string
 	} `json:"key"`
 }
 

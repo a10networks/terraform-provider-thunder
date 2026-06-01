@@ -5,17 +5,17 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZonePortRangeTopkSourcesOper struct {
 	Oper DdosDstZonePortRangeTopkSourcesOperOper `json:"oper"`
 
-	Protocol string
-
 	ZoneName string
 
-	PortRangeEnd string
+	Protocol string
 
 	PortRangeStart string
+
+	PortRangeEnd string
 }
 type DataDdosDstZonePortRangeTopkSourcesOper struct {
 	DtDdosDstZonePortRangeTopkSourcesOper DdosDstZonePortRangeTopkSourcesOper `json:"topk-sources"`

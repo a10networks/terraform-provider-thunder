@@ -656,15 +656,15 @@ func resourceRuleSetRead(ctx context.Context, d *schema.ResourceData, meta inter
 	return diags
 }
 
-func getObjectRuleSetApp1405(d []interface{}) edpt.RuleSetApp1405 {
+func getObjectRuleSetApp1404(d []interface{}) edpt.RuleSetApp1404 {
 
-	var ret edpt.RuleSetApp1405
+	var ret edpt.RuleSetApp1404
 	return ret
 }
 
-func getObjectRuleSetApplication1406(d []interface{}) edpt.RuleSetApplication1406 {
+func getObjectRuleSetApplication1405(d []interface{}) edpt.RuleSetApplication1405 {
 
-	var ret edpt.RuleSetApplication1406
+	var ret edpt.RuleSetApplication1405
 	return ret
 }
 
@@ -932,25 +932,25 @@ func getObjectRuleSetRuleListMoveRule(d []interface{}) edpt.RuleSetRuleListMoveR
 	return ret
 }
 
-func getObjectRuleSetRulesByZone1407(d []interface{}) edpt.RuleSetRulesByZone1407 {
+func getObjectRuleSetRulesByZone1406(d []interface{}) edpt.RuleSetRulesByZone1406 {
 
 	count1 := len(d)
-	var ret edpt.RuleSetRulesByZone1407
+	var ret edpt.RuleSetRulesByZone1406
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceRuleSetRulesByZoneSamplingEnable1408(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceRuleSetRulesByZoneSamplingEnable1407(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceRuleSetRulesByZoneSamplingEnable1408(d []interface{}) []edpt.RuleSetRulesByZoneSamplingEnable1408 {
+func getSliceRuleSetRulesByZoneSamplingEnable1407(d []interface{}) []edpt.RuleSetRulesByZoneSamplingEnable1407 {
 
 	count1 := len(d)
-	ret := make([]edpt.RuleSetRulesByZoneSamplingEnable1408, 0, count1)
+	ret := make([]edpt.RuleSetRulesByZoneSamplingEnable1407, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RuleSetRulesByZoneSamplingEnable1408
+		var oi edpt.RuleSetRulesByZoneSamplingEnable1407
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
@@ -970,31 +970,31 @@ func getSliceRuleSetSamplingEnable(d []interface{}) []edpt.RuleSetSamplingEnable
 	return ret
 }
 
-func getObjectRuleSetTag1409(d []interface{}) edpt.RuleSetTag1409 {
+func getObjectRuleSetTag1408(d []interface{}) edpt.RuleSetTag1408 {
 
-	var ret edpt.RuleSetTag1409
+	var ret edpt.RuleSetTag1408
 	return ret
 }
 
-func getObjectRuleSetTrackAppRuleList1410(d []interface{}) edpt.RuleSetTrackAppRuleList1410 {
+func getObjectRuleSetTrackAppRuleList1409(d []interface{}) edpt.RuleSetTrackAppRuleList1409 {
 
-	var ret edpt.RuleSetTrackAppRuleList1410
+	var ret edpt.RuleSetTrackAppRuleList1409
 	return ret
 }
 
 func dataToEndpointRuleSet(d *schema.ResourceData) edpt.RuleSet {
 	var ret edpt.RuleSet
-	ret.Inst.App = getObjectRuleSetApp1405(d.Get("app").([]interface{}))
-	ret.Inst.Application = getObjectRuleSetApplication1406(d.Get("application").([]interface{}))
+	ret.Inst.App = getObjectRuleSetApp1404(d.Get("app").([]interface{}))
+	ret.Inst.Application = getObjectRuleSetApplication1405(d.Get("application").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.PacketCaptureTemplate = d.Get("packet_capture_template").(string)
 	ret.Inst.Remark = d.Get("remark").(string)
 	ret.Inst.RuleList = getSliceRuleSetRuleList(d.Get("rule_list").([]interface{}))
-	ret.Inst.RulesByZone = getObjectRuleSetRulesByZone1407(d.Get("rules_by_zone").([]interface{}))
+	ret.Inst.RulesByZone = getObjectRuleSetRulesByZone1406(d.Get("rules_by_zone").([]interface{}))
 	ret.Inst.SamplingEnable = getSliceRuleSetSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.SessionStatistic = d.Get("session_statistic").(string)
-	ret.Inst.Tag = getObjectRuleSetTag1409(d.Get("tag").([]interface{}))
-	ret.Inst.TrackAppRuleList = getObjectRuleSetTrackAppRuleList1410(d.Get("track_app_rule_list").([]interface{}))
+	ret.Inst.Tag = getObjectRuleSetTag1408(d.Get("tag").([]interface{}))
+	ret.Inst.TrackAppRuleList = getObjectRuleSetTrackAppRuleList1409(d.Get("track_app_rule_list").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

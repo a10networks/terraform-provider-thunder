@@ -94,15 +94,15 @@ func resourceVisibilityMonitoredEntitySecondaryMonTopkRead(ctx context.Context, 
 	return diags
 }
 
-func getObjectVisibilityMonitoredEntitySecondaryMonTopkSources2051(d []interface{}) edpt.VisibilityMonitoredEntitySecondaryMonTopkSources2051 {
+func getObjectVisibilityMonitoredEntitySecondaryMonTopkSources2050(d []interface{}) edpt.VisibilityMonitoredEntitySecondaryMonTopkSources2050 {
 
-	var ret edpt.VisibilityMonitoredEntitySecondaryMonTopkSources2051
+	var ret edpt.VisibilityMonitoredEntitySecondaryMonTopkSources2050
 	return ret
 }
 
 func dataToEndpointVisibilityMonitoredEntitySecondaryMonTopk(d *schema.ResourceData) edpt.VisibilityMonitoredEntitySecondaryMonTopk {
 	var ret edpt.VisibilityMonitoredEntitySecondaryMonTopk
-	ret.Inst.Sources = getObjectVisibilityMonitoredEntitySecondaryMonTopkSources2051(d.Get("sources").([]interface{}))
+	ret.Inst.Sources = getObjectVisibilityMonitoredEntitySecondaryMonTopkSources2050(d.Get("sources").([]interface{}))
 	//omit uuid
 	return ret
 }

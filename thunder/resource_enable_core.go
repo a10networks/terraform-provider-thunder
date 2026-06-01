@@ -19,6 +19,9 @@ func resourceEnableCore() *schema.Resource {
 			"core_level": {
 				Type: schema.TypeString, Optional: true, Default: "a10", Description: "'a10': Enable A10 core dump, by default; 'system': Enable system coredump;",
 			},
+			"disallow_auto_full_core": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disallow the automatic full core generation.",
+			},
 			"full": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable full system core dump",
 			},
@@ -92,8 +95,14 @@ func resourceEnableCoreRead(ctx context.Context, d *schema.ResourceData, meta in
 
 func dataToEndpointEnableCore(d *schema.ResourceData) edpt.EnableCore {
 	var ret edpt.EnableCore
-	ret.Inst.CoreLevel = d.Get("core_level").(string)
-	ret.Inst.Full = d.Get("full").(int)
+	if v, ok := d.GetOk("core_level"); ok {
+		ret.EnableCore.CoreLevel = v.(string)
+	} else {
+		ret.EnableCore.CoreLevel = "a10"
+	}
+
+	ret.EnableCore.DisallowAutoFullCore = d.Get("disallow_auto_full_core").(int)
+	ret.EnableCore.Full = d.Get("full").(int)
 	//omit uuid
 	return ret
 }

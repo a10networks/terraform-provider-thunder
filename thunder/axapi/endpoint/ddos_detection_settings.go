@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDetectionSettings struct {
 	Inst struct {
 		CtrlCpuUsage int `json:"ctrl-cpu-usage"`
@@ -18,7 +18,7 @@ type DdosDetectionSettings struct {
 
 		DetectorMode string `json:"detector-mode"`
 
-		EntrySaving DdosDetectionSettingsEntrySaving149 `json:"entry-saving"`
+		EntrySaving DdosDetectionSettingsEntrySaving150 `json:"entry-saving"`
 
 		ExportInterval int `json:"export-interval" dval:"20"`
 
@@ -40,17 +40,17 @@ type DdosDetectionSettings struct {
 
 		PktSampling []DdosDetectionSettingsPktSampling `json:"pkt-sampling"`
 
-		StandaloneSettings DdosDetectionSettingsStandaloneSettings150 `json:"standalone-settings"`
+		StandaloneSettings DdosDetectionSettingsStandaloneSettings151 `json:"standalone-settings"`
 
 		TopKResetInterval int `json:"top-k-reset-interval"`
 
 		Uuid string `json:"uuid"`
 
-		ZoneNotifications DdosDetectionSettingsZoneNotifications153 `json:"zone-notifications"`
+		ZoneNotifications DdosDetectionSettingsZoneNotifications154 `json:"zone-notifications"`
 	} `json:"settings"`
 }
 
-type DdosDetectionSettingsEntrySaving149 struct {
+type DdosDetectionSettingsEntrySaving150 struct {
 	DisableBootupRestore int    `json:"disable-bootup-restore"`
 	Interval             int    `json:"interval"`
 	Uuid                 string `json:"uuid"`
@@ -61,26 +61,26 @@ type DdosDetectionSettingsPktSampling struct {
 	StartLevel   int `json:"start-level" dval:"1"`
 }
 
-type DdosDetectionSettingsStandaloneSettings150 struct {
+type DdosDetectionSettingsStandaloneSettings151 struct {
 	Action  string                                            `json:"action" dval:"disable"`
 	Uuid    string                                            `json:"uuid"`
-	Sflow   DdosDetectionSettingsStandaloneSettingsSflow151   `json:"sflow"`
-	Netflow DdosDetectionSettingsStandaloneSettingsNetflow152 `json:"netflow"`
+	Sflow   DdosDetectionSettingsStandaloneSettingsSflow152   `json:"sflow"`
+	Netflow DdosDetectionSettingsStandaloneSettingsNetflow153 `json:"netflow"`
 }
 
-type DdosDetectionSettingsStandaloneSettingsSflow151 struct {
+type DdosDetectionSettingsStandaloneSettingsSflow152 struct {
 	ListeningPort int    `json:"listening-port" dval:"6343"`
 	Uuid          string `json:"uuid"`
 }
 
-type DdosDetectionSettingsStandaloneSettingsNetflow152 struct {
+type DdosDetectionSettingsStandaloneSettingsNetflow153 struct {
 	ListeningPort         int    `json:"listening-port" dval:"9996"`
 	TemplateActiveTimeout int    `json:"template-active-timeout" dval:"30"`
 	DistributeByDuration  string `json:"distribute-by-duration" dval:"enable"`
 	Uuid                  string `json:"uuid"`
 }
 
-type DdosDetectionSettingsZoneNotifications153 struct {
+type DdosDetectionSettingsZoneNotifications154 struct {
 	SourceEntry string `json:"source-entry" dval:"disable"`
 	Uuid        string `json:"uuid"`
 }

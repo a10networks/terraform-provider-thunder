@@ -38,6 +38,7 @@ resource "thunder_import_periodic_auth_portal" "thunder_import_periodic_auth_por
 
 ### Optional
 
+- `password` (String) Config remote server  password
 - `period` (Number) Specify the period in second
 - `remote_file` (String) profile name for remote url
 - `use_mgmt_port` (Number) Use management port as source port

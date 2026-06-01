@@ -140,6 +140,7 @@ resource "thunder_interface_trunk_ipv6" "thunder_interface_trunk_ipv6" {
 - `rip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip))
 - `router` (Block List, Max: 1) (see [below for nested schema](#nestedblock--router))
 - `router_adver` (Block List, Max: 1) (see [below for nested schema](#nestedblock--router_adver))
+- `stateful_firewall` (Block List, Max: 1) (see [below for nested schema](#nestedblock--stateful_firewall))
 - `ttl_ignore` (Number) Ignore TTL decrement for a received packet
 - `uuid` (String) uuid of the object
 
@@ -394,3 +395,17 @@ Optional:
 - `floating_ip_default_vrid` (String) Use a floating IP as the source address for Router advertisements
 - `use_floating_ip` (Number) Use a floating IP as the source address for Router advertisements
 - `use_floating_ip_default_vrid` (Number) Use a floating IP as the source address for Router advertisements
+
+
+
+<a id="nestedblock--stateful_firewall"></a>
+### Nested Schema for `stateful_firewall`
+
+Optional:
+
+- `access_list` (Number) Access-list for traffic from the outside
+- `acl_name` (String) Access-list Name
+- `class_list` (String) Class List (Class List Name)
+- `inside` (Number) Inside (private) interface for stateful firewall
+- `outside` (Number) Outside (public) interface for stateful firewall
+- `uuid` (String) uuid of the object

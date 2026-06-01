@@ -20,10 +20,7 @@ __PLACEHOLDER__
 
 ### Optional
 
-- `icmp_redirect_disable` (Number) Disable icmp redirect messages
-- `icmp_unreachable_disable` (Number) Disable icmp unreachable messages
-- `rpf_check_enable` (Number) Enable reverse path filter (strict mode)
-- `source_route_pkt_drop_enable` (Number) Enable IPv4 source routed packet drop
+- `class_e_address_range_enable` (Number) Enable class E (240.0.0.0/4) configuration
 - `uuid` (String) uuid of the object
 
 ### Read-Only

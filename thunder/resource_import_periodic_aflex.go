@@ -19,6 +19,9 @@ func resourceImportPeriodicAflex() *schema.Resource {
 			"aflex": {
 				Type: schema.TypeString, Required: true, Description: "aFleX Script Source File",
 			},
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "Config remote server  password",
+			},
 			"period": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the period in second",
 			},
@@ -99,6 +102,8 @@ func resourceImportPeriodicAflexRead(ctx context.Context, d *schema.ResourceData
 func dataToEndpointImportPeriodicAflex(d *schema.ResourceData) edpt.ImportPeriodicAflex {
 	var ret edpt.ImportPeriodicAflex
 	ret.Inst.Aflex = d.Get("aflex").(string)
+	//omit encrypted
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)

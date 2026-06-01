@@ -44,5 +44,10 @@ output "get_system_throughput_stats" {
 
 Optional:
 
-- `global_system_throughput_bits_per_sec` (Number) Global System throughput in bits/sec
+- `global_client_ssl_connections_per_sec` (Number) global ssl conneciton per sec
+- `global_client_ssl_count` (Number) global ssl count
+- `global_server_ssl_connections_per_sec` (Number) global server ssl conneciton
+- `global_server_ssl_count` (Number) global server ssl count
+- `global_system_ingress_throughput_bits_per_sec` (Number) Global System ingress throughput in bits/sec
+- `global_system_throughput_bits_per_sec` (Number) Global System egress throughput in bits/sec
 - `per_part_throughput_bits_per_sec` (Number) Partition throughput in bits/sec

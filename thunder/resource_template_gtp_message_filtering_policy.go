@@ -264,10 +264,10 @@ func resourceTemplateGtpMessageFilteringPolicyRead(ctx context.Context, d *schem
 	return diags
 }
 
-func getObjectTemplateGtpMessageFilteringPolicyVersionV02024(d []interface{}) edpt.TemplateGtpMessageFilteringPolicyVersionV02024 {
+func getObjectTemplateGtpMessageFilteringPolicyVersionV02023(d []interface{}) edpt.TemplateGtpMessageFilteringPolicyVersionV02023 {
 
 	count1 := len(d)
-	var ret edpt.TemplateGtpMessageFilteringPolicyVersionV02024
+	var ret edpt.TemplateGtpMessageFilteringPolicyVersionV02023
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.EnableDisableAction = in["enable_disable_action"].(string)
@@ -285,10 +285,10 @@ func getObjectTemplateGtpMessageFilteringPolicyVersionV02024(d []interface{}) ed
 	return ret
 }
 
-func getObjectTemplateGtpMessageFilteringPolicyVersionV12025(d []interface{}) edpt.TemplateGtpMessageFilteringPolicyVersionV12025 {
+func getObjectTemplateGtpMessageFilteringPolicyVersionV12024(d []interface{}) edpt.TemplateGtpMessageFilteringPolicyVersionV12024 {
 
 	count1 := len(d)
-	var ret edpt.TemplateGtpMessageFilteringPolicyVersionV12025
+	var ret edpt.TemplateGtpMessageFilteringPolicyVersionV12024
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.EnableDisableAction = in["enable_disable_action"].(string)
@@ -313,10 +313,10 @@ func getObjectTemplateGtpMessageFilteringPolicyVersionV12025(d []interface{}) ed
 	return ret
 }
 
-func getObjectTemplateGtpMessageFilteringPolicyVersionV22026(d []interface{}) edpt.TemplateGtpMessageFilteringPolicyVersionV22026 {
+func getObjectTemplateGtpMessageFilteringPolicyVersionV22025(d []interface{}) edpt.TemplateGtpMessageFilteringPolicyVersionV22025 {
 
 	count1 := len(d)
-	var ret edpt.TemplateGtpMessageFilteringPolicyVersionV22026
+	var ret edpt.TemplateGtpMessageFilteringPolicyVersionV22025
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.EnableDisableAction = in["enable_disable_action"].(string)
@@ -350,8 +350,8 @@ func dataToEndpointTemplateGtpMessageFilteringPolicy(d *schema.ResourceData) edp
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.VersionV0 = getObjectTemplateGtpMessageFilteringPolicyVersionV02024(d.Get("version_v0").([]interface{}))
-	ret.Inst.VersionV1 = getObjectTemplateGtpMessageFilteringPolicyVersionV12025(d.Get("version_v1").([]interface{}))
-	ret.Inst.VersionV2 = getObjectTemplateGtpMessageFilteringPolicyVersionV22026(d.Get("version_v2").([]interface{}))
+	ret.Inst.VersionV0 = getObjectTemplateGtpMessageFilteringPolicyVersionV02023(d.Get("version_v0").([]interface{}))
+	ret.Inst.VersionV1 = getObjectTemplateGtpMessageFilteringPolicyVersionV12024(d.Get("version_v1").([]interface{}))
+	ret.Inst.VersionV2 = getObjectTemplateGtpMessageFilteringPolicyVersionV22025(d.Get("version_v2").([]interface{}))
 	return ret
 }

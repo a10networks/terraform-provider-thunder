@@ -391,25 +391,25 @@ func getSliceDdosZoneTemplateIcmpV4TypeListV4DstCodeCfg(d []interface{}) []edpt.
 	return ret
 }
 
-func getObjectDdosZoneTemplateIcmpV4TypeOther362(d []interface{}) edpt.DdosZoneTemplateIcmpV4TypeOther362 {
+func getObjectDdosZoneTemplateIcmpV4TypeOther358(d []interface{}) edpt.DdosZoneTemplateIcmpV4TypeOther358 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateIcmpV4TypeOther362
+	var ret edpt.DdosZoneTemplateIcmpV4TypeOther358
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.IcmpTypeOtherActionListName = in["icmp_type_other_action_list_name"].(string)
 		ret.IcmpTypeOtherAction = in["icmp_type_other_action"].(string)
-		ret.Src = getObjectDdosZoneTemplateIcmpV4TypeOtherSrc363(in["src"].([]interface{}))
-		ret.Dst = getObjectDdosZoneTemplateIcmpV4TypeOtherDst364(in["dst"].([]interface{}))
+		ret.Src = getObjectDdosZoneTemplateIcmpV4TypeOtherSrc359(in["src"].([]interface{}))
+		ret.Dst = getObjectDdosZoneTemplateIcmpV4TypeOtherDst360(in["dst"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectDdosZoneTemplateIcmpV4TypeOtherSrc363(d []interface{}) edpt.DdosZoneTemplateIcmpV4TypeOtherSrc363 {
+func getObjectDdosZoneTemplateIcmpV4TypeOtherSrc359(d []interface{}) edpt.DdosZoneTemplateIcmpV4TypeOtherSrc359 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateIcmpV4TypeOtherSrc363
+	var ret edpt.DdosZoneTemplateIcmpV4TypeOtherSrc359
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SrcTypeOtherRate = in["src_type_other_rate"].(int)
@@ -419,10 +419,10 @@ func getObjectDdosZoneTemplateIcmpV4TypeOtherSrc363(d []interface{}) edpt.DdosZo
 	return ret
 }
 
-func getObjectDdosZoneTemplateIcmpV4TypeOtherDst364(d []interface{}) edpt.DdosZoneTemplateIcmpV4TypeOtherDst364 {
+func getObjectDdosZoneTemplateIcmpV4TypeOtherDst360(d []interface{}) edpt.DdosZoneTemplateIcmpV4TypeOtherDst360 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateIcmpV4TypeOtherDst364
+	var ret edpt.DdosZoneTemplateIcmpV4TypeOtherDst360
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DstTypeOtherRate = in["dst_type_other_rate"].(int)
@@ -438,7 +438,7 @@ func dataToEndpointDdosZoneTemplateIcmpV4(d *schema.ResourceData) edpt.DdosZoneT
 	ret.Inst.FilterMatchType = d.Get("filter_match_type").(string)
 	ret.Inst.IcmpTmplName = d.Get("icmp_tmpl_name").(string)
 	ret.Inst.TypeList = getSliceDdosZoneTemplateIcmpV4TypeList(d.Get("type_list").([]interface{}))
-	ret.Inst.TypeOther = getObjectDdosZoneTemplateIcmpV4TypeOther362(d.Get("type_other").([]interface{}))
+	ret.Inst.TypeOther = getObjectDdosZoneTemplateIcmpV4TypeOther358(d.Get("type_other").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

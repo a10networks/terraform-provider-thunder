@@ -381,10 +381,10 @@ func getSliceSlbServiceGroupPriorities(d []interface{}) []edpt.SlbServiceGroupPr
 	return ret
 }
 
-func getObjectSlbServiceGroupReset1512(d []interface{}) edpt.SlbServiceGroupReset1512 {
+func getObjectSlbServiceGroupReset1513(d []interface{}) edpt.SlbServiceGroupReset1513 {
 
 	count1 := len(d)
-	var ret edpt.SlbServiceGroupReset1512
+	var ret edpt.SlbServiceGroupReset1513
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.AutoSwitch = in["auto_switch"].(int)
@@ -439,7 +439,7 @@ func dataToEndpointSlbServiceGroup(d *schema.ResourceData) edpt.SlbServiceGroup 
 	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.PseudoRoundRobin = d.Get("pseudo_round_robin").(int)
 	ret.Inst.ReportDelay = d.Get("report_delay").(int)
-	ret.Inst.Reset = getObjectSlbServiceGroupReset1512(d.Get("reset").([]interface{}))
+	ret.Inst.Reset = getObjectSlbServiceGroupReset1513(d.Get("reset").([]interface{}))
 	ret.Inst.ResetOnServerSelectionFail = d.Get("reset_on_server_selection_fail").(int)
 	ret.Inst.ResetPriorityAffinity = d.Get("reset_priority_affinity").(int)
 	ret.Inst.RptExtServer = d.Get("rpt_ext_server").(int)

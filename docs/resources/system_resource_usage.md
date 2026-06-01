@@ -29,6 +29,7 @@ __PLACEHOLDER__
 - `class_list_entry_count` (Number) Total entries for class-list
 - `class_list_ipv6_addr_count` (Number) Total IPv6 addresses for class-list
 - `ipsec_sa_number` (Number) Specify the maximum number of IPsec SA
+- `jwt_cache_entry` (Number) Specify the maximum cache entries for JWT
 - `l4_session_count` (Number) Total Sessions in the System
 - `max_aflex_authz_collection_number` (Number) Specify the maximum number of collections supported by aFleX authorization
 - `max_aflex_file_size` (Number) Set maximum aFleX file size (Maximum file size in KBytes, default is 32K)
@@ -36,6 +37,8 @@ __PLACEHOLDER__
 - `ngwaf_cache_entry` (Number) Specify the maximum cache entries for NGWAF
 - `radius_table_size` (Number) Total configurable CGNV6 RADIUS Table entries
 - `ram_cache_memory_limit` (Number) Specify the maximum memory used by ram cache
+- `ssl_context_memory` (Number) Total SSL context memory needed in units of MB. Will be rounded to closest multiple of 2MB
+- `ssl_dma_memory` (Number) Total SSL DMA memory needed in units of MB. Will be rounded to closest multiple of 2MB
 - `uuid` (String) uuid of the object
 - `visibility` (Block List, Max: 1) (see [below for nested schema](#nestedblock--visibility))
 

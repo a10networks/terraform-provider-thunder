@@ -25,6 +25,7 @@ __PLACEHOLDER__
 - `image` (String) 'pri': Primary image; 'sec': Secondary image;
 - `image_file` (String)
 - `local` (String) Use image from local VCS image repository (Specify an image name, format: aximage_XX_XX_XX_XX.tar.gz)
+- `password` (String) password for the remote site
 - `reboot_after_upgrade` (Number) reboot system after upgrade is done
 - `rollback` (Number)
 - `source_ip_address` (String) Source ip address

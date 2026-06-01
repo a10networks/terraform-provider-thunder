@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplates struct {
 	Inst struct {
 		AamAaaPolicyTmplList []VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplList `json:"aam-aaa-policy-tmpl-list"`
@@ -37,6 +37,8 @@ type VisibilityPacketCaptureObjectTemplates struct {
 		AamAuthServiceGroupTmplList []VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplList `json:"aam-auth-service-group-tmpl-list"`
 
 		AamJwtAuthorizationTmplList []VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplList `json:"aam-jwt-authorization-tmpl-list"`
+
+		CaptchaTemplateInstTmplList []VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplList `json:"captcha-template-inst-tmpl-list"`
 
 		Cgnv6Dns64VsPortTmplList []VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplList `json:"cgnv6-dns64-vs-port-tmpl-list"`
 
@@ -673,6 +675,46 @@ type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerSta
 	JwtTokenExpired     int    `json:"jwt-token-expired"`
 	JwtSignatureFailure int    `json:"jwt-signature-failure"`
 	JwtOtherError       int    `json:"jwt-other-error"`
+	Uuid                string `json:"uuid"`
+}
+
+type VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplList struct {
+	Name                 string                                                                                `json:"name"`
+	CaptureConfig        string                                                                                `json:"capture-config"`
+	Uuid                 string                                                                                `json:"uuid"`
+	UserTag              string                                                                                `json:"user-tag"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsSeverity `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsInc      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsRate     `json:"trigger-stats-rate"`
+}
+
+type VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsSeverity struct {
+	Error         int    `json:"error"`
+	ErrorAlert    int    `json:"error-alert"`
+	ErrorWarning  int    `json:"error-warning"`
+	ErrorCritical int    `json:"error-critical"`
+	Drop          int    `json:"drop"`
+	DropAlert     int    `json:"drop-alert"`
+	DropWarning   int    `json:"drop-warning"`
+	DropCritical  int    `json:"drop-critical"`
+	Uuid          string `json:"uuid"`
+}
+
+type VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsInc struct {
+	ParseFail    int    `json:"parse-fail"`
+	JsonFail     int    `json:"json-fail"`
+	TimeoutError int    `json:"timeout-error"`
+	OtherError   int    `json:"other-error"`
+	Uuid         string `json:"uuid"`
+}
+
+type VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsRate struct {
+	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
+	Duration            int    `json:"duration" dval:"60"`
+	ParseFail           int    `json:"parse-fail"`
+	JsonFail            int    `json:"json-fail"`
+	TimeoutError        int    `json:"timeout-error"`
+	OtherError          int    `json:"other-error"`
 	Uuid                string `json:"uuid"`
 }
 

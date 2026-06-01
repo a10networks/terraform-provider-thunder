@@ -16,6 +16,9 @@ func resourceImportPeriodicRpz() *schema.Resource {
 		DeleteContext: resourceImportPeriodicRpzDelete,
 
 		Schema: map[string]*schema.Schema{
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "Config remote server  password",
+			},
 			"period": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the period in second",
 			},
@@ -104,6 +107,8 @@ func resourceImportPeriodicRpzRead(ctx context.Context, d *schema.ResourceData, 
 
 func dataToEndpointImportPeriodicRpz(d *schema.ResourceData) edpt.ImportPeriodicRpz {
 	var ret edpt.ImportPeriodicRpz
+	//omit encrypted
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)
 	ret.Inst.RemoteFileZoneTransfer = d.Get("remote_file_zone_transfer").(string)

@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type InterfaceTunnelIp struct {
 	Inst struct {
 		Address InterfaceTunnelIpAddress `json:"address"`
@@ -18,11 +18,11 @@ type InterfaceTunnelIp struct {
 
 		MaxRespTime int `json:"max-resp-time" dval:"100"`
 
-		Ospf InterfaceTunnelIpOspf942 `json:"ospf"`
+		Ospf InterfaceTunnelIpOspf937 `json:"ospf"`
 
 		Outside int `json:"outside"`
 
-		Rip InterfaceTunnelIpRip950 `json:"rip"`
+		Rip InterfaceTunnelIpRip945 `json:"rip"`
 
 		Uuid string `json:"uuid"`
 
@@ -40,56 +40,56 @@ type InterfaceTunnelIpAddressIpCfg struct {
 	Ipv4Netmask string `json:"ipv4-netmask"`
 }
 
-type InterfaceTunnelIpOspf942 struct {
-	OspfGlobal InterfaceTunnelIpOspfOspfGlobal943 `json:"ospf-global"`
+type InterfaceTunnelIpOspf937 struct {
+	OspfGlobal InterfaceTunnelIpOspfOspfGlobal938 `json:"ospf-global"`
 	OspfIpList []InterfaceTunnelIpOspfOspfIpList  `json:"ospf-ip-list"`
 }
 
-type InterfaceTunnelIpOspfOspfGlobal943 struct {
-	AuthenticationCfg  InterfaceTunnelIpOspfOspfGlobalAuthenticationCfg944  `json:"authentication-cfg"`
+type InterfaceTunnelIpOspfOspfGlobal938 struct {
+	AuthenticationCfg  InterfaceTunnelIpOspfOspfGlobalAuthenticationCfg939  `json:"authentication-cfg"`
 	AuthenticationKey  string                                               `json:"authentication-key"`
-	BfdCfg             InterfaceTunnelIpOspfOspfGlobalBfdCfg945             `json:"bfd-cfg"`
+	BfdCfg             InterfaceTunnelIpOspfOspfGlobalBfdCfg940             `json:"bfd-cfg"`
 	Cost               int                                                  `json:"cost"`
-	DatabaseFilterCfg  InterfaceTunnelIpOspfOspfGlobalDatabaseFilterCfg946  `json:"database-filter-cfg"`
+	DatabaseFilterCfg  InterfaceTunnelIpOspfOspfGlobalDatabaseFilterCfg941  `json:"database-filter-cfg"`
 	DeadInterval       int                                                  `json:"dead-interval" dval:"40"`
 	Disable            string                                               `json:"disable"`
 	HelloInterval      int                                                  `json:"hello-interval" dval:"10"`
-	MessageDigestCfg   []InterfaceTunnelIpOspfOspfGlobalMessageDigestCfg947 `json:"message-digest-cfg"`
+	MessageDigestCfg   []InterfaceTunnelIpOspfOspfGlobalMessageDigestCfg942 `json:"message-digest-cfg"`
 	Mtu                int                                                  `json:"mtu"`
 	MtuIgnore          int                                                  `json:"mtu-ignore"`
-	Network            InterfaceTunnelIpOspfOspfGlobalNetwork949            `json:"network"`
+	Network            InterfaceTunnelIpOspfOspfGlobalNetwork944            `json:"network"`
 	Priority           int                                                  `json:"priority" dval:"1"`
 	RetransmitInterval int                                                  `json:"retransmit-interval" dval:"5"`
 	TransmitDelay      int                                                  `json:"transmit-delay" dval:"1"`
 	Uuid               string                                               `json:"uuid"`
 }
 
-type InterfaceTunnelIpOspfOspfGlobalAuthenticationCfg944 struct {
+type InterfaceTunnelIpOspfOspfGlobalAuthenticationCfg939 struct {
 	Authentication int    `json:"authentication"`
 	Value          string `json:"value"`
 }
 
-type InterfaceTunnelIpOspfOspfGlobalBfdCfg945 struct {
+type InterfaceTunnelIpOspfOspfGlobalBfdCfg940 struct {
 	Bfd     int `json:"bfd"`
 	Disable int `json:"disable"`
 }
 
-type InterfaceTunnelIpOspfOspfGlobalDatabaseFilterCfg946 struct {
+type InterfaceTunnelIpOspfOspfGlobalDatabaseFilterCfg941 struct {
 	DatabaseFilter string `json:"database-filter"`
 	Out            int    `json:"out"`
 }
 
-type InterfaceTunnelIpOspfOspfGlobalMessageDigestCfg947 struct {
+type InterfaceTunnelIpOspfOspfGlobalMessageDigestCfg942 struct {
 	MessageDigestKey int                                                   `json:"message-digest-key"`
-	Md5              InterfaceTunnelIpOspfOspfGlobalMessageDigestCfgMd5948 `json:"md5"`
+	Md5              InterfaceTunnelIpOspfOspfGlobalMessageDigestCfgMd5943 `json:"md5"`
 }
 
-type InterfaceTunnelIpOspfOspfGlobalMessageDigestCfgMd5948 struct {
+type InterfaceTunnelIpOspfOspfGlobalMessageDigestCfgMd5943 struct {
 	Md5Value  string `json:"md5-value"`
 	Encrypted string `json:"encrypted"`
 }
 
-type InterfaceTunnelIpOspfOspfGlobalNetwork949 struct {
+type InterfaceTunnelIpOspfOspfGlobalNetwork944 struct {
 	Broadcast         int `json:"broadcast"`
 	NonBroadcast      int `json:"non-broadcast"`
 	PointToPoint      int `json:"point-to-point"`
@@ -121,45 +121,45 @@ type InterfaceTunnelIpOspfOspfIpListMessageDigestCfg struct {
 	Encrypted        string `json:"encrypted"`
 }
 
-type InterfaceTunnelIpRip950 struct {
-	Authentication  InterfaceTunnelIpRipAuthentication951  `json:"authentication"`
+type InterfaceTunnelIpRip945 struct {
+	Authentication  InterfaceTunnelIpRipAuthentication946  `json:"authentication"`
 	SendPacket      int                                    `json:"send-packet" dval:"1"`
 	ReceivePacket   int                                    `json:"receive-packet" dval:"1"`
-	SendCfg         InterfaceTunnelIpRipSendCfg955         `json:"send-cfg"`
-	ReceiveCfg      InterfaceTunnelIpRipReceiveCfg956      `json:"receive-cfg"`
-	SplitHorizonCfg InterfaceTunnelIpRipSplitHorizonCfg957 `json:"split-horizon-cfg"`
+	SendCfg         InterfaceTunnelIpRipSendCfg950         `json:"send-cfg"`
+	ReceiveCfg      InterfaceTunnelIpRipReceiveCfg951      `json:"receive-cfg"`
+	SplitHorizonCfg InterfaceTunnelIpRipSplitHorizonCfg952 `json:"split-horizon-cfg"`
 	Uuid            string                                 `json:"uuid"`
 }
 
-type InterfaceTunnelIpRipAuthentication951 struct {
-	Str      InterfaceTunnelIpRipAuthenticationStr952      `json:"str"`
-	Mode     InterfaceTunnelIpRipAuthenticationMode953     `json:"mode"`
-	KeyChain InterfaceTunnelIpRipAuthenticationKeyChain954 `json:"key-chain"`
+type InterfaceTunnelIpRipAuthentication946 struct {
+	Str      InterfaceTunnelIpRipAuthenticationStr947      `json:"str"`
+	Mode     InterfaceTunnelIpRipAuthenticationMode948     `json:"mode"`
+	KeyChain InterfaceTunnelIpRipAuthenticationKeyChain949 `json:"key-chain"`
 }
 
-type InterfaceTunnelIpRipAuthenticationStr952 struct {
+type InterfaceTunnelIpRipAuthenticationStr947 struct {
 	String string `json:"string"`
 }
 
-type InterfaceTunnelIpRipAuthenticationMode953 struct {
+type InterfaceTunnelIpRipAuthenticationMode948 struct {
 	Mode string `json:"mode" dval:"text"`
 }
 
-type InterfaceTunnelIpRipAuthenticationKeyChain954 struct {
+type InterfaceTunnelIpRipAuthenticationKeyChain949 struct {
 	KeyChain string `json:"key-chain"`
 }
 
-type InterfaceTunnelIpRipSendCfg955 struct {
+type InterfaceTunnelIpRipSendCfg950 struct {
 	Send    int    `json:"send"`
 	Version string `json:"version"`
 }
 
-type InterfaceTunnelIpRipReceiveCfg956 struct {
+type InterfaceTunnelIpRipReceiveCfg951 struct {
 	Receive int    `json:"receive"`
 	Version string `json:"version"`
 }
 
-type InterfaceTunnelIpRipSplitHorizonCfg957 struct {
+type InterfaceTunnelIpRipSplitHorizonCfg952 struct {
 	State string `json:"state" dval:"poisoned"`
 }
 

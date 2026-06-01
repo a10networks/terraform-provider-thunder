@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsInc2770 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsInc2788 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsRate2771 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsRate2789 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsSeverity2772 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsSeverity2790 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,7 +25,7 @@ type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmpl struct {
 	} `json:"cgnv6-map-trans-domain-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsInc2770 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsInc2788 struct {
 	Inbound_addr_port_validation_failed int    `json:"inbound_addr_port_validation_failed"`
 	Inbound_rev_lookup_failed           int    `json:"inbound_rev_lookup_failed"`
 	Inbound_dest_unreachable            int    `json:"inbound_dest_unreachable"`
@@ -37,7 +37,7 @@ type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsIn
 	Uuid                                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsRate2771 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsRate2789 struct {
 	ThresholdExceededBy                 int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                            int    `json:"duration" dval:"60"`
 	Inbound_addr_port_validation_failed int    `json:"inbound_addr_port_validation_failed"`
@@ -51,7 +51,7 @@ type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsRa
 	Uuid                                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsSeverity2772 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTriggerStatsSeverity2790 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

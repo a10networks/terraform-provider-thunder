@@ -3,13 +3,13 @@
 page_title: "thunder_controller_profile Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  thunder_controller_profile: A10 controller profile
+  thunder_controller_profile: A10 control profile
   PLACEHOLDER
 ---
 
 # thunder_controller_profile (Resource)
 
-`thunder_controller_profile`: A10 controller profile
+`thunder_controller_profile`: A10 control profile
 
 __PLACEHOLDER__
 

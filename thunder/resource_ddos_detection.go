@@ -69,7 +69,7 @@ func resourceDdosDetection() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"counters1": {
-										Type: schema.TypeString, Optional: true, Description: "'all': all; 'sflow-packets-received': sFlow Packets Received; 'sflow-samples-received': sFlow Samples Received; 'sflow-samples-bad-len': sFlow Samples Bad Length; 'sflow-samples-non-std': sFlow Samples Non-standard; 'sflow-samples-skipped': sFlow Samples Skipped; 'sflow-sample-record-bad-len': sFlow Sample Records Bad Length; 'sflow-samples-sent-for-detection': sFlow Samples Processed For Detection; 'sflow-sample-record-invalid-layer2': sFlow Sample Records Unknown Layer-2; 'sflow-sample-ipv6-hdr-parse-fail': sFlow Sample IPv6 Record Header Parse Failures; 'sflow-disabled': sFlow Packet Samples Processing Disabled; 'netflow-disabled': Netflow Flow Samples Processing Disabled; 'netflow-v5-packets-received': Netflow v5 Packets Received; 'netflow-v5-samples-received': Netflow v5 Samples Received; 'netflow-v5-samples-sent-for-detection': Netflow v5 Samples Processed For Detection; 'netflow-v5-sample-records-bad-len': Netflow v5 Sample Records Bad Length; 'netflow-v5-max-records-exceed': Netflow v5 Sample Max Records Error; 'netflow-v9-packets-received': Netflow v9 Packets Received; 'netflow-v9-samples-received': Netflow v9 Samples Received; 'netflow-v9-samples-sent-for-detection': Netflow v9 Samples Processed For Detection; 'netflow-v9-sample-records-bad-len': Netflow v9 Sample Records Bad Length; 'netflow-v9-sample-flowset-bad-padding': Netflow v9 Sample Flowset Bad Padding; 'netflow-v9-max-records-exceed': Netflow v9 Sample Max Records Error; 'netflow-v9-template-not-found': Netflow v9 Template Not Found; 'netflow-v10-packets-received': Netflow v10 Packets Received; 'netflow-v10-samples-received': Netflow v10 Samples Received; 'netflow-v10-samples-sent-for-detection': Netflow v10 Samples Procssed For Detection; 'netflow-v10-sample-records-bad-len': Netflow v10 Sample Records Bad Length; 'netflow-v10-max-records-exceed': Netflow v10 Sample Max records Error; 'netflow-tcp-sample-received': Netflow TCP Samples Received; 'netflow-udp-sample-received': Netflow UDP Samples received; 'netflow-icmp-sample-received': Netflow ICMP Samples Received; 'netflow-other-sample-received': Netflow OTHER Samples Received; 'netflow-record-copy-oom-error': Netflow Data Record Copy Fail, Local MEM size error; 'netflow-record-rse-invalid': Netflow Data Record Reduced Size Invalid; 'netflow-sample-flow-dur-error': Netflow Sample Flow Duration Error; 'flow-dst-entry-miss': DDoS Destination Entry Lookup Failures; 'flow-ip-proto-or-port-miss': DDoS Destination Service Lookup Failures; 'flow-detection-msgq-full': Detection Message Enqueue Failures; 'flow-network-entry-miss': DDoS Destination Network-object Entry Lookup Failures; 'xflow-extend-pkt-rcv': XFlow Sample Extend Packets Received; 'xflow-extend-byte-rcv': XFlow Sample Extend Bytes Received; 'xflow-dst-entry-miss-extend-pkt-rcv': Extend Packets Received of DDoS Destination Entry Miss; 'xflow-dst-entry-miss-extend-byte-rcv': Extend Bytes Received of DDoS Destination Entry Miss; 'xflow-dst-svc-miss-extend-pkt-rcv': Extend Packets Received of DDoS Destination Service Miss; 'xflow-dst-svc-miss-extend-byte-rcv': Extend Bytes Received of DDoS Destination Service Miss;",
+										Type: schema.TypeString, Optional: true, Description: "'all': all; 'sflow-packets-received': sFlow Packets Received; 'sflow-samples-received': sFlow Samples Received; 'sflow-samples-bad-len': sFlow Samples Bad Length; 'sflow-samples-non-std': sFlow Samples Non-standard; 'sflow-samples-skipped': sFlow Samples Skipped; 'sflow-sample-record-bad-len': sFlow Sample Records Bad Length; 'sflow-samples-sent-for-detection': sFlow Samples Processed For Detection; 'sflow-sample-record-invalid-layer2': sFlow Sample Records Unknown Layer-2; 'sflow-sample-ipv6-hdr-parse-fail': sFlow Sample IPv6 Record Header Parse Failures; 'sflow-disabled': sFlow Packet Samples Processing Disabled; 'netflow-disabled': Netflow Flow Samples Processing Disabled; 'netflow-v5-packets-received': Netflow v5 Packets Received; 'netflow-v5-samples-received': Netflow v5 Samples Received; 'netflow-v5-samples-sent-for-detection': Netflow v5 Samples Processed For Detection; 'netflow-v5-sample-records-bad-len': Netflow v5 Sample Records Bad Length; 'netflow-v5-max-records-exceed': Netflow v5 Sample Max Records Error; 'netflow-v9-packets-received': Netflow v9 Packets Received; 'netflow-v9-samples-received': Netflow v9 Samples Received; 'netflow-v9-samples-sent-for-detection': Netflow v9 Samples Processed For Detection; 'netflow-v9-sample-records-bad-len': Netflow v9 Sample Records Bad Length; 'netflow-v9-sample-flowset-bad-padding': Netflow v9 Sample Flowset Bad Padding; 'netflow-v9-max-records-exceed': Netflow v9 Sample Max Records Error; 'netflow-v9-template-not-found': Netflow v9 Template Not Found; 'netflow-v10-packets-received': Netflow v10 Packets Received; 'netflow-v10-samples-received': Netflow v10 Samples Received; 'netflow-v10-samples-sent-for-detection': Netflow v10 Samples Procssed For Detection; 'netflow-v10-sample-records-bad-len': Netflow v10 Sample Records Bad Length; 'netflow-v10-max-records-exceed': Netflow v10 Sample Max records Error; 'netflow-tcp-sample-received': Netflow TCP Samples Received; 'netflow-udp-sample-received': Netflow UDP Samples received; 'netflow-icmp-sample-received': Netflow ICMP Samples Received; 'netflow-other-sample-received': Netflow OTHER Samples Received; 'netflow-record-copy-oom-error': Netflow Data Record Copy Fail, Local MEM size error; 'netflow-record-rse-invalid': Netflow Data Record Reduced Size Invalid; 'netflow-sample-flow-dur-error': Netflow Sample Flow Duration Error; 'flow-dst-entry-miss': DDoS Destination Entry Lookup Failures; 'flow-ip-proto-or-port-miss': DDoS Destination Service Lookup Failures; 'flow-detection-msgq-full': Detection Message Enqueue Failures; 'flow-network-entry-miss': DDoS Destination Network-object Entry Lookup Failures; 'xflow-extend-pkt-rcv': XFlow Sample Extend Packets Received; 'xflow-extend-byte-rcv': XFlow Sample Extend Bytes Received; 'xflow-dst-entry-miss-extend-pkt-rcv': Extend Packets Received of DDoS Destination Entry Miss; 'xflow-dst-entry-miss-extend-byte-rcv': Extend Bytes Received of DDoS Destination Entry Miss; 'xflow-dst-svc-miss-extend-pkt-rcv': Extend Packets Received of DDoS Destination Service Miss; 'xflow-dst-svc-miss-extend-byte-rcv': Extend Bytes Received of DDoS Destination Service Miss; 'xflow-sample-dropped-by-intf-select': Xflow Samples Dropped by Interface Selection;",
 									},
 								},
 							},
@@ -102,6 +102,25 @@ func resourceDdosDetection() *schema.Resource {
 									},
 									"inactive_timeout": {
 										Type: schema.TypeInt, Optional: true, Description: "Configure agent's flow inactive timeout (seconds)",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
+						},
+						"snmp": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"ipv4_addr": {
+										Type: schema.TypeString, Optional: true, Description: "Configure agent's IPv4 address for SNMP",
+									},
+									"community_string": {
+										Type: schema.TypeString, Optional: true, Description: "Configure agent's community-string for SNMP",
+									},
+									"refresh": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "refresh SNMP information",
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -331,6 +350,42 @@ func resourceDdosDetection() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
+			"xflow_interface_selection_list": {
+				Type: schema.TypeList, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"type": {
+							Type: schema.TypeString, Required: true, Description: "'internet-side': internet-side;",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+						"user_tag": {
+							Type: schema.TypeString, Optional: true, Description: "Customized tag",
+						},
+						"regex": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"rule_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"single_regex": {
+													Type: schema.TypeString, Optional: true, Description: "Specify the regular expression rules",
+												},
+											},
+										},
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 		},
 	}
 }
@@ -441,6 +496,7 @@ func getSliceDdosDetectionAgentList(d []interface{}) []edpt.DdosDetectionAgentLi
 		oi.SamplingEnable = getSliceDdosDetectionAgentListSamplingEnable(in["sampling_enable"].([]interface{}))
 		oi.Sflow = getObjectDdosDetectionAgentListSflow(in["sflow"].([]interface{}))
 		oi.Netflow = getObjectDdosDetectionAgentListNetflow(in["netflow"].([]interface{}))
+		oi.Snmp = getObjectDdosDetectionAgentListSnmp(in["snmp"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
@@ -486,10 +542,24 @@ func getObjectDdosDetectionAgentListNetflow(d []interface{}) edpt.DdosDetectionA
 	return ret
 }
 
-func getObjectDdosDetectionDdosScript154(d []interface{}) edpt.DdosDetectionDdosScript154 {
+func getObjectDdosDetectionAgentListSnmp(d []interface{}) edpt.DdosDetectionAgentListSnmp {
 
 	count1 := len(d)
-	var ret edpt.DdosDetectionDdosScript154
+	var ret edpt.DdosDetectionAgentListSnmp
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Ipv4Addr = in["ipv4_addr"].(string)
+		ret.CommunityString = in["community_string"].(string)
+		ret.Refresh = in["refresh"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectDdosDetectionDdosScript157(d []interface{}) edpt.DdosDetectionDdosScript157 {
+
+	count1 := len(d)
+	var ret edpt.DdosDetectionDdosScript157
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.File = in["file"].(string)
@@ -499,10 +569,10 @@ func getObjectDdosDetectionDdosScript154(d []interface{}) edpt.DdosDetectionDdos
 	return ret
 }
 
-func getObjectDdosDetectionEntrySaving155(d []interface{}) edpt.DdosDetectionEntrySaving155 {
+func getObjectDdosDetectionEntrySaving158(d []interface{}) edpt.DdosDetectionEntrySaving158 {
 
 	count1 := len(d)
-	var ret edpt.DdosDetectionEntrySaving155
+	var ret edpt.DdosDetectionEntrySaving158
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ClearSavedData = in["clear_saved_data"].(int)
@@ -513,16 +583,16 @@ func getObjectDdosDetectionEntrySaving155(d []interface{}) edpt.DdosDetectionEnt
 	return ret
 }
 
-func getObjectDdosDetectionResourceUsage156(d []interface{}) edpt.DdosDetectionResourceUsage156 {
+func getObjectDdosDetectionResourceUsage159(d []interface{}) edpt.DdosDetectionResourceUsage159 {
 
-	var ret edpt.DdosDetectionResourceUsage156
+	var ret edpt.DdosDetectionResourceUsage159
 	return ret
 }
 
-func getObjectDdosDetectionSettings157(d []interface{}) edpt.DdosDetectionSettings157 {
+func getObjectDdosDetectionSettings160(d []interface{}) edpt.DdosDetectionSettings160 {
 
 	count1 := len(d)
-	var ret edpt.DdosDetectionSettings157
+	var ret edpt.DdosDetectionSettings160
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DetectorMode = in["detector_mode"].(string)
@@ -530,7 +600,7 @@ func getObjectDdosDetectionSettings157(d []interface{}) edpt.DdosDetectionSettin
 		ret.CtrlCpuUsage = in["ctrl_cpu_usage"].(int)
 		ret.FullCoreEnable = in["full_core_enable"].(int)
 		ret.TopKResetInterval = in["top_k_reset_interval"].(int)
-		ret.PktSampling = getSliceDdosDetectionSettingsPktSampling158(in["pkt_sampling"].([]interface{}))
+		ret.PktSampling = getSliceDdosDetectionSettingsPktSampling161(in["pkt_sampling"].([]interface{}))
 		ret.HistogramEscalatePercentage = in["histogram_escalate_percentage"].(int)
 		ret.HistogramDeEscalatePercentage = in["histogram_de_escalate_percentage"].(int)
 		ret.DetectionWindowSize = in["detection_window_size"].(int)
@@ -542,20 +612,20 @@ func getObjectDdosDetectionSettings157(d []interface{}) edpt.DdosDetectionSettin
 		ret.DeEscalationQuietTime = in["de_escalation_quiet_time"].(int)
 		ret.NetworkObjectSubnetNotifyPercent = in["network_object_subnet_notify_percent"].(int)
 		//omit uuid
-		ret.EntrySaving = getObjectDdosDetectionSettingsEntrySaving159(in["entry_saving"].([]interface{}))
-		ret.StandaloneSettings = getObjectDdosDetectionSettingsStandaloneSettings160(in["standalone_settings"].([]interface{}))
-		ret.ZoneNotifications = getObjectDdosDetectionSettingsZoneNotifications163(in["zone_notifications"].([]interface{}))
+		ret.EntrySaving = getObjectDdosDetectionSettingsEntrySaving162(in["entry_saving"].([]interface{}))
+		ret.StandaloneSettings = getObjectDdosDetectionSettingsStandaloneSettings163(in["standalone_settings"].([]interface{}))
+		ret.ZoneNotifications = getObjectDdosDetectionSettingsZoneNotifications166(in["zone_notifications"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDetectionSettingsPktSampling158(d []interface{}) []edpt.DdosDetectionSettingsPktSampling158 {
+func getSliceDdosDetectionSettingsPktSampling161(d []interface{}) []edpt.DdosDetectionSettingsPktSampling161 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDetectionSettingsPktSampling158, 0, count1)
+	ret := make([]edpt.DdosDetectionSettingsPktSampling161, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDetectionSettingsPktSampling158
+		var oi edpt.DdosDetectionSettingsPktSampling161
 		oi.OverrideRate = in["override_rate"].(int)
 		oi.StartLevel = in["start_level"].(int)
 		ret = append(ret, oi)
@@ -563,10 +633,10 @@ func getSliceDdosDetectionSettingsPktSampling158(d []interface{}) []edpt.DdosDet
 	return ret
 }
 
-func getObjectDdosDetectionSettingsEntrySaving159(d []interface{}) edpt.DdosDetectionSettingsEntrySaving159 {
+func getObjectDdosDetectionSettingsEntrySaving162(d []interface{}) edpt.DdosDetectionSettingsEntrySaving162 {
 
 	count1 := len(d)
-	var ret edpt.DdosDetectionSettingsEntrySaving159
+	var ret edpt.DdosDetectionSettingsEntrySaving162
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DisableBootupRestore = in["disable_bootup_restore"].(int)
@@ -576,24 +646,24 @@ func getObjectDdosDetectionSettingsEntrySaving159(d []interface{}) edpt.DdosDete
 	return ret
 }
 
-func getObjectDdosDetectionSettingsStandaloneSettings160(d []interface{}) edpt.DdosDetectionSettingsStandaloneSettings160 {
+func getObjectDdosDetectionSettingsStandaloneSettings163(d []interface{}) edpt.DdosDetectionSettingsStandaloneSettings163 {
 
 	count1 := len(d)
-	var ret edpt.DdosDetectionSettingsStandaloneSettings160
+	var ret edpt.DdosDetectionSettingsStandaloneSettings163
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
 		//omit uuid
-		ret.Sflow = getObjectDdosDetectionSettingsStandaloneSettingsSflow161(in["sflow"].([]interface{}))
-		ret.Netflow = getObjectDdosDetectionSettingsStandaloneSettingsNetflow162(in["netflow"].([]interface{}))
+		ret.Sflow = getObjectDdosDetectionSettingsStandaloneSettingsSflow164(in["sflow"].([]interface{}))
+		ret.Netflow = getObjectDdosDetectionSettingsStandaloneSettingsNetflow165(in["netflow"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectDdosDetectionSettingsStandaloneSettingsSflow161(d []interface{}) edpt.DdosDetectionSettingsStandaloneSettingsSflow161 {
+func getObjectDdosDetectionSettingsStandaloneSettingsSflow164(d []interface{}) edpt.DdosDetectionSettingsStandaloneSettingsSflow164 {
 
 	count1 := len(d)
-	var ret edpt.DdosDetectionSettingsStandaloneSettingsSflow161
+	var ret edpt.DdosDetectionSettingsStandaloneSettingsSflow164
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ListeningPort = in["listening_port"].(int)
@@ -602,10 +672,10 @@ func getObjectDdosDetectionSettingsStandaloneSettingsSflow161(d []interface{}) e
 	return ret
 }
 
-func getObjectDdosDetectionSettingsStandaloneSettingsNetflow162(d []interface{}) edpt.DdosDetectionSettingsStandaloneSettingsNetflow162 {
+func getObjectDdosDetectionSettingsStandaloneSettingsNetflow165(d []interface{}) edpt.DdosDetectionSettingsStandaloneSettingsNetflow165 {
 
 	count1 := len(d)
-	var ret edpt.DdosDetectionSettingsStandaloneSettingsNetflow162
+	var ret edpt.DdosDetectionSettingsStandaloneSettingsNetflow165
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ListeningPort = in["listening_port"].(int)
@@ -616,10 +686,10 @@ func getObjectDdosDetectionSettingsStandaloneSettingsNetflow162(d []interface{})
 	return ret
 }
 
-func getObjectDdosDetectionSettingsZoneNotifications163(d []interface{}) edpt.DdosDetectionSettingsZoneNotifications163 {
+func getObjectDdosDetectionSettingsZoneNotifications166(d []interface{}) edpt.DdosDetectionSettingsZoneNotifications166 {
 
 	count1 := len(d)
-	var ret edpt.DdosDetectionSettingsZoneNotifications163
+	var ret edpt.DdosDetectionSettingsZoneNotifications166
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SourceEntry = in["source_entry"].(string)
@@ -628,16 +698,16 @@ func getObjectDdosDetectionSettingsZoneNotifications163(d []interface{}) edpt.Dd
 	return ret
 }
 
-func getObjectDdosDetectionStatistics164(d []interface{}) edpt.DdosDetectionStatistics164 {
+func getObjectDdosDetectionStatistics167(d []interface{}) edpt.DdosDetectionStatistics167 {
 
-	var ret edpt.DdosDetectionStatistics164
+	var ret edpt.DdosDetectionStatistics167
 	return ret
 }
 
-func getObjectDdosDetectionTrustlist165(d []interface{}) edpt.DdosDetectionTrustlist165 {
+func getObjectDdosDetectionTrustlist168(d []interface{}) edpt.DdosDetectionTrustlist168 {
 
 	count1 := len(d)
-	var ret edpt.DdosDetectionTrustlist165
+	var ret edpt.DdosDetectionTrustlist168
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.V4ClassList = in["v4_class_list"].(string)
@@ -647,17 +717,59 @@ func getObjectDdosDetectionTrustlist165(d []interface{}) edpt.DdosDetectionTrust
 	return ret
 }
 
+func getSliceDdosDetectionXflowInterfaceSelectionList(d []interface{}) []edpt.DdosDetectionXflowInterfaceSelectionList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDetectionXflowInterfaceSelectionList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDetectionXflowInterfaceSelectionList
+		oi.Type = in["type"].(string)
+		//omit uuid
+		oi.UserTag = in["user_tag"].(string)
+		oi.Regex = getObjectDdosDetectionXflowInterfaceSelectionListRegex(in["regex"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectDdosDetectionXflowInterfaceSelectionListRegex(d []interface{}) edpt.DdosDetectionXflowInterfaceSelectionListRegex {
+
+	count1 := len(d)
+	var ret edpt.DdosDetectionXflowInterfaceSelectionListRegex
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.RuleList = getSliceDdosDetectionXflowInterfaceSelectionListRegexRuleList(in["rule_list"].([]interface{}))
+		//omit uuid
+	}
+	return ret
+}
+
+func getSliceDdosDetectionXflowInterfaceSelectionListRegexRuleList(d []interface{}) []edpt.DdosDetectionXflowInterfaceSelectionListRegexRuleList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDetectionXflowInterfaceSelectionListRegexRuleList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDetectionXflowInterfaceSelectionListRegexRuleList
+		oi.SingleRegex = in["single_regex"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
 func dataToEndpointDdosDetection(d *schema.ResourceData) edpt.DdosDetection {
 	var ret edpt.DdosDetection
 	ret.Inst.AgentGroupList = getSliceDdosDetectionAgentGroupList(d.Get("agent_group_list").([]interface{}))
 	ret.Inst.AgentList = getSliceDdosDetectionAgentList(d.Get("agent_list").([]interface{}))
-	ret.Inst.DdosScript = getObjectDdosDetectionDdosScript154(d.Get("ddos_script").([]interface{}))
+	ret.Inst.DdosScript = getObjectDdosDetectionDdosScript157(d.Get("ddos_script").([]interface{}))
 	ret.Inst.Disable = d.Get("disable").(int)
-	ret.Inst.EntrySaving = getObjectDdosDetectionEntrySaving155(d.Get("entry_saving").([]interface{}))
-	ret.Inst.ResourceUsage = getObjectDdosDetectionResourceUsage156(d.Get("resource_usage").([]interface{}))
-	ret.Inst.Settings = getObjectDdosDetectionSettings157(d.Get("settings").([]interface{}))
-	ret.Inst.Statistics = getObjectDdosDetectionStatistics164(d.Get("statistics").([]interface{}))
-	ret.Inst.Trustlist = getObjectDdosDetectionTrustlist165(d.Get("trustlist").([]interface{}))
+	ret.Inst.EntrySaving = getObjectDdosDetectionEntrySaving158(d.Get("entry_saving").([]interface{}))
+	ret.Inst.ResourceUsage = getObjectDdosDetectionResourceUsage159(d.Get("resource_usage").([]interface{}))
+	ret.Inst.Settings = getObjectDdosDetectionSettings160(d.Get("settings").([]interface{}))
+	ret.Inst.Statistics = getObjectDdosDetectionStatistics167(d.Get("statistics").([]interface{}))
+	ret.Inst.Trustlist = getObjectDdosDetectionTrustlist168(d.Get("trustlist").([]interface{}))
 	//omit uuid
+	ret.Inst.XflowInterfaceSelectionList = getSliceDdosDetectionXflowInterfaceSelectionList(d.Get("xflow_interface_selection_list").([]interface{}))
 	return ret
 }

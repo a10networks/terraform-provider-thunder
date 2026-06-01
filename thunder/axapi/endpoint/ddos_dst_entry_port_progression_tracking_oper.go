@@ -5,15 +5,15 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstEntryPortProgressionTrackingOper struct {
 	Oper DdosDstEntryPortProgressionTrackingOperOper `json:"oper"`
-
-	Protocol string
 
 	PortNum string
 
 	DstEntryName string
+
+	Protocol string
 }
 type DataDdosDstEntryPortProgressionTrackingOper struct {
 	DtDdosDstEntryPortProgressionTrackingOper DdosDstEntryPortProgressionTrackingOper `json:"progression-tracking"`

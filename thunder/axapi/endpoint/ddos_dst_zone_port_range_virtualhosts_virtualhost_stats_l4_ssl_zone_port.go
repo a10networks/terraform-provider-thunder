@@ -5,18 +5,18 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZonePortRangeVirtualhostsVirtualhostStats struct {
 	Inst struct {
 		Stats DdosDstZonePortRangeVirtualhostsVirtualhostStatsStats `json:"stats"`
 
 		Vhost string `json:"vhost"`
 
+		Protocol string
+
 		ZoneName string
 
 		PortRangeStart string
-
-		Protocol string
 
 		PortRangeEnd string
 	} `json:"virtualhost"`
@@ -387,6 +387,13 @@ type DdosDstZonePortRangeVirtualhostsVirtualhostStatsStatsL4SslZonePort struct {
 	Tcp_fin_psh_ack_fwd                      int `json:"tcp_fin_psh_ack_fwd"`
 	Create_conn_non_syn_rst                  int `json:"create_conn_non_syn_rst"`
 	Src_create_conn_non_syn_rst              int `json:"src_create_conn_non_syn_rst"`
+	Pattern_filter1_drop                     int `json:"pattern_filter1_drop"`
+	Pattern_filter2_drop                     int `json:"pattern_filter2_drop"`
+	Pattern_filter3_drop                     int `json:"pattern_filter3_drop"`
+	Pattern_filter4_drop                     int `json:"pattern_filter4_drop"`
+	Pattern_filter5_drop                     int `json:"pattern_filter5_drop"`
+	Src_ip_filtering_drop                    int `json:"src_ip_filtering_drop"`
+	Src_ip_filtering_bypass                  int `json:"src_ip_filtering_bypass"`
 }
 
 func (p *DdosDstZonePortRangeVirtualhostsVirtualhostStats) GetId() string {

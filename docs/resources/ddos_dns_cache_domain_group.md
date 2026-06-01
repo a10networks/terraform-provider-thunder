@@ -48,9 +48,11 @@ Optional:
 - `dns_notify_enable_ipv4` (Number) DNS notify enabled
 - `dns_notify_enable_ipv6` (Number) DNS notify enabled
 - `force` (Number) Force update even the serial is the same
+- `ixfr` (Number) Use IXFR to update
 - `manual_refresh` (String) Manually refresh the particular zone
 - `oversize_answer_response` (String) 'set-truncate-bit': Set the TC bit for oversize answer(default); 'disable-truncate-bit': Do not set TC bit for oversize answer;
 - `packet_capturing` (Block List, Max: 1) (see [below for nested schema](#nestedblock--domain_list_policy_list--packet_capturing))
+- `refresh_interval_by_soa` (Number) Read by SOA record
 - `refresh_interval_hours` (Number) Zone transfer refresh rate in hours (Default 4). 0 means no refresh
 - `resolve_cname_record` (Number) Always try to resolve domain in CNAME record answer section
 - `respond_with_authority` (Number) Respond with authority section for all requests under this list

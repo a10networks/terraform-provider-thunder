@@ -92,6 +92,9 @@ func resourceSystemDnsCacheStats() *schema.Resource {
 						"hit_rate_per_sec": {
 							Type: schema.TypeInt, Optional: true, Description: "Cache hit rate per second",
 						},
+						"multiple_answer_no_cache": {
+							Type: schema.TypeInt, Optional: true, Description: "Response not cached due to multiple answers",
+						},
 					},
 				},
 			},
@@ -121,31 +124,32 @@ func resourceSystemDnsCacheStatsRead(ctx context.Context, d *schema.ResourceData
 func setObjectSystemDnsCacheStatsStats(ret edpt.DataSystemDnsCacheStats) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"total_q":               ret.DtSystemDnsCacheStats.Stats.Total_q,
-			"total_r":               ret.DtSystemDnsCacheStats.Stats.Total_r,
-			"hit":                   ret.DtSystemDnsCacheStats.Stats.Hit,
-			"bad_q":                 ret.DtSystemDnsCacheStats.Stats.Bad_q,
-			"encode_q":              ret.DtSystemDnsCacheStats.Stats.Encode_q,
-			"multiple_q":            ret.DtSystemDnsCacheStats.Stats.Multiple_q,
-			"oversize_q":            ret.DtSystemDnsCacheStats.Stats.Oversize_q,
-			"bad_r":                 ret.DtSystemDnsCacheStats.Stats.Bad_r,
-			"oversize_r":            ret.DtSystemDnsCacheStats.Stats.Oversize_r,
-			"encode_r":              ret.DtSystemDnsCacheStats.Stats.Encode_r,
-			"multiple_r":            ret.DtSystemDnsCacheStats.Stats.Multiple_r,
-			"answer_r":              ret.DtSystemDnsCacheStats.Stats.Answer_r,
-			"ttl_r":                 ret.DtSystemDnsCacheStats.Stats.Ttl_r,
-			"ageout":                ret.DtSystemDnsCacheStats.Stats.Ageout,
-			"bad_answer":            ret.DtSystemDnsCacheStats.Stats.Bad_answer,
-			"ageout_weight":         ret.DtSystemDnsCacheStats.Stats.Ageout_weight,
-			"total_log":             ret.DtSystemDnsCacheStats.Stats.Total_log,
-			"total_alloc":           ret.DtSystemDnsCacheStats.Stats.Total_alloc,
-			"total_freed":           ret.DtSystemDnsCacheStats.Stats.Total_freed,
-			"current_allocate":      ret.DtSystemDnsCacheStats.Stats.Current_allocate,
-			"current_data_allocate": ret.DtSystemDnsCacheStats.Stats.Current_data_allocate,
-			"resolver_queue_full":   ret.DtSystemDnsCacheStats.Stats.Resolver_queue_full,
-			"truncated_r":           ret.DtSystemDnsCacheStats.Stats.Truncated_r,
-			"qps":                   ret.DtSystemDnsCacheStats.Stats.Qps,
-			"hit_rate_per_sec":      ret.DtSystemDnsCacheStats.Stats.Hit_rate_per_sec,
+			"total_q":                  ret.DtSystemDnsCacheStats.Stats.Total_q,
+			"total_r":                  ret.DtSystemDnsCacheStats.Stats.Total_r,
+			"hit":                      ret.DtSystemDnsCacheStats.Stats.Hit,
+			"bad_q":                    ret.DtSystemDnsCacheStats.Stats.Bad_q,
+			"encode_q":                 ret.DtSystemDnsCacheStats.Stats.Encode_q,
+			"multiple_q":               ret.DtSystemDnsCacheStats.Stats.Multiple_q,
+			"oversize_q":               ret.DtSystemDnsCacheStats.Stats.Oversize_q,
+			"bad_r":                    ret.DtSystemDnsCacheStats.Stats.Bad_r,
+			"oversize_r":               ret.DtSystemDnsCacheStats.Stats.Oversize_r,
+			"encode_r":                 ret.DtSystemDnsCacheStats.Stats.Encode_r,
+			"multiple_r":               ret.DtSystemDnsCacheStats.Stats.Multiple_r,
+			"answer_r":                 ret.DtSystemDnsCacheStats.Stats.Answer_r,
+			"ttl_r":                    ret.DtSystemDnsCacheStats.Stats.Ttl_r,
+			"ageout":                   ret.DtSystemDnsCacheStats.Stats.Ageout,
+			"bad_answer":               ret.DtSystemDnsCacheStats.Stats.Bad_answer,
+			"ageout_weight":            ret.DtSystemDnsCacheStats.Stats.Ageout_weight,
+			"total_log":                ret.DtSystemDnsCacheStats.Stats.Total_log,
+			"total_alloc":              ret.DtSystemDnsCacheStats.Stats.Total_alloc,
+			"total_freed":              ret.DtSystemDnsCacheStats.Stats.Total_freed,
+			"current_allocate":         ret.DtSystemDnsCacheStats.Stats.Current_allocate,
+			"current_data_allocate":    ret.DtSystemDnsCacheStats.Stats.Current_data_allocate,
+			"resolver_queue_full":      ret.DtSystemDnsCacheStats.Stats.Resolver_queue_full,
+			"truncated_r":              ret.DtSystemDnsCacheStats.Stats.Truncated_r,
+			"qps":                      ret.DtSystemDnsCacheStats.Stats.Qps,
+			"hit_rate_per_sec":         ret.DtSystemDnsCacheStats.Stats.Hit_rate_per_sec,
+			"multiple_answer_no_cache": ret.DtSystemDnsCacheStats.Stats.Multiple_answer_no_cache,
 		},
 	}
 }
@@ -181,6 +185,7 @@ func getObjectSystemDnsCacheStatsStats(d []interface{}) edpt.SystemDnsCacheStats
 		ret.Truncated_r = in["truncated_r"].(int)
 		ret.Qps = in["qps"].(int)
 		ret.Hit_rate_per_sec = in["hit_rate_per_sec"].(int)
+		ret.Multiple_answer_no_cache = in["multiple_answer_no_cache"].(int)
 	}
 	return ret
 }

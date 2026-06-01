@@ -157,10 +157,10 @@ func resourceOverlayTunnelVtepRemoteIpAddressRead(ctx context.Context, d *schema
 	return diags
 }
 
-func getObjectOverlayTunnelVtepRemoteIpAddressGreKeepalive1162(d []interface{}) edpt.OverlayTunnelVtepRemoteIpAddressGreKeepalive1162 {
+func getObjectOverlayTunnelVtepRemoteIpAddressGreKeepalive1161(d []interface{}) edpt.OverlayTunnelVtepRemoteIpAddressGreKeepalive1161 {
 
 	count1 := len(d)
-	var ret edpt.OverlayTunnelVtepRemoteIpAddressGreKeepalive1162
+	var ret edpt.OverlayTunnelVtepRemoteIpAddressGreKeepalive1161
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RetryTime = in["retry_time"].(int)
@@ -170,10 +170,10 @@ func getObjectOverlayTunnelVtepRemoteIpAddressGreKeepalive1162(d []interface{}) 
 	return ret
 }
 
-func getObjectOverlayTunnelVtepRemoteIpAddressUseGreKey1163(d []interface{}) edpt.OverlayTunnelVtepRemoteIpAddressUseGreKey1163 {
+func getObjectOverlayTunnelVtepRemoteIpAddressUseGreKey1162(d []interface{}) edpt.OverlayTunnelVtepRemoteIpAddressUseGreKey1162 {
 
 	count1 := len(d)
-	var ret edpt.OverlayTunnelVtepRemoteIpAddressUseGreKey1163
+	var ret edpt.OverlayTunnelVtepRemoteIpAddressUseGreKey1162
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GreKey = in["gre_key"].(int)
@@ -182,10 +182,10 @@ func getObjectOverlayTunnelVtepRemoteIpAddressUseGreKey1163(d []interface{}) edp
 	return ret
 }
 
-func getObjectOverlayTunnelVtepRemoteIpAddressUseLif1164(d []interface{}) edpt.OverlayTunnelVtepRemoteIpAddressUseLif1164 {
+func getObjectOverlayTunnelVtepRemoteIpAddressUseLif1163(d []interface{}) edpt.OverlayTunnelVtepRemoteIpAddressUseLif1163 {
 
 	count1 := len(d)
-	var ret edpt.OverlayTunnelVtepRemoteIpAddressUseLif1164
+	var ret edpt.OverlayTunnelVtepRemoteIpAddressUseLif1163
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Partition = in["partition"].(string)
@@ -213,10 +213,10 @@ func dataToEndpointOverlayTunnelVtepRemoteIpAddress(d *schema.ResourceData) edpt
 	var ret edpt.OverlayTunnelVtepRemoteIpAddress
 	ret.Inst.ClassList = d.Get("class_list").(string)
 	ret.Inst.Encap = d.Get("encap").(string)
-	ret.Inst.GreKeepalive = getObjectOverlayTunnelVtepRemoteIpAddressGreKeepalive1162(d.Get("gre_keepalive").([]interface{}))
+	ret.Inst.GreKeepalive = getObjectOverlayTunnelVtepRemoteIpAddressGreKeepalive1161(d.Get("gre_keepalive").([]interface{}))
 	ret.Inst.IpAddress = d.Get("ip_address").(string)
-	ret.Inst.UseGreKey = getObjectOverlayTunnelVtepRemoteIpAddressUseGreKey1163(d.Get("use_gre_key").([]interface{}))
-	ret.Inst.UseLif = getObjectOverlayTunnelVtepRemoteIpAddressUseLif1164(d.Get("use_lif").([]interface{}))
+	ret.Inst.UseGreKey = getObjectOverlayTunnelVtepRemoteIpAddressUseGreKey1162(d.Get("use_gre_key").([]interface{}))
+	ret.Inst.UseLif = getObjectOverlayTunnelVtepRemoteIpAddressUseLif1163(d.Get("use_lif").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.VniList = getSliceOverlayTunnelVtepRemoteIpAddressVniList(d.Get("vni_list").([]interface{}))

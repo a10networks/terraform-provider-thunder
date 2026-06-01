@@ -44,17 +44,17 @@ func resourceDdosDstZonePortZoneServiceVirtualhostsVirtualhostLevel() *schema.Re
 					},
 				},
 			},
-			"zone_name": {
-				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			"port_num": {
+				Type: schema.TypeString, Required: true, Description: "PortNum",
 			},
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			},
 			"vhost": {
 				Type: schema.TypeString, Required: true, Description: "Vhost",
-			},
-			"port_num": {
-				Type: schema.TypeString, Required: true, Description: "PortNum",
 			},
 		},
 	}
@@ -141,9 +141,9 @@ func dataToEndpointDdosDstZonePortZoneServiceVirtualhostsVirtualhostLevel(d *sch
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.ZoneTemplate = getObjectDdosDstZonePortZoneServiceVirtualhostsVirtualhostLevelZoneTemplate(d.Get("zone_template").([]interface{}))
-	ret.Inst.ZoneName = d.Get("zone_name").(string)
-	ret.Inst.Protocol = d.Get("protocol").(string)
-	ret.Inst.Vhost = d.Get("vhost").(string)
 	ret.Inst.PortNum = d.Get("port_num").(string)
+	ret.Inst.Protocol = d.Get("protocol").(string)
+	ret.Inst.ZoneName = d.Get("zone_name").(string)
+	ret.Inst.Vhost = d.Get("vhost").(string)
 	return ret
 }

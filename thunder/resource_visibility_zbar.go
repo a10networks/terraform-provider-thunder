@@ -117,35 +117,35 @@ func resourceVisibilityZbarRead(ctx context.Context, d *schema.ResourceData, met
 	return diags
 }
 
-func getObjectVisibilityZbarDest3239(d []interface{}) edpt.VisibilityZbarDest3239 {
+func getObjectVisibilityZbarDest3267(d []interface{}) edpt.VisibilityZbarDest3267 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityZbarDest3239
+	var ret edpt.VisibilityZbarDest3267
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.BadSources = getObjectVisibilityZbarDestBadSources3240(in["bad_sources"].([]interface{}))
+		ret.BadSources = getObjectVisibilityZbarDestBadSources3268(in["bad_sources"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityZbarDestBadSources3240(d []interface{}) edpt.VisibilityZbarDestBadSources3240 {
+func getObjectVisibilityZbarDestBadSources3268(d []interface{}) edpt.VisibilityZbarDestBadSources3268 {
 
-	var ret edpt.VisibilityZbarDestBadSources3240
+	var ret edpt.VisibilityZbarDestBadSources3268
 	return ret
 }
 
-func getObjectVisibilityZbarTruples3241(d []interface{}) edpt.VisibilityZbarTruples3241 {
+func getObjectVisibilityZbarTruples3269(d []interface{}) edpt.VisibilityZbarTruples3269 {
 
-	var ret edpt.VisibilityZbarTruples3241
+	var ret edpt.VisibilityZbarTruples3269
 	return ret
 }
 
 func dataToEndpointVisibilityZbar(d *schema.ResourceData) edpt.VisibilityZbar {
 	var ret edpt.VisibilityZbar
 	ret.Inst.Action = d.Get("action").(string)
-	ret.Inst.Dest = getObjectVisibilityZbarDest3239(d.Get("dest").([]interface{}))
-	ret.Inst.Truples = getObjectVisibilityZbarTruples3241(d.Get("truples").([]interface{}))
+	ret.Inst.Dest = getObjectVisibilityZbarDest3267(d.Get("dest").([]interface{}))
+	ret.Inst.Truples = getObjectVisibilityZbarTruples3269(d.Get("truples").([]interface{}))
 	//omit uuid
 	return ret
 }

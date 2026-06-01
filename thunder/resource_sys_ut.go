@@ -1177,10 +1177,10 @@ func resourceSysUtRead(ctx context.Context, d *schema.ResourceData, meta interfa
 	return diags
 }
 
-func getObjectSysUtCommon1671(d []interface{}) edpt.SysUtCommon1671 {
+func getObjectSysUtCommon1672(d []interface{}) edpt.SysUtCommon1672 {
 
 	count1 := len(d)
-	var ret edpt.SysUtCommon1671
+	var ret edpt.SysUtCommon1672
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ProceedOnError = in["proceed_on_error"].(int)
@@ -1438,10 +1438,10 @@ func getObjectSysUtEventListActionListIgnoreValidation(d []interface{}) edpt.Sys
 	return ret
 }
 
-func getObjectSysUtRunTest1672(d []interface{}) edpt.SysUtRunTest1672 {
+func getObjectSysUtRunTest1673(d []interface{}) edpt.SysUtRunTest1673 {
 
 	count1 := len(d)
-	var ret edpt.SysUtRunTest1672
+	var ret edpt.SysUtRunTest1673
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mode = in["mode"].(string)
@@ -1977,9 +1977,9 @@ func getSliceSysUtTemplateListUdpSrcPortRange(d []interface{}) []edpt.SysUtTempl
 func dataToEndpointSysUt(d *schema.ResourceData) edpt.SysUt {
 	var ret edpt.SysUt
 	ret.Inst.Action = d.Get("action").(string)
-	ret.Inst.Common = getObjectSysUtCommon1671(d.Get("common").([]interface{}))
+	ret.Inst.Common = getObjectSysUtCommon1672(d.Get("common").([]interface{}))
 	ret.Inst.EventList = getSliceSysUtEventList(d.Get("event_list").([]interface{}))
-	ret.Inst.RunTest = getObjectSysUtRunTest1672(d.Get("run_test").([]interface{}))
+	ret.Inst.RunTest = getObjectSysUtRunTest1673(d.Get("run_test").([]interface{}))
 	ret.Inst.SecondaryName = d.Get("secondary_name").(string)
 	ret.Inst.StateList = getSliceSysUtStateList(d.Get("state_list").([]interface{}))
 	ret.Inst.TemplateList = getSliceSysUtTemplateList(d.Get("template_list").([]interface{}))

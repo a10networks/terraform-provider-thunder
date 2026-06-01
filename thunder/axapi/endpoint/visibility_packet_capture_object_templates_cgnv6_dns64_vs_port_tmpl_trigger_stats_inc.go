@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplTriggerStatsInc struct {
 	Inst struct {
 		Es_total_failure_actions int `json:"es_total_failure_actions"`

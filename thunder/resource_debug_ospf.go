@@ -270,10 +270,10 @@ func resourceDebugOspfRead(ctx context.Context, d *schema.ResourceData, meta int
 	return diags
 }
 
-func getObjectDebugOspfAll405(d []interface{}) edpt.DebugOspfAll405 {
+func getObjectDebugOspfAll396(d []interface{}) edpt.DebugOspfAll396 {
 
 	count1 := len(d)
-	var ret edpt.DebugOspfAll405
+	var ret edpt.DebugOspfAll396
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Dumy = in["dumy"].(int)
@@ -282,10 +282,10 @@ func getObjectDebugOspfAll405(d []interface{}) edpt.DebugOspfAll405 {
 	return ret
 }
 
-func getObjectDebugOspfBfd406(d []interface{}) edpt.DebugOspfBfd406 {
+func getObjectDebugOspfBfd397(d []interface{}) edpt.DebugOspfBfd397 {
 
 	count1 := len(d)
-	var ret edpt.DebugOspfBfd406
+	var ret edpt.DebugOspfBfd397
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Dumy = in["dumy"].(int)
@@ -294,10 +294,10 @@ func getObjectDebugOspfBfd406(d []interface{}) edpt.DebugOspfBfd406 {
 	return ret
 }
 
-func getObjectDebugOspfEvents407(d []interface{}) edpt.DebugOspfEvents407 {
+func getObjectDebugOspfEvents398(d []interface{}) edpt.DebugOspfEvents398 {
 
 	count1 := len(d)
-	var ret edpt.DebugOspfEvents407
+	var ret edpt.DebugOspfEvents398
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Abr = in["abr"].(int)
@@ -310,10 +310,10 @@ func getObjectDebugOspfEvents407(d []interface{}) edpt.DebugOspfEvents407 {
 	return ret
 }
 
-func getObjectDebugOspfIfsm408(d []interface{}) edpt.DebugOspfIfsm408 {
+func getObjectDebugOspfIfsm399(d []interface{}) edpt.DebugOspfIfsm399 {
 
 	count1 := len(d)
-	var ret edpt.DebugOspfIfsm408
+	var ret edpt.DebugOspfIfsm399
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Events = in["events"].(int)
@@ -324,10 +324,10 @@ func getObjectDebugOspfIfsm408(d []interface{}) edpt.DebugOspfIfsm408 {
 	return ret
 }
 
-func getObjectDebugOspfLsa409(d []interface{}) edpt.DebugOspfLsa409 {
+func getObjectDebugOspfLsa400(d []interface{}) edpt.DebugOspfLsa400 {
 
 	count1 := len(d)
-	var ret edpt.DebugOspfLsa409
+	var ret edpt.DebugOspfLsa400
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Flooding = in["flooding"].(int)
@@ -340,10 +340,10 @@ func getObjectDebugOspfLsa409(d []interface{}) edpt.DebugOspfLsa409 {
 	return ret
 }
 
-func getObjectDebugOspfNfsm410(d []interface{}) edpt.DebugOspfNfsm410 {
+func getObjectDebugOspfNfsm401(d []interface{}) edpt.DebugOspfNfsm401 {
 
 	count1 := len(d)
-	var ret edpt.DebugOspfNfsm410
+	var ret edpt.DebugOspfNfsm401
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Events = in["events"].(int)
@@ -354,10 +354,10 @@ func getObjectDebugOspfNfsm410(d []interface{}) edpt.DebugOspfNfsm410 {
 	return ret
 }
 
-func getObjectDebugOspfNsm411(d []interface{}) edpt.DebugOspfNsm411 {
+func getObjectDebugOspfNsm402(d []interface{}) edpt.DebugOspfNsm402 {
 
 	count1 := len(d)
-	var ret edpt.DebugOspfNsm411
+	var ret edpt.DebugOspfNsm402
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Interface = in["interface"].(int)
@@ -367,10 +367,10 @@ func getObjectDebugOspfNsm411(d []interface{}) edpt.DebugOspfNsm411 {
 	return ret
 }
 
-func getObjectDebugOspfPacket412(d []interface{}) edpt.DebugOspfPacket412 {
+func getObjectDebugOspfPacket403(d []interface{}) edpt.DebugOspfPacket403 {
 
 	count1 := len(d)
-	var ret edpt.DebugOspfPacket412
+	var ret edpt.DebugOspfPacket403
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Dd = in["dd"].(int)
@@ -386,10 +386,10 @@ func getObjectDebugOspfPacket412(d []interface{}) edpt.DebugOspfPacket412 {
 	return ret
 }
 
-func getObjectDebugOspfRoute413(d []interface{}) edpt.DebugOspfRoute413 {
+func getObjectDebugOspfRoute404(d []interface{}) edpt.DebugOspfRoute404 {
 
 	count1 := len(d)
-	var ret edpt.DebugOspfRoute413
+	var ret edpt.DebugOspfRoute404
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ase = in["ase"].(int)
@@ -403,15 +403,15 @@ func getObjectDebugOspfRoute413(d []interface{}) edpt.DebugOspfRoute413 {
 
 func dataToEndpointDebugOspf(d *schema.ResourceData) edpt.DebugOspf {
 	var ret edpt.DebugOspf
-	ret.Inst.All = getObjectDebugOspfAll405(d.Get("all").([]interface{}))
-	ret.Inst.Bfd = getObjectDebugOspfBfd406(d.Get("bfd").([]interface{}))
+	ret.Inst.All = getObjectDebugOspfAll396(d.Get("all").([]interface{}))
+	ret.Inst.Bfd = getObjectDebugOspfBfd397(d.Get("bfd").([]interface{}))
 	ret.Inst.Dumy = d.Get("dumy").(int)
-	ret.Inst.Events = getObjectDebugOspfEvents407(d.Get("events").([]interface{}))
-	ret.Inst.Ifsm = getObjectDebugOspfIfsm408(d.Get("ifsm").([]interface{}))
-	ret.Inst.Lsa = getObjectDebugOspfLsa409(d.Get("lsa").([]interface{}))
-	ret.Inst.Nfsm = getObjectDebugOspfNfsm410(d.Get("nfsm").([]interface{}))
-	ret.Inst.Nsm = getObjectDebugOspfNsm411(d.Get("nsm").([]interface{}))
-	ret.Inst.Packet = getObjectDebugOspfPacket412(d.Get("packet").([]interface{}))
-	ret.Inst.Route = getObjectDebugOspfRoute413(d.Get("route").([]interface{}))
+	ret.Inst.Events = getObjectDebugOspfEvents398(d.Get("events").([]interface{}))
+	ret.Inst.Ifsm = getObjectDebugOspfIfsm399(d.Get("ifsm").([]interface{}))
+	ret.Inst.Lsa = getObjectDebugOspfLsa400(d.Get("lsa").([]interface{}))
+	ret.Inst.Nfsm = getObjectDebugOspfNfsm401(d.Get("nfsm").([]interface{}))
+	ret.Inst.Nsm = getObjectDebugOspfNsm402(d.Get("nsm").([]interface{}))
+	ret.Inst.Packet = getObjectDebugOspfPacket403(d.Get("packet").([]interface{}))
+	ret.Inst.Route = getObjectDebugOspfRoute404(d.Get("route").([]interface{}))
 	return ret
 }

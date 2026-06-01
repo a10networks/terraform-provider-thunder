@@ -289,34 +289,34 @@ func getObjectDdosDstEntryL4TypeGlidExceedActionStatelessEncapActionCfg(d []inte
 	return ret
 }
 
-func getObjectDdosDstEntryL4TypePortInd178(d []interface{}) edpt.DdosDstEntryL4TypePortInd178 {
+func getObjectDdosDstEntryL4TypePortInd181(d []interface{}) edpt.DdosDstEntryL4TypePortInd181 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstEntryL4TypePortInd178
+	var ret edpt.DdosDstEntryL4TypePortInd181
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceDdosDstEntryL4TypePortIndSamplingEnable179(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceDdosDstEntryL4TypePortIndSamplingEnable182(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDstEntryL4TypePortIndSamplingEnable179(d []interface{}) []edpt.DdosDstEntryL4TypePortIndSamplingEnable179 {
+func getSliceDdosDstEntryL4TypePortIndSamplingEnable182(d []interface{}) []edpt.DdosDstEntryL4TypePortIndSamplingEnable182 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstEntryL4TypePortIndSamplingEnable179, 0, count1)
+	ret := make([]edpt.DdosDstEntryL4TypePortIndSamplingEnable182, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstEntryL4TypePortIndSamplingEnable179
+		var oi edpt.DdosDstEntryL4TypePortIndSamplingEnable182
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectDdosDstEntryL4TypeProgressionTracking180(d []interface{}) edpt.DdosDstEntryL4TypeProgressionTracking180 {
+func getObjectDdosDstEntryL4TypeProgressionTracking183(d []interface{}) edpt.DdosDstEntryL4TypeProgressionTracking183 {
 
-	var ret edpt.DdosDstEntryL4TypeProgressionTracking180
+	var ret edpt.DdosDstEntryL4TypeProgressionTracking183
 	return ret
 }
 
@@ -332,9 +332,9 @@ func getObjectDdosDstEntryL4TypeTemplate(d []interface{}) edpt.DdosDstEntryL4Typ
 	return ret
 }
 
-func getObjectDdosDstEntryL4TypeTopkSources181(d []interface{}) edpt.DdosDstEntryL4TypeTopkSources181 {
+func getObjectDdosDstEntryL4TypeTopkSources184(d []interface{}) edpt.DdosDstEntryL4TypeTopkSources184 {
 
-	var ret edpt.DdosDstEntryL4TypeTopkSources181
+	var ret edpt.DdosDstEntryL4TypeTopkSources184
 	return ret
 }
 
@@ -400,8 +400,8 @@ func dataToEndpointDdosDstEntryL4Type(d *schema.ResourceData) edpt.DdosDstEntryL
 	ret.Inst.GlidExceedAction = getObjectDdosDstEntryL4TypeGlidExceedAction(d.Get("glid_exceed_action").([]interface{}))
 	ret.Inst.MaxRexmitSynPerFlow = d.Get("max_rexmit_syn_per_flow").(int)
 	ret.Inst.MaxRexmitSynPerFlowExceedAction = d.Get("max_rexmit_syn_per_flow_exceed_action").(string)
-	ret.Inst.PortInd = getObjectDdosDstEntryL4TypePortInd178(d.Get("port_ind").([]interface{}))
-	ret.Inst.ProgressionTracking = getObjectDdosDstEntryL4TypeProgressionTracking180(d.Get("progression_tracking").([]interface{}))
+	ret.Inst.PortInd = getObjectDdosDstEntryL4TypePortInd181(d.Get("port_ind").([]interface{}))
+	ret.Inst.ProgressionTracking = getObjectDdosDstEntryL4TypeProgressionTracking183(d.Get("progression_tracking").([]interface{}))
 	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.SetCounterBaseVal = d.Get("set_counter_base_val").(int)
 	ret.Inst.Stateful = d.Get("stateful").(int)
@@ -412,7 +412,7 @@ func dataToEndpointDdosDstEntryL4Type(d *schema.ResourceData) edpt.DdosDstEntryL
 	ret.Inst.Template = getObjectDdosDstEntryL4TypeTemplate(d.Get("template").([]interface{}))
 	ret.Inst.TopkNumRecords = d.Get("topk_num_records").(int)
 	ret.Inst.TopkSortKey = d.Get("topk_sort_key").(string)
-	ret.Inst.TopkSources = getObjectDdosDstEntryL4TypeTopkSources181(d.Get("topk_sources").([]interface{}))
+	ret.Inst.TopkSources = getObjectDdosDstEntryL4TypeTopkSources184(d.Get("topk_sources").([]interface{}))
 	ret.Inst.TunnelDecap = getObjectDdosDstEntryL4TypeTunnelDecap(d.Get("tunnel_decap").([]interface{}))
 	ret.Inst.TunnelRateLimit = getObjectDdosDstEntryL4TypeTunnelRateLimit(d.Get("tunnel_rate_limit").([]interface{}))
 	ret.Inst.UndefinedPortHitStatistics = getObjectDdosDstEntryL4TypeUndefinedPortHitStatistics(d.Get("undefined_port_hit_statistics").([]interface{}))

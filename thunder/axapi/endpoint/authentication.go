@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Authentication struct {
 	Inst struct {
-		Console AuthenticationConsole67 `json:"console"`
+		Console AuthenticationConsole68 `json:"console"`
 
 		EnableCfg AuthenticationEnableCfg `json:"enable-cfg"`
 
@@ -24,12 +24,12 @@ type Authentication struct {
 	} `json:"authentication"`
 }
 
-type AuthenticationConsole67 struct {
-	TypeCfg AuthenticationConsoleTypeCfg68 `json:"type-cfg"`
+type AuthenticationConsole68 struct {
+	TypeCfg AuthenticationConsoleTypeCfg69 `json:"type-cfg"`
 	Uuid    string                         `json:"uuid"`
 }
 
-type AuthenticationConsoleTypeCfg68 struct {
+type AuthenticationConsoleTypeCfg69 struct {
 	Type        int    `json:"type"`
 	ConsoleType string `json:"console-type"`
 }

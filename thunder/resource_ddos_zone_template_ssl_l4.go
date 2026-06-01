@@ -439,10 +439,10 @@ func getObjectDdosZoneTemplateSslL4SrcRateLimitRequest(d []interface{}) edpt.Ddo
 	return ret
 }
 
-func getObjectDdosZoneTemplateSslL4SslHandshakePolicy371(d []interface{}) edpt.DdosZoneTemplateSslL4SslHandshakePolicy371 {
+func getObjectDdosZoneTemplateSslL4SslHandshakePolicy367(d []interface{}) edpt.DdosZoneTemplateSslL4SslHandshakePolicy367 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateSslL4SslHandshakePolicy371
+	var ret edpt.DdosZoneTemplateSslL4SslHandshakePolicy367
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
@@ -457,10 +457,10 @@ func getObjectDdosZoneTemplateSslL4SslHandshakePolicy371(d []interface{}) edpt.D
 	return ret
 }
 
-func getObjectDdosZoneTemplateSslL4SslTrafficCheck372(d []interface{}) edpt.DdosZoneTemplateSslL4SslTrafficCheck372 {
+func getObjectDdosZoneTemplateSslL4SslTrafficCheck368(d []interface{}) edpt.DdosZoneTemplateSslL4SslTrafficCheck368 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateSslL4SslTrafficCheck372
+	var ret edpt.DdosZoneTemplateSslL4SslTrafficCheck368
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.HeaderInspection = in["header_inspection"].(int)
@@ -480,9 +480,9 @@ func dataToEndpointDdosZoneTemplateSslL4(d *schema.ResourceData) edpt.DdosZoneTe
 	ret.Inst.MultiPuThresholdDistribution = getObjectDdosZoneTemplateSslL4MultiPuThresholdDistribution(d.Get("multi_pu_threshold_distribution").([]interface{}))
 	ret.Inst.Renegotiation = getObjectDdosZoneTemplateSslL4Renegotiation(d.Get("renegotiation").([]interface{}))
 	ret.Inst.Src = getObjectDdosZoneTemplateSslL4Src(d.Get("src").([]interface{}))
-	ret.Inst.SslHandshakePolicy = getObjectDdosZoneTemplateSslL4SslHandshakePolicy371(d.Get("ssl_handshake_policy").([]interface{}))
+	ret.Inst.SslHandshakePolicy = getObjectDdosZoneTemplateSslL4SslHandshakePolicy367(d.Get("ssl_handshake_policy").([]interface{}))
 	ret.Inst.SslL4TmplName = d.Get("ssl_l4_tmpl_name").(string)
-	ret.Inst.SslTrafficCheck = getObjectDdosZoneTemplateSslL4SslTrafficCheck372(d.Get("ssl_traffic_check").([]interface{}))
+	ret.Inst.SslTrafficCheck = getObjectDdosZoneTemplateSslL4SslTrafficCheck368(d.Get("ssl_traffic_check").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

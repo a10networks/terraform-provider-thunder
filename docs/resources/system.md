@@ -71,7 +71,6 @@ resource "thunder_system" "test" {
 - `default_mtu` (Number) Set all interfaces default mtu (Interface MTU, default 1 (System jumbo needs to be enabled))
 - `del_port` (Block List, Max: 1) (see [below for nested schema](#nestedblock--del_port))
 - `delete_cpu_core` (Block List, Max: 1) (see [below for nested schema](#nestedblock--delete_cpu_core))
-- `disable_ssh_agent_forwarding` (Number) Disable sshd agent forwarding
 - `dns` (Block List, Max: 1) (see [below for nested schema](#nestedblock--dns))
 - `dns_cache` (Block List, Max: 1) (see [below for nested schema](#nestedblock--dns_cache))
 - `domain_list_hitcount_enable` (Number) Enable class list hit count
@@ -85,7 +84,6 @@ resource "thunder_system" "test" {
 - `environment` (Block List, Max: 1) (see [below for nested schema](#nestedblock--environment))
 - `even_port_hash_enable` (Number) Enable even src/dest port number hash
 - `ext_only_logging` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ext_only_logging))
-- `forced_group_speed_list` (Block List) (see [below for nested schema](#nestedblock--forced_group_speed_list))
 - `fpga_core_crc` (Block List, Max: 1) (see [below for nested schema](#nestedblock--fpga_core_crc))
 - `fpga_drop` (Block List, Max: 1) (see [below for nested schema](#nestedblock--fpga_drop))
 - `fw` (Block List, Max: 1) (see [below for nested schema](#nestedblock--fw))
@@ -118,7 +116,6 @@ resource "thunder_system" "test" {
 - `ipmi` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipmi))
 - `ipmi_service` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipmi_service))
 - `ipsec` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipsec))
-- `ipv6` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipv6))
 - `ipv6_prefix_length` (Number) Length of IPv6 prefix used to determine the user-group and the PU, by default 128
 - `job_offload` (Block List, Max: 1) (see [below for nested schema](#nestedblock--job_offload))
 - `link_capability` (Block List, Max: 1) (see [below for nested schema](#nestedblock--link_capability))
@@ -172,7 +169,6 @@ resource "thunder_system" "test" {
 - `spe_profile` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spe_profile))
 - `spe_status` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spe_status))
 - `src_ip_hash_enable` (Number) Enable source ip hash
-- `ssl_hw_memory` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ssl_hw_memory))
 - `ssl_req_q` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ssl_req_q))
 - `ssl_scv` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ssl_scv))
 - `ssl_scv_verify_crl_sign` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ssl_scv_verify_crl_sign))
@@ -190,6 +186,7 @@ resource "thunder_system" "test" {
 - `template_bind` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_bind))
 - `throughput` (Block List, Max: 1) (see [below for nested schema](#nestedblock--throughput))
 - `timeout_value` (Block List, Max: 1) (see [below for nested schema](#nestedblock--timeout_value))
+- `tls_1_3_mgmt` (Block List, Max: 1) (see [below for nested schema](#nestedblock--tls_1_3_mgmt))
 - `trunk` (Block List, Max: 1) (see [below for nested schema](#nestedblock--trunk))
 - `trunk_hw_hash` (Block List, Max: 1) (see [below for nested schema](#nestedblock--trunk_hw_hash))
 - `trunk_xaui_hw_hash` (Block List, Max: 1) (see [below for nested schema](#nestedblock--trunk_xaui_hw_hash))
@@ -455,6 +452,10 @@ Optional:
 - `allow_l7_sessions` (Number) Allow L7 sessions forward to home cpu
 - `cpu_usage` (Block List, Max: 1) (see [below for nested schema](#nestedblock--cpu_load_sharing--cpu_usage))
 - `disable` (Number) Disable CPU load sharing in overload situations
+- `disallow_new_session_cpu_ewma_alpha` (Number) EWMA ALPHA value to control how responsive the system disallow new session to CPU usage changes (default: 18)
+- `disallow_new_session_cpu_probe_time` (Number) Probe time when CPU RR is trigged for disallow new session (default: 20)
+- `disallow_new_session_cpu_usage_high` (Number) CPU usage threshold (percentage) that fully disallow new sessions (default: 0, not enabled)
+- `disallow_new_session_cpu_usage_low` (Number) CPU usage threshold (percentage) that fully allow new sessions (default: 1/2 of cpu-usage-high configured)
 - `others` (Number) Disallow redistribution of new non TCP/UDP IP sessions
 - `packets_per_second` (Block List, Max: 1) (see [below for nested schema](#nestedblock--cpu_load_sharing--packets_per_second))
 - `tcp` (Number) Disallow redistribution of new TCP sessions
@@ -572,7 +573,7 @@ Optional:
 
 Optional:
 
-- `counters1` (String) 'all': all; 'total_q': Total query; 'total_r': Total server response; 'hit': Total cache hit; 'bad_q': Query not passed; 'encode_q': Query encoded; 'multiple_q': Query with multiple questions; 'oversize_q': Query exceed cache size; 'bad_r': Response not passed; 'oversize_r': Response exceed cache size; 'encode_r': Response encoded; 'multiple_r': Response with multiple questions; 'answer_r': Response with multiple answers; 'ttl_r': Response with short TTL; 'ageout': Total aged out; 'bad_answer': Bad Answer; 'ageout_weight': Total aged for lower weight; 'total_log': Total stats log sent; 'total_alloc': Total allocated; 'total_freed': Total freed; 'current_allocate': Current allocate; 'current_data_allocate': Current data allocate; 'resolver_queue_full': Resolver task queue full; 'truncated_r': Response with Truncation bit set; 'qps': Cache Queries-per-second; 'hit_rate_per_sec': Cache hit rate per second;
+- `counters1` (String) 'all': all; 'total_q': Total query; 'total_r': Total server response; 'hit': Total cache hit; 'bad_q': Query not passed; 'encode_q': Query encoded; 'multiple_q': Query with multiple questions; 'oversize_q': Query exceed cache size; 'bad_r': Response not passed; 'oversize_r': Response exceed cache size; 'encode_r': Response encoded; 'multiple_r': Response with multiple questions; 'answer_r': Response with multiple answers; 'ttl_r': Response with short TTL; 'ageout': Total aged out; 'bad_answer': Bad Answer; 'ageout_weight': Total aged for lower weight; 'total_log': Total stats log sent; 'total_alloc': Total allocated; 'total_freed': Total freed; 'current_allocate': Current allocate; 'current_data_allocate': Current data allocate; 'resolver_queue_full': Resolver task queue full; 'truncated_r': Response with Truncation bit set; 'qps': Cache Queries-per-second; 'hit_rate_per_sec': Cache hit rate per second; 'multiple_answer_no_cache': Response not cached due to multiple answers;
 
 
 
@@ -645,24 +646,6 @@ Optional:
 Optional:
 
 - `enable` (Number) enable external only logging for packet driven DDOS logs
-- `uuid` (String) uuid of the object
-
-
-<a id="nestedblock--forced_group_speed_list"></a>
-### Nested Schema for `forced_group_speed_list`
-
-Required:
-
-- `eth01_to_04` (Number) Set speed for interface ethernet  1 ~  4
-- `eth05_to_08` (Number) Set speed for interface ethernet  5 ~  8
-- `eth09_to_12` (Number) Set speed for interface ethernet  9 ~ 12
-- `eth13_to_16` (Number) Set speed for interface ethernet 13 ~ 16
-- `eth17_to_20` (Number) Set speed for interface ethernet 17 ~ 20
-- `eth21_to_24` (Number) Set speed for interface ethernet 21 ~ 24
-
-Optional:
-
-- `speed` (String) '1G': Speed 1G; '10G': Speed 10G (default); '25G': Speed 25G;
 - `uuid` (String) uuid of the object
 
 
@@ -1036,10 +1019,7 @@ Optional:
 
 Optional:
 
-- `icmp_redirect_disable` (Number) Disable icmp redirect messages
-- `icmp_unreachable_disable` (Number) Disable icmp unreachable messages
-- `rpf_check_enable` (Number) Enable reverse path filter (strict mode)
-- `source_route_pkt_drop_enable` (Number) Enable IPv4 source routed packet drop
+- `class_e_address_range_enable` (Number) Enable class E (240.0.0.0/4) configuration
 - `uuid` (String) uuid of the object
 
 
@@ -1306,18 +1286,6 @@ Optional:
 
 
 
-<a id="nestedblock--ipv6"></a>
-### Nested Schema for `ipv6`
-
-Optional:
-
-- `icmpv6_redirect_disable` (Number) Disable icmpv6 redirect messages
-- `icmpv6_unreachable_disable` (Number) Disable icmpv6 unreachable messages
-- `rpf_check_enable` (Number) Enable reverse path filter (strict mode)
-- `source_route_pkt_drop_enable` (Number) Enable IPv6 source routed packet drop
-- `uuid` (String) uuid of the object
-
-
 <a id="nestedblock--job_offload"></a>
 ### Nested Schema for `job_offload`
 
@@ -1571,7 +1539,7 @@ Optional:
 
 Optional:
 
-- `mmode` (String) 'interdependent': INTERDEPENDENT monitoring behaviour; 'and': AND monitoring behaviour, Default;
+- `mmode` (String) 'interdependent': INTERDEPENDENT monitoring behaviour, Default; 'and': AND monitoring behaviour;
 - `uuid` (String) uuid of the object
 
 
@@ -2430,6 +2398,7 @@ Optional:
 - `class_list_entry_count` (Number) Total entries for class-list
 - `class_list_ipv6_addr_count` (Number) Total IPv6 addresses for class-list
 - `ipsec_sa_number` (Number) Specify the maximum number of IPsec SA
+- `jwt_cache_entry` (Number) Specify the maximum cache entries for JWT
 - `l4_session_count` (Number) Total Sessions in the System
 - `max_aflex_authz_collection_number` (Number) Specify the maximum number of collections supported by aFleX authorization
 - `max_aflex_file_size` (Number) Set maximum aFleX file size (Maximum file size in KBytes, default is 32K)
@@ -2437,6 +2406,8 @@ Optional:
 - `ngwaf_cache_entry` (Number) Specify the maximum cache entries for NGWAF
 - `radius_table_size` (Number) Total configurable CGNV6 RADIUS Table entries
 - `ram_cache_memory_limit` (Number) Specify the maximum memory used by ram cache
+- `ssl_context_memory` (Number) Total SSL context memory needed in units of MB. Will be rounded to closest multiple of 2MB
+- `ssl_dma_memory` (Number) Total SSL DMA memory needed in units of MB. Will be rounded to closest multiple of 2MB
 - `uuid` (String) uuid of the object
 - `visibility` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_usage--visibility))
 
@@ -2564,24 +2535,6 @@ Optional:
 Optional:
 
 - `uuid` (String) uuid of the object
-
-
-<a id="nestedblock--ssl_hw_memory"></a>
-### Nested Schema for `ssl_hw_memory`
-
-Optional:
-
-- `mem_block_cfg` (Block List) (see [below for nested schema](#nestedblock--ssl_hw_memory--mem_block_cfg))
-- `uuid` (String) uuid of the object
-
-<a id="nestedblock--ssl_hw_memory--mem_block_cfg"></a>
-### Nested Schema for `ssl_hw_memory.mem_block_cfg`
-
-Optional:
-
-- `mem_block` (String) 'ssl_mem': Shared SSL memory; 'ssl_context': Cipher session context memory for SSL engine 1; 'ssl_context_2': Cipher session context memory for SSL engine 2; 'ssl_context_3': Cipher session context memory for SSL engine 3; 'ssl_context_4': Cipher session context memory for SSL engine 4; 'ssl_context_5': Cipher session context memory for SSL engine 5; 'ssl_context_6': Cipher session context memory for SSL engine 6; 'ssl_context_7': Cipher session context memory for SSL engine 7; 'ssl_context_8': Cipher session context memory for SSL engine 8; 'ssl_context_9': Cipher session context memory for SSL engine 9; 'ssl_context_10': Cipher session context memory for SSL engine 10; 'ssl_context_11': Cipher session context memory for SSL engine 11; 'ssl_context_12': Cipher session context memory for SSL engine 12; 'ssl_context_13': Cipher session context memory for SSL engine 13; 'ssl_context_14': Cipher session context memory for SSL engine 14; 'ssl_context_15': Cipher session context memory for SSL engine 15; 'ssl_context_16': Cipher session context memory for SSL engine 16;
-- `size` (Number) Size of the block
-
 
 
 <a id="nestedblock--ssl_req_q"></a>
@@ -2716,7 +2669,7 @@ Optional:
 
 Optional:
 
-- `counters1` (String) 'all': all; 'connattempt': Connect initiated; 'connects': Connect established; 'drops': Connect dropped; 'conndrops': Embryonic connect dropped; 'closed': Connect closed; 'segstimed': Segs to get RTT; 'rttupdated': Update RTT; 'delack': Delayed acks sent; 'timeoutdrop': Conn dropped in rxmt timeout; 'rexmttimeo': Retransmit timeout; 'persisttimeo': Persist timeout; 'keeptimeo': Keepalive timeout; 'keepprobe': Keepalive probe sent; 'keepdrops': Connect dropped in keepalive; 'sndtotal': Total packet sent; 'sndpack': Data packet sent; 'sndbyte': Data bytes sent; 'sndrexmitpack': Data packet retransmit; 'sndrexmitbyte': Data byte retransmit; 'sndrexmitbad': Unnecessary packet retransmit; 'sndacks': Ack packet sent; 'sndprobe': Window probe sent; 'sndurg': URG packet sent; 'sndwinup': Window update packet sent; 'sndctrl': SYN|FIN|RST packet sent; 'sndrst': RST packet sent; 'sndfin': FIN packet sent; 'sndsyn': SYN packet sent; 'rcvtotal': Total packet received; 'rcvpack': Packet received; 'rcvbyte': Bytes received; 'rcvbadoff': Packet received with bad offset; 'rcvmemdrop': Packet dropped for lack of memory; 'rcvduppack': Duplicate packet received; 'rcvdupbyte': Duplicate bytes received; 'rcvpartduppack': Packet with some duplicate data; 'rcvpartdupbyte': Dup. bytes in part-dup. packets; 'rcvoopack': Out-of-order packet received; 'rcvoobyte': Out-of-order bytes received; 'rcvpackafterwin': Packets with data after window; 'rcvbyteafterwin': Bytes rcvd after window; 'rcvwinprobe': Rcvd window probe packet; 'rcvdupack': Rcvd duplicate acks; 'rcvacktoomuch': Rcvd acks for unsent data; 'rcvackpack': Rcvd ack packets; 'rcvackbyte': Bytes acked by rcvd acks; 'rcvwinupd': Rcvd window update packets; 'pawsdrop': Segments dropped due to PAWS; 'predack': Hdr predict for acks; 'preddat': Hdr predict for data pkts; 'persistdrop': Timeout in persist state; 'badrst': Ignored RST; 'finwait2_drops': Drop FIN_WAIT_2 connection after time limit; 'sack_recovery_episode': SACK recovery episodes; 'sack_rexmits': SACK rexmit segments; 'sack_rexmit_bytes': SACK rexmit bytes; 'sack_rcv_blocks': SACK received; 'sack_send_blocks': SACK sent; 'sndcack': Challenge ACK sent; 'cacklim': Challenge ACK limited; 'reassmemdrop': Packet dropped during reassembly; 'reasstimeout': Reassembly Time Out; 'cc_idle': Congestion control window set do to idle; 'cc_reduce': Congestion control window reduced by event; 'rcvdsack': Rcvd DSACK packets; 'a2brcvwnd': ATCP to BTCP receive window; 'a2bsackpresent': ATCP to BTCP SACK options present; 'a2bdupack': ATCP to BTCP Dup/OO ACK; 'a2brxdata': ATCP to BTCP Rxmitted data; 'a2btcpoptions': ATCP to BTCP unsupported TCP options; 'a2boodata': ATCP to BTCP oo data received; 'a2bpartialack': ATCP to BTCP partial ack received; 'a2bfsmtransition': ATCP to BTCP state machine transition; 'a2btransitionnum': ATCP to BTCP total transitions; 'b2atransitionnum': ATCP to BTCP total transitions; 'bad_iochan': IO Channel Modified; 'atcpforward': Adaptive TCP forward; 'atcpsent': Adaptive TCP sent; 'atcprexmitsadrop': Adaptive TCP transmit SA drops; 'atcpsendbackack': Adaptive TCP sendback ACK; 'atcprexmit': Adaptive TCP retransmits; 'atcpbuffallocfail': Adaptive TCP buffer allocation fails; 'a2bappbuffering': Transition to full stack on when application buffers too much data; 'atcpsendfail': Adaptive TCP sent fails; 'earlyrexmit': Early Retransmission sent; 'mburstlim': Maxburst limited tx; 'a2bsndwnd': ATCP to BTCP send window; 'proxyheaderv1': Proxy header v1; 'proxyheaderv2': Proxy header v2;
+- `counters1` (String) 'all': all; 'connattempt': Connect initiated; 'connects': Connect established; 'drops': Connect dropped; 'conndrops': Embryonic connect dropped; 'closed': Connect closed; 'segstimed': Segs to get RTT; 'rttupdated': Update RTT; 'delack': Delayed acks sent; 'timeoutdrop': Conn dropped in rxmt timeout; 'rexmttimeo': Retransmit timeout; 'persisttimeo': Persist timeout; 'keeptimeo': Keepalive timeout; 'keepprobe': Keepalive probe sent; 'keepdrops': Connect dropped in keepalive; 'sndtotal': Total packet sent; 'sndpack': Data packet sent; 'sndbyte': Data bytes sent; 'sndrexmitpack': Data packet retransmit; 'sndrexmitbyte': Data byte retransmit; 'sndrexmitbad': Unnecessary packet retransmit; 'sndacks': Ack packet sent; 'sndprobe': Window probe sent; 'sndurg': URG packet sent; 'sndwinup': Window update packet sent; 'sndctrl': SYN|FIN|RST packet sent; 'sndrst': RST packet sent; 'sndfin': FIN packet sent; 'sndsyn': SYN packet sent; 'rcvtotal': Total packet received; 'rcvpack': Packet received; 'rcvbyte': Bytes received; 'rcvbadoff': Packet received with bad offset; 'rcvmemdrop': Packet dropped for lack of memory; 'rcvduppack': Duplicate packet received; 'rcvdupbyte': Duplicate bytes received; 'rcvpartduppack': Packet with some duplicate data; 'rcvpartdupbyte': Dup. bytes in part-dup. packets; 'rcvoopack': Out-of-order packet received; 'rcvoobyte': Out-of-order bytes received; 'rcvpackafterwin': Packets with data after window; 'rcvbyteafterwin': Bytes rcvd after window; 'rcvwinprobe': Rcvd window probe packet; 'rcvdupack': Rcvd duplicate acks; 'rcvacktoomuch': Rcvd acks for unsent data; 'rcvackpack': Rcvd ack packets; 'rcvackbyte': Bytes acked by rcvd acks; 'rcvwinupd': Rcvd window update packets; 'pawsdrop': Segments dropped due to PAWS; 'predack': Hdr predict for acks; 'preddat': Hdr predict for data pkts; 'persistdrop': Timeout in persist state; 'badrst': Ignored RST; 'finwait2_drops': Drop FIN_WAIT_2 connection after time limit; 'sack_recovery_episode': SACK recovery episodes; 'sack_rexmits': SACK rexmit segments; 'sack_rexmit_bytes': SACK rexmit bytes; 'sack_rcv_blocks': SACK received; 'sack_send_blocks': SACK sent; 'sndcack': Challenge ACK sent; 'cacklim': Challenge ACK limited; 'reassmemdrop': Packet dropped during reassembly; 'reasstimeout': Reassembly Time Out; 'cc_idle': Congestion control window set do to idle; 'cc_reduce': Congestion control window reduced by event; 'rcvdsack': Rcvd DSACK packets; 'a2brcvwnd': ATCP to BTCP receive window; 'a2bsackpresent': ATCP to BTCP SACK options present; 'a2bdupack': ATCP to BTCP Dup/OO ACK; 'a2brxdata': ATCP to BTCP Rxmitted data; 'a2btcpoptions': ATCP to BTCP unsupported TCP options; 'a2boodata': ATCP to BTCP oo data received; 'a2bpartialack': ATCP to BTCP partial ack received; 'a2bfsmtransition': ATCP to BTCP state machine transition; 'a2btransitionnum': ATCP to BTCP total transitions; 'b2atransitionnum': ATCP to BTCP total transitions; 'bad_iochan': IO Channel Modified; 'atcpforward': Adaptive TCP forward; 'atcpsent': Adaptive TCP sent; 'atcprexmitsadrop': Adaptive TCP transmit SA drops; 'atcpsendbackack': Adaptive TCP sendback ACK; 'atcprexmit': Adaptive TCP retransmits; 'atcpbuffallocfail': Adaptive TCP buffer allocation fails; 'a2bappbuffering': Transition to full stack on when application buffers too much data; 'atcpsendfail': Adaptive TCP sent fails; 'earlyrexmit': Early Retransmission sent; 'mburstlim': Maxburst limited tx; 'a2bsndwnd': ATCP to BTCP send window; 'proxyheaderv1': Proxy header v1; 'proxyheaderv2': Proxy header v2; 'cpurrdrop': CPU round robin packet drop;
 
 
 
@@ -2822,7 +2775,7 @@ Optional:
 
 Optional:
 
-- `counters1` (String) 'all': all; 'global-system-throughput-bits-per-sec': Global System throughput in bits/sec; 'per-part-throughput-bits-per-sec': Partition throughput in bits/sec;
+- `counters1` (String) 'all': all; 'global-system-throughput-bits-per-sec': Global System egress throughput in bits/sec; 'global-system-ingress-throughput-bits-per-sec': Global System ingress throughput in bits/sec; 'per-part-throughput-bits-per-sec': Partition throughput in bits/sec; 'global-client-ssl-count': global ssl count; 'global-server-ssl-count': global server ssl count; 'global-client-ssl-connections-per-sec': global ssl conneciton per sec; 'global-server-ssl-connections-per-sec': global server ssl conneciton;
 
 
 
@@ -2837,6 +2790,15 @@ Optional:
 - `scp` (Number) set timeout to stop scp transfer in seconds, 0 is no limit
 - `sftp` (Number) set timeout to stop sftp transfer in seconds, 0 is no limit
 - `tftp` (Number) set timeout to stop tftp transfer in seconds, 0 is no limit
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--tls_1_3_mgmt"></a>
+### Nested Schema for `tls_1_3_mgmt`
+
+Optional:
+
+- `enable` (Number) Enable TLS 1.3 support on ACOS management plane
 - `uuid` (String) uuid of the object
 
 

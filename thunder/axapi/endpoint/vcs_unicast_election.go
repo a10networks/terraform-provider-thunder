@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VcsUnicastElection struct {
 	Inst struct {
-		Members VcsUnicastElectionMembers2032 `json:"members"`
+		Members VcsUnicastElectionMembers2031 `json:"members"`
 
 		Port int `json:"port" dval:"41217"`
 
@@ -16,18 +16,18 @@ type VcsUnicastElection struct {
 	} `json:"unicast-election"`
 }
 
-type VcsUnicastElectionMembers2032 struct {
-	IpAddressCfg   []VcsUnicastElectionMembersIpAddressCfg2033   `json:"ip-address-cfg"`
-	Ipv6AddressCfg []VcsUnicastElectionMembersIpv6AddressCfg2034 `json:"ipv6-address-cfg"`
+type VcsUnicastElectionMembers2031 struct {
+	IpAddressCfg   []VcsUnicastElectionMembersIpAddressCfg2032   `json:"ip-address-cfg"`
+	Ipv6AddressCfg []VcsUnicastElectionMembersIpv6AddressCfg2033 `json:"ipv6-address-cfg"`
 	Uuid           string                                        `json:"uuid"`
 }
 
-type VcsUnicastElectionMembersIpAddressCfg2033 struct {
+type VcsUnicastElectionMembersIpAddressCfg2032 struct {
 	IpAddress   string `json:"ip-address"`
 	UseMgmtPort int    `json:"use-mgmt-port"`
 }
 
-type VcsUnicastElectionMembersIpv6AddressCfg2034 struct {
+type VcsUnicastElectionMembersIpv6AddressCfg2033 struct {
 	Ipv6Address string `json:"ipv6-address"`
 	UseMgmtPort int    `json:"use-mgmt-port"`
 }

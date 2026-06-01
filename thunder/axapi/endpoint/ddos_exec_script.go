@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosExecScript struct {
 	Inst struct {
 		AlertType int `json:"alert-type"`
@@ -28,26 +28,12 @@ type DdosExecScript struct {
 
 		Script string `json:"script"`
 
-		SrcIp []DdosExecScriptSrcIp `json:"src-ip"`
-
-		SrcIpv6 []DdosExecScriptSrcIpv6 `json:"src-ipv6"`
-
 		Threshold int `json:"threshold"`
 
 		Timeout int `json:"timeout"`
 
 		Zone string `json:"zone"`
 	} `json:"exec-script"`
-}
-
-type DdosExecScriptSrcIp struct {
-	IpAddr       string `json:"ip-addr"`
-	SubnetIpAddr string `json:"subnet-ip-addr"`
-}
-
-type DdosExecScriptSrcIpv6 struct {
-	Ip6Addr        string `json:"ip6-addr"`
-	SubnetIpv6Addr string `json:"subnet-ipv6-addr"`
 }
 
 func (p *DdosExecScript) GetId() string {

@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsInc struct {
 	Inst struct {
 		Ip_node_alloc_failure int `json:"ip_node_alloc_failure"`
@@ -18,8 +18,6 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6
 
 		L3_entry_add_to_hw_failure int `json:"l3_entry_add_to_hw_failure"`
 
-		L3_entry_del_to_hw_failure int `json:"l3_entry_del_to_hw_failure"`
-
 		L3_entry_drop_max_hw_exceeded int `json:"l3_entry_drop_max_hw_exceeded"`
 
 		L3_entry_match_drop int `json:"l3_entry_match_drop"`
@@ -27,10 +25,6 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6
 		L3_entry_match_drop_hw int `json:"l3_entry_match_drop_hw"`
 
 		L3_entry_remove_from_bgp_failure int `json:"l3_entry_remove_from_bgp_failure"`
-
-		L4_entry_add_to_hw_failure int `json:"l4_entry_add_to_hw_failure"`
-
-		L4_entry_del_to_hw_failure int `json:"l4_entry_del_to_hw_failure"`
 
 		L4_entry_drop_max_hw_exceeded int `json:"l4_entry_drop_max_hw_exceeded"`
 

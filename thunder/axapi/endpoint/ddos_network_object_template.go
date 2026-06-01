@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosNetworkObjectTemplate struct {
 	Inst struct {
 		AnomalyDetectionTrigger string `json:"anomaly-detection-trigger" dval:"all"`
@@ -17,7 +17,7 @@ type DdosNetworkObjectTemplate struct {
 
 		HostAnomalyThreshold DdosNetworkObjectTemplateHostAnomalyThreshold `json:"host-anomaly-threshold"`
 
-		IndicatorsToMonitor DdosNetworkObjectTemplateIndicatorsToMonitor306 `json:"indicators-to-monitor"`
+		IndicatorsToMonitor DdosNetworkObjectTemplateIndicatorsToMonitor311 `json:"indicators-to-monitor"`
 
 		Name string `json:"name"`
 
@@ -29,7 +29,7 @@ type DdosNetworkObjectTemplate struct {
 
 		ServiceDiscovery string `json:"service-discovery"`
 
-		SportAnomalyThreshold DdosNetworkObjectTemplateSportAnomalyThreshold307 `json:"sport-anomaly-threshold"`
+		SportAnomalyThreshold DdosNetworkObjectTemplateSportAnomalyThreshold312 `json:"sport-anomaly-threshold"`
 
 		ThresholdSensitivity string `json:"threshold-sensitivity" dval:"OFF"`
 
@@ -56,7 +56,7 @@ type DdosNetworkObjectTemplateHostAnomalyThreshold struct {
 	HostUndiscoveredHostBitRate int `json:"host-undiscovered-host-bit-rate"`
 }
 
-type DdosNetworkObjectTemplateIndicatorsToMonitor306 struct {
+type DdosNetworkObjectTemplateIndicatorsToMonitor311 struct {
 	Enable                     int    `json:"enable"`
 	MonitorPktRate             int    `json:"monitor-pkt-rate"`
 	MonitorBitRate             int    `json:"monitor-bit-rate"`
@@ -82,29 +82,29 @@ type DdosNetworkObjectTemplateServiceBreakDownThresholdLocal struct {
 	SvcPercentage int `json:"svc-percentage"`
 }
 
-type DdosNetworkObjectTemplateSportAnomalyThreshold307 struct {
-	PacketRate           DdosNetworkObjectTemplateSportAnomalyThresholdPacketRate308           `json:"packet-rate"`
-	PacketRatePercentage DdosNetworkObjectTemplateSportAnomalyThresholdPacketRatePercentage309 `json:"packet-rate-percentage"`
-	BitRate              DdosNetworkObjectTemplateSportAnomalyThresholdBitRate310              `json:"bit-rate"`
-	BitRatePercentage    DdosNetworkObjectTemplateSportAnomalyThresholdBitRatePercentage311    `json:"bit-rate-percentage"`
+type DdosNetworkObjectTemplateSportAnomalyThreshold312 struct {
+	PacketRate           DdosNetworkObjectTemplateSportAnomalyThresholdPacketRate313           `json:"packet-rate"`
+	PacketRatePercentage DdosNetworkObjectTemplateSportAnomalyThresholdPacketRatePercentage314 `json:"packet-rate-percentage"`
+	BitRate              DdosNetworkObjectTemplateSportAnomalyThresholdBitRate315              `json:"bit-rate"`
+	BitRatePercentage    DdosNetworkObjectTemplateSportAnomalyThresholdBitRatePercentage316    `json:"bit-rate-percentage"`
 }
 
-type DdosNetworkObjectTemplateSportAnomalyThresholdPacketRate308 struct {
+type DdosNetworkObjectTemplateSportAnomalyThresholdPacketRate313 struct {
 	Value int    `json:"value"`
 	Uuid  string `json:"uuid"`
 }
 
-type DdosNetworkObjectTemplateSportAnomalyThresholdPacketRatePercentage309 struct {
+type DdosNetworkObjectTemplateSportAnomalyThresholdPacketRatePercentage314 struct {
 	Value int    `json:"value"`
 	Uuid  string `json:"uuid"`
 }
 
-type DdosNetworkObjectTemplateSportAnomalyThresholdBitRate310 struct {
+type DdosNetworkObjectTemplateSportAnomalyThresholdBitRate315 struct {
 	Value int    `json:"value"`
 	Uuid  string `json:"uuid"`
 }
 
-type DdosNetworkObjectTemplateSportAnomalyThresholdBitRatePercentage311 struct {
+type DdosNetworkObjectTemplateSportAnomalyThresholdBitRatePercentage316 struct {
 	Value int    `json:"value"`
 	Uuid  string `json:"uuid"`
 }

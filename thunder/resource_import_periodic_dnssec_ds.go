@@ -19,6 +19,9 @@ func resourceImportPeriodicDnssecDs() *schema.Resource {
 			"dnssec_ds": {
 				Type: schema.TypeString, Required: true, Description: "DNSSEC DS file for child zone",
 			},
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "Config remote server  password",
+			},
 			"period": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the period in second",
 			},
@@ -99,6 +102,8 @@ func resourceImportPeriodicDnssecDsRead(ctx context.Context, d *schema.ResourceD
 func dataToEndpointImportPeriodicDnssecDs(d *schema.ResourceData) edpt.ImportPeriodicDnssecDs {
 	var ret edpt.ImportPeriodicDnssecDs
 	ret.Inst.DnssecDs = d.Get("dnssec_ds").(string)
+	//omit encrypted
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)

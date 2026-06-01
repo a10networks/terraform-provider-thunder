@@ -34,6 +34,7 @@ resource "thunder_cgnv6_resource_usage" "thunder_cgnv6_resource_usage" {
 - `fixed_nat_inside_user_count` (Number) Total configurable CGNV6 Fixed NAT inside users
 - `fixed_nat_ip_addr_count` (Number) Total configurable CGNV6 Fixed NAT addresses
 - `lsn_nat_addr_count` (Number) Total configurable CGNV6 NAT Pool addresses
+- `radius_table_size` (Number) Total configurable CGNV6 RADIUS Table entries
 - `stateless_entries` (Block List, Max: 1) (see [below for nested schema](#nestedblock--stateless_entries))
 - `uuid` (String) uuid of the object
 

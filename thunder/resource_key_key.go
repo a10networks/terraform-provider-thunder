@@ -28,11 +28,11 @@ func resourceKeyKey() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"key_chain_name": {
-				Type: schema.TypeString, Required: true, Description: "KeyChainName",
-			},
 			"key_chain_flag": {
 				Type: schema.TypeString, Required: true, Description: "KeyChainFlag",
+			},
+			"key_chain_name": {
+				Type: schema.TypeString, Required: true, Description: "KeyChainName",
 			},
 		},
 	}
@@ -105,7 +105,7 @@ func dataToEndpointKeyKey(d *schema.ResourceData) edpt.KeyKey {
 	ret.Inst.KeyString = d.Get("key_string").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.KeyChainName = d.Get("key_chain_name").(string)
 	ret.Inst.KeyChainFlag = d.Get("key_chain_flag").(string)
+	ret.Inst.KeyChainName = d.Get("key_chain_name").(string)
 	return ret
 }

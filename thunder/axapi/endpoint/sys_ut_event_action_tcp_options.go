@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SysUtEventActionTcpOptions struct {
 	Inst struct {
 		Mss int `json:"mss"`
@@ -20,9 +20,9 @@ type SysUtEventActionTcpOptions struct {
 
 		Wscale int `json:"wscale"`
 
-		Direction string
-
 		EventNumber string
+
+		Direction string
 	} `json:"options"`
 }
 

@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplTriggerStatsInc2785 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplTriggerStatsInc2803 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplTriggerStatsRate2786 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplTriggerStatsRate2804 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplTriggerStatsSeverity2787 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplTriggerStatsSeverity2805 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,19 +25,19 @@ type VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmpl struct {
 	} `json:"fw-service-group-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplTriggerStatsInc2785 struct {
+type VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplTriggerStatsInc2803 struct {
 	Server_selection_fail_reset int    `json:"server_selection_fail_reset"`
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplTriggerStatsRate2786 struct {
+type VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplTriggerStatsRate2804 struct {
 	ThresholdExceededBy         int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                    int    `json:"duration" dval:"60"`
 	Server_selection_fail_reset int    `json:"server_selection_fail_reset"`
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplTriggerStatsSeverity2787 struct {
+type VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplTriggerStatsSeverity2805 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

@@ -105,8 +105,8 @@ func resourceSysUtStateNextStateCaseActionTcp() *schema.Resource {
 			"window": {
 				Type: schema.TypeString, Optional: true, Default: "valid", Description: "'valid': valid; 'invalid': invalid;",
 			},
-			"state_name": {
-				Type: schema.TypeString, Required: true, Description: "State_name",
+			"next_state_name": {
+				Type: schema.TypeString, Required: true, Description: "Next_state_name",
 			},
 			"direction": {
 				Type: schema.TypeString, Required: true, Description: "Direction",
@@ -114,8 +114,8 @@ func resourceSysUtStateNextStateCaseActionTcp() *schema.Resource {
 			"case_number": {
 				Type: schema.TypeString, Required: true, Description: "CaseNumber",
 			},
-			"next_state_name": {
-				Type: schema.TypeString, Required: true, Description: "Next_state_name",
+			"state_name": {
+				Type: schema.TypeString, Required: true, Description: "State_name",
 			},
 		},
 	}
@@ -182,10 +182,10 @@ func resourceSysUtStateNextStateCaseActionTcpRead(ctx context.Context, d *schema
 	return diags
 }
 
-func getObjectSysUtStateNextStateCaseActionTcpFlags1642(d []interface{}) edpt.SysUtStateNextStateCaseActionTcpFlags1642 {
+func getObjectSysUtStateNextStateCaseActionTcpFlags1643(d []interface{}) edpt.SysUtStateNextStateCaseActionTcpFlags1643 {
 
 	count1 := len(d)
-	var ret edpt.SysUtStateNextStateCaseActionTcpFlags1642
+	var ret edpt.SysUtStateNextStateCaseActionTcpFlags1643
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Syn = in["syn"].(int)
@@ -201,10 +201,10 @@ func getObjectSysUtStateNextStateCaseActionTcpFlags1642(d []interface{}) edpt.Sy
 	return ret
 }
 
-func getObjectSysUtStateNextStateCaseActionTcpOptions1643(d []interface{}) edpt.SysUtStateNextStateCaseActionTcpOptions1643 {
+func getObjectSysUtStateNextStateCaseActionTcpOptions1644(d []interface{}) edpt.SysUtStateNextStateCaseActionTcpOptions1644 {
 
 	count1 := len(d)
-	var ret edpt.SysUtStateNextStateCaseActionTcpOptions1643
+	var ret edpt.SysUtStateNextStateCaseActionTcpOptions1644
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mss = in["mss"].(int)
@@ -223,17 +223,17 @@ func dataToEndpointSysUtStateNextStateCaseActionTcp(d *schema.ResourceData) edpt
 	ret.Inst.Checksum = d.Get("checksum").(string)
 	ret.Inst.DestPort = d.Get("dest_port").(int)
 	ret.Inst.DestPortValue = d.Get("dest_port_value").(int)
-	ret.Inst.Flags = getObjectSysUtStateNextStateCaseActionTcpFlags1642(d.Get("flags").([]interface{}))
+	ret.Inst.Flags = getObjectSysUtStateNextStateCaseActionTcpFlags1643(d.Get("flags").([]interface{}))
 	ret.Inst.NatPool = d.Get("nat_pool").(string)
-	ret.Inst.Options = getObjectSysUtStateNextStateCaseActionTcpOptions1643(d.Get("options").([]interface{}))
+	ret.Inst.Options = getObjectSysUtStateNextStateCaseActionTcpOptions1644(d.Get("options").([]interface{}))
 	ret.Inst.SeqNumber = d.Get("seq_number").(string)
 	ret.Inst.SrcPort = d.Get("src_port").(int)
 	ret.Inst.Urgent = d.Get("urgent").(string)
 	//omit uuid
 	ret.Inst.Window = d.Get("window").(string)
-	ret.Inst.State_name = d.Get("state_name").(string)
+	ret.Inst.Next_state_name = d.Get("next_state_name").(string)
 	ret.Inst.Direction = d.Get("direction").(string)
 	ret.Inst.CaseNumber = d.Get("case_number").(string)
-	ret.Inst.Next_state_name = d.Get("next_state_name").(string)
+	ret.Inst.State_name = d.Get("state_name").(string)
 	return ret
 }

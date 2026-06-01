@@ -938,6 +938,7 @@ resource "thunder_visibility_packet_capture_object_templates" "thunder_visibilit
 - `aam_auth_service_group_mem_tmpl_list` (Block List) (see [below for nested schema](#nestedblock--aam_auth_service_group_mem_tmpl_list))
 - `aam_auth_service_group_tmpl_list` (Block List) (see [below for nested schema](#nestedblock--aam_auth_service_group_tmpl_list))
 - `aam_jwt_authorization_tmpl_list` (Block List) (see [below for nested schema](#nestedblock--aam_jwt_authorization_tmpl_list))
+- `captcha_template_inst_tmpl_list` (Block List) (see [below for nested schema](#nestedblock--captcha_template_inst_tmpl_list))
 - `cgnv6_dns64_vs_port_tmpl_list` (Block List) (see [below for nested schema](#nestedblock--cgnv6_dns64_vs_port_tmpl_list))
 - `cgnv6_encap_domain_tmpl_list` (Block List) (see [below for nested schema](#nestedblock--cgnv6_encap_domain_tmpl_list))
 - `cgnv6_map_trans_domain_tmpl_list` (Block List) (see [below for nested schema](#nestedblock--cgnv6_map_trans_domain_tmpl_list))
@@ -1827,6 +1828,65 @@ Optional:
 
 <a id="nestedblock--aam_jwt_authorization_tmpl_list--trigger_stats_severity"></a>
 ### Nested Schema for `aam_jwt_authorization_tmpl_list.trigger_stats_severity`
+
+Optional:
+
+- `drop` (Number) Enable packet capture on all drop counters (Default disabled)
+- `drop_alert` (Number) Enable packet capture on all alert drop counters (Default disabled)
+- `drop_critical` (Number) Enable packet capture on all critical drop counters (Default disabled)
+- `drop_warning` (Number) Enable packet capture on all warning drop counters (Default disabled)
+- `error` (Number) Enable packet capture on all error counters (Default disabled)
+- `error_alert` (Number) Enable packet capture on all alert error counters (Default disabled)
+- `error_critical` (Number) Enable packet capture on all critical error counters (Default disabled)
+- `error_warning` (Number) Enable packet capture on all warning error counters (Default disabled)
+- `uuid` (String) uuid of the object
+
+
+
+<a id="nestedblock--captcha_template_inst_tmpl_list"></a>
+### Nested Schema for `captcha_template_inst_tmpl_list`
+
+Required:
+
+- `name` (String) Packet Capture Template Name
+
+Optional:
+
+- `capture_config` (String) Specify name of the capture-config to use with this template
+- `trigger_stats_inc` (Block List, Max: 1) (see [below for nested schema](#nestedblock--captcha_template_inst_tmpl_list--trigger_stats_inc))
+- `trigger_stats_rate` (Block List, Max: 1) (see [below for nested schema](#nestedblock--captcha_template_inst_tmpl_list--trigger_stats_rate))
+- `trigger_stats_severity` (Block List, Max: 1) (see [below for nested schema](#nestedblock--captcha_template_inst_tmpl_list--trigger_stats_severity))
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--captcha_template_inst_tmpl_list--trigger_stats_inc"></a>
+### Nested Schema for `captcha_template_inst_tmpl_list.trigger_stats_inc`
+
+Optional:
+
+- `json_fail` (Number) Enable automatic packet-capture for Total Failure JSON Response
+- `other_error` (Number) Enable automatic packet-capture for Total Other Error
+- `parse_fail` (Number) Enable automatic packet-capture for Total JSON Response Parse Failure
+- `timeout_error` (Number) Enable automatic packet-capture for Total Timeout
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--captcha_template_inst_tmpl_list--trigger_stats_rate"></a>
+### Nested Schema for `captcha_template_inst_tmpl_list.trigger_stats_rate`
+
+Optional:
+
+- `duration` (Number) Time in seconds to look for the anomaly, default is 60
+- `json_fail` (Number) Enable automatic packet-capture for Total Failure JSON Response
+- `other_error` (Number) Enable automatic packet-capture for Total Other Error
+- `parse_fail` (Number) Enable automatic packet-capture for Total JSON Response Parse Failure
+- `threshold_exceeded_by` (Number) Set the threshold to the number of times greater than the previous duration to start the capture, default is 5
+- `timeout_error` (Number) Enable automatic packet-capture for Total Timeout
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--captcha_template_inst_tmpl_list--trigger_stats_severity"></a>
+### Nested Schema for `captcha_template_inst_tmpl_list.trigger_stats_severity`
 
 Optional:
 

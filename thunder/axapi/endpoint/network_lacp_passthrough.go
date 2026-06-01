@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type NetworkLacpPassthrough struct {
 	Inst struct {
 		PeerFrom int `json:"peer-from"`

@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesSlbVportTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsInc2818 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsInc2836 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsRate2819 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsRate2837 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsSeverity2820 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsSeverity2838 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,7 +25,7 @@ type VisibilityPacketCaptureObjectTemplatesSlbVportTmpl struct {
 	} `json:"slb-vport-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsInc2818 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsInc2836 struct {
 	Total_mf_dns_pkts                   int    `json:"total_mf_dns_pkts"`
 	Es_total_failure_actions            int    `json:"es_total_failure_actions"`
 	Compression_miss_no_client          int    `json:"compression_miss_no_client"`
@@ -37,7 +37,7 @@ type VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsInc2818 struc
 	Uuid                                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsRate2819 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsRate2837 struct {
 	ThresholdExceededBy                 int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                            int    `json:"duration" dval:"60"`
 	Total_mf_dns_pkts                   int    `json:"total_mf_dns_pkts"`
@@ -51,7 +51,7 @@ type VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsRate2819 stru
 	Uuid                                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsSeverity2820 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsSeverity2838 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

@@ -814,10 +814,10 @@ func resourceVisibilityTopnRead(ctx context.Context, d *schema.ResourceData, met
 	return diags
 }
 
-func getObjectVisibilityTopnCgnv6NatPoolTopnNode3234(d []interface{}) edpt.VisibilityTopnCgnv6NatPoolTopnNode3234 {
+func getObjectVisibilityTopnCgnv6NatPoolTopnNode3262(d []interface{}) edpt.VisibilityTopnCgnv6NatPoolTopnNode3262 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopnCgnv6NatPoolTopnNode3234
+	var ret edpt.VisibilityTopnCgnv6NatPoolTopnNode3262
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Activate = in["activate"].(string)
@@ -857,10 +857,10 @@ func getObjectVisibilityTopnCgnv6NatPoolTopnTmplListMetrics(d []interface{}) edp
 	return ret
 }
 
-func getObjectVisibilityTopnGtpApnPrefixTopnNode3235(d []interface{}) edpt.VisibilityTopnGtpApnPrefixTopnNode3235 {
+func getObjectVisibilityTopnGtpApnPrefixTopnNode3263(d []interface{}) edpt.VisibilityTopnGtpApnPrefixTopnNode3263 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopnGtpApnPrefixTopnNode3235
+	var ret edpt.VisibilityTopnGtpApnPrefixTopnNode3263
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Activate = in["activate"].(string)
@@ -985,10 +985,10 @@ func getObjectVisibilityTopnGtpApnPrefixTopnTmplListMetrics(d []interface{}) edp
 	return ret
 }
 
-func getObjectVisibilityTopnGtpNetworkElementTopnNode3236(d []interface{}) edpt.VisibilityTopnGtpNetworkElementTopnNode3236 {
+func getObjectVisibilityTopnGtpNetworkElementTopnNode3264(d []interface{}) edpt.VisibilityTopnGtpNetworkElementTopnNode3264 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopnGtpNetworkElementTopnNode3236
+	var ret edpt.VisibilityTopnGtpNetworkElementTopnNode3264
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Activate = in["activate"].(string)
@@ -1129,10 +1129,10 @@ func getSliceVisibilityTopnSamplingEnable(d []interface{}) []edpt.VisibilityTopn
 	return ret
 }
 
-func getObjectVisibilityTopnTemplGtpPlcyTopnNode3237(d []interface{}) edpt.VisibilityTopnTemplGtpPlcyTopnNode3237 {
+func getObjectVisibilityTopnTemplGtpPlcyTopnNode3265(d []interface{}) edpt.VisibilityTopnTemplGtpPlcyTopnNode3265 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopnTemplGtpPlcyTopnNode3237
+	var ret edpt.VisibilityTopnTemplGtpPlcyTopnNode3265
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Activate = in["activate"].(string)
@@ -1173,14 +1173,14 @@ func getObjectVisibilityTopnTemplGtpPlcyTopnTmplListMetrics(d []interface{}) edp
 
 func dataToEndpointVisibilityTopn(d *schema.ResourceData) edpt.VisibilityTopn {
 	var ret edpt.VisibilityTopn
-	ret.Inst.Cgnv6NatPoolTopnNode = getObjectVisibilityTopnCgnv6NatPoolTopnNode3234(d.Get("cgnv6_nat_pool_topn_node").([]interface{}))
+	ret.Inst.Cgnv6NatPoolTopnNode = getObjectVisibilityTopnCgnv6NatPoolTopnNode3262(d.Get("cgnv6_nat_pool_topn_node").([]interface{}))
 	ret.Inst.Cgnv6NatPoolTopnTmplList = getSliceVisibilityTopnCgnv6NatPoolTopnTmplList(d.Get("cgnv6_nat_pool_topn_tmpl_list").([]interface{}))
-	ret.Inst.GtpApnPrefixTopnNode = getObjectVisibilityTopnGtpApnPrefixTopnNode3235(d.Get("gtp_apn_prefix_topn_node").([]interface{}))
+	ret.Inst.GtpApnPrefixTopnNode = getObjectVisibilityTopnGtpApnPrefixTopnNode3263(d.Get("gtp_apn_prefix_topn_node").([]interface{}))
 	ret.Inst.GtpApnPrefixTopnTmplList = getSliceVisibilityTopnGtpApnPrefixTopnTmplList(d.Get("gtp_apn_prefix_topn_tmpl_list").([]interface{}))
-	ret.Inst.GtpNetworkElementTopnNode = getObjectVisibilityTopnGtpNetworkElementTopnNode3236(d.Get("gtp_network_element_topn_node").([]interface{}))
+	ret.Inst.GtpNetworkElementTopnNode = getObjectVisibilityTopnGtpNetworkElementTopnNode3264(d.Get("gtp_network_element_topn_node").([]interface{}))
 	ret.Inst.GtpNetworkElementTopnTmplList = getSliceVisibilityTopnGtpNetworkElementTopnTmplList(d.Get("gtp_network_element_topn_tmpl_list").([]interface{}))
 	ret.Inst.SamplingEnable = getSliceVisibilityTopnSamplingEnable(d.Get("sampling_enable").([]interface{}))
-	ret.Inst.TemplGtpPlcyTopnNode = getObjectVisibilityTopnTemplGtpPlcyTopnNode3237(d.Get("templ_gtp_plcy_topn_node").([]interface{}))
+	ret.Inst.TemplGtpPlcyTopnNode = getObjectVisibilityTopnTemplGtpPlcyTopnNode3265(d.Get("templ_gtp_plcy_topn_node").([]interface{}))
 	ret.Inst.TemplGtpPlcyTopnTmplList = getSliceVisibilityTopnTemplGtpPlcyTopnTmplList(d.Get("templ_gtp_plcy_topn_tmpl_list").([]interface{}))
 	//omit uuid
 	return ret

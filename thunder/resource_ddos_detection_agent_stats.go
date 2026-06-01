@@ -155,6 +155,9 @@ func resourceDdosDetectionAgentStats() *schema.Resource {
 						"xflow_dst_svc_miss_extend_byte_rcv": {
 							Type: schema.TypeInt, Optional: true, Description: "Extend Bytes Received of DDoS Destination Service Miss",
 						},
+						"xflow_sample_dropped_by_intf_select": {
+							Type: schema.TypeInt, Optional: true, Description: "Xflow Samples Dropped by Interface Selection",
+						},
 					},
 				},
 			},
@@ -229,6 +232,7 @@ func setObjectDdosDetectionAgentStatsStats(ret edpt.DataDdosDetectionAgentStats)
 			"xflow_dst_entry_miss_extend_byte_rcv":   ret.DtDdosDetectionAgentStats.Stats.XflowDstEntryMissExtendByteRcv,
 			"xflow_dst_svc_miss_extend_pkt_rcv":      ret.DtDdosDetectionAgentStats.Stats.XflowDstSvcMissExtendPktRcv,
 			"xflow_dst_svc_miss_extend_byte_rcv":     ret.DtDdosDetectionAgentStats.Stats.XflowDstSvcMissExtendByteRcv,
+			"xflow_sample_dropped_by_intf_select":    ret.DtDdosDetectionAgentStats.Stats.XflowSampleDroppedByIntfSelect,
 		},
 	}
 }
@@ -284,6 +288,7 @@ func getObjectDdosDetectionAgentStatsStats(d []interface{}) edpt.DdosDetectionAg
 		ret.XflowDstEntryMissExtendByteRcv = in["xflow_dst_entry_miss_extend_byte_rcv"].(int)
 		ret.XflowDstSvcMissExtendPktRcv = in["xflow_dst_svc_miss_extend_pkt_rcv"].(int)
 		ret.XflowDstSvcMissExtendByteRcv = in["xflow_dst_svc_miss_extend_byte_rcv"].(int)
+		ret.XflowSampleDroppedByIntfSelect = in["xflow_sample_dropped_by_intf_select"].(int)
 	}
 	return ret
 }

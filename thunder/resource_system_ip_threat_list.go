@@ -238,25 +238,25 @@ func resourceSystemIpThreatListRead(ctx context.Context, d *schema.ResourceData,
 	return diags
 }
 
-func getObjectSystemIpThreatListIpv4DestList1681(d []interface{}) edpt.SystemIpThreatListIpv4DestList1681 {
+func getObjectSystemIpThreatListIpv4DestList1682(d []interface{}) edpt.SystemIpThreatListIpv4DestList1682 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpThreatListIpv4DestList1681
+	var ret edpt.SystemIpThreatListIpv4DestList1682
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.ClassListCfg = getSliceSystemIpThreatListIpv4DestListClassListCfg1682(in["class_list_cfg"].([]interface{}))
+		ret.ClassListCfg = getSliceSystemIpThreatListIpv4DestListClassListCfg1683(in["class_list_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSystemIpThreatListIpv4DestListClassListCfg1682(d []interface{}) []edpt.SystemIpThreatListIpv4DestListClassListCfg1682 {
+func getSliceSystemIpThreatListIpv4DestListClassListCfg1683(d []interface{}) []edpt.SystemIpThreatListIpv4DestListClassListCfg1683 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemIpThreatListIpv4DestListClassListCfg1682, 0, count1)
+	ret := make([]edpt.SystemIpThreatListIpv4DestListClassListCfg1683, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemIpThreatListIpv4DestListClassListCfg1682
+		var oi edpt.SystemIpThreatListIpv4DestListClassListCfg1683
 		oi.ClassList = in["class_list"].(string)
 		oi.IpThreatActionTmpl = in["ip_threat_action_tmpl"].(int)
 		ret = append(ret, oi)
@@ -264,26 +264,26 @@ func getSliceSystemIpThreatListIpv4DestListClassListCfg1682(d []interface{}) []e
 	return ret
 }
 
-func getObjectSystemIpThreatListIpv4InternetHostList1683(d []interface{}) edpt.SystemIpThreatListIpv4InternetHostList1683 {
+func getObjectSystemIpThreatListIpv4InternetHostList1684(d []interface{}) edpt.SystemIpThreatListIpv4InternetHostList1684 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpThreatListIpv4InternetHostList1683
+	var ret edpt.SystemIpThreatListIpv4InternetHostList1684
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.WhiteList = in["white_list"].(string)
-		ret.ClassListCfg = getSliceSystemIpThreatListIpv4InternetHostListClassListCfg1684(in["class_list_cfg"].([]interface{}))
+		ret.ClassListCfg = getSliceSystemIpThreatListIpv4InternetHostListClassListCfg1685(in["class_list_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSystemIpThreatListIpv4InternetHostListClassListCfg1684(d []interface{}) []edpt.SystemIpThreatListIpv4InternetHostListClassListCfg1684 {
+func getSliceSystemIpThreatListIpv4InternetHostListClassListCfg1685(d []interface{}) []edpt.SystemIpThreatListIpv4InternetHostListClassListCfg1685 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemIpThreatListIpv4InternetHostListClassListCfg1684, 0, count1)
+	ret := make([]edpt.SystemIpThreatListIpv4InternetHostListClassListCfg1685, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemIpThreatListIpv4InternetHostListClassListCfg1684
+		var oi edpt.SystemIpThreatListIpv4InternetHostListClassListCfg1685
 		oi.ClassList = in["class_list"].(string)
 		oi.IpThreatActionTmpl = in["ip_threat_action_tmpl"].(int)
 		ret = append(ret, oi)
@@ -291,25 +291,25 @@ func getSliceSystemIpThreatListIpv4InternetHostListClassListCfg1684(d []interfac
 	return ret
 }
 
-func getObjectSystemIpThreatListIpv4SourceList1685(d []interface{}) edpt.SystemIpThreatListIpv4SourceList1685 {
+func getObjectSystemIpThreatListIpv4SourceList1686(d []interface{}) edpt.SystemIpThreatListIpv4SourceList1686 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpThreatListIpv4SourceList1685
+	var ret edpt.SystemIpThreatListIpv4SourceList1686
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.ClassListCfg = getSliceSystemIpThreatListIpv4SourceListClassListCfg1686(in["class_list_cfg"].([]interface{}))
+		ret.ClassListCfg = getSliceSystemIpThreatListIpv4SourceListClassListCfg1687(in["class_list_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSystemIpThreatListIpv4SourceListClassListCfg1686(d []interface{}) []edpt.SystemIpThreatListIpv4SourceListClassListCfg1686 {
+func getSliceSystemIpThreatListIpv4SourceListClassListCfg1687(d []interface{}) []edpt.SystemIpThreatListIpv4SourceListClassListCfg1687 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemIpThreatListIpv4SourceListClassListCfg1686, 0, count1)
+	ret := make([]edpt.SystemIpThreatListIpv4SourceListClassListCfg1687, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemIpThreatListIpv4SourceListClassListCfg1686
+		var oi edpt.SystemIpThreatListIpv4SourceListClassListCfg1687
 		oi.ClassList = in["class_list"].(string)
 		oi.IpThreatActionTmpl = in["ip_threat_action_tmpl"].(int)
 		ret = append(ret, oi)
@@ -317,25 +317,25 @@ func getSliceSystemIpThreatListIpv4SourceListClassListCfg1686(d []interface{}) [
 	return ret
 }
 
-func getObjectSystemIpThreatListIpv6DestList1687(d []interface{}) edpt.SystemIpThreatListIpv6DestList1687 {
+func getObjectSystemIpThreatListIpv6DestList1688(d []interface{}) edpt.SystemIpThreatListIpv6DestList1688 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpThreatListIpv6DestList1687
+	var ret edpt.SystemIpThreatListIpv6DestList1688
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.ClassListCfg = getSliceSystemIpThreatListIpv6DestListClassListCfg1688(in["class_list_cfg"].([]interface{}))
+		ret.ClassListCfg = getSliceSystemIpThreatListIpv6DestListClassListCfg1689(in["class_list_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSystemIpThreatListIpv6DestListClassListCfg1688(d []interface{}) []edpt.SystemIpThreatListIpv6DestListClassListCfg1688 {
+func getSliceSystemIpThreatListIpv6DestListClassListCfg1689(d []interface{}) []edpt.SystemIpThreatListIpv6DestListClassListCfg1689 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemIpThreatListIpv6DestListClassListCfg1688, 0, count1)
+	ret := make([]edpt.SystemIpThreatListIpv6DestListClassListCfg1689, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemIpThreatListIpv6DestListClassListCfg1688
+		var oi edpt.SystemIpThreatListIpv6DestListClassListCfg1689
 		oi.ClassList = in["class_list"].(string)
 		oi.IpThreatActionTmpl = in["ip_threat_action_tmpl"].(int)
 		ret = append(ret, oi)
@@ -343,26 +343,26 @@ func getSliceSystemIpThreatListIpv6DestListClassListCfg1688(d []interface{}) []e
 	return ret
 }
 
-func getObjectSystemIpThreatListIpv6InternetHostList1689(d []interface{}) edpt.SystemIpThreatListIpv6InternetHostList1689 {
+func getObjectSystemIpThreatListIpv6InternetHostList1690(d []interface{}) edpt.SystemIpThreatListIpv6InternetHostList1690 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpThreatListIpv6InternetHostList1689
+	var ret edpt.SystemIpThreatListIpv6InternetHostList1690
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.WhiteList = in["white_list"].(string)
-		ret.ClassListCfg = getSliceSystemIpThreatListIpv6InternetHostListClassListCfg1690(in["class_list_cfg"].([]interface{}))
+		ret.ClassListCfg = getSliceSystemIpThreatListIpv6InternetHostListClassListCfg1691(in["class_list_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSystemIpThreatListIpv6InternetHostListClassListCfg1690(d []interface{}) []edpt.SystemIpThreatListIpv6InternetHostListClassListCfg1690 {
+func getSliceSystemIpThreatListIpv6InternetHostListClassListCfg1691(d []interface{}) []edpt.SystemIpThreatListIpv6InternetHostListClassListCfg1691 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemIpThreatListIpv6InternetHostListClassListCfg1690, 0, count1)
+	ret := make([]edpt.SystemIpThreatListIpv6InternetHostListClassListCfg1691, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemIpThreatListIpv6InternetHostListClassListCfg1690
+		var oi edpt.SystemIpThreatListIpv6InternetHostListClassListCfg1691
 		oi.ClassList = in["class_list"].(string)
 		oi.IpThreatActionTmpl = in["ip_threat_action_tmpl"].(int)
 		ret = append(ret, oi)
@@ -370,25 +370,25 @@ func getSliceSystemIpThreatListIpv6InternetHostListClassListCfg1690(d []interfac
 	return ret
 }
 
-func getObjectSystemIpThreatListIpv6SourceList1691(d []interface{}) edpt.SystemIpThreatListIpv6SourceList1691 {
+func getObjectSystemIpThreatListIpv6SourceList1692(d []interface{}) edpt.SystemIpThreatListIpv6SourceList1692 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpThreatListIpv6SourceList1691
+	var ret edpt.SystemIpThreatListIpv6SourceList1692
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.ClassListCfg = getSliceSystemIpThreatListIpv6SourceListClassListCfg1692(in["class_list_cfg"].([]interface{}))
+		ret.ClassListCfg = getSliceSystemIpThreatListIpv6SourceListClassListCfg1693(in["class_list_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSystemIpThreatListIpv6SourceListClassListCfg1692(d []interface{}) []edpt.SystemIpThreatListIpv6SourceListClassListCfg1692 {
+func getSliceSystemIpThreatListIpv6SourceListClassListCfg1693(d []interface{}) []edpt.SystemIpThreatListIpv6SourceListClassListCfg1693 {
 
 	count1 := len(d)
-	ret := make([]edpt.SystemIpThreatListIpv6SourceListClassListCfg1692, 0, count1)
+	ret := make([]edpt.SystemIpThreatListIpv6SourceListClassListCfg1693, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SystemIpThreatListIpv6SourceListClassListCfg1692
+		var oi edpt.SystemIpThreatListIpv6SourceListClassListCfg1693
 		oi.ClassList = in["class_list"].(string)
 		oi.IpThreatActionTmpl = in["ip_threat_action_tmpl"].(int)
 		ret = append(ret, oi)
@@ -411,12 +411,12 @@ func getSliceSystemIpThreatListSamplingEnable(d []interface{}) []edpt.SystemIpTh
 
 func dataToEndpointSystemIpThreatList(d *schema.ResourceData) edpt.SystemIpThreatList {
 	var ret edpt.SystemIpThreatList
-	ret.Inst.Ipv4DestList = getObjectSystemIpThreatListIpv4DestList1681(d.Get("ipv4_dest_list").([]interface{}))
-	ret.Inst.Ipv4InternetHostList = getObjectSystemIpThreatListIpv4InternetHostList1683(d.Get("ipv4_internet_host_list").([]interface{}))
-	ret.Inst.Ipv4SourceList = getObjectSystemIpThreatListIpv4SourceList1685(d.Get("ipv4_source_list").([]interface{}))
-	ret.Inst.Ipv6DestList = getObjectSystemIpThreatListIpv6DestList1687(d.Get("ipv6_dest_list").([]interface{}))
-	ret.Inst.Ipv6InternetHostList = getObjectSystemIpThreatListIpv6InternetHostList1689(d.Get("ipv6_internet_host_list").([]interface{}))
-	ret.Inst.Ipv6SourceList = getObjectSystemIpThreatListIpv6SourceList1691(d.Get("ipv6_source_list").([]interface{}))
+	ret.Inst.Ipv4DestList = getObjectSystemIpThreatListIpv4DestList1682(d.Get("ipv4_dest_list").([]interface{}))
+	ret.Inst.Ipv4InternetHostList = getObjectSystemIpThreatListIpv4InternetHostList1684(d.Get("ipv4_internet_host_list").([]interface{}))
+	ret.Inst.Ipv4SourceList = getObjectSystemIpThreatListIpv4SourceList1686(d.Get("ipv4_source_list").([]interface{}))
+	ret.Inst.Ipv6DestList = getObjectSystemIpThreatListIpv6DestList1688(d.Get("ipv6_dest_list").([]interface{}))
+	ret.Inst.Ipv6InternetHostList = getObjectSystemIpThreatListIpv6InternetHostList1690(d.Get("ipv6_internet_host_list").([]interface{}))
+	ret.Inst.Ipv6SourceList = getObjectSystemIpThreatListIpv6SourceList1692(d.Get("ipv6_source_list").([]interface{}))
 	ret.Inst.SamplingEnable = getSliceSystemIpThreatListSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	//omit uuid
 	return ret

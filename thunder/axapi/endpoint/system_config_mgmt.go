@@ -5,34 +5,34 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemConfigMgmt struct {
 	Inst struct {
 		DeleteReferencedTaggedObjects string `json:"delete-referenced-tagged-objects" dval:"enable"`
 
-		Mpm SystemConfigMgmtMpm1673 `json:"mpm"`
+		Mpm SystemConfigMgmtMpm1674 `json:"mpm"`
 
-		Notification SystemConfigMgmtNotification1674 `json:"notification"`
+		Notification SystemConfigMgmtNotification1675 `json:"notification"`
 
-		PuSyncDetection SystemConfigMgmtPuSyncDetection1675 `json:"pu-sync-detection"`
+		PuSyncDetection SystemConfigMgmtPuSyncDetection1676 `json:"pu-sync-detection"`
 
 		Uuid string `json:"uuid"`
 	} `json:"config-mgmt"`
 }
 
-type SystemConfigMgmtMpm1673 struct {
+type SystemConfigMgmtMpm1674 struct {
 	MaxWorkers     int    `json:"max-workers" dval:"1"`
 	MinIdleWorkers int    `json:"min-idle-workers" dval:"1"`
 	StartWorkers   int    `json:"start-workers" dval:"1"`
 	Uuid           string `json:"uuid"`
 }
 
-type SystemConfigMgmtNotification1674 struct {
+type SystemConfigMgmtNotification1675 struct {
 	Period int    `json:"period" dval:"15"`
 	Uuid   string `json:"uuid"`
 }
 
-type SystemConfigMgmtPuSyncDetection1675 struct {
+type SystemConfigMgmtPuSyncDetection1676 struct {
 	Interval int    `json:"interval" dval:"30"`
 	Action   string `json:"action" dval:"disable"`
 	Uuid     string `json:"uuid"`

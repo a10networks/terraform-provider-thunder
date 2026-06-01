@@ -22,6 +22,9 @@ func resourceImportPeriodicClassListConvert() *schema.Resource {
 			"class_list_type": {
 				Type: schema.TypeString, Optional: true, Description: "'ac': ac; 'ipv4': ipv4; 'ipv6': ipv6; 'string': string; 'string-case-insensitive': string-case-insensitive;",
 			},
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "Config remote server  password",
+			},
 			"period": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the period in second",
 			},
@@ -103,6 +106,8 @@ func dataToEndpointImportPeriodicClassListConvert(d *schema.ResourceData) edpt.I
 	var ret edpt.ImportPeriodicClassListConvert
 	ret.Inst.ClassListConvert = d.Get("class_list_convert").(string)
 	ret.Inst.ClassListType = d.Get("class_list_type").(string)
+	//omit encrypted
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)

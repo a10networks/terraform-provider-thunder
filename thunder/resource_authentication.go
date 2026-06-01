@@ -153,22 +153,22 @@ func resourceAuthenticationRead(ctx context.Context, d *schema.ResourceData, met
 	return diags
 }
 
-func getObjectAuthenticationConsole67(d []interface{}) edpt.AuthenticationConsole67 {
+func getObjectAuthenticationConsole68(d []interface{}) edpt.AuthenticationConsole68 {
 
 	count1 := len(d)
-	var ret edpt.AuthenticationConsole67
+	var ret edpt.AuthenticationConsole68
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.TypeCfg = getObjectAuthenticationConsoleTypeCfg68(in["type_cfg"].([]interface{}))
+		ret.TypeCfg = getObjectAuthenticationConsoleTypeCfg69(in["type_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectAuthenticationConsoleTypeCfg68(d []interface{}) edpt.AuthenticationConsoleTypeCfg68 {
+func getObjectAuthenticationConsoleTypeCfg69(d []interface{}) edpt.AuthenticationConsoleTypeCfg69 {
 
 	count1 := len(d)
-	var ret edpt.AuthenticationConsoleTypeCfg68
+	var ret edpt.AuthenticationConsoleTypeCfg69
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Type = in["type"].(int)
@@ -224,7 +224,7 @@ func getObjectAuthenticationTypeCfg(d []interface{}) edpt.AuthenticationTypeCfg 
 
 func dataToEndpointAuthentication(d *schema.ResourceData) edpt.Authentication {
 	var ret edpt.Authentication
-	ret.Inst.Console = getObjectAuthenticationConsole67(d.Get("console").([]interface{}))
+	ret.Inst.Console = getObjectAuthenticationConsole68(d.Get("console").([]interface{}))
 	ret.Inst.EnableCfg = getObjectAuthenticationEnableCfg(d.Get("enable_cfg").([]interface{}))
 	ret.Inst.LoginCfg = getObjectAuthenticationLoginCfg(d.Get("login_cfg").([]interface{}))
 	ret.Inst.ModeCfg = getObjectAuthenticationModeCfg(d.Get("mode_cfg").([]interface{}))

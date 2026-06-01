@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosZoneTemplateHttp struct {
 	Inst struct {
 		Challenge DdosZoneTemplateHttpChallenge `json:"challenge"`
@@ -25,7 +25,7 @@ type DdosZoneTemplateHttp struct {
 
 		IdleTimeout DdosZoneTemplateHttpIdleTimeout `json:"idle-timeout"`
 
-		MalformedHttp DdosZoneTemplateHttpMalformedHttp361 `json:"malformed-http"`
+		MalformedHttp DdosZoneTemplateHttpMalformedHttp357 `json:"malformed-http"`
 
 		MssTimeout DdosZoneTemplateHttpMssTimeout `json:"mss-timeout"`
 
@@ -212,7 +212,7 @@ type DdosZoneTemplateHttpIdleTimeout struct {
 	IdleTimeoutAction         string `json:"idle-timeout-action"`
 }
 
-type DdosZoneTemplateHttpMalformedHttp361 struct {
+type DdosZoneTemplateHttpMalformedHttp357 struct {
 	MalformedHttp                   string `json:"malformed-http" dval:"check"`
 	MalformedHttpMaxLineSize        int    `json:"malformed-http-max-line-size" dval:"32512"`
 	MalformedHttpMaxNumHeaders      int    `json:"malformed-http-max-num-headers" dval:"90"`

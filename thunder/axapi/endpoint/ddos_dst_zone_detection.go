@@ -5,16 +5,16 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZoneDetection struct {
 	Inst struct {
-		Notification DdosDstZoneDetectionNotification205 `json:"notification"`
+		Notification DdosDstZoneDetectionNotification208 `json:"notification"`
 
-		OutboundDetection DdosDstZoneDetectionOutboundDetection207 `json:"outbound-detection"`
+		OutboundDetection DdosDstZoneDetectionOutboundDetection210 `json:"outbound-detection"`
 
-		PacketAnomalyDetection DdosDstZoneDetectionPacketAnomalyDetection211 `json:"packet-anomaly-detection"`
+		PacketAnomalyDetection DdosDstZoneDetectionPacketAnomalyDetection214 `json:"packet-anomaly-detection"`
 
-		ServiceDiscovery DdosDstZoneDetectionServiceDiscovery213 `json:"service-discovery"`
+		ServiceDiscovery DdosDstZoneDetectionServiceDiscovery216 `json:"service-discovery"`
 
 		Settings string `json:"settings"`
 
@@ -22,40 +22,40 @@ type DdosDstZoneDetection struct {
 
 		Uuid string `json:"uuid"`
 
-		VictimIpDetection DdosDstZoneDetectionVictimIpDetection214 `json:"victim-ip-detection"`
+		VictimIpDetection DdosDstZoneDetectionVictimIpDetection217 `json:"victim-ip-detection"`
 
 		ZoneName string
 	} `json:"detection"`
 }
 
-type DdosDstZoneDetectionNotification205 struct {
+type DdosDstZoneDetectionNotification208 struct {
 	Configuration string                                            `json:"configuration"`
-	Notification  []DdosDstZoneDetectionNotificationNotification206 `json:"notification"`
+	Notification  []DdosDstZoneDetectionNotificationNotification209 `json:"notification"`
 	Uuid          string                                            `json:"uuid"`
 }
 
-type DdosDstZoneDetectionNotificationNotification206 struct {
+type DdosDstZoneDetectionNotificationNotification209 struct {
 	NotificationTemplateName string `json:"notification-template-name"`
 }
 
-type DdosDstZoneDetectionOutboundDetection207 struct {
+type DdosDstZoneDetectionOutboundDetection210 struct {
 	Configuration    string                                                   `json:"configuration"`
 	Toggle           string                                                   `json:"toggle" dval:"disable"`
 	DiscoveryMethod  string                                                   `json:"discovery-method"`
 	DiscoveryRecord  int                                                      `json:"discovery-record" dval:"10"`
-	EnableTopK       []DdosDstZoneDetectionOutboundDetectionEnableTopK208     `json:"enable-top-k"`
+	EnableTopK       []DdosDstZoneDetectionOutboundDetectionEnableTopK211     `json:"enable-top-k"`
 	Uuid             string                                                   `json:"uuid"`
-	IndicatorList    []DdosDstZoneDetectionOutboundDetectionIndicatorList209  `json:"indicator-list"`
-	TopkSourceSubnet DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet210 `json:"topk-source-subnet"`
+	IndicatorList    []DdosDstZoneDetectionOutboundDetectionIndicatorList212  `json:"indicator-list"`
+	TopkSourceSubnet DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet213 `json:"topk-source-subnet"`
 }
 
-type DdosDstZoneDetectionOutboundDetectionEnableTopK208 struct {
+type DdosDstZoneDetectionOutboundDetectionEnableTopK211 struct {
 	TopkType       string `json:"topk-type"`
 	TopkNetmask    int    `json:"topk-netmask" dval:"128"`
 	TopkNumRecords int    `json:"topk-num-records" dval:"20"`
 }
 
-type DdosDstZoneDetectionOutboundDetectionIndicatorList209 struct {
+type DdosDstZoneDetectionOutboundDetectionIndicatorList212 struct {
 	Type              string `json:"type"`
 	TcpWindowSize     int    `json:"tcp-window-size"`
 	DataPacketSize    int    `json:"data-packet-size"`
@@ -66,40 +66,40 @@ type DdosDstZoneDetectionOutboundDetectionIndicatorList209 struct {
 	UserTag           string `json:"user-tag"`
 }
 
-type DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet210 struct {
+type DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet213 struct {
 	Uuid string `json:"uuid"`
 }
 
-type DdosDstZoneDetectionPacketAnomalyDetection211 struct {
+type DdosDstZoneDetectionPacketAnomalyDetection214 struct {
 	Configuration string                                                       `json:"configuration"`
 	Toggle        string                                                       `json:"toggle" dval:"enable"`
 	Uuid          string                                                       `json:"uuid"`
-	IndicatorList []DdosDstZoneDetectionPacketAnomalyDetectionIndicatorList212 `json:"indicator-list"`
+	IndicatorList []DdosDstZoneDetectionPacketAnomalyDetectionIndicatorList215 `json:"indicator-list"`
 }
 
-type DdosDstZoneDetectionPacketAnomalyDetectionIndicatorList212 struct {
+type DdosDstZoneDetectionPacketAnomalyDetectionIndicatorList215 struct {
 	Type         string `json:"type"`
 	ThresholdNum int    `json:"threshold-num" dval:"100"`
 	Uuid         string `json:"uuid"`
 	UserTag      string `json:"user-tag"`
 }
 
-type DdosDstZoneDetectionServiceDiscovery213 struct {
+type DdosDstZoneDetectionServiceDiscovery216 struct {
 	Configuration    string `json:"configuration"`
 	Toggle           string `json:"toggle" dval:"disable"`
 	PktRateThreshold int    `json:"pkt-rate-threshold" dval:"10"`
 	Uuid             string `json:"uuid"`
 }
 
-type DdosDstZoneDetectionVictimIpDetection214 struct {
+type DdosDstZoneDetectionVictimIpDetection217 struct {
 	Configuration   string                                                  `json:"configuration"`
 	Toggle          string                                                  `json:"toggle" dval:"disable"`
 	HistogramToggle string                                                  `json:"histogram-toggle" dval:"histogram-disable"`
 	Uuid            string                                                  `json:"uuid"`
-	IndicatorList   []DdosDstZoneDetectionVictimIpDetectionIndicatorList215 `json:"indicator-list"`
+	IndicatorList   []DdosDstZoneDetectionVictimIpDetectionIndicatorList218 `json:"indicator-list"`
 }
 
-type DdosDstZoneDetectionVictimIpDetectionIndicatorList215 struct {
+type DdosDstZoneDetectionVictimIpDetectionIndicatorList218 struct {
 	Type           string `json:"type"`
 	IpThresholdNum int    `json:"ip-threshold-num"`
 	Uuid           string `json:"uuid"`

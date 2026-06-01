@@ -5,23 +5,23 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type AcosEventsLogParameterization struct {
 	Inst struct {
 		LogRate int `json:"log-rate" dval:"10"`
 
-		MessageSelector AcosEventsLogParameterizationMessageSelector54 `json:"message-selector"`
+		MessageSelector AcosEventsLogParameterizationMessageSelector55 `json:"message-selector"`
 
 		Uuid string `json:"uuid"`
 	} `json:"log-parameterization"`
 }
 
-type AcosEventsLogParameterizationMessageSelector54 struct {
+type AcosEventsLogParameterizationMessageSelector55 struct {
 	Uuid     string                                                   `json:"uuid"`
-	RuleList []AcosEventsLogParameterizationMessageSelectorRuleList55 `json:"rule-list"`
+	RuleList []AcosEventsLogParameterizationMessageSelectorRuleList56 `json:"rule-list"`
 }
 
-type AcosEventsLogParameterizationMessageSelectorRuleList55 struct {
+type AcosEventsLogParameterizationMessageSelectorRuleList56 struct {
 	Index          int    `json:"index"`
 	Action         string `json:"action" dval:"send"`
 	MessageId      string `json:"message-id"`

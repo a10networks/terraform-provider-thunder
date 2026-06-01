@@ -4648,15 +4648,6 @@ func resourceVisibility() *schema.Resource {
 																					"syn_cookie_verification_failed": {
 																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for SYN cookie verification failed",
 																					},
-																					"l3_entry_del_to_hw_failure": {
-																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L3 entry HW del failure",
-																					},
-																					"l4_entry_del_to_hw_failure": {
-																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L4 entry HW del failure",
-																					},
-																					"l4_entry_add_to_hw_failure": {
-																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L4 entry HW add failure",
-																					},
 																					"uuid": {
 																						Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 																					},
@@ -4714,15 +4705,6 @@ func resourceVisibility() *schema.Resource {
 																					},
 																					"syn_cookie_verification_failed": {
 																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for SYN cookie verification failed",
-																					},
-																					"l3_entry_del_to_hw_failure": {
-																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L3 entry HW del failure",
-																					},
-																					"l4_entry_del_to_hw_failure": {
-																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L4 entry HW del failure",
-																					},
-																					"l4_entry_add_to_hw_failure": {
-																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L4 entry HW add failure",
 																					},
 																					"uuid": {
 																						Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -5237,6 +5219,96 @@ func resourceVisibility() *schema.Resource {
 																	},
 																},
 															},
+															"cgnv6_lsn_radius": {
+																Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+																Elem: &schema.Resource{
+																	Schema: map[string]*schema.Schema{
+																		"uuid": {
+																			Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+																		},
+																		"trigger_stats_inc": {
+																			Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+																			Elem: &schema.Resource{
+																				Schema: map[string]*schema.Schema{
+																					"radius_request_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Malformed Packet)",
+																					},
+																					"request_bad_secret_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Bad Secret Dropped",
+																					},
+																					"request_no_key_vap_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request No Key Attribute Dropped",
+																					},
+																					"request_malformed_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Malformed Dropped",
+																					},
+																					"request_ignored": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Ignored",
+																					},
+																					"radius_table_full": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Table Full)",
+																					},
+																					"secret_not_configured_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Secret Not Configured Dropped",
+																					},
+																					"ha_standby_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for HA Standby Dropped",
+																					},
+																					"invalid_key": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Radius Request has Invalid Key Field",
+																					},
+																					"uuid": {
+																						Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+																					},
+																				},
+																			},
+																		},
+																		"trigger_stats_rate": {
+																			Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+																			Elem: &schema.Resource{
+																				Schema: map[string]*schema.Schema{
+																					"threshold_exceeded_by": {
+																						Type: schema.TypeInt, Optional: true, Default: 5, Description: "Set the threshold to the number of times greater than the previous duration to start the capture, default is 5",
+																					},
+																					"duration": {
+																						Type: schema.TypeInt, Optional: true, Default: 60, Description: "Time in seconds to look for the anomaly, default is 60",
+																					},
+																					"radius_request_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Malformed Packet)",
+																					},
+																					"request_bad_secret_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Bad Secret Dropped",
+																					},
+																					"request_no_key_vap_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request No Key Attribute Dropped",
+																					},
+																					"request_malformed_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Malformed Dropped",
+																					},
+																					"request_ignored": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Ignored",
+																					},
+																					"radius_table_full": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Table Full)",
+																					},
+																					"secret_not_configured_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Secret Not Configured Dropped",
+																					},
+																					"ha_standby_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for HA Standby Dropped",
+																					},
+																					"invalid_key": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Radius Request has Invalid Key Field",
+																					},
+																					"uuid": {
+																						Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+																					},
+																				},
+																			},
+																		},
+																	},
+																},
+															},
 															"cgnv6_nat64_global": {
 																Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 																Elem: &schema.Resource{
@@ -5500,6 +5572,9 @@ func resourceVisibility() *schema.Resource {
 																					"ha_session_user_quota_exceeded": {
 																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for HA Sessions User Quota Exceeded",
 																					},
+																					"unused_ip_drop": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Fixed NAT UNUSED IP Hit and Drop",
+																					},
 																					"uuid": {
 																						Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 																					},
@@ -5575,6 +5650,9 @@ func resourceVisibility() *schema.Resource {
 																					},
 																					"ha_session_user_quota_exceeded": {
 																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for HA Sessions User Quota Exceeded",
+																					},
+																					"unused_ip_drop": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Fixed NAT UNUSED IP Hit and Drop",
 																					},
 																					"uuid": {
 																						Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -6397,6 +6475,96 @@ func resourceVisibility() *schema.Resource {
 																					},
 																					"call_reply_pns_call_id_mismatch": {
 																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Call ID Mismatch on Call Reply",
+																					},
+																					"uuid": {
+																						Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+																					},
+																				},
+																			},
+																		},
+																	},
+																},
+															},
+															"fw_rad_server": {
+																Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+																Elem: &schema.Resource{
+																	Schema: map[string]*schema.Schema{
+																		"uuid": {
+																			Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+																		},
+																		"trigger_stats_inc": {
+																			Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+																			Elem: &schema.Resource{
+																				Schema: map[string]*schema.Schema{
+																					"radius_request_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Malformed Packet)",
+																					},
+																					"request_bad_secret_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Bad Secret Dropped",
+																					},
+																					"request_no_key_vap_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request No Key Attribute Dropped",
+																					},
+																					"request_malformed_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Malformed Dropped",
+																					},
+																					"request_ignored": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Table Full Dropped",
+																					},
+																					"radius_table_full": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Table Full)",
+																					},
+																					"ha_standby_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for HA Standby Dropped",
+																					},
+																					"ipv6_prefix_length_mismatch": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Framed IPV6 Prefix Length Mismatch",
+																					},
+																					"invalid_key": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Radius Request has Invalid Key Field",
+																					},
+																					"uuid": {
+																						Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+																					},
+																				},
+																			},
+																		},
+																		"trigger_stats_rate": {
+																			Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+																			Elem: &schema.Resource{
+																				Schema: map[string]*schema.Schema{
+																					"threshold_exceeded_by": {
+																						Type: schema.TypeInt, Optional: true, Default: 5, Description: "Set the threshold to the number of times greater than the previous duration to start the capture, default is 5",
+																					},
+																					"duration": {
+																						Type: schema.TypeInt, Optional: true, Default: 60, Description: "Time in seconds to look for the anomaly, default is 60",
+																					},
+																					"radius_request_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Malformed Packet)",
+																					},
+																					"request_bad_secret_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Bad Secret Dropped",
+																					},
+																					"request_no_key_vap_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request No Key Attribute Dropped",
+																					},
+																					"request_malformed_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Malformed Dropped",
+																					},
+																					"request_ignored": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Table Full Dropped",
+																					},
+																					"radius_table_full": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Table Full)",
+																					},
+																					"ha_standby_dropped": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for HA Standby Dropped",
+																					},
+																					"ipv6_prefix_length_mismatch": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Framed IPV6 Prefix Length Mismatch",
+																					},
+																					"invalid_key": {
+																						Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Radius Request has Invalid Key Field",
 																					},
 																					"uuid": {
 																						Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -12209,6 +12377,109 @@ func resourceVisibility() *schema.Resource {
 											},
 										},
 									},
+									"captcha_template_inst_tmpl_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"name": {
+													Type: schema.TypeString, Required: true, Description: "Packet Capture Template Name",
+												},
+												"capture_config": {
+													Type: schema.TypeString, Optional: true, Description: "Specify name of the capture-config to use with this template",
+												},
+												"uuid": {
+													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+												},
+												"user_tag": {
+													Type: schema.TypeString, Optional: true, Description: "Customized tag",
+												},
+												"trigger_stats_severity": {
+													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"error": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all error counters (Default disabled)",
+															},
+															"error_alert": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all alert error counters (Default disabled)",
+															},
+															"error_warning": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all warning error counters (Default disabled)",
+															},
+															"error_critical": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all critical error counters (Default disabled)",
+															},
+															"drop": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all drop counters (Default disabled)",
+															},
+															"drop_alert": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all alert drop counters (Default disabled)",
+															},
+															"drop_warning": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all warning drop counters (Default disabled)",
+															},
+															"drop_critical": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all critical drop counters (Default disabled)",
+															},
+															"uuid": {
+																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+															},
+														},
+													},
+												},
+												"trigger_stats_inc": {
+													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"parse_fail": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total JSON Response Parse Failure",
+															},
+															"json_fail": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Failure JSON Response",
+															},
+															"timeout_error": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Timeout",
+															},
+															"other_error": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Other Error",
+															},
+															"uuid": {
+																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+															},
+														},
+													},
+												},
+												"trigger_stats_rate": {
+													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"threshold_exceeded_by": {
+																Type: schema.TypeInt, Optional: true, Default: 5, Description: "Set the threshold to the number of times greater than the previous duration to start the capture, default is 5",
+															},
+															"duration": {
+																Type: schema.TypeInt, Optional: true, Default: 60, Description: "Time in seconds to look for the anomaly, default is 60",
+															},
+															"parse_fail": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total JSON Response Parse Failure",
+															},
+															"json_fail": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Failure JSON Response",
+															},
+															"timeout_error": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Timeout",
+															},
+															"other_error": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Other Error",
+															},
+															"uuid": {
+																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+															},
+														},
+													},
+												},
+											},
+										},
+									},
 									"slb_port_tmpl_list": {
 										Type: schema.TypeList, Optional: true, Description: "",
 										Elem: &schema.Resource{
@@ -15791,10 +16062,10 @@ func resourceVisibilityRead(ctx context.Context, d *schema.ResourceData, meta in
 	return diags
 }
 
-func getObjectVisibilityAnomalyDetection3242(d []interface{}) edpt.VisibilityAnomalyDetection3242 {
+func getObjectVisibilityAnomalyDetection3270(d []interface{}) edpt.VisibilityAnomalyDetection3270 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityAnomalyDetection3242
+	var ret edpt.VisibilityAnomalyDetection3270
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Sensitivity = in["sensitivity"].(string)
@@ -15806,27 +16077,27 @@ func getObjectVisibilityAnomalyDetection3242(d []interface{}) edpt.VisibilityAno
 	return ret
 }
 
-func getObjectVisibilityDebugFiles3243(d []interface{}) edpt.VisibilityDebugFiles3243 {
+func getObjectVisibilityDebugFiles3271(d []interface{}) edpt.VisibilityDebugFiles3271 {
 
-	var ret edpt.VisibilityDebugFiles3243
+	var ret edpt.VisibilityDebugFiles3271
 	return ret
 }
 
-func getObjectVisibilityFile3244(d []interface{}) edpt.VisibilityFile3244 {
+func getObjectVisibilityFile3272(d []interface{}) edpt.VisibilityFile3272 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityFile3244
+	var ret edpt.VisibilityFile3272
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Metrics = getObjectVisibilityFileMetrics3245(in["metrics"].([]interface{}))
+		ret.Metrics = getObjectVisibilityFileMetrics3273(in["metrics"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityFileMetrics3245(d []interface{}) edpt.VisibilityFileMetrics3245 {
+func getObjectVisibilityFileMetrics3273(d []interface{}) edpt.VisibilityFileMetrics3273 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityFileMetrics3245
+	var ret edpt.VisibilityFileMetrics3273
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
@@ -15835,147 +16106,147 @@ func getObjectVisibilityFileMetrics3245(d []interface{}) edpt.VisibilityFileMetr
 	return ret
 }
 
-func getObjectVisibilityFlowCollector3246(d []interface{}) edpt.VisibilityFlowCollector3246 {
+func getObjectVisibilityFlowCollector3274(d []interface{}) edpt.VisibilityFlowCollector3274 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityFlowCollector3246
+	var ret edpt.VisibilityFlowCollector3274
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Sflow = getObjectVisibilityFlowCollectorSflow3247(in["sflow"].([]interface{}))
-		ret.Netflow = getObjectVisibilityFlowCollectorNetflow3249(in["netflow"].([]interface{}))
+		ret.Sflow = getObjectVisibilityFlowCollectorSflow3275(in["sflow"].([]interface{}))
+		ret.Netflow = getObjectVisibilityFlowCollectorNetflow3277(in["netflow"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityFlowCollectorSflow3247(d []interface{}) edpt.VisibilityFlowCollectorSflow3247 {
+func getObjectVisibilityFlowCollectorSflow3275(d []interface{}) edpt.VisibilityFlowCollectorSflow3275 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityFlowCollectorSflow3247
+	var ret edpt.VisibilityFlowCollectorSflow3275
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceVisibilityFlowCollectorSflowSamplingEnable3248(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceVisibilityFlowCollectorSflowSamplingEnable3276(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceVisibilityFlowCollectorSflowSamplingEnable3248(d []interface{}) []edpt.VisibilityFlowCollectorSflowSamplingEnable3248 {
+func getSliceVisibilityFlowCollectorSflowSamplingEnable3276(d []interface{}) []edpt.VisibilityFlowCollectorSflowSamplingEnable3276 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityFlowCollectorSflowSamplingEnable3248, 0, count1)
+	ret := make([]edpt.VisibilityFlowCollectorSflowSamplingEnable3276, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityFlowCollectorSflowSamplingEnable3248
+		var oi edpt.VisibilityFlowCollectorSflowSamplingEnable3276
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityFlowCollectorNetflow3249(d []interface{}) edpt.VisibilityFlowCollectorNetflow3249 {
+func getObjectVisibilityFlowCollectorNetflow3277(d []interface{}) edpt.VisibilityFlowCollectorNetflow3277 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityFlowCollectorNetflow3249
+	var ret edpt.VisibilityFlowCollectorNetflow3277
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceVisibilityFlowCollectorNetflowSamplingEnable3250(in["sampling_enable"].([]interface{}))
-		ret.Template = getObjectVisibilityFlowCollectorNetflowTemplate3251(in["template"].([]interface{}))
+		ret.SamplingEnable = getSliceVisibilityFlowCollectorNetflowSamplingEnable3278(in["sampling_enable"].([]interface{}))
+		ret.Template = getObjectVisibilityFlowCollectorNetflowTemplate3279(in["template"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceVisibilityFlowCollectorNetflowSamplingEnable3250(d []interface{}) []edpt.VisibilityFlowCollectorNetflowSamplingEnable3250 {
+func getSliceVisibilityFlowCollectorNetflowSamplingEnable3278(d []interface{}) []edpt.VisibilityFlowCollectorNetflowSamplingEnable3278 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityFlowCollectorNetflowSamplingEnable3250, 0, count1)
+	ret := make([]edpt.VisibilityFlowCollectorNetflowSamplingEnable3278, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityFlowCollectorNetflowSamplingEnable3250
+		var oi edpt.VisibilityFlowCollectorNetflowSamplingEnable3278
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityFlowCollectorNetflowTemplate3251(d []interface{}) edpt.VisibilityFlowCollectorNetflowTemplate3251 {
+func getObjectVisibilityFlowCollectorNetflowTemplate3279(d []interface{}) edpt.VisibilityFlowCollectorNetflowTemplate3279 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityFlowCollectorNetflowTemplate3251
+	var ret edpt.VisibilityFlowCollectorNetflowTemplate3279
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceVisibilityFlowCollectorNetflowTemplateSamplingEnable3252(in["sampling_enable"].([]interface{}))
-		ret.Detail = getObjectVisibilityFlowCollectorNetflowTemplateDetail3253(in["detail"].([]interface{}))
+		ret.SamplingEnable = getSliceVisibilityFlowCollectorNetflowTemplateSamplingEnable3280(in["sampling_enable"].([]interface{}))
+		ret.Detail = getObjectVisibilityFlowCollectorNetflowTemplateDetail3281(in["detail"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceVisibilityFlowCollectorNetflowTemplateSamplingEnable3252(d []interface{}) []edpt.VisibilityFlowCollectorNetflowTemplateSamplingEnable3252 {
+func getSliceVisibilityFlowCollectorNetflowTemplateSamplingEnable3280(d []interface{}) []edpt.VisibilityFlowCollectorNetflowTemplateSamplingEnable3280 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityFlowCollectorNetflowTemplateSamplingEnable3252, 0, count1)
+	ret := make([]edpt.VisibilityFlowCollectorNetflowTemplateSamplingEnable3280, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityFlowCollectorNetflowTemplateSamplingEnable3252
+		var oi edpt.VisibilityFlowCollectorNetflowTemplateSamplingEnable3280
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityFlowCollectorNetflowTemplateDetail3253(d []interface{}) edpt.VisibilityFlowCollectorNetflowTemplateDetail3253 {
+func getObjectVisibilityFlowCollectorNetflowTemplateDetail3281(d []interface{}) edpt.VisibilityFlowCollectorNetflowTemplateDetail3281 {
 
-	var ret edpt.VisibilityFlowCollectorNetflowTemplateDetail3253
+	var ret edpt.VisibilityFlowCollectorNetflowTemplateDetail3281
 	return ret
 }
 
-func getObjectVisibilityMonEntityTelemetryData3254(d []interface{}) edpt.VisibilityMonEntityTelemetryData3254 {
+func getObjectVisibilityMonEntityTelemetryData3282(d []interface{}) edpt.VisibilityMonEntityTelemetryData3282 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonEntityTelemetryData3254
+	var ret edpt.VisibilityMonEntityTelemetryData3282
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceVisibilityMonEntityTelemetryDataSamplingEnable3255(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceVisibilityMonEntityTelemetryDataSamplingEnable3283(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceVisibilityMonEntityTelemetryDataSamplingEnable3255(d []interface{}) []edpt.VisibilityMonEntityTelemetryDataSamplingEnable3255 {
+func getSliceVisibilityMonEntityTelemetryDataSamplingEnable3283(d []interface{}) []edpt.VisibilityMonEntityTelemetryDataSamplingEnable3283 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityMonEntityTelemetryDataSamplingEnable3255, 0, count1)
+	ret := make([]edpt.VisibilityMonEntityTelemetryDataSamplingEnable3283, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityMonEntityTelemetryDataSamplingEnable3255
+		var oi edpt.VisibilityMonEntityTelemetryDataSamplingEnable3283
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityMonTopk3256(d []interface{}) edpt.VisibilityMonTopk3256 {
+func getObjectVisibilityMonTopk3284(d []interface{}) edpt.VisibilityMonTopk3284 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonTopk3256
+	var ret edpt.VisibilityMonTopk3284
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Sources = getObjectVisibilityMonTopkSources3257(in["sources"].([]interface{}))
+		ret.Sources = getObjectVisibilityMonTopkSources3285(in["sources"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityMonTopkSources3257(d []interface{}) edpt.VisibilityMonTopkSources3257 {
+func getObjectVisibilityMonTopkSources3285(d []interface{}) edpt.VisibilityMonTopkSources3285 {
 
-	var ret edpt.VisibilityMonTopkSources3257
+	var ret edpt.VisibilityMonTopkSources3285
 	return ret
 }
 
-func getObjectVisibilityMonitor3258(d []interface{}) edpt.VisibilityMonitor3258 {
+func getObjectVisibilityMonitor3286(d []interface{}) edpt.VisibilityMonitor3286 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitor3258
+	var ret edpt.VisibilityMonitor3286
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PrimaryMonitor = in["primary_monitor"].(string)
@@ -15984,78 +16255,78 @@ func getObjectVisibilityMonitor3258(d []interface{}) edpt.VisibilityMonitor3258 
 		ret.SourceEntityTopk = in["source_entity_topk"].(int)
 		ret.IndexSessions = in["index_sessions"].(int)
 		ret.IndexSessionsType = in["index_sessions_type"].(string)
-		ret.Template = getObjectVisibilityMonitorTemplate3259(in["template"].([]interface{}))
+		ret.Template = getObjectVisibilityMonitorTemplate3287(in["template"].([]interface{}))
 		//omit uuid
-		ret.AgentList = getSliceVisibilityMonitorAgentList3261(in["agent_list"].([]interface{}))
-		ret.Sflow = getObjectVisibilityMonitorSflow3263(in["sflow"].([]interface{}))
-		ret.Netflow = getObjectVisibilityMonitorNetflow3264(in["netflow"].([]interface{}))
-		ret.DebugList = getSliceVisibilityMonitorDebugList3265(in["debug_list"].([]interface{}))
-		ret.ReplayDebugFile = getObjectVisibilityMonitorReplayDebugFile3266(in["replay_debug_file"].([]interface{}))
-		ret.DeleteDebugFile = getObjectVisibilityMonitorDeleteDebugFile3267(in["delete_debug_file"].([]interface{}))
-		ret.SecondaryMonitor = getObjectVisibilityMonitorSecondaryMonitor3268(in["secondary_monitor"].([]interface{}))
+		ret.AgentList = getSliceVisibilityMonitorAgentList3289(in["agent_list"].([]interface{}))
+		ret.Sflow = getObjectVisibilityMonitorSflow3291(in["sflow"].([]interface{}))
+		ret.Netflow = getObjectVisibilityMonitorNetflow3292(in["netflow"].([]interface{}))
+		ret.DebugList = getSliceVisibilityMonitorDebugList3293(in["debug_list"].([]interface{}))
+		ret.ReplayDebugFile = getObjectVisibilityMonitorReplayDebugFile3294(in["replay_debug_file"].([]interface{}))
+		ret.DeleteDebugFile = getObjectVisibilityMonitorDeleteDebugFile3295(in["delete_debug_file"].([]interface{}))
+		ret.SecondaryMonitor = getObjectVisibilityMonitorSecondaryMonitor3296(in["secondary_monitor"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityMonitorTemplate3259(d []interface{}) edpt.VisibilityMonitorTemplate3259 {
+func getObjectVisibilityMonitorTemplate3287(d []interface{}) edpt.VisibilityMonitorTemplate3287 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitorTemplate3259
+	var ret edpt.VisibilityMonitorTemplate3287
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Notification = getSliceVisibilityMonitorTemplateNotification3260(in["notification"].([]interface{}))
+		ret.Notification = getSliceVisibilityMonitorTemplateNotification3288(in["notification"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceVisibilityMonitorTemplateNotification3260(d []interface{}) []edpt.VisibilityMonitorTemplateNotification3260 {
+func getSliceVisibilityMonitorTemplateNotification3288(d []interface{}) []edpt.VisibilityMonitorTemplateNotification3288 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityMonitorTemplateNotification3260, 0, count1)
+	ret := make([]edpt.VisibilityMonitorTemplateNotification3288, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityMonitorTemplateNotification3260
+		var oi edpt.VisibilityMonitorTemplateNotification3288
 		oi.NotifTemplateName = in["notif_template_name"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceVisibilityMonitorAgentList3261(d []interface{}) []edpt.VisibilityMonitorAgentList3261 {
+func getSliceVisibilityMonitorAgentList3289(d []interface{}) []edpt.VisibilityMonitorAgentList3289 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityMonitorAgentList3261, 0, count1)
+	ret := make([]edpt.VisibilityMonitorAgentList3289, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityMonitorAgentList3261
+		var oi edpt.VisibilityMonitorAgentList3289
 		oi.AgentName = in["agent_name"].(string)
 		oi.AgentV4Addr = in["agent_v4_addr"].(string)
 		oi.AgentV6Addr = in["agent_v6_addr"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.SamplingEnable = getSliceVisibilityMonitorAgentListSamplingEnable3262(in["sampling_enable"].([]interface{}))
+		oi.SamplingEnable = getSliceVisibilityMonitorAgentListSamplingEnable3290(in["sampling_enable"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceVisibilityMonitorAgentListSamplingEnable3262(d []interface{}) []edpt.VisibilityMonitorAgentListSamplingEnable3262 {
+func getSliceVisibilityMonitorAgentListSamplingEnable3290(d []interface{}) []edpt.VisibilityMonitorAgentListSamplingEnable3290 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityMonitorAgentListSamplingEnable3262, 0, count1)
+	ret := make([]edpt.VisibilityMonitorAgentListSamplingEnable3290, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityMonitorAgentListSamplingEnable3262
+		var oi edpt.VisibilityMonitorAgentListSamplingEnable3290
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityMonitorSflow3263(d []interface{}) edpt.VisibilityMonitorSflow3263 {
+func getObjectVisibilityMonitorSflow3291(d []interface{}) edpt.VisibilityMonitorSflow3291 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitorSflow3263
+	var ret edpt.VisibilityMonitorSflow3291
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ListeningPort = in["listening_port"].(int)
@@ -16064,10 +16335,10 @@ func getObjectVisibilityMonitorSflow3263(d []interface{}) edpt.VisibilityMonitor
 	return ret
 }
 
-func getObjectVisibilityMonitorNetflow3264(d []interface{}) edpt.VisibilityMonitorNetflow3264 {
+func getObjectVisibilityMonitorNetflow3292(d []interface{}) edpt.VisibilityMonitorNetflow3292 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitorNetflow3264
+	var ret edpt.VisibilityMonitorNetflow3292
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ListeningPort = in["listening_port"].(int)
@@ -16077,13 +16348,13 @@ func getObjectVisibilityMonitorNetflow3264(d []interface{}) edpt.VisibilityMonit
 	return ret
 }
 
-func getSliceVisibilityMonitorDebugList3265(d []interface{}) []edpt.VisibilityMonitorDebugList3265 {
+func getSliceVisibilityMonitorDebugList3293(d []interface{}) []edpt.VisibilityMonitorDebugList3293 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityMonitorDebugList3265, 0, count1)
+	ret := make([]edpt.VisibilityMonitorDebugList3293, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityMonitorDebugList3265
+		var oi edpt.VisibilityMonitorDebugList3293
 		oi.DebugIpAddr = in["debug_ip_addr"].(string)
 		oi.DebugPort = in["debug_port"].(int)
 		oi.DebugProtocol = in["debug_protocol"].(string)
@@ -16093,10 +16364,10 @@ func getSliceVisibilityMonitorDebugList3265(d []interface{}) []edpt.VisibilityMo
 	return ret
 }
 
-func getObjectVisibilityMonitorReplayDebugFile3266(d []interface{}) edpt.VisibilityMonitorReplayDebugFile3266 {
+func getObjectVisibilityMonitorReplayDebugFile3294(d []interface{}) edpt.VisibilityMonitorReplayDebugFile3294 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitorReplayDebugFile3266
+	var ret edpt.VisibilityMonitorReplayDebugFile3294
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DebugIpAddr = in["debug_ip_addr"].(string)
@@ -16106,10 +16377,10 @@ func getObjectVisibilityMonitorReplayDebugFile3266(d []interface{}) edpt.Visibil
 	return ret
 }
 
-func getObjectVisibilityMonitorDeleteDebugFile3267(d []interface{}) edpt.VisibilityMonitorDeleteDebugFile3267 {
+func getObjectVisibilityMonitorDeleteDebugFile3295(d []interface{}) edpt.VisibilityMonitorDeleteDebugFile3295 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitorDeleteDebugFile3267
+	var ret edpt.VisibilityMonitorDeleteDebugFile3295
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DebugIpAddr = in["debug_ip_addr"].(string)
@@ -16119,30 +16390,30 @@ func getObjectVisibilityMonitorDeleteDebugFile3267(d []interface{}) edpt.Visibil
 	return ret
 }
 
-func getObjectVisibilityMonitorSecondaryMonitor3268(d []interface{}) edpt.VisibilityMonitorSecondaryMonitor3268 {
+func getObjectVisibilityMonitorSecondaryMonitor3296(d []interface{}) edpt.VisibilityMonitorSecondaryMonitor3296 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitorSecondaryMonitor3268
+	var ret edpt.VisibilityMonitorSecondaryMonitor3296
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SecondaryMonitoringKey = in["secondary_monitoring_key"].(string)
 		ret.MonEntityTopk = in["mon_entity_topk"].(int)
 		ret.SourceEntityTopk = in["source_entity_topk"].(int)
 		//omit uuid
-		ret.DebugList = getSliceVisibilityMonitorSecondaryMonitorDebugList3269(in["debug_list"].([]interface{}))
-		ret.DeleteDebugFile = getObjectVisibilityMonitorSecondaryMonitorDeleteDebugFile3270(in["delete_debug_file"].([]interface{}))
-		ret.ReplayDebugFile = getObjectVisibilityMonitorSecondaryMonitorReplayDebugFile3271(in["replay_debug_file"].([]interface{}))
+		ret.DebugList = getSliceVisibilityMonitorSecondaryMonitorDebugList3297(in["debug_list"].([]interface{}))
+		ret.DeleteDebugFile = getObjectVisibilityMonitorSecondaryMonitorDeleteDebugFile3298(in["delete_debug_file"].([]interface{}))
+		ret.ReplayDebugFile = getObjectVisibilityMonitorSecondaryMonitorReplayDebugFile3299(in["replay_debug_file"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceVisibilityMonitorSecondaryMonitorDebugList3269(d []interface{}) []edpt.VisibilityMonitorSecondaryMonitorDebugList3269 {
+func getSliceVisibilityMonitorSecondaryMonitorDebugList3297(d []interface{}) []edpt.VisibilityMonitorSecondaryMonitorDebugList3297 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityMonitorSecondaryMonitorDebugList3269, 0, count1)
+	ret := make([]edpt.VisibilityMonitorSecondaryMonitorDebugList3297, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityMonitorSecondaryMonitorDebugList3269
+		var oi edpt.VisibilityMonitorSecondaryMonitorDebugList3297
 		oi.DebugIpAddr = in["debug_ip_addr"].(string)
 		oi.DebugPort = in["debug_port"].(int)
 		oi.DebugProtocol = in["debug_protocol"].(string)
@@ -16152,10 +16423,10 @@ func getSliceVisibilityMonitorSecondaryMonitorDebugList3269(d []interface{}) []e
 	return ret
 }
 
-func getObjectVisibilityMonitorSecondaryMonitorDeleteDebugFile3270(d []interface{}) edpt.VisibilityMonitorSecondaryMonitorDeleteDebugFile3270 {
+func getObjectVisibilityMonitorSecondaryMonitorDeleteDebugFile3298(d []interface{}) edpt.VisibilityMonitorSecondaryMonitorDeleteDebugFile3298 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitorSecondaryMonitorDeleteDebugFile3270
+	var ret edpt.VisibilityMonitorSecondaryMonitorDeleteDebugFile3298
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DebugIpAddr = in["debug_ip_addr"].(string)
@@ -16165,10 +16436,10 @@ func getObjectVisibilityMonitorSecondaryMonitorDeleteDebugFile3270(d []interface
 	return ret
 }
 
-func getObjectVisibilityMonitorSecondaryMonitorReplayDebugFile3271(d []interface{}) edpt.VisibilityMonitorSecondaryMonitorReplayDebugFile3271 {
+func getObjectVisibilityMonitorSecondaryMonitorReplayDebugFile3299(d []interface{}) edpt.VisibilityMonitorSecondaryMonitorReplayDebugFile3299 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitorSecondaryMonitorReplayDebugFile3271
+	var ret edpt.VisibilityMonitorSecondaryMonitorReplayDebugFile3299
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DebugIpAddr = in["debug_ip_addr"].(string)
@@ -16178,115 +16449,115 @@ func getObjectVisibilityMonitorSecondaryMonitorReplayDebugFile3271(d []interface
 	return ret
 }
 
-func getObjectVisibilityMonitoredEntity3272(d []interface{}) edpt.VisibilityMonitoredEntity3272 {
+func getObjectVisibilityMonitoredEntity3300(d []interface{}) edpt.VisibilityMonitoredEntity3300 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitoredEntity3272
+	var ret edpt.VisibilityMonitoredEntity3300
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.Detail = getObjectVisibilityMonitoredEntityDetail3273(in["detail"].([]interface{}))
-		ret.Sessions = getObjectVisibilityMonitoredEntitySessions3275(in["sessions"].([]interface{}))
-		ret.MonTopk = getObjectVisibilityMonitoredEntityMonTopk3276(in["mon_topk"].([]interface{}))
-		ret.Secondary = getObjectVisibilityMonitoredEntitySecondary3278(in["secondary"].([]interface{}))
+		ret.Detail = getObjectVisibilityMonitoredEntityDetail3301(in["detail"].([]interface{}))
+		ret.Sessions = getObjectVisibilityMonitoredEntitySessions3303(in["sessions"].([]interface{}))
+		ret.MonTopk = getObjectVisibilityMonitoredEntityMonTopk3304(in["mon_topk"].([]interface{}))
+		ret.Secondary = getObjectVisibilityMonitoredEntitySecondary3306(in["secondary"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityMonitoredEntityDetail3273(d []interface{}) edpt.VisibilityMonitoredEntityDetail3273 {
+func getObjectVisibilityMonitoredEntityDetail3301(d []interface{}) edpt.VisibilityMonitoredEntityDetail3301 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitoredEntityDetail3273
+	var ret edpt.VisibilityMonitoredEntityDetail3301
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.Debug = getObjectVisibilityMonitoredEntityDetailDebug3274(in["debug"].([]interface{}))
+		ret.Debug = getObjectVisibilityMonitoredEntityDetailDebug3302(in["debug"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityMonitoredEntityDetailDebug3274(d []interface{}) edpt.VisibilityMonitoredEntityDetailDebug3274 {
+func getObjectVisibilityMonitoredEntityDetailDebug3302(d []interface{}) edpt.VisibilityMonitoredEntityDetailDebug3302 {
 
-	var ret edpt.VisibilityMonitoredEntityDetailDebug3274
+	var ret edpt.VisibilityMonitoredEntityDetailDebug3302
 	return ret
 }
 
-func getObjectVisibilityMonitoredEntitySessions3275(d []interface{}) edpt.VisibilityMonitoredEntitySessions3275 {
+func getObjectVisibilityMonitoredEntitySessions3303(d []interface{}) edpt.VisibilityMonitoredEntitySessions3303 {
 
-	var ret edpt.VisibilityMonitoredEntitySessions3275
+	var ret edpt.VisibilityMonitoredEntitySessions3303
 	return ret
 }
 
-func getObjectVisibilityMonitoredEntityMonTopk3276(d []interface{}) edpt.VisibilityMonitoredEntityMonTopk3276 {
+func getObjectVisibilityMonitoredEntityMonTopk3304(d []interface{}) edpt.VisibilityMonitoredEntityMonTopk3304 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitoredEntityMonTopk3276
+	var ret edpt.VisibilityMonitoredEntityMonTopk3304
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.Sources = getObjectVisibilityMonitoredEntityMonTopkSources3277(in["sources"].([]interface{}))
+		ret.Sources = getObjectVisibilityMonitoredEntityMonTopkSources3305(in["sources"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityMonitoredEntityMonTopkSources3277(d []interface{}) edpt.VisibilityMonitoredEntityMonTopkSources3277 {
+func getObjectVisibilityMonitoredEntityMonTopkSources3305(d []interface{}) edpt.VisibilityMonitoredEntityMonTopkSources3305 {
 
-	var ret edpt.VisibilityMonitoredEntityMonTopkSources3277
+	var ret edpt.VisibilityMonitoredEntityMonTopkSources3305
 	return ret
 }
 
-func getObjectVisibilityMonitoredEntitySecondary3278(d []interface{}) edpt.VisibilityMonitoredEntitySecondary3278 {
+func getObjectVisibilityMonitoredEntitySecondary3306(d []interface{}) edpt.VisibilityMonitoredEntitySecondary3306 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitoredEntitySecondary3278
+	var ret edpt.VisibilityMonitoredEntitySecondary3306
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.MonTopk = getObjectVisibilityMonitoredEntitySecondaryMonTopk3279(in["mon_topk"].([]interface{}))
+		ret.MonTopk = getObjectVisibilityMonitoredEntitySecondaryMonTopk3307(in["mon_topk"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityMonitoredEntitySecondaryMonTopk3279(d []interface{}) edpt.VisibilityMonitoredEntitySecondaryMonTopk3279 {
+func getObjectVisibilityMonitoredEntitySecondaryMonTopk3307(d []interface{}) edpt.VisibilityMonitoredEntitySecondaryMonTopk3307 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitoredEntitySecondaryMonTopk3279
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		//omit uuid
-		ret.Sources = getObjectVisibilityMonitoredEntitySecondaryMonTopkSources3280(in["sources"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectVisibilityMonitoredEntitySecondaryMonTopkSources3280(d []interface{}) edpt.VisibilityMonitoredEntitySecondaryMonTopkSources3280 {
-
-	var ret edpt.VisibilityMonitoredEntitySecondaryMonTopkSources3280
-	return ret
-}
-
-func getObjectVisibilityPacketCapture3281(d []interface{}) edpt.VisibilityPacketCapture3281 {
-
-	count1 := len(d)
-	var ret edpt.VisibilityPacketCapture3281
+	var ret edpt.VisibilityMonitoredEntitySecondaryMonTopk3307
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.CaptureConfigList = getSliceVisibilityPacketCaptureCaptureConfigList3282(in["capture_config_list"].([]interface{}))
-		ret.DeletePacketCaptureFile = getObjectVisibilityPacketCaptureDeletePacketCaptureFile3283(in["delete_packet_capture_file"].([]interface{}))
-		ret.GlobalTemplates = getObjectVisibilityPacketCaptureGlobalTemplates3284(in["global_templates"].([]interface{}))
-		ret.ObjectTemplates = getObjectVisibilityPacketCaptureObjectTemplates3535(in["object_templates"].([]interface{}))
-		ret.AutomatedCaptures = getObjectVisibilityPacketCaptureAutomatedCaptures3680(in["automated_captures"].([]interface{}))
+		ret.Sources = getObjectVisibilityMonitoredEntitySecondaryMonTopkSources3308(in["sources"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureCaptureConfigList3282(d []interface{}) []edpt.VisibilityPacketCaptureCaptureConfigList3282 {
+func getObjectVisibilityMonitoredEntitySecondaryMonTopkSources3308(d []interface{}) edpt.VisibilityMonitoredEntitySecondaryMonTopkSources3308 {
+
+	var ret edpt.VisibilityMonitoredEntitySecondaryMonTopkSources3308
+	return ret
+}
+
+func getObjectVisibilityPacketCapture3309(d []interface{}) edpt.VisibilityPacketCapture3309 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureCaptureConfigList3282, 0, count1)
+	var ret edpt.VisibilityPacketCapture3309
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		//omit uuid
+		ret.CaptureConfigList = getSliceVisibilityPacketCaptureCaptureConfigList3310(in["capture_config_list"].([]interface{}))
+		ret.DeletePacketCaptureFile = getObjectVisibilityPacketCaptureDeletePacketCaptureFile3311(in["delete_packet_capture_file"].([]interface{}))
+		ret.GlobalTemplates = getObjectVisibilityPacketCaptureGlobalTemplates3312(in["global_templates"].([]interface{}))
+		ret.ObjectTemplates = getObjectVisibilityPacketCaptureObjectTemplates3569(in["object_templates"].([]interface{}))
+		ret.AutomatedCaptures = getObjectVisibilityPacketCaptureAutomatedCaptures3718(in["automated_captures"].([]interface{}))
+	}
+	return ret
+}
+
+func getSliceVisibilityPacketCaptureCaptureConfigList3310(d []interface{}) []edpt.VisibilityPacketCaptureCaptureConfigList3310 {
+
+	count1 := len(d)
+	ret := make([]edpt.VisibilityPacketCaptureCaptureConfigList3310, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureCaptureConfigList3282
+		var oi edpt.VisibilityPacketCaptureCaptureConfigList3310
 		oi.Name = in["name"].(string)
 		oi.Disable = in["disable"].(int)
 		oi.ConcurrentCaptures = in["concurrent_captures"].(int)
@@ -16310,10 +16581,10 @@ func getSliceVisibilityPacketCaptureCaptureConfigList3282(d []interface{}) []edp
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureDeletePacketCaptureFile3283(d []interface{}) edpt.VisibilityPacketCaptureDeletePacketCaptureFile3283 {
+func getObjectVisibilityPacketCaptureDeletePacketCaptureFile3311(d []interface{}) edpt.VisibilityPacketCaptureDeletePacketCaptureFile3311 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureDeletePacketCaptureFile3283
+	var ret edpt.VisibilityPacketCaptureDeletePacketCaptureFile3311
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.FileName = in["file_name"].(string)
@@ -16322,41 +16593,41 @@ func getObjectVisibilityPacketCaptureDeletePacketCaptureFile3283(d []interface{}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplates3284(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplates3284 {
+func getObjectVisibilityPacketCaptureGlobalTemplates3312(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplates3312 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplates3284
+	var ret edpt.VisibilityPacketCaptureGlobalTemplates3312
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TemplateList = getSliceVisibilityPacketCaptureGlobalTemplatesTemplateList3285(in["template_list"].([]interface{}))
-		ret.Activate = getObjectVisibilityPacketCaptureGlobalTemplatesActivate3534(in["activate"].([]interface{}))
+		ret.TemplateList = getSliceVisibilityPacketCaptureGlobalTemplatesTemplateList3313(in["template_list"].([]interface{}))
+		ret.Activate = getObjectVisibilityPacketCaptureGlobalTemplatesActivate3568(in["activate"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureGlobalTemplatesTemplateList3285(d []interface{}) []edpt.VisibilityPacketCaptureGlobalTemplatesTemplateList3285 {
+func getSliceVisibilityPacketCaptureGlobalTemplatesTemplateList3313(d []interface{}) []edpt.VisibilityPacketCaptureGlobalTemplatesTemplateList3313 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureGlobalTemplatesTemplateList3285, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureGlobalTemplatesTemplateList3313, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureGlobalTemplatesTemplateList3285
+		var oi edpt.VisibilityPacketCaptureGlobalTemplatesTemplateList3313
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerSysObjStatsSeverity = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsSeverity3286(in["trigger_sys_obj_stats_severity"].([]interface{}))
-		oi.TriggerSysObjStatsChange = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChange3287(in["trigger_sys_obj_stats_change"].([]interface{}))
+		oi.TriggerSysObjStatsSeverity = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsSeverity3314(in["trigger_sys_obj_stats_severity"].([]interface{}))
+		oi.TriggerSysObjStatsChange = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChange3315(in["trigger_sys_obj_stats_change"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsSeverity3286(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsSeverity3286 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsSeverity3314(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsSeverity3314 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsSeverity3286
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsSeverity3314
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -16372,116 +16643,118 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChange3287(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChange3287 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChange3315(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChange3315 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChange3287
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChange3315
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SystemCtrLibAcct = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcct3288(in["system_ctr_lib_acct"].([]interface{}))
-		ret.SystemHardwareAccelerate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerate3291(in["system_hardware_accelerate"].([]interface{}))
-		ret.SystemRadiusServer = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServer3294(in["system_radius_server"].([]interface{}))
-		ret.SystemIpThreatList = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatList3297(in["system_ip_threat_list"].([]interface{}))
-		ret.SystemFpgaDrop = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDrop3300(in["system_fpga_drop"].([]interface{}))
-		ret.SystemDpdkStats = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStats3303(in["system_dpdk_stats"].([]interface{}))
-		ret.IpAnomalyDrop = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDrop3306(in["ip_anomaly_drop"].([]interface{}))
-		ret.AamAuthenticationGlobal = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobal3309(in["aam_authentication_global"].([]interface{}))
-		ret.AamRdns = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdns3312(in["aam_rdns"].([]interface{}))
-		ret.AamAuthServerLdap = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdap3315(in["aam_auth_server_ldap"].([]interface{}))
-		ret.AamAuthServerOcsp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcsp3318(in["aam_auth_server_ocsp"].([]interface{}))
-		ret.AamAuthServerRadius = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadius3321(in["aam_auth_server_radius"].([]interface{}))
-		ret.AamAuthServerWin = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWin3324(in["aam_auth_server_win"].([]interface{}))
-		ret.AamAuthAccount = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccount3327(in["aam_auth_account"].([]interface{}))
-		ret.AamAuthSamlGlobal = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobal3330(in["aam_auth_saml_global"].([]interface{}))
-		ret.AamAuthRelayKerberos = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberos3333(in["aam_auth_relay_kerberos"].([]interface{}))
-		ret.AamAuthCaptcha = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptcha3336(in["aam_auth_captcha"].([]interface{}))
-		ret.SlbSslError = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslError3339(in["slb_ssl_error"].([]interface{}))
-		ret.SlbSslCertRevoke = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevoke3342(in["slb_ssl_cert_revoke"].([]interface{}))
-		ret.SlbSslForwardProxy = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxy3345(in["slb_ssl_forward_proxy"].([]interface{}))
-		ret.VpnError = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnError3348(in["vpn_error"].([]interface{}))
-		ret.Cgnv6DdosProc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProc3351(in["cgnv6_ddos_proc"].([]interface{}))
-		ret.Cgnv6Lsn = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Lsn3354(in["cgnv6_lsn"].([]interface{}))
-		ret.Cgnv6LsnAlgEsp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEsp3357(in["cgnv6_lsn_alg_esp"].([]interface{}))
-		ret.Cgnv6LsnAlgPptp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptp3360(in["cgnv6_lsn_alg_pptp"].([]interface{}))
-		ret.Cgnv6LsnAlgRtsp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtsp3363(in["cgnv6_lsn_alg_rtsp"].([]interface{}))
-		ret.Cgnv6LsnAlgSip = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSip3366(in["cgnv6_lsn_alg_sip"].([]interface{}))
-		ret.Cgnv6LsnAlgMgcp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcp3369(in["cgnv6_lsn_alg_mgcp"].([]interface{}))
-		ret.Cgnv6LsnAlgH323 = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH3233372(in["cgnv6_lsn_alg_h323"].([]interface{}))
-		ret.Cgnv6Nat64Global = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64Global3375(in["cgnv6_nat64_global"].([]interface{}))
-		ret.Cgnv6DsLiteGlobal = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobal3378(in["cgnv6_ds_lite_global"].([]interface{}))
-		ret.Cgnv6FixedNatGlobal = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobal3381(in["cgnv6_fixed_nat_global"].([]interface{}))
-		ret.Cgnv6FixedNatAlgPptp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptp3384(in["cgnv6_fixed_nat_alg_pptp"].([]interface{}))
-		ret.Cgnv6FixedNatAlgRtsp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtsp3387(in["cgnv6_fixed_nat_alg_rtsp"].([]interface{}))
-		ret.Cgnv6FixedNatAlgSip = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSip3390(in["cgnv6_fixed_nat_alg_sip"].([]interface{}))
-		ret.Cgnv6Pcp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Pcp3393(in["cgnv6_pcp"].([]interface{}))
-		ret.Cgnv6Logging = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Logging3396(in["cgnv6_logging"].([]interface{}))
-		ret.Cgnv6L4 = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L43399(in["cgnv6_l4"].([]interface{}))
-		ret.Cgnv6Icmp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Icmp3402(in["cgnv6_icmp"].([]interface{}))
-		ret.Cgnv6HttpAlg = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlg3405(in["cgnv6_http_alg"].([]interface{}))
-		ret.Cgnv6Dns64 = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns643408(in["cgnv6_dns64"].([]interface{}))
-		ret.Cgnv6Dhcpv6 = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv63411(in["cgnv6_dhcpv6"].([]interface{}))
-		ret.FwLogging = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLogging3414(in["fw_logging"].([]interface{}))
-		ret.FwGlobal = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobal3417(in["fw_global"].([]interface{}))
-		ret.FwAlgRtsp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtsp3420(in["fw_alg_rtsp"].([]interface{}))
-		ret.FwAlgPptp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptp3423(in["fw_alg_pptp"].([]interface{}))
-		ret.FwTcpSynCookie = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookie3426(in["fw_tcp_syn_cookie"].([]interface{}))
-		ret.FwDdosProtection = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtection3429(in["fw_ddos_protection"].([]interface{}))
-		ret.FwGtp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtp3432(in["fw_gtp"].([]interface{}))
-		ret.SystemTcp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcp3435(in["system_tcp"].([]interface{}))
-		ret.SlbConnReuse = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuse3438(in["slb_conn_reuse"].([]interface{}))
-		ret.SlbAflow = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflow3441(in["slb_aflow"].([]interface{}))
-		ret.SlbFix = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFix3444(in["slb_fix"].([]interface{}))
-		ret.SlbSpdyProxy = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxy3447(in["slb_spdy_proxy"].([]interface{}))
-		ret.SlbHttp2 = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp23450(in["slb_http2"].([]interface{}))
-		ret.SlbL7session = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7session3453(in["slb_l7session"].([]interface{}))
-		ret.SlbSmpp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmpp3456(in["slb_smpp"].([]interface{}))
-		ret.SlbSmtp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtp3459(in["slb_smtp"].([]interface{}))
-		ret.SlbMqtt = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqtt3462(in["slb_mqtt"].([]interface{}))
-		ret.SlbIcap = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcap3465(in["slb_icap"].([]interface{}))
-		ret.SlbSip = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSip3468(in["slb_sip"].([]interface{}))
-		ret.SlbHwCompress = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompress3471(in["slb_hw_compress"].([]interface{}))
-		ret.SlbMysql = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysql3474(in["slb_mysql"].([]interface{}))
-		ret.SlbMssql = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssql3477(in["slb_mssql"].([]interface{}))
-		ret.SlbCrlSrcip = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcip3480(in["slb_crl_srcip"].([]interface{}))
-		ret.SlbGeneric = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGeneric3483(in["slb_generic"].([]interface{}))
-		ret.SlbPersist = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersist3486(in["slb_persist"].([]interface{}))
-		ret.SlbHttpProxy = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxy3489(in["slb_http_proxy"].([]interface{}))
-		ret.SlbL4 = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL43492(in["slb_l4"].([]interface{}))
-		ret.SlbFastHttp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttp3495(in["slb_fast_http"].([]interface{}))
-		ret.SlbFtpProxy = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxy3498(in["slb_ftp_proxy"].([]interface{}))
-		ret.SlbImapProxy = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxy3501(in["slb_imap_proxy"].([]interface{}))
-		ret.SlbPop3Proxy = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3Proxy3504(in["slb_pop3_proxy"].([]interface{}))
-		ret.SlbSwitch = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitch3507(in["slb_switch"].([]interface{}))
-		ret.SlbRcCache = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCache3510(in["slb_rc_cache"].([]interface{}))
-		ret.SoCounters = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCounters3513(in["so_counters"].([]interface{}))
-		ret.SlbPlyrIdGbl = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGbl3516(in["slb_plyr_id_gbl"].([]interface{}))
-		ret.SlbSportRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRate3519(in["slb_sport_rate"].([]interface{}))
-		ret.LoggingLocalLogGlobal = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobal3522(in["logging_local_log_global"].([]interface{}))
-		ret.SlbMlb = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlb3525(in["slb_mlb"].([]interface{}))
-		ret.SlbLinkProbe = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbe3528(in["slb_link_probe"].([]interface{}))
-		ret.SlbRpz = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpz3531(in["slb_rpz"].([]interface{}))
+		ret.SystemCtrLibAcct = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcct3316(in["system_ctr_lib_acct"].([]interface{}))
+		ret.SystemHardwareAccelerate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerate3319(in["system_hardware_accelerate"].([]interface{}))
+		ret.SystemRadiusServer = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServer3322(in["system_radius_server"].([]interface{}))
+		ret.SystemIpThreatList = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatList3325(in["system_ip_threat_list"].([]interface{}))
+		ret.SystemFpgaDrop = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDrop3328(in["system_fpga_drop"].([]interface{}))
+		ret.SystemDpdkStats = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStats3331(in["system_dpdk_stats"].([]interface{}))
+		ret.IpAnomalyDrop = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDrop3334(in["ip_anomaly_drop"].([]interface{}))
+		ret.AamAuthenticationGlobal = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobal3337(in["aam_authentication_global"].([]interface{}))
+		ret.AamRdns = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdns3340(in["aam_rdns"].([]interface{}))
+		ret.AamAuthServerLdap = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdap3343(in["aam_auth_server_ldap"].([]interface{}))
+		ret.AamAuthServerOcsp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcsp3346(in["aam_auth_server_ocsp"].([]interface{}))
+		ret.AamAuthServerRadius = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadius3349(in["aam_auth_server_radius"].([]interface{}))
+		ret.AamAuthServerWin = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWin3352(in["aam_auth_server_win"].([]interface{}))
+		ret.AamAuthAccount = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccount3355(in["aam_auth_account"].([]interface{}))
+		ret.AamAuthSamlGlobal = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobal3358(in["aam_auth_saml_global"].([]interface{}))
+		ret.AamAuthRelayKerberos = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberos3361(in["aam_auth_relay_kerberos"].([]interface{}))
+		ret.AamAuthCaptcha = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptcha3364(in["aam_auth_captcha"].([]interface{}))
+		ret.SlbSslError = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslError3367(in["slb_ssl_error"].([]interface{}))
+		ret.SlbSslCertRevoke = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevoke3370(in["slb_ssl_cert_revoke"].([]interface{}))
+		ret.SlbSslForwardProxy = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxy3373(in["slb_ssl_forward_proxy"].([]interface{}))
+		ret.VpnError = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnError3376(in["vpn_error"].([]interface{}))
+		ret.Cgnv6DdosProc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProc3379(in["cgnv6_ddos_proc"].([]interface{}))
+		ret.Cgnv6Lsn = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Lsn3382(in["cgnv6_lsn"].([]interface{}))
+		ret.Cgnv6LsnAlgEsp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEsp3385(in["cgnv6_lsn_alg_esp"].([]interface{}))
+		ret.Cgnv6LsnAlgPptp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptp3388(in["cgnv6_lsn_alg_pptp"].([]interface{}))
+		ret.Cgnv6LsnAlgRtsp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtsp3391(in["cgnv6_lsn_alg_rtsp"].([]interface{}))
+		ret.Cgnv6LsnAlgSip = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSip3394(in["cgnv6_lsn_alg_sip"].([]interface{}))
+		ret.Cgnv6LsnAlgMgcp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcp3397(in["cgnv6_lsn_alg_mgcp"].([]interface{}))
+		ret.Cgnv6LsnAlgH323 = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH3233400(in["cgnv6_lsn_alg_h323"].([]interface{}))
+		ret.Cgnv6LsnRadius = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadius3403(in["cgnv6_lsn_radius"].([]interface{}))
+		ret.Cgnv6Nat64Global = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64Global3406(in["cgnv6_nat64_global"].([]interface{}))
+		ret.Cgnv6DsLiteGlobal = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobal3409(in["cgnv6_ds_lite_global"].([]interface{}))
+		ret.Cgnv6FixedNatGlobal = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobal3412(in["cgnv6_fixed_nat_global"].([]interface{}))
+		ret.Cgnv6FixedNatAlgPptp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptp3415(in["cgnv6_fixed_nat_alg_pptp"].([]interface{}))
+		ret.Cgnv6FixedNatAlgRtsp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtsp3418(in["cgnv6_fixed_nat_alg_rtsp"].([]interface{}))
+		ret.Cgnv6FixedNatAlgSip = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSip3421(in["cgnv6_fixed_nat_alg_sip"].([]interface{}))
+		ret.Cgnv6Pcp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Pcp3424(in["cgnv6_pcp"].([]interface{}))
+		ret.Cgnv6Logging = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Logging3427(in["cgnv6_logging"].([]interface{}))
+		ret.Cgnv6L4 = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L43430(in["cgnv6_l4"].([]interface{}))
+		ret.Cgnv6Icmp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Icmp3433(in["cgnv6_icmp"].([]interface{}))
+		ret.Cgnv6HttpAlg = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlg3436(in["cgnv6_http_alg"].([]interface{}))
+		ret.Cgnv6Dns64 = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns643439(in["cgnv6_dns64"].([]interface{}))
+		ret.Cgnv6Dhcpv6 = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv63442(in["cgnv6_dhcpv6"].([]interface{}))
+		ret.FwLogging = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLogging3445(in["fw_logging"].([]interface{}))
+		ret.FwGlobal = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobal3448(in["fw_global"].([]interface{}))
+		ret.FwAlgRtsp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtsp3451(in["fw_alg_rtsp"].([]interface{}))
+		ret.FwAlgPptp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptp3454(in["fw_alg_pptp"].([]interface{}))
+		ret.FwRadServer = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServer3457(in["fw_rad_server"].([]interface{}))
+		ret.FwTcpSynCookie = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookie3460(in["fw_tcp_syn_cookie"].([]interface{}))
+		ret.FwDdosProtection = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtection3463(in["fw_ddos_protection"].([]interface{}))
+		ret.FwGtp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtp3466(in["fw_gtp"].([]interface{}))
+		ret.SystemTcp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcp3469(in["system_tcp"].([]interface{}))
+		ret.SlbConnReuse = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuse3472(in["slb_conn_reuse"].([]interface{}))
+		ret.SlbAflow = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflow3475(in["slb_aflow"].([]interface{}))
+		ret.SlbFix = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFix3478(in["slb_fix"].([]interface{}))
+		ret.SlbSpdyProxy = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxy3481(in["slb_spdy_proxy"].([]interface{}))
+		ret.SlbHttp2 = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp23484(in["slb_http2"].([]interface{}))
+		ret.SlbL7session = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7session3487(in["slb_l7session"].([]interface{}))
+		ret.SlbSmpp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmpp3490(in["slb_smpp"].([]interface{}))
+		ret.SlbSmtp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtp3493(in["slb_smtp"].([]interface{}))
+		ret.SlbMqtt = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqtt3496(in["slb_mqtt"].([]interface{}))
+		ret.SlbIcap = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcap3499(in["slb_icap"].([]interface{}))
+		ret.SlbSip = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSip3502(in["slb_sip"].([]interface{}))
+		ret.SlbHwCompress = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompress3505(in["slb_hw_compress"].([]interface{}))
+		ret.SlbMysql = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysql3508(in["slb_mysql"].([]interface{}))
+		ret.SlbMssql = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssql3511(in["slb_mssql"].([]interface{}))
+		ret.SlbCrlSrcip = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcip3514(in["slb_crl_srcip"].([]interface{}))
+		ret.SlbGeneric = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGeneric3517(in["slb_generic"].([]interface{}))
+		ret.SlbPersist = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersist3520(in["slb_persist"].([]interface{}))
+		ret.SlbHttpProxy = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxy3523(in["slb_http_proxy"].([]interface{}))
+		ret.SlbL4 = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL43526(in["slb_l4"].([]interface{}))
+		ret.SlbFastHttp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttp3529(in["slb_fast_http"].([]interface{}))
+		ret.SlbFtpProxy = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxy3532(in["slb_ftp_proxy"].([]interface{}))
+		ret.SlbImapProxy = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxy3535(in["slb_imap_proxy"].([]interface{}))
+		ret.SlbPop3Proxy = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3Proxy3538(in["slb_pop3_proxy"].([]interface{}))
+		ret.SlbSwitch = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitch3541(in["slb_switch"].([]interface{}))
+		ret.SlbRcCache = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCache3544(in["slb_rc_cache"].([]interface{}))
+		ret.SoCounters = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCounters3547(in["so_counters"].([]interface{}))
+		ret.SlbPlyrIdGbl = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGbl3550(in["slb_plyr_id_gbl"].([]interface{}))
+		ret.SlbSportRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRate3553(in["slb_sport_rate"].([]interface{}))
+		ret.LoggingLocalLogGlobal = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobal3556(in["logging_local_log_global"].([]interface{}))
+		ret.SlbMlb = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlb3559(in["slb_mlb"].([]interface{}))
+		ret.SlbLinkProbe = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbe3562(in["slb_link_probe"].([]interface{}))
+		ret.SlbRpz = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpz3565(in["slb_rpz"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcct3288(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcct3288 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcct3316(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcct3316 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcct3288
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcct3316
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsInc3289(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsRate3290(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsInc3317(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsRate3318(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsInc3289(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsInc3289 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsInc3317(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsInc3317 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsInc3289
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsInc3317
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TotalNodesFreeFailed = in["total_nodes_free_failed"].(int)
@@ -16491,10 +16764,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsRate3290(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsRate3290 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsRate3318(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsRate3318 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsRate3290
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsRate3318
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -16506,23 +16779,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerate3291(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerate3291 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerate3319(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerate3319 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerate3291
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerate3319
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsInc3292(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsRate3293(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsInc3320(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsRate3321(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsInc3292(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsInc3292 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsInc3320(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsInc3320 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsInc3292
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsInc3320
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.HwFwdProgErrors = in["hw_fwd_prog_errors"].(int)
@@ -16537,10 +16810,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsRate3293(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsRate3293 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsRate3321(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsRate3321 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsRate3293
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsRate3321
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -16557,23 +16830,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServer3294(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServer3294 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServer3322(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServer3322 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServer3294
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServer3322
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsInc3295(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsRate3296(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsInc3323(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsRate3324(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsInc3295(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsInc3295 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsInc3323(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsInc3323 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsInc3295
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsInc3323
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RadiusRequestDropped = in["radius_request_dropped"].(int)
@@ -16590,10 +16863,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsRate3296(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsRate3296 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsRate3324(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsRate3324 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsRate3296
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsRate3324
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -16612,23 +16885,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatList3297(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatList3297 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatList3325(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatList3325 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatList3297
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatList3325
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsInc3298(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsRate3299(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsInc3326(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsRate3327(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsInc3298(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsInc3298 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsInc3326(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsInc3326 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsInc3298
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsInc3326
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error_out_of_memory = in["error_out_of_memory"].(int)
@@ -16638,10 +16911,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsRate3299(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsRate3299 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsRate3327(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsRate3327 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsRate3299
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsRate3327
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -16653,23 +16926,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDrop3300(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDrop3300 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDrop3328(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDrop3328 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDrop3300
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDrop3328
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsInc3301(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsRate3302(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsInc3329(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsRate3330(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsInc3301(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsInc3301 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsInc3329(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsInc3329 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsInc3301
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsInc3329
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MrxDrop = in["mrx_drop"].(int)
@@ -16714,10 +16987,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsRate3302(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsRate3302 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsRate3330(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsRate3330 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsRate3302
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsRate3330
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -16764,23 +17037,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStats3303(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStats3303 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStats3331(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStats3331 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStats3303
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStats3331
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsInc3304(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsRate3305(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsInc3332(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsRate3333(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsInc3304(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsInc3304 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsInc3332(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsInc3332 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsInc3304
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsInc3332
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PktDrop = in["pkt_drop"].(int)
@@ -16815,10 +17088,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsRate3305(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsRate3305 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsRate3333(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsRate3333 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsRate3305
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsRate3333
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -16855,23 +17128,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDrop3306(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDrop3306 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDrop3334(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDrop3334 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDrop3306
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDrop3334
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsInc3307(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsRate3308(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsInc3335(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsRate3336(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsInc3307(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsInc3307 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsInc3335(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsInc3335 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsInc3307
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsInc3335
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Land = in["land"].(int)
@@ -16928,10 +17201,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsRate3308(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsRate3308 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsRate3336(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsRate3336 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsRate3308
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsRate3336
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -16990,23 +17263,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobal3309(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobal3309 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobal3337(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobal3337 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobal3309
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobal3337
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsInc3310(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsRate3311(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsInc3338(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsRate3339(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsInc3310(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsInc3310 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsInc3338(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsInc3338 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsInc3310
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsInc3338
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Misses = in["misses"].(int)
@@ -17023,10 +17296,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsRate3311(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsRate3311 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsRate3339(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsRate3339 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsRate3311
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsRate3339
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -17045,23 +17318,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdns3312(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdns3312 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdns3340(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdns3340 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdns3312
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdns3340
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsInc3313(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsRate3314(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsInc3341(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsRate3342(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsInc3313(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsInc3313 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsInc3341(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsInc3341 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsInc3313
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsInc3341
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RequestDropped = in["request_dropped"].(int)
@@ -17073,10 +17346,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsRate3314(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsRate3314 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsRate3342(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsRate3342 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsRate3314
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsRate3342
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -17090,23 +17363,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdap3315(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdap3315 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdap3343(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdap3343 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdap3315
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdap3343
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsInc3316(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsRate3317(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsInc3344(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsRate3345(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsInc3316(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsInc3316 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsInc3344(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsInc3344 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsInc3316
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsInc3344
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.AdminBindFailure = in["admin_bind_failure"].(int)
@@ -17128,10 +17401,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsRate3317(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsRate3317 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsRate3345(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsRate3345 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsRate3317
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsRate3345
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -17155,23 +17428,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcsp3318(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcsp3318 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcsp3346(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcsp3346 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcsp3318
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcsp3346
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsInc3319(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsRate3320(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsInc3347(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsRate3348(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsInc3319(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsInc3319 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsInc3347(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsInc3347 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsInc3319
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsInc3347
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.StaplingRequestDropped = in["stapling_request_dropped"].(int)
@@ -17189,10 +17462,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsRate3320(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsRate3320 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsRate3348(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsRate3348 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsRate3320
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsRate3348
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -17212,23 +17485,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadius3321(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadius3321 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadius3349(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadius3349 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadius3321
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadius3349
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsInc3322(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsRate3323(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsInc3350(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsRate3351(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsInc3322(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsInc3322 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsInc3350(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsInc3350 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsInc3322
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsInc3350
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Authen_failure = in["authen_failure"].(int)
@@ -17247,10 +17520,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsRate3323(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsRate3323 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsRate3351(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsRate3351 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsRate3323
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsRate3351
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -17271,23 +17544,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWin3324(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWin3324 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWin3352(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWin3352 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWin3324
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWin3352
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsInc3325(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsRate3326(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsInc3353(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsRate3354(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsInc3325(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsInc3325 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsInc3353(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsInc3353 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsInc3325
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsInc3353
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.KerberosTimeoutError = in["kerberos_timeout_error"].(int)
@@ -17308,10 +17581,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsRate3326(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsRate3326 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsRate3354(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsRate3354 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsRate3326
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsRate3354
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -17334,23 +17607,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccount3327(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccount3327 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccount3355(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccount3355 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccount3327
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccount3355
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsInc3328(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsRate3329(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsInc3356(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsRate3357(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsInc3328(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsInc3328 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsInc3356(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsInc3356 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsInc3328
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsInc3356
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RequestDropped = in["request_dropped"].(int)
@@ -17363,10 +17636,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsRate3329(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsRate3329 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsRate3357(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsRate3357 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsRate3329
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsRate3357
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -17381,23 +17654,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobal3330(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobal3330 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobal3358(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobal3358 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobal3330
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobal3358
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsInc3331(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsRate3332(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsInc3359(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsRate3360(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsInc3331(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsInc3331 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsInc3359(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsInc3359 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsInc3331
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsInc3359
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.AcsAuthzFail = in["acs_authz_fail"].(int)
@@ -17407,10 +17680,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsRate3332(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsRate3332 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsRate3360(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsRate3360 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsRate3332
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsRate3360
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -17422,23 +17695,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberos3333(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberos3333 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberos3361(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberos3361 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberos3333
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberos3361
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsInc3334(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsRate3335(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsInc3362(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsRate3363(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsInc3334(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsInc3334 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsInc3362(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsInc3362 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsInc3334
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsInc3362
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TimeoutError = in["timeout_error"].(int)
@@ -17454,10 +17727,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsRate3335(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsRate3335 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsRate3363(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsRate3363 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsRate3335
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsRate3363
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -17475,23 +17748,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptcha3336(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptcha3336 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptcha3364(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptcha3364 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptcha3336
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptcha3364
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsInc3337(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsRate3338(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsInc3365(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsRate3366(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsInc3337(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsInc3337 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsInc3365(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsInc3365 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsInc3337
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsInc3365
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RequestDropped = in["request_dropped"].(int)
@@ -17509,10 +17782,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsRate3338(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsRate3338 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsRate3366(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsRate3366 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsRate3338
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsRate3366
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -17532,23 +17805,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslError3339(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslError3339 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslError3367(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslError3367 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslError3339
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslError3367
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsInc3340(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsRate3341(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsInc3368(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsRate3369(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsInc3340(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsInc3340 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsInc3368(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsInc3368 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsInc3340
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsInc3368
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.AppDataInHandshake = in["app_data_in_handshake"].(int)
@@ -17801,10 +18074,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsRate3341(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsRate3341 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsRate3369(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsRate3369 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsRate3341
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsRate3369
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -18059,23 +18332,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevoke3342(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevoke3342 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevoke3370(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevoke3370 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevoke3342
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevoke3370
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsInc3343(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsRate3344(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsInc3371(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsRate3372(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsInc3343(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsInc3343 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsInc3371(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsInc3371 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsInc3343
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsInc3371
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ocsp_chain_status_revoked = in["ocsp_chain_status_revoked"].(int)
@@ -18104,10 +18377,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsRate3344(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsRate3344 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsRate3372(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsRate3372 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsRate3344
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsRate3372
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -18138,23 +18411,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxy3345(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxy3345 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxy3373(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxy3373 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxy3345
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxy3373
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsInc3346(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsRate3347(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsInc3374(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsRate3375(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsInc3346(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsInc3346 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsInc3374(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsInc3374 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsInc3346
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsInc3374
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.FailedInSslHandshakes = in["failed_in_ssl_handshakes"].(int)
@@ -18171,10 +18444,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsRate3347(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsRate3347 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsRate3375(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsRate3375 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsRate3347
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsRate3375
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -18193,23 +18466,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnError3348(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnError3348 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnError3376(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnError3376 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnError3348
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnError3376
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsInc3349(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsRate3350(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsInc3377(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsRate3378(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsInc3349(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsInc3349 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsInc3377(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsInc3377 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsInc3349
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsInc3377
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Bad_opcode = in["bad_opcode"].(int)
@@ -18255,10 +18528,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsRate3350(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsRate3350 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsRate3378(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsRate3378 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsRate3350
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsRate3378
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -18306,23 +18579,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProc3351(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProc3351 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProc3379(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProc3379 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProc3351
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProc3379
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsInc3352(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsRate3353(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsInc3380(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsRate3381(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsInc3352(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsInc3352 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsInc3380(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsInc3380 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsInc3352
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsInc3380
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.L3_entry_match_drop = in["l3_entry_match_drop"].(int)
@@ -18339,18 +18612,15 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.L3_entry_remove_from_bgp_failure = in["l3_entry_remove_from_bgp_failure"].(int)
 		ret.L3_entry_add_to_hw_failure = in["l3_entry_add_to_hw_failure"].(int)
 		ret.Syn_cookie_verification_failed = in["syn_cookie_verification_failed"].(int)
-		ret.L3_entry_del_to_hw_failure = in["l3_entry_del_to_hw_failure"].(int)
-		ret.L4_entry_del_to_hw_failure = in["l4_entry_del_to_hw_failure"].(int)
-		ret.L4_entry_add_to_hw_failure = in["l4_entry_add_to_hw_failure"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsRate3353(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsRate3353 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsRate3381(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsRate3381 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsRate3353
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsRate3381
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -18369,31 +18639,28 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.L3_entry_remove_from_bgp_failure = in["l3_entry_remove_from_bgp_failure"].(int)
 		ret.L3_entry_add_to_hw_failure = in["l3_entry_add_to_hw_failure"].(int)
 		ret.Syn_cookie_verification_failed = in["syn_cookie_verification_failed"].(int)
-		ret.L3_entry_del_to_hw_failure = in["l3_entry_del_to_hw_failure"].(int)
-		ret.L4_entry_del_to_hw_failure = in["l4_entry_del_to_hw_failure"].(int)
-		ret.L4_entry_add_to_hw_failure = in["l4_entry_add_to_hw_failure"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Lsn3354(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Lsn3354 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Lsn3382(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Lsn3382 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Lsn3354
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Lsn3382
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsInc3355(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsRate3356(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsInc3383(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsRate3384(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsInc3355(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsInc3355 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsInc3383(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsInc3383 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsInc3355
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsInc3383
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.User_quota_failure = in["user_quota_failure"].(int)
@@ -18428,10 +18695,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsRate3356(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsRate3356 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsRate3384(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsRate3384 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsRate3356
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsRate3384
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -18468,23 +18735,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEsp3357(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEsp3357 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEsp3385(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEsp3385 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEsp3357
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEsp3385
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsInc3358(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsRate3359(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsInc3386(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsRate3387(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsInc3358(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsInc3358 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsInc3386(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsInc3386 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsInc3358
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsInc3386
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.NatIpConflict = in["nat_ip_conflict"].(int)
@@ -18493,10 +18760,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsRate3359(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsRate3359 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsRate3387(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsRate3387 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsRate3359
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsRate3387
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -18507,23 +18774,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptp3360(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptp3360 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptp3388(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptp3388 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptp3360
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptp3388
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsInc3361(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsRate3362(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsInc3389(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsRate3390(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsInc3361(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsInc3361 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsInc3389(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsInc3389 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsInc3361
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsInc3389
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.NoGreSessionMatch = in["no_gre_session_match"].(int)
@@ -18534,10 +18801,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsRate3362(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsRate3362 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsRate3390(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsRate3390 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsRate3362
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsRate3390
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -18550,23 +18817,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtsp3363(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtsp3363 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtsp3391(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtsp3391 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtsp3363
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtsp3391
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsInc3364(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsRate3365(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsInc3392(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsRate3393(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsInc3364(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsInc3364 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsInc3392(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsInc3392 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsInc3364
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsInc3392
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.StreamCreationFailure = in["stream_creation_failure"].(int)
@@ -18578,10 +18845,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsRate3365(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsRate3365 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsRate3393(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsRate3393 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsRate3365
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsRate3393
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -18595,23 +18862,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSip3366(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSip3366 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSip3394(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSip3394 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSip3366
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSip3394
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsInc3367(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsRate3368(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsInc3395(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsRate3396(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsInc3367(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsInc3367 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsInc3395(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsInc3395 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsInc3367
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsInc3395
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MethodUnknown = in["method_unknown"].(int)
@@ -18622,10 +18889,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsRate3368(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsRate3368 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsRate3396(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsRate3396 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsRate3368
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsRate3396
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -18638,23 +18905,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcp3369(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcp3369 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcp3397(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcp3397 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcp3369
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcp3397
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsInc3370(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsRate3371(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsInc3398(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsRate3399(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsInc3370(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsInc3370 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsInc3398(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsInc3398 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsInc3370
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsInc3398
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ParseError = in["parse_error"].(int)
@@ -18664,10 +18931,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsRate3371(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsRate3371 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsRate3399(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsRate3399 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsRate3371
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsRate3399
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -18679,23 +18946,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH3233372(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH3233372 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH3233400(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH3233400 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH3233372
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH3233400
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsInc3373(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsRate3374(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsInc3401(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsRate3402(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsInc3373(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsInc3373 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsInc3401(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsInc3401 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsInc3373
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsInc3401
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ParseError = in["parse_error"].(int)
@@ -18705,10 +18972,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsRate3374(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsRate3374 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsRate3402(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsRate3402 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsRate3374
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsRate3402
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -18720,23 +18987,78 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64Global3375(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64Global3375 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadius3403(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadius3403 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64Global3375
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadius3403
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsInc3376(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsRate3377(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsInc3404(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsRate3405(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsInc3376(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsInc3376 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsInc3404(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsInc3404 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsInc3376
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsInc3404
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.RadiusRequestDropped = in["radius_request_dropped"].(int)
+		ret.RequestBadSecretDropped = in["request_bad_secret_dropped"].(int)
+		ret.RequestNoKeyVapDropped = in["request_no_key_vap_dropped"].(int)
+		ret.RequestMalformedDropped = in["request_malformed_dropped"].(int)
+		ret.RequestIgnored = in["request_ignored"].(int)
+		ret.RadiusTableFull = in["radius_table_full"].(int)
+		ret.SecretNotConfiguredDropped = in["secret_not_configured_dropped"].(int)
+		ret.HaStandbyDropped = in["ha_standby_dropped"].(int)
+		ret.InvalidKey = in["invalid_key"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsRate3405(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsRate3405 {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsRate3405
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
+		ret.Duration = in["duration"].(int)
+		ret.RadiusRequestDropped = in["radius_request_dropped"].(int)
+		ret.RequestBadSecretDropped = in["request_bad_secret_dropped"].(int)
+		ret.RequestNoKeyVapDropped = in["request_no_key_vap_dropped"].(int)
+		ret.RequestMalformedDropped = in["request_malformed_dropped"].(int)
+		ret.RequestIgnored = in["request_ignored"].(int)
+		ret.RadiusTableFull = in["radius_table_full"].(int)
+		ret.SecretNotConfiguredDropped = in["secret_not_configured_dropped"].(int)
+		ret.HaStandbyDropped = in["ha_standby_dropped"].(int)
+		ret.InvalidKey = in["invalid_key"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64Global3406(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64Global3406 {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64Global3406
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		//omit uuid
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsInc3407(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsRate3408(in["trigger_stats_rate"].([]interface{}))
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsInc3407(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsInc3407 {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsInc3407
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.User_quota_failure = in["user_quota_failure"].(int)
@@ -18759,10 +19081,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsRate3377(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsRate3377 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsRate3408(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsRate3408 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsRate3377
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsRate3408
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -18787,23 +19109,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobal3378(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobal3378 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobal3409(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobal3409 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobal3378
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobal3409
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsInc3379(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsRate3380(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsInc3410(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsRate3411(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsInc3379(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsInc3379 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsInc3410(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsInc3410 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsInc3379
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsInc3410
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.User_quota_failure = in["user_quota_failure"].(int)
@@ -18816,10 +19138,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsRate3380(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsRate3380 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsRate3411(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsRate3411 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsRate3380
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsRate3411
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -18834,23 +19156,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobal3381(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobal3381 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobal3412(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobal3412 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobal3381
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobal3412
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsInc3382(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsRate3383(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsInc3413(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsRate3414(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsInc3382(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsInc3382 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsInc3413(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsInc3413 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsInc3382
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsInc3413
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.NatPortUnavailableTcp = in["nat_port_unavailable_tcp"].(int)
@@ -18873,15 +19195,16 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.ConfigNotFound = in["config_not_found"].(int)
 		ret.PortOverloadFailed = in["port_overload_failed"].(int)
 		ret.HaSessionUserQuotaExceeded = in["ha_session_user_quota_exceeded"].(int)
+		ret.UnusedIpDrop = in["unused_ip_drop"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsRate3383(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsRate3383 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsRate3414(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsRate3414 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsRate3383
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsRate3414
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -18906,28 +19229,29 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.ConfigNotFound = in["config_not_found"].(int)
 		ret.PortOverloadFailed = in["port_overload_failed"].(int)
 		ret.HaSessionUserQuotaExceeded = in["ha_session_user_quota_exceeded"].(int)
+		ret.UnusedIpDrop = in["unused_ip_drop"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptp3384(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptp3384 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptp3415(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptp3415 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptp3384
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptp3415
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsInc3385(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsRate3386(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsInc3416(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsRate3417(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsInc3385(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsInc3385 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsInc3416(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsInc3416 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsInc3385
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsInc3416
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.CallReqPnsCallIdMismatch = in["call_req_pns_call_id_mismatch"].(int)
@@ -18937,10 +19261,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsRate3386(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsRate3386 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsRate3417(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsRate3417 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsRate3386
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsRate3417
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -18952,23 +19276,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtsp3387(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtsp3387 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtsp3418(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtsp3418 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtsp3387
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtsp3418
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsInc3388(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsRate3389(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsInc3419(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsRate3420(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsInc3388(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsInc3388 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsInc3419(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsInc3419 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsInc3388
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsInc3419
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.StreamCreationFailure = in["stream_creation_failure"].(int)
@@ -18979,10 +19303,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsRate3389(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsRate3389 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsRate3420(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsRate3420 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsRate3389
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsRate3420
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -18995,23 +19319,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSip3390(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSip3390 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSip3421(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSip3421 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSip3390
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSip3421
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsInc3391(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsRate3392(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsInc3422(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsRate3423(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsInc3391(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsInc3391 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsInc3422(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsInc3422 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsInc3391
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsInc3422
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MethodUnknown = in["method_unknown"].(int)
@@ -19020,10 +19344,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsRate3392(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsRate3392 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsRate3423(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsRate3423 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsRate3392
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsRate3423
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19034,23 +19358,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Pcp3393(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Pcp3393 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Pcp3424(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Pcp3424 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Pcp3393
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Pcp3424
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsInc3394(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsRate3395(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsInc3425(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsRate3426(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsInc3394(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsInc3394 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsInc3425(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsInc3425 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsInc3394
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsInc3425
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PktNotRequestDrop = in["pkt_not_request_drop"].(int)
@@ -19076,10 +19400,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsRate3395(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsRate3395 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsRate3426(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsRate3426 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsRate3395
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsRate3426
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19107,23 +19431,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Logging3396(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Logging3396 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Logging3427(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Logging3427 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Logging3396
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Logging3427
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsInc3397(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsRate3398(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsInc3428(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsRate3429(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsInc3397(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsInc3397 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsInc3428(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsInc3428 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsInc3397
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsInc3428
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.LogDropped = in["log_dropped"].(int)
@@ -19133,10 +19457,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsRate3398(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsRate3398 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsRate3429(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsRate3429 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsRate3398
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsRate3429
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19148,23 +19472,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L43399(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L43399 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L43430(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L43430 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L43399
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L43430
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsInc3400(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsRate3401(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsInc3431(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsRate3432(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsInc3400(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsInc3400 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsInc3431(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsInc3431 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsInc3400
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsInc3431
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.OutOfSessionMemory = in["out_of_session_memory"].(int)
@@ -19174,10 +19498,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsRate3401(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsRate3401 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsRate3432(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsRate3432 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsRate3401
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsRate3432
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19189,23 +19513,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Icmp3402(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Icmp3402 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Icmp3433(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Icmp3433 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Icmp3402
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Icmp3433
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsInc3403(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsRate3404(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsInc3434(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsRate3435(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsInc3403(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsInc3403 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsInc3434(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsInc3434 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsInc3403
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsInc3434
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.IcmpToIcmpErr = in["icmp_to_icmp_err"].(int)
@@ -19217,10 +19541,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsRate3404(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsRate3404 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsRate3435(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsRate3435 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsRate3404
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsRate3435
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19234,23 +19558,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlg3405(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlg3405 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlg3436(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlg3436 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlg3405
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlg3436
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsInc3406(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsRate3407(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsInc3437(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsRate3438(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsInc3406(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsInc3406 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsInc3437(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsInc3437 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsInc3406
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsInc3437
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RadiusRequstDropped = in["radius_requst_dropped"].(int)
@@ -19265,10 +19589,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsRate3407(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsRate3407 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsRate3438(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsRate3438 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsRate3407
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsRate3438
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19285,23 +19609,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns643408(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns643408 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns643439(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns643439 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns643408
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns643439
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsInc3409(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsRate3410(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsInc3440(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsRate3441(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsInc3409(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsInc3409 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsInc3440(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsInc3440 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsInc3409
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsInc3440
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.QueryBadPkt = in["query_bad_pkt"].(int)
@@ -19313,10 +19637,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsRate3410(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsRate3410 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsRate3441(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsRate3441 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsRate3410
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsRate3441
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19330,23 +19654,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv63411(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv63411 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv63442(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv63442 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv63411
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv63442
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsInc3412(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsRate3413(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsInc3443(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsRate3444(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsInc3412(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsInc3412 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsInc3443(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsInc3443 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsInc3412
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsInc3443
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PacketsDropped = in["packets_dropped"].(int)
@@ -19357,10 +19681,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsRate3413(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsRate3413 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsRate3444(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsRate3444 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsRate3413
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsRate3444
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19373,23 +19697,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLogging3414(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLogging3414 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLogging3445(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLogging3445 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLogging3414
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLogging3445
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsInc3415(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsRate3416(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsInc3446(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsRate3447(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsInc3415(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsInc3415 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsInc3446(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsInc3446 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsInc3415
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsInc3446
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.LogDropped = in["log_dropped"].(int)
@@ -19400,10 +19724,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsRate3416(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsRate3416 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsRate3447(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsRate3447 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsRate3416
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsRate3447
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19416,23 +19740,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobal3417(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobal3417 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobal3448(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobal3448 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobal3417
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobal3448
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsInc3418(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsRate3419(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsInc3449(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsRate3450(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsInc3418(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsInc3418 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsInc3449(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsInc3449 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsInc3418
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsInc3449
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Fullcone_creation_failure = in["fullcone_creation_failure"].(int)
@@ -19441,10 +19765,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsRate3419(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsRate3419 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsRate3450(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsRate3450 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsRate3419
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsRate3450
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19455,23 +19779,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtsp3420(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtsp3420 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtsp3451(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtsp3451 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtsp3420
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtsp3451
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsInc3421(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsRate3422(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsInc3452(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsRate3453(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsInc3421(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsInc3421 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsInc3452(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsInc3452 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsInc3421
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsInc3452
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TransportAllocFailure = in["transport_alloc_failure"].(int)
@@ -19480,10 +19804,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsRate3422(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsRate3422 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsRate3453(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsRate3453 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsRate3422
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsRate3453
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19494,23 +19818,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptp3423(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptp3423 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptp3454(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptp3454 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptp3423
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptp3454
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsInc3424(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsRate3425(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsInc3455(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsRate3456(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsInc3424(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsInc3424 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsInc3455(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsInc3455 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsInc3424
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsInc3455
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.CallReqPnsCallIdMismatch = in["call_req_pns_call_id_mismatch"].(int)
@@ -19520,10 +19844,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsRate3425(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsRate3425 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsRate3456(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsRate3456 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsRate3425
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsRate3456
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19535,23 +19859,78 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookie3426(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookie3426 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServer3457(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServer3457 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookie3426
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServer3457
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsInc3427(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsRate3428(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsInc3458(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsRate3459(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsInc3427(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsInc3427 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsInc3458(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsInc3458 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsInc3427
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsInc3458
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.RadiusRequestDropped = in["radius_request_dropped"].(int)
+		ret.RequestBadSecretDropped = in["request_bad_secret_dropped"].(int)
+		ret.RequestNoKeyVapDropped = in["request_no_key_vap_dropped"].(int)
+		ret.RequestMalformedDropped = in["request_malformed_dropped"].(int)
+		ret.RequestIgnored = in["request_ignored"].(int)
+		ret.RadiusTableFull = in["radius_table_full"].(int)
+		ret.HaStandbyDropped = in["ha_standby_dropped"].(int)
+		ret.Ipv6PrefixLengthMismatch = in["ipv6_prefix_length_mismatch"].(int)
+		ret.InvalidKey = in["invalid_key"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsRate3459(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsRate3459 {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsRate3459
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
+		ret.Duration = in["duration"].(int)
+		ret.RadiusRequestDropped = in["radius_request_dropped"].(int)
+		ret.RequestBadSecretDropped = in["request_bad_secret_dropped"].(int)
+		ret.RequestNoKeyVapDropped = in["request_no_key_vap_dropped"].(int)
+		ret.RequestMalformedDropped = in["request_malformed_dropped"].(int)
+		ret.RequestIgnored = in["request_ignored"].(int)
+		ret.RadiusTableFull = in["radius_table_full"].(int)
+		ret.HaStandbyDropped = in["ha_standby_dropped"].(int)
+		ret.Ipv6PrefixLengthMismatch = in["ipv6_prefix_length_mismatch"].(int)
+		ret.InvalidKey = in["invalid_key"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookie3460(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookie3460 {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookie3460
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		//omit uuid
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsInc3461(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsRate3462(in["trigger_stats_rate"].([]interface{}))
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsInc3461(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsInc3461 {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsInc3461
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Verification_failed = in["verification_failed"].(int)
@@ -19560,10 +19939,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsRate3428(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsRate3428 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsRate3462(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsRate3462 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsRate3428
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsRate3462
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19574,23 +19953,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtection3429(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtection3429 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtection3463(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtection3463 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtection3429
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtection3463
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsInc3430(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsRate3431(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsInc3464(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsRate3465(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsInc3430(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsInc3430 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsInc3464(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsInc3464 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsInc3430
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsInc3464
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ddos_entries_too_many = in["ddos_entries_too_many"].(int)
@@ -19602,10 +19981,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsRate3431(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsRate3431 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsRate3465(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsRate3465 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsRate3431
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsRate3465
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19619,23 +19998,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtp3432(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtp3432 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtp3466(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtp3466 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtp3432
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtp3466
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsInc3433(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsRate3434(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsInc3467(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsRate3468(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsInc3433(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsInc3433 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsInc3467(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsInc3467 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsInc3433
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsInc3467
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.OutOfSessionMemory = in["out_of_session_memory"].(int)
@@ -19673,10 +20052,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsRate3434(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsRate3434 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsRate3468(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsRate3468 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsRate3434
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsRate3468
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19716,23 +20095,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcp3435(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcp3435 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcp3469(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcp3469 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcp3435
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcp3469
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsInc3436(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsRate3437(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsInc3470(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsRate3471(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsInc3436(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsInc3436 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsInc3470(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsInc3470 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsInc3436
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsInc3470
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Attemptfails = in["attemptfails"].(int)
@@ -19742,10 +20121,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsRate3437(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsRate3437 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsRate3471(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsRate3471 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsRate3437
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsRate3471
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19757,23 +20136,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuse3438(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuse3438 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuse3472(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuse3472 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuse3438
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuse3472
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsInc3439(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsRate3440(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsInc3473(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsRate3474(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsInc3439(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsInc3439 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsInc3473(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsInc3473 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsInc3439
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsInc3473
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ntermi_err = in["ntermi_err"].(int)
@@ -19783,10 +20162,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsRate3440(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsRate3440 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsRate3474(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsRate3474 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsRate3440
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsRate3474
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19798,23 +20177,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflow3441(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflow3441 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflow3475(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflow3475 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflow3441
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflow3475
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsInc3442(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsRate3443(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsInc3476(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsRate3477(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsInc3442(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsInc3442 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsInc3476(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsInc3476 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsInc3442
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsInc3476
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Pause_conn_fail = in["pause_conn_fail"].(int)
@@ -19824,10 +20203,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsRate3443(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsRate3443 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsRate3477(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsRate3477 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsRate3443
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsRate3477
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19839,23 +20218,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFix3444(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFix3444 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFix3478(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFix3478 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFix3444
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFix3478
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsInc3445(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsRate3446(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsInc3479(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsRate3480(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsInc3445(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsInc3445 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsInc3479(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsInc3479 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsInc3445
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsInc3479
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Svrsel_fail = in["svrsel_fail"].(int)
@@ -19868,10 +20247,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsRate3446(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsRate3446 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsRate3480(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsRate3480 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsRate3446
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsRate3480
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19886,23 +20265,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxy3447(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxy3447 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxy3481(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxy3481 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxy3447
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxy3481
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsInc3448(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsRate3449(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsInc3482(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsRate3483(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsInc3448(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsInc3448 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsInc3482(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsInc3482 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsInc3448
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsInc3482
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Tcp_err = in["tcp_err"].(int)
@@ -19929,10 +20308,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsRate3449(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsRate3449 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsRate3483(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsRate3483 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsRate3449
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsRate3483
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -19961,23 +20340,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp23450(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp23450 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp23484(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp23484 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp23450
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp23484
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsInc3451(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsRate3452(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsInc3485(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsRate3486(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsInc3451(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsInc3451 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsInc3485(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsInc3485 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsInc3451
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsInc3485
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Protocol_error = in["protocol_error"].(int)
@@ -20052,10 +20431,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsRate3452(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsRate3452 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsRate3486(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsRate3486 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsRate3452
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsRate3486
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -20132,23 +20511,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7session3453(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7session3453 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7session3487(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7session3487 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7session3453
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7session3487
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsInc3454(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsRate3455(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsInc3488(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsRate3489(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsInc3454(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsInc3454 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsInc3488(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsInc3488 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsInc3454
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsInc3488
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Conn_not_exist = in["conn_not_exist"].(int)
@@ -20164,10 +20543,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsRate3455(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsRate3455 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsRate3489(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsRate3489 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsRate3455
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsRate3489
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -20185,23 +20564,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmpp3456(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmpp3456 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmpp3490(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmpp3490 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmpp3456
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmpp3490
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsInc3457(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsRate3458(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsInc3491(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsRate3492(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsInc3457(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsInc3457 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsInc3491(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsInc3491 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsInc3457
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsInc3491
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Msg_proxy_client_fail = in["msg_proxy_client_fail"].(int)
@@ -20214,10 +20593,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsRate3458(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsRate3458 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsRate3492(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsRate3492 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsRate3458
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsRate3492
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -20232,23 +20611,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtp3459(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtp3459 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtp3493(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtp3493 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtp3459
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtp3493
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsInc3460(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsRate3461(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsInc3494(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsRate3495(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsInc3460(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsInc3460 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsInc3494(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsInc3494 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsInc3460
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsInc3494
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.No_proxy = in["no_proxy"].(int)
@@ -20275,10 +20654,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsRate3461(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsRate3461 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsRate3495(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsRate3495 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsRate3461
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsRate3495
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -20307,23 +20686,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqtt3462(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqtt3462 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqtt3496(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqtt3496 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqtt3462
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqtt3496
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsInc3463(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsRate3464(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsInc3497(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsRate3498(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsInc3463(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsInc3463 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsInc3497(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsInc3497 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsInc3463
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsInc3497
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Parse_connect_fail = in["parse_connect_fail"].(int)
@@ -20341,10 +20720,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsRate3464(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsRate3464 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsRate3498(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsRate3498 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsRate3464
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsRate3498
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -20364,23 +20743,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcap3465(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcap3465 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcap3499(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcap3499 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcap3465
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcap3499
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsInc3466(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsRate3467(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsInc3500(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsRate3501(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsInc3466(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsInc3466 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsInc3500(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsInc3500 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsInc3466
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsInc3500
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.App_serv_conn_no_pcb_err = in["app_serv_conn_no_pcb_err"].(int)
@@ -20411,10 +20790,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsRate3467(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsRate3467 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsRate3501(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsRate3501 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsRate3467
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsRate3501
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -20447,23 +20826,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSip3468(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSip3468 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSip3502(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSip3502 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSip3468
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSip3502
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsInc3469(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsRate3470(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsInc3503(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsRate3504(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsInc3469(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsInc3469 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsInc3503(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsInc3503 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsInc3469
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsInc3503
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Msg_proxy_client_fail = in["msg_proxy_client_fail"].(int)
@@ -20474,10 +20853,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsRate3470(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsRate3470 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsRate3504(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsRate3504 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsRate3470
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsRate3504
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -20490,23 +20869,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompress3471(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompress3471 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompress3505(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompress3505 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompress3471
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompress3505
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsInc3472(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsRate3473(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsInc3506(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsRate3507(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsInc3472(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsInc3472 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsInc3506(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsInc3506 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsInc3472
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsInc3506
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Failure_count = in["failure_count"].(int)
@@ -20519,10 +20898,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsRate3473(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsRate3473 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsRate3507(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsRate3507 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsRate3473
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsRate3507
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -20537,23 +20916,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysql3474(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysql3474 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysql3508(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysql3508 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysql3474
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysql3508
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsInc3475(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsRate3476(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsInc3509(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsRate3510(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsInc3475(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsInc3475 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsInc3509(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsInc3509 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsInc3475
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsInc3509
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Session_err = in["session_err"].(int)
@@ -20562,10 +20941,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsRate3476(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsRate3476 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsRate3510(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsRate3510 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsRate3476
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsRate3510
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -20576,23 +20955,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssql3477(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssql3477 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssql3511(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssql3511 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssql3477
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssql3511
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsInc3478(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsRate3479(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsInc3512(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsRate3513(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsInc3478(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsInc3478 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsInc3512(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsInc3512 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsInc3478
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsInc3512
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Session_err = in["session_err"].(int)
@@ -20602,10 +20981,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsRate3479(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsRate3479 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsRate3513(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsRate3513 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsRate3479
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsRate3513
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -20617,23 +20996,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcip3480(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcip3480 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcip3514(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcip3514 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcip3480
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcip3514
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsInc3481(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsRate3482(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsInc3515(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsRate3516(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsInc3481(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsInc3481 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsInc3515(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsInc3515 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsInc3481
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsInc3515
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Out_of_sessions = in["out_of_sessions"].(int)
@@ -20644,10 +21023,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsRate3482(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsRate3482 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsRate3516(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsRate3516 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsRate3482
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsRate3516
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -20660,23 +21039,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGeneric3483(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGeneric3483 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGeneric3517(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGeneric3517 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGeneric3483
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGeneric3517
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsInc3484(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsRate3485(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsInc3518(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsRate3519(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsInc3484(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsInc3484 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsInc3518(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsInc3518 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsInc3484
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsInc3518
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Svrsel_fail = in["svrsel_fail"].(int)
@@ -20701,10 +21080,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsRate3485(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsRate3485 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsRate3519(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsRate3519 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsRate3485
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsRate3519
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -20731,23 +21110,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersist3486(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersist3486 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersist3520(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersist3520 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersist3486
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersist3520
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsInc3487(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsRate3488(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsInc3521(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsRate3522(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsInc3487(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsInc3487 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsInc3521(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsInc3521 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsInc3487
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsInc3521
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Hash_tbl_trylock_fail = in["hash_tbl_trylock_fail"].(int)
@@ -20778,10 +21157,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsRate3488(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsRate3488 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsRate3522(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsRate3522 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsRate3488
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsRate3522
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -20814,23 +21193,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxy3489(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxy3489 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxy3523(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxy3523 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxy3489
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxy3523
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsInc3490(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsRate3491(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsInc3524(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsRate3525(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsInc3490(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsInc3490 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsInc3524(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsInc3524 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsInc3490
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsInc3524
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Parsereq_fail = in["parsereq_fail"].(int)
@@ -20845,10 +21224,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsRate3491(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsRate3491 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsRate3525(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsRate3525 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsRate3491
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsRate3525
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -20865,23 +21244,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL43492(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL43492 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL43526(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL43526 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL43492
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL43526
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsInc3493(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsRate3494(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsInc3527(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsRate3528(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsInc3493(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsInc3493 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsInc3527(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsInc3527 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsInc3493
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsInc3527
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Syncookiessentfailed = in["syncookiessentfailed"].(int)
@@ -20912,10 +21291,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsRate3494(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsRate3494 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsRate3528(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsRate3528 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsRate3494
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsRate3528
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -20948,23 +21327,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttp3495(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttp3495 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttp3529(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttp3529 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttp3495
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttp3529
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsInc3496(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsRate3497(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsInc3530(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsRate3531(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsInc3496(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsInc3496 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsInc3530(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsInc3530 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsInc3496
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsInc3530
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Parsereq_fail = in["parsereq_fail"].(int)
@@ -20980,10 +21359,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsRate3497(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsRate3497 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsRate3531(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsRate3531 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsRate3497
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsRate3531
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -21001,23 +21380,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxy3498(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxy3498 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxy3532(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxy3532 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxy3498
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxy3532
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsInc3499(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsRate3500(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsInc3533(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsRate3534(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsInc3499(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsInc3499 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsInc3533(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsInc3533 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsInc3499
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsInc3533
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Svrsel_fail = in["svrsel_fail"].(int)
@@ -21052,10 +21431,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsRate3500(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsRate3500 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsRate3534(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsRate3534 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsRate3500
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsRate3534
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -21092,23 +21471,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxy3501(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxy3501 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxy3535(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxy3535 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxy3501
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxy3535
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsInc3502(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsRate3503(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsInc3536(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsRate3537(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsInc3502(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsInc3502 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsInc3536(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsInc3536 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsInc3502
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsInc3536
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Svrsel_fail = in["svrsel_fail"].(int)
@@ -21138,10 +21517,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsRate3503(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsRate3503 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsRate3537(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsRate3537 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsRate3503
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsRate3537
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -21173,23 +21552,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3Proxy3504(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3Proxy3504 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3Proxy3538(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3Proxy3538 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3Proxy3504
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3Proxy3538
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsInc3505(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsRate3506(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsInc3539(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsRate3540(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsInc3505(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsInc3505 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsInc3539(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsInc3539 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsInc3505
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsInc3539
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Svrsel_fail = in["svrsel_fail"].(int)
@@ -21211,10 +21590,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsRate3506(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsRate3506 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsRate3540(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsRate3540 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsRate3506
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsRate3540
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -21238,23 +21617,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitch3507(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitch3507 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitch3541(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitch3541 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitch3507
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitch3541
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsInc3508(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsRate3509(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsInc3542(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsRate3543(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsInc3508(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsInc3508 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsInc3542(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsInc3542 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsInc3508
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsInc3542
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Lacp_tx_intf_err_drop = in["lacp_tx_intf_err_drop"].(int)
@@ -21265,10 +21644,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsRate3509(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsRate3509 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsRate3543(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsRate3543 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsRate3509
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsRate3543
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -21281,23 +21660,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCache3510(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCache3510 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCache3544(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCache3544 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCache3510
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCache3544
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsInc3511(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsRate3512(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsInc3545(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsRate3546(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsInc3511(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsInc3511 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsInc3545(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsInc3545 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsInc3511
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsInc3545
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Rv_failure = in["rv_failure"].(int)
@@ -21309,10 +21688,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsRate3512(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsRate3512 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsRate3546(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsRate3546 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsRate3512
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsRate3546
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -21326,23 +21705,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCounters3513(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCounters3513 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCounters3547(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCounters3547 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCounters3513
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCounters3547
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsInc3514(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsRate3515(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsInc3548(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsRate3549(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsInc3514(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsInc3514 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsInc3548(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsInc3548 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsInc3514
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsInc3548
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.So_pkts_slb_nat_reserve_fail = in["so_pkts_slb_nat_reserve_fail"].(int)
@@ -21367,10 +21746,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsRate3515(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsRate3515 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsRate3549(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsRate3549 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsRate3515
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsRate3549
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -21397,23 +21776,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGbl3516(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGbl3516 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGbl3550(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGbl3550 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGbl3516
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGbl3550
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsInc3517(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsRate3518(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsInc3551(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsRate3552(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsInc3517(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsInc3517 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsInc3551(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsInc3551 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsInc3517
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsInc3551
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Total_invalid_playerid_pkts = in["total_invalid_playerid_pkts"].(int)
@@ -21422,10 +21801,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsRate3518(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsRate3518 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsRate3552(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsRate3552 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsRate3518
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsRate3552
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -21436,23 +21815,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRate3519(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRate3519 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRate3553(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRate3553 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRate3519
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRate3553
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsInc3520(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsRate3521(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsInc3554(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsRate3555(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsInc3520(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsInc3520 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsInc3554(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsInc3554 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsInc3520
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsInc3554
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Total_reset = in["total_reset"].(int)
@@ -21461,10 +21840,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsRate3521(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsRate3521 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsRate3555(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsRate3555 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsRate3521
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsRate3555
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -21475,23 +21854,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobal3522(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobal3522 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobal3556(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobal3556 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobal3522
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobal3556
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsInc3523(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsRate3524(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsInc3557(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsRate3558(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsInc3523(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsInc3523 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsInc3557(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsInc3557 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsInc3523
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsInc3557
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.EnqueueFull = in["enqueue_full"].(int)
@@ -21501,10 +21880,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsRate3524(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsRate3524 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsRate3558(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsRate3558 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsRate3524
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsRate3558
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -21516,23 +21895,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlb3525(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlb3525 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlb3559(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlb3559 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlb3525
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlb3559
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsInc3526(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsRate3527(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsInc3560(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsRate3561(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsInc3526(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsInc3526 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsInc3560(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsInc3560 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsInc3526
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsInc3560
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mlb_dcmsg_error = in["mlb_dcmsg_error"].(int)
@@ -21541,10 +21920,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsRate3527(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsRate3527 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsRate3561(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsRate3561 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsRate3527
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsRate3561
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -21555,23 +21934,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbe3528(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbe3528 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbe3562(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbe3562 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbe3528
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbe3562
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsInc3529(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsRate3530(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsInc3563(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsRate3564(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsInc3529(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsInc3529 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsInc3563(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsInc3563 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsInc3529
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsInc3563
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Err_entry_create_failed = in["err_entry_create_failed"].(int)
@@ -21590,10 +21969,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsRate3530(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsRate3530 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsRate3564(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsRate3564 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsRate3530
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsRate3564
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -21614,23 +21993,23 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpz3531(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpz3531 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpz3565(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpz3565 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpz3531
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpz3565
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsInc3532(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsRate3533(in["trigger_stats_rate"].([]interface{}))
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsInc3566(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsRate3567(in["trigger_stats_rate"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsInc3532(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsInc3532 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsInc3566(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsInc3566 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsInc3532
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsInc3566
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Set_bw_error = in["set_bw_error"].(int)
@@ -21640,10 +22019,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsRate3533(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsRate3533 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsRate3567(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsRate3567 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsRate3533
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsRate3567
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -21655,10 +22034,10 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesActivate3534(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesActivate3534 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesActivate3568(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesActivate3568 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesActivate3534
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesActivate3568
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Template = in["template"].(string)
@@ -21667,76 +22046,77 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesActivate3534(d []interface{}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplates3535(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplates3535 {
+func getObjectVisibilityPacketCaptureObjectTemplates3569(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplates3569 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplates3535
+	var ret edpt.VisibilityPacketCaptureObjectTemplates3569
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.TemplGtpPlcyTmplList = getSliceVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplList3536(in["templ_gtp_plcy_tmpl_list"].([]interface{}))
-		ret.InterfaceEthernetTmplList = getSliceVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplList3540(in["interface_ethernet_tmpl_list"].([]interface{}))
-		ret.InterfaceTunnelTmplList = getSliceVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplList3544(in["interface_tunnel_tmpl_list"].([]interface{}))
-		ret.AamJwtAuthorizationTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplList3548(in["aam_jwt_authorization_tmpl_list"].([]interface{}))
-		ret.AamAaaPolicyTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplList3552(in["aam_aaa_policy_tmpl_list"].([]interface{}))
-		ret.AamAuthLogonHttpInsTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplList3556(in["aam_auth_logon_http_ins_tmpl_list"].([]interface{}))
-		ret.AamAuthServerLdapInstTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplList3560(in["aam_auth_server_ldap_inst_tmpl_list"].([]interface{}))
-		ret.AamAuthServerOcspInstTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplList3564(in["aam_auth_server_ocsp_inst_tmpl_list"].([]interface{}))
-		ret.AamAuthServerRadInstTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplList3568(in["aam_auth_server_rad_inst_tmpl_list"].([]interface{}))
-		ret.AamAuthServerWinInstTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList3572(in["aam_auth_server_win_inst_tmpl_list"].([]interface{}))
-		ret.AamAuthSamlServiceProvTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplList3576(in["aam_auth_saml_service_prov_tmpl_list"].([]interface{}))
-		ret.AamAuthSamlIdProvTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplList3580(in["aam_auth_saml_id_prov_tmpl_list"].([]interface{}))
-		ret.AamAuthServiceGroupTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplList3584(in["aam_auth_service_group_tmpl_list"].([]interface{}))
-		ret.AamAuthServiceGroupMemTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplList3588(in["aam_auth_service_group_mem_tmpl_list"].([]interface{}))
-		ret.AamAuthRelayHbaseInstTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplList3592(in["aam_auth_relay_hbase_inst_tmpl_list"].([]interface{}))
-		ret.AamAuthRelayFormInstTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplList3596(in["aam_auth_relay_form_inst_tmpl_list"].([]interface{}))
-		ret.AamAuthRelayWsFedTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplList3600(in["aam_auth_relay_ws_fed_tmpl_list"].([]interface{}))
-		ret.AamAuthCaptchaInstTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplList3604(in["aam_auth_captcha_inst_tmpl_list"].([]interface{}))
-		ret.SlbTemplCacheTmplList = getSliceVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplList3608(in["slb_templ_cache_tmpl_list"].([]interface{}))
-		ret.SlbPortTmplList = getSliceVisibilityPacketCaptureObjectTemplatesSlbPortTmplList3612(in["slb_port_tmpl_list"].([]interface{}))
-		ret.SlbServiceTmplList = getSliceVisibilityPacketCaptureObjectTemplatesSlbServiceTmplList3616(in["slb_service_tmpl_list"].([]interface{}))
-		ret.SlbVportTmplList = getSliceVisibilityPacketCaptureObjectTemplatesSlbVportTmplList3620(in["slb_vport_tmpl_list"].([]interface{}))
-		ret.Cgnv6ServGroupTmplList = getSliceVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplList3624(in["cgnv6_serv_group_tmpl_list"].([]interface{}))
-		ret.Cgnv6Dns64VsPortTmplList = getSliceVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplList3628(in["cgnv6_dns64_vs_port_tmpl_list"].([]interface{}))
-		ret.Cgnv6MapTransDomainTmplList = getSliceVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplList3632(in["cgnv6_map_trans_domain_tmpl_list"].([]interface{}))
-		ret.Cgnv6EncapDomainTmplList = getSliceVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplList3636(in["cgnv6_encap_domain_tmpl_list"].([]interface{}))
-		ret.NetflowMonitorTmplList = getSliceVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplList3640(in["netflow_monitor_tmpl_list"].([]interface{}))
-		ret.RuleSetTmplList = getSliceVisibilityPacketCaptureObjectTemplatesRuleSetTmplList3644(in["rule_set_tmpl_list"].([]interface{}))
-		ret.RuleSetRuleTmplList = getSliceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList3648(in["rule_set_rule_tmpl_list"].([]interface{}))
-		ret.FwServerPortTmplList = getSliceVisibilityPacketCaptureObjectTemplatesFwServerPortTmplList3652(in["fw_server_port_tmpl_list"].([]interface{}))
-		ret.FwServiceGroupTmplList = getSliceVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplList3656(in["fw_service_group_tmpl_list"].([]interface{}))
-		ret.FwServiceGroupMemTmplList = getSliceVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplList3660(in["fw_service_group_mem_tmpl_list"].([]interface{}))
-		ret.Dns_vportTmplList = getSliceVisibilityPacketCaptureObjectTemplatesDns_vportTmplList3664(in["dns_vport_tmpl_list"].([]interface{}))
-		ret.SmtpVportTmplList = getSliceVisibilityPacketCaptureObjectTemplatesSmtpVportTmplList3668(in["smtp_vport_tmpl_list"].([]interface{}))
-		ret.Pop3VportTmplList = getSliceVisibilityPacketCaptureObjectTemplatesPop3VportTmplList3672(in["pop3_vport_tmpl_list"].([]interface{}))
-		ret.ImapVportTmplList = getSliceVisibilityPacketCaptureObjectTemplatesImapVportTmplList3676(in["imap_vport_tmpl_list"].([]interface{}))
+		ret.TemplGtpPlcyTmplList = getSliceVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplList3570(in["templ_gtp_plcy_tmpl_list"].([]interface{}))
+		ret.InterfaceEthernetTmplList = getSliceVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplList3574(in["interface_ethernet_tmpl_list"].([]interface{}))
+		ret.InterfaceTunnelTmplList = getSliceVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplList3578(in["interface_tunnel_tmpl_list"].([]interface{}))
+		ret.AamJwtAuthorizationTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplList3582(in["aam_jwt_authorization_tmpl_list"].([]interface{}))
+		ret.AamAaaPolicyTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplList3586(in["aam_aaa_policy_tmpl_list"].([]interface{}))
+		ret.AamAuthLogonHttpInsTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplList3590(in["aam_auth_logon_http_ins_tmpl_list"].([]interface{}))
+		ret.AamAuthServerLdapInstTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplList3594(in["aam_auth_server_ldap_inst_tmpl_list"].([]interface{}))
+		ret.AamAuthServerOcspInstTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplList3598(in["aam_auth_server_ocsp_inst_tmpl_list"].([]interface{}))
+		ret.AamAuthServerRadInstTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplList3602(in["aam_auth_server_rad_inst_tmpl_list"].([]interface{}))
+		ret.AamAuthServerWinInstTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList3606(in["aam_auth_server_win_inst_tmpl_list"].([]interface{}))
+		ret.AamAuthSamlServiceProvTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplList3610(in["aam_auth_saml_service_prov_tmpl_list"].([]interface{}))
+		ret.AamAuthSamlIdProvTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplList3614(in["aam_auth_saml_id_prov_tmpl_list"].([]interface{}))
+		ret.AamAuthServiceGroupTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplList3618(in["aam_auth_service_group_tmpl_list"].([]interface{}))
+		ret.AamAuthServiceGroupMemTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplList3622(in["aam_auth_service_group_mem_tmpl_list"].([]interface{}))
+		ret.AamAuthRelayHbaseInstTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplList3626(in["aam_auth_relay_hbase_inst_tmpl_list"].([]interface{}))
+		ret.AamAuthRelayFormInstTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplList3630(in["aam_auth_relay_form_inst_tmpl_list"].([]interface{}))
+		ret.AamAuthRelayWsFedTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplList3634(in["aam_auth_relay_ws_fed_tmpl_list"].([]interface{}))
+		ret.AamAuthCaptchaInstTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplList3638(in["aam_auth_captcha_inst_tmpl_list"].([]interface{}))
+		ret.SlbTemplCacheTmplList = getSliceVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplList3642(in["slb_templ_cache_tmpl_list"].([]interface{}))
+		ret.CaptchaTemplateInstTmplList = getSliceVisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplList3646(in["captcha_template_inst_tmpl_list"].([]interface{}))
+		ret.SlbPortTmplList = getSliceVisibilityPacketCaptureObjectTemplatesSlbPortTmplList3650(in["slb_port_tmpl_list"].([]interface{}))
+		ret.SlbServiceTmplList = getSliceVisibilityPacketCaptureObjectTemplatesSlbServiceTmplList3654(in["slb_service_tmpl_list"].([]interface{}))
+		ret.SlbVportTmplList = getSliceVisibilityPacketCaptureObjectTemplatesSlbVportTmplList3658(in["slb_vport_tmpl_list"].([]interface{}))
+		ret.Cgnv6ServGroupTmplList = getSliceVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplList3662(in["cgnv6_serv_group_tmpl_list"].([]interface{}))
+		ret.Cgnv6Dns64VsPortTmplList = getSliceVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplList3666(in["cgnv6_dns64_vs_port_tmpl_list"].([]interface{}))
+		ret.Cgnv6MapTransDomainTmplList = getSliceVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplList3670(in["cgnv6_map_trans_domain_tmpl_list"].([]interface{}))
+		ret.Cgnv6EncapDomainTmplList = getSliceVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplList3674(in["cgnv6_encap_domain_tmpl_list"].([]interface{}))
+		ret.NetflowMonitorTmplList = getSliceVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplList3678(in["netflow_monitor_tmpl_list"].([]interface{}))
+		ret.RuleSetTmplList = getSliceVisibilityPacketCaptureObjectTemplatesRuleSetTmplList3682(in["rule_set_tmpl_list"].([]interface{}))
+		ret.RuleSetRuleTmplList = getSliceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList3686(in["rule_set_rule_tmpl_list"].([]interface{}))
+		ret.FwServerPortTmplList = getSliceVisibilityPacketCaptureObjectTemplatesFwServerPortTmplList3690(in["fw_server_port_tmpl_list"].([]interface{}))
+		ret.FwServiceGroupTmplList = getSliceVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplList3694(in["fw_service_group_tmpl_list"].([]interface{}))
+		ret.FwServiceGroupMemTmplList = getSliceVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplList3698(in["fw_service_group_mem_tmpl_list"].([]interface{}))
+		ret.Dns_vportTmplList = getSliceVisibilityPacketCaptureObjectTemplatesDns_vportTmplList3702(in["dns_vport_tmpl_list"].([]interface{}))
+		ret.SmtpVportTmplList = getSliceVisibilityPacketCaptureObjectTemplatesSmtpVportTmplList3706(in["smtp_vport_tmpl_list"].([]interface{}))
+		ret.Pop3VportTmplList = getSliceVisibilityPacketCaptureObjectTemplatesPop3VportTmplList3710(in["pop3_vport_tmpl_list"].([]interface{}))
+		ret.ImapVportTmplList = getSliceVisibilityPacketCaptureObjectTemplatesImapVportTmplList3714(in["imap_vport_tmpl_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplList3536(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplList3536 {
+func getSliceVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplList3570(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplList3570 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplList3536, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplList3570, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplList3536
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplList3570
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsSeverity3537(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsInc3538(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsRate3539(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsSeverity3571(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsInc3572(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsRate3573(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsSeverity3537(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsSeverity3537 {
+func getObjectVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsSeverity3571(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsSeverity3571 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsSeverity3537
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsSeverity3571
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -21752,10 +22132,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerS
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsInc3538(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsInc3538 {
+func getObjectVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsInc3572(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsInc3572 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsInc3538
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsInc3572
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DropVldGtpIeRepeatCountExceed = in["drop_vld_gtp_ie_repeat_count_exceed"].(int)
@@ -21793,10 +22173,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerS
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsRate3539(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsRate3539 {
+func getObjectVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsRate3573(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsRate3573 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsRate3539
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsRate3573
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -21836,29 +22216,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerS
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplList3540(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplList3540 {
+func getSliceVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplList3574(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplList3574 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplList3540, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplList3574, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplList3540
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplList3574
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsSeverity3541(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsInc3542(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsRate3543(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsSeverity3575(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsInc3576(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsRate3577(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsSeverity3541(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsSeverity3541 {
+func getObjectVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsSeverity3575(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsSeverity3575 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsSeverity3541
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsSeverity3575
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -21874,10 +22254,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTri
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsInc3542(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsInc3542 {
+func getObjectVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsInc3576(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsInc3576 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsInc3542
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsInc3576
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Input_errors = in["input_errors"].(int)
@@ -21892,10 +22272,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTri
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsRate3543(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsRate3543 {
+func getObjectVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsRate3577(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsRate3577 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsRate3543
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsRate3577
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -21912,29 +22292,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTri
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplList3544(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplList3544 {
+func getSliceVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplList3578(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplList3578 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplList3544, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplList3578, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplList3544
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplList3578
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsSeverity3545(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsInc3546(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsRate3547(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsSeverity3579(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsInc3580(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsRate3581(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsSeverity3545(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsSeverity3545 {
+func getObjectVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsSeverity3579(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsSeverity3579 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsSeverity3545
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsSeverity3579
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -21950,10 +22330,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTrigg
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsInc3546(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsInc3546 {
+func getObjectVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsInc3580(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsInc3580 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsInc3546
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsInc3580
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.NumRxErrPkts = in["num_rx_err_pkts"].(int)
@@ -21963,10 +22343,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTrigg
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsRate3547(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsRate3547 {
+func getObjectVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsRate3581(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsRate3581 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsRate3547
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsRate3581
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -21978,29 +22358,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTrigg
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplList3548(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplList3548 {
+func getSliceVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplList3582(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplList3582 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplList3548, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplList3582, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplList3548
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplList3582
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsSeverity3549(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsInc3550(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsRate3551(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsSeverity3583(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsInc3584(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsRate3585(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsSeverity3549(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsSeverity3549 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsSeverity3583(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsSeverity3583 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsSeverity3549
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsSeverity3583
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -22016,10 +22396,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListT
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsInc3550(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsInc3550 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsInc3584(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsInc3584 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsInc3550
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsInc3584
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.JwtAuthorizeFailure = in["jwt_authorize_failure"].(int)
@@ -22033,10 +22413,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListT
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsRate3551(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsRate3551 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsRate3585(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsRate3585 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsRate3551
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsRate3585
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -22052,29 +22432,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListT
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplList3552(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplList3552 {
+func getSliceVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplList3586(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplList3586 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplList3552, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplList3586, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplList3552
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplList3586
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsSeverity3553(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsInc3554(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsRate3555(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsSeverity3587(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsInc3588(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsRate3589(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsSeverity3553(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsSeverity3553 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsSeverity3587(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsSeverity3587 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsSeverity3553
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsSeverity3587
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -22090,10 +22470,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerS
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsInc3554(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsInc3554 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsInc3588(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsInc3588 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsInc3554
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsInc3588
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -22102,10 +22482,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerS
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsRate3555(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsRate3555 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsRate3589(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsRate3589 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsRate3555
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsRate3589
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -22116,29 +22496,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerS
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplList3556(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplList3556 {
+func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplList3590(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplList3590 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplList3556, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplList3590, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplList3556
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplList3590
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsSeverity3557(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsInc3558(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsRate3559(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsSeverity3591(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsInc3592(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsRate3593(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsSeverity3557(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsSeverity3557 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsSeverity3591(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsSeverity3591 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsSeverity3557
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsSeverity3591
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -22154,10 +22534,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListT
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsInc3558(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsInc3558 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsInc3592(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsInc3592 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsInc3558
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsInc3592
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Spn_krb_faiure = in["spn_krb_faiure"].(int)
@@ -22166,10 +22546,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListT
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsRate3559(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsRate3559 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsRate3593(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsRate3593 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsRate3559
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsRate3593
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -22180,29 +22560,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListT
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplList3560(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplList3560 {
+func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplList3594(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplList3594 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplList3560, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplList3594, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplList3560
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplList3594
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsSeverity3561(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsInc3562(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsRate3563(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsSeverity3595(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsInc3596(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsRate3597(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsSeverity3561(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsSeverity3561 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsSeverity3595(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsSeverity3595 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsSeverity3561
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsSeverity3595
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -22218,10 +22598,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplLis
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsInc3562(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsInc3562 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsInc3596(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsInc3596 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsInc3562
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsInc3596
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.AdminBindFailure = in["admin_bind_failure"].(int)
@@ -22237,10 +22617,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplLis
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsRate3563(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsRate3563 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsRate3597(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsRate3597 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsRate3563
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsRate3597
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -22258,29 +22638,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplLis
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplList3564(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplList3564 {
+func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplList3598(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplList3598 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplList3564, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplList3598, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplList3564
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplList3598
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsSeverity3565(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsInc3566(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsRate3567(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsSeverity3599(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsInc3600(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsRate3601(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsSeverity3565(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsSeverity3565 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsSeverity3599(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsSeverity3599 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsSeverity3565
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsSeverity3599
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -22296,10 +22676,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplLis
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsInc3566(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsInc3566 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsInc3600(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsInc3600 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsInc3566
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsInc3600
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Timeout = in["timeout"].(int)
@@ -22311,10 +22691,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplLis
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsRate3567(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsRate3567 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsRate3601(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsRate3601 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsRate3567
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsRate3601
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -22328,29 +22708,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplLis
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplList3568(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplList3568 {
+func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplList3602(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplList3602 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplList3568, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplList3602, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplList3568
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplList3602
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsSeverity3569(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsInc3570(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsRate3571(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsSeverity3603(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsInc3604(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsRate3605(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsSeverity3569(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsSeverity3569 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsSeverity3603(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsSeverity3603 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsSeverity3569
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsSeverity3603
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -22366,10 +22746,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplList
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsInc3570(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsInc3570 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsInc3604(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsInc3604 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsInc3570
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsInc3604
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Authen_failure = in["authen_failure"].(int)
@@ -22382,10 +22762,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplList
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsRate3571(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsRate3571 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsRate3605(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsRate3605 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsRate3571
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsRate3605
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -22400,29 +22780,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplList
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList3572(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList3572 {
+func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList3606(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList3606 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList3572, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList3606, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList3572
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList3606
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsSeverity3573(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsInc3574(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsRate3575(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsSeverity3607(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsInc3608(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsRate3609(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsSeverity3573(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsSeverity3573 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsSeverity3607(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsSeverity3607 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsSeverity3573
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsSeverity3607
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -22438,10 +22818,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsInc3574(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsInc3574 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsInc3608(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsInc3608 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsInc3574
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsInc3608
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Krb_timeout_error = in["krb_timeout_error"].(int)
@@ -22454,10 +22834,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsRate3575(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsRate3575 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsRate3609(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsRate3609 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsRate3575
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsRate3609
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -22472,29 +22852,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplList3576(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplList3576 {
+func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplList3610(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplList3610 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplList3576, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplList3610, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplList3576
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplList3610
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsSeverity3577(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsInc3578(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsRate3579(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsSeverity3611(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsInc3612(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsRate3613(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsSeverity3577(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsSeverity3577 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsSeverity3611(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsSeverity3611 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsSeverity3577
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsSeverity3611
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -22510,10 +22890,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplLi
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsInc3578(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsInc3578 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsInc3612(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsInc3612 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsInc3578
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsInc3612
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.AcsAuthzFail = in["acs_authz_fail"].(int)
@@ -22523,10 +22903,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplLi
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsRate3579(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsRate3579 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsRate3613(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsRate3613 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsRate3579
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsRate3613
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -22538,29 +22918,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplLi
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplList3580(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplList3580 {
+func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplList3614(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplList3614 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplList3580, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplList3614, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplList3580
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplList3614
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsSeverity3581(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsInc3582(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsRate3583(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsSeverity3615(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsInc3616(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsRate3617(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsSeverity3581(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsSeverity3581 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsSeverity3615(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsSeverity3615 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsSeverity3581
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsSeverity3615
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -22576,10 +22956,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTri
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsInc3582(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsInc3582 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsInc3616(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsInc3616 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsInc3582
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsInc3616
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MdFail = in["md_fail"].(int)
@@ -22589,10 +22969,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTri
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsRate3583(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsRate3583 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsRate3617(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsRate3617 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsRate3583
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsRate3617
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -22604,29 +22984,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTri
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplList3584(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplList3584 {
+func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplList3618(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplList3618 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplList3584, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplList3618, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplList3584
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplList3618
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsSeverity3585(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsInc3586(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsRate3587(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsSeverity3619(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsInc3620(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsRate3621(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsSeverity3585(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsSeverity3585 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsSeverity3619(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsSeverity3619 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsSeverity3585
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsSeverity3619
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -22642,10 +23022,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListT
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsInc3586(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsInc3586 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsInc3620(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsInc3620 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsInc3586
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsInc3620
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Server_selection_fail_reset = in["server_selection_fail_reset"].(int)
@@ -22654,10 +23034,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListT
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsRate3587(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsRate3587 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsRate3621(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsRate3621 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsRate3587
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsRate3621
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -22668,29 +23048,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListT
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplList3588(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplList3588 {
+func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplList3622(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplList3622 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplList3588, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplList3622, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplList3588
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplList3622
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsSeverity3589(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsInc3590(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsRate3591(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsSeverity3623(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsInc3624(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsRate3625(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsSeverity3589(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsSeverity3589 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsSeverity3623(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsSeverity3623 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsSeverity3589
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsSeverity3623
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -22706,10 +23086,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplLi
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsInc3590(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsInc3590 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsInc3624(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsInc3624 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsInc3590
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsInc3624
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Curr_conn_overflow = in["curr_conn_overflow"].(int)
@@ -22718,10 +23098,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplLi
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsRate3591(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsRate3591 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsRate3625(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsRate3625 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsRate3591
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsRate3625
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -22732,29 +23112,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplLi
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplList3592(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplList3592 {
+func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplList3626(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplList3626 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplList3592, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplList3626, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplList3592
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplList3626
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsSeverity3593(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsInc3594(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsRate3595(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsSeverity3627(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsInc3628(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsRate3629(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsSeverity3593(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsSeverity3593 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsSeverity3627(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsSeverity3627 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsSeverity3593
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsSeverity3627
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -22770,10 +23150,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplLis
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsInc3594(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsInc3594 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsInc3628(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsInc3628 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsInc3594
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsInc3628
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.NoCreds = in["no_creds"].(int)
@@ -22788,10 +23168,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplLis
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsRate3595(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsRate3595 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsRate3629(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsRate3629 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsRate3595
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsRate3629
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -22808,29 +23188,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplLis
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplList3596(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplList3596 {
+func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplList3630(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplList3630 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplList3596, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplList3630, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplList3596
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplList3630
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsSeverity3597(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsInc3598(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsRate3599(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsSeverity3631(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsInc3632(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsRate3633(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsSeverity3597(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsSeverity3597 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsSeverity3631(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsSeverity3631 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsSeverity3597
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsSeverity3631
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -22846,10 +23226,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplList
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsInc3598(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsInc3598 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsInc3632(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsInc3632 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsInc3598
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsInc3632
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Invalid_srv_rsp = in["invalid_srv_rsp"].(int)
@@ -22864,10 +23244,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplList
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsRate3599(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsRate3599 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsRate3633(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsRate3633 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsRate3599
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsRate3633
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -22884,29 +23264,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplList
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplList3600(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplList3600 {
+func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplList3634(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplList3634 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplList3600, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplList3634, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplList3600
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplList3634
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsSeverity3601(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsInc3602(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsRate3603(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsSeverity3635(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsInc3636(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsRate3637(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsSeverity3601(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsSeverity3601 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsSeverity3635(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsSeverity3635 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsSeverity3601
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsSeverity3635
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -22922,10 +23302,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTri
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsInc3602(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsInc3602 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsInc3636(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsInc3636 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsInc3602
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsInc3636
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Failure = in["failure"].(int)
@@ -22934,10 +23314,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTri
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsRate3603(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsRate3603 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsRate3637(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsRate3637 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsRate3603
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsRate3637
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -22948,29 +23328,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTri
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplList3604(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplList3604 {
+func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplList3638(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplList3638 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplList3604, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplList3638, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplList3604
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplList3638
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsSeverity3605(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsInc3606(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsRate3607(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsSeverity3639(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsInc3640(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsRate3641(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsSeverity3605(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsSeverity3605 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsSeverity3639(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsSeverity3639 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsSeverity3605
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsSeverity3639
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -22986,10 +23366,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTr
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsInc3606(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsInc3606 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsInc3640(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsInc3640 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsInc3606
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsInc3640
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ParseFail = in["parse_fail"].(int)
@@ -23002,10 +23382,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTr
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsRate3607(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsRate3607 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsRate3641(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsRate3641 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsRate3607
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsRate3641
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -23020,29 +23400,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTr
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplList3608(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplList3608 {
+func getSliceVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplList3642(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplList3642 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplList3608, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplList3642, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplList3608
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplList3642
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsSeverity3609(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsInc3610(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsRate3611(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsSeverity3643(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsInc3644(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsRate3645(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsSeverity3609(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsSeverity3609 {
+func getObjectVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsSeverity3643(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsSeverity3643 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsSeverity3609
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsSeverity3643
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -23058,10 +23438,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTrigger
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsInc3610(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsInc3610 {
+func getObjectVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsInc3644(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsInc3644 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsInc3610
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsInc3644
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Nc_req_header = in["nc_req_header"].(int)
@@ -23076,10 +23456,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTrigger
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsRate3611(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsRate3611 {
+func getObjectVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsRate3645(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsRate3645 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsRate3611
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsRate3645
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -23096,29 +23476,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTrigger
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesSlbPortTmplList3612(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesSlbPortTmplList3612 {
+func getSliceVisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplList3646(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplList3646 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesSlbPortTmplList3612, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplList3646, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesSlbPortTmplList3612
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplList3646
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsSeverity3613(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsInc3614(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsRate3615(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsSeverity3647(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsInc3648(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsRate3649(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsSeverity3613(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsSeverity3613 {
+func getObjectVisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsSeverity3647(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsSeverity3647 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsSeverity3613
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsSeverity3647
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -23134,10 +23514,80 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsS
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsInc3614(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsInc3614 {
+func getObjectVisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsInc3648(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsInc3648 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsInc3614
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsInc3648
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.ParseFail = in["parse_fail"].(int)
+		ret.JsonFail = in["json_fail"].(int)
+		ret.TimeoutError = in["timeout_error"].(int)
+		ret.OtherError = in["other_error"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsRate3649(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsRate3649 {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsRate3649
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
+		ret.Duration = in["duration"].(int)
+		ret.ParseFail = in["parse_fail"].(int)
+		ret.JsonFail = in["json_fail"].(int)
+		ret.TimeoutError = in["timeout_error"].(int)
+		ret.OtherError = in["other_error"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getSliceVisibilityPacketCaptureObjectTemplatesSlbPortTmplList3650(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesSlbPortTmplList3650 {
+
+	count1 := len(d)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesSlbPortTmplList3650, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesSlbPortTmplList3650
+		oi.Name = in["name"].(string)
+		oi.CaptureConfig = in["capture_config"].(string)
+		//omit uuid
+		oi.UserTag = in["user_tag"].(string)
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsSeverity3651(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsInc3652(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsRate3653(in["trigger_stats_rate"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsSeverity3651(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsSeverity3651 {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsSeverity3651
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Error = in["error"].(int)
+		ret.ErrorAlert = in["error_alert"].(int)
+		ret.ErrorWarning = in["error_warning"].(int)
+		ret.ErrorCritical = in["error_critical"].(int)
+		ret.Drop = in["drop"].(int)
+		ret.DropAlert = in["drop_alert"].(int)
+		ret.DropWarning = in["drop_warning"].(int)
+		ret.DropCritical = in["drop_critical"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsInc3652(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsInc3652 {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsInc3652
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Es_resp_300 = in["es_resp_300"].(int)
@@ -23151,10 +23601,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsI
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsRate3615(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsRate3615 {
+func getObjectVisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsRate3653(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsRate3653 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsRate3615
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsRate3653
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -23170,29 +23620,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsR
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesSlbServiceTmplList3616(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplList3616 {
+func getSliceVisibilityPacketCaptureObjectTemplatesSlbServiceTmplList3654(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplList3654 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplList3616, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplList3654, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplList3616
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplList3654
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsSeverity3617(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsInc3618(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsRate3619(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsSeverity3655(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsInc3656(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsRate3657(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsSeverity3617(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsSeverity3617 {
+func getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsSeverity3655(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsSeverity3655 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsSeverity3617
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsSeverity3655
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -23208,10 +23658,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsInc3618(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsInc3618 {
+func getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsInc3656(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsInc3656 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsInc3618
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsInc3656
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Es_resp_300 = in["es_resp_300"].(int)
@@ -23225,10 +23675,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsRate3619(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsRate3619 {
+func getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsRate3657(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsRate3657 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsRate3619
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsRate3657
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -23244,29 +23694,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerSta
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesSlbVportTmplList3620(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplList3620 {
+func getSliceVisibilityPacketCaptureObjectTemplatesSlbVportTmplList3658(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplList3658 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplList3620, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplList3658, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplList3620
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplList3658
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsSeverity3621(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsInc3622(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsRate3623(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsSeverity3659(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsInc3660(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsRate3661(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsSeverity3621(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsSeverity3621 {
+func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsSeverity3659(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsSeverity3659 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsSeverity3621
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsSeverity3659
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -23282,10 +23732,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStats
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsInc3622(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsInc3622 {
+func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsInc3660(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsInc3660 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsInc3622
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsInc3660
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Total_mf_dns_pkts = in["total_mf_dns_pkts"].(int)
@@ -23301,10 +23751,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStats
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsRate3623(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsRate3623 {
+func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsRate3661(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsRate3661 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsRate3623
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsRate3661
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -23322,29 +23772,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStats
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplList3624(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplList3624 {
+func getSliceVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplList3662(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplList3662 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplList3624, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplList3662, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplList3624
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplList3662
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsSeverity3625(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsInc3626(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsRate3627(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsSeverity3663(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsInc3664(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsRate3665(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsSeverity3625(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsSeverity3625 {
+func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsSeverity3663(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsSeverity3663 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsSeverity3625
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsSeverity3663
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -23360,10 +23810,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTrigge
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsInc3626(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsInc3626 {
+func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsInc3664(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsInc3664 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsInc3626
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsInc3664
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Server_selection_fail_drop = in["server_selection_fail_drop"].(int)
@@ -23373,10 +23823,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTrigge
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsRate3627(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsRate3627 {
+func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsRate3665(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsRate3665 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsRate3627
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsRate3665
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -23388,29 +23838,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTrigge
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplList3628(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplList3628 {
+func getSliceVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplList3666(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplList3666 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplList3628, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplList3666, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplList3628
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplList3666
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsSeverity3629(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsInc3630(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsRate3631(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsSeverity3667(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsInc3668(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsRate3669(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsSeverity3629(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsSeverity3629 {
+func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsSeverity3667(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsSeverity3667 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsSeverity3629
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsSeverity3667
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -23426,10 +23876,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTrig
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsInc3630(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsInc3630 {
+func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsInc3668(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsInc3668 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsInc3630
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsInc3668
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Es_total_failure_actions = in["es_total_failure_actions"].(int)
@@ -23438,10 +23888,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTrig
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsRate3631(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsRate3631 {
+func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsRate3669(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsRate3669 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsRate3631
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsRate3669
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -23452,29 +23902,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTrig
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplList3632(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplList3632 {
+func getSliceVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplList3670(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplList3670 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplList3632, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplList3670, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplList3632
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplList3670
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsSeverity3633(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsInc3634(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsRate3635(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsSeverity3671(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsInc3672(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsRate3673(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsSeverity3633(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsSeverity3633 {
+func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsSeverity3671(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsSeverity3671 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsSeverity3633
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsSeverity3671
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -23490,10 +23940,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListT
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsInc3634(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsInc3634 {
+func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsInc3672(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsInc3672 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsInc3634
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsInc3672
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Inbound_addr_port_validation_failed = in["inbound_addr_port_validation_failed"].(int)
@@ -23509,10 +23959,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListT
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsRate3635(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsRate3635 {
+func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsRate3673(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsRate3673 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsRate3635
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsRate3673
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -23530,29 +23980,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListT
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplList3636(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplList3636 {
+func getSliceVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplList3674(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplList3674 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplList3636, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplList3674, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplList3636
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplList3674
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsSeverity3637(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsInc3638(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsRate3639(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsSeverity3675(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsInc3676(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsRate3677(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsSeverity3637(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsSeverity3637 {
+func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsSeverity3675(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsSeverity3675 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsSeverity3637
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsSeverity3675
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -23568,10 +24018,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTrig
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsInc3638(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsInc3638 {
+func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsInc3676(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsInc3676 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsInc3638
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsInc3676
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Inbound_addr_port_validation_failed = in["inbound_addr_port_validation_failed"].(int)
@@ -23587,10 +24037,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTrig
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsRate3639(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsRate3639 {
+func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsRate3677(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsRate3677 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsRate3639
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsRate3677
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -23608,29 +24058,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTrig
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplList3640(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplList3640 {
+func getSliceVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplList3678(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplList3678 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplList3640, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplList3678, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplList3640
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplList3678
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsSeverity3641(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsInc3642(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsRate3643(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsSeverity3679(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsInc3680(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsRate3681(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsSeverity3641(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsSeverity3641 {
+func getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsSeverity3679(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsSeverity3679 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsSeverity3641
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsSeverity3679
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -23646,10 +24096,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTrigge
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsInc3642(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsInc3642 {
+func getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsInc3680(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsInc3680 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsInc3642
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsInc3680
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Nat44RecordsSentFailure = in["nat44_records_sent_failure"].(int)
@@ -23717,10 +24167,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTrigge
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsRate3643(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsRate3643 {
+func getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsRate3681(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsRate3681 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsRate3643
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsRate3681
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -23790,29 +24240,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTrigge
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesRuleSetTmplList3644(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplList3644 {
+func getSliceVisibilityPacketCaptureObjectTemplatesRuleSetTmplList3682(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplList3682 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplList3644, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplList3682, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplList3644
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplList3682
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsSeverity3645(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsInc3646(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsRate3647(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsSeverity3683(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsInc3684(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsRate3685(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsSeverity3645(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsSeverity3645 {
+func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsSeverity3683(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsSeverity3683 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsSeverity3645
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsSeverity3683
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -23828,10 +24278,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsS
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsInc3646(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsInc3646 {
+func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsInc3684(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsInc3684 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsInc3646
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsInc3684
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.UnmatchedDrops = in["unmatched_drops"].(int)
@@ -23842,10 +24292,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsI
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsRate3647(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsRate3647 {
+func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsRate3685(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsRate3685 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsRate3647
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsRate3685
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -23858,29 +24308,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsR
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList3648(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList3648 {
+func getSliceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList3686(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList3686 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList3648, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList3686, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList3648
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList3686
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsSeverity3649(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsInc3650(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsRate3651(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsSeverity3687(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsInc3688(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsRate3689(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsSeverity3649(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsSeverity3649 {
+func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsSeverity3687(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsSeverity3687 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsSeverity3649
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsSeverity3687
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -23896,10 +24346,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerSt
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsInc3650(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsInc3650 {
+func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsInc3688(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsInc3688 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsInc3650
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsInc3688
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SynCookieVerificationFailed = in["syn_cookie_verification_failed"].(int)
@@ -23908,10 +24358,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerSt
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsRate3651(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsRate3651 {
+func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsRate3689(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsRate3689 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsRate3651
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsRate3689
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -23922,29 +24372,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerSt
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesFwServerPortTmplList3652(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesFwServerPortTmplList3652 {
+func getSliceVisibilityPacketCaptureObjectTemplatesFwServerPortTmplList3690(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesFwServerPortTmplList3690 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesFwServerPortTmplList3652, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesFwServerPortTmplList3690, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesFwServerPortTmplList3652
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesFwServerPortTmplList3690
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsSeverity3653(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsInc3654(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsRate3655(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsSeverity3691(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsInc3692(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsRate3693(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsSeverity3653(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsSeverity3653 {
+func getObjectVisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsSeverity3691(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsSeverity3691 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsSeverity3653
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsSeverity3691
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -23960,10 +24410,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerS
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsInc3654(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsInc3654 {
+func getObjectVisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsInc3692(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsInc3692 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsInc3654
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsInc3692
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Es_resp_400 = in["es_resp_400"].(int)
@@ -23974,10 +24424,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerS
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsRate3655(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsRate3655 {
+func getObjectVisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsRate3693(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsRate3693 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsRate3655
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsRate3693
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -23990,29 +24440,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerS
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplList3656(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplList3656 {
+func getSliceVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplList3694(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplList3694 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplList3656, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplList3694, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplList3656
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplList3694
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsSeverity3657(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsInc3658(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsRate3659(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsSeverity3695(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsInc3696(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsRate3697(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsSeverity3657(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsSeverity3657 {
+func getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsSeverity3695(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsSeverity3695 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsSeverity3657
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsSeverity3695
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -24028,10 +24478,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTrigge
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsInc3658(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsInc3658 {
+func getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsInc3696(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsInc3696 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsInc3658
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsInc3696
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Server_selection_fail_reset = in["server_selection_fail_reset"].(int)
@@ -24040,10 +24490,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTrigge
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsRate3659(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsRate3659 {
+func getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsRate3697(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsRate3697 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsRate3659
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsRate3697
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -24054,29 +24504,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTrigge
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplList3660(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplList3660 {
+func getSliceVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplList3698(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplList3698 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplList3660, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplList3698, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplList3660
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplList3698
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsSeverity3661(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsInc3662(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsRate3663(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsSeverity3699(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsInc3700(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsRate3701(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsSeverity3661(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsSeverity3661 {
+func getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsSeverity3699(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsSeverity3699 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsSeverity3661
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsSeverity3699
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -24092,10 +24542,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTri
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsInc3662(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsInc3662 {
+func getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsInc3700(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsInc3700 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsInc3662
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsInc3700
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Curr_conn_overflow = in["curr_conn_overflow"].(int)
@@ -24104,10 +24554,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTri
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsRate3663(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsRate3663 {
+func getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsRate3701(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsRate3701 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsRate3663
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsRate3701
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -24118,29 +24568,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTri
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesDns_vportTmplList3664(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesDns_vportTmplList3664 {
+func getSliceVisibilityPacketCaptureObjectTemplatesDns_vportTmplList3702(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesDns_vportTmplList3702 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesDns_vportTmplList3664, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesDns_vportTmplList3702, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesDns_vportTmplList3664
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesDns_vportTmplList3702
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsSeverity3665(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsInc3666(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsRate3667(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsSeverity3703(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsInc3704(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsRate3705(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsSeverity3665(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsSeverity3665 {
+func getObjectVisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsSeverity3703(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsSeverity3703 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsSeverity3665
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsSeverity3703
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -24156,10 +24606,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStat
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsInc3666(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsInc3666 {
+func getObjectVisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsInc3704(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsInc3704 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsInc3666
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsInc3704
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Dnsrrl_total_dropped = in["dnsrrl_total_dropped"].(int)
@@ -24196,10 +24646,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStat
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsRate3667(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsRate3667 {
+func getObjectVisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsRate3705(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsRate3705 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsRate3667
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsRate3705
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -24238,29 +24688,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStat
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesSmtpVportTmplList3668(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesSmtpVportTmplList3668 {
+func getSliceVisibilityPacketCaptureObjectTemplatesSmtpVportTmplList3706(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesSmtpVportTmplList3706 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesSmtpVportTmplList3668, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesSmtpVportTmplList3706, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesSmtpVportTmplList3668
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesSmtpVportTmplList3706
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsSeverity3669(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsInc3670(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsRate3671(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsSeverity3707(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsInc3708(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsRate3709(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsSeverity3669(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsSeverity3669 {
+func getObjectVisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsSeverity3707(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsSeverity3707 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsSeverity3669
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsSeverity3707
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -24276,10 +24726,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStat
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsInc3670(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsInc3670 {
+func getObjectVisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsInc3708(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsInc3708 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsInc3670
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsInc3708
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.No_proxy = in["no_proxy"].(int)
@@ -24306,10 +24756,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStat
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsRate3671(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsRate3671 {
+func getObjectVisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsRate3709(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsRate3709 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsRate3671
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsRate3709
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -24338,29 +24788,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStat
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesPop3VportTmplList3672(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesPop3VportTmplList3672 {
+func getSliceVisibilityPacketCaptureObjectTemplatesPop3VportTmplList3710(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesPop3VportTmplList3710 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesPop3VportTmplList3672, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesPop3VportTmplList3710, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesPop3VportTmplList3672
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesPop3VportTmplList3710
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsSeverity3673(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsInc3674(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsRate3675(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsSeverity3711(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsInc3712(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsRate3713(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsSeverity3673(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsSeverity3673 {
+func getObjectVisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsSeverity3711(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsSeverity3711 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsSeverity3673
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsSeverity3711
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -24376,10 +24826,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStat
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsInc3674(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsInc3674 {
+func getObjectVisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsInc3712(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsInc3712 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsInc3674
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsInc3712
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Svrsel_fail = in["svrsel_fail"].(int)
@@ -24401,10 +24851,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStat
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsRate3675(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsRate3675 {
+func getObjectVisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsRate3713(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsRate3713 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsRate3675
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsRate3713
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -24428,29 +24878,29 @@ func getObjectVisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStat
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesImapVportTmplList3676(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesImapVportTmplList3676 {
+func getSliceVisibilityPacketCaptureObjectTemplatesImapVportTmplList3714(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesImapVportTmplList3714 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesImapVportTmplList3676, 0, count1)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesImapVportTmplList3714, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesImapVportTmplList3676
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesImapVportTmplList3714
 		oi.Name = in["name"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsSeverity3677(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsInc3678(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsRate3679(in["trigger_stats_rate"].([]interface{}))
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsSeverity3715(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsInc3716(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsRate3717(in["trigger_stats_rate"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsSeverity3677(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsSeverity3677 {
+func getObjectVisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsSeverity3715(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsSeverity3715 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsSeverity3677
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsSeverity3715
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -24466,10 +24916,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStat
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsInc3678(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsInc3678 {
+func getObjectVisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsInc3716(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsInc3716 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsInc3678
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsInc3716
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Svrsel_fail = in["svrsel_fail"].(int)
@@ -24499,10 +24949,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStat
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsRate3679(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsRate3679 {
+func getObjectVisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsRate3717(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsRate3717 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsRate3679
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsRate3717
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -24534,10 +24984,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStat
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureAutomatedCaptures3680(d []interface{}) edpt.VisibilityPacketCaptureAutomatedCaptures3680 {
+func getObjectVisibilityPacketCaptureAutomatedCaptures3718(d []interface{}) edpt.VisibilityPacketCaptureAutomatedCaptures3718 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureAutomatedCaptures3680
+	var ret edpt.VisibilityPacketCaptureAutomatedCaptures3718
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Slb_port_tmpl_error_code_return_inc = in["slb_port_tmpl_error_code_return_inc"].(int)
@@ -24547,10 +24997,10 @@ func getObjectVisibilityPacketCaptureAutomatedCaptures3680(d []interface{}) edpt
 	return ret
 }
 
-func getObjectVisibilityPingSweepDetection3681(d []interface{}) edpt.VisibilityPingSweepDetection3681 {
+func getObjectVisibilityPingSweepDetection3719(d []interface{}) edpt.VisibilityPingSweepDetection3719 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPingSweepDetection3681
+	var ret edpt.VisibilityPingSweepDetection3719
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Events = in["events"].(int)
@@ -24562,10 +25012,10 @@ func getObjectVisibilityPingSweepDetection3681(d []interface{}) edpt.VisibilityP
 	return ret
 }
 
-func getObjectVisibilityPortScanDetection3682(d []interface{}) edpt.VisibilityPortScanDetection3682 {
+func getObjectVisibilityPortScanDetection3720(d []interface{}) edpt.VisibilityPortScanDetection3720 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPortScanDetection3682
+	var ret edpt.VisibilityPortScanDetection3720
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Events = in["events"].(int)
@@ -24577,38 +25027,38 @@ func getObjectVisibilityPortScanDetection3682(d []interface{}) edpt.VisibilityPo
 	return ret
 }
 
-func getObjectVisibilityReporting3683(d []interface{}) edpt.VisibilityReporting3683 {
+func getObjectVisibilityReporting3721(d []interface{}) edpt.VisibilityReporting3721 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityReporting3683
+	var ret edpt.VisibilityReporting3721
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SessionLogging = in["session_logging"].(string)
 		//omit uuid
-		ret.SamplingEnable = getSliceVisibilityReportingSamplingEnable3684(in["sampling_enable"].([]interface{}))
-		ret.TelemetryExportInterval = getObjectVisibilityReportingTelemetryExportInterval3685(in["telemetry_export_interval"].([]interface{}))
-		ret.Template = getObjectVisibilityReportingTemplate3686(in["template"].([]interface{}))
+		ret.SamplingEnable = getSliceVisibilityReportingSamplingEnable3722(in["sampling_enable"].([]interface{}))
+		ret.TelemetryExportInterval = getObjectVisibilityReportingTelemetryExportInterval3723(in["telemetry_export_interval"].([]interface{}))
+		ret.Template = getObjectVisibilityReportingTemplate3724(in["template"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceVisibilityReportingSamplingEnable3684(d []interface{}) []edpt.VisibilityReportingSamplingEnable3684 {
+func getSliceVisibilityReportingSamplingEnable3722(d []interface{}) []edpt.VisibilityReportingSamplingEnable3722 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityReportingSamplingEnable3684, 0, count1)
+	ret := make([]edpt.VisibilityReportingSamplingEnable3722, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityReportingSamplingEnable3684
+		var oi edpt.VisibilityReportingSamplingEnable3722
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityReportingTelemetryExportInterval3685(d []interface{}) edpt.VisibilityReportingTelemetryExportInterval3685 {
+func getObjectVisibilityReportingTelemetryExportInterval3723(d []interface{}) edpt.VisibilityReportingTelemetryExportInterval3723 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityReportingTelemetryExportInterval3685
+	var ret edpt.VisibilityReportingTelemetryExportInterval3723
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(int)
@@ -24617,36 +25067,36 @@ func getObjectVisibilityReportingTelemetryExportInterval3685(d []interface{}) ed
 	return ret
 }
 
-func getObjectVisibilityReportingTemplate3686(d []interface{}) edpt.VisibilityReportingTemplate3686 {
+func getObjectVisibilityReportingTemplate3724(d []interface{}) edpt.VisibilityReportingTemplate3724 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityReportingTemplate3686
+	var ret edpt.VisibilityReportingTemplate3724
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Notification = getObjectVisibilityReportingTemplateNotification3687(in["notification"].([]interface{}))
+		ret.Notification = getObjectVisibilityReportingTemplateNotification3725(in["notification"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityReportingTemplateNotification3687(d []interface{}) edpt.VisibilityReportingTemplateNotification3687 {
+func getObjectVisibilityReportingTemplateNotification3725(d []interface{}) edpt.VisibilityReportingTemplateNotification3725 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityReportingTemplateNotification3687
+	var ret edpt.VisibilityReportingTemplateNotification3725
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.TemplateNameList = getSliceVisibilityReportingTemplateNotificationTemplateNameList3688(in["template_name_list"].([]interface{}))
-		ret.Debug = getObjectVisibilityReportingTemplateNotificationDebug3691(in["debug"].([]interface{}))
+		ret.TemplateNameList = getSliceVisibilityReportingTemplateNotificationTemplateNameList3726(in["template_name_list"].([]interface{}))
+		ret.Debug = getObjectVisibilityReportingTemplateNotificationDebug3729(in["debug"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceVisibilityReportingTemplateNotificationTemplateNameList3688(d []interface{}) []edpt.VisibilityReportingTemplateNotificationTemplateNameList3688 {
+func getSliceVisibilityReportingTemplateNotificationTemplateNameList3726(d []interface{}) []edpt.VisibilityReportingTemplateNotificationTemplateNameList3726 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityReportingTemplateNotificationTemplateNameList3688, 0, count1)
+	ret := make([]edpt.VisibilityReportingTemplateNotificationTemplateNameList3726, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityReportingTemplateNotificationTemplateNameList3688
+		var oi edpt.VisibilityReportingTemplateNotificationTemplateNameList3726
 		oi.Name = in["name"].(string)
 		oi.Ipv4Address = in["ipv4_address"].(string)
 		oi.Ipv6Address = in["ipv6_address"].(string)
@@ -24660,30 +25110,30 @@ func getSliceVisibilityReportingTemplateNotificationTemplateNameList3688(d []int
 		oi.DebugMode = in["debug_mode"].(int)
 		oi.TestConnectivity = in["test_connectivity"].(int)
 		//omit uuid
-		oi.SamplingEnable = getSliceVisibilityReportingTemplateNotificationTemplateNameListSamplingEnable3689(in["sampling_enable"].([]interface{}))
-		oi.Authentication = getObjectVisibilityReportingTemplateNotificationTemplateNameListAuthentication3690(in["authentication"].([]interface{}))
+		oi.SamplingEnable = getSliceVisibilityReportingTemplateNotificationTemplateNameListSamplingEnable3727(in["sampling_enable"].([]interface{}))
+		oi.Authentication = getObjectVisibilityReportingTemplateNotificationTemplateNameListAuthentication3728(in["authentication"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceVisibilityReportingTemplateNotificationTemplateNameListSamplingEnable3689(d []interface{}) []edpt.VisibilityReportingTemplateNotificationTemplateNameListSamplingEnable3689 {
+func getSliceVisibilityReportingTemplateNotificationTemplateNameListSamplingEnable3727(d []interface{}) []edpt.VisibilityReportingTemplateNotificationTemplateNameListSamplingEnable3727 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityReportingTemplateNotificationTemplateNameListSamplingEnable3689, 0, count1)
+	ret := make([]edpt.VisibilityReportingTemplateNotificationTemplateNameListSamplingEnable3727, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityReportingTemplateNotificationTemplateNameListSamplingEnable3689
+		var oi edpt.VisibilityReportingTemplateNotificationTemplateNameListSamplingEnable3727
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityReportingTemplateNotificationTemplateNameListAuthentication3690(d []interface{}) edpt.VisibilityReportingTemplateNotificationTemplateNameListAuthentication3690 {
+func getObjectVisibilityReportingTemplateNotificationTemplateNameListAuthentication3728(d []interface{}) edpt.VisibilityReportingTemplateNotificationTemplateNameListAuthentication3728 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityReportingTemplateNotificationTemplateNameListAuthentication3690
+	var ret edpt.VisibilityReportingTemplateNotificationTemplateNameListAuthentication3728
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RelativeLoginUri = in["relative_login_uri"].(string)
@@ -24700,15 +25150,15 @@ func getObjectVisibilityReportingTemplateNotificationTemplateNameListAuthenticat
 	return ret
 }
 
-func getObjectVisibilityReportingTemplateNotificationDebug3691(d []interface{}) edpt.VisibilityReportingTemplateNotificationDebug3691 {
+func getObjectVisibilityReportingTemplateNotificationDebug3729(d []interface{}) edpt.VisibilityReportingTemplateNotificationDebug3729 {
 
-	var ret edpt.VisibilityReportingTemplateNotificationDebug3691
+	var ret edpt.VisibilityReportingTemplateNotificationDebug3729
 	return ret
 }
 
-func getObjectVisibilityResourceUsage3692(d []interface{}) edpt.VisibilityResourceUsage3692 {
+func getObjectVisibilityResourceUsage3730(d []interface{}) edpt.VisibilityResourceUsage3730 {
 
-	var ret edpt.VisibilityResourceUsage3692
+	var ret edpt.VisibilityResourceUsage3730
 	return ret
 }
 
@@ -24725,61 +25175,61 @@ func getSliceVisibilitySamplingEnable(d []interface{}) []edpt.VisibilitySampling
 	return ret
 }
 
-func getObjectVisibilityTopn3693(d []interface{}) edpt.VisibilityTopn3693 {
+func getObjectVisibilityTopn3731(d []interface{}) edpt.VisibilityTopn3731 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopn3693
+	var ret edpt.VisibilityTopn3731
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceVisibilityTopnSamplingEnable3694(in["sampling_enable"].([]interface{}))
-		ret.TemplGtpPlcyTopnTmplList = getSliceVisibilityTopnTemplGtpPlcyTopnTmplList3695(in["templ_gtp_plcy_topn_tmpl_list"].([]interface{}))
-		ret.TemplGtpPlcyTopnNode = getObjectVisibilityTopnTemplGtpPlcyTopnNode3697(in["templ_gtp_plcy_topn_node"].([]interface{}))
-		ret.Cgnv6NatPoolTopnTmplList = getSliceVisibilityTopnCgnv6NatPoolTopnTmplList3698(in["cgnv6_nat_pool_topn_tmpl_list"].([]interface{}))
-		ret.Cgnv6NatPoolTopnNode = getObjectVisibilityTopnCgnv6NatPoolTopnNode3700(in["cgnv6_nat_pool_topn_node"].([]interface{}))
-		ret.GtpApnPrefixTopnTmplList = getSliceVisibilityTopnGtpApnPrefixTopnTmplList3701(in["gtp_apn_prefix_topn_tmpl_list"].([]interface{}))
-		ret.GtpApnPrefixTopnNode = getObjectVisibilityTopnGtpApnPrefixTopnNode3703(in["gtp_apn_prefix_topn_node"].([]interface{}))
-		ret.GtpNetworkElementTopnTmplList = getSliceVisibilityTopnGtpNetworkElementTopnTmplList3704(in["gtp_network_element_topn_tmpl_list"].([]interface{}))
-		ret.GtpNetworkElementTopnNode = getObjectVisibilityTopnGtpNetworkElementTopnNode3706(in["gtp_network_element_topn_node"].([]interface{}))
+		ret.SamplingEnable = getSliceVisibilityTopnSamplingEnable3732(in["sampling_enable"].([]interface{}))
+		ret.TemplGtpPlcyTopnTmplList = getSliceVisibilityTopnTemplGtpPlcyTopnTmplList3733(in["templ_gtp_plcy_topn_tmpl_list"].([]interface{}))
+		ret.TemplGtpPlcyTopnNode = getObjectVisibilityTopnTemplGtpPlcyTopnNode3735(in["templ_gtp_plcy_topn_node"].([]interface{}))
+		ret.Cgnv6NatPoolTopnTmplList = getSliceVisibilityTopnCgnv6NatPoolTopnTmplList3736(in["cgnv6_nat_pool_topn_tmpl_list"].([]interface{}))
+		ret.Cgnv6NatPoolTopnNode = getObjectVisibilityTopnCgnv6NatPoolTopnNode3738(in["cgnv6_nat_pool_topn_node"].([]interface{}))
+		ret.GtpApnPrefixTopnTmplList = getSliceVisibilityTopnGtpApnPrefixTopnTmplList3739(in["gtp_apn_prefix_topn_tmpl_list"].([]interface{}))
+		ret.GtpApnPrefixTopnNode = getObjectVisibilityTopnGtpApnPrefixTopnNode3741(in["gtp_apn_prefix_topn_node"].([]interface{}))
+		ret.GtpNetworkElementTopnTmplList = getSliceVisibilityTopnGtpNetworkElementTopnTmplList3742(in["gtp_network_element_topn_tmpl_list"].([]interface{}))
+		ret.GtpNetworkElementTopnNode = getObjectVisibilityTopnGtpNetworkElementTopnNode3744(in["gtp_network_element_topn_node"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceVisibilityTopnSamplingEnable3694(d []interface{}) []edpt.VisibilityTopnSamplingEnable3694 {
+func getSliceVisibilityTopnSamplingEnable3732(d []interface{}) []edpt.VisibilityTopnSamplingEnable3732 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityTopnSamplingEnable3694, 0, count1)
+	ret := make([]edpt.VisibilityTopnSamplingEnable3732, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityTopnSamplingEnable3694
+		var oi edpt.VisibilityTopnSamplingEnable3732
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceVisibilityTopnTemplGtpPlcyTopnTmplList3695(d []interface{}) []edpt.VisibilityTopnTemplGtpPlcyTopnTmplList3695 {
+func getSliceVisibilityTopnTemplGtpPlcyTopnTmplList3733(d []interface{}) []edpt.VisibilityTopnTemplGtpPlcyTopnTmplList3733 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityTopnTemplGtpPlcyTopnTmplList3695, 0, count1)
+	ret := make([]edpt.VisibilityTopnTemplGtpPlcyTopnTmplList3733, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityTopnTemplGtpPlcyTopnTmplList3695
+		var oi edpt.VisibilityTopnTemplGtpPlcyTopnTmplList3733
 		oi.Name = in["name"].(string)
 		oi.TopnSize = in["topn_size"].(int)
 		oi.Interval = in["interval"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.Metrics = getObjectVisibilityTopnTemplGtpPlcyTopnTmplListMetrics3696(in["metrics"].([]interface{}))
+		oi.Metrics = getObjectVisibilityTopnTemplGtpPlcyTopnTmplListMetrics3734(in["metrics"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityTopnTemplGtpPlcyTopnTmplListMetrics3696(d []interface{}) edpt.VisibilityTopnTemplGtpPlcyTopnTmplListMetrics3696 {
+func getObjectVisibilityTopnTemplGtpPlcyTopnTmplListMetrics3734(d []interface{}) edpt.VisibilityTopnTemplGtpPlcyTopnTmplListMetrics3734 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopnTemplGtpPlcyTopnTmplListMetrics3696
+	var ret edpt.VisibilityTopnTemplGtpPlcyTopnTmplListMetrics3734
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RlMessageMonitor = in["rl_message_monitor"].(int)
@@ -24788,10 +25238,10 @@ func getObjectVisibilityTopnTemplGtpPlcyTopnTmplListMetrics3696(d []interface{})
 	return ret
 }
 
-func getObjectVisibilityTopnTemplGtpPlcyTopnNode3697(d []interface{}) edpt.VisibilityTopnTemplGtpPlcyTopnNode3697 {
+func getObjectVisibilityTopnTemplGtpPlcyTopnNode3735(d []interface{}) edpt.VisibilityTopnTemplGtpPlcyTopnNode3735 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopnTemplGtpPlcyTopnNode3697
+	var ret edpt.VisibilityTopnTemplGtpPlcyTopnNode3735
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Activate = in["activate"].(string)
@@ -24800,28 +25250,28 @@ func getObjectVisibilityTopnTemplGtpPlcyTopnNode3697(d []interface{}) edpt.Visib
 	return ret
 }
 
-func getSliceVisibilityTopnCgnv6NatPoolTopnTmplList3698(d []interface{}) []edpt.VisibilityTopnCgnv6NatPoolTopnTmplList3698 {
+func getSliceVisibilityTopnCgnv6NatPoolTopnTmplList3736(d []interface{}) []edpt.VisibilityTopnCgnv6NatPoolTopnTmplList3736 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityTopnCgnv6NatPoolTopnTmplList3698, 0, count1)
+	ret := make([]edpt.VisibilityTopnCgnv6NatPoolTopnTmplList3736, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityTopnCgnv6NatPoolTopnTmplList3698
+		var oi edpt.VisibilityTopnCgnv6NatPoolTopnTmplList3736
 		oi.Name = in["name"].(string)
 		oi.TopnSize = in["topn_size"].(int)
 		oi.Interval = in["interval"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.Metrics = getObjectVisibilityTopnCgnv6NatPoolTopnTmplListMetrics3699(in["metrics"].([]interface{}))
+		oi.Metrics = getObjectVisibilityTopnCgnv6NatPoolTopnTmplListMetrics3737(in["metrics"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityTopnCgnv6NatPoolTopnTmplListMetrics3699(d []interface{}) edpt.VisibilityTopnCgnv6NatPoolTopnTmplListMetrics3699 {
+func getObjectVisibilityTopnCgnv6NatPoolTopnTmplListMetrics3737(d []interface{}) edpt.VisibilityTopnCgnv6NatPoolTopnTmplListMetrics3737 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopnCgnv6NatPoolTopnTmplListMetrics3699
+	var ret edpt.VisibilityTopnCgnv6NatPoolTopnTmplListMetrics3737
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.UdpTotal = in["udp_total"].(int)
@@ -24831,10 +25281,10 @@ func getObjectVisibilityTopnCgnv6NatPoolTopnTmplListMetrics3699(d []interface{})
 	return ret
 }
 
-func getObjectVisibilityTopnCgnv6NatPoolTopnNode3700(d []interface{}) edpt.VisibilityTopnCgnv6NatPoolTopnNode3700 {
+func getObjectVisibilityTopnCgnv6NatPoolTopnNode3738(d []interface{}) edpt.VisibilityTopnCgnv6NatPoolTopnNode3738 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopnCgnv6NatPoolTopnNode3700
+	var ret edpt.VisibilityTopnCgnv6NatPoolTopnNode3738
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Activate = in["activate"].(string)
@@ -24843,28 +25293,28 @@ func getObjectVisibilityTopnCgnv6NatPoolTopnNode3700(d []interface{}) edpt.Visib
 	return ret
 }
 
-func getSliceVisibilityTopnGtpApnPrefixTopnTmplList3701(d []interface{}) []edpt.VisibilityTopnGtpApnPrefixTopnTmplList3701 {
+func getSliceVisibilityTopnGtpApnPrefixTopnTmplList3739(d []interface{}) []edpt.VisibilityTopnGtpApnPrefixTopnTmplList3739 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityTopnGtpApnPrefixTopnTmplList3701, 0, count1)
+	ret := make([]edpt.VisibilityTopnGtpApnPrefixTopnTmplList3739, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityTopnGtpApnPrefixTopnTmplList3701
+		var oi edpt.VisibilityTopnGtpApnPrefixTopnTmplList3739
 		oi.Name = in["name"].(string)
 		oi.TopnSize = in["topn_size"].(int)
 		oi.Interval = in["interval"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.Metrics = getObjectVisibilityTopnGtpApnPrefixTopnTmplListMetrics3702(in["metrics"].([]interface{}))
+		oi.Metrics = getObjectVisibilityTopnGtpApnPrefixTopnTmplListMetrics3740(in["metrics"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityTopnGtpApnPrefixTopnTmplListMetrics3702(d []interface{}) edpt.VisibilityTopnGtpApnPrefixTopnTmplListMetrics3702 {
+func getObjectVisibilityTopnGtpApnPrefixTopnTmplListMetrics3740(d []interface{}) edpt.VisibilityTopnGtpApnPrefixTopnTmplListMetrics3740 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopnGtpApnPrefixTopnTmplListMetrics3702
+	var ret edpt.VisibilityTopnGtpApnPrefixTopnTmplListMetrics3740
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.UplinkBytes = in["uplink_bytes"].(int)
@@ -24959,10 +25409,10 @@ func getObjectVisibilityTopnGtpApnPrefixTopnTmplListMetrics3702(d []interface{})
 	return ret
 }
 
-func getObjectVisibilityTopnGtpApnPrefixTopnNode3703(d []interface{}) edpt.VisibilityTopnGtpApnPrefixTopnNode3703 {
+func getObjectVisibilityTopnGtpApnPrefixTopnNode3741(d []interface{}) edpt.VisibilityTopnGtpApnPrefixTopnNode3741 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopnGtpApnPrefixTopnNode3703
+	var ret edpt.VisibilityTopnGtpApnPrefixTopnNode3741
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Activate = in["activate"].(string)
@@ -24971,28 +25421,28 @@ func getObjectVisibilityTopnGtpApnPrefixTopnNode3703(d []interface{}) edpt.Visib
 	return ret
 }
 
-func getSliceVisibilityTopnGtpNetworkElementTopnTmplList3704(d []interface{}) []edpt.VisibilityTopnGtpNetworkElementTopnTmplList3704 {
+func getSliceVisibilityTopnGtpNetworkElementTopnTmplList3742(d []interface{}) []edpt.VisibilityTopnGtpNetworkElementTopnTmplList3742 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityTopnGtpNetworkElementTopnTmplList3704, 0, count1)
+	ret := make([]edpt.VisibilityTopnGtpNetworkElementTopnTmplList3742, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityTopnGtpNetworkElementTopnTmplList3704
+		var oi edpt.VisibilityTopnGtpNetworkElementTopnTmplList3742
 		oi.Name = in["name"].(string)
 		oi.TopnSize = in["topn_size"].(int)
 		oi.Interval = in["interval"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.Metrics = getObjectVisibilityTopnGtpNetworkElementTopnTmplListMetrics3705(in["metrics"].([]interface{}))
+		oi.Metrics = getObjectVisibilityTopnGtpNetworkElementTopnTmplListMetrics3743(in["metrics"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityTopnGtpNetworkElementTopnTmplListMetrics3705(d []interface{}) edpt.VisibilityTopnGtpNetworkElementTopnTmplListMetrics3705 {
+func getObjectVisibilityTopnGtpNetworkElementTopnTmplListMetrics3743(d []interface{}) edpt.VisibilityTopnGtpNetworkElementTopnTmplListMetrics3743 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopnGtpNetworkElementTopnTmplListMetrics3705
+	var ret edpt.VisibilityTopnGtpNetworkElementTopnTmplListMetrics3743
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.UplinkBytes = in["uplink_bytes"].(int)
@@ -25090,10 +25540,10 @@ func getObjectVisibilityTopnGtpNetworkElementTopnTmplListMetrics3705(d []interfa
 	return ret
 }
 
-func getObjectVisibilityTopnGtpNetworkElementTopnNode3706(d []interface{}) edpt.VisibilityTopnGtpNetworkElementTopnNode3706 {
+func getObjectVisibilityTopnGtpNetworkElementTopnNode3744(d []interface{}) edpt.VisibilityTopnGtpNetworkElementTopnNode3744 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopnGtpNetworkElementTopnNode3706
+	var ret edpt.VisibilityTopnGtpNetworkElementTopnNode3744
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Activate = in["activate"].(string)
@@ -25102,65 +25552,65 @@ func getObjectVisibilityTopnGtpNetworkElementTopnNode3706(d []interface{}) edpt.
 	return ret
 }
 
-func getObjectVisibilityZbar3707(d []interface{}) edpt.VisibilityZbar3707 {
+func getObjectVisibilityZbar3745(d []interface{}) edpt.VisibilityZbar3745 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityZbar3707
+	var ret edpt.VisibilityZbar3745
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
 		//omit uuid
-		ret.Dest = getObjectVisibilityZbarDest3708(in["dest"].([]interface{}))
-		ret.Truples = getObjectVisibilityZbarTruples3710(in["truples"].([]interface{}))
+		ret.Dest = getObjectVisibilityZbarDest3746(in["dest"].([]interface{}))
+		ret.Truples = getObjectVisibilityZbarTruples3748(in["truples"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityZbarDest3708(d []interface{}) edpt.VisibilityZbarDest3708 {
+func getObjectVisibilityZbarDest3746(d []interface{}) edpt.VisibilityZbarDest3746 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityZbarDest3708
+	var ret edpt.VisibilityZbarDest3746
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.BadSources = getObjectVisibilityZbarDestBadSources3709(in["bad_sources"].([]interface{}))
+		ret.BadSources = getObjectVisibilityZbarDestBadSources3747(in["bad_sources"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityZbarDestBadSources3709(d []interface{}) edpt.VisibilityZbarDestBadSources3709 {
+func getObjectVisibilityZbarDestBadSources3747(d []interface{}) edpt.VisibilityZbarDestBadSources3747 {
 
-	var ret edpt.VisibilityZbarDestBadSources3709
+	var ret edpt.VisibilityZbarDestBadSources3747
 	return ret
 }
 
-func getObjectVisibilityZbarTruples3710(d []interface{}) edpt.VisibilityZbarTruples3710 {
+func getObjectVisibilityZbarTruples3748(d []interface{}) edpt.VisibilityZbarTruples3748 {
 
-	var ret edpt.VisibilityZbarTruples3710
+	var ret edpt.VisibilityZbarTruples3748
 	return ret
 }
 
 func dataToEndpointVisibility(d *schema.ResourceData) edpt.Visibility {
 	var ret edpt.Visibility
-	ret.Inst.AnomalyDetection = getObjectVisibilityAnomalyDetection3242(d.Get("anomaly_detection").([]interface{}))
-	ret.Inst.DebugFiles = getObjectVisibilityDebugFiles3243(d.Get("debug_files").([]interface{}))
-	ret.Inst.File = getObjectVisibilityFile3244(d.Get("file").([]interface{}))
-	ret.Inst.FlowCollector = getObjectVisibilityFlowCollector3246(d.Get("flow_collector").([]interface{}))
+	ret.Inst.AnomalyDetection = getObjectVisibilityAnomalyDetection3270(d.Get("anomaly_detection").([]interface{}))
+	ret.Inst.DebugFiles = getObjectVisibilityDebugFiles3271(d.Get("debug_files").([]interface{}))
+	ret.Inst.File = getObjectVisibilityFile3272(d.Get("file").([]interface{}))
+	ret.Inst.FlowCollector = getObjectVisibilityFlowCollector3274(d.Get("flow_collector").([]interface{}))
 	ret.Inst.Granularity = d.Get("granularity").(int)
 	ret.Inst.InitialLearningInterval = d.Get("initial_learning_interval").(int)
-	ret.Inst.MonEntityTelemetryData = getObjectVisibilityMonEntityTelemetryData3254(d.Get("mon_entity_telemetry_data").([]interface{}))
-	ret.Inst.MonTopk = getObjectVisibilityMonTopk3256(d.Get("mon_topk").([]interface{}))
-	ret.Inst.Monitor = getObjectVisibilityMonitor3258(d.Get("monitor").([]interface{}))
-	ret.Inst.MonitoredEntity = getObjectVisibilityMonitoredEntity3272(d.Get("monitored_entity").([]interface{}))
-	ret.Inst.PacketCapture = getObjectVisibilityPacketCapture3281(d.Get("packet_capture").([]interface{}))
-	ret.Inst.PingSweepDetection = getObjectVisibilityPingSweepDetection3681(d.Get("ping_sweep_detection").([]interface{}))
-	ret.Inst.PortScanDetection = getObjectVisibilityPortScanDetection3682(d.Get("port_scan_detection").([]interface{}))
-	ret.Inst.Reporting = getObjectVisibilityReporting3683(d.Get("reporting").([]interface{}))
-	ret.Inst.ResourceUsage = getObjectVisibilityResourceUsage3692(d.Get("resource_usage").([]interface{}))
+	ret.Inst.MonEntityTelemetryData = getObjectVisibilityMonEntityTelemetryData3282(d.Get("mon_entity_telemetry_data").([]interface{}))
+	ret.Inst.MonTopk = getObjectVisibilityMonTopk3284(d.Get("mon_topk").([]interface{}))
+	ret.Inst.Monitor = getObjectVisibilityMonitor3286(d.Get("monitor").([]interface{}))
+	ret.Inst.MonitoredEntity = getObjectVisibilityMonitoredEntity3300(d.Get("monitored_entity").([]interface{}))
+	ret.Inst.PacketCapture = getObjectVisibilityPacketCapture3309(d.Get("packet_capture").([]interface{}))
+	ret.Inst.PingSweepDetection = getObjectVisibilityPingSweepDetection3719(d.Get("ping_sweep_detection").([]interface{}))
+	ret.Inst.PortScanDetection = getObjectVisibilityPortScanDetection3720(d.Get("port_scan_detection").([]interface{}))
+	ret.Inst.Reporting = getObjectVisibilityReporting3721(d.Get("reporting").([]interface{}))
+	ret.Inst.ResourceUsage = getObjectVisibilityResourceUsage3730(d.Get("resource_usage").([]interface{}))
 	ret.Inst.SamplingEnable = getSliceVisibilitySamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.SourceEntityTopk = d.Get("source_entity_topk").(int)
-	ret.Inst.Topn = getObjectVisibilityTopn3693(d.Get("topn").([]interface{}))
+	ret.Inst.Topn = getObjectVisibilityTopn3731(d.Get("topn").([]interface{}))
 	//omit uuid
-	ret.Inst.Zbar = getObjectVisibilityZbar3707(d.Get("zbar").([]interface{}))
+	ret.Inst.Zbar = getObjectVisibilityZbar3745(d.Get("zbar").([]interface{}))
 	return ret
 }

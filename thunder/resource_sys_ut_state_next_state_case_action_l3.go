@@ -68,8 +68,8 @@ func resourceSysUtStateNextStateCaseActionL3() *schema.Resource {
 			"value": {
 				Type: schema.TypeInt, Optional: true, Description: "protocol number",
 			},
-			"state_name": {
-				Type: schema.TypeString, Required: true, Description: "State_name",
+			"next_state_name": {
+				Type: schema.TypeString, Required: true, Description: "Next_state_name",
 			},
 			"direction": {
 				Type: schema.TypeString, Required: true, Description: "Direction",
@@ -77,8 +77,8 @@ func resourceSysUtStateNextStateCaseActionL3() *schema.Resource {
 			"case_number": {
 				Type: schema.TypeString, Required: true, Description: "CaseNumber",
 			},
-			"next_state_name": {
-				Type: schema.TypeString, Required: true, Description: "Next_state_name",
+			"state_name": {
+				Type: schema.TypeString, Required: true, Description: "State_name",
 			},
 		},
 	}
@@ -175,9 +175,9 @@ func dataToEndpointSysUtStateNextStateCaseActionL3(d *schema.ResourceData) edpt.
 	ret.Inst.Type = d.Get("type").(string)
 	//omit uuid
 	ret.Inst.Value = d.Get("value").(int)
-	ret.Inst.State_name = d.Get("state_name").(string)
+	ret.Inst.Next_state_name = d.Get("next_state_name").(string)
 	ret.Inst.Direction = d.Get("direction").(string)
 	ret.Inst.CaseNumber = d.Get("case_number").(string)
-	ret.Inst.Next_state_name = d.Get("next_state_name").(string)
+	ret.Inst.State_name = d.Get("state_name").(string)
 	return ret
 }

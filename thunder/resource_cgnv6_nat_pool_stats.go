@@ -104,6 +104,27 @@ func resourceCgnv6NatPoolStats() *schema.Resource {
 						"ip_total": {
 							Type: schema.TypeInt, Optional: true, Description: "IP Total",
 						},
+						"udp_total_port": {
+							Type: schema.TypeInt, Optional: true, Description: "UDP Total Port",
+						},
+						"udp_port_usage_percentage": {
+							Type: schema.TypeInt, Optional: true, Description: "UDP Port Usage Percentage",
+						},
+						"tcp_total_port": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Total Port",
+						},
+						"tcp_port_usage_percentage": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Port Usage Percentage",
+						},
+						"max_users_allowed": {
+							Type: schema.TypeInt, Optional: true, Description: "Max Users Allowed",
+						},
+						"user_occupation_percentage": {
+							Type: schema.TypeInt, Optional: true, Description: "User Occupation Percentage",
+						},
+						"ip_total_cluster": {
+							Type: schema.TypeInt, Optional: true, Description: "IP Total in Scaleout Cluster",
+						},
 					},
 				},
 			},
@@ -133,34 +154,41 @@ func resourceCgnv6NatPoolStatsRead(ctx context.Context, d *schema.ResourceData, 
 func setObjectCgnv6NatPoolStatsStats(ret edpt.DataCgnv6NatPoolStats) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"users":                    ret.DtCgnv6NatPoolStats.Stats.Users,
-			"icmp":                     ret.DtCgnv6NatPoolStats.Stats.Icmp,
-			"icmp_freed":               ret.DtCgnv6NatPoolStats.Stats.IcmpFreed,
-			"icmp_total":               ret.DtCgnv6NatPoolStats.Stats.IcmpTotal,
-			"icmp_rsvd":                ret.DtCgnv6NatPoolStats.Stats.IcmpRsvd,
-			"icmp_peak":                ret.DtCgnv6NatPoolStats.Stats.IcmpPeak,
-			"icmp_hit_full":            ret.DtCgnv6NatPoolStats.Stats.IcmpHitFull,
-			"udp":                      ret.DtCgnv6NatPoolStats.Stats.Udp,
-			"udp_freed":                ret.DtCgnv6NatPoolStats.Stats.UdpFreed,
-			"udp_total":                ret.DtCgnv6NatPoolStats.Stats.UdpTotal,
-			"udp_rsvd":                 ret.DtCgnv6NatPoolStats.Stats.UdpRsvd,
-			"udp_peak":                 ret.DtCgnv6NatPoolStats.Stats.UdpPeak,
-			"udp_hit_full":             ret.DtCgnv6NatPoolStats.Stats.UdpHitFull,
-			"udp_port_overloaded":      ret.DtCgnv6NatPoolStats.Stats.UdpPortOverloaded,
-			"udp_port_overload_create": ret.DtCgnv6NatPoolStats.Stats.UdpPortOverloadCreate,
-			"udp_port_overload_free":   ret.DtCgnv6NatPoolStats.Stats.UdpPortOverloadFree,
-			"tcp":                      ret.DtCgnv6NatPoolStats.Stats.Tcp,
-			"tcp_freed":                ret.DtCgnv6NatPoolStats.Stats.TcpFreed,
-			"tcp_total":                ret.DtCgnv6NatPoolStats.Stats.TcpTotal,
-			"tcp_rsvd":                 ret.DtCgnv6NatPoolStats.Stats.TcpRsvd,
-			"tcp_peak":                 ret.DtCgnv6NatPoolStats.Stats.TcpPeak,
-			"tcp_hit_full":             ret.DtCgnv6NatPoolStats.Stats.TcpHitFull,
-			"tcp_port_overloaded":      ret.DtCgnv6NatPoolStats.Stats.TcpPortOverloaded,
-			"tcp_port_overload_create": ret.DtCgnv6NatPoolStats.Stats.TcpPortOverloadCreate,
-			"tcp_port_overload_free":   ret.DtCgnv6NatPoolStats.Stats.TcpPortOverloadFree,
-			"ip_used":                  ret.DtCgnv6NatPoolStats.Stats.IpUsed,
-			"ip_free":                  ret.DtCgnv6NatPoolStats.Stats.IpFree,
-			"ip_total":                 ret.DtCgnv6NatPoolStats.Stats.IpTotal,
+			"users":                      ret.DtCgnv6NatPoolStats.Stats.Users,
+			"icmp":                       ret.DtCgnv6NatPoolStats.Stats.Icmp,
+			"icmp_freed":                 ret.DtCgnv6NatPoolStats.Stats.IcmpFreed,
+			"icmp_total":                 ret.DtCgnv6NatPoolStats.Stats.IcmpTotal,
+			"icmp_rsvd":                  ret.DtCgnv6NatPoolStats.Stats.IcmpRsvd,
+			"icmp_peak":                  ret.DtCgnv6NatPoolStats.Stats.IcmpPeak,
+			"icmp_hit_full":              ret.DtCgnv6NatPoolStats.Stats.IcmpHitFull,
+			"udp":                        ret.DtCgnv6NatPoolStats.Stats.Udp,
+			"udp_freed":                  ret.DtCgnv6NatPoolStats.Stats.UdpFreed,
+			"udp_total":                  ret.DtCgnv6NatPoolStats.Stats.UdpTotal,
+			"udp_rsvd":                   ret.DtCgnv6NatPoolStats.Stats.UdpRsvd,
+			"udp_peak":                   ret.DtCgnv6NatPoolStats.Stats.UdpPeak,
+			"udp_hit_full":               ret.DtCgnv6NatPoolStats.Stats.UdpHitFull,
+			"udp_port_overloaded":        ret.DtCgnv6NatPoolStats.Stats.UdpPortOverloaded,
+			"udp_port_overload_create":   ret.DtCgnv6NatPoolStats.Stats.UdpPortOverloadCreate,
+			"udp_port_overload_free":     ret.DtCgnv6NatPoolStats.Stats.UdpPortOverloadFree,
+			"tcp":                        ret.DtCgnv6NatPoolStats.Stats.Tcp,
+			"tcp_freed":                  ret.DtCgnv6NatPoolStats.Stats.TcpFreed,
+			"tcp_total":                  ret.DtCgnv6NatPoolStats.Stats.TcpTotal,
+			"tcp_rsvd":                   ret.DtCgnv6NatPoolStats.Stats.TcpRsvd,
+			"tcp_peak":                   ret.DtCgnv6NatPoolStats.Stats.TcpPeak,
+			"tcp_hit_full":               ret.DtCgnv6NatPoolStats.Stats.TcpHitFull,
+			"tcp_port_overloaded":        ret.DtCgnv6NatPoolStats.Stats.TcpPortOverloaded,
+			"tcp_port_overload_create":   ret.DtCgnv6NatPoolStats.Stats.TcpPortOverloadCreate,
+			"tcp_port_overload_free":     ret.DtCgnv6NatPoolStats.Stats.TcpPortOverloadFree,
+			"ip_used":                    ret.DtCgnv6NatPoolStats.Stats.IpUsed,
+			"ip_free":                    ret.DtCgnv6NatPoolStats.Stats.IpFree,
+			"ip_total":                   ret.DtCgnv6NatPoolStats.Stats.IpTotal,
+			"udp_total_port":             ret.DtCgnv6NatPoolStats.Stats.UdpTotalPort,
+			"udp_port_usage_percentage":  ret.DtCgnv6NatPoolStats.Stats.UdpPortUsagePercentage,
+			"tcp_total_port":             ret.DtCgnv6NatPoolStats.Stats.TcpTotalPort,
+			"tcp_port_usage_percentage":  ret.DtCgnv6NatPoolStats.Stats.TcpPortUsagePercentage,
+			"max_users_allowed":          ret.DtCgnv6NatPoolStats.Stats.MaxUsersAllowed,
+			"user_occupation_percentage": ret.DtCgnv6NatPoolStats.Stats.UserOccupationPercentage,
+			"ip_total_cluster":           ret.DtCgnv6NatPoolStats.Stats.IpTotalCluster,
 		},
 	}
 }
@@ -199,6 +227,13 @@ func getObjectCgnv6NatPoolStatsStats(d []interface{}) edpt.Cgnv6NatPoolStatsStat
 		ret.IpUsed = in["ip_used"].(int)
 		ret.IpFree = in["ip_free"].(int)
 		ret.IpTotal = in["ip_total"].(int)
+		ret.UdpTotalPort = in["udp_total_port"].(int)
+		ret.UdpPortUsagePercentage = in["udp_port_usage_percentage"].(int)
+		ret.TcpTotalPort = in["tcp_total_port"].(int)
+		ret.TcpPortUsagePercentage = in["tcp_port_usage_percentage"].(int)
+		ret.MaxUsersAllowed = in["max_users_allowed"].(int)
+		ret.UserOccupationPercentage = in["user_occupation_percentage"].(int)
+		ret.IpTotalCluster = in["ip_total_cluster"].(int)
 	}
 	return ret
 }

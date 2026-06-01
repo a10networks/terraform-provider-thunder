@@ -185,10 +185,10 @@ func resourceSlbTemplateDohRead(ctx context.Context, d *schema.ResourceData, met
 	return diags
 }
 
-func getObjectSlbTemplateDohDnsRetry1547(d []interface{}) edpt.SlbTemplateDohDnsRetry1547 {
+func getObjectSlbTemplateDohDnsRetry1548(d []interface{}) edpt.SlbTemplateDohDnsRetry1548 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDohDnsRetry1547
+	var ret edpt.SlbTemplateDohDnsRetry1548
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RetryInterval = in["retry_interval"].(int)
@@ -199,10 +199,10 @@ func getObjectSlbTemplateDohDnsRetry1547(d []interface{}) edpt.SlbTemplateDohDns
 	return ret
 }
 
-func getObjectSlbTemplateDohForwarder1548(d []interface{}) edpt.SlbTemplateDohForwarder1548 {
+func getObjectSlbTemplateDohForwarder1549(d []interface{}) edpt.SlbTemplateDohForwarder1549 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDohForwarder1548
+	var ret edpt.SlbTemplateDohForwarder1549
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ForwardingIpv4 = in["forwarding_ipv4"].(string)
@@ -225,8 +225,8 @@ func dataToEndpointSlbTemplateDoh(d *schema.ResourceData) edpt.SlbTemplateDoh {
 	var ret edpt.SlbTemplateDoh
 	ret.Inst.ConnReuse = d.Get("conn_reuse").(string)
 	ret.Inst.Dns = d.Get("dns").(string)
-	ret.Inst.DnsRetry = getObjectSlbTemplateDohDnsRetry1547(d.Get("dns_retry").([]interface{}))
-	ret.Inst.Forwarder = getObjectSlbTemplateDohForwarder1548(d.Get("forwarder").([]interface{}))
+	ret.Inst.DnsRetry = getObjectSlbTemplateDohDnsRetry1548(d.Get("dns_retry").([]interface{}))
+	ret.Inst.Forwarder = getObjectSlbTemplateDohForwarder1549(d.Get("forwarder").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.NonDnsRequest = d.Get("non_dns_request").(string)
 	ret.Inst.RejectStatusCode = d.Get("reject_status_code").(string)

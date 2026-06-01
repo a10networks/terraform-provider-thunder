@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstEntryPortStats14 struct {
 	Inst struct {
 		PortNum int `json:"port-num"`
@@ -376,6 +376,11 @@ type DdosDstEntryPortStats14StatsSipTcpPort struct {
 	Tcp_fin_psh_ack_rcvd                     int `json:"tcp_fin_psh_ack_rcvd"`
 	Tcp_fin_psh_ack_drop                     int `json:"tcp_fin_psh_ack_drop"`
 	Tcp_fin_psh_ack_fwd                      int `json:"tcp_fin_psh_ack_fwd"`
+	Pattern_filter1_drop                     int `json:"pattern_filter1_drop"`
+	Pattern_filter2_drop                     int `json:"pattern_filter2_drop"`
+	Pattern_filter3_drop                     int `json:"pattern_filter3_drop"`
+	Pattern_filter4_drop                     int `json:"pattern_filter4_drop"`
+	Pattern_filter5_drop                     int `json:"pattern_filter5_drop"`
 }
 
 func (p *DdosDstEntryPortStats14) GetId() string {

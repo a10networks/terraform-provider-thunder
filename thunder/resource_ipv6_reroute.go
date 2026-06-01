@@ -115,10 +115,10 @@ func resourceIpv6RerouteRead(ctx context.Context, d *schema.ResourceData, meta i
 	return diags
 }
 
-func getObjectIpv6RerouteSuppressProtocols1126(d []interface{}) edpt.Ipv6RerouteSuppressProtocols1126 {
+func getObjectIpv6RerouteSuppressProtocols1125(d []interface{}) edpt.Ipv6RerouteSuppressProtocols1125 {
 
 	count1 := len(d)
-	var ret edpt.Ipv6RerouteSuppressProtocols1126
+	var ret edpt.Ipv6RerouteSuppressProtocols1125
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ospf = in["ospf"].(int)
@@ -135,7 +135,7 @@ func getObjectIpv6RerouteSuppressProtocols1126(d []interface{}) edpt.Ipv6Reroute
 
 func dataToEndpointIpv6Reroute(d *schema.ResourceData) edpt.Ipv6Reroute {
 	var ret edpt.Ipv6Reroute
-	ret.Inst.SuppressProtocols = getObjectIpv6RerouteSuppressProtocols1126(d.Get("suppress_protocols").([]interface{}))
+	ret.Inst.SuppressProtocols = getObjectIpv6RerouteSuppressProtocols1125(d.Get("suppress_protocols").([]interface{}))
 	//omit uuid
 	return ret
 }

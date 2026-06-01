@@ -19,6 +19,9 @@ func resourceImportPeriodicThalesKmdata() *schema.Resource {
 			"overwrite": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Overwrite existing file",
 			},
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "Config remote server  password",
+			},
 			"period": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the period in second",
 			},
@@ -101,7 +104,9 @@ func resourceImportPeriodicThalesKmdataRead(ctx context.Context, d *schema.Resou
 
 func dataToEndpointImportPeriodicThalesKmdata(d *schema.ResourceData) edpt.ImportPeriodicThalesKmdata {
 	var ret edpt.ImportPeriodicThalesKmdata
+	//omit encrypted
 	ret.Inst.Overwrite = d.Get("overwrite").(int)
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)
 	ret.Inst.ThalesKmdata = d.Get("thales_kmdata").(string)

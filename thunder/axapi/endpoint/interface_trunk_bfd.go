@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type InterfaceTrunkBfd struct {
 	Inst struct {
 		Authentication InterfaceTrunkBfdAuthentication `json:"authentication"`
@@ -16,7 +16,7 @@ type InterfaceTrunkBfd struct {
 
 		IntervalCfg InterfaceTrunkBfdIntervalCfg `json:"interval-cfg"`
 
-		PerMemberPort InterfaceTrunkBfdPerMemberPort832 `json:"per-member-port"`
+		PerMemberPort InterfaceTrunkBfdPerMemberPort823 `json:"per-member-port"`
 
 		Uuid string `json:"uuid"`
 
@@ -37,7 +37,7 @@ type InterfaceTrunkBfdIntervalCfg struct {
 	Multiplier int `json:"multiplier"`
 }
 
-type InterfaceTrunkBfdPerMemberPort832 struct {
+type InterfaceTrunkBfdPerMemberPort823 struct {
 	LocalAddress    string `json:"local-address"`
 	NeighborAddress string `json:"neighbor-address"`
 	Ipv6Local       string `json:"ipv6-local"`

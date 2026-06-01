@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplTriggerStatsInc struct {
 	Inst struct {
 		Server_selection_fail_drop int `json:"server_selection_fail_drop"`

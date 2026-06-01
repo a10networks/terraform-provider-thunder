@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsInc2725 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsInc2740 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsRate2726 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsRate2741 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsSeverity2727 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsSeverity2742 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,19 +25,19 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmpl struct {
 	} `json:"aam-auth-logon-http-ins-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsInc2725 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsInc2740 struct {
 	Spn_krb_faiure int    `json:"spn_krb_faiure"`
 	Uuid           string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsRate2726 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsRate2741 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Spn_krb_faiure      int    `json:"spn_krb_faiure"`
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsSeverity2727 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsSeverity2742 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

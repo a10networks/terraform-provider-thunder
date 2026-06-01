@@ -157,10 +157,10 @@ func resourceOverlayTunnelVtepRemoteIpv6AddressRead(ctx context.Context, d *sche
 	return diags
 }
 
-func getObjectOverlayTunnelVtepRemoteIpv6AddressGreKeepalive1165(d []interface{}) edpt.OverlayTunnelVtepRemoteIpv6AddressGreKeepalive1165 {
+func getObjectOverlayTunnelVtepRemoteIpv6AddressGreKeepalive1164(d []interface{}) edpt.OverlayTunnelVtepRemoteIpv6AddressGreKeepalive1164 {
 
 	count1 := len(d)
-	var ret edpt.OverlayTunnelVtepRemoteIpv6AddressGreKeepalive1165
+	var ret edpt.OverlayTunnelVtepRemoteIpv6AddressGreKeepalive1164
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RetryTime = in["retry_time"].(int)
@@ -170,10 +170,10 @@ func getObjectOverlayTunnelVtepRemoteIpv6AddressGreKeepalive1165(d []interface{}
 	return ret
 }
 
-func getObjectOverlayTunnelVtepRemoteIpv6AddressUseGreKey1166(d []interface{}) edpt.OverlayTunnelVtepRemoteIpv6AddressUseGreKey1166 {
+func getObjectOverlayTunnelVtepRemoteIpv6AddressUseGreKey1165(d []interface{}) edpt.OverlayTunnelVtepRemoteIpv6AddressUseGreKey1165 {
 
 	count1 := len(d)
-	var ret edpt.OverlayTunnelVtepRemoteIpv6AddressUseGreKey1166
+	var ret edpt.OverlayTunnelVtepRemoteIpv6AddressUseGreKey1165
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GreKey = in["gre_key"].(int)
@@ -182,10 +182,10 @@ func getObjectOverlayTunnelVtepRemoteIpv6AddressUseGreKey1166(d []interface{}) e
 	return ret
 }
 
-func getObjectOverlayTunnelVtepRemoteIpv6AddressUseLif1167(d []interface{}) edpt.OverlayTunnelVtepRemoteIpv6AddressUseLif1167 {
+func getObjectOverlayTunnelVtepRemoteIpv6AddressUseLif1166(d []interface{}) edpt.OverlayTunnelVtepRemoteIpv6AddressUseLif1166 {
 
 	count1 := len(d)
-	var ret edpt.OverlayTunnelVtepRemoteIpv6AddressUseLif1167
+	var ret edpt.OverlayTunnelVtepRemoteIpv6AddressUseLif1166
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Partition = in["partition"].(string)
@@ -213,10 +213,10 @@ func dataToEndpointOverlayTunnelVtepRemoteIpv6Address(d *schema.ResourceData) ed
 	var ret edpt.OverlayTunnelVtepRemoteIpv6Address
 	ret.Inst.ClassList = d.Get("class_list").(string)
 	ret.Inst.Encap = d.Get("encap").(string)
-	ret.Inst.GreKeepalive = getObjectOverlayTunnelVtepRemoteIpv6AddressGreKeepalive1165(d.Get("gre_keepalive").([]interface{}))
+	ret.Inst.GreKeepalive = getObjectOverlayTunnelVtepRemoteIpv6AddressGreKeepalive1164(d.Get("gre_keepalive").([]interface{}))
 	ret.Inst.Ipv6Address = d.Get("ipv6_address").(string)
-	ret.Inst.UseGreKey = getObjectOverlayTunnelVtepRemoteIpv6AddressUseGreKey1166(d.Get("use_gre_key").([]interface{}))
-	ret.Inst.UseLif = getObjectOverlayTunnelVtepRemoteIpv6AddressUseLif1167(d.Get("use_lif").([]interface{}))
+	ret.Inst.UseGreKey = getObjectOverlayTunnelVtepRemoteIpv6AddressUseGreKey1165(d.Get("use_gre_key").([]interface{}))
+	ret.Inst.UseLif = getObjectOverlayTunnelVtepRemoteIpv6AddressUseLif1166(d.Get("use_lif").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.VniList = getSliceOverlayTunnelVtepRemoteIpv6AddressVniList(d.Get("vni_list").([]interface{}))

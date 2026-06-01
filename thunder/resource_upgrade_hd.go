@@ -31,6 +31,9 @@ func resourceUpgradeHd() *schema.Resource {
 			"local": {
 				Type: schema.TypeString, Optional: true, Description: "Use image from local VCS image repository (Specify an image name, format: aximage_XX_XX_XX_XX.tar.gz)",
 			},
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "password for the remote site",
+			},
 			"reboot_after_upgrade": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "reboot system after upgrade is done",
 			},
@@ -118,6 +121,7 @@ func dataToEndpointUpgradeHd(d *schema.ResourceData) edpt.UpgradeHd {
 	ret.Inst.Image = d.Get("image").(string)
 	ret.Inst.ImageFile = d.Get("image_file").(string)
 	ret.Inst.Local = d.Get("local").(string)
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.RebootAfterUpgrade = d.Get("reboot_after_upgrade").(int)
 	ret.Inst.Rollback = d.Get("rollback").(int)
 	ret.Inst.SourceIpAddress = d.Get("source_ip_address").(string)

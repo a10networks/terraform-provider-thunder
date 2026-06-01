@@ -518,6 +518,12 @@ func resourceDdosQuicZonePortStats() *schema.Resource {
 						"version_no_match_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "Version No Match Drop",
 						},
+						"src_ip_filtering_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Src-ip-filtering Drop",
+						},
+						"src_ip_filtering_bypass": {
+							Type: schema.TypeInt, Optional: true, Description: "Src-ip-filtering Bypass",
+						},
 					},
 				},
 			},
@@ -714,6 +720,8 @@ func setObjectDdosQuicZonePortStatsStats(ret edpt.DataDdosQuicZonePortStats) []i
 			"src_zone_service_entry_hit":                ret.DtDdosQuicZonePortStats.Stats.Src_zone_service_entry_hit,
 			"same_sport_dport_drop":                     ret.DtDdosQuicZonePortStats.Stats.Same_sport_dport_drop,
 			"version_no_match_drop":                     ret.DtDdosQuicZonePortStats.Stats.Version_no_match_drop,
+			"src_ip_filtering_drop":                     ret.DtDdosQuicZonePortStats.Stats.Src_ip_filtering_drop,
+			"src_ip_filtering_bypass":                   ret.DtDdosQuicZonePortStats.Stats.Src_ip_filtering_bypass,
 		},
 	}
 }
@@ -891,6 +899,8 @@ func getObjectDdosQuicZonePortStatsStats(d []interface{}) edpt.DdosQuicZonePortS
 		ret.Src_zone_service_entry_hit = in["src_zone_service_entry_hit"].(int)
 		ret.Same_sport_dport_drop = in["same_sport_dport_drop"].(int)
 		ret.Version_no_match_drop = in["version_no_match_drop"].(int)
+		ret.Src_ip_filtering_drop = in["src_ip_filtering_drop"].(int)
+		ret.Src_ip_filtering_bypass = in["src_ip_filtering_bypass"].(int)
 	}
 	return ret
 }

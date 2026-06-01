@@ -5,12 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type FwLogging struct {
 	Inst struct {
 		CefLabel string `json:"cef-label" dval:"enable"`
 
-		Gtp FwLoggingGtp443 `json:"gtp"`
+		Gtp FwLoggingGtp434 `json:"gtp"`
 
 		Name string `json:"name"`
 
@@ -20,12 +20,12 @@ type FwLogging struct {
 	} `json:"logging"`
 }
 
-type FwLoggingGtp443 struct {
+type FwLoggingGtp434 struct {
 	Uuid           string                          `json:"uuid"`
-	SamplingEnable []FwLoggingGtpSamplingEnable444 `json:"sampling-enable"`
+	SamplingEnable []FwLoggingGtpSamplingEnable435 `json:"sampling-enable"`
 }
 
-type FwLoggingGtpSamplingEnable444 struct {
+type FwLoggingGtpSamplingEnable435 struct {
 	Counters1 string `json:"counters1"`
 }
 

@@ -873,10 +873,10 @@ func getSliceRouterOspfAreaListVirtualLinkList(d []interface{}) []edpt.RouterOsp
 	return ret
 }
 
-func getObjectRouterOspfDefaultInformation1384(d []interface{}) edpt.RouterOspfDefaultInformation1384 {
+func getObjectRouterOspfDefaultInformation1383(d []interface{}) edpt.RouterOspfDefaultInformation1383 {
 
 	count1 := len(d)
-	var ret edpt.RouterOspfDefaultInformation1384
+	var ret edpt.RouterOspfDefaultInformation1383
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Originate = in["originate"].(int)
@@ -1191,34 +1191,34 @@ func getSliceRouterOspfPassiveInterfaceEthCfg(d []interface{}) []edpt.RouterOspf
 	return ret
 }
 
-func getObjectRouterOspfRedistribute1385(d []interface{}) edpt.RouterOspfRedistribute1385 {
+func getObjectRouterOspfRedistribute1384(d []interface{}) edpt.RouterOspfRedistribute1384 {
 
 	count1 := len(d)
-	var ret edpt.RouterOspfRedistribute1385
+	var ret edpt.RouterOspfRedistribute1384
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.RedistList = getSliceRouterOspfRedistributeRedistList1386(in["redist_list"].([]interface{}))
-		ret.OspfList = getSliceRouterOspfRedistributeOspfList1387(in["ospf_list"].([]interface{}))
+		ret.RedistList = getSliceRouterOspfRedistributeRedistList1385(in["redist_list"].([]interface{}))
+		ret.OspfList = getSliceRouterOspfRedistributeOspfList1386(in["ospf_list"].([]interface{}))
 		ret.IpNat = in["ip_nat"].(int)
 		ret.MetricIpNat = in["metric_ip_nat"].(int)
 		ret.MetricTypeIpNat = in["metric_type_ip_nat"].(string)
 		ret.RouteMapIpNat = in["route_map_ip_nat"].(string)
 		ret.TagIpNat = in["tag_ip_nat"].(int)
-		ret.IpNatFloatingList = getSliceRouterOspfRedistributeIpNatFloatingList1388(in["ip_nat_floating_list"].([]interface{}))
-		ret.VipList = getSliceRouterOspfRedistributeVipList1389(in["vip_list"].([]interface{}))
-		ret.VipFloatingList = getSliceRouterOspfRedistributeVipFloatingList1390(in["vip_floating_list"].([]interface{}))
+		ret.IpNatFloatingList = getSliceRouterOspfRedistributeIpNatFloatingList1387(in["ip_nat_floating_list"].([]interface{}))
+		ret.VipList = getSliceRouterOspfRedistributeVipList1388(in["vip_list"].([]interface{}))
+		ret.VipFloatingList = getSliceRouterOspfRedistributeVipFloatingList1389(in["vip_floating_list"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceRouterOspfRedistributeRedistList1386(d []interface{}) []edpt.RouterOspfRedistributeRedistList1386 {
+func getSliceRouterOspfRedistributeRedistList1385(d []interface{}) []edpt.RouterOspfRedistributeRedistList1385 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterOspfRedistributeRedistList1386, 0, count1)
+	ret := make([]edpt.RouterOspfRedistributeRedistList1385, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterOspfRedistributeRedistList1386
+		var oi edpt.RouterOspfRedistributeRedistList1385
 		oi.Type = in["type"].(string)
 		oi.Metric = in["metric"].(int)
 		oi.MetricType = in["metric_type"].(string)
@@ -1229,13 +1229,13 @@ func getSliceRouterOspfRedistributeRedistList1386(d []interface{}) []edpt.Router
 	return ret
 }
 
-func getSliceRouterOspfRedistributeOspfList1387(d []interface{}) []edpt.RouterOspfRedistributeOspfList1387 {
+func getSliceRouterOspfRedistributeOspfList1386(d []interface{}) []edpt.RouterOspfRedistributeOspfList1386 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterOspfRedistributeOspfList1387, 0, count1)
+	ret := make([]edpt.RouterOspfRedistributeOspfList1386, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterOspfRedistributeOspfList1387
+		var oi edpt.RouterOspfRedistributeOspfList1386
 		oi.Ospf = in["ospf"].(int)
 		oi.ProcessId = in["process_id"].(int)
 		oi.MetricOspf = in["metric_ospf"].(int)
@@ -1247,13 +1247,13 @@ func getSliceRouterOspfRedistributeOspfList1387(d []interface{}) []edpt.RouterOs
 	return ret
 }
 
-func getSliceRouterOspfRedistributeIpNatFloatingList1388(d []interface{}) []edpt.RouterOspfRedistributeIpNatFloatingList1388 {
+func getSliceRouterOspfRedistributeIpNatFloatingList1387(d []interface{}) []edpt.RouterOspfRedistributeIpNatFloatingList1387 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterOspfRedistributeIpNatFloatingList1388, 0, count1)
+	ret := make([]edpt.RouterOspfRedistributeIpNatFloatingList1387, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterOspfRedistributeIpNatFloatingList1388
+		var oi edpt.RouterOspfRedistributeIpNatFloatingList1387
 		oi.IpNatPrefix = in["ip_nat_prefix"].(string)
 		oi.IpNatFloatingIpForward = in["ip_nat_floating_ip_forward"].(string)
 		ret = append(ret, oi)
@@ -1261,13 +1261,13 @@ func getSliceRouterOspfRedistributeIpNatFloatingList1388(d []interface{}) []edpt
 	return ret
 }
 
-func getSliceRouterOspfRedistributeVipList1389(d []interface{}) []edpt.RouterOspfRedistributeVipList1389 {
+func getSliceRouterOspfRedistributeVipList1388(d []interface{}) []edpt.RouterOspfRedistributeVipList1388 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterOspfRedistributeVipList1389, 0, count1)
+	ret := make([]edpt.RouterOspfRedistributeVipList1388, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterOspfRedistributeVipList1389
+		var oi edpt.RouterOspfRedistributeVipList1388
 		oi.TypeVip = in["type_vip"].(string)
 		oi.MetricVip = in["metric_vip"].(int)
 		oi.MetricTypeVip = in["metric_type_vip"].(string)
@@ -1278,13 +1278,13 @@ func getSliceRouterOspfRedistributeVipList1389(d []interface{}) []edpt.RouterOsp
 	return ret
 }
 
-func getSliceRouterOspfRedistributeVipFloatingList1390(d []interface{}) []edpt.RouterOspfRedistributeVipFloatingList1390 {
+func getSliceRouterOspfRedistributeVipFloatingList1389(d []interface{}) []edpt.RouterOspfRedistributeVipFloatingList1389 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterOspfRedistributeVipFloatingList1390, 0, count1)
+	ret := make([]edpt.RouterOspfRedistributeVipFloatingList1389, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterOspfRedistributeVipFloatingList1390
+		var oi edpt.RouterOspfRedistributeVipFloatingList1389
 		oi.VipAddress = in["vip_address"].(string)
 		oi.VipFloatingIpForward = in["vip_floating_ip_forward"].(string)
 		ret = append(ret, oi)
@@ -1357,7 +1357,7 @@ func dataToEndpointRouterOspf(d *schema.ResourceData) edpt.RouterOspf {
 	ret.Inst.AreaList = getSliceRouterOspfAreaList(d.Get("area_list").([]interface{}))
 	ret.Inst.AutoCostReferenceBandwidth = d.Get("auto_cost_reference_bandwidth").(int)
 	ret.Inst.BfdAllInterfaces = d.Get("bfd_all_interfaces").(int)
-	ret.Inst.DefaultInformation = getObjectRouterOspfDefaultInformation1384(d.Get("default_information").([]interface{}))
+	ret.Inst.DefaultInformation = getObjectRouterOspfDefaultInformation1383(d.Get("default_information").([]interface{}))
 	ret.Inst.DefaultMetric = d.Get("default_metric").(int)
 	ret.Inst.Distance = getObjectRouterOspfDistance(d.Get("distance").([]interface{}))
 	ret.Inst.DistributeInternalList = getSliceRouterOspfDistributeInternalList(d.Get("distribute_internal_list").([]interface{}))
@@ -1374,7 +1374,7 @@ func dataToEndpointRouterOspf(d *schema.ResourceData) edpt.RouterOspf {
 	ret.Inst.Overflow = getObjectRouterOspfOverflow(d.Get("overflow").([]interface{}))
 	ret.Inst.PassiveInterface = getObjectRouterOspfPassiveInterface(d.Get("passive_interface").([]interface{}))
 	ret.Inst.ProcessId = d.Get("process_id").(int)
-	ret.Inst.Redistribute = getObjectRouterOspfRedistribute1385(d.Get("redistribute").([]interface{}))
+	ret.Inst.Redistribute = getObjectRouterOspfRedistribute1384(d.Get("redistribute").([]interface{}))
 	ret.Inst.Rfc1583Compatible = d.Get("rfc1583_compatible").(int)
 	ret.Inst.RouterId = getObjectRouterOspfRouterId(d.Get("router_id").([]interface{}))
 	ret.Inst.SummaryAddressList = getSliceRouterOspfSummaryAddressList(d.Get("summary_address_list").([]interface{}))

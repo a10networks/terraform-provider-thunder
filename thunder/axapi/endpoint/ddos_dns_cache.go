@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDnsCache struct {
 	Inst struct {
 		AnyQueryActionStr string `json:"any-query-action-str" dval:"respond-refuse"`
@@ -15,7 +15,7 @@ type DdosDnsCache struct {
 
 		DnsLogging string `json:"dns-logging"`
 
-		DomainGroup DdosDnsCacheDomainGroup171 `json:"domain-group"`
+		DomainGroup DdosDnsCacheDomainGroup174 `json:"domain-group"`
 
 		EdnsUdpSize int `json:"edns-udp-size"`
 
@@ -41,17 +41,17 @@ type DdosDnsCache struct {
 
 		ZoneManualOverrideActionList []DdosDnsCacheZoneManualOverrideActionList `json:"zone-manual-override-action-list"`
 
-		ZoneTransfer DdosDnsCacheZoneTransfer175 `json:"zone-transfer"`
+		ZoneTransfer DdosDnsCacheZoneTransfer178 `json:"zone-transfer"`
 	} `json:"dns-cache"`
 }
 
-type DdosDnsCacheDomainGroup171 struct {
+type DdosDnsCacheDomainGroup174 struct {
 	Name                 string                                           `json:"name"`
 	Uuid                 string                                           `json:"uuid"`
-	DomainListPolicyList []DdosDnsCacheDomainGroupDomainListPolicyList172 `json:"domain-list-policy-list"`
+	DomainListPolicyList []DdosDnsCacheDomainGroupDomainListPolicyList175 `json:"domain-list-policy-list"`
 }
 
-type DdosDnsCacheDomainGroupDomainListPolicyList172 struct {
+type DdosDnsCacheDomainGroupDomainListPolicyList175 struct {
 	Name                   string                                                        `json:"name"`
 	ServerIpv4             string                                                        `json:"server-ipv4"`
 	ServerV4Port           int                                                           `json:"server-v4-port" dval:"53"`
@@ -61,6 +61,7 @@ type DdosDnsCacheDomainGroupDomainListPolicyList172 struct {
 	ServerV6Port           int                                                           `json:"server-v6-port" dval:"53"`
 	ClientIpv6             string                                                        `json:"client-ipv6"`
 	DnsNotifyEnableIpv6    int                                                           `json:"dns-notify-enable-ipv6"`
+	RefreshIntervalBySoa   int                                                           `json:"refresh-interval-by-soa"`
 	RefreshIntervalHours   int                                                           `json:"refresh-interval-hours" dval:"4"`
 	TtlOverride            int                                                           `json:"ttl-override"`
 	RespondWithAuthority   int                                                           `json:"respond-with-authority"`
@@ -68,19 +69,20 @@ type DdosDnsCacheDomainGroupDomainListPolicyList172 struct {
 	ResolveCnameRecord     int                                                           `json:"resolve-cname-record"`
 	ManualRefresh          string                                                        `json:"manual-refresh"`
 	Force                  int                                                           `json:"force"`
+	Ixfr                   int                                                           `json:"ixfr"`
 	CacheAllRecords        int                                                           `json:"cache-all-records"`
 	CacheDnssecRecords     int                                                           `json:"cache-dnssec-records"`
 	Uuid                   string                                                        `json:"uuid"`
 	UserTag                string                                                        `json:"user-tag"`
-	PacketCapturing        DdosDnsCacheDomainGroupDomainListPolicyListPacketCapturing173 `json:"packet-capturing"`
+	PacketCapturing        DdosDnsCacheDomainGroupDomainListPolicyListPacketCapturing176 `json:"packet-capturing"`
 }
 
-type DdosDnsCacheDomainGroupDomainListPolicyListPacketCapturing173 struct {
-	RootZoneList []DdosDnsCacheDomainGroupDomainListPolicyListPacketCapturingRootZoneList174 `json:"root-zone-list"`
+type DdosDnsCacheDomainGroupDomainListPolicyListPacketCapturing176 struct {
+	RootZoneList []DdosDnsCacheDomainGroupDomainListPolicyListPacketCapturingRootZoneList177 `json:"root-zone-list"`
 	Uuid         string                                                                      `json:"uuid"`
 }
 
-type DdosDnsCacheDomainGroupDomainListPolicyListPacketCapturingRootZoneList174 struct {
+type DdosDnsCacheDomainGroupDomainListPolicyListPacketCapturingRootZoneList177 struct {
 	RootZone      string `json:"root-zone"`
 	CaptureConfig string `json:"capture-config"`
 	CaptureMode   string `json:"capture-mode"`
@@ -114,6 +116,7 @@ type DdosDnsCacheShardedDomainGroupListShardedDomainListPolicyList struct {
 	ServerV6Port         int                                                                          `json:"server-v6-port" dval:"53"`
 	ClientIpv6           string                                                                       `json:"client-ipv6"`
 	DnsNotifyEnableIpv6  int                                                                          `json:"dns-notify-enable-ipv6"`
+	RefreshIntervalBySoa int                                                                          `json:"refresh-interval-by-soa"`
 	RefreshIntervalHours int                                                                          `json:"refresh-interval-hours" dval:"4"`
 	ManualRefresh        string                                                                       `json:"manual-refresh"`
 	Force                int                                                                          `json:"force"`
@@ -138,7 +141,7 @@ type DdosDnsCacheZoneManualOverrideActionList struct {
 	Action   string `json:"action"`
 }
 
-type DdosDnsCacheZoneTransfer175 struct {
+type DdosDnsCacheZoneTransfer178 struct {
 	Uuid string `json:"uuid"`
 }
 

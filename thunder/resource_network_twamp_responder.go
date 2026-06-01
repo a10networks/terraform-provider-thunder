@@ -125,10 +125,10 @@ func resourceNetworkTwampResponderRead(ctx context.Context, d *schema.ResourceDa
 	return diags
 }
 
-func getObjectNetworkTwampResponderIp1156(d []interface{}) edpt.NetworkTwampResponderIp1156 {
+func getObjectNetworkTwampResponderIp1155(d []interface{}) edpt.NetworkTwampResponderIp1155 {
 
 	count1 := len(d)
-	var ret edpt.NetworkTwampResponderIp1156
+	var ret edpt.NetworkTwampResponderIp1155
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.AclId = in["acl_id"].(int)
@@ -138,10 +138,10 @@ func getObjectNetworkTwampResponderIp1156(d []interface{}) edpt.NetworkTwampResp
 	return ret
 }
 
-func getObjectNetworkTwampResponderIpv61157(d []interface{}) edpt.NetworkTwampResponderIpv61157 {
+func getObjectNetworkTwampResponderIpv61156(d []interface{}) edpt.NetworkTwampResponderIpv61156 {
 
 	count1 := len(d)
-	var ret edpt.NetworkTwampResponderIpv61157
+	var ret edpt.NetworkTwampResponderIpv61156
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.V6AclName = in["v6_acl_name"].(string)
@@ -155,8 +155,8 @@ func dataToEndpointNetworkTwampResponder(d *schema.ResourceData) edpt.NetworkTwa
 	ret.Inst.EnableBothIpIpv6 = d.Get("enable_both_ip_ipv6").(int)
 	ret.Inst.EnableIp = d.Get("enable_ip").(int)
 	ret.Inst.EnableIpv6 = d.Get("enable_ipv6").(int)
-	ret.Inst.Ip = getObjectNetworkTwampResponderIp1156(d.Get("ip").([]interface{}))
-	ret.Inst.Ipv6 = getObjectNetworkTwampResponderIpv61157(d.Get("ipv6").([]interface{}))
+	ret.Inst.Ip = getObjectNetworkTwampResponderIp1155(d.Get("ip").([]interface{}))
+	ret.Inst.Ipv6 = getObjectNetworkTwampResponderIpv61156(d.Get("ipv6").([]interface{}))
 	ret.Inst.Port = d.Get("port").(int)
 	//omit uuid
 	return ret

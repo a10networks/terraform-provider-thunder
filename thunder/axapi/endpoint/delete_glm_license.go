@@ -5,22 +5,16 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DeleteGlmLicense struct {
 	Inst struct {
 		A10Ti int `json:"a10-ti"`
 
-		HwAcceleratedBlocking int `json:"hw-accelerated-blocking"`
-
 		IpsecVpn int `json:"ipsec-vpn"`
-
-		NgenLowLatency int `json:"ngen-low-latency"`
 
 		Ngwaf int `json:"ngwaf"`
 
 		Qosmos int `json:"qosmos"`
-
-		RhelSupport int `json:"rhel-support"`
 
 		SecureGaming int `json:"secure-gaming"`
 

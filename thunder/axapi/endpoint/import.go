@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Import struct {
 	Inst struct {
 		Aflex string `json:"aflex"`
@@ -16,9 +16,7 @@ type Import struct {
 
 		AuthPortalImage string `json:"auth-portal-image"`
 
-		AuthSamlIdp ImportAuthSamlIdp533 `json:"auth-saml-idp"`
-
-		Background int `json:"background"`
+		AuthSamlIdp ImportAuthSamlIdp520 `json:"auth-saml-idp"`
 
 		BiosFile string `json:"bios-file"`
 
@@ -52,15 +50,15 @@ type Import struct {
 
 		GeoLocation string `json:"geo-location"`
 
-		GeoLocationArchive ImportGeoLocationArchive534 `json:"geo-location-archive"`
+		GeoLocationArchive ImportGeoLocationArchive521 `json:"geo-location-archive"`
 
 		GlmCert string `json:"glm-cert"`
 
 		GlmLicense string `json:"glm-license"`
 
-		HealthExternal ImportHealthExternal535 `json:"health-external"`
+		HealthExternal ImportHealthExternal522 `json:"health-external"`
 
-		HealthPostfile ImportHealthPostfile536 `json:"health-postfile"`
+		HealthPostfile ImportHealthPostfile523 `json:"health-postfile"`
 
 		IpMapList string `json:"ip-map-list"`
 
@@ -68,9 +66,9 @@ type Import struct {
 
 		Lw4o6 string `json:"lw-4o6"`
 
-		NgWafCustomPage ImportNgWafCustomPage537 `json:"ng-waf-custom-page"`
+		NgWafCustomPage ImportNgWafCustomPage524 `json:"ng-waf-custom-page"`
 
-		NgWafModule ImportNgWafModule538 `json:"ng-waf-module"`
+		NgWafModule ImportNgWafModule525 `json:"ng-waf-module"`
 
 		Overwrite int `json:"overwrite"`
 
@@ -96,7 +94,7 @@ type Import struct {
 
 		SslKey string `json:"ssl-key"`
 
-		Store ImportStore539 `json:"store"`
+		Store ImportStore526 `json:"store"`
 
 		StoreName string `json:"store-name"`
 
@@ -106,7 +104,7 @@ type Import struct {
 
 		ThalesSecworld string `json:"thales-secworld"`
 
-		ToDevice ImportToDevice540 `json:"to-device"`
+		ToDevice ImportToDevice527 `json:"to-device"`
 
 		Tsig string `json:"tsig"`
 
@@ -126,7 +124,7 @@ type Import struct {
 	} `json:"import"`
 }
 
-type ImportAuthSamlIdp533 struct {
+type ImportAuthSamlIdp520 struct {
 	SamlIdpName        string `json:"saml-idp-name"`
 	VerifyXmlSignature int    `json:"verify-xml-signature"`
 	Overwrite          int    `json:"overwrite"`
@@ -136,7 +134,7 @@ type ImportAuthSamlIdp533 struct {
 	Password           string `json:"password"`
 }
 
-type ImportGeoLocationArchive534 struct {
+type ImportGeoLocationArchive521 struct {
 	GeoLocationArchiveFormat string `json:"geo-location-archive-format"`
 	Proxy                    string `json:"proxy"`
 	UseMgmtPort              int    `json:"use-mgmt-port"`
@@ -144,7 +142,7 @@ type ImportGeoLocationArchive534 struct {
 	Password                 string `json:"password"`
 }
 
-type ImportHealthExternal535 struct {
+type ImportHealthExternal522 struct {
 	Externalfilename string `json:"externalfilename"`
 	Description      string `json:"description"`
 	Overwrite        int    `json:"overwrite"`
@@ -154,7 +152,7 @@ type ImportHealthExternal535 struct {
 	Password         string `json:"password"`
 }
 
-type ImportHealthPostfile536 struct {
+type ImportHealthPostfile523 struct {
 	Postfilename string `json:"postfilename"`
 	Overwrite    int    `json:"overwrite"`
 	Proxy        string `json:"proxy"`
@@ -163,7 +161,7 @@ type ImportHealthPostfile536 struct {
 	Password     string `json:"password"`
 }
 
-type ImportNgWafCustomPage537 struct {
+type ImportNgWafCustomPage524 struct {
 	CustomPage  string `json:"custom-page"`
 	Overwrite   int    `json:"overwrite"`
 	Proxy       string `json:"proxy"`
@@ -172,7 +170,7 @@ type ImportNgWafCustomPage537 struct {
 	Password    string `json:"password"`
 }
 
-type ImportNgWafModule538 struct {
+type ImportNgWafModule525 struct {
 	Overwrite   int    `json:"overwrite"`
 	Proxy       string `json:"proxy"`
 	UseMgmtPort int    `json:"use-mgmt-port"`
@@ -180,14 +178,14 @@ type ImportNgWafModule538 struct {
 	Password    string `json:"password"`
 }
 
-type ImportStore539 struct {
+type ImportStore526 struct {
 	Delete     int    `json:"delete"`
 	Create     int    `json:"create"`
 	Name       string `json:"name"`
 	RemoteFile string `json:"remote-file"`
 }
 
-type ImportToDevice540 struct {
+type ImportToDevice527 struct {
 	Device             int    `json:"device"`
 	GlmLicense         string `json:"glm-license"`
 	GlmCert            string `json:"glm-cert"`

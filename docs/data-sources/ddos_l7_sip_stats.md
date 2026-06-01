@@ -110,12 +110,12 @@ Optional:
 - `seq_check_retrans_other` (Number) Sequence Check Retransmit Other
 - `seq_check_retrans_push` (Number) Sequence Check Retransmit Push
 - `seq_check_retrans_rst` (Number) Sequence Check Retransmit Rst
-- `src_dst_header_filter_action_blacklist` (Number) Src Header Filter Action Blacklist
-- `src_dst_header_filter_action_default_pass` (Number) Src Header Filter Action Default Pass
-- `src_dst_header_filter_action_drop` (Number) Src Header Filter Action Drop
-- `src_dst_header_filter_action_whitelist` (Number) Src Header Filter Action Whitelist
-- `src_dst_header_filter_match` (Number) Src Header Filter Match
-- `src_dst_header_filter_not_match` (Number) Src Header Filter Not Match
+- `src_dst_header_filter_action_blacklist` (Number) Src Dst Header Filter Action Blacklist
+- `src_dst_header_filter_action_default_pass` (Number) Src Dst Header Filter Action Default Pass
+- `src_dst_header_filter_action_drop` (Number) Src Dst Header Filter Action Drop
+- `src_dst_header_filter_action_whitelist` (Number) Src Dst Header Filter Action Whitelist
+- `src_dst_header_filter_match` (Number) Src Dst Header Filter Match
+- `src_dst_header_filter_not_match` (Number) Src Dst Header Filter Not Match
 - `src_header_filter_action_blacklist` (Number) Src Header Filter Action Blacklist
 - `src_header_filter_action_default_pass` (Number) Src Header Filter Action Default Pass
 - `src_header_filter_action_drop` (Number) Src Header Filter Action Drop

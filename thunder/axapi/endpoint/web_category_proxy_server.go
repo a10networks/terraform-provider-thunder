@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type WebCategoryProxyServer struct {
 	Inst struct {
-		AuthType string `json:"auth-type" dval:"ntlm"`
+		AuthType string `json:"auth-type" dval:"basic"`
 
 		Domain string `json:"domain"`
 

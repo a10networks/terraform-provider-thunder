@@ -125,6 +125,8 @@ Optional:
 - `src_hw_drop` (Number) Src Hardware Packets Dropped
 - `src_hw_drop_inserted` (Number) Src Hardware Drop Rules Inserted
 - `src_hw_drop_removed` (Number) Src Hardware Drop Rules Removed
+- `src_ip_filtering_bypass` (Number) Src-ip-filtering Bypass
+- `src_ip_filtering_drop` (Number) Src-ip-filtering Drop
 - `src_learn_overflow` (Number) Source Dynamic Entry Overflow
 - `src_rate_type0_exceed` (Number) ICMP Type Src Rate 1 Exceeded
 - `src_rate_type0_exceed_bl` (Number) ICMP Type Src Rate 1 Blacklisted

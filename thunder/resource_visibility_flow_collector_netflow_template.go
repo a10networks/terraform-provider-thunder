@@ -104,9 +104,9 @@ func resourceVisibilityFlowCollectorNetflowTemplateRead(ctx context.Context, d *
 	return diags
 }
 
-func getObjectVisibilityFlowCollectorNetflowTemplateDetail2035(d []interface{}) edpt.VisibilityFlowCollectorNetflowTemplateDetail2035 {
+func getObjectVisibilityFlowCollectorNetflowTemplateDetail2034(d []interface{}) edpt.VisibilityFlowCollectorNetflowTemplateDetail2034 {
 
-	var ret edpt.VisibilityFlowCollectorNetflowTemplateDetail2035
+	var ret edpt.VisibilityFlowCollectorNetflowTemplateDetail2034
 	return ret
 }
 
@@ -125,7 +125,7 @@ func getSliceVisibilityFlowCollectorNetflowTemplateSamplingEnable(d []interface{
 
 func dataToEndpointVisibilityFlowCollectorNetflowTemplate(d *schema.ResourceData) edpt.VisibilityFlowCollectorNetflowTemplate {
 	var ret edpt.VisibilityFlowCollectorNetflowTemplate
-	ret.Inst.Detail = getObjectVisibilityFlowCollectorNetflowTemplateDetail2035(d.Get("detail").([]interface{}))
+	ret.Inst.Detail = getObjectVisibilityFlowCollectorNetflowTemplateDetail2034(d.Get("detail").([]interface{}))
 	ret.Inst.SamplingEnable = getSliceVisibilityFlowCollectorNetflowTemplateSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	//omit uuid
 	return ret

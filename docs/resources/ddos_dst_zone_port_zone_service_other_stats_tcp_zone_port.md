@@ -141,10 +141,15 @@ Optional:
 - `outbound_port_drop` (Number) Outbound Packets Dropped
 - `outbound_port_pkt_sent` (Number) Outbound Packets Forwarded
 - `outbound_port_rcvd` (Number) Outbound Packets Received
+- `pattern_filter1_drop` (Number) Extracted Filter1 Drop
 - `pattern_filter1_match` (Number) Extracted Filter1 Match
+- `pattern_filter2_drop` (Number) Extracted Filter2 Drop
 - `pattern_filter2_match` (Number) Extracted Filter2 Match
+- `pattern_filter3_drop` (Number) Extracted Filter3 Drop
 - `pattern_filter3_match` (Number) Extracted Filter3 Match
+- `pattern_filter4_drop` (Number) Extracted Filter4 Drop
 - `pattern_filter4_match` (Number) Extracted Filter4 Match
+- `pattern_filter5_drop` (Number) Extracted Filter5 Drop
 - `pattern_filter5_match` (Number) Extracted Filter5 Match
 - `pattern_filter_drop` (Number) Extracted Filter Drop
 - `pattern_not_found` (Number) Pattern Recognition: Pattern Not Found
@@ -259,6 +264,8 @@ Optional:
 - `src_hw_drop` (Number) Src Hardware Packets Dropped
 - `src_hw_drop_inserted` (Number) Src Hardware Drop Rules Inserted
 - `src_hw_drop_removed` (Number) Src Hardware Drop Rules Removed
+- `src_ip_filtering_bypass` (Number) Src-ip-filtering Bypass
+- `src_ip_filtering_drop` (Number) Src-ip-filtering Drop
 - `src_learn_overflow` (Number) Source Dynamic Entry Overflow
 - `src_out_of_seq_excd` (Number) Src Out-Of-Seq Exceeded
 - `src_retransmit_excd` (Number) Src Retransmit Exceeded

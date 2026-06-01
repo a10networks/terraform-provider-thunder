@@ -159,10 +159,10 @@ func resourceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplRead(ctx conte
 	return diags
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsInc2803(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsInc2803 {
+func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsInc2821(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsInc2821 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsInc2803
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsInc2821
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SynCookieVerificationFailed = in["syn_cookie_verification_failed"].(int)
@@ -171,10 +171,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsI
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsRate2804(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsRate2804 {
+func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsRate2822(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsRate2822 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsRate2804
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsRate2822
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -185,10 +185,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsR
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsSeverity2805(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsSeverity2805 {
+func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsSeverity2823(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsSeverity2823 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsSeverity2805
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsSeverity2823
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -208,9 +208,9 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmpl(d *sche
 	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmpl
 	ret.Inst.CaptureConfig = d.Get("capture_config").(string)
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsInc2803(d.Get("trigger_stats_inc").([]interface{}))
-	ret.Inst.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsRate2804(d.Get("trigger_stats_rate").([]interface{}))
-	ret.Inst.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsSeverity2805(d.Get("trigger_stats_severity").([]interface{}))
+	ret.Inst.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsInc2821(d.Get("trigger_stats_inc").([]interface{}))
+	ret.Inst.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsRate2822(d.Get("trigger_stats_rate").([]interface{}))
+	ret.Inst.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsSeverity2823(d.Get("trigger_stats_severity").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

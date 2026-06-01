@@ -167,6 +167,9 @@ func resourceDdosDnsCacheServerStats() *schema.Resource {
 						"lookup_servfail_resp": {
 							Type: schema.TypeInt, Optional: true, Description: "Lookup Server Fail Response",
 						},
+						"zt_ixfr_attempts": {
+							Type: schema.TypeInt, Optional: true, Description: "Zone Transfer IXFR Started",
+						},
 					},
 				},
 			},
@@ -246,6 +249,7 @@ func setObjectDdosDnsCacheServerStatsStats(ret edpt.DataDdosDnsCacheServerStats)
 			"alias_subtype_already_exist":                    ret.DtDdosDnsCacheServerStats.Stats.Alias_subtype_already_exist,
 			"zone_apex_suffix_node_insert_fail":              ret.DtDdosDnsCacheServerStats.Stats.Zone_apex_suffix_node_insert_fail,
 			"lookup_servfail_resp":                           ret.DtDdosDnsCacheServerStats.Stats.Lookup_servfail_resp,
+			"zt_ixfr_attempts":                               ret.DtDdosDnsCacheServerStats.Stats.Zt_ixfr_attempts,
 		},
 	}
 }
@@ -306,6 +310,7 @@ func getObjectDdosDnsCacheServerStatsStats(d []interface{}) edpt.DdosDnsCacheSer
 		ret.Alias_subtype_already_exist = in["alias_subtype_already_exist"].(int)
 		ret.Zone_apex_suffix_node_insert_fail = in["zone_apex_suffix_node_insert_fail"].(int)
 		ret.Lookup_servfail_resp = in["lookup_servfail_resp"].(int)
+		ret.Zt_ixfr_attempts = in["zt_ixfr_attempts"].(int)
 	}
 	return ret
 }

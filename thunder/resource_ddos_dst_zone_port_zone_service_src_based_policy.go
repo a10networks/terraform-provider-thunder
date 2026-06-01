@@ -171,14 +171,14 @@ func resourceDdosDstZonePortZoneServiceSrcBasedPolicy() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 			"port_num": {
 				Type: schema.TypeString, Required: true, Description: "PortNum",
 			},
-			"zone_name": {
-				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 		},
 	}
@@ -348,8 +348,8 @@ func dataToEndpointDdosDstZonePortZoneServiceSrcBasedPolicy(d *schema.ResourceDa
 	ret.Inst.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Protocol = d.Get("protocol").(string)
-	ret.Inst.PortNum = d.Get("port_num").(string)
 	ret.Inst.ZoneName = d.Get("zone_name").(string)
+	ret.Inst.PortNum = d.Get("port_num").(string)
+	ret.Inst.Protocol = d.Get("protocol").(string)
 	return ret
 }

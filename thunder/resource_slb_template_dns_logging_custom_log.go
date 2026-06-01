@@ -22,8 +22,24 @@ func resourceSlbTemplateDnsLoggingCustomLog() *schema.Resource {
 			"format": {
 				Type: schema.TypeString, Optional: true, Description: "Request Message (Custom message string)",
 			},
+			"log_filter_list": {
+				Type: schema.TypeList, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"feature": {
+							Type: schema.TypeString, Required: true, Description: "'RPZ': log when rpz feature hit;",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+						"user_tag": {
+							Type: schema.TypeString, Optional: true, Description: "Customized tag",
+						},
+					},
+				},
+			},
 			"trigger_reason": {
-				Type: schema.TypeString, Required: true, Description: "'request': log when request comes from client; 'response': log when response to client;",
+				Type: schema.TypeString, Required: true, Description: "'request': log when request comes from client; 'response': log when response to client; 'timeout': log when request connection timeout;",
 			},
 			"user_tag": {
 				Type: schema.TypeString, Optional: true, Description: "Customized tag",
@@ -99,10 +115,26 @@ func resourceSlbTemplateDnsLoggingCustomLogRead(ctx context.Context, d *schema.R
 	return diags
 }
 
+func getSliceSlbTemplateDnsLoggingCustomLogLogFilterList(d []interface{}) []edpt.SlbTemplateDnsLoggingCustomLogLogFilterList {
+
+	count1 := len(d)
+	ret := make([]edpt.SlbTemplateDnsLoggingCustomLogLogFilterList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.SlbTemplateDnsLoggingCustomLogLogFilterList
+		oi.Feature = in["feature"].(string)
+		//omit uuid
+		oi.UserTag = in["user_tag"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
 func dataToEndpointSlbTemplateDnsLoggingCustomLog(d *schema.ResourceData) edpt.SlbTemplateDnsLoggingCustomLog {
 	var ret edpt.SlbTemplateDnsLoggingCustomLog
 	ret.Inst.Enable = d.Get("enable").(int)
 	ret.Inst.Format = d.Get("format").(string)
+	ret.Inst.LogFilterList = getSliceSlbTemplateDnsLoggingCustomLogLogFilterList(d.Get("log_filter_list").([]interface{}))
 	ret.Inst.TriggerReason = d.Get("trigger_reason").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid

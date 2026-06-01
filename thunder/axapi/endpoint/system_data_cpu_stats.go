@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemDataCpuStats struct {
 	Stats SystemDataCpuStatsStats `json:"stats"`
 }
@@ -115,11 +115,6 @@ type SystemDataCpuStatsStats struct {
 	Cpu98         int `json:"cpu-98"`
 	Cpu99         int `json:"cpu-99"`
 	Cpu100        int `json:"cpu-100"`
-	Cpu101        int `json:"cpu-101"`
-	Cpu102        int `json:"cpu-102"`
-	Cpu103        int `json:"cpu-103"`
-	Cpu104        int `json:"cpu-104"`
-	Cpu105        int `json:"cpu-105"`
 }
 
 func (p *SystemDataCpuStats) GetId() string {

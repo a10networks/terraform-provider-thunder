@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsInc2722 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsInc2737 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsRate2723 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsRate2738 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsSeverity2724 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsSeverity2739 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,7 +25,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmpl struct {
 	} `json:"aam-auth-captcha-inst-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsInc2722 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsInc2737 struct {
 	ParseFail    int    `json:"parse-fail"`
 	JsonFail     int    `json:"json-fail"`
 	AttrFail     int    `json:"attr-fail"`
@@ -34,7 +34,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsInc
 	Uuid         string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsRate2723 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsRate2738 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	ParseFail           int    `json:"parse-fail"`
@@ -45,7 +45,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsRat
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsSeverity2724 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsSeverity2739 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

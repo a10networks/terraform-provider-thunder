@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbCommonCertPinning struct {
 	Inst struct {
-		CandidateListFeedbackOptIn SlbCommonCertPinningCandidateListFeedbackOptIn1498 `json:"candidate-list-feedback-opt-in"`
+		CandidateListFeedbackOptIn SlbCommonCertPinningCandidateListFeedbackOptIn1499 `json:"candidate-list-feedback-opt-in"`
 
 		Ttl int `json:"ttl" dval:"144"`
 
@@ -16,7 +16,7 @@ type SlbCommonCertPinning struct {
 	} `json:"cert-pinning"`
 }
 
-type SlbCommonCertPinningCandidateListFeedbackOptIn1498 struct {
+type SlbCommonCertPinningCandidateListFeedbackOptIn1499 struct {
 	Enable      int    `json:"enable"`
 	Schedule    int    `json:"schedule"`
 	Weekly      int    `json:"weekly"`

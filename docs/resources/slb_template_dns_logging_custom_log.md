@@ -21,15 +21,28 @@ __PLACEHOLDER__
 ### Required
 
 - `dns_logging_name` (String) Dns_logging_name
-- `trigger_reason` (String) 'request': log when request comes from client; 'response': log when response to client;
+- `trigger_reason` (String) 'request': log when request comes from client; 'response': log when response to client; 'timeout': log when request connection timeout;
 
 ### Optional
 
 - `enable` (Number) Enable this log
 - `format` (String) Request Message (Custom message string)
+- `log_filter_list` (Block List) (see [below for nested schema](#nestedblock--log_filter_list))
 - `user_tag` (String) Customized tag
 - `uuid` (String) uuid of the object
 
 ### Read-Only
 
 - `id` (String) The ID of this resource.
+
+<a id="nestedblock--log_filter_list"></a>
+### Nested Schema for `log_filter_list`
+
+Required:
+
+- `feature` (String) 'RPZ': log when rpz feature hit;
+
+Optional:
+
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object

@@ -64,6 +64,7 @@ Optional:
 - `rdata_size_value` (Number)
 - `record_all` (Number)
 - `record_num_value` (Number)
+- `template` (String)
 - `total` (Number)
 - `type_string` (String)
 - `type_value` (Number)

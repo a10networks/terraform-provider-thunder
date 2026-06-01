@@ -135,10 +135,10 @@ func resourceSystemConfigMgmtRead(ctx context.Context, d *schema.ResourceData, m
 	return diags
 }
 
-func getObjectSystemConfigMgmtMpm1673(d []interface{}) edpt.SystemConfigMgmtMpm1673 {
+func getObjectSystemConfigMgmtMpm1674(d []interface{}) edpt.SystemConfigMgmtMpm1674 {
 
 	count1 := len(d)
-	var ret edpt.SystemConfigMgmtMpm1673
+	var ret edpt.SystemConfigMgmtMpm1674
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MaxWorkers = in["max_workers"].(int)
@@ -149,10 +149,10 @@ func getObjectSystemConfigMgmtMpm1673(d []interface{}) edpt.SystemConfigMgmtMpm1
 	return ret
 }
 
-func getObjectSystemConfigMgmtNotification1674(d []interface{}) edpt.SystemConfigMgmtNotification1674 {
+func getObjectSystemConfigMgmtNotification1675(d []interface{}) edpt.SystemConfigMgmtNotification1675 {
 
 	count1 := len(d)
-	var ret edpt.SystemConfigMgmtNotification1674
+	var ret edpt.SystemConfigMgmtNotification1675
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Period = in["period"].(int)
@@ -161,10 +161,10 @@ func getObjectSystemConfigMgmtNotification1674(d []interface{}) edpt.SystemConfi
 	return ret
 }
 
-func getObjectSystemConfigMgmtPuSyncDetection1675(d []interface{}) edpt.SystemConfigMgmtPuSyncDetection1675 {
+func getObjectSystemConfigMgmtPuSyncDetection1676(d []interface{}) edpt.SystemConfigMgmtPuSyncDetection1676 {
 
 	count1 := len(d)
-	var ret edpt.SystemConfigMgmtPuSyncDetection1675
+	var ret edpt.SystemConfigMgmtPuSyncDetection1676
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Interval = in["interval"].(int)
@@ -177,9 +177,9 @@ func getObjectSystemConfigMgmtPuSyncDetection1675(d []interface{}) edpt.SystemCo
 func dataToEndpointSystemConfigMgmt(d *schema.ResourceData) edpt.SystemConfigMgmt {
 	var ret edpt.SystemConfigMgmt
 	ret.Inst.DeleteReferencedTaggedObjects = d.Get("delete_referenced_tagged_objects").(string)
-	ret.Inst.Mpm = getObjectSystemConfigMgmtMpm1673(d.Get("mpm").([]interface{}))
-	ret.Inst.Notification = getObjectSystemConfigMgmtNotification1674(d.Get("notification").([]interface{}))
-	ret.Inst.PuSyncDetection = getObjectSystemConfigMgmtPuSyncDetection1675(d.Get("pu_sync_detection").([]interface{}))
+	ret.Inst.Mpm = getObjectSystemConfigMgmtMpm1674(d.Get("mpm").([]interface{}))
+	ret.Inst.Notification = getObjectSystemConfigMgmtNotification1675(d.Get("notification").([]interface{}))
+	ret.Inst.PuSyncDetection = getObjectSystemConfigMgmtPuSyncDetection1676(d.Get("pu_sync_detection").([]interface{}))
 	//omit uuid
 	return ret
 }

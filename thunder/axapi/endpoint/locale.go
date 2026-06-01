@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Locale struct {
 	Inst struct {
-		Test LocaleTest1131 `json:"test"`
+		Test LocaleTest1130 `json:"test"`
 
 		Uuid string `json:"uuid"`
 
@@ -16,7 +16,7 @@ type Locale struct {
 	} `json:"locale"`
 }
 
-type LocaleTest1131 struct {
+type LocaleTest1130 struct {
 	Locale string `json:"locale"`
 }
 

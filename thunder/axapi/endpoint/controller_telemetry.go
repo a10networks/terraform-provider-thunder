@@ -5,25 +5,16 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type ControllerTelemetry struct {
-	Inst struct {
-		LogRate int `json:"log-rate" dval:"10"`
-
-		Probe ControllerTelemetryProbe144 `json:"probe"`
-
-		Uuid string `json:"uuid"`
-	} `json:"telemetry"`
+	Telemetry ControllerTelemetryInst `json:"telemetry"`
 }
 
-type ControllerTelemetryProbe144 struct {
-	Action       string `json:"action" dval:"disable"`
-	Interval     int    `json:"interval" dval:"15"`
-	LogLevel     string `json:"log-level" dval:"ERROR"`
-	ExportPolicy string `json:"export-policy" dval:"snapshots-new"`
-	Target       string `json:"target" dval:"remote"`
-	Uuid         string `json:"uuid"`
+type ControllerTelemetryInst struct {
+	LogRate int    `json:"log-rate"`
+	Uuid    string `json:"uuid"`
 }
+
 
 func (p *ControllerTelemetry) GetId() string {
 	return "1"

@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type GslbSiteSlbDev struct {
 	Inst struct {
 		AdminPreference int `json:"admin-preference" dval:"100"`
@@ -54,13 +54,13 @@ type GslbSiteSlbDev struct {
 
 		Uuid string `json:"uuid"`
 
-		VipServer GslbSiteSlbDevVipServer489 `json:"vip-server"`
+		VipServer GslbSiteSlbDevVipServer480 `json:"vip-server"`
 
 		SiteName string
 	} `json:"slb-dev"`
 }
 
-type GslbSiteSlbDevVipServer489 struct {
+type GslbSiteSlbDevVipServer480 struct {
 	VipServerV4List   []GslbSiteSlbDevVipServerVipServerV4List   `json:"vip-server-v4-list"`
 	VipServerV6List   []GslbSiteSlbDevVipServerVipServerV6List   `json:"vip-server-v6-list"`
 	VipServerNameList []GslbSiteSlbDevVipServerVipServerNameList `json:"vip-server-name-list"`

@@ -60,7 +60,6 @@ Optional:
 - `l3_entry_added` (Number) L3 Entry Added
 - `l3_entry_added_to_bgp` (Number) L3 Entry added to BGP
 - `l3_entry_added_to_hw` (Number) L3 Entry added to HW
-- `l3_entry_del_to_hw_failure` (Number) L3 entry HW del failure
 - `l3_entry_deleted` (Number) L3 Entry Deleted
 - `l3_entry_drop_max_hw_exceeded` (Number) L3 Entry Drop due to HW Limit Exceeded
 - `l3_entry_match_drop` (Number) L3 Entry match drop
@@ -69,12 +68,9 @@ Optional:
 - `l3_entry_removed_from_bgp` (Number) Entry removed from BGP
 - `l3_entry_removed_from_hw` (Number) L3 Entry removed from HW
 - `l3_entry_too_many` (Number) L3 Too many entries
-- `l3_hw_out_of_entries` (Number) HW out of L3 entries
-- `l4_entry_add_to_hw_failure` (Number) L4 entry HW add failure
 - `l4_entry_added` (Number) L4 Entry added
 - `l4_entry_added_to_hw` (Number) L4 Entry added to HW
-- `l4_entry_del_to_hw_failure` (Number) L4 entry HW del failure
-- `l4_entry_deleted` (Number) L4 Entry set for deletion
+- `l4_entry_deleted` (Number) L4 Entry deleted
 - `l4_entry_drop_max_hw_exceeded` (Number) L4 Entry Drop due to HW Limit Exceeded
 - `l4_entry_list_alloc` (Number) L4 Entry list alloc
 - `l4_entry_list_alloc_failure` (Number) L4 Entry list alloc failures

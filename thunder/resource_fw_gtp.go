@@ -153,15 +153,15 @@ func resourceFwGtpRead(ctx context.Context, d *schema.ResourceData, meta interfa
 	return diags
 }
 
-func getObjectFwGtpApnPrefix441(d []interface{}) edpt.FwGtpApnPrefix441 {
+func getObjectFwGtpApnPrefix432(d []interface{}) edpt.FwGtpApnPrefix432 {
 
-	var ret edpt.FwGtpApnPrefix441
+	var ret edpt.FwGtpApnPrefix432
 	return ret
 }
 
-func getObjectFwGtpNetworkElement442(d []interface{}) edpt.FwGtpNetworkElement442 {
+func getObjectFwGtpNetworkElement433(d []interface{}) edpt.FwGtpNetworkElement433 {
 
-	var ret edpt.FwGtpNetworkElement442
+	var ret edpt.FwGtpNetworkElement433
 	return ret
 }
 
@@ -184,14 +184,14 @@ func getSliceFwGtpSamplingEnable(d []interface{}) []edpt.FwGtpSamplingEnable {
 func dataToEndpointFwGtp(d *schema.ResourceData) edpt.FwGtp {
 	var ret edpt.FwGtp
 	ret.Inst.ApnLogPeriodicity = d.Get("apn_log_periodicity").(int)
-	ret.Inst.ApnPrefix = getObjectFwGtpApnPrefix441(d.Get("apn_prefix").([]interface{}))
+	ret.Inst.ApnPrefix = getObjectFwGtpApnPrefix432(d.Get("apn_prefix").([]interface{}))
 	ret.Inst.ApnPrefixList = d.Get("apn_prefix_list").(string)
 	ret.Inst.EchoTimeout = d.Get("echo_timeout").(int)
 	ret.Inst.GtpValue = d.Get("gtp_value").(string)
 	ret.Inst.InsertionMode = d.Get("insertion_mode").(string)
 	ret.Inst.NeV4LogPeriodicity = d.Get("ne_v4_log_periodicity").(int)
 	ret.Inst.NeV6LogPeriodicity = d.Get("ne_v6_log_periodicity").(int)
-	ret.Inst.NetworkElement = getObjectFwGtpNetworkElement442(d.Get("network_element").([]interface{}))
+	ret.Inst.NetworkElement = getObjectFwGtpNetworkElement433(d.Get("network_element").([]interface{}))
 	ret.Inst.NetworkElementListV4 = d.Get("network_element_list_v4").(string)
 	ret.Inst.NetworkElementListV6 = d.Get("network_element_list_v6").(string)
 	ret.Inst.PathMgmtLogging = d.Get("path_mgmt_logging").(string)

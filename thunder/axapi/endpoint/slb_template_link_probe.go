@@ -6,10 +6,10 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbTemplateLinkProbe struct {
 	Inst struct {
-		Destination SlbTemplateLinkProbeDestination1551 `json:"destination"`
+		Destination SlbTemplateLinkProbeDestination1552 `json:"destination"`
 
 		Disable int `json:"disable"`
 
@@ -37,7 +37,7 @@ type SlbTemplateLinkProbe struct {
 	} `json:"link-probe"`
 }
 
-type SlbTemplateLinkProbeDestination1551 struct {
+type SlbTemplateLinkProbeDestination1552 struct {
 	Hostname       string `json:"hostname"`
 	ResolveAs      string `json:"resolve-as"`
 	StaticIpv4Addr string `json:"static-ipv4-addr"`

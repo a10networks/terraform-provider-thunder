@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesDnsVportTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesDnsVportTmplTriggerStatsInc2776 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesDnsVportTmplTriggerStatsInc2794 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesDnsVportTmplTriggerStatsRate2777 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesDnsVportTmplTriggerStatsRate2795 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesDnsVportTmplTriggerStatsSeverity2778 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesDnsVportTmplTriggerStatsSeverity2796 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,7 +25,7 @@ type VisibilityPacketCaptureObjectTemplatesDnsVportTmpl struct {
 	} `json:"dns_vport-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesDnsVportTmplTriggerStatsInc2776 struct {
+type VisibilityPacketCaptureObjectTemplatesDnsVportTmplTriggerStatsInc2794 struct {
 	Dnsrrl_total_dropped           int    `json:"dnsrrl_total_dropped"`
 	Total_filter_drop              int    `json:"total_filter_drop"`
 	Total_max_query_len_drop       int    `json:"total_max_query_len_drop"`
@@ -58,7 +58,7 @@ type VisibilityPacketCaptureObjectTemplatesDnsVportTmplTriggerStatsInc2776 struc
 	Uuid                           string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesDnsVportTmplTriggerStatsRate2777 struct {
+type VisibilityPacketCaptureObjectTemplatesDnsVportTmplTriggerStatsRate2795 struct {
 	ThresholdExceededBy            int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                       int    `json:"duration" dval:"60"`
 	Dnsrrl_total_dropped           int    `json:"dnsrrl_total_dropped"`
@@ -93,7 +93,7 @@ type VisibilityPacketCaptureObjectTemplatesDnsVportTmplTriggerStatsRate2777 stru
 	Uuid                           string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesDnsVportTmplTriggerStatsSeverity2778 struct {
+type VisibilityPacketCaptureObjectTemplatesDnsVportTmplTriggerStatsSeverity2796 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

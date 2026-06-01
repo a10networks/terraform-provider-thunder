@@ -534,6 +534,12 @@ func resourceDdosDstZonePortRangeStats27() *schema.Resource {
 									"version_no_match_drop": {
 										Type: schema.TypeInt, Optional: true, Description: "Version No Match Drop",
 									},
+									"src_ip_filtering_drop": {
+										Type: schema.TypeInt, Optional: true, Description: "Src-ip-filtering Drop",
+									},
+									"src_ip_filtering_bypass": {
+										Type: schema.TypeInt, Optional: true, Description: "Src-ip-filtering Bypass",
+									},
 								},
 							},
 						},
@@ -792,6 +798,8 @@ func getObjectDdosDstZonePortRangeStats27StatsQuicZonePort(d []interface{}) edpt
 		ret.Src_zone_service_entry_hit = in["src_zone_service_entry_hit"].(int)
 		ret.Same_sport_dport_drop = in["same_sport_dport_drop"].(int)
 		ret.Version_no_match_drop = in["version_no_match_drop"].(int)
+		ret.Src_ip_filtering_drop = in["src_ip_filtering_drop"].(int)
+		ret.Src_ip_filtering_bypass = in["src_ip_filtering_bypass"].(int)
 	}
 	return ret
 }

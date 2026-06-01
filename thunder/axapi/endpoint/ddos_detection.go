@@ -5,28 +5,30 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDetection struct {
 	Inst struct {
 		AgentGroupList []DdosDetectionAgentGroupList `json:"agent-group-list"`
 
 		AgentList []DdosDetectionAgentList `json:"agent-list"`
 
-		DdosScript DdosDetectionDdosScript154 `json:"ddos-script"`
+		DdosScript DdosDetectionDdosScript157 `json:"ddos-script"`
 
 		Disable int `json:"disable"`
 
-		EntrySaving DdosDetectionEntrySaving155 `json:"entry-saving"`
+		EntrySaving DdosDetectionEntrySaving158 `json:"entry-saving"`
 
-		ResourceUsage DdosDetectionResourceUsage156 `json:"resource-usage"`
+		ResourceUsage DdosDetectionResourceUsage159 `json:"resource-usage"`
 
-		Settings DdosDetectionSettings157 `json:"settings"`
+		Settings DdosDetectionSettings160 `json:"settings"`
 
-		Statistics DdosDetectionStatistics164 `json:"statistics"`
+		Statistics DdosDetectionStatistics167 `json:"statistics"`
 
-		Trustlist DdosDetectionTrustlist165 `json:"trustlist"`
+		Trustlist DdosDetectionTrustlist168 `json:"trustlist"`
 
 		Uuid string `json:"uuid"`
+
+		XflowInterfaceSelectionList []DdosDetectionXflowInterfaceSelectionList `json:"xflow-interface-selection-list"`
 	} `json:"detection"`
 }
 
@@ -51,6 +53,7 @@ type DdosDetectionAgentList struct {
 	SamplingEnable []DdosDetectionAgentListSamplingEnable `json:"sampling-enable"`
 	Sflow          DdosDetectionAgentListSflow            `json:"sflow"`
 	Netflow        DdosDetectionAgentListNetflow          `json:"netflow"`
+	Snmp           DdosDetectionAgentListSnmp             `json:"snmp"`
 }
 
 type DdosDetectionAgentListSamplingEnable struct {
@@ -70,30 +73,37 @@ type DdosDetectionAgentListNetflow struct {
 	Uuid                     string `json:"uuid"`
 }
 
-type DdosDetectionDdosScript154 struct {
+type DdosDetectionAgentListSnmp struct {
+	Ipv4Addr        string `json:"ipv4-addr"`
+	CommunityString string `json:"community-string"`
+	Refresh         int    `json:"refresh"`
+	Uuid            string `json:"uuid"`
+}
+
+type DdosDetectionDdosScript157 struct {
 	File   string `json:"file"`
 	Action string `json:"action"`
 	Uuid   string `json:"uuid"`
 }
 
-type DdosDetectionEntrySaving155 struct {
+type DdosDetectionEntrySaving158 struct {
 	ClearSavedData int    `json:"clear-saved-data"`
 	ManualSave     int    `json:"manual-save"`
 	ManualRestore  int    `json:"manual-restore"`
 	Uuid           string `json:"uuid"`
 }
 
-type DdosDetectionResourceUsage156 struct {
+type DdosDetectionResourceUsage159 struct {
 	Uuid string `json:"uuid"`
 }
 
-type DdosDetectionSettings157 struct {
+type DdosDetectionSettings160 struct {
 	DetectorMode                     string                                     `json:"detector-mode"`
 	DedicatedCpus                    int                                        `json:"dedicated-cpus"`
 	CtrlCpuUsage                     int                                        `json:"ctrl-cpu-usage"`
 	FullCoreEnable                   int                                        `json:"full-core-enable"`
 	TopKResetInterval                int                                        `json:"top-k-reset-interval"`
-	PktSampling                      []DdosDetectionSettingsPktSampling158      `json:"pkt-sampling"`
+	PktSampling                      []DdosDetectionSettingsPktSampling161      `json:"pkt-sampling"`
 	HistogramEscalatePercentage      int                                        `json:"histogram-escalate-percentage"`
 	HistogramDeEscalatePercentage    int                                        `json:"histogram-de-escalate-percentage"`
 	DetectionWindowSize              int                                        `json:"detection-window-size" dval:"1"`
@@ -105,54 +115,70 @@ type DdosDetectionSettings157 struct {
 	DeEscalationQuietTime            int                                        `json:"de-escalation-quiet-time"`
 	NetworkObjectSubnetNotifyPercent int                                        `json:"network-object-subnet-notify-percent"`
 	Uuid                             string                                     `json:"uuid"`
-	EntrySaving                      DdosDetectionSettingsEntrySaving159        `json:"entry-saving"`
-	StandaloneSettings               DdosDetectionSettingsStandaloneSettings160 `json:"standalone-settings"`
-	ZoneNotifications                DdosDetectionSettingsZoneNotifications163  `json:"zone-notifications"`
+	EntrySaving                      DdosDetectionSettingsEntrySaving162        `json:"entry-saving"`
+	StandaloneSettings               DdosDetectionSettingsStandaloneSettings163 `json:"standalone-settings"`
+	ZoneNotifications                DdosDetectionSettingsZoneNotifications166  `json:"zone-notifications"`
 }
 
-type DdosDetectionSettingsPktSampling158 struct {
+type DdosDetectionSettingsPktSampling161 struct {
 	OverrideRate int `json:"override-rate"`
 	StartLevel   int `json:"start-level" dval:"1"`
 }
 
-type DdosDetectionSettingsEntrySaving159 struct {
+type DdosDetectionSettingsEntrySaving162 struct {
 	DisableBootupRestore int    `json:"disable-bootup-restore"`
 	Interval             int    `json:"interval"`
 	Uuid                 string `json:"uuid"`
 }
 
-type DdosDetectionSettingsStandaloneSettings160 struct {
+type DdosDetectionSettingsStandaloneSettings163 struct {
 	Action  string                                            `json:"action" dval:"disable"`
 	Uuid    string                                            `json:"uuid"`
-	Sflow   DdosDetectionSettingsStandaloneSettingsSflow161   `json:"sflow"`
-	Netflow DdosDetectionSettingsStandaloneSettingsNetflow162 `json:"netflow"`
+	Sflow   DdosDetectionSettingsStandaloneSettingsSflow164   `json:"sflow"`
+	Netflow DdosDetectionSettingsStandaloneSettingsNetflow165 `json:"netflow"`
 }
 
-type DdosDetectionSettingsStandaloneSettingsSflow161 struct {
+type DdosDetectionSettingsStandaloneSettingsSflow164 struct {
 	ListeningPort int    `json:"listening-port" dval:"6343"`
 	Uuid          string `json:"uuid"`
 }
 
-type DdosDetectionSettingsStandaloneSettingsNetflow162 struct {
+type DdosDetectionSettingsStandaloneSettingsNetflow165 struct {
 	ListeningPort         int    `json:"listening-port" dval:"9996"`
 	TemplateActiveTimeout int    `json:"template-active-timeout" dval:"30"`
 	DistributeByDuration  string `json:"distribute-by-duration" dval:"enable"`
 	Uuid                  string `json:"uuid"`
 }
 
-type DdosDetectionSettingsZoneNotifications163 struct {
+type DdosDetectionSettingsZoneNotifications166 struct {
 	SourceEntry string `json:"source-entry" dval:"disable"`
 	Uuid        string `json:"uuid"`
 }
 
-type DdosDetectionStatistics164 struct {
+type DdosDetectionStatistics167 struct {
 	Uuid string `json:"uuid"`
 }
 
-type DdosDetectionTrustlist165 struct {
+type DdosDetectionTrustlist168 struct {
 	V4ClassList string `json:"v4-class-list"`
 	V6ClassList string `json:"v6-class-list"`
 	Uuid        string `json:"uuid"`
+}
+
+type DdosDetectionXflowInterfaceSelectionList struct {
+	Type    string                                        `json:"type"`
+	Uuid    string                                        `json:"uuid"`
+	UserTag string                                        `json:"user-tag"`
+	Regex   DdosDetectionXflowInterfaceSelectionListRegex `json:"regex"`
+}
+
+type DdosDetectionXflowInterfaceSelectionListRegex struct {
+	RuleList []DdosDetectionXflowInterfaceSelectionListRegexRuleList `json:"rule-list"`
+	Uuid     string                                                  `json:"uuid"`
+}
+
+type DdosDetectionXflowInterfaceSelectionListRegexRuleList struct {
+	SingleRegex string `json:"single-regex"`
 }
 
 func (p *DdosDetection) GetId() string {

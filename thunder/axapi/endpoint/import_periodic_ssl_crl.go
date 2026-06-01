@@ -3,11 +3,16 @@ package endpoint
 import (
 	"github.com/a10networks/terraform-provider-thunder/thunder/axapi"
 	"github.com/clarketm/json"
+	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type ImportPeriodicSslCrl struct {
 	Inst struct {
+		Encrypted string `json:"encrypted"`
+
+		Password string `json:"password"`
+
 		Period int `json:"period"`
 
 		RemoteFile string `json:"remote-file"`
@@ -21,7 +26,7 @@ type ImportPeriodicSslCrl struct {
 }
 
 func (p *ImportPeriodicSslCrl) GetId() string {
-	return p.Inst.SslCrl
+	return url.QueryEscape(p.Inst.SslCrl)
 }
 
 func (p *ImportPeriodicSslCrl) getPath() string {

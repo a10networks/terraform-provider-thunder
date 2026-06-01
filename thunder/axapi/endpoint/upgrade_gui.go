@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type UpgradeGui struct {
 	Inst struct {
 		Delete []UpgradeGuiDelete `json:"delete"`
@@ -19,6 +19,8 @@ type UpgradeGui struct {
 		ImageFile string `json:"image-file"`
 
 		Local string `json:"local"`
+
+		Password string `json:"password"`
 
 		RemoteUrl string `json:"remote-url"`
 

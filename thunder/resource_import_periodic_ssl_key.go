@@ -16,6 +16,9 @@ func resourceImportPeriodicSslKey() *schema.Resource {
 		DeleteContext: resourceImportPeriodicSslKeyDelete,
 
 		Schema: map[string]*schema.Schema{
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "Config remote server  password",
+			},
 			"period": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the period in second",
 			},
@@ -101,6 +104,8 @@ func resourceImportPeriodicSslKeyRead(ctx context.Context, d *schema.ResourceDat
 
 func dataToEndpointImportPeriodicSslKey(d *schema.ResourceData) edpt.ImportPeriodicSslKey {
 	var ret edpt.ImportPeriodicSslKey
+	//omit encrypted
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)
 	ret.Inst.Secured = d.Get("secured").(int)

@@ -50,11 +50,11 @@ func resourceDdosDstZoneIpProtoProtoNameManualMode() *schema.Resource {
 					},
 				},
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
-			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			},
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 		},
 	}
@@ -143,7 +143,7 @@ func dataToEndpointDdosDstZoneIpProtoProtoNameManualMode(d *schema.ResourceData)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.ZoneTemplate = getObjectDdosDstZoneIpProtoProtoNameManualModeZoneTemplate(d.Get("zone_template").([]interface{}))
-	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.ZoneName = d.Get("zone_name").(string)
+	ret.Inst.Protocol = d.Get("protocol").(string)
 	return ret
 }

@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZoneSrcPortZoneSrcPortOtherLevelIndicator struct {
 	Inst struct {
 		Type string `json:"type"`
@@ -22,9 +22,9 @@ type DdosDstZoneSrcPortZoneSrcPortOtherLevelIndicator struct {
 
 		Protocol string
 
-		LevelNum string
-
 		ZoneName string
+
+		LevelNum string
 	} `json:"indicator"`
 }
 

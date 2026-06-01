@@ -44,14 +44,14 @@ func resourceDdosDstEntrySrcDstPairClassListCidAppTypeSrcDstCid() *schema.Resour
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
+			"class_list_name": {
+				Type: schema.TypeString, Required: true, Description: "ClassListName",
+			},
 			"cid_num": {
 				Type: schema.TypeString, Required: true, Description: "CidNum",
 			},
 			"dst_entry_name": {
 				Type: schema.TypeString, Required: true, Description: "DstEntryName",
-			},
-			"class_list_name": {
-				Type: schema.TypeString, Required: true, Description: "ClassListName",
 			},
 		},
 	}
@@ -138,8 +138,8 @@ func dataToEndpointDdosDstEntrySrcDstPairClassListCidAppTypeSrcDstCid(d *schema.
 	ret.Inst.Template = getObjectDdosDstEntrySrcDstPairClassListCidAppTypeSrcDstCidTemplate(d.Get("template").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
+	ret.Inst.ClassListName = d.Get("class_list_name").(string)
 	ret.Inst.CidNum = d.Get("cid_num").(string)
 	ret.Inst.DstEntryName = d.Get("dst_entry_name").(string)
-	ret.Inst.ClassListName = d.Get("class_list_name").(string)
 	return ret
 }

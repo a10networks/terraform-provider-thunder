@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type HealthMonitor struct {
 	Inst struct {
 		DefaultStateUp int `json:"default-state-up"`
@@ -17,11 +17,11 @@ type HealthMonitor struct {
 
 		DsrL2Strict int `json:"dsr-l2-strict"`
 
-		HeaderInsert HealthMonitorHeaderInsert497 `json:"header-insert"`
+		HeaderInsert HealthMonitorHeaderInsert484 `json:"header-insert"`
 
 		Interval int `json:"interval"`
 
-		Method HealthMonitorMethod499 `json:"method"`
+		Method HealthMonitorMethod486 `json:"method"`
 
 		Name string `json:"name"`
 
@@ -35,7 +35,7 @@ type HealthMonitor struct {
 
 		PassiveInterval int `json:"passive-interval" dval:"10"`
 
-		ProxyHeader HealthMonitorProxyHeader531 `json:"proxy-header"`
+		ProxyHeader HealthMonitorProxyHeader518 `json:"proxy-header"`
 
 		Retry int `json:"retry"`
 
@@ -43,7 +43,7 @@ type HealthMonitor struct {
 
 		SslCiphers string `json:"ssl-ciphers" dval:"DEFAULT"`
 
-		SslDgversion int `json:"ssl-dgversion" dval:"33"`
+		SslDgversion int `json:"ssl-dgversion" dval:"31"`
 
 		SslTicket int `json:"ssl-ticket"`
 
@@ -69,41 +69,41 @@ type HealthMonitor struct {
 	} `json:"monitor"`
 }
 
-type HealthMonitorHeaderInsert497 struct {
-	InsertList []HealthMonitorHeaderInsertInsertList498 `json:"insert-list"`
+type HealthMonitorHeaderInsert484 struct {
+	InsertList []HealthMonitorHeaderInsertInsertList485 `json:"insert-list"`
 	Uuid       string                                   `json:"uuid"`
 }
 
-type HealthMonitorHeaderInsertInsertList498 struct {
+type HealthMonitorHeaderInsertInsertList485 struct {
 	InsertContent string `json:"insert-content"`
 }
 
-type HealthMonitorMethod499 struct {
-	Icmp        HealthMonitorMethodIcmp500        `json:"icmp"`
-	Quic        HealthMonitorMethodQuic501        `json:"quic"`
-	Tcp         HealthMonitorMethodTcp502         `json:"tcp"`
-	Udp         HealthMonitorMethodUdp504         `json:"udp"`
-	Http        HealthMonitorMethodHttp505        `json:"http"`
-	Ftp         HealthMonitorMethodFtp507         `json:"ftp"`
-	Snmp        HealthMonitorMethodSnmp508        `json:"snmp"`
-	Smtp        HealthMonitorMethodSmtp511        `json:"smtp"`
-	Dns         HealthMonitorMethodDns512         `json:"dns"`
-	Pop3        HealthMonitorMethodPop3516        `json:"pop3"`
-	Imap        HealthMonitorMethodImap517        `json:"imap"`
-	Sip         HealthMonitorMethodSip518         `json:"sip"`
-	Radius      HealthMonitorMethodRadius519      `json:"radius"`
-	Ldap        HealthMonitorMethodLdap520        `json:"ldap"`
-	Rtsp        HealthMonitorMethodRtsp521        `json:"rtsp"`
-	Database    HealthMonitorMethodDatabase522    `json:"database"`
-	External    HealthMonitorMethodExternal523    `json:"external"`
-	Ntp         HealthMonitorMethodNtp524         `json:"ntp"`
-	KerberosKdc HealthMonitorMethodKerberosKdc525 `json:"kerberos-kdc"`
-	Https       HealthMonitorMethodHttps527       `json:"https"`
-	Tacplus     HealthMonitorMethodTacplus529     `json:"tacplus"`
-	Compound    HealthMonitorMethodCompound530    `json:"compound"`
+type HealthMonitorMethod486 struct {
+	Icmp        HealthMonitorMethodIcmp487        `json:"icmp"`
+	Quic        HealthMonitorMethodQuic488        `json:"quic"`
+	Tcp         HealthMonitorMethodTcp489         `json:"tcp"`
+	Udp         HealthMonitorMethodUdp491         `json:"udp"`
+	Http        HealthMonitorMethodHttp492        `json:"http"`
+	Ftp         HealthMonitorMethodFtp494         `json:"ftp"`
+	Snmp        HealthMonitorMethodSnmp495        `json:"snmp"`
+	Smtp        HealthMonitorMethodSmtp498        `json:"smtp"`
+	Dns         HealthMonitorMethodDns499         `json:"dns"`
+	Pop3        HealthMonitorMethodPop3503        `json:"pop3"`
+	Imap        HealthMonitorMethodImap504        `json:"imap"`
+	Sip         HealthMonitorMethodSip505         `json:"sip"`
+	Radius      HealthMonitorMethodRadius506      `json:"radius"`
+	Ldap        HealthMonitorMethodLdap507        `json:"ldap"`
+	Rtsp        HealthMonitorMethodRtsp508        `json:"rtsp"`
+	Database    HealthMonitorMethodDatabase509    `json:"database"`
+	External    HealthMonitorMethodExternal510    `json:"external"`
+	Ntp         HealthMonitorMethodNtp511         `json:"ntp"`
+	KerberosKdc HealthMonitorMethodKerberosKdc512 `json:"kerberos-kdc"`
+	Https       HealthMonitorMethodHttps514       `json:"https"`
+	Tacplus     HealthMonitorMethodTacplus516     `json:"tacplus"`
+	Compound    HealthMonitorMethodCompound517    `json:"compound"`
 }
 
-type HealthMonitorMethodIcmp500 struct {
+type HealthMonitorMethodIcmp487 struct {
 	Icmp        int    `json:"icmp" dval:"1"`
 	Transparent int    `json:"transparent"`
 	Ipv6        string `json:"ipv6"`
@@ -111,35 +111,35 @@ type HealthMonitorMethodIcmp500 struct {
 	Uuid        string `json:"uuid"`
 }
 
-type HealthMonitorMethodQuic501 struct {
+type HealthMonitorMethodQuic488 struct {
 	Quic     int    `json:"quic"`
 	QuicPort int    `json:"quic-port" dval:"443"`
 	Uuid     string `json:"uuid"`
 }
 
-type HealthMonitorMethodTcp502 struct {
+type HealthMonitorMethodTcp489 struct {
 	MethodTcp       int                               `json:"method-tcp"`
 	TcpPort         int                               `json:"tcp-port"`
 	PortHalfopen    int                               `json:"port-halfopen"`
 	PortSend        string                            `json:"port-send"`
-	PortResp        HealthMonitorMethodTcpPortResp503 `json:"port-resp"`
+	PortResp        HealthMonitorMethodTcpPortResp490 `json:"port-resp"`
 	Maintenance     int                               `json:"maintenance"`
 	MaintenanceText string                            `json:"maintenance-text"`
 	Uuid            string                            `json:"uuid"`
 }
 
-type HealthMonitorMethodTcpPortResp503 struct {
+type HealthMonitorMethodTcpPortResp490 struct {
 	PortContains string `json:"port-contains"`
 }
 
-type HealthMonitorMethodUdp504 struct {
+type HealthMonitorMethodUdp491 struct {
 	Udp                          int    `json:"udp"`
 	UdpPort                      int    `json:"udp-port"`
 	ForceUpWithSingleHealthcheck int    `json:"force-up-with-single-healthcheck"`
 	Uuid                         string `json:"uuid"`
 }
 
-type HealthMonitorMethodHttp505 struct {
+type HealthMonitorMethodHttp492 struct {
 	Http                 int                                       `json:"http"`
 	HttpPort             int                                       `json:"http-port" dval:"80"`
 	Version2             int                                       `json:"version2"`
@@ -166,18 +166,18 @@ type HealthMonitorMethodHttp505 struct {
 	HttpEncrypted        string                                    `json:"http-encrypted"`
 	HttpKerberosAuth     int                                       `json:"http-kerberos-auth"`
 	HttpKerberosRealm    string                                    `json:"http-kerberos-realm"`
-	HttpKerberosKdc      HealthMonitorMethodHttpHttpKerberosKdc506 `json:"http-kerberos-kdc"`
+	HttpKerberosKdc      HealthMonitorMethodHttpHttpKerberosKdc493 `json:"http-kerberos-kdc"`
 	Uuid                 string                                    `json:"uuid"`
 }
 
-type HealthMonitorMethodHttpHttpKerberosKdc506 struct {
+type HealthMonitorMethodHttpHttpKerberosKdc493 struct {
 	HttpKerberosHostip   string `json:"http-kerberos-hostip"`
 	HttpKerberosHostipv6 string `json:"http-kerberos-hostipv6"`
 	HttpKerberosPort     int    `json:"http-kerberos-port"`
 	HttpKerberosPortv6   int    `json:"http-kerberos-portv6"`
 }
 
-type HealthMonitorMethodFtp507 struct {
+type HealthMonitorMethodFtp494 struct {
 	Ftp               int    `json:"ftp"`
 	FtpPort           int    `json:"ftp-port" dval:"21"`
 	FtpUsername       string `json:"ftp-username"`
@@ -187,25 +187,25 @@ type HealthMonitorMethodFtp507 struct {
 	Uuid              string `json:"uuid"`
 }
 
-type HealthMonitorMethodSnmp508 struct {
+type HealthMonitorMethodSnmp495 struct {
 	Snmp      int                                 `json:"snmp"`
 	SnmpPort  int                                 `json:"snmp-port" dval:"161"`
 	Community string                              `json:"community" dval:"public"`
-	Oid       HealthMonitorMethodSnmpOid509       `json:"oid"`
-	Operation HealthMonitorMethodSnmpOperation510 `json:"operation"`
+	Oid       HealthMonitorMethodSnmpOid496       `json:"oid"`
+	Operation HealthMonitorMethodSnmpOperation497 `json:"operation"`
 	Uuid      string                              `json:"uuid"`
 }
 
-type HealthMonitorMethodSnmpOid509 struct {
+type HealthMonitorMethodSnmpOid496 struct {
 	Mib string `json:"mib"`
 	Asn string `json:"asn"`
 }
 
-type HealthMonitorMethodSnmpOperation510 struct {
+type HealthMonitorMethodSnmpOperation497 struct {
 	OperType string `json:"oper-type"`
 }
 
-type HealthMonitorMethodSmtp511 struct {
+type HealthMonitorMethodSmtp498 struct {
 	Smtp         int    `json:"smtp"`
 	SmtpDomain   string `json:"smtp-domain"`
 	SmtpPort     int    `json:"smtp-port" dval:"25"`
@@ -215,46 +215,46 @@ type HealthMonitorMethodSmtp511 struct {
 	Uuid         string `json:"uuid"`
 }
 
-type HealthMonitorMethodDns512 struct {
+type HealthMonitorMethodDns499 struct {
 	Dns              int                                      `json:"dns"`
 	DnsIpKey         int                                      `json:"dns-ip-key"`
 	DnsIpv4Addr      string                                   `json:"dns-ipv4-addr"`
 	DnsIpv6Addr      string                                   `json:"dns-ipv6-addr"`
 	DnsIpv4Port      int                                      `json:"dns-ipv4-port" dval:"53"`
-	DnsIpv4Expect    HealthMonitorMethodDnsDnsIpv4Expect513   `json:"dns-ipv4-expect"`
+	DnsIpv4Expect    HealthMonitorMethodDnsDnsIpv4Expect500   `json:"dns-ipv4-expect"`
 	DnsIpv4Recurse   string                                   `json:"dns-ipv4-recurse" dval:"enabled"`
 	DnsIpv4Tcp       int                                      `json:"dns-ipv4-tcp"`
 	DnsIpv6Port      int                                      `json:"dns-ipv6-port" dval:"53"`
-	DnsIpv6Expect    HealthMonitorMethodDnsDnsIpv6Expect514   `json:"dns-ipv6-expect"`
+	DnsIpv6Expect    HealthMonitorMethodDnsDnsIpv6Expect501   `json:"dns-ipv6-expect"`
 	DnsIpv6Recurse   string                                   `json:"dns-ipv6-recurse" dval:"enabled"`
 	DnsIpv6Tcp       int                                      `json:"dns-ipv6-tcp"`
 	DnsDomain        string                                   `json:"dns-domain"`
 	DnsDomainPort    int                                      `json:"dns-domain-port" dval:"53"`
 	DnsDomainType    string                                   `json:"dns-domain-type" dval:"A"`
-	DnsDomainExpect  HealthMonitorMethodDnsDnsDomainExpect515 `json:"dns-domain-expect"`
+	DnsDomainExpect  HealthMonitorMethodDnsDnsDomainExpect502 `json:"dns-domain-expect"`
 	DnsDomainRecurse string                                   `json:"dns-domain-recurse" dval:"enabled"`
 	DnsDomainTcp     int                                      `json:"dns-domain-tcp"`
 	Uuid             string                                   `json:"uuid"`
 }
 
-type HealthMonitorMethodDnsDnsIpv4Expect513 struct {
+type HealthMonitorMethodDnsDnsIpv4Expect500 struct {
 	DnsIpv4Response string `json:"dns-ipv4-response"`
 	DnsIpv4Fqdn     string `json:"dns-ipv4-fqdn"`
 }
 
-type HealthMonitorMethodDnsDnsIpv6Expect514 struct {
+type HealthMonitorMethodDnsDnsIpv6Expect501 struct {
 	DnsIpv6Response string `json:"dns-ipv6-response"`
 	DnsIpv6Fqdn     string `json:"dns-ipv6-fqdn"`
 }
 
-type HealthMonitorMethodDnsDnsDomainExpect515 struct {
+type HealthMonitorMethodDnsDnsDomainExpect502 struct {
 	DnsDomainResponse string `json:"dns-domain-response"`
 	DnsDomainFqdn     string `json:"dns-domain-fqdn"`
 	DnsDomainIpv4     string `json:"dns-domain-ipv4"`
 	DnsDomainIpv6     string `json:"dns-domain-ipv6"`
 }
 
-type HealthMonitorMethodPop3516 struct {
+type HealthMonitorMethodPop3503 struct {
 	Pop3               int    `json:"pop3"`
 	Pop3Username       string `json:"pop3-username"`
 	Pop3Password       int    `json:"pop3-password"`
@@ -264,7 +264,7 @@ type HealthMonitorMethodPop3516 struct {
 	Uuid               string `json:"uuid"`
 }
 
-type HealthMonitorMethodImap517 struct {
+type HealthMonitorMethodImap504 struct {
 	Imap               int    `json:"imap"`
 	ImapPort           int    `json:"imap-port" dval:"143"`
 	ImapUsername       string `json:"imap-username"`
@@ -278,7 +278,7 @@ type HealthMonitorMethodImap517 struct {
 	Uuid               string `json:"uuid"`
 }
 
-type HealthMonitorMethodSip518 struct {
+type HealthMonitorMethodSip505 struct {
 	Sip                int    `json:"sip"`
 	Register           int    `json:"register"`
 	SipPort            int    `json:"sip-port" dval:"5060"`
@@ -288,7 +288,7 @@ type HealthMonitorMethodSip518 struct {
 	Uuid               string `json:"uuid"`
 }
 
-type HealthMonitorMethodRadius519 struct {
+type HealthMonitorMethodRadius506 struct {
 	Radius                     int    `json:"radius"`
 	RadiusUsername             string `json:"radius-username"`
 	RadiusPasswordString       string `json:"radius-password-string"`
@@ -302,7 +302,7 @@ type HealthMonitorMethodRadius519 struct {
 	Uuid                       string `json:"uuid"`
 }
 
-type HealthMonitorMethodLdap520 struct {
+type HealthMonitorMethodLdap507 struct {
 	Ldap               int    `json:"ldap"`
 	LdapPort           int    `json:"ldap-port" dval:"389"`
 	LdapSecurity       string `json:"ldap-security"`
@@ -318,14 +318,14 @@ type HealthMonitorMethodLdap520 struct {
 	Uuid               string `json:"uuid"`
 }
 
-type HealthMonitorMethodRtsp521 struct {
+type HealthMonitorMethodRtsp508 struct {
 	Rtsp     int    `json:"rtsp"`
 	Rtspurl  string `json:"rtspurl"`
 	RtspPort int    `json:"rtsp-port" dval:"554"`
 	Uuid     string `json:"uuid"`
 }
 
-type HealthMonitorMethodDatabase522 struct {
+type HealthMonitorMethodDatabase509 struct {
 	Database         int    `json:"database"`
 	DatabaseName     string `json:"database-name"`
 	DbName           string `json:"db-name"`
@@ -343,7 +343,7 @@ type HealthMonitorMethodDatabase522 struct {
 	Uuid             string `json:"uuid"`
 }
 
-type HealthMonitorMethodExternal523 struct {
+type HealthMonitorMethodExternal510 struct {
 	External               int    `json:"external"`
 	ExtProgram             string `json:"ext-program"`
 	SharedPartitionProgram int    `json:"shared-partition-program"`
@@ -355,18 +355,18 @@ type HealthMonitorMethodExternal523 struct {
 	Uuid                   string `json:"uuid"`
 }
 
-type HealthMonitorMethodNtp524 struct {
+type HealthMonitorMethodNtp511 struct {
 	Ntp     int    `json:"ntp"`
 	NtpPort int    `json:"ntp-port" dval:"123"`
 	Uuid    string `json:"uuid"`
 }
 
-type HealthMonitorMethodKerberosKdc525 struct {
-	KerberosCfg HealthMonitorMethodKerberosKdcKerberosCfg526 `json:"kerberos-cfg"`
+type HealthMonitorMethodKerberosKdc512 struct {
+	KerberosCfg HealthMonitorMethodKerberosKdcKerberosCfg513 `json:"kerberos-cfg"`
 	Uuid        string                                       `json:"uuid"`
 }
 
-type HealthMonitorMethodKerberosKdcKerberosCfg526 struct {
+type HealthMonitorMethodKerberosKdcKerberosCfg513 struct {
 	Kinit               int    `json:"kinit"`
 	KinitPricipalName   string `json:"kinit-pricipal-name"`
 	KinitPassword       string `json:"kinit-password"`
@@ -388,7 +388,7 @@ type HealthMonitorMethodKerberosKdcKerberosCfg526 struct {
 	KpasswdKdc          string `json:"kpasswd-kdc"`
 }
 
-type HealthMonitorMethodHttps527 struct {
+type HealthMonitorMethodHttps514 struct {
 	Https                int                                         `json:"https"`
 	WebPort              int                                         `json:"web-port" dval:"443"`
 	DisableSslv2hello    int                                         `json:"disable-sslv2hello"`
@@ -418,7 +418,7 @@ type HealthMonitorMethodHttps527 struct {
 	HttpsEncrypted       string                                      `json:"https-encrypted"`
 	HttpsKerberosAuth    int                                         `json:"https-kerberos-auth"`
 	HttpsKerberosRealm   string                                      `json:"https-kerberos-realm"`
-	HttpsKerberosKdc     HealthMonitorMethodHttpsHttpsKerberosKdc528 `json:"https-kerberos-kdc"`
+	HttpsKerberosKdc     HealthMonitorMethodHttpsHttpsKerberosKdc515 `json:"https-kerberos-kdc"`
 	CertKeyShared        int                                         `json:"cert-key-shared"`
 	Cert                 string                                      `json:"cert"`
 	Key                  string                                      `json:"key"`
@@ -428,14 +428,14 @@ type HealthMonitorMethodHttps527 struct {
 	Uuid                 string                                      `json:"uuid"`
 }
 
-type HealthMonitorMethodHttpsHttpsKerberosKdc528 struct {
+type HealthMonitorMethodHttpsHttpsKerberosKdc515 struct {
 	HttpsKerberosHostip   string `json:"https-kerberos-hostip"`
 	HttpsKerberosHostipv6 string `json:"https-kerberos-hostipv6"`
 	HttpsKerberosPort     int    `json:"https-kerberos-port"`
 	HttpsKerberosPortv6   int    `json:"https-kerberos-portv6"`
 }
 
-type HealthMonitorMethodTacplus529 struct {
+type HealthMonitorMethodTacplus516 struct {
 	Tacplus               int    `json:"tacplus"`
 	TacplusUsername       string `json:"tacplus-username"`
 	TacplusPassword       int    `json:"tacplus-password"`
@@ -449,13 +449,13 @@ type HealthMonitorMethodTacplus529 struct {
 	Uuid                  string `json:"uuid"`
 }
 
-type HealthMonitorMethodCompound530 struct {
+type HealthMonitorMethodCompound517 struct {
 	Compound  int    `json:"compound"`
 	RpnString string `json:"rpn-string"`
 	Uuid      string `json:"uuid"`
 }
 
-type HealthMonitorProxyHeader531 struct {
+type HealthMonitorProxyHeader518 struct {
 	ProxyHeaderVer string `json:"proxy-header-ver"`
 	Uuid           string `json:"uuid"`
 }

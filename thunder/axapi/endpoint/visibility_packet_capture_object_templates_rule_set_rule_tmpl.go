@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsInc2803 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsInc2821 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsRate2804 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsRate2822 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsSeverity2805 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsSeverity2823 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,19 +25,19 @@ type VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmpl struct {
 	} `json:"rule-set-rule-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsInc2803 struct {
+type VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsInc2821 struct {
 	SynCookieVerificationFailed int    `json:"syn-cookie-verification-failed"`
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsRate2804 struct {
+type VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsRate2822 struct {
 	ThresholdExceededBy         int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                    int    `json:"duration" dval:"60"`
 	SynCookieVerificationFailed int    `json:"syn-cookie-verification-failed"`
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsSeverity2805 struct {
+type VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsSeverity2823 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

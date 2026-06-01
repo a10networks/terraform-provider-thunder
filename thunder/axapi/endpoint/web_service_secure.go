@@ -5,16 +5,16 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type WebServiceSecure struct {
 	Inst struct {
-		Certificate WebServiceSecureCertificate3771 `json:"certificate"`
+		Certificate WebServiceSecureCertificate3809 `json:"certificate"`
 
-		Generate WebServiceSecureGenerate3772 `json:"generate"`
+		Generate WebServiceSecureGenerate3810 `json:"generate"`
 
-		PrivateKey WebServiceSecurePrivateKey3773 `json:"private-key"`
+		PrivateKey WebServiceSecurePrivateKey3811 `json:"private-key"`
 
-		Regenerate WebServiceSecureRegenerate3774 `json:"regenerate"`
+		Regenerate WebServiceSecureRegenerate3812 `json:"regenerate"`
 
 		Restart int `json:"restart"`
 
@@ -22,25 +22,26 @@ type WebServiceSecure struct {
 	} `json:"secure"`
 }
 
-type WebServiceSecureCertificate3771 struct {
+type WebServiceSecureCertificate3809 struct {
 	Load        int    `json:"load"`
 	UseMgmtPort int    `json:"use-mgmt-port"`
 	FileUrl     string `json:"file-url"`
 }
 
-type WebServiceSecureGenerate3772 struct {
+type WebServiceSecureGenerate3810 struct {
 	DomainName string `json:"domain-name"`
 	Country    string `json:"country"`
 	State      string `json:"state"`
 }
 
-type WebServiceSecurePrivateKey3773 struct {
+type WebServiceSecurePrivateKey3811 struct {
 	Load        int    `json:"load"`
 	UseMgmtPort int    `json:"use-mgmt-port"`
+	Passphrase  string `json:"passphrase"`
 	FileUrl     string `json:"file-url"`
 }
 
-type WebServiceSecureRegenerate3774 struct {
+type WebServiceSecureRegenerate3812 struct {
 	DomainName string `json:"domain-name"`
 	Country    string `json:"country"`
 	State      string `json:"state"`

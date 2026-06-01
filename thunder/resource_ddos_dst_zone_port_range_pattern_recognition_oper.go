@@ -66,17 +66,17 @@ func resourceDdosDstZonePortRangePatternRecognitionOper() *schema.Resource {
 					},
 				},
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
-			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
-			"port_range_end": {
-				Type: schema.TypeString, Required: true, Description: "PortRangeEnd",
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 			"port_range_start": {
 				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
+			},
+			"port_range_end": {
+				Type: schema.TypeString, Required: true, Description: "PortRangeEnd",
 			},
 		},
 	}
@@ -172,12 +172,12 @@ func dataToEndpointDdosDstZonePortRangePatternRecognitionOper(d *schema.Resource
 
 	ret.Oper = getObjectDdosDstZonePortRangePatternRecognitionOperOper(d.Get("oper").([]interface{}))
 
-	ret.Protocol = d.Get("protocol").(string)
-
 	ret.ZoneName = d.Get("zone_name").(string)
 
-	ret.PortRangeEnd = d.Get("port_range_end").(string)
+	ret.Protocol = d.Get("protocol").(string)
 
 	ret.PortRangeStart = d.Get("port_range_start").(string)
+
+	ret.PortRangeEnd = d.Get("port_range_end").(string)
 	return ret
 }

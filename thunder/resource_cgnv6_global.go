@@ -119,10 +119,10 @@ func resourceCgnv6GlobalRead(ctx context.Context, d *schema.ResourceData, meta i
 	return diags
 }
 
-func getObjectCgnv6GlobalDomainList84(d []interface{}) edpt.Cgnv6GlobalDomainList84 {
+func getObjectCgnv6GlobalDomainList85(d []interface{}) edpt.Cgnv6GlobalDomainList85 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6GlobalDomainList84
+	var ret edpt.Cgnv6GlobalDomainList85
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Interval = in["interval"].(int)
@@ -148,7 +148,7 @@ func getSliceCgnv6GlobalSamplingEnable(d []interface{}) []edpt.Cgnv6GlobalSampli
 
 func dataToEndpointCgnv6Global(d *schema.ResourceData) edpt.Cgnv6Global {
 	var ret edpt.Cgnv6Global
-	ret.Inst.DomainList = getObjectCgnv6GlobalDomainList84(d.Get("domain_list").([]interface{}))
+	ret.Inst.DomainList = getObjectCgnv6GlobalDomainList85(d.Get("domain_list").([]interface{}))
 	ret.Inst.PingSweepDetection = d.Get("ping_sweep_detection").(string)
 	ret.Inst.PortScanDetection = d.Get("port_scan_detection").(string)
 	ret.Inst.SamplingEnable = getSliceCgnv6GlobalSamplingEnable(d.Get("sampling_enable").([]interface{}))

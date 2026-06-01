@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type RouteMapSet struct {
 	Inst struct {
 		Aggregator RouteMapSetAggregator `json:"aggregator"`
@@ -51,9 +51,9 @@ type RouteMapSet struct {
 
 		Weight RouteMapSetWeight `json:"weight"`
 
-		Sequence string
-
 		Action string
+
+		Sequence string
 	} `json:"set"`
 }
 

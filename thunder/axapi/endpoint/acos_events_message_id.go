@@ -5,14 +5,14 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type AcosEventsMessageId struct {
 	Inst struct {
 		LogMsg string `json:"log-msg"`
 
 		MessageIdScopeRoute string `json:"message-id-scope-route"`
 
-		Property AcosEventsMessageIdProperty56 `json:"property"`
+		Property AcosEventsMessageIdProperty57 `json:"property"`
 
 		UserTag string `json:"user-tag"`
 
@@ -20,23 +20,23 @@ type AcosEventsMessageId struct {
 	} `json:"message-id"`
 }
 
-type AcosEventsMessageIdProperty56 struct {
-	Severity  AcosEventsMessageIdPropertySeverity57  `json:"severity"`
-	LogRoute  AcosEventsMessageIdPropertyLogRoute58  `json:"log-route"`
-	RateLimit AcosEventsMessageIdPropertyRateLimit59 `json:"rate-limit"`
+type AcosEventsMessageIdProperty57 struct {
+	Severity  AcosEventsMessageIdPropertySeverity58  `json:"severity"`
+	LogRoute  AcosEventsMessageIdPropertyLogRoute59  `json:"log-route"`
+	RateLimit AcosEventsMessageIdPropertyRateLimit60 `json:"rate-limit"`
 }
 
-type AcosEventsMessageIdPropertySeverity57 struct {
+type AcosEventsMessageIdPropertySeverity58 struct {
 	SeverityVal string `json:"severity-val"`
 	Uuid        string `json:"uuid"`
 }
 
-type AcosEventsMessageIdPropertyLogRoute58 struct {
+type AcosEventsMessageIdPropertyLogRoute59 struct {
 	LogRouteVal string `json:"log-route-val"`
 	Uuid        string `json:"uuid"`
 }
 
-type AcosEventsMessageIdPropertyRateLimit59 struct {
+type AcosEventsMessageIdPropertyRateLimit60 struct {
 	RateLimitVal string `json:"rate-limit-val"`
 	Uuid         string `json:"uuid"`
 }

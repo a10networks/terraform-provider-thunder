@@ -238,10 +238,10 @@ func resourceDnssecRead(ctx context.Context, d *schema.ResourceData, meta interf
 	return diags
 }
 
-func getObjectDnssecDnskey414(d []interface{}) edpt.DnssecDnskey414 {
+func getObjectDnssecDnskey405(d []interface{}) edpt.DnssecDnskey405 {
 
 	count1 := len(d)
-	var ret edpt.DnssecDnskey414
+	var ret edpt.DnssecDnskey405
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.KeyDelete = in["key_delete"].(int)
@@ -250,10 +250,10 @@ func getObjectDnssecDnskey414(d []interface{}) edpt.DnssecDnskey414 {
 	return ret
 }
 
-func getObjectDnssecDs415(d []interface{}) edpt.DnssecDs415 {
+func getObjectDnssecDs406(d []interface{}) edpt.DnssecDs406 {
 
 	count1 := len(d)
-	var ret edpt.DnssecDs415
+	var ret edpt.DnssecDs406
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DsDelete = in["ds_delete"].(int)
@@ -262,10 +262,10 @@ func getObjectDnssecDs415(d []interface{}) edpt.DnssecDs415 {
 	return ret
 }
 
-func getObjectDnssecKeyRollover416(d []interface{}) edpt.DnssecKeyRollover416 {
+func getObjectDnssecKeyRollover407(d []interface{}) edpt.DnssecKeyRollover407 {
 
 	count1 := len(d)
-	var ret edpt.DnssecKeyRollover416
+	var ret edpt.DnssecKeyRollover407
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ZoneName = in["zone_name"].(string)
@@ -277,10 +277,10 @@ func getObjectDnssecKeyRollover416(d []interface{}) edpt.DnssecKeyRollover416 {
 	return ret
 }
 
-func getObjectDnssecSignZoneNow417(d []interface{}) edpt.DnssecSignZoneNow417 {
+func getObjectDnssecSignZoneNow408(d []interface{}) edpt.DnssecSignZoneNow408 {
 
 	count1 := len(d)
-	var ret edpt.DnssecSignZoneNow417
+	var ret edpt.DnssecSignZoneNow408
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ZoneName = in["zone_name"].(string)
@@ -348,10 +348,10 @@ func getObjectDnssecTemplateListDnssecTemplateKsk(d []interface{}) edpt.DnssecTe
 
 func dataToEndpointDnssec(d *schema.ResourceData) edpt.Dnssec {
 	var ret edpt.Dnssec
-	ret.Inst.Dnskey = getObjectDnssecDnskey414(d.Get("dnskey").([]interface{}))
-	ret.Inst.Ds = getObjectDnssecDs415(d.Get("ds").([]interface{}))
-	ret.Inst.KeyRollover = getObjectDnssecKeyRollover416(d.Get("key_rollover").([]interface{}))
-	ret.Inst.SignZoneNow = getObjectDnssecSignZoneNow417(d.Get("sign_zone_now").([]interface{}))
+	ret.Inst.Dnskey = getObjectDnssecDnskey405(d.Get("dnskey").([]interface{}))
+	ret.Inst.Ds = getObjectDnssecDs406(d.Get("ds").([]interface{}))
+	ret.Inst.KeyRollover = getObjectDnssecKeyRollover407(d.Get("key_rollover").([]interface{}))
+	ret.Inst.SignZoneNow = getObjectDnssecSignZoneNow408(d.Get("sign_zone_now").([]interface{}))
 	ret.Inst.Standalone = d.Get("standalone").(int)
 	ret.Inst.TemplateList = getSliceDnssecTemplateList(d.Get("template_list").([]interface{}))
 	//omit uuid

@@ -183,10 +183,10 @@ func resourceVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplRead(ct
 	return diags
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsInc2722(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsInc2722 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsInc2737(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsInc2737 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsInc2722
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsInc2737
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ParseFail = in["parse_fail"].(int)
@@ -199,10 +199,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTrigge
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsRate2723(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsRate2723 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsRate2738(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsRate2738 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsRate2723
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsRate2738
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -217,10 +217,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTrigge
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsSeverity2724(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsSeverity2724 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsSeverity2739(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsSeverity2739 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsSeverity2724
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsSeverity2739
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -240,9 +240,9 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmpl(
 	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmpl
 	ret.Inst.CaptureConfig = d.Get("capture_config").(string)
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsInc2722(d.Get("trigger_stats_inc").([]interface{}))
-	ret.Inst.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsRate2723(d.Get("trigger_stats_rate").([]interface{}))
-	ret.Inst.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsSeverity2724(d.Get("trigger_stats_severity").([]interface{}))
+	ret.Inst.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsInc2737(d.Get("trigger_stats_inc").([]interface{}))
+	ret.Inst.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsRate2738(d.Get("trigger_stats_rate").([]interface{}))
+	ret.Inst.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplTriggerStatsSeverity2739(d.Get("trigger_stats_severity").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

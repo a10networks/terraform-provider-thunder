@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type GslbZoneServiceDnsARecordDnsARecordSrv struct {
 	Inst struct {
 		AdminIp int `json:"admin-ip"`
@@ -30,9 +30,9 @@ type GslbZoneServiceDnsARecordDnsARecordSrv struct {
 
 		Weight int `json:"weight"`
 
-		ServicePort string
-
 		Zone_name string
+
+		ServicePort string
 	} `json:"dns-a-record-srv"`
 }
 

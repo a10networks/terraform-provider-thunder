@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type ScaleoutClusterLocalDevice struct {
 	Inst struct {
 		Action string `json:"action" dval:"enable"`
@@ -13,6 +13,10 @@ type ScaleoutClusterLocalDevice struct {
 		ClusterMode string `json:"cluster-mode" dval:"layer-2"`
 
 		ExcludeInterfaces ScaleoutClusterLocalDeviceExcludeInterfaces1427 `json:"exclude-interfaces"`
+
+		FailureDomain int `json:"failure-domain"`
+
+		FailureDomainString string `json:"failure-domain-string"`
 
 		Id1 int `json:"id"`
 

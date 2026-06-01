@@ -5,18 +5,18 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Ipv6Unnumbered struct {
 	Inst struct {
 		UseSourceAcl string `json:"use-source-acl"`
 
-		UseSourceIpv6 Ipv6UnnumberedUseSourceIpv61127 `json:"use-source-ipv6"`
+		UseSourceIpv6 Ipv6UnnumberedUseSourceIpv61126 `json:"use-source-ipv6"`
 
 		Uuid string `json:"uuid"`
 	} `json:"unnumbered"`
 }
 
-type Ipv6UnnumberedUseSourceIpv61127 struct {
+type Ipv6UnnumberedUseSourceIpv61126 struct {
 	UpdateSourceIpv6 string `json:"update-source-ipv6"`
 	Uuid             string `json:"uuid"`
 }

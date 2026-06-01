@@ -5,15 +5,22 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type ScaleoutApps struct {
 	Inst struct {
 		Enable int `json:"enable"`
+
+		SeparateV4V6TrafficMap ScaleoutAppsSeparateV4V6TrafficMap1410 `json:"separate-v4-v6-traffic-map"`
 
 		SkipMacOverwrite ScaleoutAppsSkipMacOverwrite1411 `json:"skip-mac-overwrite"`
 
 		Uuid string `json:"uuid"`
 	} `json:"apps"`
+}
+
+type ScaleoutAppsSeparateV4V6TrafficMap1410 struct {
+	Enable int    `json:"enable"`
+	Uuid   string `json:"uuid"`
 }
 
 type ScaleoutAppsSkipMacOverwrite1411 struct {

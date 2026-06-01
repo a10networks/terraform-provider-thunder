@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type RouterBgpAddressFamilyIpv4Flowspec struct {
 	Inst struct {
-		Neighbor RouterBgpAddressFamilyIpv4FlowspecNeighbor1235 `json:"neighbor"`
+		Neighbor RouterBgpAddressFamilyIpv4FlowspecNeighbor1234 `json:"neighbor"`
 
 		Uuid string `json:"uuid"`
 
@@ -16,7 +16,7 @@ type RouterBgpAddressFamilyIpv4Flowspec struct {
 	} `json:"ipv4-flowspec"`
 }
 
-type RouterBgpAddressFamilyIpv4FlowspecNeighbor1235 struct {
+type RouterBgpAddressFamilyIpv4FlowspecNeighbor1234 struct {
 	Ipv4NeighborList []RouterBgpAddressFamilyIpv4FlowspecNeighborIpv4NeighborList `json:"ipv4-neighbor-list"`
 	Ipv6NeighborList []RouterBgpAddressFamilyIpv4FlowspecNeighborIpv6NeighborList `json:"ipv6-neighbor-list"`
 }

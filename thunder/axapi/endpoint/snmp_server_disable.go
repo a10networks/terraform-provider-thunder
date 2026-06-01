@@ -5,18 +5,18 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SnmpServerDisable struct {
 	Inst struct {
 		A10cmsubagent int `json:"a10cmsubagent"`
 
-		Traps SnmpServerDisableTraps1579 `json:"traps"`
+		Traps SnmpServerDisableTraps1580 `json:"traps"`
 
 		Uuid string `json:"uuid"`
 	} `json:"disable"`
 }
 
-type SnmpServerDisableTraps1579 struct {
+type SnmpServerDisableTraps1580 struct {
 	All       int    `json:"all"`
 	Snmp      int    `json:"snmp"`
 	Gslb      int    `json:"gslb"`

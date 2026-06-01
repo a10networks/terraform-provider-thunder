@@ -29,7 +29,7 @@ func resourceGslbProtocolLimit() *schema.Resource {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Response Messages of Connection Load, default is no limit (Number)",
 			},
 			"message": {
-				Type: schema.TypeInt, Optional: true, Default: 10000, Description: "Amount of Messages, default is 10000 (Number)",
+				Type: schema.TypeInt, Optional: true, Default: 100000, Description: "Amount of Messages, default is 100000 (Number)",
 			},
 			"response": {
 				Type: schema.TypeInt, Optional: true, Default: 3600, Description: "Amount of Response Messages, default is 3600 (Number)",

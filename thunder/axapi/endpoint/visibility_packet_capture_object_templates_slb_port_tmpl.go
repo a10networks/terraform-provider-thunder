@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesSlbPortTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesSlbPortTmplTriggerStatsInc2809 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesSlbPortTmplTriggerStatsInc2827 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesSlbPortTmplTriggerStatsRate2810 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesSlbPortTmplTriggerStatsRate2828 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesSlbPortTmplTriggerStatsSeverity2811 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesSlbPortTmplTriggerStatsSeverity2829 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,7 +25,7 @@ type VisibilityPacketCaptureObjectTemplatesSlbPortTmpl struct {
 	} `json:"slb-port-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbPortTmplTriggerStatsInc2809 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbPortTmplTriggerStatsInc2827 struct {
 	Es_resp_300 int    `json:"es_resp_300"`
 	Es_resp_400 int    `json:"es_resp_400"`
 	Es_resp_500 int    `json:"es_resp_500"`
@@ -35,7 +35,7 @@ type VisibilityPacketCaptureObjectTemplatesSlbPortTmplTriggerStatsInc2809 struct
 	Uuid        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbPortTmplTriggerStatsRate2810 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbPortTmplTriggerStatsRate2828 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Es_resp_300         int    `json:"es_resp_300"`
@@ -47,7 +47,7 @@ type VisibilityPacketCaptureObjectTemplatesSlbPortTmplTriggerStatsRate2810 struc
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbPortTmplTriggerStatsSeverity2811 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbPortTmplTriggerStatsSeverity2829 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

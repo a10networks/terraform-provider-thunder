@@ -34,7 +34,7 @@ resource "thunder_network_l2_bfd" "thunder_network_l2_bfd" {
 
 ### Optional
 
-- `ether_type` (String) Ethernet payload type for L2BFD packets, help-val 16 bit hex value, default is hex 88B6
+- `ether_type` (String) Ethernet paylaod type for L2BFD packets, help-val 16 bit hex value, default is hex 88B6
 - `multiplier` (Number) Multiplier value used to compute holddown (value used to multiply the interval (default: 4))
 - `rx_interval` (Number) Minimum receive interval capability (Milliseconds (default: 800))
 - `tx_interval` (Number) Transmit interval between BFD packets (Milliseconds (default: 800))

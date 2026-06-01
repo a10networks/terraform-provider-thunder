@@ -169,25 +169,25 @@ func getSliceRouterRipDistributeListAclCfg(d []interface{}) []edpt.RouterRipDist
 	return ret
 }
 
-func getObjectRouterRipDistributeListPrefix1391(d []interface{}) edpt.RouterRipDistributeListPrefix1391 {
+func getObjectRouterRipDistributeListPrefix1390(d []interface{}) edpt.RouterRipDistributeListPrefix1390 {
 
 	count1 := len(d)
-	var ret edpt.RouterRipDistributeListPrefix1391
+	var ret edpt.RouterRipDistributeListPrefix1390
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.PrefixCfg = getSliceRouterRipDistributeListPrefixPrefixCfg1392(in["prefix_cfg"].([]interface{}))
+		ret.PrefixCfg = getSliceRouterRipDistributeListPrefixPrefixCfg1391(in["prefix_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceRouterRipDistributeListPrefixPrefixCfg1392(d []interface{}) []edpt.RouterRipDistributeListPrefixPrefixCfg1392 {
+func getSliceRouterRipDistributeListPrefixPrefixCfg1391(d []interface{}) []edpt.RouterRipDistributeListPrefixPrefixCfg1391 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterRipDistributeListPrefixPrefixCfg1392, 0, count1)
+	ret := make([]edpt.RouterRipDistributeListPrefixPrefixCfg1391, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterRipDistributeListPrefixPrefixCfg1392
+		var oi edpt.RouterRipDistributeListPrefixPrefixCfg1391
 		oi.PrefixList = in["prefix_list"].(string)
 		oi.PrefixListDirection = in["prefix_list_direction"].(string)
 		oi.Ethernet = in["ethernet"].(int)
@@ -203,7 +203,7 @@ func getSliceRouterRipDistributeListPrefixPrefixCfg1392(d []interface{}) []edpt.
 func dataToEndpointRouterRipDistributeList(d *schema.ResourceData) edpt.RouterRipDistributeList {
 	var ret edpt.RouterRipDistributeList
 	ret.Inst.AclCfg = getSliceRouterRipDistributeListAclCfg(d.Get("acl_cfg").([]interface{}))
-	ret.Inst.Prefix = getObjectRouterRipDistributeListPrefix1391(d.Get("prefix").([]interface{}))
+	ret.Inst.Prefix = getObjectRouterRipDistributeListPrefix1390(d.Get("prefix").([]interface{}))
 	//omit uuid
 	return ret
 }

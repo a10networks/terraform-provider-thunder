@@ -174,6 +174,7 @@ resource "thunder_web_category" "thunder_web_category" {
 - `rtu_cache_size` (Number) Maximum cache size for storing RTU updates, default: 1
 - `rtu_update_disable` (Number) Disables real time updates(default enable)
 - `rtu_update_interval` (Number) Interval to check for real time updates if enabled in mins(default 60)
+- `sdk_module` (String) 'legacy': Legacy SDK module; 'new': New SDK module (default);
 - `server` (String) BrightCloud Query Server
 - `server_timeout` (Number) BrightCloud Servers Timeout in seconds (default: 15s)
 - `ssl_port` (Number) BrightCloud Servers SSL Port(default 443)
@@ -323,7 +324,7 @@ Optional:
 
 Optional:
 
-- `auth_type` (String) 'ntlm': NTLM authentication(default); 'basic': Basic authentication;
+- `auth_type` (String) 'ntlm': NTLM authentication; 'basic': Basic authentication (default);
 - `domain` (String) Realm for NTLM authentication
 - `http_port` (Number) Proxy server HTTP port
 - `https_port` (Number) Proxy server HTTPS port(HTTP port will be used if not configured)

@@ -5,21 +5,21 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstDynamicEntry struct {
 	Inst struct {
-		AllEntries DdosDstDynamicEntryAllEntries176 `json:"all-entries"`
+		AllEntries DdosDstDynamicEntryAllEntries179 `json:"all-entries"`
 
 		Uuid string `json:"uuid"`
 	} `json:"dynamic-entry"`
 }
 
-type DdosDstDynamicEntryAllEntries176 struct {
+type DdosDstDynamicEntryAllEntries179 struct {
 	Uuid           string                                           `json:"uuid"`
-	SamplingEnable []DdosDstDynamicEntryAllEntriesSamplingEnable177 `json:"sampling-enable"`
+	SamplingEnable []DdosDstDynamicEntryAllEntriesSamplingEnable180 `json:"sampling-enable"`
 }
 
-type DdosDstDynamicEntryAllEntriesSamplingEnable177 struct {
+type DdosDstDynamicEntryAllEntriesSamplingEnable180 struct {
 	Counters1 string `json:"counters1"`
 	Counters2 string `json:"counters2"`
 	Counters3 string `json:"counters3"`

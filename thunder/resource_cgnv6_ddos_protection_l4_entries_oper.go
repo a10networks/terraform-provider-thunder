@@ -45,12 +45,6 @@ func resourceCgnv6DdosProtectionL4EntriesOper() *schema.Resource {
 									"is_deleted": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
-									"hw_add_count": {
-										Type: schema.TypeInt, Optional: true, Description: "",
-									},
-									"hw_age": {
-										Type: schema.TypeInt, Optional: true, Description: "",
-									},
 								},
 							},
 						},
@@ -120,8 +114,6 @@ func setSliceCgnv6DdosProtectionL4EntriesOperOperDdosL4EntriesList(d []edpt.Cgnv
 		in["pps"] = item.Pps
 		in["expiration"] = item.Expiration
 		in["is_deleted"] = item.IsDeleted
-		in["hw_add_count"] = item.HwAddCount
-		in["hw_age"] = item.HwAge
 		result = append(result, in)
 	}
 	return result
@@ -158,8 +150,6 @@ func getSliceCgnv6DdosProtectionL4EntriesOperOperDdosL4EntriesList(d []interface
 		oi.Pps = in["pps"].(int)
 		oi.Expiration = in["expiration"].(int)
 		oi.IsDeleted = in["is_deleted"].(int)
-		oi.HwAddCount = in["hw_add_count"].(int)
-		oi.HwAge = in["hw_age"].(int)
 		ret = append(ret, oi)
 	}
 	return ret

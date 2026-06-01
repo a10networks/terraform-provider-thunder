@@ -103,9 +103,9 @@ func resourceFileTechsupportLocalRead(ctx context.Context, d *schema.ResourceDat
 	return diags
 }
 
-func getObjectFileTechsupportStatus422(d []interface{}) edpt.FileTechsupportStatus422 {
+func getObjectFileTechsupportStatus413(d []interface{}) edpt.FileTechsupportStatus413 {
 
-	var ret edpt.FileTechsupportStatus422
+	var ret edpt.FileTechsupportStatus413
 	return ret
 }
 
@@ -114,7 +114,7 @@ func dataToEndpointFileTechsupportLocal(d *schema.ResourceData) edpt.FileTechsup
 	ret.Inst.Action = d.Get("action").(string)
 	ret.Inst.File = d.Get("file").(string)
 	ret.Inst.Slot = d.Get("slot").(int)
-	ret.Inst.Status = getObjectFileTechsupportStatus422(d.Get("status").([]interface{}))
+	ret.Inst.Status = getObjectFileTechsupportStatus413(d.Get("status").([]interface{}))
 	//omit uuid
 	return ret
 }

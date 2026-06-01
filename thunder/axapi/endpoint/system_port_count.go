@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemPortCount struct {
 	Inst struct {
 		PortCountAlg int `json:"port-count-alg" dval:"6000"`

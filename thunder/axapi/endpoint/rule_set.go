@@ -6,12 +6,12 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type RuleSet struct {
 	Inst struct {
-		App RuleSetApp1405 `json:"app"`
+		App RuleSetApp1404 `json:"app"`
 
-		Application RuleSetApplication1406 `json:"application"`
+		Application RuleSetApplication1405 `json:"application"`
 
 		Name string `json:"name"`
 
@@ -21,15 +21,15 @@ type RuleSet struct {
 
 		RuleList []RuleSetRuleList `json:"rule-list"`
 
-		RulesByZone RuleSetRulesByZone1407 `json:"rules-by-zone"`
+		RulesByZone RuleSetRulesByZone1406 `json:"rules-by-zone"`
 
 		SamplingEnable []RuleSetSamplingEnable `json:"sampling-enable"`
 
 		SessionStatistic string `json:"session-statistic" dval:"enable"`
 
-		Tag RuleSetTag1409 `json:"tag"`
+		Tag RuleSetTag1408 `json:"tag"`
 
-		TrackAppRuleList RuleSetTrackAppRuleList1410 `json:"track-app-rule-list"`
+		TrackAppRuleList RuleSetTrackAppRuleList1409 `json:"track-app-rule-list"`
 
 		UserTag string `json:"user-tag"`
 
@@ -37,11 +37,11 @@ type RuleSet struct {
 	} `json:"rule-set"`
 }
 
-type RuleSetApp1405 struct {
+type RuleSetApp1404 struct {
 	Uuid string `json:"uuid"`
 }
 
-type RuleSetApplication1406 struct {
+type RuleSetApplication1405 struct {
 	Uuid string `json:"uuid"`
 }
 
@@ -223,12 +223,12 @@ type RuleSetRuleListMoveRule struct {
 	TargetRule string `json:"target-rule"`
 }
 
-type RuleSetRulesByZone1407 struct {
+type RuleSetRulesByZone1406 struct {
 	Uuid           string                                 `json:"uuid"`
-	SamplingEnable []RuleSetRulesByZoneSamplingEnable1408 `json:"sampling-enable"`
+	SamplingEnable []RuleSetRulesByZoneSamplingEnable1407 `json:"sampling-enable"`
 }
 
-type RuleSetRulesByZoneSamplingEnable1408 struct {
+type RuleSetRulesByZoneSamplingEnable1407 struct {
 	Counters1 string `json:"counters1"`
 }
 
@@ -236,11 +236,11 @@ type RuleSetSamplingEnable struct {
 	Counters1 string `json:"counters1"`
 }
 
-type RuleSetTag1409 struct {
+type RuleSetTag1408 struct {
 	Uuid string `json:"uuid"`
 }
 
-type RuleSetTrackAppRuleList1410 struct {
+type RuleSetTrackAppRuleList1409 struct {
 	Uuid string `json:"uuid"`
 }
 

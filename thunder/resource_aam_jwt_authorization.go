@@ -16,6 +16,9 @@ func resourceAamJwtAuthorization() *schema.Resource {
 		DeleteContext: resourceAamJwtAuthorizationDelete,
 
 		Schema: map[string]*schema.Schema{
+			"client_error_resp_code": {
+				Type: schema.TypeInt, Optional: true, Description: "Specify the HTTP response code to return when client JWT authorization fails",
+			},
 			"exp_claim_requried": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify the exp claim is required for JWT authorization",
 			},
@@ -23,7 +26,7 @@ func resourceAamJwtAuthorization() *schema.Resource {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable caching authorized JWT token and skip verification and authorization for cached tokens",
 			},
 			"jwt_exp_default": {
-				Type: schema.TypeInt, Optional: true, Description: "Specify the default token expiration if exp claim is not available (default 1800)",
+				Type: schema.TypeInt, Optional: true, Default: 1800, Description: "Specify the default token expiration if exp claim is not available (default 1800)",
 			},
 			"jwt_forwarding": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify JWT token will not be stripped while forwarding client request",
@@ -142,6 +145,7 @@ func getSliceAamJwtAuthorizationSamplingEnable(d []interface{}) []edpt.AamJwtAut
 
 func dataToEndpointAamJwtAuthorization(d *schema.ResourceData) edpt.AamJwtAuthorization {
 	var ret edpt.AamJwtAuthorization
+	ret.Inst.ClientErrorRespCode = d.Get("client_error_resp_code").(int)
 	//omit encrypted
 	ret.Inst.ExpClaimRequried = d.Get("exp_claim_requried").(int)
 	ret.Inst.JwtCacheEnable = d.Get("jwt_cache_enable").(int)

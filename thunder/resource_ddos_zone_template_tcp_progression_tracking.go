@@ -28,10 +28,10 @@ func resourceDdosZoneTemplateTcpProgressionTracking() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"progression_tracking_req_enabled": {
-										Type: schema.TypeString, Optional: true, Description: "'enable-check': Enable General Progression Tracking per Request Response;",
+										Type: schema.TypeString, Optional: true, Default: "enable-check", Description: "'enable-check': Enable General Progression Tracking per Request Response;",
 									},
 									"request_response_model": {
-										Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': Enable Request Response Model; 'disable': Disable Request Response Model;",
+										Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': Enable Request Response Model (Default); 'disable': Disable Request Response Model;",
 									},
 									"response_length_max": {
 										Type: schema.TypeInt, Optional: true, Description: "Set the maximum response length",
@@ -74,7 +74,7 @@ func resourceDdosZoneTemplateTcpProgressionTracking() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"progression_tracking_conn_enabled": {
-										Type: schema.TypeString, Optional: true, Description: "'enable-check': Enable General Progression Tracking per Connection;",
+										Type: schema.TypeString, Optional: true, Default: "enable-check", Description: "'enable-check': Enable General Progression Tracking per Connection;",
 									},
 									"conn_sent_max": {
 										Type: schema.TypeInt, Optional: true, Description: "Set the maximum total sent byte",
@@ -120,7 +120,7 @@ func resourceDdosZoneTemplateTcpProgressionTracking() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"progression_tracking_win_enabled": {
-										Type: schema.TypeString, Optional: true, Description: "'enable-check': Enable Progression Tracking per Time Window;",
+										Type: schema.TypeString, Optional: true, Default: "enable-check", Description: "'enable-check': Enable Progression Tracking per Time Window;",
 									},
 									"window_sent_max": {
 										Type: schema.TypeInt, Optional: true, Description: "Set the maximum total sent byte",
@@ -159,6 +159,9 @@ func resourceDdosZoneTemplateTcpProgressionTracking() *schema.Resource {
 							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
+									"slow_attack": {
+										Type: schema.TypeString, Optional: true, Default: "enable-check", Description: "'enable-check': Enter Progression Tracking Tracking Slow Attack;",
+									},
 									"response_pkt_rate_max": {
 										Type: schema.TypeInt, Optional: true, Description: "Set the transferred packets per response",
 									},
@@ -295,24 +298,24 @@ func resourceDdosZoneTemplateTcpProgressionTrackingRead(ctx context.Context, d *
 	return diags
 }
 
-func getObjectDdosZoneTemplateTcpProgressionTrackingMitigation379(d []interface{}) edpt.DdosZoneTemplateTcpProgressionTrackingMitigation379 {
+func getObjectDdosZoneTemplateTcpProgressionTrackingMitigation370(d []interface{}) edpt.DdosZoneTemplateTcpProgressionTrackingMitigation370 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateTcpProgressionTrackingMitigation379
+	var ret edpt.DdosZoneTemplateTcpProgressionTrackingMitigation370
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.RequestTracking = getObjectDdosZoneTemplateTcpProgressionTrackingMitigationRequestTracking380(in["request_tracking"].([]interface{}))
-		ret.ConnectionTracking = getObjectDdosZoneTemplateTcpProgressionTrackingMitigationConnectionTracking381(in["connection_tracking"].([]interface{}))
-		ret.TimeWindowTracking = getObjectDdosZoneTemplateTcpProgressionTrackingMitigationTimeWindowTracking382(in["time_window_tracking"].([]interface{}))
-		ret.SlowAttack = getObjectDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttack383(in["slow_attack"].([]interface{}))
+		ret.RequestTracking = getObjectDdosZoneTemplateTcpProgressionTrackingMitigationRequestTracking371(in["request_tracking"].([]interface{}))
+		ret.ConnectionTracking = getObjectDdosZoneTemplateTcpProgressionTrackingMitigationConnectionTracking372(in["connection_tracking"].([]interface{}))
+		ret.TimeWindowTracking = getObjectDdosZoneTemplateTcpProgressionTrackingMitigationTimeWindowTracking373(in["time_window_tracking"].([]interface{}))
+		ret.SlowAttack = getObjectDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttack374(in["slow_attack"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectDdosZoneTemplateTcpProgressionTrackingMitigationRequestTracking380(d []interface{}) edpt.DdosZoneTemplateTcpProgressionTrackingMitigationRequestTracking380 {
+func getObjectDdosZoneTemplateTcpProgressionTrackingMitigationRequestTracking371(d []interface{}) edpt.DdosZoneTemplateTcpProgressionTrackingMitigationRequestTracking371 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateTcpProgressionTrackingMitigationRequestTracking380
+	var ret edpt.DdosZoneTemplateTcpProgressionTrackingMitigationRequestTracking371
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ProgressionTrackingReqEnabled = in["progression_tracking_req_enabled"].(string)
@@ -332,10 +335,10 @@ func getObjectDdosZoneTemplateTcpProgressionTrackingMitigationRequestTracking380
 	return ret
 }
 
-func getObjectDdosZoneTemplateTcpProgressionTrackingMitigationConnectionTracking381(d []interface{}) edpt.DdosZoneTemplateTcpProgressionTrackingMitigationConnectionTracking381 {
+func getObjectDdosZoneTemplateTcpProgressionTrackingMitigationConnectionTracking372(d []interface{}) edpt.DdosZoneTemplateTcpProgressionTrackingMitigationConnectionTracking372 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateTcpProgressionTrackingMitigationConnectionTracking381
+	var ret edpt.DdosZoneTemplateTcpProgressionTrackingMitigationConnectionTracking372
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ProgressionTrackingConnEnabled = in["progression_tracking_conn_enabled"].(string)
@@ -355,10 +358,10 @@ func getObjectDdosZoneTemplateTcpProgressionTrackingMitigationConnectionTracking
 	return ret
 }
 
-func getObjectDdosZoneTemplateTcpProgressionTrackingMitigationTimeWindowTracking382(d []interface{}) edpt.DdosZoneTemplateTcpProgressionTrackingMitigationTimeWindowTracking382 {
+func getObjectDdosZoneTemplateTcpProgressionTrackingMitigationTimeWindowTracking373(d []interface{}) edpt.DdosZoneTemplateTcpProgressionTrackingMitigationTimeWindowTracking373 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateTcpProgressionTrackingMitigationTimeWindowTracking382
+	var ret edpt.DdosZoneTemplateTcpProgressionTrackingMitigationTimeWindowTracking373
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ProgressionTrackingWinEnabled = in["progression_tracking_win_enabled"].(string)
@@ -376,27 +379,28 @@ func getObjectDdosZoneTemplateTcpProgressionTrackingMitigationTimeWindowTracking
 	return ret
 }
 
-func getObjectDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttack383(d []interface{}) edpt.DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttack383 {
+func getObjectDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttack374(d []interface{}) edpt.DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttack374 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttack383
+	var ret edpt.DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttack374
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
+		ret.SlowAttack = in["slow_attack"].(string)
 		ret.ResponsePktRateMax = in["response_pkt_rate_max"].(int)
 		ret.InitResponseMaxTime = in["init_response_max_time"].(int)
 		ret.InitRequestMaxTime = in["init_request_max_time"].(int)
 		ret.ProgressionTrackingSlowActionListName = in["progression_tracking_slow_action_list_name"].(string)
 		ret.ProgressionTrackingSlowAction = in["progression_tracking_slow_action"].(string)
 		//omit uuid
-		ret.SlowAttackerIdentification = getObjectDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification384(in["slow_attacker_identification"].([]interface{}))
+		ret.SlowAttackerIdentification = getObjectDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification375(in["slow_attacker_identification"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification384(d []interface{}) edpt.DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification384 {
+func getObjectDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification375(d []interface{}) edpt.DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification375 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification384
+	var ret edpt.DdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAttackerIdentification375
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.EnableIdentification = in["enable_identification"].(int)
@@ -407,10 +411,10 @@ func getObjectDdosZoneTemplateTcpProgressionTrackingMitigationSlowAttackSlowAtta
 	return ret
 }
 
-func getObjectDdosZoneTemplateTcpProgressionTrackingProfiling385(d []interface{}) edpt.DdosZoneTemplateTcpProgressionTrackingProfiling385 {
+func getObjectDdosZoneTemplateTcpProgressionTrackingProfiling376(d []interface{}) edpt.DdosZoneTemplateTcpProgressionTrackingProfiling376 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateTcpProgressionTrackingProfiling385
+	var ret edpt.DdosZoneTemplateTcpProgressionTrackingProfiling376
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ProfilingRequestResponseModel = in["profiling_request_response_model"].(int)
@@ -424,8 +428,8 @@ func getObjectDdosZoneTemplateTcpProgressionTrackingProfiling385(d []interface{}
 func dataToEndpointDdosZoneTemplateTcpProgressionTracking(d *schema.ResourceData) edpt.DdosZoneTemplateTcpProgressionTracking {
 	var ret edpt.DdosZoneTemplateTcpProgressionTracking
 	ret.Inst.IgnoreTlsHandshake = d.Get("ignore_tls_handshake").(int)
-	ret.Inst.Mitigation = getObjectDdosZoneTemplateTcpProgressionTrackingMitigation379(d.Get("mitigation").([]interface{}))
-	ret.Inst.Profiling = getObjectDdosZoneTemplateTcpProgressionTrackingProfiling385(d.Get("profiling").([]interface{}))
+	ret.Inst.Mitigation = getObjectDdosZoneTemplateTcpProgressionTrackingMitigation370(d.Get("mitigation").([]interface{}))
+	ret.Inst.Profiling = getObjectDdosZoneTemplateTcpProgressionTrackingProfiling376(d.Get("profiling").([]interface{}))
 	ret.Inst.ProgressionTrackingEnabled = d.Get("progression_tracking_enabled").(string)
 	//omit uuid
 	ret.Inst.Tcp_name = d.Get("tcp_name").(string)

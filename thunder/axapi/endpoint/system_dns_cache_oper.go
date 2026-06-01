@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemDnsCacheOper struct {
 	Oper SystemDnsCacheOperOper `json:"oper"`
 }
@@ -23,6 +23,7 @@ type SystemDnsCacheOperOper struct {
 	Client                       int                                 `json:"client"`
 	Entry                        int                                 `json:"entry"`
 	Global                       int                                 `json:"global"`
+	Template                     string                              `json:"template"`
 	CacheContent                 int                                 `json:"cache-content"`
 	Vport                        int                                 `json:"vport"`
 	VsName                       string                              `json:"vs-name"`

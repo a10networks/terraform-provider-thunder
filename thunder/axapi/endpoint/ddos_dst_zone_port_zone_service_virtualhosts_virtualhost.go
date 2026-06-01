@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZonePortZoneServiceVirtualhostsVirtualhost struct {
 	Inst struct {
 		Deny int `json:"deny"`
@@ -31,11 +31,11 @@ type DdosDstZonePortZoneServiceVirtualhostsVirtualhost struct {
 
 		Vhost string `json:"vhost"`
 
-		Protocol string
+		ZoneName string
 
 		PortNum string
 
-		ZoneName string
+		Protocol string
 	} `json:"virtualhost"`
 }
 

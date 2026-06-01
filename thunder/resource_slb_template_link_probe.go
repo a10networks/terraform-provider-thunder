@@ -139,10 +139,10 @@ func resourceSlbTemplateLinkProbeRead(ctx context.Context, d *schema.ResourceDat
 	return diags
 }
 
-func getObjectSlbTemplateLinkProbeDestination1551(d []interface{}) edpt.SlbTemplateLinkProbeDestination1551 {
+func getObjectSlbTemplateLinkProbeDestination1552(d []interface{}) edpt.SlbTemplateLinkProbeDestination1552 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateLinkProbeDestination1551
+	var ret edpt.SlbTemplateLinkProbeDestination1552
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Hostname = in["hostname"].(string)
@@ -156,7 +156,7 @@ func getObjectSlbTemplateLinkProbeDestination1551(d []interface{}) edpt.SlbTempl
 
 func dataToEndpointSlbTemplateLinkProbe(d *schema.ResourceData) edpt.SlbTemplateLinkProbe {
 	var ret edpt.SlbTemplateLinkProbe
-	ret.Inst.Destination = getObjectSlbTemplateLinkProbeDestination1551(d.Get("destination").([]interface{}))
+	ret.Inst.Destination = getObjectSlbTemplateLinkProbeDestination1552(d.Get("destination").([]interface{}))
 	ret.Inst.Disable = d.Get("disable").(int)
 	ret.Inst.ExpectedStatusCode = d.Get("expected_status_code").(string)
 	ret.Inst.Name = d.Get("name").(string)

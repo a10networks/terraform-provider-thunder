@@ -47,17 +47,17 @@ func resourceDdosDstZoneSrcPortRangeLevel() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"src_port_range_start": {
-				Type: schema.TypeString, Required: true, Description: "SrcPortRangeStart",
-			},
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
+			},
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 			"src_port_range_end": {
 				Type: schema.TypeString, Required: true, Description: "SrcPortRangeEnd",
 			},
-			"zone_name": {
-				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			"src_port_range_start": {
+				Type: schema.TypeString, Required: true, Description: "SrcPortRangeStart",
 			},
 		},
 	}
@@ -147,9 +147,9 @@ func dataToEndpointDdosDstZoneSrcPortRangeLevel(d *schema.ResourceData) edpt.Ddo
 	ret.Inst.LevelNum = d.Get("level_num").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.SrcPortRangeStart = d.Get("src_port_range_start").(string)
 	ret.Inst.Protocol = d.Get("protocol").(string)
-	ret.Inst.SrcPortRangeEnd = d.Get("src_port_range_end").(string)
 	ret.Inst.ZoneName = d.Get("zone_name").(string)
+	ret.Inst.SrcPortRangeEnd = d.Get("src_port_range_end").(string)
+	ret.Inst.SrcPortRangeStart = d.Get("src_port_range_start").(string)
 	return ret
 }

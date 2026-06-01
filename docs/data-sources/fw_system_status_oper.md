@@ -47,5 +47,7 @@ Optional:
 
 - `data_sessions_free` (Number)
 - `data_sessions_used` (Number)
+- `radius_entries_free` (Number)
+- `radius_entries_used` (Number)
 - `smp_sessions_free` (Number)
 - `smp_sessions_used` (Number)

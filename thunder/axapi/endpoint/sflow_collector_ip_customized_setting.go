@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SflowCollectorIpCustomizedSetting struct {
 	Inst struct {
 		A10ProprietaryPolling int `json:"a10-proprietary-polling"`
@@ -20,9 +20,9 @@ type SflowCollectorIpCustomizedSetting struct {
 
 		Uuid string `json:"uuid"`
 
-		Addr string
-
 		Port string
+
+		Addr string
 	} `json:"customized-setting"`
 }
 

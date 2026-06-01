@@ -5,14 +5,14 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemIpsec struct {
 	Inst struct {
 		CryptoCore int `json:"crypto-core"`
 
 		CryptoMem int `json:"crypto-mem"`
 
-		FpgaDecrypt SystemIpsecFpgaDecrypt1697 `json:"fpga-decrypt"`
+		FpgaDecrypt SystemIpsecFpgaDecrypt1698 `json:"fpga-decrypt"`
 
 		PacketRoundRobin int `json:"packet-round-robin"`
 
@@ -22,7 +22,7 @@ type SystemIpsec struct {
 	} `json:"ipsec"`
 }
 
-type SystemIpsecFpgaDecrypt1697 struct {
+type SystemIpsecFpgaDecrypt1698 struct {
 	Action string `json:"action" dval:"disable"`
 }
 

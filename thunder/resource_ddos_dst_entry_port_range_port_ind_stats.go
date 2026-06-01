@@ -179,14 +179,14 @@ func resourceDdosDstEntryPortRangePortIndStats() *schema.Resource {
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
-			"port_range_end": {
-				Type: schema.TypeString, Required: true, Description: "PortRangeEnd",
-			},
 			"dst_entry_name": {
 				Type: schema.TypeString, Required: true, Description: "DstEntryName",
 			},
 			"port_range_start": {
 				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
+			},
+			"port_range_end": {
+				Type: schema.TypeString, Required: true, Description: "PortRangeEnd",
 			},
 		},
 	}
@@ -339,10 +339,10 @@ func dataToEndpointDdosDstEntryPortRangePortIndStats(d *schema.ResourceData) edp
 
 	ret.Protocol = d.Get("protocol").(string)
 
-	ret.PortRangeEnd = d.Get("port_range_end").(string)
-
 	ret.DstEntryName = d.Get("dst_entry_name").(string)
 
 	ret.PortRangeStart = d.Get("port_range_start").(string)
+
+	ret.PortRangeEnd = d.Get("port_range_end").(string)
 	return ret
 }

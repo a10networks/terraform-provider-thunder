@@ -225,10 +225,10 @@ func resourceTemplateLimitPolicyRead(ctx context.Context, d *schema.ResourceData
 	return diags
 }
 
-func getObjectTemplateLimitPolicyLimitCps2027(d []interface{}) edpt.TemplateLimitPolicyLimitCps2027 {
+func getObjectTemplateLimitPolicyLimitCps2026(d []interface{}) edpt.TemplateLimitPolicyLimitCps2026 {
 
 	count1 := len(d)
-	var ret edpt.TemplateLimitPolicyLimitCps2027
+	var ret edpt.TemplateLimitPolicyLimitCps2026
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(int)
@@ -239,10 +239,10 @@ func getObjectTemplateLimitPolicyLimitCps2027(d []interface{}) edpt.TemplateLimi
 	return ret
 }
 
-func getObjectTemplateLimitPolicyLimitPps2028(d []interface{}) edpt.TemplateLimitPolicyLimitPps2028 {
+func getObjectTemplateLimitPolicyLimitPps2027(d []interface{}) edpt.TemplateLimitPolicyLimitPps2027 {
 
 	count1 := len(d)
-	var ret edpt.TemplateLimitPolicyLimitPps2028
+	var ret edpt.TemplateLimitPolicyLimitPps2027
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Uplink = in["uplink"].(int)
@@ -260,10 +260,10 @@ func getObjectTemplateLimitPolicyLimitPps2028(d []interface{}) edpt.TemplateLimi
 	return ret
 }
 
-func getObjectTemplateLimitPolicyLimitThroughput2029(d []interface{}) edpt.TemplateLimitPolicyLimitThroughput2029 {
+func getObjectTemplateLimitPolicyLimitThroughput2028(d []interface{}) edpt.TemplateLimitPolicyLimitThroughput2028 {
 
 	count1 := len(d)
-	var ret edpt.TemplateLimitPolicyLimitThroughput2029
+	var ret edpt.TemplateLimitPolicyLimitThroughput2028
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Uplink = in["uplink"].(int)
@@ -290,10 +290,10 @@ func dataToEndpointTemplateLimitPolicy(d *schema.ResourceData) edpt.TemplateLimi
 	var ret edpt.TemplateLimitPolicy
 	ret.Inst.Attribute = d.Get("attribute").(string)
 	ret.Inst.LimitConcurrentSessions = d.Get("limit_concurrent_sessions").(int)
-	ret.Inst.LimitCps = getObjectTemplateLimitPolicyLimitCps2027(d.Get("limit_cps").([]interface{}))
-	ret.Inst.LimitPps = getObjectTemplateLimitPolicyLimitPps2028(d.Get("limit_pps").([]interface{}))
+	ret.Inst.LimitCps = getObjectTemplateLimitPolicyLimitCps2026(d.Get("limit_cps").([]interface{}))
+	ret.Inst.LimitPps = getObjectTemplateLimitPolicyLimitPps2027(d.Get("limit_pps").([]interface{}))
 	ret.Inst.LimitScope = d.Get("limit_scope").(string)
-	ret.Inst.LimitThroughput = getObjectTemplateLimitPolicyLimitThroughput2029(d.Get("limit_throughput").([]interface{}))
+	ret.Inst.LimitThroughput = getObjectTemplateLimitPolicyLimitThroughput2028(d.Get("limit_throughput").([]interface{}))
 	ret.Inst.Log = d.Get("log").(int)
 	ret.Inst.MaxMinFair = d.Get("max_min_fair").(int)
 	ret.Inst.Parent = d.Get("parent").(int)

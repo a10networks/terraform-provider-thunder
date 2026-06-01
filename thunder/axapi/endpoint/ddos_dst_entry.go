@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstEntry struct {
 	Inst struct {
 		AdvertisedEnable int `json:"advertised-enable"`
@@ -43,7 +43,7 @@ type DdosDstEntry struct {
 
 		GlidExceedAction DdosDstEntryGlidExceedAction `json:"glid-exceed-action"`
 
-		HwBlacklistBlocking DdosDstEntryHwBlacklistBlocking195 `json:"hw-blacklist-blocking"`
+		HwBlacklistBlocking DdosDstEntryHwBlacklistBlocking198 `json:"hw-blacklist-blocking"`
 
 		InboundForwardDscp int `json:"inbound-forward-dscp"`
 
@@ -79,7 +79,7 @@ type DdosDstEntry struct {
 
 		SourceNatPool string `json:"source-nat-pool"`
 
-		SrcDstPair DdosDstEntrySrcDstPair196 `json:"src-dst-pair"`
+		SrcDstPair DdosDstEntrySrcDstPair199 `json:"src-dst-pair"`
 
 		SrcDstPairClassListList []DdosDstEntrySrcDstPairClassListList `json:"src-dst-pair-class-list-list"`
 
@@ -97,7 +97,7 @@ type DdosDstEntry struct {
 
 		Template DdosDstEntryTemplate `json:"template"`
 
-		TopkDestinations DdosDstEntryTopkDestinations203 `json:"topk-destinations"`
+		TopkDestinations DdosDstEntryTopkDestinations206 `json:"topk-destinations"`
 
 		UserTag string `json:"user-tag"`
 
@@ -190,7 +190,7 @@ type DdosDstEntryGlidExceedActionStatelessEncapActionCfg struct {
 	EncapTemplate        string `json:"encap-template"`
 }
 
-type DdosDstEntryHwBlacklistBlocking195 struct {
+type DdosDstEntryHwBlacklistBlocking198 struct {
 	DstEnable int    `json:"dst-enable"`
 	SrcEnable int    `json:"src-enable"`
 	Uuid      string `json:"uuid"`
@@ -531,36 +531,36 @@ type DdosDstEntrySflowCollector struct {
 	SflowName string `json:"sflow-name"`
 }
 
-type DdosDstEntrySrcDstPair196 struct {
+type DdosDstEntrySrcDstPair199 struct {
 	Default           int                                          `json:"default"`
 	Bypass            int                                          `json:"bypass"`
-	ExceedLogCfg      DdosDstEntrySrcDstPairExceedLogCfg197        `json:"exceed-log-cfg"`
+	ExceedLogCfg      DdosDstEntrySrcDstPairExceedLogCfg200        `json:"exceed-log-cfg"`
 	LogPeriodic       int                                          `json:"log-periodic"`
-	Template          DdosDstEntrySrcDstPairTemplate198            `json:"template"`
+	Template          DdosDstEntrySrcDstPairTemplate201            `json:"template"`
 	Glid              string                                       `json:"glid"`
 	Uuid              string                                       `json:"uuid"`
-	L4TypeSrcDstList  []DdosDstEntrySrcDstPairL4TypeSrcDstList199  `json:"l4-type-src-dst-list"`
-	AppTypeSrcDstList []DdosDstEntrySrcDstPairAppTypeSrcDstList201 `json:"app-type-src-dst-list"`
+	L4TypeSrcDstList  []DdosDstEntrySrcDstPairL4TypeSrcDstList202  `json:"l4-type-src-dst-list"`
+	AppTypeSrcDstList []DdosDstEntrySrcDstPairAppTypeSrcDstList204 `json:"app-type-src-dst-list"`
 }
 
-type DdosDstEntrySrcDstPairExceedLogCfg197 struct {
+type DdosDstEntrySrcDstPairExceedLogCfg200 struct {
 	LogEnable int `json:"log-enable"`
 }
 
-type DdosDstEntrySrcDstPairTemplate198 struct {
+type DdosDstEntrySrcDstPairTemplate201 struct {
 	Logging string `json:"logging"`
 }
 
-type DdosDstEntrySrcDstPairL4TypeSrcDstList199 struct {
+type DdosDstEntrySrcDstPairL4TypeSrcDstList202 struct {
 	Protocol string                                            `json:"protocol"`
 	Deny     int                                               `json:"deny"`
 	Glid     string                                            `json:"glid"`
-	Template DdosDstEntrySrcDstPairL4TypeSrcDstListTemplate200 `json:"template"`
+	Template DdosDstEntrySrcDstPairL4TypeSrcDstListTemplate203 `json:"template"`
 	Uuid     string                                            `json:"uuid"`
 	UserTag  string                                            `json:"user-tag"`
 }
 
-type DdosDstEntrySrcDstPairL4TypeSrcDstListTemplate200 struct {
+type DdosDstEntrySrcDstPairL4TypeSrcDstListTemplate203 struct {
 	Tcp            string `json:"tcp"`
 	Udp            string `json:"udp"`
 	Other          string `json:"other"`
@@ -568,14 +568,14 @@ type DdosDstEntrySrcDstPairL4TypeSrcDstListTemplate200 struct {
 	TemplateIcmpV6 string `json:"template-icmp-v6"`
 }
 
-type DdosDstEntrySrcDstPairAppTypeSrcDstList201 struct {
+type DdosDstEntrySrcDstPairAppTypeSrcDstList204 struct {
 	Protocol string                                             `json:"protocol"`
-	Template DdosDstEntrySrcDstPairAppTypeSrcDstListTemplate202 `json:"template"`
+	Template DdosDstEntrySrcDstPairAppTypeSrcDstListTemplate205 `json:"template"`
 	Uuid     string                                             `json:"uuid"`
 	UserTag  string                                             `json:"user-tag"`
 }
 
-type DdosDstEntrySrcDstPairAppTypeSrcDstListTemplate202 struct {
+type DdosDstEntrySrcDstPairAppTypeSrcDstListTemplate205 struct {
 	SslL4 string `json:"ssl-l4"`
 	Dns   string `json:"dns"`
 	Http  string `json:"http"`
@@ -851,7 +851,7 @@ type DdosDstEntryTemplate struct {
 	Logging string `json:"logging"`
 }
 
-type DdosDstEntryTopkDestinations203 struct {
+type DdosDstEntryTopkDestinations206 struct {
 	Uuid string `json:"uuid"`
 }
 

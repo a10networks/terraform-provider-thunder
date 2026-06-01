@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type CloudServicesCloudProviderAzureMetrics struct {
 	Inst struct {
 		Action string `json:"action" dval:"disable"`
@@ -16,7 +16,7 @@ type CloudServicesCloudProviderAzureMetrics struct {
 
 		Cpu string `json:"cpu" dval:"disable"`
 
-		Ddos CloudServicesCloudProviderAzureMetricsDdos139 `json:"ddos"`
+		Ddos CloudServicesCloudProviderAzureMetricsDdos140 `json:"ddos"`
 
 		Disk string `json:"disk" dval:"disable"`
 
@@ -48,7 +48,7 @@ type CloudServicesCloudProviderAzureMetrics struct {
 	} `json:"metrics"`
 }
 
-type CloudServicesCloudProviderAzureMetricsDdos139 struct {
+type CloudServicesCloudProviderAzureMetricsDdos140 struct {
 	Tcp       string `json:"tcp" dval:"disable"`
 	Udp       string `json:"udp" dval:"disable"`
 	Port      string `json:"port" dval:"disable"`

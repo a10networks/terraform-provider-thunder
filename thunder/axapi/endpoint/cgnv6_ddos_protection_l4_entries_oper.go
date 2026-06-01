@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6DdosProtectionL4EntriesOper struct {
 	Oper Cgnv6DdosProtectionL4EntriesOperOper `json:"oper"`
 }
@@ -31,8 +31,6 @@ type Cgnv6DdosProtectionL4EntriesOperOperDdosL4EntriesList struct {
 	Pps           int    `json:"pps"`
 	Expiration    int    `json:"expiration"`
 	IsDeleted     int    `json:"is-deleted"`
-	HwAddCount    int    `json:"hw-add-count"`
-	HwAge         int    `json:"hw-age"`
 }
 
 func (p *Cgnv6DdosProtectionL4EntriesOper) GetId() string {

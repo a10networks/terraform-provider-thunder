@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type InterfaceVeIp struct {
 	Inst struct {
 		AddressList []InterfaceVeIpAddressList `json:"address-list"`
@@ -26,19 +26,21 @@ type InterfaceVeIp struct {
 
 		MaxRespTime int `json:"max-resp-time" dval:"100"`
 
-		Ospf InterfaceVeIpOspf1011 `json:"ospf"`
+		Ospf InterfaceVeIpOspf1006 `json:"ospf"`
 
 		Outside int `json:"outside"`
 
 		QueryInterval int `json:"query-interval" dval:"125"`
 
-		Rip InterfaceVeIpRip1019 `json:"rip"`
+		Rip InterfaceVeIpRip1014 `json:"rip"`
 
-		Router InterfaceVeIpRouter1027 `json:"router"`
+		Router InterfaceVeIpRouter1022 `json:"router"`
 
 		Server int `json:"server"`
 
 		SlbPartitionRedirect int `json:"slb-partition-redirect"`
+
+		StatefulFirewall InterfaceVeIpStatefulFirewall1024 `json:"stateful-firewall"`
 
 		SynCookie int `json:"syn-cookie"`
 
@@ -61,56 +63,56 @@ type InterfaceVeIpHelperAddressList struct {
 	HelperAddress string `json:"helper-address"`
 }
 
-type InterfaceVeIpOspf1011 struct {
-	OspfGlobal InterfaceVeIpOspfOspfGlobal1012 `json:"ospf-global"`
+type InterfaceVeIpOspf1006 struct {
+	OspfGlobal InterfaceVeIpOspfOspfGlobal1007 `json:"ospf-global"`
 	OspfIpList []InterfaceVeIpOspfOspfIpList   `json:"ospf-ip-list"`
 }
 
-type InterfaceVeIpOspfOspfGlobal1012 struct {
-	AuthenticationCfg  InterfaceVeIpOspfOspfGlobalAuthenticationCfg1013  `json:"authentication-cfg"`
+type InterfaceVeIpOspfOspfGlobal1007 struct {
+	AuthenticationCfg  InterfaceVeIpOspfOspfGlobalAuthenticationCfg1008  `json:"authentication-cfg"`
 	AuthenticationKey  string                                            `json:"authentication-key"`
-	BfdCfg             InterfaceVeIpOspfOspfGlobalBfdCfg1014             `json:"bfd-cfg"`
+	BfdCfg             InterfaceVeIpOspfOspfGlobalBfdCfg1009             `json:"bfd-cfg"`
 	Cost               int                                               `json:"cost"`
-	DatabaseFilterCfg  InterfaceVeIpOspfOspfGlobalDatabaseFilterCfg1015  `json:"database-filter-cfg"`
+	DatabaseFilterCfg  InterfaceVeIpOspfOspfGlobalDatabaseFilterCfg1010  `json:"database-filter-cfg"`
 	DeadInterval       int                                               `json:"dead-interval" dval:"40"`
 	Disable            string                                            `json:"disable"`
 	HelloInterval      int                                               `json:"hello-interval" dval:"10"`
-	MessageDigestCfg   []InterfaceVeIpOspfOspfGlobalMessageDigestCfg1016 `json:"message-digest-cfg"`
+	MessageDigestCfg   []InterfaceVeIpOspfOspfGlobalMessageDigestCfg1011 `json:"message-digest-cfg"`
 	Mtu                int                                               `json:"mtu"`
 	MtuIgnore          int                                               `json:"mtu-ignore"`
-	Network            InterfaceVeIpOspfOspfGlobalNetwork1018            `json:"network"`
+	Network            InterfaceVeIpOspfOspfGlobalNetwork1013            `json:"network"`
 	Priority           int                                               `json:"priority" dval:"1"`
 	RetransmitInterval int                                               `json:"retransmit-interval" dval:"5"`
 	TransmitDelay      int                                               `json:"transmit-delay" dval:"1"`
 	Uuid               string                                            `json:"uuid"`
 }
 
-type InterfaceVeIpOspfOspfGlobalAuthenticationCfg1013 struct {
+type InterfaceVeIpOspfOspfGlobalAuthenticationCfg1008 struct {
 	Authentication int    `json:"authentication"`
 	Value          string `json:"value"`
 }
 
-type InterfaceVeIpOspfOspfGlobalBfdCfg1014 struct {
+type InterfaceVeIpOspfOspfGlobalBfdCfg1009 struct {
 	Bfd     int `json:"bfd"`
 	Disable int `json:"disable"`
 }
 
-type InterfaceVeIpOspfOspfGlobalDatabaseFilterCfg1015 struct {
+type InterfaceVeIpOspfOspfGlobalDatabaseFilterCfg1010 struct {
 	DatabaseFilter string `json:"database-filter"`
 	Out            int    `json:"out"`
 }
 
-type InterfaceVeIpOspfOspfGlobalMessageDigestCfg1016 struct {
+type InterfaceVeIpOspfOspfGlobalMessageDigestCfg1011 struct {
 	MessageDigestKey int                                                `json:"message-digest-key"`
-	Md5              InterfaceVeIpOspfOspfGlobalMessageDigestCfgMd51017 `json:"md5"`
+	Md5              InterfaceVeIpOspfOspfGlobalMessageDigestCfgMd51012 `json:"md5"`
 }
 
-type InterfaceVeIpOspfOspfGlobalMessageDigestCfgMd51017 struct {
+type InterfaceVeIpOspfOspfGlobalMessageDigestCfgMd51012 struct {
 	Md5Value  string `json:"md5-value"`
 	Encrypted string `json:"encrypted"`
 }
 
-type InterfaceVeIpOspfOspfGlobalNetwork1018 struct {
+type InterfaceVeIpOspfOspfGlobalNetwork1013 struct {
 	Broadcast         int `json:"broadcast"`
 	NonBroadcast      int `json:"non-broadcast"`
 	PointToPoint      int `json:"point-to-point"`
@@ -142,55 +144,64 @@ type InterfaceVeIpOspfOspfIpListMessageDigestCfg struct {
 	Encrypted        string `json:"encrypted"`
 }
 
-type InterfaceVeIpRip1019 struct {
-	Authentication  InterfaceVeIpRipAuthentication1020  `json:"authentication"`
+type InterfaceVeIpRip1014 struct {
+	Authentication  InterfaceVeIpRipAuthentication1015  `json:"authentication"`
 	SendPacket      int                                 `json:"send-packet" dval:"1"`
 	ReceivePacket   int                                 `json:"receive-packet" dval:"1"`
-	SendCfg         InterfaceVeIpRipSendCfg1024         `json:"send-cfg"`
-	ReceiveCfg      InterfaceVeIpRipReceiveCfg1025      `json:"receive-cfg"`
-	SplitHorizonCfg InterfaceVeIpRipSplitHorizonCfg1026 `json:"split-horizon-cfg"`
+	SendCfg         InterfaceVeIpRipSendCfg1019         `json:"send-cfg"`
+	ReceiveCfg      InterfaceVeIpRipReceiveCfg1020      `json:"receive-cfg"`
+	SplitHorizonCfg InterfaceVeIpRipSplitHorizonCfg1021 `json:"split-horizon-cfg"`
 	Uuid            string                              `json:"uuid"`
 }
 
-type InterfaceVeIpRipAuthentication1020 struct {
-	Str      InterfaceVeIpRipAuthenticationStr1021      `json:"str"`
-	Mode     InterfaceVeIpRipAuthenticationMode1022     `json:"mode"`
-	KeyChain InterfaceVeIpRipAuthenticationKeyChain1023 `json:"key-chain"`
+type InterfaceVeIpRipAuthentication1015 struct {
+	Str      InterfaceVeIpRipAuthenticationStr1016      `json:"str"`
+	Mode     InterfaceVeIpRipAuthenticationMode1017     `json:"mode"`
+	KeyChain InterfaceVeIpRipAuthenticationKeyChain1018 `json:"key-chain"`
 }
 
-type InterfaceVeIpRipAuthenticationStr1021 struct {
+type InterfaceVeIpRipAuthenticationStr1016 struct {
 	String string `json:"string"`
 }
 
-type InterfaceVeIpRipAuthenticationMode1022 struct {
+type InterfaceVeIpRipAuthenticationMode1017 struct {
 	Mode string `json:"mode" dval:"text"`
 }
 
-type InterfaceVeIpRipAuthenticationKeyChain1023 struct {
+type InterfaceVeIpRipAuthenticationKeyChain1018 struct {
 	KeyChain string `json:"key-chain"`
 }
 
-type InterfaceVeIpRipSendCfg1024 struct {
+type InterfaceVeIpRipSendCfg1019 struct {
 	Send    int    `json:"send"`
 	Version string `json:"version"`
 }
 
-type InterfaceVeIpRipReceiveCfg1025 struct {
+type InterfaceVeIpRipReceiveCfg1020 struct {
 	Receive int    `json:"receive"`
 	Version string `json:"version"`
 }
 
-type InterfaceVeIpRipSplitHorizonCfg1026 struct {
+type InterfaceVeIpRipSplitHorizonCfg1021 struct {
 	State string `json:"state" dval:"poisoned"`
 }
 
-type InterfaceVeIpRouter1027 struct {
-	Isis InterfaceVeIpRouterIsis1028 `json:"isis"`
+type InterfaceVeIpRouter1022 struct {
+	Isis InterfaceVeIpRouterIsis1023 `json:"isis"`
 }
 
-type InterfaceVeIpRouterIsis1028 struct {
+type InterfaceVeIpRouterIsis1023 struct {
 	Tag  string `json:"tag"`
 	Uuid string `json:"uuid"`
+}
+
+type InterfaceVeIpStatefulFirewall1024 struct {
+	Inside     int    `json:"inside"`
+	ClassList  string `json:"class-list"`
+	Outside    int    `json:"outside"`
+	AccessList int    `json:"access-list"`
+	AclId      int    `json:"acl-id"`
+	Uuid       string `json:"uuid"`
 }
 
 func (p *InterfaceVeIp) GetId() string {

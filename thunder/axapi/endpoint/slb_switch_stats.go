@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbSwitchStats struct {
 	Stats SlbSwitchStatsStats `json:"stats"`
 }
@@ -124,10 +124,6 @@ type SlbSwitchStatsStats struct {
 	Tls12_tls13_drop_req                int `json:"tls12_tls13_drop_req"`
 	Tls12_tls13_ignore_req              int `json:"tls12_tls13_ignore_req"`
 	Mac_movement                        int `json:"mac_movement"`
-	Ipv4SrcRoutedPktDrop                int `json:"ipv4-src-routed-pkt-drop"`
-	Ipv6SrcRoutedPktDrop                int `json:"ipv6-src-routed-pkt-drop"`
-	Ipv4RpfDrop                         int `json:"ipv4-rpf-drop"`
-	Ipv6RpfDrop                         int `json:"ipv6-rpf-drop"`
 }
 
 func (p *SlbSwitchStats) GetId() string {

@@ -762,35 +762,35 @@ func resourceRouteMapRead(ctx context.Context, d *schema.ResourceData, meta inte
 	return diags
 }
 
-func getObjectRouteMapMatch1181(d []interface{}) edpt.RouteMapMatch1181 {
+func getObjectRouteMapMatch1180(d []interface{}) edpt.RouteMapMatch1180 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatch1181
+	var ret edpt.RouteMapMatch1180
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.AsPath = getObjectRouteMapMatchAsPath1182(in["as_path"].([]interface{}))
-		ret.Community = getObjectRouteMapMatchCommunity1183(in["community"].([]interface{}))
-		ret.Extcommunity = getObjectRouteMapMatchExtcommunity1185(in["extcommunity"].([]interface{}))
-		ret.LargeCommunity = getObjectRouteMapMatchLargeCommunity1187(in["large_community"].([]interface{}))
-		ret.Group = getObjectRouteMapMatchGroup1189(in["group"].([]interface{}))
-		ret.Scaleout = getObjectRouteMapMatchScaleout1190(in["scaleout"].([]interface{}))
-		ret.Interface = getObjectRouteMapMatchInterface1191(in["interface"].([]interface{}))
-		ret.LocalPreference = getObjectRouteMapMatchLocalPreference1192(in["local_preference"].([]interface{}))
-		ret.Origin = getObjectRouteMapMatchOrigin1193(in["origin"].([]interface{}))
-		ret.Ip = getObjectRouteMapMatchIp1194(in["ip"].([]interface{}))
-		ret.Ipv6 = getObjectRouteMapMatchIpv61201(in["ipv6"].([]interface{}))
-		ret.Metric = getObjectRouteMapMatchMetric1207(in["metric"].([]interface{}))
-		ret.RouteType = getObjectRouteMapMatchRouteType1208(in["route_type"].([]interface{}))
-		ret.Tag = getObjectRouteMapMatchTag1210(in["tag"].([]interface{}))
+		ret.AsPath = getObjectRouteMapMatchAsPath1181(in["as_path"].([]interface{}))
+		ret.Community = getObjectRouteMapMatchCommunity1182(in["community"].([]interface{}))
+		ret.Extcommunity = getObjectRouteMapMatchExtcommunity1184(in["extcommunity"].([]interface{}))
+		ret.LargeCommunity = getObjectRouteMapMatchLargeCommunity1186(in["large_community"].([]interface{}))
+		ret.Group = getObjectRouteMapMatchGroup1188(in["group"].([]interface{}))
+		ret.Scaleout = getObjectRouteMapMatchScaleout1189(in["scaleout"].([]interface{}))
+		ret.Interface = getObjectRouteMapMatchInterface1190(in["interface"].([]interface{}))
+		ret.LocalPreference = getObjectRouteMapMatchLocalPreference1191(in["local_preference"].([]interface{}))
+		ret.Origin = getObjectRouteMapMatchOrigin1192(in["origin"].([]interface{}))
+		ret.Ip = getObjectRouteMapMatchIp1193(in["ip"].([]interface{}))
+		ret.Ipv6 = getObjectRouteMapMatchIpv61200(in["ipv6"].([]interface{}))
+		ret.Metric = getObjectRouteMapMatchMetric1206(in["metric"].([]interface{}))
+		ret.RouteType = getObjectRouteMapMatchRouteType1207(in["route_type"].([]interface{}))
+		ret.Tag = getObjectRouteMapMatchTag1209(in["tag"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectRouteMapMatchAsPath1182(d []interface{}) edpt.RouteMapMatchAsPath1182 {
+func getObjectRouteMapMatchAsPath1181(d []interface{}) edpt.RouteMapMatchAsPath1181 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchAsPath1182
+	var ret edpt.RouteMapMatchAsPath1181
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Name = in["name"].(string)
@@ -798,44 +798,21 @@ func getObjectRouteMapMatchAsPath1182(d []interface{}) edpt.RouteMapMatchAsPath1
 	return ret
 }
 
-func getObjectRouteMapMatchCommunity1183(d []interface{}) edpt.RouteMapMatchCommunity1183 {
+func getObjectRouteMapMatchCommunity1182(d []interface{}) edpt.RouteMapMatchCommunity1182 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchCommunity1183
+	var ret edpt.RouteMapMatchCommunity1182
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.NameCfg = getObjectRouteMapMatchCommunityNameCfg1184(in["name_cfg"].([]interface{}))
+		ret.NameCfg = getObjectRouteMapMatchCommunityNameCfg1183(in["name_cfg"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouteMapMatchCommunityNameCfg1184(d []interface{}) edpt.RouteMapMatchCommunityNameCfg1184 {
+func getObjectRouteMapMatchCommunityNameCfg1183(d []interface{}) edpt.RouteMapMatchCommunityNameCfg1183 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchCommunityNameCfg1184
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Name = in["name"].(string)
-		ret.ExactMatch = in["exact_match"].(int)
-	}
-	return ret
-}
-
-func getObjectRouteMapMatchExtcommunity1185(d []interface{}) edpt.RouteMapMatchExtcommunity1185 {
-
-	count1 := len(d)
-	var ret edpt.RouteMapMatchExtcommunity1185
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.ExtcommunityLName = getObjectRouteMapMatchExtcommunityExtcommunityLName1186(in["extcommunity_l_name"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectRouteMapMatchExtcommunityExtcommunityLName1186(d []interface{}) edpt.RouteMapMatchExtcommunityExtcommunityLName1186 {
-
-	count1 := len(d)
-	var ret edpt.RouteMapMatchExtcommunityExtcommunityLName1186
+	var ret edpt.RouteMapMatchCommunityNameCfg1183
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Name = in["name"].(string)
@@ -844,21 +821,21 @@ func getObjectRouteMapMatchExtcommunityExtcommunityLName1186(d []interface{}) ed
 	return ret
 }
 
-func getObjectRouteMapMatchLargeCommunity1187(d []interface{}) edpt.RouteMapMatchLargeCommunity1187 {
+func getObjectRouteMapMatchExtcommunity1184(d []interface{}) edpt.RouteMapMatchExtcommunity1184 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchLargeCommunity1187
+	var ret edpt.RouteMapMatchExtcommunity1184
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.LNameCfg = getObjectRouteMapMatchLargeCommunityLNameCfg1188(in["l_name_cfg"].([]interface{}))
+		ret.ExtcommunityLName = getObjectRouteMapMatchExtcommunityExtcommunityLName1185(in["extcommunity_l_name"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouteMapMatchLargeCommunityLNameCfg1188(d []interface{}) edpt.RouteMapMatchLargeCommunityLNameCfg1188 {
+func getObjectRouteMapMatchExtcommunityExtcommunityLName1185(d []interface{}) edpt.RouteMapMatchExtcommunityExtcommunityLName1185 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchLargeCommunityLNameCfg1188
+	var ret edpt.RouteMapMatchExtcommunityExtcommunityLName1185
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Name = in["name"].(string)
@@ -867,10 +844,33 @@ func getObjectRouteMapMatchLargeCommunityLNameCfg1188(d []interface{}) edpt.Rout
 	return ret
 }
 
-func getObjectRouteMapMatchGroup1189(d []interface{}) edpt.RouteMapMatchGroup1189 {
+func getObjectRouteMapMatchLargeCommunity1186(d []interface{}) edpt.RouteMapMatchLargeCommunity1186 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchGroup1189
+	var ret edpt.RouteMapMatchLargeCommunity1186
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.LNameCfg = getObjectRouteMapMatchLargeCommunityLNameCfg1187(in["l_name_cfg"].([]interface{}))
+	}
+	return ret
+}
+
+func getObjectRouteMapMatchLargeCommunityLNameCfg1187(d []interface{}) edpt.RouteMapMatchLargeCommunityLNameCfg1187 {
+
+	count1 := len(d)
+	var ret edpt.RouteMapMatchLargeCommunityLNameCfg1187
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Name = in["name"].(string)
+		ret.ExactMatch = in["exact_match"].(int)
+	}
+	return ret
+}
+
+func getObjectRouteMapMatchGroup1188(d []interface{}) edpt.RouteMapMatchGroup1188 {
+
+	count1 := len(d)
+	var ret edpt.RouteMapMatchGroup1188
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GroupId = in["group_id"].(int)
@@ -879,10 +879,10 @@ func getObjectRouteMapMatchGroup1189(d []interface{}) edpt.RouteMapMatchGroup118
 	return ret
 }
 
-func getObjectRouteMapMatchScaleout1190(d []interface{}) edpt.RouteMapMatchScaleout1190 {
+func getObjectRouteMapMatchScaleout1189(d []interface{}) edpt.RouteMapMatchScaleout1189 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchScaleout1190
+	var ret edpt.RouteMapMatchScaleout1189
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ClusterId = in["cluster_id"].(int)
@@ -893,10 +893,10 @@ func getObjectRouteMapMatchScaleout1190(d []interface{}) edpt.RouteMapMatchScale
 	return ret
 }
 
-func getObjectRouteMapMatchInterface1191(d []interface{}) edpt.RouteMapMatchInterface1191 {
+func getObjectRouteMapMatchInterface1190(d []interface{}) edpt.RouteMapMatchInterface1190 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchInterface1191
+	var ret edpt.RouteMapMatchInterface1190
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ethernet = in["ethernet"].(int)
@@ -908,10 +908,10 @@ func getObjectRouteMapMatchInterface1191(d []interface{}) edpt.RouteMapMatchInte
 	return ret
 }
 
-func getObjectRouteMapMatchLocalPreference1192(d []interface{}) edpt.RouteMapMatchLocalPreference1192 {
+func getObjectRouteMapMatchLocalPreference1191(d []interface{}) edpt.RouteMapMatchLocalPreference1191 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchLocalPreference1192
+	var ret edpt.RouteMapMatchLocalPreference1191
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Val = in["val"].(int)
@@ -919,10 +919,10 @@ func getObjectRouteMapMatchLocalPreference1192(d []interface{}) edpt.RouteMapMat
 	return ret
 }
 
-func getObjectRouteMapMatchOrigin1193(d []interface{}) edpt.RouteMapMatchOrigin1193 {
+func getObjectRouteMapMatchOrigin1192(d []interface{}) edpt.RouteMapMatchOrigin1192 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchOrigin1193
+	var ret edpt.RouteMapMatchOrigin1192
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Egp = in["egp"].(int)
@@ -932,63 +932,38 @@ func getObjectRouteMapMatchOrigin1193(d []interface{}) edpt.RouteMapMatchOrigin1
 	return ret
 }
 
-func getObjectRouteMapMatchIp1194(d []interface{}) edpt.RouteMapMatchIp1194 {
+func getObjectRouteMapMatchIp1193(d []interface{}) edpt.RouteMapMatchIp1193 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchIp1194
+	var ret edpt.RouteMapMatchIp1193
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Address = getObjectRouteMapMatchIpAddress1195(in["address"].([]interface{}))
-		ret.NextHop = getObjectRouteMapMatchIpNextHop1197(in["next_hop"].([]interface{}))
-		ret.Peer = getObjectRouteMapMatchIpPeer1199(in["peer"].([]interface{}))
-		ret.Rib = getObjectRouteMapMatchIpRib1200(in["rib"].([]interface{}))
+		ret.Address = getObjectRouteMapMatchIpAddress1194(in["address"].([]interface{}))
+		ret.NextHop = getObjectRouteMapMatchIpNextHop1196(in["next_hop"].([]interface{}))
+		ret.Peer = getObjectRouteMapMatchIpPeer1198(in["peer"].([]interface{}))
+		ret.Rib = getObjectRouteMapMatchIpRib1199(in["rib"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouteMapMatchIpAddress1195(d []interface{}) edpt.RouteMapMatchIpAddress1195 {
+func getObjectRouteMapMatchIpAddress1194(d []interface{}) edpt.RouteMapMatchIpAddress1194 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchIpAddress1195
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Acl1 = in["acl1"].(int)
-		ret.Acl2 = in["acl2"].(int)
-		ret.Name = in["name"].(string)
-		ret.PrefixList = getObjectRouteMapMatchIpAddressPrefixList1196(in["prefix_list"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectRouteMapMatchIpAddressPrefixList1196(d []interface{}) edpt.RouteMapMatchIpAddressPrefixList1196 {
-
-	count1 := len(d)
-	var ret edpt.RouteMapMatchIpAddressPrefixList1196
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Name = in["name"].(string)
-	}
-	return ret
-}
-
-func getObjectRouteMapMatchIpNextHop1197(d []interface{}) edpt.RouteMapMatchIpNextHop1197 {
-
-	count1 := len(d)
-	var ret edpt.RouteMapMatchIpNextHop1197
+	var ret edpt.RouteMapMatchIpAddress1194
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Acl1 = in["acl1"].(int)
 		ret.Acl2 = in["acl2"].(int)
 		ret.Name = in["name"].(string)
-		ret.PrefixList1 = getObjectRouteMapMatchIpNextHopPrefixList11198(in["prefix_list_1"].([]interface{}))
+		ret.PrefixList = getObjectRouteMapMatchIpAddressPrefixList1195(in["prefix_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouteMapMatchIpNextHopPrefixList11198(d []interface{}) edpt.RouteMapMatchIpNextHopPrefixList11198 {
+func getObjectRouteMapMatchIpAddressPrefixList1195(d []interface{}) edpt.RouteMapMatchIpAddressPrefixList1195 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchIpNextHopPrefixList11198
+	var ret edpt.RouteMapMatchIpAddressPrefixList1195
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Name = in["name"].(string)
@@ -996,10 +971,35 @@ func getObjectRouteMapMatchIpNextHopPrefixList11198(d []interface{}) edpt.RouteM
 	return ret
 }
 
-func getObjectRouteMapMatchIpPeer1199(d []interface{}) edpt.RouteMapMatchIpPeer1199 {
+func getObjectRouteMapMatchIpNextHop1196(d []interface{}) edpt.RouteMapMatchIpNextHop1196 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchIpPeer1199
+	var ret edpt.RouteMapMatchIpNextHop1196
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Acl1 = in["acl1"].(int)
+		ret.Acl2 = in["acl2"].(int)
+		ret.Name = in["name"].(string)
+		ret.PrefixList1 = getObjectRouteMapMatchIpNextHopPrefixList11197(in["prefix_list_1"].([]interface{}))
+	}
+	return ret
+}
+
+func getObjectRouteMapMatchIpNextHopPrefixList11197(d []interface{}) edpt.RouteMapMatchIpNextHopPrefixList11197 {
+
+	count1 := len(d)
+	var ret edpt.RouteMapMatchIpNextHopPrefixList11197
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Name = in["name"].(string)
+	}
+	return ret
+}
+
+func getObjectRouteMapMatchIpPeer1198(d []interface{}) edpt.RouteMapMatchIpPeer1198 {
+
+	count1 := len(d)
+	var ret edpt.RouteMapMatchIpPeer1198
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Acl1 = in["acl1"].(int)
@@ -1009,10 +1009,10 @@ func getObjectRouteMapMatchIpPeer1199(d []interface{}) edpt.RouteMapMatchIpPeer1
 	return ret
 }
 
-func getObjectRouteMapMatchIpRib1200(d []interface{}) edpt.RouteMapMatchIpRib1200 {
+func getObjectRouteMapMatchIpRib1199(d []interface{}) edpt.RouteMapMatchIpRib1199 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchIpRib1200
+	var ret edpt.RouteMapMatchIpRib1199
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Exact = in["exact"].(string)
@@ -1022,47 +1022,47 @@ func getObjectRouteMapMatchIpRib1200(d []interface{}) edpt.RouteMapMatchIpRib120
 	return ret
 }
 
-func getObjectRouteMapMatchIpv61201(d []interface{}) edpt.RouteMapMatchIpv61201 {
+func getObjectRouteMapMatchIpv61200(d []interface{}) edpt.RouteMapMatchIpv61200 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchIpv61201
+	var ret edpt.RouteMapMatchIpv61200
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Address1 = getObjectRouteMapMatchIpv6Address11202(in["address_1"].([]interface{}))
-		ret.NextHop1 = getObjectRouteMapMatchIpv6NextHop11204(in["next_hop_1"].([]interface{}))
-		ret.Peer1 = getObjectRouteMapMatchIpv6Peer11205(in["peer_1"].([]interface{}))
-		ret.Rib = getObjectRouteMapMatchIpv6Rib1206(in["rib"].([]interface{}))
+		ret.Address1 = getObjectRouteMapMatchIpv6Address11201(in["address_1"].([]interface{}))
+		ret.NextHop1 = getObjectRouteMapMatchIpv6NextHop11203(in["next_hop_1"].([]interface{}))
+		ret.Peer1 = getObjectRouteMapMatchIpv6Peer11204(in["peer_1"].([]interface{}))
+		ret.Rib = getObjectRouteMapMatchIpv6Rib1205(in["rib"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouteMapMatchIpv6Address11202(d []interface{}) edpt.RouteMapMatchIpv6Address11202 {
+func getObjectRouteMapMatchIpv6Address11201(d []interface{}) edpt.RouteMapMatchIpv6Address11201 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchIpv6Address11202
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Name = in["name"].(string)
-		ret.PrefixList2 = getObjectRouteMapMatchIpv6Address1PrefixList21203(in["prefix_list_2"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectRouteMapMatchIpv6Address1PrefixList21203(d []interface{}) edpt.RouteMapMatchIpv6Address1PrefixList21203 {
-
-	count1 := len(d)
-	var ret edpt.RouteMapMatchIpv6Address1PrefixList21203
+	var ret edpt.RouteMapMatchIpv6Address11201
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Name = in["name"].(string)
+		ret.PrefixList2 = getObjectRouteMapMatchIpv6Address1PrefixList21202(in["prefix_list_2"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouteMapMatchIpv6NextHop11204(d []interface{}) edpt.RouteMapMatchIpv6NextHop11204 {
+func getObjectRouteMapMatchIpv6Address1PrefixList21202(d []interface{}) edpt.RouteMapMatchIpv6Address1PrefixList21202 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchIpv6NextHop11204
+	var ret edpt.RouteMapMatchIpv6Address1PrefixList21202
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Name = in["name"].(string)
+	}
+	return ret
+}
+
+func getObjectRouteMapMatchIpv6NextHop11203(d []interface{}) edpt.RouteMapMatchIpv6NextHop11203 {
+
+	count1 := len(d)
+	var ret edpt.RouteMapMatchIpv6NextHop11203
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.NextHopAclName = in["next_hop_acl_name"].(string)
@@ -1072,10 +1072,10 @@ func getObjectRouteMapMatchIpv6NextHop11204(d []interface{}) edpt.RouteMapMatchI
 	return ret
 }
 
-func getObjectRouteMapMatchIpv6Peer11205(d []interface{}) edpt.RouteMapMatchIpv6Peer11205 {
+func getObjectRouteMapMatchIpv6Peer11204(d []interface{}) edpt.RouteMapMatchIpv6Peer11204 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchIpv6Peer11205
+	var ret edpt.RouteMapMatchIpv6Peer11204
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Acl1 = in["acl1"].(int)
@@ -1085,10 +1085,10 @@ func getObjectRouteMapMatchIpv6Peer11205(d []interface{}) edpt.RouteMapMatchIpv6
 	return ret
 }
 
-func getObjectRouteMapMatchIpv6Rib1206(d []interface{}) edpt.RouteMapMatchIpv6Rib1206 {
+func getObjectRouteMapMatchIpv6Rib1205(d []interface{}) edpt.RouteMapMatchIpv6Rib1205 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchIpv6Rib1206
+	var ret edpt.RouteMapMatchIpv6Rib1205
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Exact = in["exact"].(string)
@@ -1098,10 +1098,10 @@ func getObjectRouteMapMatchIpv6Rib1206(d []interface{}) edpt.RouteMapMatchIpv6Ri
 	return ret
 }
 
-func getObjectRouteMapMatchMetric1207(d []interface{}) edpt.RouteMapMatchMetric1207 {
+func getObjectRouteMapMatchMetric1206(d []interface{}) edpt.RouteMapMatchMetric1206 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchMetric1207
+	var ret edpt.RouteMapMatchMetric1206
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(int)
@@ -1109,21 +1109,21 @@ func getObjectRouteMapMatchMetric1207(d []interface{}) edpt.RouteMapMatchMetric1
 	return ret
 }
 
-func getObjectRouteMapMatchRouteType1208(d []interface{}) edpt.RouteMapMatchRouteType1208 {
+func getObjectRouteMapMatchRouteType1207(d []interface{}) edpt.RouteMapMatchRouteType1207 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchRouteType1208
+	var ret edpt.RouteMapMatchRouteType1207
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.External = getObjectRouteMapMatchRouteTypeExternal1209(in["external"].([]interface{}))
+		ret.External = getObjectRouteMapMatchRouteTypeExternal1208(in["external"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouteMapMatchRouteTypeExternal1209(d []interface{}) edpt.RouteMapMatchRouteTypeExternal1209 {
+func getObjectRouteMapMatchRouteTypeExternal1208(d []interface{}) edpt.RouteMapMatchRouteTypeExternal1208 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchRouteTypeExternal1209
+	var ret edpt.RouteMapMatchRouteTypeExternal1208
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(string)
@@ -1131,10 +1131,10 @@ func getObjectRouteMapMatchRouteTypeExternal1209(d []interface{}) edpt.RouteMapM
 	return ret
 }
 
-func getObjectRouteMapMatchTag1210(d []interface{}) edpt.RouteMapMatchTag1210 {
+func getObjectRouteMapMatchTag1209(d []interface{}) edpt.RouteMapMatchTag1209 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapMatchTag1210
+	var ret edpt.RouteMapMatchTag1209
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(int)
@@ -1142,52 +1142,52 @@ func getObjectRouteMapMatchTag1210(d []interface{}) edpt.RouteMapMatchTag1210 {
 	return ret
 }
 
-func getObjectRouteMapSet1211(d []interface{}) edpt.RouteMapSet1211 {
+func getObjectRouteMapSet1210(d []interface{}) edpt.RouteMapSet1210 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSet1211
+	var ret edpt.RouteMapSet1210
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Ip = getObjectRouteMapSetIp1212(in["ip"].([]interface{}))
-		ret.Ddos = getObjectRouteMapSetDdos1214(in["ddos"].([]interface{}))
-		ret.Ipv6 = getObjectRouteMapSetIpv61215(in["ipv6"].([]interface{}))
-		ret.Level = getObjectRouteMapSetLevel1218(in["level"].([]interface{}))
-		ret.Metric = getObjectRouteMapSetMetric1219(in["metric"].([]interface{}))
-		ret.MetricType = getObjectRouteMapSetMetricType1220(in["metric_type"].([]interface{}))
-		ret.Tag = getObjectRouteMapSetTag1221(in["tag"].([]interface{}))
-		ret.Aggregator = getObjectRouteMapSetAggregator1222(in["aggregator"].([]interface{}))
-		ret.AsPath = getObjectRouteMapSetAsPath1224(in["as_path"].([]interface{}))
+		ret.Ip = getObjectRouteMapSetIp1211(in["ip"].([]interface{}))
+		ret.Ddos = getObjectRouteMapSetDdos1213(in["ddos"].([]interface{}))
+		ret.Ipv6 = getObjectRouteMapSetIpv61214(in["ipv6"].([]interface{}))
+		ret.Level = getObjectRouteMapSetLevel1217(in["level"].([]interface{}))
+		ret.Metric = getObjectRouteMapSetMetric1218(in["metric"].([]interface{}))
+		ret.MetricType = getObjectRouteMapSetMetricType1219(in["metric_type"].([]interface{}))
+		ret.Tag = getObjectRouteMapSetTag1220(in["tag"].([]interface{}))
+		ret.Aggregator = getObjectRouteMapSetAggregator1221(in["aggregator"].([]interface{}))
+		ret.AsPath = getObjectRouteMapSetAsPath1223(in["as_path"].([]interface{}))
 		ret.AtomicAggregate = in["atomic_aggregate"].(int)
-		ret.CommList = getObjectRouteMapSetCommList1225(in["comm_list"].([]interface{}))
+		ret.CommList = getObjectRouteMapSetCommList1224(in["comm_list"].([]interface{}))
 		ret.Community = in["community"].(string)
-		ret.DampeningCfg = getObjectRouteMapSetDampeningCfg1226(in["dampening_cfg"].([]interface{}))
-		ret.Extcommunity = getObjectRouteMapSetExtcommunity1227(in["extcommunity"].([]interface{}))
-		ret.LocalPreference = getObjectRouteMapSetLocalPreference1230(in["local_preference"].([]interface{}))
-		ret.OriginatorId = getObjectRouteMapSetOriginatorId1231(in["originator_id"].([]interface{}))
-		ret.Weight = getObjectRouteMapSetWeight1232(in["weight"].([]interface{}))
-		ret.Origin = getObjectRouteMapSetOrigin1233(in["origin"].([]interface{}))
-		ret.LargeCommList = getObjectRouteMapSetLargeCommList1234(in["large_comm_list"].([]interface{}))
+		ret.DampeningCfg = getObjectRouteMapSetDampeningCfg1225(in["dampening_cfg"].([]interface{}))
+		ret.Extcommunity = getObjectRouteMapSetExtcommunity1226(in["extcommunity"].([]interface{}))
+		ret.LocalPreference = getObjectRouteMapSetLocalPreference1229(in["local_preference"].([]interface{}))
+		ret.OriginatorId = getObjectRouteMapSetOriginatorId1230(in["originator_id"].([]interface{}))
+		ret.Weight = getObjectRouteMapSetWeight1231(in["weight"].([]interface{}))
+		ret.Origin = getObjectRouteMapSetOrigin1232(in["origin"].([]interface{}))
+		ret.LargeCommList = getObjectRouteMapSetLargeCommList1233(in["large_comm_list"].([]interface{}))
 		ret.LargeCommunity = in["large_community"].(string)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectRouteMapSetIp1212(d []interface{}) edpt.RouteMapSetIp1212 {
+func getObjectRouteMapSetIp1211(d []interface{}) edpt.RouteMapSetIp1211 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetIp1212
+	var ret edpt.RouteMapSetIp1211
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.NextHop = getObjectRouteMapSetIpNextHop1213(in["next_hop"].([]interface{}))
+		ret.NextHop = getObjectRouteMapSetIpNextHop1212(in["next_hop"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouteMapSetIpNextHop1213(d []interface{}) edpt.RouteMapSetIpNextHop1213 {
+func getObjectRouteMapSetIpNextHop1212(d []interface{}) edpt.RouteMapSetIpNextHop1212 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetIpNextHop1213
+	var ret edpt.RouteMapSetIpNextHop1212
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Address = in["address"].(string)
@@ -1195,10 +1195,10 @@ func getObjectRouteMapSetIpNextHop1213(d []interface{}) edpt.RouteMapSetIpNextHo
 	return ret
 }
 
-func getObjectRouteMapSetDdos1214(d []interface{}) edpt.RouteMapSetDdos1214 {
+func getObjectRouteMapSetDdos1213(d []interface{}) edpt.RouteMapSetDdos1213 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetDdos1214
+	var ret edpt.RouteMapSetDdos1213
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ClassListName = in["class_list_name"].(string)
@@ -1208,44 +1208,44 @@ func getObjectRouteMapSetDdos1214(d []interface{}) edpt.RouteMapSetDdos1214 {
 	return ret
 }
 
-func getObjectRouteMapSetIpv61215(d []interface{}) edpt.RouteMapSetIpv61215 {
+func getObjectRouteMapSetIpv61214(d []interface{}) edpt.RouteMapSetIpv61214 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetIpv61215
+	var ret edpt.RouteMapSetIpv61214
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.NextHop1 = getObjectRouteMapSetIpv6NextHop11216(in["next_hop_1"].([]interface{}))
+		ret.NextHop1 = getObjectRouteMapSetIpv6NextHop11215(in["next_hop_1"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouteMapSetIpv6NextHop11216(d []interface{}) edpt.RouteMapSetIpv6NextHop11216 {
+func getObjectRouteMapSetIpv6NextHop11215(d []interface{}) edpt.RouteMapSetIpv6NextHop11215 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetIpv6NextHop11216
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Address = in["address"].(string)
-		ret.Local = getObjectRouteMapSetIpv6NextHop1Local1217(in["local"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectRouteMapSetIpv6NextHop1Local1217(d []interface{}) edpt.RouteMapSetIpv6NextHop1Local1217 {
-
-	count1 := len(d)
-	var ret edpt.RouteMapSetIpv6NextHop1Local1217
+	var ret edpt.RouteMapSetIpv6NextHop11215
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Address = in["address"].(string)
+		ret.Local = getObjectRouteMapSetIpv6NextHop1Local1216(in["local"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouteMapSetLevel1218(d []interface{}) edpt.RouteMapSetLevel1218 {
+func getObjectRouteMapSetIpv6NextHop1Local1216(d []interface{}) edpt.RouteMapSetIpv6NextHop1Local1216 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetLevel1218
+	var ret edpt.RouteMapSetIpv6NextHop1Local1216
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Address = in["address"].(string)
+	}
+	return ret
+}
+
+func getObjectRouteMapSetLevel1217(d []interface{}) edpt.RouteMapSetLevel1217 {
+
+	count1 := len(d)
+	var ret edpt.RouteMapSetLevel1217
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(string)
@@ -1253,10 +1253,10 @@ func getObjectRouteMapSetLevel1218(d []interface{}) edpt.RouteMapSetLevel1218 {
 	return ret
 }
 
-func getObjectRouteMapSetMetric1219(d []interface{}) edpt.RouteMapSetMetric1219 {
+func getObjectRouteMapSetMetric1218(d []interface{}) edpt.RouteMapSetMetric1218 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetMetric1219
+	var ret edpt.RouteMapSetMetric1218
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(string)
@@ -1264,10 +1264,10 @@ func getObjectRouteMapSetMetric1219(d []interface{}) edpt.RouteMapSetMetric1219 
 	return ret
 }
 
-func getObjectRouteMapSetMetricType1220(d []interface{}) edpt.RouteMapSetMetricType1220 {
+func getObjectRouteMapSetMetricType1219(d []interface{}) edpt.RouteMapSetMetricType1219 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetMetricType1220
+	var ret edpt.RouteMapSetMetricType1219
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(string)
@@ -1275,10 +1275,10 @@ func getObjectRouteMapSetMetricType1220(d []interface{}) edpt.RouteMapSetMetricT
 	return ret
 }
 
-func getObjectRouteMapSetTag1221(d []interface{}) edpt.RouteMapSetTag1221 {
+func getObjectRouteMapSetTag1220(d []interface{}) edpt.RouteMapSetTag1220 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetTag1221
+	var ret edpt.RouteMapSetTag1220
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(int)
@@ -1286,21 +1286,21 @@ func getObjectRouteMapSetTag1221(d []interface{}) edpt.RouteMapSetTag1221 {
 	return ret
 }
 
-func getObjectRouteMapSetAggregator1222(d []interface{}) edpt.RouteMapSetAggregator1222 {
+func getObjectRouteMapSetAggregator1221(d []interface{}) edpt.RouteMapSetAggregator1221 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetAggregator1222
+	var ret edpt.RouteMapSetAggregator1221
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.AggregatorAs = getObjectRouteMapSetAggregatorAggregatorAs1223(in["aggregator_as"].([]interface{}))
+		ret.AggregatorAs = getObjectRouteMapSetAggregatorAggregatorAs1222(in["aggregator_as"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouteMapSetAggregatorAggregatorAs1223(d []interface{}) edpt.RouteMapSetAggregatorAggregatorAs1223 {
+func getObjectRouteMapSetAggregatorAggregatorAs1222(d []interface{}) edpt.RouteMapSetAggregatorAggregatorAs1222 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetAggregatorAggregatorAs1223
+	var ret edpt.RouteMapSetAggregatorAggregatorAs1222
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Asn = in["asn"].(int)
@@ -1309,10 +1309,10 @@ func getObjectRouteMapSetAggregatorAggregatorAs1223(d []interface{}) edpt.RouteM
 	return ret
 }
 
-func getObjectRouteMapSetAsPath1224(d []interface{}) edpt.RouteMapSetAsPath1224 {
+func getObjectRouteMapSetAsPath1223(d []interface{}) edpt.RouteMapSetAsPath1223 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetAsPath1224
+	var ret edpt.RouteMapSetAsPath1223
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Prepend = in["prepend"].(string)
@@ -1322,10 +1322,10 @@ func getObjectRouteMapSetAsPath1224(d []interface{}) edpt.RouteMapSetAsPath1224 
 	return ret
 }
 
-func getObjectRouteMapSetCommList1225(d []interface{}) edpt.RouteMapSetCommList1225 {
+func getObjectRouteMapSetCommList1224(d []interface{}) edpt.RouteMapSetCommList1224 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetCommList1225
+	var ret edpt.RouteMapSetCommList1224
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.VStd = in["v_std"].(int)
@@ -1338,10 +1338,10 @@ func getObjectRouteMapSetCommList1225(d []interface{}) edpt.RouteMapSetCommList1
 	return ret
 }
 
-func getObjectRouteMapSetDampeningCfg1226(d []interface{}) edpt.RouteMapSetDampeningCfg1226 {
+func getObjectRouteMapSetDampeningCfg1225(d []interface{}) edpt.RouteMapSetDampeningCfg1225 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetDampeningCfg1226
+	var ret edpt.RouteMapSetDampeningCfg1225
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Dampening = in["dampening"].(int)
@@ -1354,33 +1354,22 @@ func getObjectRouteMapSetDampeningCfg1226(d []interface{}) edpt.RouteMapSetDampe
 	return ret
 }
 
-func getObjectRouteMapSetExtcommunity1227(d []interface{}) edpt.RouteMapSetExtcommunity1227 {
+func getObjectRouteMapSetExtcommunity1226(d []interface{}) edpt.RouteMapSetExtcommunity1226 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetExtcommunity1227
+	var ret edpt.RouteMapSetExtcommunity1226
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Rt = getObjectRouteMapSetExtcommunityRt1228(in["rt"].([]interface{}))
-		ret.Soo = getObjectRouteMapSetExtcommunitySoo1229(in["soo"].([]interface{}))
+		ret.Rt = getObjectRouteMapSetExtcommunityRt1227(in["rt"].([]interface{}))
+		ret.Soo = getObjectRouteMapSetExtcommunitySoo1228(in["soo"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouteMapSetExtcommunityRt1228(d []interface{}) edpt.RouteMapSetExtcommunityRt1228 {
+func getObjectRouteMapSetExtcommunityRt1227(d []interface{}) edpt.RouteMapSetExtcommunityRt1227 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetExtcommunityRt1228
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Value = in["value"].(string)
-	}
-	return ret
-}
-
-func getObjectRouteMapSetExtcommunitySoo1229(d []interface{}) edpt.RouteMapSetExtcommunitySoo1229 {
-
-	count1 := len(d)
-	var ret edpt.RouteMapSetExtcommunitySoo1229
+	var ret edpt.RouteMapSetExtcommunityRt1227
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(string)
@@ -1388,10 +1377,21 @@ func getObjectRouteMapSetExtcommunitySoo1229(d []interface{}) edpt.RouteMapSetEx
 	return ret
 }
 
-func getObjectRouteMapSetLocalPreference1230(d []interface{}) edpt.RouteMapSetLocalPreference1230 {
+func getObjectRouteMapSetExtcommunitySoo1228(d []interface{}) edpt.RouteMapSetExtcommunitySoo1228 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetLocalPreference1230
+	var ret edpt.RouteMapSetExtcommunitySoo1228
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Value = in["value"].(string)
+	}
+	return ret
+}
+
+func getObjectRouteMapSetLocalPreference1229(d []interface{}) edpt.RouteMapSetLocalPreference1229 {
+
+	count1 := len(d)
+	var ret edpt.RouteMapSetLocalPreference1229
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Val = in["val"].(int)
@@ -1399,10 +1399,10 @@ func getObjectRouteMapSetLocalPreference1230(d []interface{}) edpt.RouteMapSetLo
 	return ret
 }
 
-func getObjectRouteMapSetOriginatorId1231(d []interface{}) edpt.RouteMapSetOriginatorId1231 {
+func getObjectRouteMapSetOriginatorId1230(d []interface{}) edpt.RouteMapSetOriginatorId1230 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetOriginatorId1231
+	var ret edpt.RouteMapSetOriginatorId1230
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.OriginatorIp = in["originator_ip"].(string)
@@ -1410,10 +1410,10 @@ func getObjectRouteMapSetOriginatorId1231(d []interface{}) edpt.RouteMapSetOrigi
 	return ret
 }
 
-func getObjectRouteMapSetWeight1232(d []interface{}) edpt.RouteMapSetWeight1232 {
+func getObjectRouteMapSetWeight1231(d []interface{}) edpt.RouteMapSetWeight1231 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetWeight1232
+	var ret edpt.RouteMapSetWeight1231
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.WeightVal = in["weight_val"].(int)
@@ -1421,10 +1421,10 @@ func getObjectRouteMapSetWeight1232(d []interface{}) edpt.RouteMapSetWeight1232 
 	return ret
 }
 
-func getObjectRouteMapSetOrigin1233(d []interface{}) edpt.RouteMapSetOrigin1233 {
+func getObjectRouteMapSetOrigin1232(d []interface{}) edpt.RouteMapSetOrigin1232 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetOrigin1233
+	var ret edpt.RouteMapSetOrigin1232
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Egp = in["egp"].(int)
@@ -1434,10 +1434,10 @@ func getObjectRouteMapSetOrigin1233(d []interface{}) edpt.RouteMapSetOrigin1233 
 	return ret
 }
 
-func getObjectRouteMapSetLargeCommList1234(d []interface{}) edpt.RouteMapSetLargeCommList1234 {
+func getObjectRouteMapSetLargeCommList1233(d []interface{}) edpt.RouteMapSetLargeCommList1233 {
 
 	count1 := len(d)
-	var ret edpt.RouteMapSetLargeCommList1234
+	var ret edpt.RouteMapSetLargeCommList1233
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.LVStd = in["l_v_std"].(int)
@@ -1453,9 +1453,9 @@ func getObjectRouteMapSetLargeCommList1234(d []interface{}) edpt.RouteMapSetLarg
 func dataToEndpointRouteMap(d *schema.ResourceData) edpt.RouteMap {
 	var ret edpt.RouteMap
 	ret.Inst.Action = d.Get("action").(string)
-	ret.Inst.Match = getObjectRouteMapMatch1181(d.Get("match").([]interface{}))
+	ret.Inst.Match = getObjectRouteMapMatch1180(d.Get("match").([]interface{}))
 	ret.Inst.Sequence = d.Get("sequence").(int)
-	ret.Inst.Set = getObjectRouteMapSet1211(d.Get("set").([]interface{}))
+	ret.Inst.Set = getObjectRouteMapSet1210(d.Get("set").([]interface{}))
 	ret.Inst.Tag = d.Get("tag").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid

@@ -33,6 +33,7 @@ resource "thunder_enable_core" "thunder_enable_core" {
 ### Optional
 
 - `core_level` (String) 'a10': Enable A10 core dump, by default; 'system': Enable system coredump;
+- `disallow_auto_full_core` (Number) Disallow the automatic full core generation.
 - `full` (Number) Enable full system core dump
 - `uuid` (String) uuid of the object
 

@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesImapVportTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesImapVportTmplTriggerStatsInc2788 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesImapVportTmplTriggerStatsInc2806 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesImapVportTmplTriggerStatsRate2789 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesImapVportTmplTriggerStatsRate2807 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesImapVportTmplTriggerStatsSeverity2790 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesImapVportTmplTriggerStatsSeverity2808 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,7 +25,7 @@ type VisibilityPacketCaptureObjectTemplatesImapVportTmpl struct {
 	} `json:"imap-vport-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesImapVportTmplTriggerStatsInc2788 struct {
+type VisibilityPacketCaptureObjectTemplatesImapVportTmplTriggerStatsInc2806 struct {
 	Svrsel_fail            int    `json:"svrsel_fail"`
 	No_route               int    `json:"no_route"`
 	Snat_fail              int    `json:"snat_fail"`
@@ -51,7 +51,7 @@ type VisibilityPacketCaptureObjectTemplatesImapVportTmplTriggerStatsInc2788 stru
 	Uuid                   string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesImapVportTmplTriggerStatsRate2789 struct {
+type VisibilityPacketCaptureObjectTemplatesImapVportTmplTriggerStatsRate2807 struct {
 	ThresholdExceededBy    int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration               int    `json:"duration" dval:"60"`
 	Svrsel_fail            int    `json:"svrsel_fail"`
@@ -79,7 +79,7 @@ type VisibilityPacketCaptureObjectTemplatesImapVportTmplTriggerStatsRate2789 str
 	Uuid                   string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesImapVportTmplTriggerStatsSeverity2790 struct {
+type VisibilityPacketCaptureObjectTemplatesImapVportTmplTriggerStatsSeverity2808 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

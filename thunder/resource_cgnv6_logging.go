@@ -153,10 +153,10 @@ func resourceCgnv6LoggingRead(ctx context.Context, d *schema.ResourceData, meta 
 	return diags
 }
 
-func getObjectCgnv6LoggingNatQuotaExceeded85(d []interface{}) edpt.Cgnv6LoggingNatQuotaExceeded85 {
+func getObjectCgnv6LoggingNatQuotaExceeded86(d []interface{}) edpt.Cgnv6LoggingNatQuotaExceeded86 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6LoggingNatQuotaExceeded85
+	var ret edpt.Cgnv6LoggingNatQuotaExceeded86
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Level = in["level"].(string)
@@ -165,10 +165,10 @@ func getObjectCgnv6LoggingNatQuotaExceeded85(d []interface{}) edpt.Cgnv6LoggingN
 	return ret
 }
 
-func getObjectCgnv6LoggingNatResourceExhausted86(d []interface{}) edpt.Cgnv6LoggingNatResourceExhausted86 {
+func getObjectCgnv6LoggingNatResourceExhausted87(d []interface{}) edpt.Cgnv6LoggingNatResourceExhausted87 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6LoggingNatResourceExhausted86
+	var ret edpt.Cgnv6LoggingNatResourceExhausted87
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Level = in["level"].(string)
@@ -177,10 +177,10 @@ func getObjectCgnv6LoggingNatResourceExhausted86(d []interface{}) edpt.Cgnv6Logg
 	return ret
 }
 
-func getObjectCgnv6LoggingPoolBasedLog87(d []interface{}) edpt.Cgnv6LoggingPoolBasedLog87 {
+func getObjectCgnv6LoggingPoolBasedLog88(d []interface{}) edpt.Cgnv6LoggingPoolBasedLog88 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6LoggingPoolBasedLog87
+	var ret edpt.Cgnv6LoggingPoolBasedLog88
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Cycle = in["cycle"].(int)
@@ -202,26 +202,26 @@ func getSliceCgnv6LoggingSamplingEnable(d []interface{}) []edpt.Cgnv6LoggingSamp
 	return ret
 }
 
-func getObjectCgnv6LoggingSourceAddress88(d []interface{}) edpt.Cgnv6LoggingSourceAddress88 {
+func getObjectCgnv6LoggingSourceAddress89(d []interface{}) edpt.Cgnv6LoggingSourceAddress89 {
 
-	var ret edpt.Cgnv6LoggingSourceAddress88
+	var ret edpt.Cgnv6LoggingSourceAddress89
 	return ret
 }
 
-func getObjectCgnv6LoggingTcpSvrStatus89(d []interface{}) edpt.Cgnv6LoggingTcpSvrStatus89 {
+func getObjectCgnv6LoggingTcpSvrStatus90(d []interface{}) edpt.Cgnv6LoggingTcpSvrStatus90 {
 
-	var ret edpt.Cgnv6LoggingTcpSvrStatus89
+	var ret edpt.Cgnv6LoggingTcpSvrStatus90
 	return ret
 }
 
 func dataToEndpointCgnv6Logging(d *schema.ResourceData) edpt.Cgnv6Logging {
 	var ret edpt.Cgnv6Logging
-	ret.Inst.NatQuotaExceeded = getObjectCgnv6LoggingNatQuotaExceeded85(d.Get("nat_quota_exceeded").([]interface{}))
-	ret.Inst.NatResourceExhausted = getObjectCgnv6LoggingNatResourceExhausted86(d.Get("nat_resource_exhausted").([]interface{}))
-	ret.Inst.PoolBasedLog = getObjectCgnv6LoggingPoolBasedLog87(d.Get("pool_based_log").([]interface{}))
+	ret.Inst.NatQuotaExceeded = getObjectCgnv6LoggingNatQuotaExceeded86(d.Get("nat_quota_exceeded").([]interface{}))
+	ret.Inst.NatResourceExhausted = getObjectCgnv6LoggingNatResourceExhausted87(d.Get("nat_resource_exhausted").([]interface{}))
+	ret.Inst.PoolBasedLog = getObjectCgnv6LoggingPoolBasedLog88(d.Get("pool_based_log").([]interface{}))
 	ret.Inst.SamplingEnable = getSliceCgnv6LoggingSamplingEnable(d.Get("sampling_enable").([]interface{}))
-	ret.Inst.SourceAddress = getObjectCgnv6LoggingSourceAddress88(d.Get("source_address").([]interface{}))
-	ret.Inst.TcpSvrStatus = getObjectCgnv6LoggingTcpSvrStatus89(d.Get("tcp_svr_status").([]interface{}))
+	ret.Inst.SourceAddress = getObjectCgnv6LoggingSourceAddress89(d.Get("source_address").([]interface{}))
+	ret.Inst.TcpSvrStatus = getObjectCgnv6LoggingTcpSvrStatus90(d.Get("tcp_svr_status").([]interface{}))
 	//omit uuid
 	return ret
 }

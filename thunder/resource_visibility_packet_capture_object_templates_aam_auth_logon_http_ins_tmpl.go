@@ -159,10 +159,10 @@ func resourceVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplRead(c
 	return diags
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsInc2725(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsInc2725 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsInc2740(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsInc2740 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsInc2725
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsInc2740
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Spn_krb_faiure = in["spn_krb_faiure"].(int)
@@ -171,10 +171,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTrigg
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsRate2726(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsRate2726 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsRate2741(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsRate2741 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsRate2726
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsRate2741
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -185,10 +185,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTrigg
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsSeverity2727(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsSeverity2727 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsSeverity2742(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsSeverity2742 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsSeverity2727
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsSeverity2742
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -208,9 +208,9 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmpl
 	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmpl
 	ret.Inst.CaptureConfig = d.Get("capture_config").(string)
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsInc2725(d.Get("trigger_stats_inc").([]interface{}))
-	ret.Inst.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsRate2726(d.Get("trigger_stats_rate").([]interface{}))
-	ret.Inst.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsSeverity2727(d.Get("trigger_stats_severity").([]interface{}))
+	ret.Inst.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsInc2740(d.Get("trigger_stats_inc").([]interface{}))
+	ret.Inst.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsRate2741(d.Get("trigger_stats_rate").([]interface{}))
+	ret.Inst.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTriggerStatsSeverity2742(d.Get("trigger_stats_severity").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

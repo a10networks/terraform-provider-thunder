@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type FileAflexLocal struct {
 	Inst struct {
 		Action string `json:"action"`
@@ -43,27 +43,46 @@ func (p *FileAflexLocal) getPath() string {
 func (p *FileAflexLocal) Post(authToken string, host string, logger *axapi.ThunderLog) error {
 	logger.Println("FileAflexLocal::Post")
 	headers := axapi.GenRequestHeader(authToken)
-	f, error := os.Open(p.Inst.FileHandle)
-	if error != nil {
-		logger.Println("Failed to open a file: ", error)
-		return error
+	if p.Inst.Action == "delete" {
+		payloadBytes, err := axapi.SerializeToJson(p)
+		if err != nil {
+			logger.Println("Failed to serialize struct as json", err)
+			return err
+		}
+		logger.Println("payload:", string(payloadBytes))
+		_, _, err = axapi.SendPost(host, p.getPath(), payloadBytes, headers, logger)
+		return err
 	}
-	data, error := ioutil.ReadAll(f)
+	filePath := p.Inst.FileHandle
+	if filePath == "" {
+		filePath = p.Inst.File
+	}
+	f, err := os.Open(filePath)
+	if err != nil {
+		logger.Println("Failed to open a file:", err)
+		return err
+	}
 	defer f.Close()
-	if error != nil {
-		logger.Println("Failed to read file: ", error)
-		return error
+	data, err := ioutil.ReadAll(f)
+	if err != nil {
+		logger.Println("Failed to read file:", err)
+		return err
 	}
 	s := &FileAflexLocal{}
 	s.Inst.Action = p.Inst.Action
 	s.Inst.DstFile = p.Inst.DstFile
 	s.Inst.File = p.Inst.File
-	s.Inst.FileHandle = p.Inst.File
-	s.Inst.SkipBackup = p.Inst.SkipBackup
+	if p.Inst.FileHandle != "" {
+		s.Inst.FileHandle = p.Inst.FileHandle
+	}
+	if p.Inst.SkipBackup != 0 {
+		s.Inst.SkipBackup = p.Inst.SkipBackup
+	}
 	s.Inst.Uuid = p.Inst.Uuid
 	s.Inst.FileContent = data
-	_, err := axapi.NormalizeMultipartObject(http.MethodPost, p.getPath(), s.Inst.File, s.Inst.FileContent, s, headers, host, logger)
+	_, err = axapi.NormalizeMultipartObject(http.MethodPost,p.getPath(),s.Inst.File,s.Inst.FileContent,s,headers,host,logger,)
 	return err
+
 }
 
 func (p *FileAflexLocal) Get(authToken string, host string, instId string, logger *axapi.ThunderLog) error {

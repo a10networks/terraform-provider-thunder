@@ -19,6 +19,9 @@ func resourceImportPeriodicAuthJwks() *schema.Resource {
 			"auth_jwks": {
 				Type: schema.TypeString, Required: true, Description: "JSON web key",
 			},
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "Config remote server  password",
+			},
 			"period": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the period in second",
 			},
@@ -99,6 +102,8 @@ func resourceImportPeriodicAuthJwksRead(ctx context.Context, d *schema.ResourceD
 func dataToEndpointImportPeriodicAuthJwks(d *schema.ResourceData) edpt.ImportPeriodicAuthJwks {
 	var ret edpt.ImportPeriodicAuthJwks
 	ret.Inst.AuthJwks = d.Get("auth_jwks").(string)
+	//omit encrypted
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)

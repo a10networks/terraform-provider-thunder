@@ -44,7 +44,7 @@ func resourcePkiAcmeCert() *schema.Resource {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Initiates enrollment with CA. Due to CA rate limit, A10 strongly recommend you set \"run-with-staging-server\" during test",
 			},
 			"force": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Ignore the next renewal time and force to renew cert",
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Able to do the enrollment again",
 			},
 			"log_level": {
 				Type: schema.TypeInt, Optional: true, Default: 1, Description: "Level for logging output of ACME commands(default 1 and detailed 2, including debug messages)",

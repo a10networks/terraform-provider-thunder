@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbTemplateDiameter struct {
 	Inst struct {
 		AvpCode int `json:"avp-code"`
@@ -35,7 +35,7 @@ type SlbTemplateDiameter struct {
 
 		Name string `json:"name"`
 
-		OriginHost SlbTemplateDiameterOriginHost1515 `json:"origin-host"`
+		OriginHost SlbTemplateDiameterOriginHost1516 `json:"origin-host"`
 
 		OriginRealm string `json:"origin-realm"`
 
@@ -69,7 +69,7 @@ type SlbTemplateDiameterMessageCodeList struct {
 	MessageCode int `json:"message-code"`
 }
 
-type SlbTemplateDiameterOriginHost1515 struct {
+type SlbTemplateDiameterOriginHost1516 struct {
 	OriginHostName string `json:"origin-host-name"`
 	Uuid           string `json:"uuid"`
 }

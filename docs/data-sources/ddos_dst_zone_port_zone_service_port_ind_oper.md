@@ -38,6 +38,7 @@ __PLACEHOLDER__
 Optional:
 
 - `active_time` (Number)
+- `baseline_window_size` (Number)
 - `current_level` (String)
 - `details` (Number)
 - `detection_data_source` (String)

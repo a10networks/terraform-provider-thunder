@@ -848,30 +848,30 @@ func getObjectCgnv6TemplateLoggingCustomCustomMessage(d []interface{}) edpt.Cgnv
 	return ret
 }
 
-func getObjectCgnv6TemplateLoggingDisableLogByDestination117(d []interface{}) edpt.Cgnv6TemplateLoggingDisableLogByDestination117 {
+func getObjectCgnv6TemplateLoggingDisableLogByDestination118(d []interface{}) edpt.Cgnv6TemplateLoggingDisableLogByDestination118 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6TemplateLoggingDisableLogByDestination117
+	var ret edpt.Cgnv6TemplateLoggingDisableLogByDestination118
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.TcpList = getSliceCgnv6TemplateLoggingDisableLogByDestinationTcpList118(in["tcp_list"].([]interface{}))
-		ret.UdpList = getSliceCgnv6TemplateLoggingDisableLogByDestinationUdpList119(in["udp_list"].([]interface{}))
+		ret.TcpList = getSliceCgnv6TemplateLoggingDisableLogByDestinationTcpList119(in["tcp_list"].([]interface{}))
+		ret.UdpList = getSliceCgnv6TemplateLoggingDisableLogByDestinationUdpList120(in["udp_list"].([]interface{}))
 		ret.Icmp = in["icmp"].(int)
 		ret.Others = in["others"].(int)
 		//omit uuid
-		ret.IpList = getSliceCgnv6TemplateLoggingDisableLogByDestinationIpList120(in["ip_list"].([]interface{}))
-		ret.Ip6List = getSliceCgnv6TemplateLoggingDisableLogByDestinationIp6List123(in["ip6_list"].([]interface{}))
+		ret.IpList = getSliceCgnv6TemplateLoggingDisableLogByDestinationIpList121(in["ip_list"].([]interface{}))
+		ret.Ip6List = getSliceCgnv6TemplateLoggingDisableLogByDestinationIp6List124(in["ip6_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceCgnv6TemplateLoggingDisableLogByDestinationTcpList118(d []interface{}) []edpt.Cgnv6TemplateLoggingDisableLogByDestinationTcpList118 {
+func getSliceCgnv6TemplateLoggingDisableLogByDestinationTcpList119(d []interface{}) []edpt.Cgnv6TemplateLoggingDisableLogByDestinationTcpList119 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6TemplateLoggingDisableLogByDestinationTcpList118, 0, count1)
+	ret := make([]edpt.Cgnv6TemplateLoggingDisableLogByDestinationTcpList119, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6TemplateLoggingDisableLogByDestinationTcpList118
+		var oi edpt.Cgnv6TemplateLoggingDisableLogByDestinationTcpList119
 		oi.TcpPortStart = in["tcp_port_start"].(int)
 		oi.TcpPortEnd = in["tcp_port_end"].(int)
 		ret = append(ret, oi)
@@ -879,13 +879,13 @@ func getSliceCgnv6TemplateLoggingDisableLogByDestinationTcpList118(d []interface
 	return ret
 }
 
-func getSliceCgnv6TemplateLoggingDisableLogByDestinationUdpList119(d []interface{}) []edpt.Cgnv6TemplateLoggingDisableLogByDestinationUdpList119 {
+func getSliceCgnv6TemplateLoggingDisableLogByDestinationUdpList120(d []interface{}) []edpt.Cgnv6TemplateLoggingDisableLogByDestinationUdpList120 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6TemplateLoggingDisableLogByDestinationUdpList119, 0, count1)
+	ret := make([]edpt.Cgnv6TemplateLoggingDisableLogByDestinationUdpList120, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6TemplateLoggingDisableLogByDestinationUdpList119
+		var oi edpt.Cgnv6TemplateLoggingDisableLogByDestinationUdpList120
 		oi.UdpPortStart = in["udp_port_start"].(int)
 		oi.UdpPortEnd = in["udp_port_end"].(int)
 		ret = append(ret, oi)
@@ -893,16 +893,16 @@ func getSliceCgnv6TemplateLoggingDisableLogByDestinationUdpList119(d []interface
 	return ret
 }
 
-func getSliceCgnv6TemplateLoggingDisableLogByDestinationIpList120(d []interface{}) []edpt.Cgnv6TemplateLoggingDisableLogByDestinationIpList120 {
+func getSliceCgnv6TemplateLoggingDisableLogByDestinationIpList121(d []interface{}) []edpt.Cgnv6TemplateLoggingDisableLogByDestinationIpList121 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6TemplateLoggingDisableLogByDestinationIpList120, 0, count1)
+	ret := make([]edpt.Cgnv6TemplateLoggingDisableLogByDestinationIpList121, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6TemplateLoggingDisableLogByDestinationIpList120
+		var oi edpt.Cgnv6TemplateLoggingDisableLogByDestinationIpList121
 		oi.Ipv4Addr = in["ipv4_addr"].(string)
-		oi.TcpList = getSliceCgnv6TemplateLoggingDisableLogByDestinationIpListTcpList121(in["tcp_list"].([]interface{}))
-		oi.UdpList = getSliceCgnv6TemplateLoggingDisableLogByDestinationIpListUdpList122(in["udp_list"].([]interface{}))
+		oi.TcpList = getSliceCgnv6TemplateLoggingDisableLogByDestinationIpListTcpList122(in["tcp_list"].([]interface{}))
+		oi.UdpList = getSliceCgnv6TemplateLoggingDisableLogByDestinationIpListUdpList123(in["udp_list"].([]interface{}))
 		oi.Icmp = in["icmp"].(int)
 		oi.Others = in["others"].(int)
 		//omit uuid
@@ -912,13 +912,13 @@ func getSliceCgnv6TemplateLoggingDisableLogByDestinationIpList120(d []interface{
 	return ret
 }
 
-func getSliceCgnv6TemplateLoggingDisableLogByDestinationIpListTcpList121(d []interface{}) []edpt.Cgnv6TemplateLoggingDisableLogByDestinationIpListTcpList121 {
+func getSliceCgnv6TemplateLoggingDisableLogByDestinationIpListTcpList122(d []interface{}) []edpt.Cgnv6TemplateLoggingDisableLogByDestinationIpListTcpList122 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6TemplateLoggingDisableLogByDestinationIpListTcpList121, 0, count1)
+	ret := make([]edpt.Cgnv6TemplateLoggingDisableLogByDestinationIpListTcpList122, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6TemplateLoggingDisableLogByDestinationIpListTcpList121
+		var oi edpt.Cgnv6TemplateLoggingDisableLogByDestinationIpListTcpList122
 		oi.TcpPortStart = in["tcp_port_start"].(int)
 		oi.TcpPortEnd = in["tcp_port_end"].(int)
 		ret = append(ret, oi)
@@ -926,13 +926,13 @@ func getSliceCgnv6TemplateLoggingDisableLogByDestinationIpListTcpList121(d []int
 	return ret
 }
 
-func getSliceCgnv6TemplateLoggingDisableLogByDestinationIpListUdpList122(d []interface{}) []edpt.Cgnv6TemplateLoggingDisableLogByDestinationIpListUdpList122 {
+func getSliceCgnv6TemplateLoggingDisableLogByDestinationIpListUdpList123(d []interface{}) []edpt.Cgnv6TemplateLoggingDisableLogByDestinationIpListUdpList123 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6TemplateLoggingDisableLogByDestinationIpListUdpList122, 0, count1)
+	ret := make([]edpt.Cgnv6TemplateLoggingDisableLogByDestinationIpListUdpList123, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6TemplateLoggingDisableLogByDestinationIpListUdpList122
+		var oi edpt.Cgnv6TemplateLoggingDisableLogByDestinationIpListUdpList123
 		oi.UdpPortStart = in["udp_port_start"].(int)
 		oi.UdpPortEnd = in["udp_port_end"].(int)
 		ret = append(ret, oi)
@@ -940,16 +940,16 @@ func getSliceCgnv6TemplateLoggingDisableLogByDestinationIpListUdpList122(d []int
 	return ret
 }
 
-func getSliceCgnv6TemplateLoggingDisableLogByDestinationIp6List123(d []interface{}) []edpt.Cgnv6TemplateLoggingDisableLogByDestinationIp6List123 {
+func getSliceCgnv6TemplateLoggingDisableLogByDestinationIp6List124(d []interface{}) []edpt.Cgnv6TemplateLoggingDisableLogByDestinationIp6List124 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6TemplateLoggingDisableLogByDestinationIp6List123, 0, count1)
+	ret := make([]edpt.Cgnv6TemplateLoggingDisableLogByDestinationIp6List124, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6TemplateLoggingDisableLogByDestinationIp6List123
+		var oi edpt.Cgnv6TemplateLoggingDisableLogByDestinationIp6List124
 		oi.Ipv6Addr = in["ipv6_addr"].(string)
-		oi.TcpList = getSliceCgnv6TemplateLoggingDisableLogByDestinationIp6ListTcpList124(in["tcp_list"].([]interface{}))
-		oi.UdpList = getSliceCgnv6TemplateLoggingDisableLogByDestinationIp6ListUdpList125(in["udp_list"].([]interface{}))
+		oi.TcpList = getSliceCgnv6TemplateLoggingDisableLogByDestinationIp6ListTcpList125(in["tcp_list"].([]interface{}))
+		oi.UdpList = getSliceCgnv6TemplateLoggingDisableLogByDestinationIp6ListUdpList126(in["udp_list"].([]interface{}))
 		oi.Icmp = in["icmp"].(int)
 		oi.Others = in["others"].(int)
 		//omit uuid
@@ -959,13 +959,13 @@ func getSliceCgnv6TemplateLoggingDisableLogByDestinationIp6List123(d []interface
 	return ret
 }
 
-func getSliceCgnv6TemplateLoggingDisableLogByDestinationIp6ListTcpList124(d []interface{}) []edpt.Cgnv6TemplateLoggingDisableLogByDestinationIp6ListTcpList124 {
+func getSliceCgnv6TemplateLoggingDisableLogByDestinationIp6ListTcpList125(d []interface{}) []edpt.Cgnv6TemplateLoggingDisableLogByDestinationIp6ListTcpList125 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6TemplateLoggingDisableLogByDestinationIp6ListTcpList124, 0, count1)
+	ret := make([]edpt.Cgnv6TemplateLoggingDisableLogByDestinationIp6ListTcpList125, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6TemplateLoggingDisableLogByDestinationIp6ListTcpList124
+		var oi edpt.Cgnv6TemplateLoggingDisableLogByDestinationIp6ListTcpList125
 		oi.TcpPortStart = in["tcp_port_start"].(int)
 		oi.TcpPortEnd = in["tcp_port_end"].(int)
 		ret = append(ret, oi)
@@ -973,13 +973,13 @@ func getSliceCgnv6TemplateLoggingDisableLogByDestinationIp6ListTcpList124(d []in
 	return ret
 }
 
-func getSliceCgnv6TemplateLoggingDisableLogByDestinationIp6ListUdpList125(d []interface{}) []edpt.Cgnv6TemplateLoggingDisableLogByDestinationIp6ListUdpList125 {
+func getSliceCgnv6TemplateLoggingDisableLogByDestinationIp6ListUdpList126(d []interface{}) []edpt.Cgnv6TemplateLoggingDisableLogByDestinationIp6ListUdpList126 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6TemplateLoggingDisableLogByDestinationIp6ListUdpList125, 0, count1)
+	ret := make([]edpt.Cgnv6TemplateLoggingDisableLogByDestinationIp6ListUdpList126, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6TemplateLoggingDisableLogByDestinationIp6ListUdpList125
+		var oi edpt.Cgnv6TemplateLoggingDisableLogByDestinationIp6ListUdpList126
 		oi.UdpPortStart = in["udp_port_start"].(int)
 		oi.UdpPortEnd = in["udp_port_end"].(int)
 		ret = append(ret, oi)
@@ -987,30 +987,30 @@ func getSliceCgnv6TemplateLoggingDisableLogByDestinationIp6ListUdpList125(d []in
 	return ret
 }
 
-func getObjectCgnv6TemplateLoggingEnableLogByDestination126(d []interface{}) edpt.Cgnv6TemplateLoggingEnableLogByDestination126 {
+func getObjectCgnv6TemplateLoggingEnableLogByDestination127(d []interface{}) edpt.Cgnv6TemplateLoggingEnableLogByDestination127 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6TemplateLoggingEnableLogByDestination126
+	var ret edpt.Cgnv6TemplateLoggingEnableLogByDestination127
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.TcpList = getSliceCgnv6TemplateLoggingEnableLogByDestinationTcpList127(in["tcp_list"].([]interface{}))
-		ret.UdpList = getSliceCgnv6TemplateLoggingEnableLogByDestinationUdpList128(in["udp_list"].([]interface{}))
+		ret.TcpList = getSliceCgnv6TemplateLoggingEnableLogByDestinationTcpList128(in["tcp_list"].([]interface{}))
+		ret.UdpList = getSliceCgnv6TemplateLoggingEnableLogByDestinationUdpList129(in["udp_list"].([]interface{}))
 		ret.Icmp = in["icmp"].(int)
 		ret.Others = in["others"].(int)
 		//omit uuid
-		ret.IpList = getSliceCgnv6TemplateLoggingEnableLogByDestinationIpList129(in["ip_list"].([]interface{}))
-		ret.Ip6List = getSliceCgnv6TemplateLoggingEnableLogByDestinationIp6List132(in["ip6_list"].([]interface{}))
+		ret.IpList = getSliceCgnv6TemplateLoggingEnableLogByDestinationIpList130(in["ip_list"].([]interface{}))
+		ret.Ip6List = getSliceCgnv6TemplateLoggingEnableLogByDestinationIp6List133(in["ip6_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceCgnv6TemplateLoggingEnableLogByDestinationTcpList127(d []interface{}) []edpt.Cgnv6TemplateLoggingEnableLogByDestinationTcpList127 {
+func getSliceCgnv6TemplateLoggingEnableLogByDestinationTcpList128(d []interface{}) []edpt.Cgnv6TemplateLoggingEnableLogByDestinationTcpList128 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6TemplateLoggingEnableLogByDestinationTcpList127, 0, count1)
+	ret := make([]edpt.Cgnv6TemplateLoggingEnableLogByDestinationTcpList128, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6TemplateLoggingEnableLogByDestinationTcpList127
+		var oi edpt.Cgnv6TemplateLoggingEnableLogByDestinationTcpList128
 		oi.TcpPortStart = in["tcp_port_start"].(int)
 		oi.TcpPortEnd = in["tcp_port_end"].(int)
 		ret = append(ret, oi)
@@ -1018,13 +1018,13 @@ func getSliceCgnv6TemplateLoggingEnableLogByDestinationTcpList127(d []interface{
 	return ret
 }
 
-func getSliceCgnv6TemplateLoggingEnableLogByDestinationUdpList128(d []interface{}) []edpt.Cgnv6TemplateLoggingEnableLogByDestinationUdpList128 {
+func getSliceCgnv6TemplateLoggingEnableLogByDestinationUdpList129(d []interface{}) []edpt.Cgnv6TemplateLoggingEnableLogByDestinationUdpList129 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6TemplateLoggingEnableLogByDestinationUdpList128, 0, count1)
+	ret := make([]edpt.Cgnv6TemplateLoggingEnableLogByDestinationUdpList129, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6TemplateLoggingEnableLogByDestinationUdpList128
+		var oi edpt.Cgnv6TemplateLoggingEnableLogByDestinationUdpList129
 		oi.UdpPortStart = in["udp_port_start"].(int)
 		oi.UdpPortEnd = in["udp_port_end"].(int)
 		ret = append(ret, oi)
@@ -1032,16 +1032,16 @@ func getSliceCgnv6TemplateLoggingEnableLogByDestinationUdpList128(d []interface{
 	return ret
 }
 
-func getSliceCgnv6TemplateLoggingEnableLogByDestinationIpList129(d []interface{}) []edpt.Cgnv6TemplateLoggingEnableLogByDestinationIpList129 {
+func getSliceCgnv6TemplateLoggingEnableLogByDestinationIpList130(d []interface{}) []edpt.Cgnv6TemplateLoggingEnableLogByDestinationIpList130 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6TemplateLoggingEnableLogByDestinationIpList129, 0, count1)
+	ret := make([]edpt.Cgnv6TemplateLoggingEnableLogByDestinationIpList130, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6TemplateLoggingEnableLogByDestinationIpList129
+		var oi edpt.Cgnv6TemplateLoggingEnableLogByDestinationIpList130
 		oi.Ipv4Addr = in["ipv4_addr"].(string)
-		oi.TcpList = getSliceCgnv6TemplateLoggingEnableLogByDestinationIpListTcpList130(in["tcp_list"].([]interface{}))
-		oi.UdpList = getSliceCgnv6TemplateLoggingEnableLogByDestinationIpListUdpList131(in["udp_list"].([]interface{}))
+		oi.TcpList = getSliceCgnv6TemplateLoggingEnableLogByDestinationIpListTcpList131(in["tcp_list"].([]interface{}))
+		oi.UdpList = getSliceCgnv6TemplateLoggingEnableLogByDestinationIpListUdpList132(in["udp_list"].([]interface{}))
 		oi.Icmp = in["icmp"].(int)
 		oi.Others = in["others"].(int)
 		//omit uuid
@@ -1051,13 +1051,13 @@ func getSliceCgnv6TemplateLoggingEnableLogByDestinationIpList129(d []interface{}
 	return ret
 }
 
-func getSliceCgnv6TemplateLoggingEnableLogByDestinationIpListTcpList130(d []interface{}) []edpt.Cgnv6TemplateLoggingEnableLogByDestinationIpListTcpList130 {
+func getSliceCgnv6TemplateLoggingEnableLogByDestinationIpListTcpList131(d []interface{}) []edpt.Cgnv6TemplateLoggingEnableLogByDestinationIpListTcpList131 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6TemplateLoggingEnableLogByDestinationIpListTcpList130, 0, count1)
+	ret := make([]edpt.Cgnv6TemplateLoggingEnableLogByDestinationIpListTcpList131, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6TemplateLoggingEnableLogByDestinationIpListTcpList130
+		var oi edpt.Cgnv6TemplateLoggingEnableLogByDestinationIpListTcpList131
 		oi.TcpPortStart = in["tcp_port_start"].(int)
 		oi.TcpPortEnd = in["tcp_port_end"].(int)
 		ret = append(ret, oi)
@@ -1065,13 +1065,13 @@ func getSliceCgnv6TemplateLoggingEnableLogByDestinationIpListTcpList130(d []inte
 	return ret
 }
 
-func getSliceCgnv6TemplateLoggingEnableLogByDestinationIpListUdpList131(d []interface{}) []edpt.Cgnv6TemplateLoggingEnableLogByDestinationIpListUdpList131 {
+func getSliceCgnv6TemplateLoggingEnableLogByDestinationIpListUdpList132(d []interface{}) []edpt.Cgnv6TemplateLoggingEnableLogByDestinationIpListUdpList132 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6TemplateLoggingEnableLogByDestinationIpListUdpList131, 0, count1)
+	ret := make([]edpt.Cgnv6TemplateLoggingEnableLogByDestinationIpListUdpList132, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6TemplateLoggingEnableLogByDestinationIpListUdpList131
+		var oi edpt.Cgnv6TemplateLoggingEnableLogByDestinationIpListUdpList132
 		oi.UdpPortStart = in["udp_port_start"].(int)
 		oi.UdpPortEnd = in["udp_port_end"].(int)
 		ret = append(ret, oi)
@@ -1079,16 +1079,16 @@ func getSliceCgnv6TemplateLoggingEnableLogByDestinationIpListUdpList131(d []inte
 	return ret
 }
 
-func getSliceCgnv6TemplateLoggingEnableLogByDestinationIp6List132(d []interface{}) []edpt.Cgnv6TemplateLoggingEnableLogByDestinationIp6List132 {
+func getSliceCgnv6TemplateLoggingEnableLogByDestinationIp6List133(d []interface{}) []edpt.Cgnv6TemplateLoggingEnableLogByDestinationIp6List133 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6TemplateLoggingEnableLogByDestinationIp6List132, 0, count1)
+	ret := make([]edpt.Cgnv6TemplateLoggingEnableLogByDestinationIp6List133, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6TemplateLoggingEnableLogByDestinationIp6List132
+		var oi edpt.Cgnv6TemplateLoggingEnableLogByDestinationIp6List133
 		oi.Ipv6Addr = in["ipv6_addr"].(string)
-		oi.TcpList = getSliceCgnv6TemplateLoggingEnableLogByDestinationIp6ListTcpList133(in["tcp_list"].([]interface{}))
-		oi.UdpList = getSliceCgnv6TemplateLoggingEnableLogByDestinationIp6ListUdpList134(in["udp_list"].([]interface{}))
+		oi.TcpList = getSliceCgnv6TemplateLoggingEnableLogByDestinationIp6ListTcpList134(in["tcp_list"].([]interface{}))
+		oi.UdpList = getSliceCgnv6TemplateLoggingEnableLogByDestinationIp6ListUdpList135(in["udp_list"].([]interface{}))
 		oi.Icmp = in["icmp"].(int)
 		oi.Others = in["others"].(int)
 		//omit uuid
@@ -1098,13 +1098,13 @@ func getSliceCgnv6TemplateLoggingEnableLogByDestinationIp6List132(d []interface{
 	return ret
 }
 
-func getSliceCgnv6TemplateLoggingEnableLogByDestinationIp6ListTcpList133(d []interface{}) []edpt.Cgnv6TemplateLoggingEnableLogByDestinationIp6ListTcpList133 {
+func getSliceCgnv6TemplateLoggingEnableLogByDestinationIp6ListTcpList134(d []interface{}) []edpt.Cgnv6TemplateLoggingEnableLogByDestinationIp6ListTcpList134 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6TemplateLoggingEnableLogByDestinationIp6ListTcpList133, 0, count1)
+	ret := make([]edpt.Cgnv6TemplateLoggingEnableLogByDestinationIp6ListTcpList134, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6TemplateLoggingEnableLogByDestinationIp6ListTcpList133
+		var oi edpt.Cgnv6TemplateLoggingEnableLogByDestinationIp6ListTcpList134
 		oi.TcpPortStart = in["tcp_port_start"].(int)
 		oi.TcpPortEnd = in["tcp_port_end"].(int)
 		ret = append(ret, oi)
@@ -1112,13 +1112,13 @@ func getSliceCgnv6TemplateLoggingEnableLogByDestinationIp6ListTcpList133(d []int
 	return ret
 }
 
-func getSliceCgnv6TemplateLoggingEnableLogByDestinationIp6ListUdpList134(d []interface{}) []edpt.Cgnv6TemplateLoggingEnableLogByDestinationIp6ListUdpList134 {
+func getSliceCgnv6TemplateLoggingEnableLogByDestinationIp6ListUdpList135(d []interface{}) []edpt.Cgnv6TemplateLoggingEnableLogByDestinationIp6ListUdpList135 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6TemplateLoggingEnableLogByDestinationIp6ListUdpList134, 0, count1)
+	ret := make([]edpt.Cgnv6TemplateLoggingEnableLogByDestinationIp6ListUdpList135, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6TemplateLoggingEnableLogByDestinationIp6ListUdpList134
+		var oi edpt.Cgnv6TemplateLoggingEnableLogByDestinationIp6ListUdpList135
 		oi.UdpPortStart = in["udp_port_start"].(int)
 		oi.UdpPortEnd = in["udp_port_end"].(int)
 		ret = append(ret, oi)
@@ -1398,10 +1398,10 @@ func getObjectCgnv6TemplateLoggingSeverity(d []interface{}) edpt.Cgnv6TemplateLo
 	return ret
 }
 
-func getObjectCgnv6TemplateLoggingSourceAddress135(d []interface{}) edpt.Cgnv6TemplateLoggingSourceAddress135 {
+func getObjectCgnv6TemplateLoggingSourceAddress136(d []interface{}) edpt.Cgnv6TemplateLoggingSourceAddress136 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6TemplateLoggingSourceAddress135
+	var ret edpt.Cgnv6TemplateLoggingSourceAddress136
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ip = in["ip"].(string)
@@ -1427,8 +1427,8 @@ func dataToEndpointCgnv6TemplateLogging(d *schema.ResourceData) edpt.Cgnv6Templa
 	var ret edpt.Cgnv6TemplateLogging
 	ret.Inst.BatchedLoggingDisable = d.Get("batched_logging_disable").(int)
 	ret.Inst.Custom = getObjectCgnv6TemplateLoggingCustom(d.Get("custom").([]interface{}))
-	ret.Inst.DisableLogByDestination = getObjectCgnv6TemplateLoggingDisableLogByDestination117(d.Get("disable_log_by_destination").([]interface{}))
-	ret.Inst.EnableLogByDestination = getObjectCgnv6TemplateLoggingEnableLogByDestination126(d.Get("enable_log_by_destination").([]interface{}))
+	ret.Inst.DisableLogByDestination = getObjectCgnv6TemplateLoggingDisableLogByDestination118(d.Get("disable_log_by_destination").([]interface{}))
+	ret.Inst.EnableLogByDestination = getObjectCgnv6TemplateLoggingEnableLogByDestination127(d.Get("enable_log_by_destination").([]interface{}))
 	ret.Inst.Facility = d.Get("facility").(string)
 	ret.Inst.Format = d.Get("format").(string)
 	ret.Inst.IncludeDestination = d.Get("include_destination").(int)
@@ -1448,7 +1448,7 @@ func dataToEndpointCgnv6TemplateLogging(d *schema.ResourceData) edpt.Cgnv6Templa
 	ret.Inst.ServiceGroup = d.Get("service_group").(string)
 	ret.Inst.Severity = getObjectCgnv6TemplateLoggingSeverity(d.Get("severity").([]interface{}))
 	ret.Inst.Shared = d.Get("shared").(int)
-	ret.Inst.SourceAddress = getObjectCgnv6TemplateLoggingSourceAddress135(d.Get("source_address").([]interface{}))
+	ret.Inst.SourceAddress = getObjectCgnv6TemplateLoggingSourceAddress136(d.Get("source_address").([]interface{}))
 	ret.Inst.SourcePort = getObjectCgnv6TemplateLoggingSourcePort(d.Get("source_port").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid

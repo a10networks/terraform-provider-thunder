@@ -367,10 +367,10 @@ func resourceVisibilityTopnGtpApnPrefixTopnTmplRead(ctx context.Context, d *sche
 	return diags
 }
 
-func getObjectVisibilityTopnGtpApnPrefixTopnTmplMetrics3231(d []interface{}) edpt.VisibilityTopnGtpApnPrefixTopnTmplMetrics3231 {
+func getObjectVisibilityTopnGtpApnPrefixTopnTmplMetrics3259(d []interface{}) edpt.VisibilityTopnGtpApnPrefixTopnTmplMetrics3259 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopnGtpApnPrefixTopnTmplMetrics3231
+	var ret edpt.VisibilityTopnGtpApnPrefixTopnTmplMetrics3259
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.UplinkBytes = in["uplink_bytes"].(int)
@@ -468,7 +468,7 @@ func getObjectVisibilityTopnGtpApnPrefixTopnTmplMetrics3231(d []interface{}) edp
 func dataToEndpointVisibilityTopnGtpApnPrefixTopnTmpl(d *schema.ResourceData) edpt.VisibilityTopnGtpApnPrefixTopnTmpl {
 	var ret edpt.VisibilityTopnGtpApnPrefixTopnTmpl
 	ret.Inst.Interval = d.Get("interval").(string)
-	ret.Inst.Metrics = getObjectVisibilityTopnGtpApnPrefixTopnTmplMetrics3231(d.Get("metrics").([]interface{}))
+	ret.Inst.Metrics = getObjectVisibilityTopnGtpApnPrefixTopnTmplMetrics3259(d.Get("metrics").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.TopnSize = d.Get("topn_size").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)

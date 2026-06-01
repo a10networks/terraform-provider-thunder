@@ -55,7 +55,7 @@ func resourceGslbProtocol() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Default: 3600, Description: "Amount of Response Messages, default is 3600 (Number)",
 						},
 						"message": {
-							Type: schema.TypeInt, Optional: true, Default: 10000, Description: "Amount of Messages, default is 10000 (Number)",
+							Type: schema.TypeInt, Optional: true, Default: 100000, Description: "Amount of Messages, default is 100000 (Number)",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -173,10 +173,10 @@ func getSliceGslbProtocolEnableList(d []interface{}) []edpt.GslbProtocolEnableLi
 	return ret
 }
 
-func getObjectGslbProtocolLimit487(d []interface{}) edpt.GslbProtocolLimit487 {
+func getObjectGslbProtocolLimit478(d []interface{}) edpt.GslbProtocolLimit478 {
 
 	count1 := len(d)
-	var ret edpt.GslbProtocolLimit487
+	var ret edpt.GslbProtocolLimit478
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ArdtQuery = in["ardt_query"].(int)
@@ -190,10 +190,10 @@ func getObjectGslbProtocolLimit487(d []interface{}) edpt.GslbProtocolLimit487 {
 	return ret
 }
 
-func getObjectGslbProtocolSecure488(d []interface{}) edpt.GslbProtocolSecure488 {
+func getObjectGslbProtocolSecure479(d []interface{}) edpt.GslbProtocolSecure479 {
 
 	count1 := len(d)
-	var ret edpt.GslbProtocolSecure488
+	var ret edpt.GslbProtocolSecure479
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
@@ -207,10 +207,10 @@ func dataToEndpointGslbProtocol(d *schema.ResourceData) edpt.GslbProtocol {
 	ret.Inst.AutoDetect = d.Get("auto_detect").(int)
 	ret.Inst.DisableNewGslbSync = d.Get("disable_new_gslb_sync").(int)
 	ret.Inst.EnableList = getSliceGslbProtocolEnableList(d.Get("enable_list").([]interface{}))
-	ret.Inst.Limit = getObjectGslbProtocolLimit487(d.Get("limit").([]interface{}))
+	ret.Inst.Limit = getObjectGslbProtocolLimit478(d.Get("limit").([]interface{}))
 	ret.Inst.MsgFormatAcos2x = d.Get("msg_format_acos_2x").(int)
 	ret.Inst.PingSite = d.Get("ping_site").(string)
-	ret.Inst.Secure = getObjectGslbProtocolSecure488(d.Get("secure").([]interface{}))
+	ret.Inst.Secure = getObjectGslbProtocolSecure479(d.Get("secure").([]interface{}))
 	ret.Inst.StatusInterval = d.Get("status_interval").(int)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)
 	ret.Inst.UseMgmtPortForAllPartitions = d.Get("use_mgmt_port_for_all_partitions").(int)

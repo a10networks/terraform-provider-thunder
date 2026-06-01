@@ -35,7 +35,7 @@ func resourceDdosTemplateTcpProgressionTrackingMitigationRequestTracking() *sche
 				Type: schema.TypeInt, Optional: true, Description: "Set the minimum request length",
 			},
 			"request_response_model": {
-				Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': Enable Request Response Model; 'disable': Disable Request Response Model;",
+				Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': Enable Request Response Model (Default); 'disable': Disable Request Response Model;",
 			},
 			"request_to_response_max_time": {
 				Type: schema.TypeInt, Optional: true, Description: "Set the maximum request to response time (in unit of 100ms)",

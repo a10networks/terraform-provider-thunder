@@ -119,10 +119,10 @@ func resourceDdosDetectionSettingsStandaloneSettingsRead(ctx context.Context, d 
 	return diags
 }
 
-func getObjectDdosDetectionSettingsStandaloneSettingsNetflow147(d []interface{}) edpt.DdosDetectionSettingsStandaloneSettingsNetflow147 {
+func getObjectDdosDetectionSettingsStandaloneSettingsNetflow148(d []interface{}) edpt.DdosDetectionSettingsStandaloneSettingsNetflow148 {
 
 	count1 := len(d)
-	var ret edpt.DdosDetectionSettingsStandaloneSettingsNetflow147
+	var ret edpt.DdosDetectionSettingsStandaloneSettingsNetflow148
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ListeningPort = in["listening_port"].(int)
@@ -133,10 +133,10 @@ func getObjectDdosDetectionSettingsStandaloneSettingsNetflow147(d []interface{})
 	return ret
 }
 
-func getObjectDdosDetectionSettingsStandaloneSettingsSflow148(d []interface{}) edpt.DdosDetectionSettingsStandaloneSettingsSflow148 {
+func getObjectDdosDetectionSettingsStandaloneSettingsSflow149(d []interface{}) edpt.DdosDetectionSettingsStandaloneSettingsSflow149 {
 
 	count1 := len(d)
-	var ret edpt.DdosDetectionSettingsStandaloneSettingsSflow148
+	var ret edpt.DdosDetectionSettingsStandaloneSettingsSflow149
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ListeningPort = in["listening_port"].(int)
@@ -148,8 +148,8 @@ func getObjectDdosDetectionSettingsStandaloneSettingsSflow148(d []interface{}) e
 func dataToEndpointDdosDetectionSettingsStandaloneSettings(d *schema.ResourceData) edpt.DdosDetectionSettingsStandaloneSettings {
 	var ret edpt.DdosDetectionSettingsStandaloneSettings
 	ret.Inst.Action = d.Get("action").(string)
-	ret.Inst.Netflow = getObjectDdosDetectionSettingsStandaloneSettingsNetflow147(d.Get("netflow").([]interface{}))
-	ret.Inst.Sflow = getObjectDdosDetectionSettingsStandaloneSettingsSflow148(d.Get("sflow").([]interface{}))
+	ret.Inst.Netflow = getObjectDdosDetectionSettingsStandaloneSettingsNetflow148(d.Get("netflow").([]interface{}))
+	ret.Inst.Sflow = getObjectDdosDetectionSettingsStandaloneSettingsSflow149(d.Get("sflow").([]interface{}))
 	//omit uuid
 	return ret
 }

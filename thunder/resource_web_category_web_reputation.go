@@ -114,29 +114,29 @@ func resourceWebCategoryWebReputationRead(ctx context.Context, d *schema.Resourc
 	return diags
 }
 
-func getObjectWebCategoryWebReputationBypassedUrls3757(d []interface{}) edpt.WebCategoryWebReputationBypassedUrls3757 {
+func getObjectWebCategoryWebReputationBypassedUrls3795(d []interface{}) edpt.WebCategoryWebReputationBypassedUrls3795 {
 
-	var ret edpt.WebCategoryWebReputationBypassedUrls3757
+	var ret edpt.WebCategoryWebReputationBypassedUrls3795
 	return ret
 }
 
-func getObjectWebCategoryWebReputationInterceptedUrls3758(d []interface{}) edpt.WebCategoryWebReputationInterceptedUrls3758 {
+func getObjectWebCategoryWebReputationInterceptedUrls3796(d []interface{}) edpt.WebCategoryWebReputationInterceptedUrls3796 {
 
-	var ret edpt.WebCategoryWebReputationInterceptedUrls3758
+	var ret edpt.WebCategoryWebReputationInterceptedUrls3796
 	return ret
 }
 
-func getObjectWebCategoryWebReputationUrl3759(d []interface{}) edpt.WebCategoryWebReputationUrl3759 {
+func getObjectWebCategoryWebReputationUrl3797(d []interface{}) edpt.WebCategoryWebReputationUrl3797 {
 
-	var ret edpt.WebCategoryWebReputationUrl3759
+	var ret edpt.WebCategoryWebReputationUrl3797
 	return ret
 }
 
 func dataToEndpointWebCategoryWebReputation(d *schema.ResourceData) edpt.WebCategoryWebReputation {
 	var ret edpt.WebCategoryWebReputation
-	ret.Inst.BypassedUrls = getObjectWebCategoryWebReputationBypassedUrls3757(d.Get("bypassed_urls").([]interface{}))
-	ret.Inst.InterceptedUrls = getObjectWebCategoryWebReputationInterceptedUrls3758(d.Get("intercepted_urls").([]interface{}))
-	ret.Inst.Url = getObjectWebCategoryWebReputationUrl3759(d.Get("url").([]interface{}))
+	ret.Inst.BypassedUrls = getObjectWebCategoryWebReputationBypassedUrls3795(d.Get("bypassed_urls").([]interface{}))
+	ret.Inst.InterceptedUrls = getObjectWebCategoryWebReputationInterceptedUrls3796(d.Get("intercepted_urls").([]interface{}))
+	ret.Inst.Url = getObjectWebCategoryWebReputationUrl3797(d.Get("url").([]interface{}))
 	//omit uuid
 	return ret
 }

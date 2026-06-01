@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SysUtStateNextStateCaseAction struct {
 	Inst struct {
 		Delay int `json:"delay"`
@@ -14,57 +14,57 @@ type SysUtStateNextStateCaseAction struct {
 
 		Drop int `json:"drop"`
 
-		L1 SysUtStateNextStateCaseActionL11644 `json:"l1"`
+		L1 SysUtStateNextStateCaseActionL11645 `json:"l1"`
 
-		L2 SysUtStateNextStateCaseActionL21647 `json:"l2"`
+		L2 SysUtStateNextStateCaseActionL21648 `json:"l2"`
 
-		L3 SysUtStateNextStateCaseActionL31649 `json:"l3"`
+		L3 SysUtStateNextStateCaseActionL31650 `json:"l3"`
 
-		Tcp SysUtStateNextStateCaseActionTcp1651 `json:"tcp"`
+		Tcp SysUtStateNextStateCaseActionTcp1652 `json:"tcp"`
 
 		Template string `json:"template"`
 
-		Udp SysUtStateNextStateCaseActionUdp1654 `json:"udp"`
+		Udp SysUtStateNextStateCaseActionUdp1655 `json:"udp"`
 
 		Uuid string `json:"uuid"`
 
-		State_name string
+		Next_state_name string
 
 		CaseNumber string
 
-		Next_state_name string
+		State_name string
 	} `json:"action"`
 }
 
-type SysUtStateNextStateCaseActionL11644 struct {
-	EthList    []SysUtStateNextStateCaseActionL1EthList1645    `json:"eth-list"`
-	Trunk_list []SysUtStateNextStateCaseActionL1Trunk_list1646 `json:"trunk_list"`
+type SysUtStateNextStateCaseActionL11645 struct {
+	EthList    []SysUtStateNextStateCaseActionL1EthList1646    `json:"eth-list"`
+	Trunk_list []SysUtStateNextStateCaseActionL1Trunk_list1647 `json:"trunk_list"`
 	Length     int                                             `json:"length"`
 	Value      int                                             `json:"value"`
 	Auto       int                                             `json:"auto"`
 	Uuid       string                                          `json:"uuid"`
 }
 
-type SysUtStateNextStateCaseActionL1EthList1645 struct {
+type SysUtStateNextStateCaseActionL1EthList1646 struct {
 	EthernetStart int `json:"ethernet-start"`
 	EthernetEnd   int `json:"ethernet-end"`
 }
 
-type SysUtStateNextStateCaseActionL1Trunk_list1646 struct {
+type SysUtStateNextStateCaseActionL1Trunk_list1647 struct {
 	TrunkStart int `json:"trunk-start"`
 	TrunkEnd   int `json:"trunk-end"`
 }
 
-type SysUtStateNextStateCaseActionL21647 struct {
+type SysUtStateNextStateCaseActionL21648 struct {
 	Ethertype int                                          `json:"ethertype"`
 	Protocol  string                                       `json:"protocol" dval:"ipv4"`
 	Value     int                                          `json:"value"`
 	Vlan      int                                          `json:"vlan"`
 	Uuid      string                                       `json:"uuid"`
-	MacList   []SysUtStateNextStateCaseActionL2MacList1648 `json:"mac-list"`
+	MacList   []SysUtStateNextStateCaseActionL2MacList1649 `json:"mac-list"`
 }
 
-type SysUtStateNextStateCaseActionL2MacList1648 struct {
+type SysUtStateNextStateCaseActionL2MacList1649 struct {
 	SrcDst        string `json:"src-dst"`
 	AddressType   string `json:"address-type"`
 	VirtualServer string `json:"virtual-server"`
@@ -76,17 +76,17 @@ type SysUtStateNextStateCaseActionL2MacList1648 struct {
 	Uuid          string `json:"uuid"`
 }
 
-type SysUtStateNextStateCaseActionL31649 struct {
+type SysUtStateNextStateCaseActionL31650 struct {
 	Protocol int                                         `json:"protocol"`
 	Type     string                                      `json:"type"`
 	Value    int                                         `json:"value"`
 	Checksum string                                      `json:"checksum" dval:"valid"`
 	Ttl      int                                         `json:"ttl"`
 	Uuid     string                                      `json:"uuid"`
-	IpList   []SysUtStateNextStateCaseActionL3IpList1650 `json:"ip-list"`
+	IpList   []SysUtStateNextStateCaseActionL3IpList1651 `json:"ip-list"`
 }
 
-type SysUtStateNextStateCaseActionL3IpList1650 struct {
+type SysUtStateNextStateCaseActionL3IpList1651 struct {
 	SrcDst        string `json:"src-dst"`
 	Ipv4Address   string `json:"ipv4-address"`
 	Ipv6Address   string `json:"ipv6-address"`
@@ -98,7 +98,7 @@ type SysUtStateNextStateCaseActionL3IpList1650 struct {
 	Uuid          string `json:"uuid"`
 }
 
-type SysUtStateNextStateCaseActionTcp1651 struct {
+type SysUtStateNextStateCaseActionTcp1652 struct {
 	SrcPort       int                                         `json:"src-port"`
 	DestPort      int                                         `json:"dest-port"`
 	DestPortValue int                                         `json:"dest-port-value"`
@@ -109,11 +109,11 @@ type SysUtStateNextStateCaseActionTcp1651 struct {
 	Urgent        string                                      `json:"urgent" dval:"valid"`
 	Window        string                                      `json:"window" dval:"valid"`
 	Uuid          string                                      `json:"uuid"`
-	Flags         SysUtStateNextStateCaseActionTcpFlags1652   `json:"flags"`
-	Options       SysUtStateNextStateCaseActionTcpOptions1653 `json:"options"`
+	Flags         SysUtStateNextStateCaseActionTcpFlags1653   `json:"flags"`
+	Options       SysUtStateNextStateCaseActionTcpOptions1654 `json:"options"`
 }
 
-type SysUtStateNextStateCaseActionTcpFlags1652 struct {
+type SysUtStateNextStateCaseActionTcpFlags1653 struct {
 	Syn  int    `json:"syn"`
 	Ack  int    `json:"ack"`
 	Fin  int    `json:"fin"`
@@ -125,7 +125,7 @@ type SysUtStateNextStateCaseActionTcpFlags1652 struct {
 	Uuid string `json:"uuid"`
 }
 
-type SysUtStateNextStateCaseActionTcpOptions1653 struct {
+type SysUtStateNextStateCaseActionTcpOptions1654 struct {
 	Mss             int    `json:"mss"`
 	Wscale          int    `json:"wscale"`
 	SackType        string `json:"sack-type"`
@@ -134,7 +134,7 @@ type SysUtStateNextStateCaseActionTcpOptions1653 struct {
 	Uuid            string `json:"uuid"`
 }
 
-type SysUtStateNextStateCaseActionUdp1654 struct {
+type SysUtStateNextStateCaseActionUdp1655 struct {
 	SrcPort       int    `json:"src-port"`
 	DestPort      int    `json:"dest-port"`
 	DestPortValue int    `json:"dest-port-value"`

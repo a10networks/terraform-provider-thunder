@@ -342,17 +342,17 @@ func resourceSlbTemplatePolicyForwardPolicySourceRead(ctx context.Context, d *sc
 	return diags
 }
 
-func getObjectSlbTemplatePolicyForwardPolicySourceDestination1552(d []interface{}) edpt.SlbTemplatePolicyForwardPolicySourceDestination1552 {
+func getObjectSlbTemplatePolicyForwardPolicySourceDestination1553(d []interface{}) edpt.SlbTemplatePolicyForwardPolicySourceDestination1553 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplatePolicyForwardPolicySourceDestination1552
+	var ret edpt.SlbTemplatePolicyForwardPolicySourceDestination1553
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.AdvMatchList = getSliceSlbTemplatePolicyForwardPolicySourceDestinationAdvMatchList(in["adv_match_list"].([]interface{}))
 		ret.ClassListList = getSliceSlbTemplatePolicyForwardPolicySourceDestinationClassListList(in["class_list_list"].([]interface{}))
 		ret.WebReputationScopeList = getSliceSlbTemplatePolicyForwardPolicySourceDestinationWebReputationScopeList(in["web_reputation_scope_list"].([]interface{}))
 		ret.WebCategoryListList = getSliceSlbTemplatePolicyForwardPolicySourceDestinationWebCategoryListList(in["web_category_list_list"].([]interface{}))
-		ret.Any = getObjectSlbTemplatePolicyForwardPolicySourceDestinationAny1553(in["any"].([]interface{}))
+		ret.Any = getObjectSlbTemplatePolicyForwardPolicySourceDestinationAny1554(in["any"].([]interface{}))
 	}
 	return ret
 }
@@ -471,27 +471,27 @@ func getSliceSlbTemplatePolicyForwardPolicySourceDestinationWebCategoryListList(
 	return ret
 }
 
-func getObjectSlbTemplatePolicyForwardPolicySourceDestinationAny1553(d []interface{}) edpt.SlbTemplatePolicyForwardPolicySourceDestinationAny1553 {
+func getObjectSlbTemplatePolicyForwardPolicySourceDestinationAny1554(d []interface{}) edpt.SlbTemplatePolicyForwardPolicySourceDestinationAny1554 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplatePolicyForwardPolicySourceDestinationAny1553
+	var ret edpt.SlbTemplatePolicyForwardPolicySourceDestinationAny1554
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
 		ret.DualStackAction = in["dual_stack_action"].(string)
 		//omit uuid
-		ret.SamplingEnable = getSliceSlbTemplatePolicyForwardPolicySourceDestinationAnySamplingEnable1554(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSlbTemplatePolicyForwardPolicySourceDestinationAnySamplingEnable1555(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSlbTemplatePolicyForwardPolicySourceDestinationAnySamplingEnable1554(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySourceDestinationAnySamplingEnable1554 {
+func getSliceSlbTemplatePolicyForwardPolicySourceDestinationAnySamplingEnable1555(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySourceDestinationAnySamplingEnable1555 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplatePolicyForwardPolicySourceDestinationAnySamplingEnable1554, 0, count1)
+	ret := make([]edpt.SlbTemplatePolicyForwardPolicySourceDestinationAnySamplingEnable1555, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplatePolicyForwardPolicySourceDestinationAnySamplingEnable1554
+		var oi edpt.SlbTemplatePolicyForwardPolicySourceDestinationAnySamplingEnable1555
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
@@ -513,7 +513,7 @@ func getSliceSlbTemplatePolicyForwardPolicySourceSamplingEnable(d []interface{})
 
 func dataToEndpointSlbTemplatePolicyForwardPolicySource(d *schema.ResourceData) edpt.SlbTemplatePolicyForwardPolicySource {
 	var ret edpt.SlbTemplatePolicyForwardPolicySource
-	ret.Inst.Destination = getObjectSlbTemplatePolicyForwardPolicySourceDestination1552(d.Get("destination").([]interface{}))
+	ret.Inst.Destination = getObjectSlbTemplatePolicyForwardPolicySourceDestination1553(d.Get("destination").([]interface{}))
 	ret.Inst.MatchAny = d.Get("match_any").(int)
 	ret.Inst.MatchAuthorizePolicy = d.Get("match_authorize_policy").(string)
 	ret.Inst.MatchClassList = d.Get("match_class_list").(string)

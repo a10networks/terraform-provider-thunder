@@ -343,25 +343,25 @@ func getSliceInterfaceManagementIpv6(d []interface{}) []edpt.InterfaceManagement
 	return ret
 }
 
-func getObjectInterfaceManagementLldp827(d []interface{}) edpt.InterfaceManagementLldp827 {
+func getObjectInterfaceManagementLldp818(d []interface{}) edpt.InterfaceManagementLldp818 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceManagementLldp827
+	var ret edpt.InterfaceManagementLldp818
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.EnableCfg = getObjectInterfaceManagementLldpEnableCfg828(in["enable_cfg"].([]interface{}))
-		ret.NotificationCfg = getObjectInterfaceManagementLldpNotificationCfg829(in["notification_cfg"].([]interface{}))
-		ret.TxDot1Cfg = getObjectInterfaceManagementLldpTxDot1Cfg830(in["tx_dot1_cfg"].([]interface{}))
-		ret.TxTlvsCfg = getObjectInterfaceManagementLldpTxTlvsCfg831(in["tx_tlvs_cfg"].([]interface{}))
+		ret.EnableCfg = getObjectInterfaceManagementLldpEnableCfg819(in["enable_cfg"].([]interface{}))
+		ret.NotificationCfg = getObjectInterfaceManagementLldpNotificationCfg820(in["notification_cfg"].([]interface{}))
+		ret.TxDot1Cfg = getObjectInterfaceManagementLldpTxDot1Cfg821(in["tx_dot1_cfg"].([]interface{}))
+		ret.TxTlvsCfg = getObjectInterfaceManagementLldpTxTlvsCfg822(in["tx_tlvs_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectInterfaceManagementLldpEnableCfg828(d []interface{}) edpt.InterfaceManagementLldpEnableCfg828 {
+func getObjectInterfaceManagementLldpEnableCfg819(d []interface{}) edpt.InterfaceManagementLldpEnableCfg819 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceManagementLldpEnableCfg828
+	var ret edpt.InterfaceManagementLldpEnableCfg819
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RtEnable = in["rt_enable"].(int)
@@ -371,10 +371,10 @@ func getObjectInterfaceManagementLldpEnableCfg828(d []interface{}) edpt.Interfac
 	return ret
 }
 
-func getObjectInterfaceManagementLldpNotificationCfg829(d []interface{}) edpt.InterfaceManagementLldpNotificationCfg829 {
+func getObjectInterfaceManagementLldpNotificationCfg820(d []interface{}) edpt.InterfaceManagementLldpNotificationCfg820 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceManagementLldpNotificationCfg829
+	var ret edpt.InterfaceManagementLldpNotificationCfg820
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Notification = in["notification"].(int)
@@ -383,10 +383,10 @@ func getObjectInterfaceManagementLldpNotificationCfg829(d []interface{}) edpt.In
 	return ret
 }
 
-func getObjectInterfaceManagementLldpTxDot1Cfg830(d []interface{}) edpt.InterfaceManagementLldpTxDot1Cfg830 {
+func getObjectInterfaceManagementLldpTxDot1Cfg821(d []interface{}) edpt.InterfaceManagementLldpTxDot1Cfg821 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceManagementLldpTxDot1Cfg830
+	var ret edpt.InterfaceManagementLldpTxDot1Cfg821
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TxDot1Tlvs = in["tx_dot1_tlvs"].(int)
@@ -396,10 +396,10 @@ func getObjectInterfaceManagementLldpTxDot1Cfg830(d []interface{}) edpt.Interfac
 	return ret
 }
 
-func getObjectInterfaceManagementLldpTxTlvsCfg831(d []interface{}) edpt.InterfaceManagementLldpTxTlvsCfg831 {
+func getObjectInterfaceManagementLldpTxTlvsCfg822(d []interface{}) edpt.InterfaceManagementLldpTxTlvsCfg822 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceManagementLldpTxTlvsCfg831
+	var ret edpt.InterfaceManagementLldpTxTlvsCfg822
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TxTlvs = in["tx_tlvs"].(int)
@@ -451,7 +451,7 @@ func dataToEndpointInterfaceManagement(d *schema.ResourceData) edpt.InterfaceMan
 	ret.Inst.FlowControl = d.Get("flow_control").(int)
 	ret.Inst.Ip = getObjectInterfaceManagementIp(d.Get("ip").([]interface{}))
 	ret.Inst.Ipv6 = getSliceInterfaceManagementIpv6(d.Get("ipv6").([]interface{}))
-	ret.Inst.Lldp = getObjectInterfaceManagementLldp827(d.Get("lldp").([]interface{}))
+	ret.Inst.Lldp = getObjectInterfaceManagementLldp818(d.Get("lldp").([]interface{}))
 	ret.Inst.Mtu = d.Get("mtu").(int)
 	ret.Inst.SamplingEnable = getSliceInterfaceManagementSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.SecondaryIp = getObjectInterfaceManagementSecondaryIp(d.Get("secondary_ip").([]interface{}))

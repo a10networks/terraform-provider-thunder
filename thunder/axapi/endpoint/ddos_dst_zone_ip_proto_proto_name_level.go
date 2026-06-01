@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZoneIpProtoProtoNameLevel struct {
 	Inst struct {
 		GlidAction string `json:"glid-action"`
@@ -30,9 +30,9 @@ type DdosDstZoneIpProtoProtoNameLevel struct {
 
 		ZoneViolationActions string `json:"zone-violation-actions"`
 
-		Protocol string
-
 		ZoneName string
+
+		Protocol string
 	} `json:"level"`
 }
 

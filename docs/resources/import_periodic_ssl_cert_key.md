@@ -39,6 +39,7 @@ resource "thunder_import_periodic_ssl_cert_key" "thunder_import_periodic_ssl_cer
 
 ### Optional
 
+- `password` (String) Config remote server  password
 - `period` (Number) Specify the period in second
 - `remote_file` (String) profile name for remote url
 - `secured` (Number) Mark keys as non-exportable

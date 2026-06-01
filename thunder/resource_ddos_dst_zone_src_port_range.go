@@ -252,9 +252,9 @@ func getSliceDdosDstZoneSrcPortRangeLevelListIndicatorList(d []interface{}) []ed
 	return ret
 }
 
-func getObjectDdosDstZoneSrcPortRangePortInd265(d []interface{}) edpt.DdosDstZoneSrcPortRangePortInd265 {
+func getObjectDdosDstZoneSrcPortRangePortInd268(d []interface{}) edpt.DdosDstZoneSrcPortRangePortInd268 {
 
-	var ret edpt.DdosDstZoneSrcPortRangePortInd265
+	var ret edpt.DdosDstZoneSrcPortRangePortInd268
 	return ret
 }
 
@@ -277,7 +277,7 @@ func dataToEndpointDdosDstZoneSrcPortRange(d *schema.ResourceData) edpt.DdosDstZ
 	ret.Inst.Deny = d.Get("deny").(int)
 	ret.Inst.GlidCfg = getObjectDdosDstZoneSrcPortRangeGlidCfg(d.Get("glid_cfg").([]interface{}))
 	ret.Inst.LevelList = getSliceDdosDstZoneSrcPortRangeLevelList(d.Get("level_list").([]interface{}))
-	ret.Inst.PortInd = getObjectDdosDstZoneSrcPortRangePortInd265(d.Get("port_ind").([]interface{}))
+	ret.Inst.PortInd = getObjectDdosDstZoneSrcPortRangePortInd268(d.Get("port_ind").([]interface{}))
 	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.SetCounterBaseVal = d.Get("set_counter_base_val").(int)
 	ret.Inst.SrcPortRangeEnd = d.Get("src_port_range_end").(int)

@@ -215,6 +215,7 @@ resource "thunder_router_bgp_address_family_ipv6" "thunderRouterBgpAddressFamily
 - `neighbor` (Block List, Max: 1) (see [below for nested schema](#nestedblock--neighbor))
 - `network` (Block List, Max: 1) (see [below for nested schema](#nestedblock--network))
 - `originate` (Number) Distribute an IPv6 default route
+- `prefer_global` (Number) Prefer Global IPv6 Nexthop address
 - `redistribute` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute))
 - `synchronization` (Number) Perform IGP synchronization
 - `uuid` (String) uuid of the object

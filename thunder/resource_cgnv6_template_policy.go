@@ -177,10 +177,10 @@ func resourceCgnv6TemplatePolicyRead(ctx context.Context, d *schema.ResourceData
 	return diags
 }
 
-func getObjectCgnv6TemplatePolicyClassList136(d []interface{}) edpt.Cgnv6TemplatePolicyClassList136 {
+func getObjectCgnv6TemplatePolicyClassList137(d []interface{}) edpt.Cgnv6TemplatePolicyClassList137 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6TemplatePolicyClassList136
+	var ret edpt.Cgnv6TemplatePolicyClassList137
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Name = in["name"].(string)
@@ -188,18 +188,18 @@ func getObjectCgnv6TemplatePolicyClassList136(d []interface{}) edpt.Cgnv6Templat
 		ret.ClientIpL7Header = in["client_ip_l7_header"].(int)
 		ret.HeaderName = in["header_name"].(string)
 		//omit uuid
-		ret.LidList = getSliceCgnv6TemplatePolicyClassListLidList137(in["lid_list"].([]interface{}))
+		ret.LidList = getSliceCgnv6TemplatePolicyClassListLidList138(in["lid_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceCgnv6TemplatePolicyClassListLidList137(d []interface{}) []edpt.Cgnv6TemplatePolicyClassListLidList137 {
+func getSliceCgnv6TemplatePolicyClassListLidList138(d []interface{}) []edpt.Cgnv6TemplatePolicyClassListLidList138 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6TemplatePolicyClassListLidList137, 0, count1)
+	ret := make([]edpt.Cgnv6TemplatePolicyClassListLidList138, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6TemplatePolicyClassListLidList137
+		var oi edpt.Cgnv6TemplatePolicyClassListLidList138
 		oi.Lidnum = in["lidnum"].(int)
 		oi.ConnLimit = in["conn_limit"].(int)
 		oi.ConnRateLimit = in["conn_rate_limit"].(int)
@@ -212,7 +212,7 @@ func getSliceCgnv6TemplatePolicyClassListLidList137(d []interface{}) []edpt.Cgnv
 		oi.Lockout = in["lockout"].(int)
 		oi.Log = in["log"].(int)
 		oi.Interval = in["interval"].(int)
-		oi.Dns64 = getObjectCgnv6TemplatePolicyClassListLidListDns64138(in["dns64"].([]interface{}))
+		oi.Dns64 = getObjectCgnv6TemplatePolicyClassListLidListDns64139(in["dns64"].([]interface{}))
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		ret = append(ret, oi)
@@ -220,10 +220,10 @@ func getSliceCgnv6TemplatePolicyClassListLidList137(d []interface{}) []edpt.Cgnv
 	return ret
 }
 
-func getObjectCgnv6TemplatePolicyClassListLidListDns64138(d []interface{}) edpt.Cgnv6TemplatePolicyClassListLidListDns64138 {
+func getObjectCgnv6TemplatePolicyClassListLidListDns64139(d []interface{}) edpt.Cgnv6TemplatePolicyClassListLidListDns64139 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6TemplatePolicyClassListLidListDns64138
+	var ret edpt.Cgnv6TemplatePolicyClassListLidListDns64139
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Disable = in["disable"].(int)
@@ -235,7 +235,7 @@ func getObjectCgnv6TemplatePolicyClassListLidListDns64138(d []interface{}) edpt.
 
 func dataToEndpointCgnv6TemplatePolicy(d *schema.ResourceData) edpt.Cgnv6TemplatePolicy {
 	var ret edpt.Cgnv6TemplatePolicy
-	ret.Inst.ClassList = getObjectCgnv6TemplatePolicyClassList136(d.Get("class_list").([]interface{}))
+	ret.Inst.ClassList = getObjectCgnv6TemplatePolicyClassList137(d.Get("class_list").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid

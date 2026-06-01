@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6Global struct {
 	Inst struct {
-		DomainList Cgnv6GlobalDomainList84 `json:"domain-list"`
+		DomainList Cgnv6GlobalDomainList85 `json:"domain-list"`
 
 		PingSweepDetection string `json:"ping-sweep-detection" dval:"disable"`
 
@@ -20,7 +20,7 @@ type Cgnv6Global struct {
 	} `json:"global"`
 }
 
-type Cgnv6GlobalDomainList84 struct {
+type Cgnv6GlobalDomainList85 struct {
 	Interval     int    `json:"interval"`
 	FailInterval int    `json:"fail-interval"`
 	AaaaQuery    string `json:"aaaa-query" dval:"enable"`

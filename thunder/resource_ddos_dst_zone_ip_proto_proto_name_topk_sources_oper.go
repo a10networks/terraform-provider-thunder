@@ -90,11 +90,11 @@ func resourceDdosDstZoneIpProtoProtoNameTopkSourcesOper() *schema.Resource {
 					},
 				},
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
-			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			},
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 		},
 	}
@@ -261,8 +261,8 @@ func dataToEndpointDdosDstZoneIpProtoProtoNameTopkSourcesOper(d *schema.Resource
 
 	ret.Oper = getObjectDdosDstZoneIpProtoProtoNameTopkSourcesOperOper(d.Get("oper").([]interface{}))
 
-	ret.Protocol = d.Get("protocol").(string)
-
 	ret.ZoneName = d.Get("zone_name").(string)
+
+	ret.Protocol = d.Get("protocol").(string)
 	return ret
 }

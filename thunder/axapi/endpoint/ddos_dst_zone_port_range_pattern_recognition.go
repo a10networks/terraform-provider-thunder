@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZonePortRangePatternRecognition struct {
 	Inst struct {
 		Algorithm string `json:"algorithm"`
@@ -26,13 +26,13 @@ type DdosDstZonePortRangePatternRecognition struct {
 
 		Uuid string `json:"uuid"`
 
-		Protocol string
-
 		ZoneName string
 
-		PortRangeEnd string
+		Protocol string
 
 		PortRangeStart string
+
+		PortRangeEnd string
 	} `json:"pattern-recognition"`
 }
 

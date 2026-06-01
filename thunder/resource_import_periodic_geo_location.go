@@ -19,6 +19,9 @@ func resourceImportPeriodicGeoLocation() *schema.Resource {
 			"geo_location": {
 				Type: schema.TypeString, Required: true, Description: "Geo-location CSV File",
 			},
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "Config remote server  password",
+			},
 			"period": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the period in second",
 			},
@@ -98,7 +101,9 @@ func resourceImportPeriodicGeoLocationRead(ctx context.Context, d *schema.Resour
 
 func dataToEndpointImportPeriodicGeoLocation(d *schema.ResourceData) edpt.ImportPeriodicGeoLocation {
 	var ret edpt.ImportPeriodicGeoLocation
+	//omit encrypted
 	ret.Inst.GeoLocation = d.Get("geo_location").(string)
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)

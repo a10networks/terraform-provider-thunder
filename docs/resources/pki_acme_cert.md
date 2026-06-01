@@ -33,7 +33,7 @@ __PLACEHOLDER__
 - `ecdsa_type` (Number) ECDSA certificate
 - `email` (String) A valid email address for your ACME account. CA uses this email to send you expiration or other notices
 - `enroll` (Number) Initiates enrollment with CA. Due to CA rate limit, A10 strongly recommend you set "run-with-staging-server" during test
-- `force` (Number) Ignore the next renewal time and force to renew cert
+- `force` (Number) Able to do the enrollment again
 - `log_level` (Number) Level for logging output of ACME commands(default 1 and detailed 2, including debug messages)
 - `minute` (Number) Periodic interval in minutes
 - `renew_before` (Number) Specify interval before certificate expiry to renew the certificate

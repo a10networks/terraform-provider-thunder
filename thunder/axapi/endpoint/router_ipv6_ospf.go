@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type RouterIpv6Ospf struct {
 	Inst struct {
 		AbrTypeOption string `json:"abr-type-option" dval:"cisco"`
@@ -16,7 +16,7 @@ type RouterIpv6Ospf struct {
 
 		BfdAllInterfaces int `json:"bfd-all-interfaces"`
 
-		DefaultInformation RouterIpv6OspfDefaultInformation1335 `json:"default-information"`
+		DefaultInformation RouterIpv6OspfDefaultInformation1334 `json:"default-information"`
 
 		DefaultMetric int `json:"default-metric" dval:"20"`
 
@@ -34,7 +34,7 @@ type RouterIpv6Ospf struct {
 
 		ProcessId string `json:"process-id"`
 
-		Redistribute RouterIpv6OspfRedistribute1336 `json:"redistribute"`
+		Redistribute RouterIpv6OspfRedistribute1335 `json:"redistribute"`
 
 		RouterId string `json:"router-id"`
 
@@ -72,7 +72,7 @@ type RouterIpv6OspfAreaListVirtualLinkList struct {
 	InstanceId         int    `json:"instance-id"`
 }
 
-type RouterIpv6OspfDefaultInformation1335 struct {
+type RouterIpv6OspfDefaultInformation1334 struct {
 	Originate  int    `json:"originate"`
 	Always     int    `json:"always"`
 	Metric     int    `json:"metric"`
@@ -130,27 +130,27 @@ type RouterIpv6OspfPassiveInterfaceEthCfg struct {
 	Ethernet int `json:"ethernet"`
 }
 
-type RouterIpv6OspfRedistribute1336 struct {
-	RedistList        []RouterIpv6OspfRedistributeRedistList1337        `json:"redist-list"`
-	OspfList          []RouterIpv6OspfRedistributeOspfList1338          `json:"ospf-list"`
+type RouterIpv6OspfRedistribute1335 struct {
+	RedistList        []RouterIpv6OspfRedistributeRedistList1336        `json:"redist-list"`
+	OspfList          []RouterIpv6OspfRedistributeOspfList1337          `json:"ospf-list"`
 	IpNat             int                                               `json:"ip-nat"`
 	MetricIpNat       int                                               `json:"metric-ip-nat"`
 	MetricTypeIpNat   string                                            `json:"metric-type-ip-nat" dval:"2"`
 	RouteMapIpNat     string                                            `json:"route-map-ip-nat"`
-	IpNatFloatingList []RouterIpv6OspfRedistributeIpNatFloatingList1339 `json:"ip-nat-floating-list"`
-	VipList           []RouterIpv6OspfRedistributeVipList1340           `json:"vip-list"`
-	VipFloatingList   []RouterIpv6OspfRedistributeVipFloatingList1341   `json:"vip-floating-list"`
+	IpNatFloatingList []RouterIpv6OspfRedistributeIpNatFloatingList1338 `json:"ip-nat-floating-list"`
+	VipList           []RouterIpv6OspfRedistributeVipList1339           `json:"vip-list"`
+	VipFloatingList   []RouterIpv6OspfRedistributeVipFloatingList1340   `json:"vip-floating-list"`
 	Uuid              string                                            `json:"uuid"`
 }
 
-type RouterIpv6OspfRedistributeRedistList1337 struct {
+type RouterIpv6OspfRedistributeRedistList1336 struct {
 	Type       string `json:"type"`
 	Metric     int    `json:"metric"`
 	MetricType string `json:"metric-type" dval:"2"`
 	RouteMap   string `json:"route-map"`
 }
 
-type RouterIpv6OspfRedistributeOspfList1338 struct {
+type RouterIpv6OspfRedistributeOspfList1337 struct {
 	Ospf           int    `json:"ospf"`
 	ProcessId      string `json:"process-id"`
 	MetricOspf     int    `json:"metric-ospf"`
@@ -158,19 +158,19 @@ type RouterIpv6OspfRedistributeOspfList1338 struct {
 	RouteMapOspf   string `json:"route-map-ospf"`
 }
 
-type RouterIpv6OspfRedistributeIpNatFloatingList1339 struct {
+type RouterIpv6OspfRedistributeIpNatFloatingList1338 struct {
 	IpNatPrefix            string `json:"ip-nat-prefix"`
 	IpNatFloatingIpForward string `json:"ip-nat-floating-IP-forward"`
 }
 
-type RouterIpv6OspfRedistributeVipList1340 struct {
+type RouterIpv6OspfRedistributeVipList1339 struct {
 	TypeVip       string `json:"type-vip"`
 	MetricVip     int    `json:"metric-vip"`
 	MetricTypeVip string `json:"metric-type-vip" dval:"2"`
 	RouteMapVip   string `json:"route-map-vip"`
 }
 
-type RouterIpv6OspfRedistributeVipFloatingList1341 struct {
+type RouterIpv6OspfRedistributeVipFloatingList1340 struct {
 	VipAddress           string `json:"vip-address"`
 	VipFloatingIpForward string `json:"vip-floating-IP-forward"`
 }

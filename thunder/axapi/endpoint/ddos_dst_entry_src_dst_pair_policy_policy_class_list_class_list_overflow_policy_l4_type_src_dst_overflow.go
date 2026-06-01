@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstEntrySrcDstPairPolicyPolicyClassListClassListOverflowPolicyL4TypeSrcDstOverflow struct {
 	Inst struct {
 		Deny int `json:"deny"`
@@ -20,13 +20,13 @@ type DdosDstEntrySrcDstPairPolicyPolicyClassListClassListOverflowPolicyL4TypeSrc
 
 		Uuid string `json:"uuid"`
 
-		DstEntryName string
+		SrcBasedPolicyName string
 
 		ClassListName string
 
 		DummyName string
 
-		SrcBasedPolicyName string
+		DstEntryName string
 	} `json:"l4-type-src-dst-overflow"`
 }
 

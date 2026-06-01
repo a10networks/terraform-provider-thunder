@@ -248,22 +248,22 @@ func getSliceSystemRadiusServerAttribute(d []interface{}) []edpt.SystemRadiusSer
 	return ret
 }
 
-func getObjectSystemRadiusServerDerivedAttribute1698(d []interface{}) edpt.SystemRadiusServerDerivedAttribute1698 {
+func getObjectSystemRadiusServerDerivedAttribute1699(d []interface{}) edpt.SystemRadiusServerDerivedAttribute1699 {
 
 	count1 := len(d)
-	var ret edpt.SystemRadiusServerDerivedAttribute1698
+	var ret edpt.SystemRadiusServerDerivedAttribute1699
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Usergroup = getObjectSystemRadiusServerDerivedAttributeUsergroup1699(in["usergroup"].([]interface{}))
-		ret.Userid = getObjectSystemRadiusServerDerivedAttributeUserid1700(in["userid"].([]interface{}))
+		ret.Usergroup = getObjectSystemRadiusServerDerivedAttributeUsergroup1700(in["usergroup"].([]interface{}))
+		ret.Userid = getObjectSystemRadiusServerDerivedAttributeUserid1701(in["userid"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSystemRadiusServerDerivedAttributeUsergroup1699(d []interface{}) edpt.SystemRadiusServerDerivedAttributeUsergroup1699 {
+func getObjectSystemRadiusServerDerivedAttributeUsergroup1700(d []interface{}) edpt.SystemRadiusServerDerivedAttributeUsergroup1700 {
 
 	count1 := len(d)
-	var ret edpt.SystemRadiusServerDerivedAttributeUsergroup1699
+	var ret edpt.SystemRadiusServerDerivedAttributeUsergroup1700
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Attribute = in["attribute"].(string)
@@ -273,10 +273,10 @@ func getObjectSystemRadiusServerDerivedAttributeUsergroup1699(d []interface{}) e
 	return ret
 }
 
-func getObjectSystemRadiusServerDerivedAttributeUserid1700(d []interface{}) edpt.SystemRadiusServerDerivedAttributeUserid1700 {
+func getObjectSystemRadiusServerDerivedAttributeUserid1701(d []interface{}) edpt.SystemRadiusServerDerivedAttributeUserid1701 {
 
 	count1 := len(d)
-	var ret edpt.SystemRadiusServerDerivedAttributeUserid1700
+	var ret edpt.SystemRadiusServerDerivedAttributeUserid1701
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Attribute = in["attribute"].(string)
@@ -335,7 +335,7 @@ func dataToEndpointSystemRadiusServer(d *schema.ResourceData) edpt.SystemRadiusS
 	ret.Inst.Attribute = getSliceSystemRadiusServerAttribute(d.Get("attribute").([]interface{}))
 	ret.Inst.AttributeName = d.Get("attribute_name").(string)
 	ret.Inst.CustomAttributeName = d.Get("custom_attribute_name").(string)
-	ret.Inst.DerivedAttribute = getObjectSystemRadiusServerDerivedAttribute1698(d.Get("derived_attribute").([]interface{}))
+	ret.Inst.DerivedAttribute = getObjectSystemRadiusServerDerivedAttribute1699(d.Get("derived_attribute").([]interface{}))
 	ret.Inst.DisableReply = d.Get("disable_reply").(int)
 	//omit encrypted
 	ret.Inst.ListenPort = d.Get("listen_port").(int)

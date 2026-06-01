@@ -5,18 +5,18 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZoneWebGui struct {
 	Inst struct {
 		ActivatedAfterLearning int `json:"activated-after-learning"`
 
 		CreateTime string `json:"create-time"`
 
-		Learning DdosDstZoneWebGuiLearning270 `json:"learning"`
+		Learning DdosDstZoneWebGuiLearning273 `json:"learning"`
 
 		ModifyTime string `json:"modify-time"`
 
-		Protection DdosDstZoneWebGuiProtection271 `json:"protection"`
+		Protection DdosDstZoneWebGuiProtection274 `json:"protection"`
 
 		Sensitivity string `json:"sensitivity" dval:"3"`
 
@@ -28,49 +28,49 @@ type DdosDstZoneWebGui struct {
 	} `json:"web-gui"`
 }
 
-type DdosDstZoneWebGuiLearning270 struct {
+type DdosDstZoneWebGuiLearning273 struct {
 	Duration     string `json:"duration" dval:"6hour"`
 	StartingTime string `json:"starting-time"`
 	Uuid         string `json:"uuid"`
 }
 
-type DdosDstZoneWebGuiProtection271 struct {
-	Port          DdosDstZoneWebGuiProtectionPort272            `json:"port"`
-	IpProto       DdosDstZoneWebGuiProtectionIpProto275         `json:"ip-proto"`
-	PortRangeList []DdosDstZoneWebGuiProtectionPortRangeList277 `json:"port-range-list"`
+type DdosDstZoneWebGuiProtection274 struct {
+	Port          DdosDstZoneWebGuiProtectionPort275            `json:"port"`
+	IpProto       DdosDstZoneWebGuiProtectionIpProto278         `json:"ip-proto"`
+	PortRangeList []DdosDstZoneWebGuiProtectionPortRangeList280 `json:"port-range-list"`
 }
 
-type DdosDstZoneWebGuiProtectionPort272 struct {
-	ZoneServiceList      []DdosDstZoneWebGuiProtectionPortZoneServiceList273      `json:"zone-service-list"`
-	ZoneServiceOtherList []DdosDstZoneWebGuiProtectionPortZoneServiceOtherList274 `json:"zone-service-other-list"`
+type DdosDstZoneWebGuiProtectionPort275 struct {
+	ZoneServiceList      []DdosDstZoneWebGuiProtectionPortZoneServiceList276      `json:"zone-service-list"`
+	ZoneServiceOtherList []DdosDstZoneWebGuiProtectionPortZoneServiceOtherList277 `json:"zone-service-other-list"`
 }
 
-type DdosDstZoneWebGuiProtectionPortZoneServiceList273 struct {
+type DdosDstZoneWebGuiProtectionPortZoneServiceList276 struct {
 	PortNum  int    `json:"port-num"`
 	Protocol string `json:"protocol"`
 	Pbe      string `json:"pbe"`
 	Uuid     string `json:"uuid"`
 }
 
-type DdosDstZoneWebGuiProtectionPortZoneServiceOtherList274 struct {
+type DdosDstZoneWebGuiProtectionPortZoneServiceOtherList277 struct {
 	PortOther string `json:"port-other"`
 	Protocol  string `json:"protocol"`
 	Pbe       string `json:"pbe"`
 	Uuid      string `json:"uuid"`
 }
 
-type DdosDstZoneWebGuiProtectionIpProto275 struct {
-	ProtoNameList []DdosDstZoneWebGuiProtectionIpProtoProtoNameList276 `json:"proto-name-list"`
+type DdosDstZoneWebGuiProtectionIpProto278 struct {
+	ProtoNameList []DdosDstZoneWebGuiProtectionIpProtoProtoNameList279 `json:"proto-name-list"`
 }
 
-type DdosDstZoneWebGuiProtectionIpProtoProtoNameList276 struct {
+type DdosDstZoneWebGuiProtectionIpProtoProtoNameList279 struct {
 	Protocol string `json:"protocol"`
 	Pbe      string `json:"pbe"`
 	Uuid     string `json:"uuid"`
 	UserTag  string `json:"user-tag"`
 }
 
-type DdosDstZoneWebGuiProtectionPortRangeList277 struct {
+type DdosDstZoneWebGuiProtectionPortRangeList280 struct {
 	PortRangeStart int    `json:"port-range-start"`
 	PortRangeEnd   int    `json:"port-range-end"`
 	Protocol       string `json:"protocol"`

@@ -106,10 +106,10 @@ func resourceSystemIpsecRead(ctx context.Context, d *schema.ResourceData, meta i
 	return diags
 }
 
-func getObjectSystemIpsecFpgaDecrypt1697(d []interface{}) edpt.SystemIpsecFpgaDecrypt1697 {
+func getObjectSystemIpsecFpgaDecrypt1698(d []interface{}) edpt.SystemIpsecFpgaDecrypt1698 {
 
 	count1 := len(d)
-	var ret edpt.SystemIpsecFpgaDecrypt1697
+	var ret edpt.SystemIpsecFpgaDecrypt1698
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
@@ -121,7 +121,7 @@ func dataToEndpointSystemIpsec(d *schema.ResourceData) edpt.SystemIpsec {
 	var ret edpt.SystemIpsec
 	ret.Inst.CryptoCore = d.Get("crypto_core").(int)
 	ret.Inst.CryptoMem = d.Get("crypto_mem").(int)
-	ret.Inst.FpgaDecrypt = getObjectSystemIpsecFpgaDecrypt1697(d.Get("fpga_decrypt").([]interface{}))
+	ret.Inst.FpgaDecrypt = getObjectSystemIpsecFpgaDecrypt1698(d.Get("fpga_decrypt").([]interface{}))
 	ret.Inst.PacketRoundRobin = d.Get("packet_round_robin").(int)
 	ret.Inst.Qat = d.Get("qat").(int)
 	//omit uuid

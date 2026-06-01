@@ -24,7 +24,7 @@ __PLACEHOLDER__
 
 ### Optional
 
-- `background` (Number) background mode for importing class-list
+- `password` (String) Config remote server  password
 - `period` (Number) Specify the period in second
 - `remote_file` (String) profile name for remote url
 - `use_mgmt_port` (Number) Use management port as source port

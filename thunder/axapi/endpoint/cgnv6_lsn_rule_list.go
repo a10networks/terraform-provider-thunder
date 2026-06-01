@@ -6,12 +6,12 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6LsnRuleList struct {
 	Inst struct {
-		Default Cgnv6LsnRuleListDefault90 `json:"default"`
+		Default Cgnv6LsnRuleListDefault91 `json:"default"`
 
-		DomainIp Cgnv6LsnRuleListDomainIp97 `json:"domain-ip"`
+		DomainIp Cgnv6LsnRuleListDomainIp98 `json:"domain-ip"`
 
 		DomainListNameList []Cgnv6LsnRuleListDomainListNameList `json:"domain-list-name-list"`
 
@@ -29,21 +29,21 @@ type Cgnv6LsnRuleList struct {
 	} `json:"lsn-rule-list"`
 }
 
-type Cgnv6LsnRuleListDefault90 struct {
-	RuleCfg        []Cgnv6LsnRuleListDefaultRuleCfg91        `json:"rule-cfg"`
+type Cgnv6LsnRuleListDefault91 struct {
+	RuleCfg        []Cgnv6LsnRuleListDefaultRuleCfg92        `json:"rule-cfg"`
 	Uuid           string                                    `json:"uuid"`
-	SamplingEnable []Cgnv6LsnRuleListDefaultSamplingEnable96 `json:"sampling-enable"`
+	SamplingEnable []Cgnv6LsnRuleListDefaultSamplingEnable97 `json:"sampling-enable"`
 }
 
-type Cgnv6LsnRuleListDefaultRuleCfg91 struct {
+type Cgnv6LsnRuleListDefaultRuleCfg92 struct {
 	Proto         string                                        `json:"proto"`
-	TcpCfg        Cgnv6LsnRuleListDefaultRuleCfgTcpCfg92        `json:"tcp-cfg"`
-	UdpCfg        Cgnv6LsnRuleListDefaultRuleCfgUdpCfg93        `json:"udp-cfg"`
-	IcmpOthersCfg Cgnv6LsnRuleListDefaultRuleCfgIcmpOthersCfg94 `json:"icmp-others-cfg"`
-	DscpCfg       Cgnv6LsnRuleListDefaultRuleCfgDscpCfg95       `json:"dscp-cfg"`
+	TcpCfg        Cgnv6LsnRuleListDefaultRuleCfgTcpCfg93        `json:"tcp-cfg"`
+	UdpCfg        Cgnv6LsnRuleListDefaultRuleCfgUdpCfg94        `json:"udp-cfg"`
+	IcmpOthersCfg Cgnv6LsnRuleListDefaultRuleCfgIcmpOthersCfg95 `json:"icmp-others-cfg"`
+	DscpCfg       Cgnv6LsnRuleListDefaultRuleCfgDscpCfg96       `json:"dscp-cfg"`
 }
 
-type Cgnv6LsnRuleListDefaultRuleCfgTcpCfg92 struct {
+type Cgnv6LsnRuleListDefaultRuleCfgTcpCfg93 struct {
 	StartPort     int    `json:"start-port"`
 	EndPort       int    `json:"end-port"`
 	ActionCfg     string `json:"action-cfg"`
@@ -59,7 +59,7 @@ type Cgnv6LsnRuleListDefaultRuleCfgTcpCfg92 struct {
 	DscpValue     string `json:"dscp-value"`
 }
 
-type Cgnv6LsnRuleListDefaultRuleCfgUdpCfg93 struct {
+type Cgnv6LsnRuleListDefaultRuleCfgUdpCfg94 struct {
 	StartPort     int    `json:"start-port"`
 	EndPort       int    `json:"end-port"`
 	ActionCfg     string `json:"action-cfg"`
@@ -74,7 +74,7 @@ type Cgnv6LsnRuleListDefaultRuleCfgUdpCfg93 struct {
 	DscpValue     string `json:"dscp-value"`
 }
 
-type Cgnv6LsnRuleListDefaultRuleCfgIcmpOthersCfg94 struct {
+type Cgnv6LsnRuleListDefaultRuleCfgIcmpOthersCfg95 struct {
 	ActionCfg     string `json:"action-cfg"`
 	ActionType    string `json:"action-type"`
 	Ipv4List      string `json:"ipv4-list"`
@@ -86,7 +86,7 @@ type Cgnv6LsnRuleListDefaultRuleCfgIcmpOthersCfg94 struct {
 	DscpValue     string `json:"dscp-value"`
 }
 
-type Cgnv6LsnRuleListDefaultRuleCfgDscpCfg95 struct {
+type Cgnv6LsnRuleListDefaultRuleCfgDscpCfg96 struct {
 	DscpMatch     string `json:"dscp-match"`
 	ActionCfg     string `json:"action-cfg"`
 	ActionType    string `json:"action-type"`
@@ -94,16 +94,16 @@ type Cgnv6LsnRuleListDefaultRuleCfgDscpCfg95 struct {
 	DscpValue     string `json:"dscp-value"`
 }
 
-type Cgnv6LsnRuleListDefaultSamplingEnable96 struct {
+type Cgnv6LsnRuleListDefaultSamplingEnable97 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type Cgnv6LsnRuleListDomainIp97 struct {
+type Cgnv6LsnRuleListDomainIp98 struct {
 	Uuid           string                                     `json:"uuid"`
-	SamplingEnable []Cgnv6LsnRuleListDomainIpSamplingEnable98 `json:"sampling-enable"`
+	SamplingEnable []Cgnv6LsnRuleListDomainIpSamplingEnable99 `json:"sampling-enable"`
 }
 
-type Cgnv6LsnRuleListDomainIpSamplingEnable98 struct {
+type Cgnv6LsnRuleListDomainIpSamplingEnable99 struct {
 	Counters1 string `json:"counters1"`
 }
 

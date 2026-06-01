@@ -22,6 +22,9 @@ func resourceAxdebugPcapngConfig() *schema.Resource {
 			"pcapng_enable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable pcapng",
 			},
+			"pcapng_enhanced_log_enable": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable pcapng enhanced logs",
+			},
 			"ssl_key_enable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ssl key tracking",
 			},
@@ -97,6 +100,7 @@ func dataToEndpointAxdebugPcapngConfig(d *schema.ResourceData) edpt.AxdebugPcapn
 	var ret edpt.AxdebugPcapngConfig
 	ret.Inst.Exit = d.Get("exit").(int)
 	ret.Inst.PcapngEnable = d.Get("pcapng_enable").(int)
+	ret.Inst.PcapngEnhancedLogEnable = d.Get("pcapng_enhanced_log_enable").(int)
 	ret.Inst.SslKeyEnable = d.Get("ssl_key_enable").(int)
 	//omit uuid
 	return ret

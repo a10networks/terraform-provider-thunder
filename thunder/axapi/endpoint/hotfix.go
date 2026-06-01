@@ -5,19 +5,20 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Hotfix struct {
 	Inst struct {
-		Apply HotfixApply532 `json:"apply"`
+		Apply HotfixApply519 `json:"apply"`
 
 		Revoke int `json:"revoke"`
 	} `json:"hotfix"`
 }
 
-type HotfixApply532 struct {
+type HotfixApply519 struct {
 	UseMgmtPort     int    `json:"use-mgmt-port"`
 	SourceIpAddress string `json:"source-ip-address"`
 	FileUrl         string `json:"file-url"`
+	Password        string `json:"password"`
 	ImageFile       string `json:"image-file"`
 }
 

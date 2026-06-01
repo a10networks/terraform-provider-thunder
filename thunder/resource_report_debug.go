@@ -97,10 +97,10 @@ func resourceReportDebugRead(ctx context.Context, d *schema.ResourceData, meta i
 	return diags
 }
 
-func getObjectReportDebugSflow1178(d []interface{}) edpt.ReportDebugSflow1178 {
+func getObjectReportDebugSflow1177(d []interface{}) edpt.ReportDebugSflow1177 {
 
 	count1 := len(d)
-	var ret edpt.ReportDebugSflow1178
+	var ret edpt.ReportDebugSflow1177
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Parser = in["parser"].(int)
@@ -112,6 +112,6 @@ func getObjectReportDebugSflow1178(d []interface{}) edpt.ReportDebugSflow1178 {
 func dataToEndpointReportDebug(d *schema.ResourceData) edpt.ReportDebug {
 	var ret edpt.ReportDebug
 	ret.Inst.Log = d.Get("log").(int)
-	ret.Inst.Sflow = getObjectReportDebugSflow1178(d.Get("sflow").([]interface{}))
+	ret.Inst.Sflow = getObjectReportDebugSflow1177(d.Get("sflow").([]interface{}))
 	return ret
 }

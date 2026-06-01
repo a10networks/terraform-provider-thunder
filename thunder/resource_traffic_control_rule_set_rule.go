@@ -337,10 +337,10 @@ func resourceTrafficControlRuleSetRuleRead(ctx context.Context, d *schema.Resour
 	return diags
 }
 
-func getObjectTrafficControlRuleSetRuleActionGroup2030(d []interface{}) edpt.TrafficControlRuleSetRuleActionGroup2030 {
+func getObjectTrafficControlRuleSetRuleActionGroup2029(d []interface{}) edpt.TrafficControlRuleSetRuleActionGroup2029 {
 
 	count1 := len(d)
-	var ret edpt.TrafficControlRuleSetRuleActionGroup2030
+	var ret edpt.TrafficControlRuleSetRuleActionGroup2029
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.LimitPolicy = in["limit_policy"].(int)
@@ -381,10 +381,10 @@ func getSliceTrafficControlRuleSetRuleDestList(d []interface{}) []edpt.TrafficCo
 	return ret
 }
 
-func getObjectTrafficControlRuleSetRuleMoveRule2031(d []interface{}) edpt.TrafficControlRuleSetRuleMoveRule2031 {
+func getObjectTrafficControlRuleSetRuleMoveRule2030(d []interface{}) edpt.TrafficControlRuleSetRuleMoveRule2030 {
 
 	count1 := len(d)
-	var ret edpt.TrafficControlRuleSetRuleMoveRule2031
+	var ret edpt.TrafficControlRuleSetRuleMoveRule2030
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Location = in["location"].(string)
@@ -460,7 +460,7 @@ func getSliceTrafficControlRuleSetRuleSourceList(d []interface{}) []edpt.Traffic
 
 func dataToEndpointTrafficControlRuleSetRule(d *schema.ResourceData) edpt.TrafficControlRuleSetRule {
 	var ret edpt.TrafficControlRuleSetRule
-	ret.Inst.ActionGroup = getObjectTrafficControlRuleSetRuleActionGroup2030(d.Get("action_group").([]interface{}))
+	ret.Inst.ActionGroup = getObjectTrafficControlRuleSetRuleActionGroup2029(d.Get("action_group").([]interface{}))
 	ret.Inst.AppList = getSliceTrafficControlRuleSetRuleAppList(d.Get("app_list").([]interface{}))
 	ret.Inst.ApplicationAny = d.Get("application_any").(string)
 	ret.Inst.DerivedAttribute = d.Get("derived_attribute").(string)
@@ -475,7 +475,7 @@ func dataToEndpointTrafficControlRuleSetRule(d *schema.ResourceData) edpt.Traffi
 	ret.Inst.DstZone = d.Get("dst_zone").(string)
 	ret.Inst.DstZoneAny = d.Get("dst_zone_any").(string)
 	ret.Inst.IpVersion = d.Get("ip_version").(string)
-	ret.Inst.MoveRule = getObjectTrafficControlRuleSetRuleMoveRule2031(d.Get("move_rule").([]interface{}))
+	ret.Inst.MoveRule = getObjectTrafficControlRuleSetRuleMoveRule2030(d.Get("move_rule").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.Remark = d.Get("remark").(string)
 	ret.Inst.SamplingEnable = getSliceTrafficControlRuleSetRuleSamplingEnable(d.Get("sampling_enable").([]interface{}))

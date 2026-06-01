@@ -16,6 +16,9 @@ func resourceImportPeriodicTsig() *schema.Resource {
 		DeleteContext: resourceImportPeriodicTsigDelete,
 
 		Schema: map[string]*schema.Schema{
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "Config remote server  password",
+			},
 			"period": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify the period in second",
 			},
@@ -98,6 +101,8 @@ func resourceImportPeriodicTsigRead(ctx context.Context, d *schema.ResourceData,
 
 func dataToEndpointImportPeriodicTsig(d *schema.ResourceData) edpt.ImportPeriodicTsig {
 	var ret edpt.ImportPeriodicTsig
+	//omit encrypted
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)
 	ret.Inst.Tsig = d.Get("tsig").(string)

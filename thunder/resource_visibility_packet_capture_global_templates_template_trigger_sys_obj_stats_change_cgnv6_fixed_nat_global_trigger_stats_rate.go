@@ -82,6 +82,9 @@ func resourceVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsCha
 			"threshold_exceeded_by": {
 				Type: schema.TypeInt, Optional: true, Default: 5, Description: "Set the threshold to the number of times greater than the previous duration to start the capture, default is 5",
 			},
+			"unused_ip_drop": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Fixed NAT UNUSED IP Hit and Drop",
+			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
@@ -177,6 +180,7 @@ func dataToEndpointVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjSt
 	ret.Inst.SixrdDrop = d.Get("sixrd_drop").(int)
 	ret.Inst.StandbyDrop = d.Get("standby_drop").(int)
 	ret.Inst.ThresholdExceededBy = d.Get("threshold_exceeded_by").(int)
+	ret.Inst.UnusedIpDrop = d.Get("unused_ip_drop").(int)
 	//omit uuid
 	ret.Inst.Template_name = d.Get("template_name").(string)
 	return ret

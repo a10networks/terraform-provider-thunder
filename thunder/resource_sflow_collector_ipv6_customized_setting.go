@@ -34,11 +34,11 @@ func resourceSflowCollectorIpv6CustomizedSetting() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"addr": {
-				Type: schema.TypeString, Required: true, Description: "Addr",
-			},
 			"port": {
 				Type: schema.TypeString, Required: true, Description: "Port",
+			},
+			"addr": {
+				Type: schema.TypeString, Required: true, Description: "Addr",
 			},
 		},
 	}
@@ -113,7 +113,7 @@ func dataToEndpointSflowCollectorIpv6CustomizedSetting(d *schema.ResourceData) e
 	ret.Inst.ExportEnable = d.Get("export_enable").(string)
 	ret.Inst.PacketSampling = d.Get("packet_sampling").(int)
 	//omit uuid
-	ret.Inst.Addr = d.Get("addr").(string)
 	ret.Inst.Port = d.Get("port").(string)
+	ret.Inst.Addr = d.Get("addr").(string)
 	return ret
 }

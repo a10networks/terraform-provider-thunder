@@ -1,6 +1,6 @@
 # A10’s Thunder Terraform Provider Introduction.
 
-Welcome TTP 1.5.0 Latest Version.
+Welcome TTP 1.6.0 Latest Version.
 
 Thunder Terraform Provider is a custom plugin to configure thunder using terraform as a IaC tool and terraform scripts[.tf] simplifies applying configuration on thunder. You can configure or de-configure thunder settings.
 
@@ -9,24 +9,36 @@ Terraform provider plugin will only configure thunder via axapi, It will not ins
 
 ## Support Matrix
 
-| ACOS | [TTP 1.0.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.0.0) | [TTP 1.1.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.1.0) | [TTP 1.2.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.2.1) | [TTP 1.2.2](https://github.com/a10networks/terraform-provider-thunder/tree/v1.2.2) | [TTP 1.3.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.3.0) | [TTP 1.4.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.4.0) | [TTP 1.4.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.4.1) | [TTP 1.4.2](https://github.com/a10networks/terraform-provider-thunder/tree/v1.4.2) | [TTP 1.5.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.5.0)
-| :--------: | :-------: | :-------:  | :-------: | :-------: | :-------: | :-------: | :-------: | :-------:| :-------:|
-| `ACOS version 7.0.2` | `No`  | `No`  | `No`| `No` | `No` | `No` | `No`| `No`| `Yes`|
-| `ACOS version 6.0.2-p1` | `No`  | `No`  | `No`| `No` | `No` | `Yes` | `Yes`| `Yes`| `No`|
-| `ACOS version 6.0.1` | `No`  | `No`  | `Yes`| `Yes` | `Yes` | `No` | `No` | `No`| `No`|
-| `ACOS version 6.0.0-p2` | `No`  | `No`  | `Yes`| `Yes` | `Yes` | `No` | `No` | `No`| `No`|
-| `ACOS version 6.0.0-p1` | `No`  | `No`  | `Yes`| `Yes` | `Yes` | `No` | `No` | `No`| `No`|
-| `ACOS version 5.2.1-p6` | `No`  | `Yes` | `No` | `No` | `No` | `No` | `No` | `No`| `No`|
-| `ACOS version 5.2.1-p5`| `No`  | `Yes` | `No` | `No` | `No` | `No` | `No` | `No`| `No`|
-| `ACOS version 5.2.1-p4` | `Yes` | `No`  | `No` | `No` | `No` | `No` | `No` | `No`| `No`|
-| `ACOS version 5.2.1-p3` | `Yes` | `No`  | `No` | `No` | `No` | `No` | `No` | `No`| `No`|
+| ACOS | [TTP 1.0.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.0.0) | [TTP 1.1.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.1.0) | [TTP 1.2.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.2.1) | [TTP 1.2.2](https://github.com/a10networks/terraform-provider-thunder/tree/v1.2.2) | [TTP 1.3.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.3.0) | [TTP 1.4.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.4.0) | [TTP 1.4.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.4.1) | [TTP 1.4.2](https://github.com/a10networks/terraform-provider-thunder/tree/v1.4.2) | [TTP 1.4.3](https://github.com/a10networks/terraform-provider-thunder/tree/v1.4.3) | [TTP 1.5.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.5.0) | [TTP 1.5.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.5.1) | [TTP 1.6.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.6.0) |
+| :--------: | :-------: | :-------:  | :-------: | :-------: | :-------: | :-------: | :-------: | :-------:| :-------:|:-------:| :-------:| :-------:|
+| `ACOS version 6.0.8` | `No`  | `No`  | `No`| `No` | `No` | `No` | `No`| `No`| `No`| `No`| `No`| `Yes`|
+| `ACOS version 7.0.2` | `No`  | `No`  | `No`| `No` | `No` | `No` | `No`| `No`| `No`| `Yes`| `Yes`| `No`|
+| `ACOS version 6.0.2-p1` | `No`  | `No`  | `No`| `No` | `No` | `Yes` | `Yes`| `Yes`| `Yes`| `No`| `No`| `No`|
+| `ACOS version 6.0.1` | `No`  | `No`  | `Yes`| `Yes` | `Yes` | `No` | `No` | `No`| `No`| `No`| `No`| `No`|
+| `ACOS version 6.0.0-p2` | `No`  | `No`  | `Yes`| `Yes` | `Yes` | `No` | `No` | `No`| `No`| `No`| `No`| `No`|
+| `ACOS version 6.0.0-p1` | `No`  | `No`  | `Yes`| `Yes` | `Yes` | `No` | `No` | `No`| `No`| `No`| `No`| `No`|
+| `ACOS version 5.2.1-p6` | `No`  | `Yes` | `No` | `No` | `No` | `No` | `No` | `No`| `No`| `No`| `No`| `No`|
+| `ACOS version 5.2.1-p5`| `No`  | `Yes` | `No` | `No` | `No` | `No` | `No` | `No`| `No`| `No`| `No`| `No`|
+| `ACOS version 5.2.1-p4` | `Yes` | `No`  | `No` | `No` | `No` | `No` | `No` | `No`| `No`| `No`| `No`| `No`|
+| `ACOS version 5.2.1-p3` | `Yes` | `No`  | `No` | `No` | `No` | `No` | `No` | `No`| `No`| `No`| `No`| `No`|
 
 ## Release Logs
+
+### TTP-1.6.0
+
+- Support ACOS 6.0.8
+- Supports new configuration options for accounting threat logs, stateful firewall functionality on interfaces attached to vThunder, and improved visibility into Thunder operational statuses.
+
+### TTP-1.5.1
+- Added support for delete of files imported to thunder
 
 ### TTP-1.5.0
 
 - Support for ACOS v7.0.2
 - Supports total 3627 terraform resources equivalent acos configuration with examples. [Previously it was only ~2712]
+
+### TTP-1.4.3
+- Added support for delete of files imported to thunder
 
 ### TTP-1.4.0
 - Support for ACOS v6.0.2-p1
@@ -190,7 +202,7 @@ terraform {
   required_providers {
     thunder = {
       source = "a10networks/thunder"
-      version = "1.5.0"
+      version = "1.6.0"
     }
   }
 }
@@ -219,7 +231,7 @@ terraform {
       required_providers {
         thunder = {
           source = "a10networks/thunder"
-          version = "1.5.0" # Replace with your desired provider version
+          version = "1.6.0" # Replace with your desired provider version
         }
       }
     }

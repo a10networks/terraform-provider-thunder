@@ -44,6 +44,7 @@ resource "thunder_accounting" "thunder_accounting" {
 - `exec` (Block List, Max: 1) (see [below for nested schema](#nestedblock--exec))
 - `stop_only` (Number) Record stop when service terminates
 - `tacplus` (Number) Use TACACS+ servers for accounting
+- `threat_logs` (Block List, Max: 1) (see [below for nested schema](#nestedblock--threat_logs))
 - `uuid` (String) uuid of the object
 
 ### Read-Only
@@ -57,4 +58,14 @@ Optional:
 
 - `accounting_exec_method` (String) 'tacplus': Use TACACS+ servers for accounting; 'radius': Use radius servers for accounting;
 - `accounting_exec_type` (String) 'start-stop': Record start and stop without waiting; 'stop-only': Record stop when service terminates;
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--threat_logs"></a>
+### Nested Schema for `threat_logs`
+
+Optional:
+
+- `check` (Number) Check if the system is under threat from a specific user
+- `days` (Number) Set min-days to go back
 - `uuid` (String) uuid of the object

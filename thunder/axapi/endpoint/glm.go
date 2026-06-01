@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Glm struct {
 	Inst struct {
 		AllocateBandwidth int `json:"allocate-bandwidth"`
@@ -16,7 +16,7 @@ type Glm struct {
 
 		CheckExpiration int `json:"check-expiration"`
 
-		CreateLicenseRequest GlmCreateLicenseRequest470 `json:"create-license-request"`
+		CreateLicenseRequest GlmCreateLicenseRequest461 `json:"create-license-request"`
 
 		EnableRequests int `json:"enable-requests"`
 
@@ -30,13 +30,13 @@ type Glm struct {
 
 		Interval int `json:"interval"`
 
-		NewLicense GlmNewLicense471 `json:"new-license"`
+		NewLicense GlmNewLicense462 `json:"new-license"`
 
 		Port int `json:"port"`
 
-		ProxyServer GlmProxyServer472 `json:"proxy-server"`
+		ProxyServer GlmProxyServer463 `json:"proxy-server"`
 
-		Send GlmSend473 `json:"send"`
+		Send GlmSend464 `json:"send"`
 
 		ThunderCapacityLicense int `json:"thunder-capacity-license"`
 
@@ -48,7 +48,7 @@ type Glm struct {
 	} `json:"glm"`
 }
 
-type GlmCreateLicenseRequest470 struct {
+type GlmCreateLicenseRequest461 struct {
 	CreateLicenseRequest int    `json:"create-license-request"`
 	Uuid                 string `json:"uuid"`
 }
@@ -58,7 +58,7 @@ type GlmEnterpriseHaHostList struct {
 	Uuid      string `json:"uuid"`
 }
 
-type GlmNewLicense471 struct {
+type GlmNewLicense462 struct {
 	ExistingOrg  int    `json:"existing-org"`
 	OrgId        int    `json:"org-id"`
 	ExistingUser int    `json:"existing-user"`
@@ -76,7 +76,7 @@ type GlmNewLicense471 struct {
 	Type         string `json:"type"`
 }
 
-type GlmProxyServer472 struct {
+type GlmProxyServer463 struct {
 	Host         string `json:"host"`
 	Port         int    `json:"port"`
 	Username     string `json:"username"`
@@ -86,7 +86,7 @@ type GlmProxyServer472 struct {
 	Uuid         string `json:"uuid"`
 }
 
-type GlmSend473 struct {
+type GlmSend464 struct {
 	LicenseRequest int `json:"license-request"`
 	Harmony        int `json:"harmony"`
 	HaStatus       int `json:"ha-status"`

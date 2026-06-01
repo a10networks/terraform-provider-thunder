@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbTemplateDns struct {
 	Inst struct {
 		AddPaddingToClient string `json:"add-padding-to-client"`
@@ -23,7 +23,7 @@ type SlbTemplateDns struct {
 
 		CategoryLookupOnlineLookup int `json:"category-lookup-online-lookup"`
 
-		ClassList SlbTemplateDnsClassList1523 `json:"class-list"`
+		ClassList SlbTemplateDnsClassList1524 `json:"class-list"`
 
 		DefaultPolicy string `json:"default-policy" dval:"nocache"`
 
@@ -37,7 +37,7 @@ type SlbTemplateDns struct {
 
 		DnsLogging string `json:"dns-logging"`
 
-		Dns64 SlbTemplateDnsDns641526 `json:"dns64"`
+		Dns64 SlbTemplateDnsDns641527 `json:"dns64"`
 
 		DnssecServiceGroup string `json:"dnssec-service-group"`
 
@@ -51,11 +51,11 @@ type SlbTemplateDns struct {
 
 		InsertIpv6 int `json:"insert-ipv6"`
 
-		LabelCountFilter SlbTemplateDnsLabelCountFilter1527 `json:"label-count-filter"`
+		LabelCountFilter SlbTemplateDnsLabelCountFilter1528 `json:"label-count-filter"`
 
-		LabelLengthFilter SlbTemplateDnsLabelLengthFilter1528 `json:"label-length-filter"`
+		LabelLengthFilter SlbTemplateDnsLabelLengthFilter1529 `json:"label-length-filter"`
 
-		LocalDnsResolution SlbTemplateDnsLocalDnsResolution1530 `json:"local-dns-resolution"`
+		LocalDnsResolution SlbTemplateDnsLocalDnsResolution1531 `json:"local-dns-resolution"`
 
 		MaxCacheEntrySize int `json:"max-cache-entry-size" dval:"1024"`
 
@@ -63,9 +63,11 @@ type SlbTemplateDns struct {
 
 		MaxQueryLength int `json:"max-query-length"`
 
+		MaxUdpSize int `json:"max-udp-size"`
+
 		Name string `json:"name"`
 
-		NegativeDnsCache SlbTemplateDnsNegativeDnsCache1533 `json:"negative-dns-cache"`
+		NegativeDnsCache SlbTemplateDnsNegativeDnsCache1534 `json:"negative-dns-cache"`
 
 		Period int `json:"period"`
 
@@ -75,13 +77,13 @@ type SlbTemplateDns struct {
 
 		QpsThresholdLog int `json:"qps-threshold-log"`
 
-		QueryClassFilter SlbTemplateDnsQueryClassFilter1534 `json:"query-class-filter"`
+		QueryClassFilter SlbTemplateDnsQueryClassFilter1535 `json:"query-class-filter"`
 
 		QueryIdSwitch int `json:"query-id-switch"`
 
-		QueryTypeFilter SlbTemplateDnsQueryTypeFilter1536 `json:"query-type-filter"`
+		QueryTypeFilter SlbTemplateDnsQueryTypeFilter1537 `json:"query-type-filter"`
 
-		RecursiveDnsResolution SlbTemplateDnsRecursiveDnsResolution1538 `json:"recursive-dns-resolution"`
+		RecursiveDnsResolution SlbTemplateDnsRecursiveDnsResolution1539 `json:"recursive-dns-resolution"`
 
 		RedirectToTcpPort int `json:"redirect-to-tcp-port"`
 
@@ -91,7 +93,7 @@ type SlbTemplateDns struct {
 
 		RemovePaddingToServer int `json:"remove-padding-to-server"`
 
-		ResponseRateLimiting SlbTemplateDnsResponseRateLimiting1543 `json:"response-rate-limiting"`
+		ResponseRateLimiting SlbTemplateDnsResponseRateLimiting1544 `json:"response-rate-limiting"`
 
 		RpzList []SlbTemplateDnsRpzList `json:"rpz-list"`
 
@@ -99,7 +101,7 @@ type SlbTemplateDns struct {
 
 		TldFilterWhiteList string `json:"tld-filter-white-list"`
 
-		UdpRetransmit SlbTemplateDnsUdpRetransmit1546 `json:"udp-retransmit"`
+		UdpRetransmit SlbTemplateDnsUdpRetransmit1547 `json:"udp-retransmit"`
 
 		UserTag string `json:"user-tag"`
 
@@ -120,13 +122,13 @@ type SlbTemplateDnsCategoryLookupList struct {
 	Uuid            string `json:"uuid"`
 }
 
-type SlbTemplateDnsClassList1523 struct {
+type SlbTemplateDnsClassList1524 struct {
 	Name    string                               `json:"name"`
 	Uuid    string                               `json:"uuid"`
-	LidList []SlbTemplateDnsClassListLidList1524 `json:"lid-list"`
+	LidList []SlbTemplateDnsClassListLidList1525 `json:"lid-list"`
 }
 
-type SlbTemplateDnsClassListLidList1524 struct {
+type SlbTemplateDnsClassListLidList1525 struct {
 	Lidnum          int                                   `json:"lidnum"`
 	ConnRateLimit   int                                   `json:"conn-rate-limit"`
 	Per             int                                   `json:"per"`
@@ -135,19 +137,19 @@ type SlbTemplateDnsClassListLidList1524 struct {
 	Lockout         int                                   `json:"lockout"`
 	Log             int                                   `json:"log"`
 	LogInterval     int                                   `json:"log-interval"`
-	Dns             SlbTemplateDnsClassListLidListDns1525 `json:"dns"`
+	Dns             SlbTemplateDnsClassListLidListDns1526 `json:"dns"`
 	Uuid            string                                `json:"uuid"`
 	UserTag         string                                `json:"user-tag"`
 }
 
-type SlbTemplateDnsClassListLidListDns1525 struct {
+type SlbTemplateDnsClassListLidListDns1526 struct {
 	CacheAction            string `json:"cache-action" dval:"cache-disable"`
 	Ttl                    int    `json:"ttl"`
 	Weight                 int    `json:"weight"`
 	HonorServerResponseTtl int    `json:"honor-server-response-ttl"`
 }
 
-type SlbTemplateDnsDns641526 struct {
+type SlbTemplateDnsDns641527 struct {
 	Enable                int    `json:"enable"`
 	Cache                 int    `json:"cache"`
 	ChangeQuery           int    `json:"change-query"`
@@ -158,7 +160,7 @@ type SlbTemplateDnsDns641526 struct {
 	Uuid                  string `json:"uuid"`
 }
 
-type SlbTemplateDnsLabelCountFilter1527 struct {
+type SlbTemplateDnsLabelCountFilter1528 struct {
 	DropLogEnable          int    `json:"drop-log-enable"`
 	LabelCountFilterAction string `json:"label-count-filter-action" dval:"drop"`
 	MinFqdnLabelCount      int    `json:"min-fqdn-label-count"`
@@ -166,33 +168,33 @@ type SlbTemplateDnsLabelCountFilter1527 struct {
 	Uuid                   string `json:"uuid"`
 }
 
-type SlbTemplateDnsLabelLengthFilter1528 struct {
+type SlbTemplateDnsLabelLengthFilter1529 struct {
 	DropLogEnable           int                                                  `json:"drop-log-enable"`
 	LabelLengthFilterAction string                                               `json:"label-length-filter-action" dval:"drop"`
-	FqdnLabelLength         []SlbTemplateDnsLabelLengthFilterFqdnLabelLength1529 `json:"fqdn-label-length"`
+	FqdnLabelLength         []SlbTemplateDnsLabelLengthFilterFqdnLabelLength1530 `json:"fqdn-label-length"`
 	Uuid                    string                                               `json:"uuid"`
 }
 
-type SlbTemplateDnsLabelLengthFilterFqdnLabelLength1529 struct {
+type SlbTemplateDnsLabelLengthFilterFqdnLabelLength1530 struct {
 	Length int `json:"length"`
 	Suffix int `json:"suffix"`
 }
 
-type SlbTemplateDnsLocalDnsResolution1530 struct {
-	HostListCfg      []SlbTemplateDnsLocalDnsResolutionHostListCfg1531      `json:"host-list-cfg"`
-	LocalResolverCfg []SlbTemplateDnsLocalDnsResolutionLocalResolverCfg1532 `json:"local-resolver-cfg"`
+type SlbTemplateDnsLocalDnsResolution1531 struct {
+	HostListCfg      []SlbTemplateDnsLocalDnsResolutionHostListCfg1532      `json:"host-list-cfg"`
+	LocalResolverCfg []SlbTemplateDnsLocalDnsResolutionLocalResolverCfg1533 `json:"local-resolver-cfg"`
 	Uuid             string                                                 `json:"uuid"`
 }
 
-type SlbTemplateDnsLocalDnsResolutionHostListCfg1531 struct {
+type SlbTemplateDnsLocalDnsResolutionHostListCfg1532 struct {
 	Hostnames string `json:"hostnames"`
 }
 
-type SlbTemplateDnsLocalDnsResolutionLocalResolverCfg1532 struct {
+type SlbTemplateDnsLocalDnsResolutionLocalResolverCfg1533 struct {
 	LocalResolver string `json:"local-resolver"`
 }
 
-type SlbTemplateDnsNegativeDnsCache1533 struct {
+type SlbTemplateDnsNegativeDnsCache1534 struct {
 	EnableNegativeDnsCache int    `json:"enable-negative-dns-cache"`
 	BypassQueryThreshold   int    `json:"bypass-query-threshold" dval:"100"`
 	MaxNegativeCacheTtl    int    `json:"max-negative-cache-ttl" dval:"7200"`
@@ -200,69 +202,73 @@ type SlbTemplateDnsNegativeDnsCache1533 struct {
 	Uuid                   string `json:"uuid"`
 }
 
-type SlbTemplateDnsQueryClassFilter1534 struct {
+type SlbTemplateDnsQueryClassFilter1535 struct {
 	QueryClassAction string                                         `json:"query-class-action"`
-	QueryClass       []SlbTemplateDnsQueryClassFilterQueryClass1535 `json:"query-class"`
+	QueryClass       []SlbTemplateDnsQueryClassFilterQueryClass1536 `json:"query-class"`
 	Uuid             string                                         `json:"uuid"`
 }
 
-type SlbTemplateDnsQueryClassFilterQueryClass1535 struct {
+type SlbTemplateDnsQueryClassFilterQueryClass1536 struct {
 	StrQueryClass string `json:"str-query-class"`
 	NumQueryClass int    `json:"num-query-class"`
 }
 
-type SlbTemplateDnsQueryTypeFilter1536 struct {
+type SlbTemplateDnsQueryTypeFilter1537 struct {
 	QueryTypeAction string                                       `json:"query-type-action"`
-	QueryType       []SlbTemplateDnsQueryTypeFilterQueryType1537 `json:"query-type"`
+	QueryType       []SlbTemplateDnsQueryTypeFilterQueryType1538 `json:"query-type"`
 	Uuid            string                                       `json:"uuid"`
 }
 
-type SlbTemplateDnsQueryTypeFilterQueryType1537 struct {
+type SlbTemplateDnsQueryTypeFilterQueryType1538 struct {
 	StrQueryType string `json:"str-query-type"`
 	NumQueryType int    `json:"num-query-type"`
 }
 
-type SlbTemplateDnsRecursiveDnsResolution1538 struct {
-	HostListCfg                 []SlbTemplateDnsRecursiveDnsResolutionHostListCfg1539      `json:"host-list-cfg"`
-	CsubnetRetry                int                                                        `json:"csubnet-retry"`
-	NsCacheLookup               string                                                     `json:"ns-cache-lookup" dval:"enabled"`
-	NsLongestMatch              string                                                     `json:"ns-longest-match" dval:"enabled"`
-	UseServiceGroupResponse     string                                                     `json:"use-service-group-response" dval:"enabled"`
-	Ipv4NatPool                 string                                                     `json:"ipv4-nat-pool"`
-	Ipv6NatPool                 string                                                     `json:"ipv6-nat-pool"`
-	RetriesPerLevel             int                                                        `json:"retries-per-level" dval:"6"`
-	ParallelQueries             int                                                        `json:"parallel-queries" dval:"1"`
-	FullResponse                int                                                        `json:"full-response"`
-	MaxTrials                   int                                                        `json:"max-trials" dval:"255"`
-	RequestForPendingResolution string                                                     `json:"request-for-pending-resolution" dval:"respond-with-servfail"`
-	UdpRetryInterval            int                                                        `json:"udp-retry-interval" dval:"1"`
-	UdpInitialInterval          int                                                        `json:"udp-initial-interval" dval:"5"`
-	UseClientQid                int                                                        `json:"use-client-qid"`
-	DefaultRecursive            int                                                        `json:"default-recursive"`
-	ForceCnameResolution        string                                                     `json:"force-cname-resolution" dval:"enabled"`
-	FastNsSelection             string                                                     `json:"fast-ns-selection" dval:"enabled"`
-	DnssecValidation            string                                                     `json:"dnssec-validation" dval:"disabled"`
-	Uuid                        string                                                     `json:"uuid"`
-	LookupOrder                 SlbTemplateDnsRecursiveDnsResolutionLookupOrder1540        `json:"lookup-order"`
-	GatewayHealthCheck          SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1542 `json:"gateway-health-check"`
+type SlbTemplateDnsRecursiveDnsResolution1539 struct {
+	HostListCfg                    []SlbTemplateDnsRecursiveDnsResolutionHostListCfg1540      `json:"host-list-cfg"`
+	CsubnetRetry                   int                                                        `json:"csubnet-retry"`
+	NsCacheLookup                  string                                                     `json:"ns-cache-lookup" dval:"enabled"`
+	NsLongestMatch                 string                                                     `json:"ns-longest-match" dval:"enabled"`
+	UseServiceGroupResponse        string                                                     `json:"use-service-group-response" dval:"enabled"`
+	Ipv4NatPool                    string                                                     `json:"ipv4-nat-pool"`
+	Ipv6NatPool                    string                                                     `json:"ipv6-nat-pool"`
+	RetriesPerLevel                int                                                        `json:"retries-per-level" dval:"6"`
+	ParallelQueries                int                                                        `json:"parallel-queries" dval:"1"`
+	FullResponse                   int                                                        `json:"full-response"`
+	MaxTrials                      int                                                        `json:"max-trials" dval:"255"`
+	RequestForPendingResolution    string                                                     `json:"request-for-pending-resolution" dval:"respond-with-servfail"`
+	UdpRetryInterval               int                                                        `json:"udp-retry-interval" dval:"1"`
+	UdpInitialInterval             int                                                        `json:"udp-initial-interval" dval:"5"`
+	UseClientQid                   int                                                        `json:"use-client-qid"`
+	DefaultRecursive               int                                                        `json:"default-recursive"`
+	ForceCnameResolution           string                                                     `json:"force-cname-resolution" dval:"enabled"`
+	FastNsSelection                string                                                     `json:"fast-ns-selection" dval:"enabled"`
+	DnssecValidation               string                                                     `json:"dnssec-validation" dval:"disabled"`
+	EdnsUdpSize                    int                                                        `json:"edns-udp-size" dval:"4096"`
+	MaxSignatureValidationAttempts int                                                        `json:"max-signature-validation-attempts"`
+	MaxSignatureValidationFailures int                                                        `json:"max-signature-validation-failures"`
+	MaxKeyDigestValidationFailures int                                                        `json:"max-key-digest-validation-failures"`
+	Uuid                           string                                                     `json:"uuid"`
+	LookupOrder                    SlbTemplateDnsRecursiveDnsResolutionLookupOrder1541        `json:"lookup-order"`
+	GatewayHealthCheck             SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1543 `json:"gateway-health-check"`
 }
 
-type SlbTemplateDnsRecursiveDnsResolutionHostListCfg1539 struct {
+type SlbTemplateDnsRecursiveDnsResolutionHostListCfg1540 struct {
 	Hostnames string `json:"hostnames"`
 }
 
-type SlbTemplateDnsRecursiveDnsResolutionLookupOrder1540 struct {
-	QueryType []SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1541 `json:"query-type"`
+type SlbTemplateDnsRecursiveDnsResolutionLookupOrder1541 struct {
+	QueryType []SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1542 `json:"query-type"`
 	Uuid      string                                                         `json:"uuid"`
 }
 
-type SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1541 struct {
+type SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1542 struct {
 	StrQueryType string `json:"str-query-type"`
 	NumQueryType int    `json:"num-query-type"`
 	Order        string `json:"order"`
 }
 
-type SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1542 struct {
+type SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1543 struct {
 	QueryName         string `json:"query-name" dval:"a10networks.com"`
 	Retry             int    `json:"retry" dval:"6"`
 	Timeout           int    `json:"timeout" dval:"5"`
@@ -275,7 +281,7 @@ type SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1542 struct {
 	Uuid              string `json:"uuid"`
 }
 
-type SlbTemplateDnsResponseRateLimiting1543 struct {
+type SlbTemplateDnsResponseRateLimiting1544 struct {
 	ResponseRate       int                                                      `json:"response-rate" dval:"5"`
 	NxResponseRate     int                                                      `json:"nx-response-rate" dval:"5"`
 	FilterResponseRate int                                                      `json:"filter-response-rate" dval:"10"`
@@ -288,17 +294,17 @@ type SlbTemplateDnsResponseRateLimiting1543 struct {
 	EnableLog          int                                                      `json:"enable-log"`
 	Action             string                                                   `json:"action" dval:"rate-limit"`
 	Uuid               string                                                   `json:"uuid"`
-	RrlClassListList   []SlbTemplateDnsResponseRateLimitingRrlClassListList1544 `json:"rrl-class-list-list"`
+	RrlClassListList   []SlbTemplateDnsResponseRateLimitingRrlClassListList1545 `json:"rrl-class-list-list"`
 }
 
-type SlbTemplateDnsResponseRateLimitingRrlClassListList1544 struct {
+type SlbTemplateDnsResponseRateLimitingRrlClassListList1545 struct {
 	Name    string                                                          `json:"name"`
 	Uuid    string                                                          `json:"uuid"`
 	UserTag string                                                          `json:"user-tag"`
-	LidList []SlbTemplateDnsResponseRateLimitingRrlClassListListLidList1545 `json:"lid-list"`
+	LidList []SlbTemplateDnsResponseRateLimitingRrlClassListListLidList1546 `json:"lid-list"`
 }
 
-type SlbTemplateDnsResponseRateLimitingRrlClassListListLidList1545 struct {
+type SlbTemplateDnsResponseRateLimitingRrlClassListListLidList1546 struct {
 	Lidnum            int    `json:"lidnum"`
 	LidResponseRate   int    `json:"lid-response-rate" dval:"5"`
 	LidSlipRate       int    `json:"lid-slip-rate"`
@@ -332,7 +338,7 @@ type SlbTemplateDnsRpzListLoggingRpzAction struct {
 	StrRpzAction string `json:"str-rpz-action"`
 }
 
-type SlbTemplateDnsUdpRetransmit1546 struct {
+type SlbTemplateDnsUdpRetransmit1547 struct {
 	RetryInterval int    `json:"retry-interval" dval:"10"`
 	MaxTrials     int    `json:"max-trials" dval:"3"`
 	Uuid          string `json:"uuid"`

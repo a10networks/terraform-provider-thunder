@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type InterfaceTunnelIpv6 struct {
 	Inst struct {
 		AddressCfg []InterfaceTunnelIpv6AddressCfg `json:"address-cfg"`
@@ -14,11 +14,11 @@ type InterfaceTunnelIpv6 struct {
 
 		Ipv6Enable int `json:"ipv6-enable"`
 
-		Ospf InterfaceTunnelIpv6Ospf958 `json:"ospf"`
+		Ospf InterfaceTunnelIpv6Ospf953 `json:"ospf"`
 
 		Outside int `json:"outside"`
 
-		Router InterfaceTunnelIpv6Router968 `json:"router"`
+		Router InterfaceTunnelIpv6Router963 `json:"router"`
 
 		Uuid string `json:"uuid"`
 
@@ -31,48 +31,48 @@ type InterfaceTunnelIpv6AddressCfg struct {
 	AddressType string `json:"address-type"`
 }
 
-type InterfaceTunnelIpv6Ospf958 struct {
-	NetworkList           []InterfaceTunnelIpv6OspfNetworkList959           `json:"network-list"`
+type InterfaceTunnelIpv6Ospf953 struct {
+	NetworkList           []InterfaceTunnelIpv6OspfNetworkList954           `json:"network-list"`
 	Bfd                   int                                               `json:"bfd"`
 	Disable               int                                               `json:"disable"`
-	CostCfg               []InterfaceTunnelIpv6OspfCostCfg960               `json:"cost-cfg"`
-	DeadIntervalCfg       []InterfaceTunnelIpv6OspfDeadIntervalCfg961       `json:"dead-interval-cfg"`
-	HelloIntervalCfg      []InterfaceTunnelIpv6OspfHelloIntervalCfg962      `json:"hello-interval-cfg"`
-	MtuIgnoreCfg          []InterfaceTunnelIpv6OspfMtuIgnoreCfg963          `json:"mtu-ignore-cfg"`
-	NeighborCfg           []InterfaceTunnelIpv6OspfNeighborCfg964           `json:"neighbor-cfg"`
-	PriorityCfg           []InterfaceTunnelIpv6OspfPriorityCfg965           `json:"priority-cfg"`
-	RetransmitIntervalCfg []InterfaceTunnelIpv6OspfRetransmitIntervalCfg966 `json:"retransmit-interval-cfg"`
-	TransmitDelayCfg      []InterfaceTunnelIpv6OspfTransmitDelayCfg967      `json:"transmit-delay-cfg"`
+	CostCfg               []InterfaceTunnelIpv6OspfCostCfg955               `json:"cost-cfg"`
+	DeadIntervalCfg       []InterfaceTunnelIpv6OspfDeadIntervalCfg956       `json:"dead-interval-cfg"`
+	HelloIntervalCfg      []InterfaceTunnelIpv6OspfHelloIntervalCfg957      `json:"hello-interval-cfg"`
+	MtuIgnoreCfg          []InterfaceTunnelIpv6OspfMtuIgnoreCfg958          `json:"mtu-ignore-cfg"`
+	NeighborCfg           []InterfaceTunnelIpv6OspfNeighborCfg959           `json:"neighbor-cfg"`
+	PriorityCfg           []InterfaceTunnelIpv6OspfPriorityCfg960           `json:"priority-cfg"`
+	RetransmitIntervalCfg []InterfaceTunnelIpv6OspfRetransmitIntervalCfg961 `json:"retransmit-interval-cfg"`
+	TransmitDelayCfg      []InterfaceTunnelIpv6OspfTransmitDelayCfg962      `json:"transmit-delay-cfg"`
 	Uuid                  string                                            `json:"uuid"`
 }
 
-type InterfaceTunnelIpv6OspfNetworkList959 struct {
+type InterfaceTunnelIpv6OspfNetworkList954 struct {
 	BroadcastType     string `json:"broadcast-type"`
 	P2mpNbma          int    `json:"p2mp-nbma"`
 	NetworkInstanceId int    `json:"network-instance-id"`
 }
 
-type InterfaceTunnelIpv6OspfCostCfg960 struct {
+type InterfaceTunnelIpv6OspfCostCfg955 struct {
 	Cost       int `json:"cost"`
 	InstanceId int `json:"instance-id"`
 }
 
-type InterfaceTunnelIpv6OspfDeadIntervalCfg961 struct {
+type InterfaceTunnelIpv6OspfDeadIntervalCfg956 struct {
 	DeadInterval int `json:"dead-interval" dval:"40"`
 	InstanceId   int `json:"instance-id"`
 }
 
-type InterfaceTunnelIpv6OspfHelloIntervalCfg962 struct {
+type InterfaceTunnelIpv6OspfHelloIntervalCfg957 struct {
 	HelloInterval int `json:"hello-interval" dval:"10"`
 	InstanceId    int `json:"instance-id"`
 }
 
-type InterfaceTunnelIpv6OspfMtuIgnoreCfg963 struct {
+type InterfaceTunnelIpv6OspfMtuIgnoreCfg958 struct {
 	MtuIgnore  int `json:"mtu-ignore"`
 	InstanceId int `json:"instance-id"`
 }
 
-type InterfaceTunnelIpv6OspfNeighborCfg964 struct {
+type InterfaceTunnelIpv6OspfNeighborCfg959 struct {
 	Neighbor             string `json:"neighbor" dval:"::"`
 	NeigInst             int    `json:"neig-inst"`
 	NeighborCost         int    `json:"neighbor-cost"`
@@ -80,37 +80,37 @@ type InterfaceTunnelIpv6OspfNeighborCfg964 struct {
 	NeighborPriority     int    `json:"neighbor-priority"`
 }
 
-type InterfaceTunnelIpv6OspfPriorityCfg965 struct {
+type InterfaceTunnelIpv6OspfPriorityCfg960 struct {
 	Priority   int `json:"priority" dval:"1"`
 	InstanceId int `json:"instance-id"`
 }
 
-type InterfaceTunnelIpv6OspfRetransmitIntervalCfg966 struct {
+type InterfaceTunnelIpv6OspfRetransmitIntervalCfg961 struct {
 	RetransmitInterval int `json:"retransmit-interval" dval:"5"`
 	InstanceId         int `json:"instance-id"`
 }
 
-type InterfaceTunnelIpv6OspfTransmitDelayCfg967 struct {
+type InterfaceTunnelIpv6OspfTransmitDelayCfg962 struct {
 	TransmitDelay int `json:"transmit-delay" dval:"1"`
 	InstanceId    int `json:"instance-id"`
 }
 
-type InterfaceTunnelIpv6Router968 struct {
-	Ripng InterfaceTunnelIpv6RouterRipng969 `json:"ripng"`
-	Ospf  InterfaceTunnelIpv6RouterOspf970  `json:"ospf"`
+type InterfaceTunnelIpv6Router963 struct {
+	Ripng InterfaceTunnelIpv6RouterRipng964 `json:"ripng"`
+	Ospf  InterfaceTunnelIpv6RouterOspf965  `json:"ospf"`
 }
 
-type InterfaceTunnelIpv6RouterRipng969 struct {
+type InterfaceTunnelIpv6RouterRipng964 struct {
 	Rip  int    `json:"rip"`
 	Uuid string `json:"uuid"`
 }
 
-type InterfaceTunnelIpv6RouterOspf970 struct {
-	AreaList []InterfaceTunnelIpv6RouterOspfAreaList971 `json:"area-list"`
+type InterfaceTunnelIpv6RouterOspf965 struct {
+	AreaList []InterfaceTunnelIpv6RouterOspfAreaList966 `json:"area-list"`
 	Uuid     string                                     `json:"uuid"`
 }
 
-type InterfaceTunnelIpv6RouterOspfAreaList971 struct {
+type InterfaceTunnelIpv6RouterOspfAreaList966 struct {
 	AreaIdNum  int    `json:"area-id-num"`
 	AreaIdAddr string `json:"area-id-addr"`
 	Tag        string `json:"tag"`

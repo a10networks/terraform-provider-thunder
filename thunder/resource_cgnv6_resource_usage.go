@@ -25,6 +25,9 @@ func resourceCgnv6ResourceUsage() *schema.Resource {
 			"lsn_nat_addr_count": {
 				Type: schema.TypeInt, Optional: true, Description: "Total configurable CGNV6 NAT Pool addresses",
 			},
+			"radius_table_size": {
+				Type: schema.TypeInt, Optional: true, Description: "Total configurable CGNV6 RADIUS Table entries",
+			},
 			"stateless_entries": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -106,10 +109,10 @@ func resourceCgnv6ResourceUsageRead(ctx context.Context, d *schema.ResourceData,
 	return diags
 }
 
-func getObjectCgnv6ResourceUsageStatelessEntries112(d []interface{}) edpt.Cgnv6ResourceUsageStatelessEntries112 {
+func getObjectCgnv6ResourceUsageStatelessEntries113(d []interface{}) edpt.Cgnv6ResourceUsageStatelessEntries113 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6ResourceUsageStatelessEntries112
+	var ret edpt.Cgnv6ResourceUsageStatelessEntries113
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.L4SessionCount = in["l4_session_count"].(int)
@@ -123,7 +126,8 @@ func dataToEndpointCgnv6ResourceUsage(d *schema.ResourceData) edpt.Cgnv6Resource
 	ret.Inst.FixedNatInsideUserCount = d.Get("fixed_nat_inside_user_count").(int)
 	ret.Inst.FixedNatIpAddrCount = d.Get("fixed_nat_ip_addr_count").(int)
 	ret.Inst.LsnNatAddrCount = d.Get("lsn_nat_addr_count").(int)
-	ret.Inst.StatelessEntries = getObjectCgnv6ResourceUsageStatelessEntries112(d.Get("stateless_entries").([]interface{}))
+	ret.Inst.RadiusTableSize = d.Get("radius_table_size").(int)
+	ret.Inst.StatelessEntries = getObjectCgnv6ResourceUsageStatelessEntries113(d.Get("stateless_entries").([]interface{}))
 	//omit uuid
 	return ret
 }

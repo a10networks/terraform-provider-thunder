@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDetectionAgent struct {
 	Inst struct {
 		AgentName string `json:"agent-name"`
@@ -22,6 +22,8 @@ type DdosDetectionAgent struct {
 		SamplingEnable []DdosDetectionAgentSamplingEnable `json:"sampling-enable"`
 
 		Sflow DdosDetectionAgentSflow146 `json:"sflow"`
+
+		Snmp DdosDetectionAgentSnmp147 `json:"snmp"`
 
 		UserTag string `json:"user-tag"`
 
@@ -44,6 +46,13 @@ type DdosDetectionAgentSamplingEnable struct {
 type DdosDetectionAgentSflow146 struct {
 	SflowPktSamplesCollection string `json:"sflow-pkt-samples-collection" dval:"enable"`
 	Uuid                      string `json:"uuid"`
+}
+
+type DdosDetectionAgentSnmp147 struct {
+	Ipv4Addr        string `json:"ipv4-addr"`
+	CommunityString string `json:"community-string"`
+	Refresh         int    `json:"refresh"`
+	Uuid            string `json:"uuid"`
 }
 
 func (p *DdosDetectionAgent) GetId() string {

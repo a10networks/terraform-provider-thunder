@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZoneIpProtoProtoTcpUdp struct {
 	Inst struct {
 		Deny int `json:"deny"`
@@ -16,7 +16,7 @@ type DdosDstZoneIpProtoProtoTcpUdp struct {
 
 		IpFilteringPolicy string `json:"ip-filtering-policy"`
 
-		IpFilteringPolicyStatistics DdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyStatistics228 `json:"ip-filtering-policy-statistics"`
+		IpFilteringPolicyStatistics DdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyStatistics231 `json:"ip-filtering-policy-statistics"`
 
 		Protocol string `json:"protocol"`
 
@@ -39,7 +39,7 @@ type DdosDstZoneIpProtoProtoTcpUdpGlidCfg struct {
 	ActionList  string `json:"action-list"`
 }
 
-type DdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyStatistics228 struct {
+type DdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyStatistics231 struct {
 	Uuid string `json:"uuid"`
 }
 

@@ -117,14 +117,14 @@ func resourceDdosDstZonePortZoneServiceVirtualhosts() *schema.Resource {
 					},
 				},
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 			"port_num": {
 				Type: schema.TypeString, Required: true, Description: "PortNum",
 			},
-			"zone_name": {
-				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 		},
 	}
@@ -276,8 +276,8 @@ func dataToEndpointDdosDstZonePortZoneServiceVirtualhosts(d *schema.ResourceData
 	//omit uuid
 	ret.Inst.VhostsConfig = d.Get("vhosts_config").(string)
 	ret.Inst.VirtualhostList = getSliceDdosDstZonePortZoneServiceVirtualhostsVirtualhostList(d.Get("virtualhost_list").([]interface{}))
-	ret.Inst.Protocol = d.Get("protocol").(string)
-	ret.Inst.PortNum = d.Get("port_num").(string)
 	ret.Inst.ZoneName = d.Get("zone_name").(string)
+	ret.Inst.PortNum = d.Get("port_num").(string)
+	ret.Inst.Protocol = d.Get("protocol").(string)
 	return ret
 }

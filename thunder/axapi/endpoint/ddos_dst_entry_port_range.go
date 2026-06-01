@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstEntryPortRange struct {
 	Inst struct {
 		CaptureConfig DdosDstEntryPortRangeCaptureConfig `json:"capture-config"`
@@ -23,17 +23,17 @@ type DdosDstEntryPortRange struct {
 
 		IpFilteringPolicy string `json:"ip-filtering-policy"`
 
-		PatternRecognition DdosDstEntryPortRangePatternRecognition182 `json:"pattern-recognition"`
+		PatternRecognition DdosDstEntryPortRangePatternRecognition185 `json:"pattern-recognition"`
 
-		PatternRecognitionPuDetails DdosDstEntryPortRangePatternRecognitionPuDetails183 `json:"pattern-recognition-pu-details"`
+		PatternRecognitionPuDetails DdosDstEntryPortRangePatternRecognitionPuDetails186 `json:"pattern-recognition-pu-details"`
 
-		PortInd DdosDstEntryPortRangePortInd184 `json:"port-ind"`
+		PortInd DdosDstEntryPortRangePortInd187 `json:"port-ind"`
 
 		PortRangeEnd int `json:"port-range-end"`
 
 		PortRangeStart int `json:"port-range-start"`
 
-		ProgressionTracking DdosDstEntryPortRangeProgressionTracking186 `json:"progression-tracking"`
+		ProgressionTracking DdosDstEntryPortRangeProgressionTracking189 `json:"progression-tracking"`
 
 		Protocol string `json:"protocol"`
 
@@ -47,7 +47,7 @@ type DdosDstEntryPortRange struct {
 
 		TopkSortKey string `json:"topk-sort-key" dval:"avg"`
 
-		TopkSources DdosDstEntryPortRangeTopkSources187 `json:"topk-sources"`
+		TopkSources DdosDstEntryPortRangeTopkSources190 `json:"topk-sources"`
 
 		UserTag string `json:"user-tag"`
 
@@ -71,7 +71,7 @@ type DdosDstEntryPortRangeGlidExceedActionStatelessEncapActionCfg struct {
 	EncapTemplate        string `json:"encap-template"`
 }
 
-type DdosDstEntryPortRangePatternRecognition182 struct {
+type DdosDstEntryPortRangePatternRecognition185 struct {
 	Algorithm               string `json:"algorithm"`
 	Mode                    string `json:"mode"`
 	Sensitivity             string `json:"sensitivity"`
@@ -80,20 +80,20 @@ type DdosDstEntryPortRangePatternRecognition182 struct {
 	Uuid                    string `json:"uuid"`
 }
 
-type DdosDstEntryPortRangePatternRecognitionPuDetails183 struct {
+type DdosDstEntryPortRangePatternRecognitionPuDetails186 struct {
 	Uuid string `json:"uuid"`
 }
 
-type DdosDstEntryPortRangePortInd184 struct {
+type DdosDstEntryPortRangePortInd187 struct {
 	Uuid           string                                          `json:"uuid"`
-	SamplingEnable []DdosDstEntryPortRangePortIndSamplingEnable185 `json:"sampling-enable"`
+	SamplingEnable []DdosDstEntryPortRangePortIndSamplingEnable188 `json:"sampling-enable"`
 }
 
-type DdosDstEntryPortRangePortIndSamplingEnable185 struct {
+type DdosDstEntryPortRangePortIndSamplingEnable188 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type DdosDstEntryPortRangeProgressionTracking186 struct {
+type DdosDstEntryPortRangeProgressionTracking189 struct {
 	Uuid string `json:"uuid"`
 }
 
@@ -121,7 +121,7 @@ type DdosDstEntryPortRangeTemplate struct {
 	Udp   string `json:"udp"`
 }
 
-type DdosDstEntryPortRangeTopkSources187 struct {
+type DdosDstEntryPortRangeTopkSources190 struct {
 	Uuid string `json:"uuid"`
 }
 

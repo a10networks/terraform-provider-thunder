@@ -347,18 +347,6 @@ func resourceSlbSwitchStats() *schema.Resource {
 						"mac_movement": {
 							Type: schema.TypeInt, Optional: true, Description: "MAC movement",
 						},
-						"ipv4_src_routed_pkt_drop": {
-							Type: schema.TypeInt, Optional: true, Description: "IPv4 source routed packet drop",
-						},
-						"ipv6_src_routed_pkt_drop": {
-							Type: schema.TypeInt, Optional: true, Description: "IPv6 source routed packet drop",
-						},
-						"ipv4_rpf_drop": {
-							Type: schema.TypeInt, Optional: true, Description: "IPv4 RPF drop",
-						},
-						"ipv6_rpf_drop": {
-							Type: schema.TypeInt, Optional: true, Description: "IPv6 RPF drop",
-						},
 					},
 				},
 			},
@@ -498,10 +486,6 @@ func setObjectSlbSwitchStatsStats(ret edpt.DataSlbSwitchStats) []interface{} {
 			"tls12_tls13_drop_req":                ret.DtSlbSwitchStats.Stats.Tls12_tls13_drop_req,
 			"tls12_tls13_ignore_req":              ret.DtSlbSwitchStats.Stats.Tls12_tls13_ignore_req,
 			"mac_movement":                        ret.DtSlbSwitchStats.Stats.Mac_movement,
-			"ipv4_src_routed_pkt_drop":            ret.DtSlbSwitchStats.Stats.Ipv4SrcRoutedPktDrop,
-			"ipv6_src_routed_pkt_drop":            ret.DtSlbSwitchStats.Stats.Ipv6SrcRoutedPktDrop,
-			"ipv4_rpf_drop":                       ret.DtSlbSwitchStats.Stats.Ipv4RpfDrop,
-			"ipv6_rpf_drop":                       ret.DtSlbSwitchStats.Stats.Ipv6RpfDrop,
 		},
 	}
 }
@@ -622,10 +606,6 @@ func getObjectSlbSwitchStatsStats(d []interface{}) edpt.SlbSwitchStatsStats {
 		ret.Tls12_tls13_drop_req = in["tls12_tls13_drop_req"].(int)
 		ret.Tls12_tls13_ignore_req = in["tls12_tls13_ignore_req"].(int)
 		ret.Mac_movement = in["mac_movement"].(int)
-		ret.Ipv4SrcRoutedPktDrop = in["ipv4_src_routed_pkt_drop"].(int)
-		ret.Ipv6SrcRoutedPktDrop = in["ipv6_src_routed_pkt_drop"].(int)
-		ret.Ipv4RpfDrop = in["ipv4_rpf_drop"].(int)
-		ret.Ipv6RpfDrop = in["ipv6_rpf_drop"].(int)
 	}
 	return ret
 }

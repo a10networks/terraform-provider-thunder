@@ -161,83 +161,83 @@ func resourceVisibilityMonitoredEntityRead(ctx context.Context, d *schema.Resour
 	return diags
 }
 
-func getObjectVisibilityMonitoredEntityDetail2052(d []interface{}) edpt.VisibilityMonitoredEntityDetail2052 {
+func getObjectVisibilityMonitoredEntityDetail2051(d []interface{}) edpt.VisibilityMonitoredEntityDetail2051 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitoredEntityDetail2052
+	var ret edpt.VisibilityMonitoredEntityDetail2051
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.Debug = getObjectVisibilityMonitoredEntityDetailDebug2053(in["debug"].([]interface{}))
+		ret.Debug = getObjectVisibilityMonitoredEntityDetailDebug2052(in["debug"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityMonitoredEntityDetailDebug2053(d []interface{}) edpt.VisibilityMonitoredEntityDetailDebug2053 {
+func getObjectVisibilityMonitoredEntityDetailDebug2052(d []interface{}) edpt.VisibilityMonitoredEntityDetailDebug2052 {
 
-	var ret edpt.VisibilityMonitoredEntityDetailDebug2053
+	var ret edpt.VisibilityMonitoredEntityDetailDebug2052
 	return ret
 }
 
-func getObjectVisibilityMonitoredEntityMonTopk2054(d []interface{}) edpt.VisibilityMonitoredEntityMonTopk2054 {
+func getObjectVisibilityMonitoredEntityMonTopk2053(d []interface{}) edpt.VisibilityMonitoredEntityMonTopk2053 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitoredEntityMonTopk2054
+	var ret edpt.VisibilityMonitoredEntityMonTopk2053
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.Sources = getObjectVisibilityMonitoredEntityMonTopkSources2055(in["sources"].([]interface{}))
+		ret.Sources = getObjectVisibilityMonitoredEntityMonTopkSources2054(in["sources"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityMonitoredEntityMonTopkSources2055(d []interface{}) edpt.VisibilityMonitoredEntityMonTopkSources2055 {
+func getObjectVisibilityMonitoredEntityMonTopkSources2054(d []interface{}) edpt.VisibilityMonitoredEntityMonTopkSources2054 {
 
-	var ret edpt.VisibilityMonitoredEntityMonTopkSources2055
+	var ret edpt.VisibilityMonitoredEntityMonTopkSources2054
 	return ret
 }
 
-func getObjectVisibilityMonitoredEntitySecondary2056(d []interface{}) edpt.VisibilityMonitoredEntitySecondary2056 {
+func getObjectVisibilityMonitoredEntitySecondary2055(d []interface{}) edpt.VisibilityMonitoredEntitySecondary2055 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitoredEntitySecondary2056
+	var ret edpt.VisibilityMonitoredEntitySecondary2055
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.MonTopk = getObjectVisibilityMonitoredEntitySecondaryMonTopk2057(in["mon_topk"].([]interface{}))
+		ret.MonTopk = getObjectVisibilityMonitoredEntitySecondaryMonTopk2056(in["mon_topk"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityMonitoredEntitySecondaryMonTopk2057(d []interface{}) edpt.VisibilityMonitoredEntitySecondaryMonTopk2057 {
+func getObjectVisibilityMonitoredEntitySecondaryMonTopk2056(d []interface{}) edpt.VisibilityMonitoredEntitySecondaryMonTopk2056 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitoredEntitySecondaryMonTopk2057
+	var ret edpt.VisibilityMonitoredEntitySecondaryMonTopk2056
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.Sources = getObjectVisibilityMonitoredEntitySecondaryMonTopkSources2058(in["sources"].([]interface{}))
+		ret.Sources = getObjectVisibilityMonitoredEntitySecondaryMonTopkSources2057(in["sources"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVisibilityMonitoredEntitySecondaryMonTopkSources2058(d []interface{}) edpt.VisibilityMonitoredEntitySecondaryMonTopkSources2058 {
+func getObjectVisibilityMonitoredEntitySecondaryMonTopkSources2057(d []interface{}) edpt.VisibilityMonitoredEntitySecondaryMonTopkSources2057 {
 
-	var ret edpt.VisibilityMonitoredEntitySecondaryMonTopkSources2058
+	var ret edpt.VisibilityMonitoredEntitySecondaryMonTopkSources2057
 	return ret
 }
 
-func getObjectVisibilityMonitoredEntitySessions2059(d []interface{}) edpt.VisibilityMonitoredEntitySessions2059 {
+func getObjectVisibilityMonitoredEntitySessions2058(d []interface{}) edpt.VisibilityMonitoredEntitySessions2058 {
 
-	var ret edpt.VisibilityMonitoredEntitySessions2059
+	var ret edpt.VisibilityMonitoredEntitySessions2058
 	return ret
 }
 
 func dataToEndpointVisibilityMonitoredEntity(d *schema.ResourceData) edpt.VisibilityMonitoredEntity {
 	var ret edpt.VisibilityMonitoredEntity
-	ret.Inst.Detail = getObjectVisibilityMonitoredEntityDetail2052(d.Get("detail").([]interface{}))
-	ret.Inst.MonTopk = getObjectVisibilityMonitoredEntityMonTopk2054(d.Get("mon_topk").([]interface{}))
-	ret.Inst.Secondary = getObjectVisibilityMonitoredEntitySecondary2056(d.Get("secondary").([]interface{}))
-	ret.Inst.Sessions = getObjectVisibilityMonitoredEntitySessions2059(d.Get("sessions").([]interface{}))
+	ret.Inst.Detail = getObjectVisibilityMonitoredEntityDetail2051(d.Get("detail").([]interface{}))
+	ret.Inst.MonTopk = getObjectVisibilityMonitoredEntityMonTopk2053(d.Get("mon_topk").([]interface{}))
+	ret.Inst.Secondary = getObjectVisibilityMonitoredEntitySecondary2055(d.Get("secondary").([]interface{}))
+	ret.Inst.Sessions = getObjectVisibilityMonitoredEntitySessions2058(d.Get("sessions").([]interface{}))
 	//omit uuid
 	return ret
 }

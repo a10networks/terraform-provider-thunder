@@ -47,6 +47,9 @@ func resourceDdosDnsCacheDomainGroup() *schema.Resource {
 						"dns_notify_enable_ipv6": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "DNS notify enabled",
 						},
+						"refresh_interval_by_soa": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Read by SOA record",
+						},
 						"refresh_interval_hours": {
 							Type: schema.TypeInt, Optional: true, Default: 4, Description: "Zone transfer refresh rate in hours (Default 4). 0 means no refresh",
 						},
@@ -67,6 +70,9 @@ func resourceDdosDnsCacheDomainGroup() *schema.Resource {
 						},
 						"force": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Force update even the serial is the same",
+						},
+						"ixfr": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use IXFR to update",
 						},
 						"cache_all_records": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "cache all FQDN records including uncommon types",
@@ -199,6 +205,7 @@ func getSliceDdosDnsCacheDomainGroupDomainListPolicyList(d []interface{}) []edpt
 		oi.ServerV6Port = in["server_v6_port"].(int)
 		oi.ClientIpv6 = in["client_ipv6"].(string)
 		oi.DnsNotifyEnableIpv6 = in["dns_notify_enable_ipv6"].(int)
+		oi.RefreshIntervalBySoa = in["refresh_interval_by_soa"].(int)
 		oi.RefreshIntervalHours = in["refresh_interval_hours"].(int)
 		oi.TtlOverride = in["ttl_override"].(int)
 		oi.RespondWithAuthority = in["respond_with_authority"].(int)
@@ -206,6 +213,7 @@ func getSliceDdosDnsCacheDomainGroupDomainListPolicyList(d []interface{}) []edpt
 		oi.ResolveCnameRecord = in["resolve_cname_record"].(int)
 		oi.ManualRefresh = in["manual_refresh"].(string)
 		oi.Force = in["force"].(int)
+		oi.Ixfr = in["ixfr"].(int)
 		oi.CacheAllRecords = in["cache_all_records"].(int)
 		oi.CacheDnssecRecords = in["cache_dnssec_records"].(int)
 		//omit uuid

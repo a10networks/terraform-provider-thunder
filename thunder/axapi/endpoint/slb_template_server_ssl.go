@@ -6,14 +6,14 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbTemplateServerSsl struct {
 	Inst struct {
 		AlertType string `json:"alert-type"`
 
 		CaCerts []SlbTemplateServerSslCaCerts `json:"ca-certs"`
 
-		Certificate SlbTemplateServerSslCertificate1576 `json:"certificate"`
+		Certificate SlbTemplateServerSslCertificate1577 `json:"certificate"`
 
 		CipherTemplate string `json:"cipher-template"`
 
@@ -82,7 +82,7 @@ type SlbTemplateServerSslCaCerts struct {
 	ServerOcspSg          string `json:"server-ocsp-sg"`
 }
 
-type SlbTemplateServerSslCertificate1576 struct {
+type SlbTemplateServerSslCertificate1577 struct {
 	Cert       string `json:"cert"`
 	Key        string `json:"key"`
 	Passphrase string `json:"passphrase"`

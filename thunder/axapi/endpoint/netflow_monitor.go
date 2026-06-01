@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type NetflowMonitor struct {
 	Inst struct {
 		CounterPollingInterval int `json:"counter-polling-interval" dval:"60"`
 
-		CustomRecord NetflowMonitorCustomRecord1137 `json:"custom-record"`
+		CustomRecord NetflowMonitorCustomRecord1136 `json:"custom-record"`
 
-		Destination NetflowMonitorDestination1139 `json:"destination"`
+		Destination NetflowMonitorDestination1138 `json:"destination"`
 
 		Disable int `json:"disable"`
 
-		DisableLogByDestination NetflowMonitorDisableLogByDestination1142 `json:"disable-log-by-destination"`
+		DisableLogByDestination NetflowMonitorDisableLogByDestination1141 `json:"disable-log-by-destination"`
 
 		FlowTimeout int `json:"flow-timeout" dval:"10"`
 
@@ -27,17 +27,17 @@ type NetflowMonitor struct {
 
 		Protocol string `json:"protocol" dval:"v9"`
 
-		Record NetflowMonitorRecord1151 `json:"record"`
+		Record NetflowMonitorRecord1150 `json:"record"`
 
-		ResendTemplate NetflowMonitorResendTemplate1152 `json:"resend-template"`
+		ResendTemplate NetflowMonitorResendTemplate1151 `json:"resend-template"`
 
-		Sample NetflowMonitorSample1153 `json:"sample"`
+		Sample NetflowMonitorSample1152 `json:"sample"`
 
 		SamplingEnable []NetflowMonitorSamplingEnable `json:"sampling-enable"`
 
 		Scope string `json:"scope" dval:"global"`
 
-		SourceAddress NetflowMonitorSourceAddress1154 `json:"source-address"`
+		SourceAddress NetflowMonitorSourceAddress1153 `json:"source-address"`
 
 		SourceIpUseMgmt int `json:"source-ip-use-mgmt"`
 
@@ -47,94 +47,94 @@ type NetflowMonitor struct {
 	} `json:"monitor"`
 }
 
-type NetflowMonitorCustomRecord1137 struct {
-	CustomCfg []NetflowMonitorCustomRecordCustomCfg1138 `json:"custom-cfg"`
+type NetflowMonitorCustomRecord1136 struct {
+	CustomCfg []NetflowMonitorCustomRecordCustomCfg1137 `json:"custom-cfg"`
 	Uuid      string                                    `json:"uuid"`
 }
 
-type NetflowMonitorCustomRecordCustomCfg1138 struct {
+type NetflowMonitorCustomRecordCustomCfg1137 struct {
 	Event         string `json:"event"`
 	IpfixTemplate string `json:"ipfix-template"`
 }
 
-type NetflowMonitorDestination1139 struct {
+type NetflowMonitorDestination1138 struct {
 	ServiceGroup string                               `json:"service-group"`
-	IpCfg        NetflowMonitorDestinationIpCfg1140   `json:"ip-cfg"`
-	Ipv6Cfg      NetflowMonitorDestinationIpv6Cfg1141 `json:"ipv6-cfg"`
+	IpCfg        NetflowMonitorDestinationIpCfg1139   `json:"ip-cfg"`
+	Ipv6Cfg      NetflowMonitorDestinationIpv6Cfg1140 `json:"ipv6-cfg"`
 	Uuid         string                               `json:"uuid"`
 }
 
-type NetflowMonitorDestinationIpCfg1140 struct {
+type NetflowMonitorDestinationIpCfg1139 struct {
 	Ip    string `json:"ip"`
 	Port4 int    `json:"port4" dval:"9996"`
 }
 
-type NetflowMonitorDestinationIpv6Cfg1141 struct {
+type NetflowMonitorDestinationIpv6Cfg1140 struct {
 	Ipv6  string `json:"ipv6"`
 	Port6 int    `json:"port6" dval:"9996"`
 }
 
-type NetflowMonitorDisableLogByDestination1142 struct {
-	TcpList []NetflowMonitorDisableLogByDestinationTcpList1143 `json:"tcp-list"`
-	UdpList []NetflowMonitorDisableLogByDestinationUdpList1144 `json:"udp-list"`
+type NetflowMonitorDisableLogByDestination1141 struct {
+	TcpList []NetflowMonitorDisableLogByDestinationTcpList1142 `json:"tcp-list"`
+	UdpList []NetflowMonitorDisableLogByDestinationUdpList1143 `json:"udp-list"`
 	Icmp    int                                                `json:"icmp"`
 	Others  int                                                `json:"others"`
 	Uuid    string                                             `json:"uuid"`
-	IpList  []NetflowMonitorDisableLogByDestinationIpList1145  `json:"ip-list"`
-	Ip6List []NetflowMonitorDisableLogByDestinationIp6List1148 `json:"ip6-list"`
+	IpList  []NetflowMonitorDisableLogByDestinationIpList1144  `json:"ip-list"`
+	Ip6List []NetflowMonitorDisableLogByDestinationIp6List1147 `json:"ip6-list"`
 }
 
-type NetflowMonitorDisableLogByDestinationTcpList1143 struct {
+type NetflowMonitorDisableLogByDestinationTcpList1142 struct {
 	TcpPortStart int `json:"tcp-port-start"`
 	TcpPortEnd   int `json:"tcp-port-end"`
 }
 
-type NetflowMonitorDisableLogByDestinationUdpList1144 struct {
+type NetflowMonitorDisableLogByDestinationUdpList1143 struct {
 	UdpPortStart int `json:"udp-port-start"`
 	UdpPortEnd   int `json:"udp-port-end"`
 }
 
-type NetflowMonitorDisableLogByDestinationIpList1145 struct {
+type NetflowMonitorDisableLogByDestinationIpList1144 struct {
 	Ipv4Addr string                                                   `json:"ipv4-addr"`
-	TcpList  []NetflowMonitorDisableLogByDestinationIpListTcpList1146 `json:"tcp-list"`
-	UdpList  []NetflowMonitorDisableLogByDestinationIpListUdpList1147 `json:"udp-list"`
+	TcpList  []NetflowMonitorDisableLogByDestinationIpListTcpList1145 `json:"tcp-list"`
+	UdpList  []NetflowMonitorDisableLogByDestinationIpListUdpList1146 `json:"udp-list"`
 	Icmp     int                                                      `json:"icmp"`
 	Others   int                                                      `json:"others"`
 	Uuid     string                                                   `json:"uuid"`
 	UserTag  string                                                   `json:"user-tag"`
 }
 
-type NetflowMonitorDisableLogByDestinationIpListTcpList1146 struct {
+type NetflowMonitorDisableLogByDestinationIpListTcpList1145 struct {
 	TcpPortStart int `json:"tcp-port-start"`
 	TcpPortEnd   int `json:"tcp-port-end"`
 }
 
-type NetflowMonitorDisableLogByDestinationIpListUdpList1147 struct {
+type NetflowMonitorDisableLogByDestinationIpListUdpList1146 struct {
 	UdpPortStart int `json:"udp-port-start"`
 	UdpPortEnd   int `json:"udp-port-end"`
 }
 
-type NetflowMonitorDisableLogByDestinationIp6List1148 struct {
+type NetflowMonitorDisableLogByDestinationIp6List1147 struct {
 	Ipv6Addr string                                                    `json:"ipv6-addr"`
-	TcpList  []NetflowMonitorDisableLogByDestinationIp6ListTcpList1149 `json:"tcp-list"`
-	UdpList  []NetflowMonitorDisableLogByDestinationIp6ListUdpList1150 `json:"udp-list"`
+	TcpList  []NetflowMonitorDisableLogByDestinationIp6ListTcpList1148 `json:"tcp-list"`
+	UdpList  []NetflowMonitorDisableLogByDestinationIp6ListUdpList1149 `json:"udp-list"`
 	Icmp     int                                                       `json:"icmp"`
 	Others   int                                                       `json:"others"`
 	Uuid     string                                                    `json:"uuid"`
 	UserTag  string                                                    `json:"user-tag"`
 }
 
-type NetflowMonitorDisableLogByDestinationIp6ListTcpList1149 struct {
+type NetflowMonitorDisableLogByDestinationIp6ListTcpList1148 struct {
 	TcpPortStart int `json:"tcp-port-start"`
 	TcpPortEnd   int `json:"tcp-port-end"`
 }
 
-type NetflowMonitorDisableLogByDestinationIp6ListUdpList1150 struct {
+type NetflowMonitorDisableLogByDestinationIp6ListUdpList1149 struct {
 	UdpPortStart int `json:"udp-port-start"`
 	UdpPortEnd   int `json:"udp-port-end"`
 }
 
-type NetflowMonitorRecord1151 struct {
+type NetflowMonitorRecord1150 struct {
 	NetflowV5         int    `json:"netflow-v5"`
 	NetflowV5Ext      int    `json:"netflow-v5-ext"`
 	Nat44             int    `json:"nat44"`
@@ -159,13 +159,13 @@ type NetflowMonitorRecord1151 struct {
 	Uuid              string `json:"uuid"`
 }
 
-type NetflowMonitorResendTemplate1152 struct {
+type NetflowMonitorResendTemplate1151 struct {
 	Timeout int    `json:"timeout" dval:"1800"`
 	Records int    `json:"records" dval:"1000"`
 	Uuid    string `json:"uuid"`
 }
 
-type NetflowMonitorSample1153 struct {
+type NetflowMonitorSample1152 struct {
 	EthernetList []NetflowMonitorSampleEthernetList `json:"ethernet-list"`
 	VeList       []NetflowMonitorSampleVeList       `json:"ve-list"`
 	NatPoolList  []NetflowMonitorSampleNatPoolList  `json:"nat-pool-list"`
@@ -191,7 +191,7 @@ type NetflowMonitorSamplingEnable struct {
 	Counters2 string `json:"counters2"`
 }
 
-type NetflowMonitorSourceAddress1154 struct {
+type NetflowMonitorSourceAddress1153 struct {
 	Ip   string `json:"ip"`
 	Ipv6 string `json:"ipv6"`
 	Uuid string `json:"uuid"`

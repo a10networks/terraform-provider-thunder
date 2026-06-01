@@ -312,10 +312,10 @@ func getObjectDdosNetworkObjectTemplateHostAnomalyThreshold(d []interface{}) edp
 	return ret
 }
 
-func getObjectDdosNetworkObjectTemplateIndicatorsToMonitor306(d []interface{}) edpt.DdosNetworkObjectTemplateIndicatorsToMonitor306 {
+func getObjectDdosNetworkObjectTemplateIndicatorsToMonitor311(d []interface{}) edpt.DdosNetworkObjectTemplateIndicatorsToMonitor311 {
 
 	count1 := len(d)
-	var ret edpt.DdosNetworkObjectTemplateIndicatorsToMonitor306
+	var ret edpt.DdosNetworkObjectTemplateIndicatorsToMonitor311
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
@@ -359,36 +359,24 @@ func getObjectDdosNetworkObjectTemplateServiceBreakDownThresholdLocal(d []interf
 	return ret
 }
 
-func getObjectDdosNetworkObjectTemplateSportAnomalyThreshold307(d []interface{}) edpt.DdosNetworkObjectTemplateSportAnomalyThreshold307 {
+func getObjectDdosNetworkObjectTemplateSportAnomalyThreshold312(d []interface{}) edpt.DdosNetworkObjectTemplateSportAnomalyThreshold312 {
 
 	count1 := len(d)
-	var ret edpt.DdosNetworkObjectTemplateSportAnomalyThreshold307
+	var ret edpt.DdosNetworkObjectTemplateSportAnomalyThreshold312
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.PacketRate = getObjectDdosNetworkObjectTemplateSportAnomalyThresholdPacketRate308(in["packet_rate"].([]interface{}))
-		ret.PacketRatePercentage = getObjectDdosNetworkObjectTemplateSportAnomalyThresholdPacketRatePercentage309(in["packet_rate_percentage"].([]interface{}))
-		ret.BitRate = getObjectDdosNetworkObjectTemplateSportAnomalyThresholdBitRate310(in["bit_rate"].([]interface{}))
-		ret.BitRatePercentage = getObjectDdosNetworkObjectTemplateSportAnomalyThresholdBitRatePercentage311(in["bit_rate_percentage"].([]interface{}))
+		ret.PacketRate = getObjectDdosNetworkObjectTemplateSportAnomalyThresholdPacketRate313(in["packet_rate"].([]interface{}))
+		ret.PacketRatePercentage = getObjectDdosNetworkObjectTemplateSportAnomalyThresholdPacketRatePercentage314(in["packet_rate_percentage"].([]interface{}))
+		ret.BitRate = getObjectDdosNetworkObjectTemplateSportAnomalyThresholdBitRate315(in["bit_rate"].([]interface{}))
+		ret.BitRatePercentage = getObjectDdosNetworkObjectTemplateSportAnomalyThresholdBitRatePercentage316(in["bit_rate_percentage"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectDdosNetworkObjectTemplateSportAnomalyThresholdPacketRate308(d []interface{}) edpt.DdosNetworkObjectTemplateSportAnomalyThresholdPacketRate308 {
+func getObjectDdosNetworkObjectTemplateSportAnomalyThresholdPacketRate313(d []interface{}) edpt.DdosNetworkObjectTemplateSportAnomalyThresholdPacketRate313 {
 
 	count1 := len(d)
-	var ret edpt.DdosNetworkObjectTemplateSportAnomalyThresholdPacketRate308
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Value = in["value"].(int)
-		//omit uuid
-	}
-	return ret
-}
-
-func getObjectDdosNetworkObjectTemplateSportAnomalyThresholdPacketRatePercentage309(d []interface{}) edpt.DdosNetworkObjectTemplateSportAnomalyThresholdPacketRatePercentage309 {
-
-	count1 := len(d)
-	var ret edpt.DdosNetworkObjectTemplateSportAnomalyThresholdPacketRatePercentage309
+	var ret edpt.DdosNetworkObjectTemplateSportAnomalyThresholdPacketRate313
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(int)
@@ -397,10 +385,10 @@ func getObjectDdosNetworkObjectTemplateSportAnomalyThresholdPacketRatePercentage
 	return ret
 }
 
-func getObjectDdosNetworkObjectTemplateSportAnomalyThresholdBitRate310(d []interface{}) edpt.DdosNetworkObjectTemplateSportAnomalyThresholdBitRate310 {
+func getObjectDdosNetworkObjectTemplateSportAnomalyThresholdPacketRatePercentage314(d []interface{}) edpt.DdosNetworkObjectTemplateSportAnomalyThresholdPacketRatePercentage314 {
 
 	count1 := len(d)
-	var ret edpt.DdosNetworkObjectTemplateSportAnomalyThresholdBitRate310
+	var ret edpt.DdosNetworkObjectTemplateSportAnomalyThresholdPacketRatePercentage314
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(int)
@@ -409,10 +397,22 @@ func getObjectDdosNetworkObjectTemplateSportAnomalyThresholdBitRate310(d []inter
 	return ret
 }
 
-func getObjectDdosNetworkObjectTemplateSportAnomalyThresholdBitRatePercentage311(d []interface{}) edpt.DdosNetworkObjectTemplateSportAnomalyThresholdBitRatePercentage311 {
+func getObjectDdosNetworkObjectTemplateSportAnomalyThresholdBitRate315(d []interface{}) edpt.DdosNetworkObjectTemplateSportAnomalyThresholdBitRate315 {
 
 	count1 := len(d)
-	var ret edpt.DdosNetworkObjectTemplateSportAnomalyThresholdBitRatePercentage311
+	var ret edpt.DdosNetworkObjectTemplateSportAnomalyThresholdBitRate315
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Value = in["value"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectDdosNetworkObjectTemplateSportAnomalyThresholdBitRatePercentage316(d []interface{}) edpt.DdosNetworkObjectTemplateSportAnomalyThresholdBitRatePercentage316 {
+
+	count1 := len(d)
+	var ret edpt.DdosNetworkObjectTemplateSportAnomalyThresholdBitRatePercentage316
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(int)
@@ -427,13 +427,13 @@ func dataToEndpointDdosNetworkObjectTemplate(d *schema.ResourceData) edpt.DdosNe
 	ret.Inst.FloodingMultiplier = d.Get("flooding_multiplier").(int)
 	ret.Inst.HistogramMode = d.Get("histogram_mode").(string)
 	ret.Inst.HostAnomalyThreshold = getObjectDdosNetworkObjectTemplateHostAnomalyThreshold(d.Get("host_anomaly_threshold").([]interface{}))
-	ret.Inst.IndicatorsToMonitor = getObjectDdosNetworkObjectTemplateIndicatorsToMonitor306(d.Get("indicators_to_monitor").([]interface{}))
+	ret.Inst.IndicatorsToMonitor = getObjectDdosNetworkObjectTemplateIndicatorsToMonitor311(d.Get("indicators_to_monitor").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.NetworkObjectAnomalyThreshold = getObjectDdosNetworkObjectTemplateNetworkObjectAnomalyThreshold(d.Get("network_object_anomaly_threshold").([]interface{}))
 	ret.Inst.OperationalMode = d.Get("operational_mode").(string)
 	ret.Inst.ServiceBreakDownThresholdLocal = getObjectDdosNetworkObjectTemplateServiceBreakDownThresholdLocal(d.Get("service_break_down_threshold_local").([]interface{}))
 	ret.Inst.ServiceDiscovery = d.Get("service_discovery").(string)
-	ret.Inst.SportAnomalyThreshold = getObjectDdosNetworkObjectTemplateSportAnomalyThreshold307(d.Get("sport_anomaly_threshold").([]interface{}))
+	ret.Inst.SportAnomalyThreshold = getObjectDdosNetworkObjectTemplateSportAnomalyThreshold312(d.Get("sport_anomaly_threshold").([]interface{}))
 	ret.Inst.ThresholdSensitivity = d.Get("threshold_sensitivity").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid

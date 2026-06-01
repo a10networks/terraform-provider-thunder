@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDnsCacheShardedDomainGroupShardedDomainListPolicy struct {
 	Inst struct {
 		ClientIpv4 string `json:"client-ipv4"`
@@ -23,7 +23,9 @@ type DdosDnsCacheShardedDomainGroupShardedDomainListPolicy struct {
 
 		Name string `json:"name"`
 
-		PacketCapturing DdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturing169 `json:"packet-capturing"`
+		PacketCapturing DdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturing172 `json:"packet-capturing"`
+
+		RefreshIntervalBySoa int `json:"refresh-interval-by-soa"`
 
 		RefreshIntervalHours int `json:"refresh-interval-hours" dval:"4"`
 
@@ -45,12 +47,12 @@ type DdosDnsCacheShardedDomainGroupShardedDomainListPolicy struct {
 	} `json:"sharded-domain-list-policy"`
 }
 
-type DdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturing169 struct {
-	RootZoneList []DdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturingRootZoneList170 `json:"root-zone-list"`
+type DdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturing172 struct {
+	RootZoneList []DdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturingRootZoneList173 `json:"root-zone-list"`
 	Uuid         string                                                                                `json:"uuid"`
 }
 
-type DdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturingRootZoneList170 struct {
+type DdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturingRootZoneList173 struct {
 	RootZone      string `json:"root-zone"`
 	CaptureConfig string `json:"capture-config"`
 	CaptureMode   string `json:"capture-mode"`

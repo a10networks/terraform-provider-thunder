@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbVirtualServerPortStats50 struct {
 	Inst struct {
 		PortNumber int `json:"port-number"`
@@ -245,6 +245,11 @@ type SlbVirtualServerPortStats50StatsDns_vport struct {
 	Dnsrrl_nx_exceed                                   int `json:"dnsrrl_nx_exceed"`
 	Dns_recursive_resolution_request_send              int `json:"dns_recursive_resolution_request_send"`
 	Dns_recursive_resolution_response_receive          int `json:"dns_recursive_resolution_response_receive"`
+	Dns_recursive_resolution_received_tc_response      int `json:"dns_recursive_resolution_received_tc_response"`
+	Dns_max_udp_size_sent_tc_response                  int `json:"dns_max_udp_size_sent_tc_response"`
+	Dns_rr_exceed_per_resolv_max_sig_val_attempts      int `json:"dns_rr_exceed_per_resolv_max_sig_val_attempts"`
+	Dns_rr_exceed_per_resolv_max_sig_val_failures      int `json:"dns_rr_exceed_per_resolv_max_sig_val_failures"`
+	Dns_rr_exceed_per_resolv_max_dgst_val_failures     int `json:"dns_rr_exceed_per_resolv_max_dgst_val_failures"`
 }
 
 func (p *SlbVirtualServerPortStats50) GetId() string {

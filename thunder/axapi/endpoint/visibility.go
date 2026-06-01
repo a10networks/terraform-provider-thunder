@@ -5,48 +5,48 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Visibility struct {
 	Inst struct {
-		AnomalyDetection VisibilityAnomalyDetection3242 `json:"anomaly-detection"`
+		AnomalyDetection VisibilityAnomalyDetection3270 `json:"anomaly-detection"`
 
-		DebugFiles VisibilityDebugFiles3243 `json:"debug-files"`
+		DebugFiles VisibilityDebugFiles3271 `json:"debug-files"`
 
-		File VisibilityFile3244 `json:"file"`
+		File VisibilityFile3272 `json:"file"`
 
-		FlowCollector VisibilityFlowCollector3246 `json:"flow-collector"`
+		FlowCollector VisibilityFlowCollector3274 `json:"flow-collector"`
 
 		Granularity int `json:"granularity" dval:"5"`
 
 		InitialLearningInterval int `json:"initial-learning-interval"`
 
-		MonEntityTelemetryData VisibilityMonEntityTelemetryData3254 `json:"mon-entity-telemetry-data"`
+		MonEntityTelemetryData VisibilityMonEntityTelemetryData3282 `json:"mon-entity-telemetry-data"`
 
-		MonTopk VisibilityMonTopk3256 `json:"mon-topk"`
+		MonTopk VisibilityMonTopk3284 `json:"mon-topk"`
 
-		Monitor VisibilityMonitor3258 `json:"monitor"`
+		Monitor VisibilityMonitor3286 `json:"monitor"`
 
-		MonitoredEntity VisibilityMonitoredEntity3272 `json:"monitored-entity"`
+		MonitoredEntity VisibilityMonitoredEntity3300 `json:"monitored-entity"`
 
-		PacketCapture VisibilityPacketCapture3281 `json:"packet-capture"`
+		PacketCapture VisibilityPacketCapture3309 `json:"packet-capture"`
 
-		PingSweepDetection VisibilityPingSweepDetection3681 `json:"ping-sweep-detection"`
+		PingSweepDetection VisibilityPingSweepDetection3719 `json:"ping-sweep-detection"`
 
-		PortScanDetection VisibilityPortScanDetection3682 `json:"port-scan-detection"`
+		PortScanDetection VisibilityPortScanDetection3720 `json:"port-scan-detection"`
 
-		Reporting VisibilityReporting3683 `json:"reporting"`
+		Reporting VisibilityReporting3721 `json:"reporting"`
 
-		ResourceUsage VisibilityResourceUsage3692 `json:"resource-usage"`
+		ResourceUsage VisibilityResourceUsage3730 `json:"resource-usage"`
 
 		SamplingEnable []VisibilitySamplingEnable `json:"sampling-enable"`
 
 		SourceEntityTopk int `json:"source-entity-topk"`
 
-		Topn VisibilityTopn3693 `json:"topn"`
+		Topn VisibilityTopn3731 `json:"topn"`
 
 		Uuid string `json:"uuid"`
 
-		Zbar VisibilityZbar3707 `json:"zbar"`
+		Zbar VisibilityZbar3745 `json:"zbar"`
 
 		FileContent []byte `json:"-"`
 
@@ -54,7 +54,7 @@ type Visibility struct {
 	} `json:"visibility"`
 }
 
-type VisibilityAnomalyDetection3242 struct {
+type VisibilityAnomalyDetection3270 struct {
 	Sensitivity              string `json:"sensitivity" dval:"low"`
 	RestartLearningOnAnomaly int    `json:"restart-learning-on-anomaly"`
 	FeatureStatus            string `json:"feature-status" dval:"disable"`
@@ -62,225 +62,225 @@ type VisibilityAnomalyDetection3242 struct {
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityDebugFiles3243 struct {
+type VisibilityDebugFiles3271 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VisibilityFile3244 struct {
-	Metrics VisibilityFileMetrics3245 `json:"metrics"`
+type VisibilityFile3272 struct {
+	Metrics VisibilityFileMetrics3273 `json:"metrics"`
 }
 
-type VisibilityFileMetrics3245 struct {
+type VisibilityFileMetrics3273 struct {
 	Action string `json:"action" dval:"disable"`
 	Uuid   string `json:"uuid"`
 }
 
-type VisibilityFlowCollector3246 struct {
-	Sflow   VisibilityFlowCollectorSflow3247   `json:"sflow"`
-	Netflow VisibilityFlowCollectorNetflow3249 `json:"netflow"`
+type VisibilityFlowCollector3274 struct {
+	Sflow   VisibilityFlowCollectorSflow3275   `json:"sflow"`
+	Netflow VisibilityFlowCollectorNetflow3277 `json:"netflow"`
 }
 
-type VisibilityFlowCollectorSflow3247 struct {
+type VisibilityFlowCollectorSflow3275 struct {
 	Uuid           string                                           `json:"uuid"`
-	SamplingEnable []VisibilityFlowCollectorSflowSamplingEnable3248 `json:"sampling-enable"`
+	SamplingEnable []VisibilityFlowCollectorSflowSamplingEnable3276 `json:"sampling-enable"`
 }
 
-type VisibilityFlowCollectorSflowSamplingEnable3248 struct {
+type VisibilityFlowCollectorSflowSamplingEnable3276 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type VisibilityFlowCollectorNetflow3249 struct {
+type VisibilityFlowCollectorNetflow3277 struct {
 	Uuid           string                                             `json:"uuid"`
-	SamplingEnable []VisibilityFlowCollectorNetflowSamplingEnable3250 `json:"sampling-enable"`
-	Template       VisibilityFlowCollectorNetflowTemplate3251         `json:"template"`
+	SamplingEnable []VisibilityFlowCollectorNetflowSamplingEnable3278 `json:"sampling-enable"`
+	Template       VisibilityFlowCollectorNetflowTemplate3279         `json:"template"`
 }
 
-type VisibilityFlowCollectorNetflowSamplingEnable3250 struct {
+type VisibilityFlowCollectorNetflowSamplingEnable3278 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type VisibilityFlowCollectorNetflowTemplate3251 struct {
+type VisibilityFlowCollectorNetflowTemplate3279 struct {
 	Uuid           string                                                     `json:"uuid"`
-	SamplingEnable []VisibilityFlowCollectorNetflowTemplateSamplingEnable3252 `json:"sampling-enable"`
-	Detail         VisibilityFlowCollectorNetflowTemplateDetail3253           `json:"detail"`
+	SamplingEnable []VisibilityFlowCollectorNetflowTemplateSamplingEnable3280 `json:"sampling-enable"`
+	Detail         VisibilityFlowCollectorNetflowTemplateDetail3281           `json:"detail"`
 }
 
-type VisibilityFlowCollectorNetflowTemplateSamplingEnable3252 struct {
+type VisibilityFlowCollectorNetflowTemplateSamplingEnable3280 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type VisibilityFlowCollectorNetflowTemplateDetail3253 struct {
+type VisibilityFlowCollectorNetflowTemplateDetail3281 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VisibilityMonEntityTelemetryData3254 struct {
+type VisibilityMonEntityTelemetryData3282 struct {
 	Uuid           string                                               `json:"uuid"`
-	SamplingEnable []VisibilityMonEntityTelemetryDataSamplingEnable3255 `json:"sampling-enable"`
+	SamplingEnable []VisibilityMonEntityTelemetryDataSamplingEnable3283 `json:"sampling-enable"`
 }
 
-type VisibilityMonEntityTelemetryDataSamplingEnable3255 struct {
+type VisibilityMonEntityTelemetryDataSamplingEnable3283 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type VisibilityMonTopk3256 struct {
-	Sources VisibilityMonTopkSources3257 `json:"sources"`
+type VisibilityMonTopk3284 struct {
+	Sources VisibilityMonTopkSources3285 `json:"sources"`
 }
 
-type VisibilityMonTopkSources3257 struct {
+type VisibilityMonTopkSources3285 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VisibilityMonitor3258 struct {
+type VisibilityMonitor3286 struct {
 	PrimaryMonitor    string                                `json:"primary-monitor"`
 	MonitorKey        string                                `json:"monitor-key"`
 	MonEntityTopk     int                                   `json:"mon-entity-topk"`
 	SourceEntityTopk  int                                   `json:"source-entity-topk"`
 	IndexSessions     int                                   `json:"index-sessions"`
 	IndexSessionsType string                                `json:"index-sessions-type"`
-	Template          VisibilityMonitorTemplate3259         `json:"template"`
+	Template          VisibilityMonitorTemplate3287         `json:"template"`
 	Uuid              string                                `json:"uuid"`
-	AgentList         []VisibilityMonitorAgentList3261      `json:"agent-list"`
-	Sflow             VisibilityMonitorSflow3263            `json:"sflow"`
-	Netflow           VisibilityMonitorNetflow3264          `json:"netflow"`
-	DebugList         []VisibilityMonitorDebugList3265      `json:"debug-list"`
-	ReplayDebugFile   VisibilityMonitorReplayDebugFile3266  `json:"replay-debug-file"`
-	DeleteDebugFile   VisibilityMonitorDeleteDebugFile3267  `json:"delete-debug-file"`
-	SecondaryMonitor  VisibilityMonitorSecondaryMonitor3268 `json:"secondary-monitor"`
+	AgentList         []VisibilityMonitorAgentList3289      `json:"agent-list"`
+	Sflow             VisibilityMonitorSflow3291            `json:"sflow"`
+	Netflow           VisibilityMonitorNetflow3292          `json:"netflow"`
+	DebugList         []VisibilityMonitorDebugList3293      `json:"debug-list"`
+	ReplayDebugFile   VisibilityMonitorReplayDebugFile3294  `json:"replay-debug-file"`
+	DeleteDebugFile   VisibilityMonitorDeleteDebugFile3295  `json:"delete-debug-file"`
+	SecondaryMonitor  VisibilityMonitorSecondaryMonitor3296 `json:"secondary-monitor"`
 }
 
-type VisibilityMonitorTemplate3259 struct {
-	Notification []VisibilityMonitorTemplateNotification3260 `json:"notification"`
+type VisibilityMonitorTemplate3287 struct {
+	Notification []VisibilityMonitorTemplateNotification3288 `json:"notification"`
 }
 
-type VisibilityMonitorTemplateNotification3260 struct {
+type VisibilityMonitorTemplateNotification3288 struct {
 	NotifTemplateName string `json:"notif-template-name"`
 }
 
-type VisibilityMonitorAgentList3261 struct {
+type VisibilityMonitorAgentList3289 struct {
 	AgentName      string                                         `json:"agent-name"`
 	AgentV4Addr    string                                         `json:"agent-v4-addr"`
 	AgentV6Addr    string                                         `json:"agent-v6-addr"`
 	Uuid           string                                         `json:"uuid"`
 	UserTag        string                                         `json:"user-tag"`
-	SamplingEnable []VisibilityMonitorAgentListSamplingEnable3262 `json:"sampling-enable"`
+	SamplingEnable []VisibilityMonitorAgentListSamplingEnable3290 `json:"sampling-enable"`
 }
 
-type VisibilityMonitorAgentListSamplingEnable3262 struct {
+type VisibilityMonitorAgentListSamplingEnable3290 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type VisibilityMonitorSflow3263 struct {
+type VisibilityMonitorSflow3291 struct {
 	ListeningPort int    `json:"listening-port" dval:"6343"`
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityMonitorNetflow3264 struct {
+type VisibilityMonitorNetflow3292 struct {
 	ListeningPort         int    `json:"listening-port" dval:"9996"`
 	TemplateActiveTimeout int    `json:"template-active-timeout" dval:"30"`
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityMonitorDebugList3265 struct {
+type VisibilityMonitorDebugList3293 struct {
 	DebugIpAddr   string `json:"debug-ip-addr"`
 	DebugPort     int    `json:"debug-port"`
 	DebugProtocol string `json:"debug-protocol"`
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityMonitorReplayDebugFile3266 struct {
+type VisibilityMonitorReplayDebugFile3294 struct {
 	DebugIpAddr   string `json:"debug-ip-addr"`
 	DebugPort     int    `json:"debug-port"`
 	DebugProtocol string `json:"debug-protocol"`
 }
 
-type VisibilityMonitorDeleteDebugFile3267 struct {
+type VisibilityMonitorDeleteDebugFile3295 struct {
 	DebugIpAddr   string `json:"debug-ip-addr"`
 	DebugPort     int    `json:"debug-port"`
 	DebugProtocol string `json:"debug-protocol"`
 }
 
-type VisibilityMonitorSecondaryMonitor3268 struct {
+type VisibilityMonitorSecondaryMonitor3296 struct {
 	SecondaryMonitoringKey string                                               `json:"secondary-monitoring-key"`
 	MonEntityTopk          int                                                  `json:"mon-entity-topk"`
 	SourceEntityTopk       int                                                  `json:"source-entity-topk"`
 	Uuid                   string                                               `json:"uuid"`
-	DebugList              []VisibilityMonitorSecondaryMonitorDebugList3269     `json:"debug-list"`
-	DeleteDebugFile        VisibilityMonitorSecondaryMonitorDeleteDebugFile3270 `json:"delete-debug-file"`
-	ReplayDebugFile        VisibilityMonitorSecondaryMonitorReplayDebugFile3271 `json:"replay-debug-file"`
+	DebugList              []VisibilityMonitorSecondaryMonitorDebugList3297     `json:"debug-list"`
+	DeleteDebugFile        VisibilityMonitorSecondaryMonitorDeleteDebugFile3298 `json:"delete-debug-file"`
+	ReplayDebugFile        VisibilityMonitorSecondaryMonitorReplayDebugFile3299 `json:"replay-debug-file"`
 }
 
-type VisibilityMonitorSecondaryMonitorDebugList3269 struct {
+type VisibilityMonitorSecondaryMonitorDebugList3297 struct {
 	DebugIpAddr   string `json:"debug-ip-addr"`
 	DebugPort     int    `json:"debug-port"`
 	DebugProtocol string `json:"debug-protocol"`
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityMonitorSecondaryMonitorDeleteDebugFile3270 struct {
+type VisibilityMonitorSecondaryMonitorDeleteDebugFile3298 struct {
 	DebugIpAddr   string `json:"debug-ip-addr"`
 	DebugPort     int    `json:"debug-port"`
 	DebugProtocol string `json:"debug-protocol"`
 }
 
-type VisibilityMonitorSecondaryMonitorReplayDebugFile3271 struct {
+type VisibilityMonitorSecondaryMonitorReplayDebugFile3299 struct {
 	DebugIpAddr   string `json:"debug-ip-addr"`
 	DebugPort     int    `json:"debug-port"`
 	DebugProtocol string `json:"debug-protocol"`
 }
 
-type VisibilityMonitoredEntity3272 struct {
+type VisibilityMonitoredEntity3300 struct {
 	Uuid      string                                 `json:"uuid"`
-	Detail    VisibilityMonitoredEntityDetail3273    `json:"detail"`
-	Sessions  VisibilityMonitoredEntitySessions3275  `json:"sessions"`
-	MonTopk   VisibilityMonitoredEntityMonTopk3276   `json:"mon-topk"`
-	Secondary VisibilityMonitoredEntitySecondary3278 `json:"secondary"`
+	Detail    VisibilityMonitoredEntityDetail3301    `json:"detail"`
+	Sessions  VisibilityMonitoredEntitySessions3303  `json:"sessions"`
+	MonTopk   VisibilityMonitoredEntityMonTopk3304   `json:"mon-topk"`
+	Secondary VisibilityMonitoredEntitySecondary3306 `json:"secondary"`
 }
 
-type VisibilityMonitoredEntityDetail3273 struct {
+type VisibilityMonitoredEntityDetail3301 struct {
 	Uuid  string                                   `json:"uuid"`
-	Debug VisibilityMonitoredEntityDetailDebug3274 `json:"debug"`
+	Debug VisibilityMonitoredEntityDetailDebug3302 `json:"debug"`
 }
 
-type VisibilityMonitoredEntityDetailDebug3274 struct {
+type VisibilityMonitoredEntityDetailDebug3302 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VisibilityMonitoredEntitySessions3275 struct {
+type VisibilityMonitoredEntitySessions3303 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VisibilityMonitoredEntityMonTopk3276 struct {
+type VisibilityMonitoredEntityMonTopk3304 struct {
 	Uuid    string                                      `json:"uuid"`
-	Sources VisibilityMonitoredEntityMonTopkSources3277 `json:"sources"`
+	Sources VisibilityMonitoredEntityMonTopkSources3305 `json:"sources"`
 }
 
-type VisibilityMonitoredEntityMonTopkSources3277 struct {
+type VisibilityMonitoredEntityMonTopkSources3305 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VisibilityMonitoredEntitySecondary3278 struct {
-	MonTopk VisibilityMonitoredEntitySecondaryMonTopk3279 `json:"mon-topk"`
+type VisibilityMonitoredEntitySecondary3306 struct {
+	MonTopk VisibilityMonitoredEntitySecondaryMonTopk3307 `json:"mon-topk"`
 }
 
-type VisibilityMonitoredEntitySecondaryMonTopk3279 struct {
+type VisibilityMonitoredEntitySecondaryMonTopk3307 struct {
 	Uuid    string                                               `json:"uuid"`
-	Sources VisibilityMonitoredEntitySecondaryMonTopkSources3280 `json:"sources"`
+	Sources VisibilityMonitoredEntitySecondaryMonTopkSources3308 `json:"sources"`
 }
 
-type VisibilityMonitoredEntitySecondaryMonTopkSources3280 struct {
+type VisibilityMonitoredEntitySecondaryMonTopkSources3308 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VisibilityPacketCapture3281 struct {
+type VisibilityPacketCapture3309 struct {
 	Uuid                    string                                             `json:"uuid"`
-	CaptureConfigList       []VisibilityPacketCaptureCaptureConfigList3282     `json:"capture-config-list"`
-	DeletePacketCaptureFile VisibilityPacketCaptureDeletePacketCaptureFile3283 `json:"delete-packet-capture-file"`
-	GlobalTemplates         VisibilityPacketCaptureGlobalTemplates3284         `json:"global-templates"`
-	ObjectTemplates         VisibilityPacketCaptureObjectTemplates3535         `json:"object-templates"`
-	AutomatedCaptures       VisibilityPacketCaptureAutomatedCaptures3680       `json:"automated-captures"`
+	CaptureConfigList       []VisibilityPacketCaptureCaptureConfigList3310     `json:"capture-config-list"`
+	DeletePacketCaptureFile VisibilityPacketCaptureDeletePacketCaptureFile3311 `json:"delete-packet-capture-file"`
+	GlobalTemplates         VisibilityPacketCaptureGlobalTemplates3312         `json:"global-templates"`
+	ObjectTemplates         VisibilityPacketCaptureObjectTemplates3569         `json:"object-templates"`
+	AutomatedCaptures       VisibilityPacketCaptureAutomatedCaptures3718       `json:"automated-captures"`
 }
 
-type VisibilityPacketCaptureCaptureConfigList3282 struct {
+type VisibilityPacketCaptureCaptureConfigList3310 struct {
 	Name                          string `json:"name"`
 	Disable                       int    `json:"disable"`
 	ConcurrentCaptures            int    `json:"concurrent-captures"`
@@ -301,27 +301,27 @@ type VisibilityPacketCaptureCaptureConfigList3282 struct {
 	UserTag                       string `json:"user-tag"`
 }
 
-type VisibilityPacketCaptureDeletePacketCaptureFile3283 struct {
+type VisibilityPacketCaptureDeletePacketCaptureFile3311 struct {
 	FileName string `json:"file-name"`
 	All      int    `json:"all"`
 }
 
-type VisibilityPacketCaptureGlobalTemplates3284 struct {
+type VisibilityPacketCaptureGlobalTemplates3312 struct {
 	Uuid         string                                                   `json:"uuid"`
-	TemplateList []VisibilityPacketCaptureGlobalTemplatesTemplateList3285 `json:"template-list"`
-	Activate     VisibilityPacketCaptureGlobalTemplatesActivate3534       `json:"activate"`
+	TemplateList []VisibilityPacketCaptureGlobalTemplatesTemplateList3313 `json:"template-list"`
+	Activate     VisibilityPacketCaptureGlobalTemplatesActivate3568       `json:"activate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateList3285 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateList3313 struct {
 	Name                       string                                                                           `json:"name"`
 	CaptureConfig              string                                                                           `json:"capture-config"`
 	Uuid                       string                                                                           `json:"uuid"`
 	UserTag                    string                                                                           `json:"user-tag"`
-	TriggerSysObjStatsSeverity VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsSeverity3286 `json:"trigger-sys-obj-stats-severity"`
-	TriggerSysObjStatsChange   VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChange3287   `json:"trigger-sys-obj-stats-change"`
+	TriggerSysObjStatsSeverity VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsSeverity3314 `json:"trigger-sys-obj-stats-severity"`
+	TriggerSysObjStatsChange   VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChange3315   `json:"trigger-sys-obj-stats-change"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsSeverity3286 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsSeverity3314 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -333,105 +333,107 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsSeverit
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChange3287 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChange3315 struct {
 	Uuid                     string                                                                                                 `json:"uuid"`
-	SystemCtrLibAcct         VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcct3288         `json:"system-ctr-lib-acct"`
-	SystemHardwareAccelerate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerate3291 `json:"system-hardware-accelerate"`
-	SystemRadiusServer       VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServer3294       `json:"system-radius-server"`
-	SystemIpThreatList       VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatList3297       `json:"system-ip-threat-list"`
-	SystemFpgaDrop           VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDrop3300           `json:"system-fpga-drop"`
-	SystemDpdkStats          VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStats3303          `json:"system-dpdk-stats"`
-	IpAnomalyDrop            VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDrop3306            `json:"ip-anomaly-drop"`
-	AamAuthenticationGlobal  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobal3309  `json:"aam-authentication-global"`
-	AamRdns                  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdns3312                  `json:"aam-rdns"`
-	AamAuthServerLdap        VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdap3315        `json:"aam-auth-server-ldap"`
-	AamAuthServerOcsp        VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcsp3318        `json:"aam-auth-server-ocsp"`
-	AamAuthServerRadius      VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadius3321      `json:"aam-auth-server-radius"`
-	AamAuthServerWin         VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWin3324         `json:"aam-auth-server-win"`
-	AamAuthAccount           VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccount3327           `json:"aam-auth-account"`
-	AamAuthSamlGlobal        VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobal3330        `json:"aam-auth-saml-global"`
-	AamAuthRelayKerberos     VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberos3333     `json:"aam-auth-relay-kerberos"`
-	AamAuthCaptcha           VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptcha3336           `json:"aam-auth-captcha"`
-	SlbSslError              VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslError3339              `json:"slb-ssl-error"`
-	SlbSslCertRevoke         VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevoke3342         `json:"slb-ssl-cert-revoke"`
-	SlbSslForwardProxy       VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxy3345       `json:"slb-ssl-forward-proxy"`
-	VpnError                 VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnError3348                 `json:"vpn-error"`
-	Cgnv6DdosProc            VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProc3351            `json:"cgnv6-ddos-proc"`
-	Cgnv6Lsn                 VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Lsn3354                 `json:"cgnv6-lsn"`
-	Cgnv6LsnAlgEsp           VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEsp3357           `json:"cgnv6-lsn-alg-esp"`
-	Cgnv6LsnAlgPptp          VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptp3360          `json:"cgnv6-lsn-alg-pptp"`
-	Cgnv6LsnAlgRtsp          VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtsp3363          `json:"cgnv6-lsn-alg-rtsp"`
-	Cgnv6LsnAlgSip           VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSip3366           `json:"cgnv6-lsn-alg-sip"`
-	Cgnv6LsnAlgMgcp          VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcp3369          `json:"cgnv6-lsn-alg-mgcp"`
-	Cgnv6LsnAlgH323          VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH3233372          `json:"cgnv6-lsn-alg-h323"`
-	Cgnv6Nat64Global         VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64Global3375         `json:"cgnv6-nat64-global"`
-	Cgnv6DsLiteGlobal        VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobal3378        `json:"cgnv6-ds-lite-global"`
-	Cgnv6FixedNatGlobal      VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobal3381      `json:"cgnv6-fixed-nat-global"`
-	Cgnv6FixedNatAlgPptp     VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptp3384     `json:"cgnv6-fixed-nat-alg-pptp"`
-	Cgnv6FixedNatAlgRtsp     VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtsp3387     `json:"cgnv6-fixed-nat-alg-rtsp"`
-	Cgnv6FixedNatAlgSip      VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSip3390      `json:"cgnv6-fixed-nat-alg-sip"`
-	Cgnv6Pcp                 VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Pcp3393                 `json:"cgnv6-pcp"`
-	Cgnv6Logging             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Logging3396             `json:"cgnv6-logging"`
-	Cgnv6L4                  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L43399                  `json:"cgnv6-l4"`
-	Cgnv6Icmp                VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Icmp3402                `json:"cgnv6-icmp"`
-	Cgnv6HttpAlg             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlg3405             `json:"cgnv6-http-alg"`
-	Cgnv6Dns64               VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns643408               `json:"cgnv6-dns64"`
-	Cgnv6Dhcpv6              VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv63411              `json:"cgnv6-dhcpv6"`
-	FwLogging                VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLogging3414                `json:"fw-logging"`
-	FwGlobal                 VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobal3417                 `json:"fw-global"`
-	FwAlgRtsp                VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtsp3420                `json:"fw-alg-rtsp"`
-	FwAlgPptp                VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptp3423                `json:"fw-alg-pptp"`
-	FwTcpSynCookie           VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookie3426           `json:"fw-tcp-syn-cookie"`
-	FwDdosProtection         VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtection3429         `json:"fw-ddos-protection"`
-	FwGtp                    VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtp3432                    `json:"fw-gtp"`
-	SystemTcp                VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcp3435                `json:"system-tcp"`
-	SlbConnReuse             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuse3438             `json:"slb-conn-reuse"`
-	SlbAflow                 VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflow3441                 `json:"slb-aflow"`
-	SlbFix                   VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFix3444                   `json:"slb-fix"`
-	SlbSpdyProxy             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxy3447             `json:"slb-spdy-proxy"`
-	SlbHttp2                 VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp23450                 `json:"slb-http2"`
-	SlbL7session             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7session3453             `json:"slb-l7session"`
-	SlbSmpp                  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmpp3456                  `json:"slb-smpp"`
-	SlbSmtp                  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtp3459                  `json:"slb-smtp"`
-	SlbMqtt                  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqtt3462                  `json:"slb-mqtt"`
-	SlbIcap                  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcap3465                  `json:"slb-icap"`
-	SlbSip                   VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSip3468                   `json:"slb-sip"`
-	SlbHwCompress            VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompress3471            `json:"slb-hw-compress"`
-	SlbMysql                 VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysql3474                 `json:"slb-mysql"`
-	SlbMssql                 VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssql3477                 `json:"slb-mssql"`
-	SlbCrlSrcip              VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcip3480              `json:"slb-crl-srcip"`
-	SlbGeneric               VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGeneric3483               `json:"slb-generic"`
-	SlbPersist               VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersist3486               `json:"slb-persist"`
-	SlbHttpProxy             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxy3489             `json:"slb-http-proxy"`
-	SlbL4                    VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL43492                    `json:"slb-l4"`
-	SlbFastHttp              VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttp3495              `json:"slb-fast-http"`
-	SlbFtpProxy              VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxy3498              `json:"slb-ftp-proxy"`
-	SlbImapProxy             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxy3501             `json:"slb-imap-proxy"`
-	SlbPop3Proxy             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3Proxy3504             `json:"slb-pop3-proxy"`
-	SlbSwitch                VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitch3507                `json:"slb-switch"`
-	SlbRcCache               VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCache3510               `json:"slb-rc-cache"`
-	SoCounters               VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCounters3513               `json:"so-counters"`
-	SlbPlyrIdGbl             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGbl3516             `json:"slb-plyr-id-gbl"`
-	SlbSportRate             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRate3519             `json:"slb-sport-rate"`
-	LoggingLocalLogGlobal    VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobal3522    `json:"logging-local-log-global"`
-	SlbMlb                   VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlb3525                   `json:"slb-mlb"`
-	SlbLinkProbe             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbe3528             `json:"slb-link-probe"`
-	SlbRpz                   VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpz3531                   `json:"slb-rpz"`
+	SystemCtrLibAcct         VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcct3316         `json:"system-ctr-lib-acct"`
+	SystemHardwareAccelerate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerate3319 `json:"system-hardware-accelerate"`
+	SystemRadiusServer       VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServer3322       `json:"system-radius-server"`
+	SystemIpThreatList       VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatList3325       `json:"system-ip-threat-list"`
+	SystemFpgaDrop           VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDrop3328           `json:"system-fpga-drop"`
+	SystemDpdkStats          VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStats3331          `json:"system-dpdk-stats"`
+	IpAnomalyDrop            VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDrop3334            `json:"ip-anomaly-drop"`
+	AamAuthenticationGlobal  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobal3337  `json:"aam-authentication-global"`
+	AamRdns                  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdns3340                  `json:"aam-rdns"`
+	AamAuthServerLdap        VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdap3343        `json:"aam-auth-server-ldap"`
+	AamAuthServerOcsp        VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcsp3346        `json:"aam-auth-server-ocsp"`
+	AamAuthServerRadius      VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadius3349      `json:"aam-auth-server-radius"`
+	AamAuthServerWin         VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWin3352         `json:"aam-auth-server-win"`
+	AamAuthAccount           VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccount3355           `json:"aam-auth-account"`
+	AamAuthSamlGlobal        VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobal3358        `json:"aam-auth-saml-global"`
+	AamAuthRelayKerberos     VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberos3361     `json:"aam-auth-relay-kerberos"`
+	AamAuthCaptcha           VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptcha3364           `json:"aam-auth-captcha"`
+	SlbSslError              VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslError3367              `json:"slb-ssl-error"`
+	SlbSslCertRevoke         VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevoke3370         `json:"slb-ssl-cert-revoke"`
+	SlbSslForwardProxy       VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxy3373       `json:"slb-ssl-forward-proxy"`
+	VpnError                 VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnError3376                 `json:"vpn-error"`
+	Cgnv6DdosProc            VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProc3379            `json:"cgnv6-ddos-proc"`
+	Cgnv6Lsn                 VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Lsn3382                 `json:"cgnv6-lsn"`
+	Cgnv6LsnAlgEsp           VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEsp3385           `json:"cgnv6-lsn-alg-esp"`
+	Cgnv6LsnAlgPptp          VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptp3388          `json:"cgnv6-lsn-alg-pptp"`
+	Cgnv6LsnAlgRtsp          VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtsp3391          `json:"cgnv6-lsn-alg-rtsp"`
+	Cgnv6LsnAlgSip           VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSip3394           `json:"cgnv6-lsn-alg-sip"`
+	Cgnv6LsnAlgMgcp          VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcp3397          `json:"cgnv6-lsn-alg-mgcp"`
+	Cgnv6LsnAlgH323          VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH3233400          `json:"cgnv6-lsn-alg-h323"`
+	Cgnv6LsnRadius           VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadius3403           `json:"cgnv6-lsn-radius"`
+	Cgnv6Nat64Global         VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64Global3406         `json:"cgnv6-nat64-global"`
+	Cgnv6DsLiteGlobal        VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobal3409        `json:"cgnv6-ds-lite-global"`
+	Cgnv6FixedNatGlobal      VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobal3412      `json:"cgnv6-fixed-nat-global"`
+	Cgnv6FixedNatAlgPptp     VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptp3415     `json:"cgnv6-fixed-nat-alg-pptp"`
+	Cgnv6FixedNatAlgRtsp     VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtsp3418     `json:"cgnv6-fixed-nat-alg-rtsp"`
+	Cgnv6FixedNatAlgSip      VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSip3421      `json:"cgnv6-fixed-nat-alg-sip"`
+	Cgnv6Pcp                 VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Pcp3424                 `json:"cgnv6-pcp"`
+	Cgnv6Logging             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Logging3427             `json:"cgnv6-logging"`
+	Cgnv6L4                  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L43430                  `json:"cgnv6-l4"`
+	Cgnv6Icmp                VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Icmp3433                `json:"cgnv6-icmp"`
+	Cgnv6HttpAlg             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlg3436             `json:"cgnv6-http-alg"`
+	Cgnv6Dns64               VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns643439               `json:"cgnv6-dns64"`
+	Cgnv6Dhcpv6              VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv63442              `json:"cgnv6-dhcpv6"`
+	FwLogging                VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLogging3445                `json:"fw-logging"`
+	FwGlobal                 VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobal3448                 `json:"fw-global"`
+	FwAlgRtsp                VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtsp3451                `json:"fw-alg-rtsp"`
+	FwAlgPptp                VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptp3454                `json:"fw-alg-pptp"`
+	FwRadServer              VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServer3457              `json:"fw-rad-server"`
+	FwTcpSynCookie           VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookie3460           `json:"fw-tcp-syn-cookie"`
+	FwDdosProtection         VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtection3463         `json:"fw-ddos-protection"`
+	FwGtp                    VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtp3466                    `json:"fw-gtp"`
+	SystemTcp                VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcp3469                `json:"system-tcp"`
+	SlbConnReuse             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuse3472             `json:"slb-conn-reuse"`
+	SlbAflow                 VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflow3475                 `json:"slb-aflow"`
+	SlbFix                   VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFix3478                   `json:"slb-fix"`
+	SlbSpdyProxy             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxy3481             `json:"slb-spdy-proxy"`
+	SlbHttp2                 VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp23484                 `json:"slb-http2"`
+	SlbL7session             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7session3487             `json:"slb-l7session"`
+	SlbSmpp                  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmpp3490                  `json:"slb-smpp"`
+	SlbSmtp                  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtp3493                  `json:"slb-smtp"`
+	SlbMqtt                  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqtt3496                  `json:"slb-mqtt"`
+	SlbIcap                  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcap3499                  `json:"slb-icap"`
+	SlbSip                   VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSip3502                   `json:"slb-sip"`
+	SlbHwCompress            VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompress3505            `json:"slb-hw-compress"`
+	SlbMysql                 VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysql3508                 `json:"slb-mysql"`
+	SlbMssql                 VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssql3511                 `json:"slb-mssql"`
+	SlbCrlSrcip              VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcip3514              `json:"slb-crl-srcip"`
+	SlbGeneric               VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGeneric3517               `json:"slb-generic"`
+	SlbPersist               VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersist3520               `json:"slb-persist"`
+	SlbHttpProxy             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxy3523             `json:"slb-http-proxy"`
+	SlbL4                    VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL43526                    `json:"slb-l4"`
+	SlbFastHttp              VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttp3529              `json:"slb-fast-http"`
+	SlbFtpProxy              VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxy3532              `json:"slb-ftp-proxy"`
+	SlbImapProxy             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxy3535             `json:"slb-imap-proxy"`
+	SlbPop3Proxy             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3Proxy3538             `json:"slb-pop3-proxy"`
+	SlbSwitch                VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitch3541                `json:"slb-switch"`
+	SlbRcCache               VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCache3544               `json:"slb-rc-cache"`
+	SoCounters               VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCounters3547               `json:"so-counters"`
+	SlbPlyrIdGbl             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGbl3550             `json:"slb-plyr-id-gbl"`
+	SlbSportRate             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRate3553             `json:"slb-sport-rate"`
+	LoggingLocalLogGlobal    VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobal3556    `json:"logging-local-log-global"`
+	SlbMlb                   VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlb3559                   `json:"slb-mlb"`
+	SlbLinkProbe             VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbe3562             `json:"slb-link-probe"`
+	SlbRpz                   VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpz3565                   `json:"slb-rpz"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcct3288 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcct3316 struct {
 	Uuid             string                                                                                                         `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsInc3289  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsRate3290 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsInc3317  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsRate3318 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsInc3289 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsInc3317 struct {
 	TotalNodesFreeFailed   int    `json:"total-nodes-free-failed"`
 	TotalNodesUnlinkFailed int    `json:"total-nodes-unlink-failed"`
 	Uuid                   string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsRate3290 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemCtrLibAcctTriggerStatsRate3318 struct {
 	ThresholdExceededBy    int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration               int    `json:"duration" dval:"60"`
 	TotalNodesFreeFailed   int    `json:"total-nodes-free-failed"`
@@ -439,13 +441,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                   string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerate3291 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerate3319 struct {
 	Uuid             string                                                                                                                 `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsInc3292  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsRate3293 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsInc3320  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsRate3321 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsInc3292 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsInc3320 struct {
 	HwFwdProgErrors          int    `json:"hw-fwd-prog-errors"`
 	HwFwdFlowSinglebitErrors int    `json:"hw-fwd-flow-singlebit-errors"`
 	HwFwdFlowTagMismatch     int    `json:"hw-fwd-flow-tag-mismatch"`
@@ -456,7 +458,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsRate3293 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemHardwareAccelerateTriggerStatsRate3321 struct {
 	ThresholdExceededBy      int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                 int    `json:"duration" dval:"60"`
 	HwFwdProgErrors          int    `json:"hw-fwd-prog-errors"`
@@ -469,13 +471,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServer3294 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServer3322 struct {
 	Uuid             string                                                                                                           `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsInc3295  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsRate3296 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsInc3323  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsRate3324 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsInc3295 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsInc3323 struct {
 	RadiusRequestDropped       int    `json:"radius-request-dropped"`
 	RequestBadSecretDropped    int    `json:"request-bad-secret-dropped"`
 	RequestNoKeyVapDropped     int    `json:"request-no-key-vap-dropped"`
@@ -488,7 +490,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                       string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsRate3296 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemRadiusServerTriggerStatsRate3324 struct {
 	ThresholdExceededBy        int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                   int    `json:"duration" dval:"60"`
 	RadiusRequestDropped       int    `json:"radius-request-dropped"`
@@ -503,19 +505,19 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                       string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatList3297 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatList3325 struct {
 	Uuid             string                                                                                                           `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsInc3298  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsRate3299 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsInc3326  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsRate3327 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsInc3298 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsInc3326 struct {
 	Error_out_of_memory      int    `json:"error_out_of_memory"`
 	Error_out_of_spe_entries int    `json:"error_out_of_spe_entries"`
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsRate3299 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemIpThreatListTriggerStatsRate3327 struct {
 	ThresholdExceededBy      int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                 int    `json:"duration" dval:"60"`
 	Error_out_of_memory      int    `json:"error_out_of_memory"`
@@ -523,13 +525,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDrop3300 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDrop3328 struct {
 	Uuid             string                                                                                                       `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsInc3301  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsRate3302 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsInc3329  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsRate3330 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsInc3301 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsInc3329 struct {
 	MrxDrop           int    `json:"mrx-drop"`
 	HrxDrop           int    `json:"hrx-drop"`
 	SizDrop           int    `json:"siz-drop"`
@@ -570,7 +572,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid              string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsRate3302 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemFpgaDropTriggerStatsRate3330 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	MrxDrop             int    `json:"mrx-drop"`
@@ -613,13 +615,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStats3303 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStats3331 struct {
 	Uuid             string                                                                                                        `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsInc3304  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsRate3305 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsInc3332  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsRate3333 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsInc3304 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsInc3332 struct {
 	PktDrop          int    `json:"pkt-drop"`
 	PktLnkDownDrop   int    `json:"pkt-lnk-down-drop"`
 	ErrPktDrop       int    `json:"err-pkt-drop"`
@@ -650,7 +652,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid             string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsRate3305 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemDpdkStatsTriggerStatsRate3333 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	PktDrop             int    `json:"pkt-drop"`
@@ -683,13 +685,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDrop3306 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDrop3334 struct {
 	Uuid             string                                                                                                      `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsInc3307  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsRate3308 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsInc3335  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsRate3336 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsInc3307 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsInc3335 struct {
 	Land               int    `json:"land"`
 	Emp_frg            int    `json:"emp_frg"`
 	Emp_mic_frg        int    `json:"emp_mic_frg"`
@@ -742,7 +744,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeI
 	Uuid               string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsRate3308 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeIpAnomalyDropTriggerStatsRate3336 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Land                int    `json:"land"`
@@ -797,13 +799,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeI
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobal3309 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobal3337 struct {
 	Uuid             string                                                                                                                `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsInc3310  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsRate3311 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsInc3338  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsRate3339 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsInc3310 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsInc3338 struct {
 	Misses                int    `json:"misses"`
 	OpenSocketFailed      int    `json:"open-socket-failed"`
 	ConnectFailed         int    `json:"connect-failed"`
@@ -816,7 +818,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsRate3311 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthenticationGlobalTriggerStatsRate3339 struct {
 	ThresholdExceededBy   int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration              int    `json:"duration" dval:"60"`
 	Misses                int    `json:"misses"`
@@ -831,13 +833,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdns3312 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdns3340 struct {
 	Uuid             string                                                                                                `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsInc3313  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsRate3314 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsInc3341  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsRate3342 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsInc3313 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsInc3341 struct {
 	RequestDropped  int    `json:"request-dropped"`
 	ResponseFailure int    `json:"response-failure"`
 	ResponseError   int    `json:"response-error"`
@@ -845,7 +847,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid            string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsRate3314 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamRdnsTriggerStatsRate3342 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	RequestDropped      int    `json:"request-dropped"`
@@ -855,13 +857,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdap3315 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdap3343 struct {
 	Uuid             string                                                                                                          `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsInc3316  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsRate3317 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsInc3344  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsRate3345 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsInc3316 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsInc3344 struct {
 	AdminBindFailure    int    `json:"admin-bind-failure"`
 	BindFailure         int    `json:"bind-failure"`
 	SearchFailure       int    `json:"search-failure"`
@@ -879,7 +881,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsRate3317 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerLdapTriggerStatsRate3345 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	AdminBindFailure    int    `json:"admin-bind-failure"`
@@ -899,13 +901,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcsp3318 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcsp3346 struct {
 	Uuid             string                                                                                                          `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsInc3319  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsRate3320 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsInc3347  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsRate3348 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsInc3319 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsInc3347 struct {
 	StaplingRequestDropped  int    `json:"stapling-request-dropped"`
 	StaplingResponseFailure int    `json:"stapling-response-failure"`
 	StaplingResponseError   int    `json:"stapling-response-error"`
@@ -919,7 +921,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid                    string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsRate3320 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerOcspTriggerStatsRate3348 struct {
 	ThresholdExceededBy     int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                int    `json:"duration" dval:"60"`
 	StaplingRequestDropped  int    `json:"stapling-request-dropped"`
@@ -935,13 +937,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid                    string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadius3321 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadius3349 struct {
 	Uuid             string                                                                                                            `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsInc3322  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsRate3323 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsInc3350  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsRate3351 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsInc3322 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsInc3350 struct {
 	Authen_failure      int    `json:"authen_failure"`
 	Authorize_failure   int    `json:"authorize_failure"`
 	Timeout_error       int    `json:"timeout_error"`
@@ -956,7 +958,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsRate3323 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerRadiusTriggerStatsRate3351 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Authen_failure      int    `json:"authen_failure"`
@@ -973,13 +975,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWin3324 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWin3352 struct {
 	Uuid             string                                                                                                         `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsInc3325  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsRate3326 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsInc3353  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsRate3354 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsInc3325 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsInc3353 struct {
 	KerberosTimeoutError             int    `json:"kerberos-timeout-error"`
 	KerberosOtherError               int    `json:"kerberos-other-error"`
 	KerberosRequestDropped           int    `json:"kerberos-request-dropped"`
@@ -996,7 +998,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid                             string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsRate3326 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthServerWinTriggerStatsRate3354 struct {
 	ThresholdExceededBy              int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                         int    `json:"duration" dval:"60"`
 	KerberosTimeoutError             int    `json:"kerberos-timeout-error"`
@@ -1015,13 +1017,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid                             string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccount3327 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccount3355 struct {
 	Uuid             string                                                                                                       `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsInc3328  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsRate3329 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsInc3356  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsRate3357 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsInc3328 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsInc3356 struct {
 	RequestDropped  int    `json:"request-dropped"`
 	ResponseFailure int    `json:"response-failure"`
 	ResponseError   int    `json:"response-error"`
@@ -1030,7 +1032,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid            string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsRate3329 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthAccountTriggerStatsRate3357 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	RequestDropped      int    `json:"request-dropped"`
@@ -1041,19 +1043,19 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobal3330 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobal3358 struct {
 	Uuid             string                                                                                                          `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsInc3331  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsRate3332 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsInc3359  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsRate3360 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsInc3331 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsInc3359 struct {
 	AcsAuthzFail int    `json:"acs-authz-fail"`
 	AcsError     int    `json:"acs-error"`
 	Uuid         string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsRate3332 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthSamlGlobalTriggerStatsRate3360 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	AcsAuthzFail        int    `json:"acs-authz-fail"`
@@ -1061,13 +1063,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberos3333 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberos3361 struct {
 	Uuid             string                                                                                                             `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsInc3334  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsRate3335 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsInc3362  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsRate3363 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsInc3334 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsInc3362 struct {
 	TimeoutError        int    `json:"timeout-error"`
 	OtherError          int    `json:"other-error"`
 	RequestDropped      int    `json:"request-dropped"`
@@ -1079,7 +1081,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsRate3335 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthRelayKerberosTriggerStatsRate3363 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	TimeoutError        int    `json:"timeout-error"`
@@ -1093,13 +1095,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptcha3336 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptcha3364 struct {
 	Uuid             string                                                                                                       `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsInc3337  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsRate3338 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsInc3365  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsRate3366 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsInc3337 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsInc3365 struct {
 	RequestDropped      int    `json:"request-dropped"`
 	ResponseFailure     int    `json:"response-failure"`
 	ResponseError       int    `json:"response-error"`
@@ -1113,7 +1115,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsRate3338 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeAamAuthCaptchaTriggerStatsRate3366 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	RequestDropped      int    `json:"request-dropped"`
@@ -1129,13 +1131,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeA
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslError3339 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslError3367 struct {
 	Uuid             string                                                                                                    `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsInc3340  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsRate3341 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsInc3368  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsRate3369 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsInc3340 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsInc3368 struct {
 	AppDataInHandshake                  int    `json:"app-data-in-handshake"`
 	AttemptToReuseSessInDiffContext     int    `json:"attempt-to-reuse-sess-in-diff-context"`
 	BadAlertRecord                      int    `json:"bad-alert-record"`
@@ -1384,7 +1386,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsRate3341 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslErrorTriggerStatsRate3369 struct {
 	ThresholdExceededBy                 int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                            int    `json:"duration" dval:"60"`
 	AppDataInHandshake                  int    `json:"app-data-in-handshake"`
@@ -1635,13 +1637,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevoke3342 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevoke3370 struct {
 	Uuid             string                                                                                                         `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsInc3343  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsRate3344 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsInc3371  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsRate3372 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsInc3343 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsInc3371 struct {
 	Ocsp_chain_status_revoked    int    `json:"ocsp_chain_status_revoked"`
 	Ocsp_chain_status_unknown    int    `json:"ocsp_chain_status_unknown"`
 	Ocsp_connection_error        int    `json:"ocsp_connection_error"`
@@ -1666,7 +1668,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                         string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsRate3344 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevokeTriggerStatsRate3372 struct {
 	ThresholdExceededBy          int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                     int    `json:"duration" dval:"60"`
 	Ocsp_chain_status_revoked    int    `json:"ocsp_chain_status_revoked"`
@@ -1693,13 +1695,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                         string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxy3345 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxy3373 struct {
 	Uuid             string                                                                                                           `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsInc3346  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsRate3347 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsInc3374  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsRate3375 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsInc3346 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsInc3374 struct {
 	FailedInSslHandshakes           int    `json:"failed-in-ssl-handshakes"`
 	FailedInCryptoOperations        int    `json:"failed-in-crypto-operations"`
 	FailedInTcp                     int    `json:"failed-in-tcp"`
@@ -1712,7 +1714,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                            string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsRate3347 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxyTriggerStatsRate3375 struct {
 	ThresholdExceededBy             int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                        int    `json:"duration" dval:"60"`
 	FailedInSslHandshakes           int    `json:"failed-in-ssl-handshakes"`
@@ -1727,13 +1729,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                            string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnError3348 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnError3376 struct {
 	Uuid             string                                                                                                 `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsInc3349  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsRate3350 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsInc3377  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsRate3378 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsInc3349 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsInc3377 struct {
 	Bad_opcode                             int    `json:"bad_opcode"`
 	Bad_sg_write_len                       int    `json:"bad_sg_write_len"`
 	Bad_len                                int    `json:"bad_len"`
@@ -1775,7 +1777,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeV
 	Uuid                                   string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsRate3350 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnErrorTriggerStatsRate3378 struct {
 	ThresholdExceededBy                    int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                               int    `json:"duration" dval:"60"`
 	Bad_opcode                             int    `json:"bad_opcode"`
@@ -1819,13 +1821,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeV
 	Uuid                                   string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProc3351 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProc3379 struct {
 	Uuid             string                                                                                                      `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsInc3352  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsRate3353 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsInc3380  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsRate3381 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsInc3352 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsInc3380 struct {
 	L3_entry_match_drop              int    `json:"l3_entry_match_drop"`
 	L3_entry_match_drop_hw           int    `json:"l3_entry_match_drop_hw"`
 	L3_entry_drop_max_hw_exceeded    int    `json:"l3_entry_drop_max_hw_exceeded"`
@@ -1840,13 +1842,10 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	L3_entry_remove_from_bgp_failure int    `json:"l3_entry_remove_from_bgp_failure"`
 	L3_entry_add_to_hw_failure       int    `json:"l3_entry_add_to_hw_failure"`
 	Syn_cookie_verification_failed   int    `json:"syn_cookie_verification_failed"`
-	L3_entry_del_to_hw_failure       int    `json:"l3_entry_del_to_hw_failure"`
-	L4_entry_del_to_hw_failure       int    `json:"l4_entry_del_to_hw_failure"`
-	L4_entry_add_to_hw_failure       int    `json:"l4_entry_add_to_hw_failure"`
 	Uuid                             string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsRate3353 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProcTriggerStatsRate3381 struct {
 	ThresholdExceededBy              int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                         int    `json:"duration" dval:"60"`
 	L3_entry_match_drop              int    `json:"l3_entry_match_drop"`
@@ -1863,19 +1862,16 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	L3_entry_remove_from_bgp_failure int    `json:"l3_entry_remove_from_bgp_failure"`
 	L3_entry_add_to_hw_failure       int    `json:"l3_entry_add_to_hw_failure"`
 	Syn_cookie_verification_failed   int    `json:"syn_cookie_verification_failed"`
-	L3_entry_del_to_hw_failure       int    `json:"l3_entry_del_to_hw_failure"`
-	L4_entry_del_to_hw_failure       int    `json:"l4_entry_del_to_hw_failure"`
-	L4_entry_add_to_hw_failure       int    `json:"l4_entry_add_to_hw_failure"`
 	Uuid                             string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Lsn3354 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Lsn3382 struct {
 	Uuid             string                                                                                                 `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsInc3355  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsRate3356 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsInc3383  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsRate3384 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsInc3355 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsInc3383 struct {
 	User_quota_failure                      int    `json:"user_quota_failure"`
 	Data_sesn_user_quota_exceeded           int    `json:"data_sesn_user_quota_exceeded"`
 	Fullcone_failure                        int    `json:"fullcone_failure"`
@@ -1906,7 +1902,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                                    string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsRate3356 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnTriggerStatsRate3384 struct {
 	ThresholdExceededBy                     int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                                int    `json:"duration" dval:"60"`
 	User_quota_failure                      int    `json:"user_quota_failure"`
@@ -1939,38 +1935,38 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                                    string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEsp3357 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEsp3385 struct {
 	Uuid             string                                                                                                       `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsInc3358  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsRate3359 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsInc3386  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsRate3387 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsInc3358 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsInc3386 struct {
 	NatIpConflict int    `json:"nat-ip-conflict"`
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsRate3359 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEspTriggerStatsRate3387 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	NatIpConflict       int    `json:"nat-ip-conflict"`
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptp3360 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptp3388 struct {
 	Uuid             string                                                                                                        `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsInc3361  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsRate3362 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsInc3389  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsRate3390 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsInc3361 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsInc3389 struct {
 	NoGreSessionMatch          int    `json:"no-gre-session-match"`
 	CallReqPnsCallIdMismatch   int    `json:"call-req-pns-call-id-mismatch"`
 	CallReplyPnsCallIdMismatch int    `json:"call-reply-pns-call-id-mismatch"`
 	Uuid                       string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsRate3362 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgPptpTriggerStatsRate3390 struct {
 	ThresholdExceededBy        int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                   int    `json:"duration" dval:"60"`
 	NoGreSessionMatch          int    `json:"no-gre-session-match"`
@@ -1979,13 +1975,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                       string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtsp3363 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtsp3391 struct {
 	Uuid             string                                                                                                        `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsInc3364  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsRate3365 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsInc3392  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsRate3393 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsInc3364 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsInc3392 struct {
 	StreamCreationFailure       int    `json:"stream-creation-failure"`
 	PortAllocationFailure       int    `json:"port-allocation-failure"`
 	UnknownClientPortFromServer int    `json:"unknown-client-port-from-server"`
@@ -1993,7 +1989,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsRate3365 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgRtspTriggerStatsRate3393 struct {
 	ThresholdExceededBy         int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                    int    `json:"duration" dval:"60"`
 	StreamCreationFailure       int    `json:"stream-creation-failure"`
@@ -2003,20 +1999,20 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSip3366 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSip3394 struct {
 	Uuid             string                                                                                                       `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsInc3367  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsRate3368 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsInc3395  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsRate3396 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsInc3367 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsInc3395 struct {
 	MethodUnknown     int    `json:"method-unknown"`
 	ParseError        int    `json:"parse-error"`
 	TcpOutOfOrderDrop int    `json:"tcp-out-of-order-drop"`
 	Uuid              string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsRate3368 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSipTriggerStatsRate3396 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	MethodUnknown       int    `json:"method-unknown"`
@@ -2025,19 +2021,19 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcp3369 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcp3397 struct {
 	Uuid             string                                                                                                        `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsInc3370  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsRate3371 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsInc3398  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsRate3399 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsInc3370 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsInc3398 struct {
 	ParseError        int    `json:"parse-error"`
 	TcpOutOfOrderDrop int    `json:"tcp-out-of-order-drop"`
 	Uuid              string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsRate3371 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcpTriggerStatsRate3399 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	ParseError          int    `json:"parse-error"`
@@ -2045,19 +2041,19 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH3233372 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH3233400 struct {
 	Uuid             string                                                                                                        `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsInc3373  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsRate3374 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsInc3401  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsRate3402 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsInc3373 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsInc3401 struct {
 	ParseError        int    `json:"parse-error"`
 	TcpOutOfOrderDrop int    `json:"tcp-out-of-order-drop"`
 	Uuid              string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsRate3374 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323TriggerStatsRate3402 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	ParseError          int    `json:"parse-error"`
@@ -2065,13 +2061,47 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64Global3375 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadius3403 struct {
+	Uuid             string                                                                                                       `json:"uuid"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsInc3404  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsRate3405 `json:"trigger-stats-rate"`
+}
+
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsInc3404 struct {
+	RadiusRequestDropped       int    `json:"radius-request-dropped"`
+	RequestBadSecretDropped    int    `json:"request-bad-secret-dropped"`
+	RequestNoKeyVapDropped     int    `json:"request-no-key-vap-dropped"`
+	RequestMalformedDropped    int    `json:"request-malformed-dropped"`
+	RequestIgnored             int    `json:"request-ignored"`
+	RadiusTableFull            int    `json:"radius-table-full"`
+	SecretNotConfiguredDropped int    `json:"secret-not-configured-dropped"`
+	HaStandbyDropped           int    `json:"ha-standby-dropped"`
+	InvalidKey                 int    `json:"invalid-key"`
+	Uuid                       string `json:"uuid"`
+}
+
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsRate3405 struct {
+	ThresholdExceededBy        int    `json:"threshold-exceeded-by" dval:"5"`
+	Duration                   int    `json:"duration" dval:"60"`
+	RadiusRequestDropped       int    `json:"radius-request-dropped"`
+	RequestBadSecretDropped    int    `json:"request-bad-secret-dropped"`
+	RequestNoKeyVapDropped     int    `json:"request-no-key-vap-dropped"`
+	RequestMalformedDropped    int    `json:"request-malformed-dropped"`
+	RequestIgnored             int    `json:"request-ignored"`
+	RadiusTableFull            int    `json:"radius-table-full"`
+	SecretNotConfiguredDropped int    `json:"secret-not-configured-dropped"`
+	HaStandbyDropped           int    `json:"ha-standby-dropped"`
+	InvalidKey                 int    `json:"invalid-key"`
+	Uuid                       string `json:"uuid"`
+}
+
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64Global3406 struct {
 	Uuid             string                                                                                                         `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsInc3376  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsRate3377 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsInc3407  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsRate3408 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsInc3376 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsInc3407 struct {
 	User_quota_failure              int    `json:"user_quota_failure"`
 	Nat_port_unavailable_tcp        int    `json:"nat_port_unavailable_tcp"`
 	Nat_port_unavailable_udp        int    `json:"nat_port_unavailable_udp"`
@@ -2090,7 +2120,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                            string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsRate3377 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsRate3408 struct {
 	ThresholdExceededBy             int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                        int    `json:"duration" dval:"60"`
 	User_quota_failure              int    `json:"user_quota_failure"`
@@ -2111,13 +2141,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                            string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobal3378 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobal3409 struct {
 	Uuid             string                                                                                                          `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsInc3379  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsRate3380 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsInc3410  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsRate3411 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsInc3379 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsInc3410 struct {
 	User_quota_failure        int    `json:"user_quota_failure"`
 	Nat_port_unavailable_tcp  int    `json:"nat_port_unavailable_tcp"`
 	Nat_port_unavailable_udp  int    `json:"nat_port_unavailable_udp"`
@@ -2126,7 +2156,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                      string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsRate3380 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobalTriggerStatsRate3411 struct {
 	ThresholdExceededBy       int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                  int    `json:"duration" dval:"60"`
 	User_quota_failure        int    `json:"user_quota_failure"`
@@ -2137,13 +2167,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                      string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobal3381 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobal3412 struct {
 	Uuid             string                                                                                                            `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsInc3382  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsRate3383 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsInc3413  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsRate3414 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsInc3382 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsInc3413 struct {
 	NatPortUnavailableTcp              int    `json:"nat-port-unavailable-tcp"`
 	NatPortUnavailableUdp              int    `json:"nat-port-unavailable-udp"`
 	NatPortUnavailableIcmp             int    `json:"nat-port-unavailable-icmp"`
@@ -2164,10 +2194,11 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	ConfigNotFound                     int    `json:"config-not-found"`
 	PortOverloadFailed                 int    `json:"port-overload-failed"`
 	HaSessionUserQuotaExceeded         int    `json:"ha-session-user-quota-exceeded"`
+	UnusedIpDrop                       int    `json:"unused-ip-drop"`
 	Uuid                               string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsRate3383 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsRate3414 struct {
 	ThresholdExceededBy                int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                           int    `json:"duration" dval:"60"`
 	NatPortUnavailableTcp              int    `json:"nat-port-unavailable-tcp"`
@@ -2190,22 +2221,23 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	ConfigNotFound                     int    `json:"config-not-found"`
 	PortOverloadFailed                 int    `json:"port-overload-failed"`
 	HaSessionUserQuotaExceeded         int    `json:"ha-session-user-quota-exceeded"`
+	UnusedIpDrop                       int    `json:"unused-ip-drop"`
 	Uuid                               string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptp3384 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptp3415 struct {
 	Uuid             string                                                                                                             `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsInc3385  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsRate3386 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsInc3416  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsRate3417 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsInc3385 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsInc3416 struct {
 	CallReqPnsCallIdMismatch   int    `json:"call-req-pns-call-id-mismatch"`
 	CallReplyPnsCallIdMismatch int    `json:"call-reply-pns-call-id-mismatch"`
 	Uuid                       string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsRate3386 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgPptpTriggerStatsRate3417 struct {
 	ThresholdExceededBy        int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                   int    `json:"duration" dval:"60"`
 	CallReqPnsCallIdMismatch   int    `json:"call-req-pns-call-id-mismatch"`
@@ -2213,20 +2245,20 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                       string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtsp3387 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtsp3418 struct {
 	Uuid             string                                                                                                             `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsInc3388  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsRate3389 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsInc3419  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsRate3420 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsInc3388 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsInc3419 struct {
 	StreamCreationFailure int    `json:"stream-creation-failure"`
 	PortAllocationFailure int    `json:"port-allocation-failure"`
 	NoSessionMem          int    `json:"no-session-mem"`
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsRate3389 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgRtspTriggerStatsRate3420 struct {
 	ThresholdExceededBy   int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration              int    `json:"duration" dval:"60"`
 	StreamCreationFailure int    `json:"stream-creation-failure"`
@@ -2235,31 +2267,31 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSip3390 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSip3421 struct {
 	Uuid             string                                                                                                            `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsInc3391  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsRate3392 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsInc3422  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsRate3423 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsInc3391 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsInc3422 struct {
 	MethodUnknown int    `json:"method-unknown"`
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsRate3392 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatAlgSipTriggerStatsRate3423 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	MethodUnknown       int    `json:"method-unknown"`
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Pcp3393 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Pcp3424 struct {
 	Uuid             string                                                                                                 `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsInc3394  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsRate3395 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsInc3425  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsRate3426 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsInc3394 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsInc3425 struct {
 	PktNotRequestDrop    int    `json:"pkt-not-request-drop"`
 	PktTooShortDrop      int    `json:"pkt-too-short-drop"`
 	NorouteDrop          int    `json:"noroute-drop"`
@@ -2281,7 +2313,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                 string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsRate3395 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6PcpTriggerStatsRate3426 struct {
 	ThresholdExceededBy  int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration             int    `json:"duration" dval:"60"`
 	PktNotRequestDrop    int    `json:"pkt-not-request-drop"`
@@ -2305,19 +2337,19 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                 string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Logging3396 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Logging3427 struct {
 	Uuid             string                                                                                                     `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsInc3397  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsRate3398 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsInc3428  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsRate3429 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsInc3397 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsInc3428 struct {
 	LogDropped     int    `json:"log-dropped"`
 	ConnTcpDropped int    `json:"conn-tcp-dropped"`
 	Uuid           string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsRate3398 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LoggingTriggerStatsRate3429 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	LogDropped          int    `json:"log-dropped"`
@@ -2325,19 +2357,19 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L43399 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L43430 struct {
 	Uuid             string                                                                                                `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsInc3400  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsRate3401 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsInc3431  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsRate3432 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsInc3400 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsInc3431 struct {
 	OutOfSessionMemory      int    `json:"out-of-session-memory"`
 	IcmpHostUnreachableSent int    `json:"icmp-host-unreachable-sent"`
 	Uuid                    string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsRate3401 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6L4TriggerStatsRate3432 struct {
 	ThresholdExceededBy     int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                int    `json:"duration" dval:"60"`
 	OutOfSessionMemory      int    `json:"out-of-session-memory"`
@@ -2345,13 +2377,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                    string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Icmp3402 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Icmp3433 struct {
 	Uuid             string                                                                                                  `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsInc3403  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsRate3404 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsInc3434  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsRate3435 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsInc3403 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsInc3434 struct {
 	IcmpToIcmpErr     int    `json:"icmp-to-icmp-err"`
 	IcmpToIcmpv6Err   int    `json:"icmp-to-icmpv6-err"`
 	Icmpv6ToIcmpErr   int    `json:"icmpv6-to-icmp-err"`
@@ -2359,7 +2391,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid              string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsRate3404 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6IcmpTriggerStatsRate3435 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	IcmpToIcmpErr       int    `json:"icmp-to-icmp-err"`
@@ -2369,13 +2401,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlg3405 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlg3436 struct {
 	Uuid             string                                                                                                     `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsInc3406  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsRate3407 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsInc3437  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsRate3438 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsInc3406 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsInc3437 struct {
 	RadiusRequstDropped   int    `json:"radius-requst-dropped"`
 	RadiusResponseDropped int    `json:"radius-response-dropped"`
 	OutOfMemoryDropped    int    `json:"out-of-memory-dropped"`
@@ -2386,7 +2418,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsRate3407 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6HttpAlgTriggerStatsRate3438 struct {
 	ThresholdExceededBy   int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration              int    `json:"duration" dval:"60"`
 	RadiusRequstDropped   int    `json:"radius-requst-dropped"`
@@ -2399,13 +2431,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns643408 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns643439 struct {
 	Uuid             string                                                                                                   `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsInc3409  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsRate3410 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsInc3440  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsRate3441 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsInc3409 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsInc3440 struct {
 	QueryBadPkt int    `json:"query-bad-pkt"`
 	RespBadPkt  int    `json:"resp-bad-pkt"`
 	RespBadQr   int    `json:"resp-bad-qr"`
@@ -2413,7 +2445,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsRate3410 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dns64TriggerStatsRate3441 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	QueryBadPkt         int    `json:"query-bad-pkt"`
@@ -2423,20 +2455,20 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv63411 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv63442 struct {
 	Uuid             string                                                                                                    `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsInc3412  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsRate3413 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsInc3443  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsRate3444 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsInc3412 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsInc3443 struct {
 	PacketsDropped         int    `json:"packets-dropped"`
 	PktsDroppedDuringClear int    `json:"pkts-dropped-during-clear"`
 	RcvNotSupportedMsg     int    `json:"rcv-not-supported-msg"`
 	Uuid                   string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsRate3413 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Dhcpv6TriggerStatsRate3444 struct {
 	ThresholdExceededBy    int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration               int    `json:"duration" dval:"60"`
 	PacketsDropped         int    `json:"packets-dropped"`
@@ -2445,20 +2477,20 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                   string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLogging3414 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLogging3445 struct {
 	Uuid             string                                                                                                  `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsInc3415  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsRate3416 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsInc3446  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsRate3447 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsInc3415 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsInc3446 struct {
 	LogDropped               int    `json:"log-dropped"`
 	HttpLoggingInvalidFormat int    `json:"http-logging-invalid-format"`
 	SessionLimitExceeded     int    `json:"session-limit-exceeded"`
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsRate3416 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwLoggingTriggerStatsRate3447 struct {
 	ThresholdExceededBy      int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                 int    `json:"duration" dval:"60"`
 	LogDropped               int    `json:"log-dropped"`
@@ -2467,55 +2499,55 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeF
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobal3417 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobal3448 struct {
 	Uuid             string                                                                                                 `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsInc3418  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsRate3419 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsInc3449  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsRate3450 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsInc3418 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsInc3449 struct {
 	Fullcone_creation_failure int    `json:"fullcone_creation_failure"`
 	Uuid                      string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsRate3419 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobalTriggerStatsRate3450 struct {
 	ThresholdExceededBy       int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                  int    `json:"duration" dval:"60"`
 	Fullcone_creation_failure int    `json:"fullcone_creation_failure"`
 	Uuid                      string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtsp3420 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtsp3451 struct {
 	Uuid             string                                                                                                  `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsInc3421  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsRate3422 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsInc3452  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsRate3453 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsInc3421 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsInc3452 struct {
 	TransportAllocFailure int    `json:"transport-alloc-failure"`
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsRate3422 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtspTriggerStatsRate3453 struct {
 	ThresholdExceededBy   int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration              int    `json:"duration" dval:"60"`
 	TransportAllocFailure int    `json:"transport-alloc-failure"`
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptp3423 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptp3454 struct {
 	Uuid             string                                                                                                  `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsInc3424  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsRate3425 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsInc3455  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsRate3456 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsInc3424 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsInc3455 struct {
 	CallReqPnsCallIdMismatch   int    `json:"call-req-pns-call-id-mismatch"`
 	CallReplyPnsCallIdMismatch int    `json:"call-reply-pns-call-id-mismatch"`
 	Uuid                       string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsRate3425 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptpTriggerStatsRate3456 struct {
 	ThresholdExceededBy        int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                   int    `json:"duration" dval:"60"`
 	CallReqPnsCallIdMismatch   int    `json:"call-req-pns-call-id-mismatch"`
@@ -2523,31 +2555,65 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeF
 	Uuid                       string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookie3426 struct {
-	Uuid             string                                                                                                       `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsInc3427  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsRate3428 `json:"trigger-stats-rate"`
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServer3457 struct {
+	Uuid             string                                                                                                    `json:"uuid"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsInc3458  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsRate3459 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsInc3427 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsInc3458 struct {
+	RadiusRequestDropped     int    `json:"radius-request-dropped"`
+	RequestBadSecretDropped  int    `json:"request-bad-secret-dropped"`
+	RequestNoKeyVapDropped   int    `json:"request-no-key-vap-dropped"`
+	RequestMalformedDropped  int    `json:"request-malformed-dropped"`
+	RequestIgnored           int    `json:"request-ignored"`
+	RadiusTableFull          int    `json:"radius-table-full"`
+	HaStandbyDropped         int    `json:"ha-standby-dropped"`
+	Ipv6PrefixLengthMismatch int    `json:"ipv6-prefix-length-mismatch"`
+	InvalidKey               int    `json:"invalid-key"`
+	Uuid                     string `json:"uuid"`
+}
+
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsRate3459 struct {
+	ThresholdExceededBy      int    `json:"threshold-exceeded-by" dval:"5"`
+	Duration                 int    `json:"duration" dval:"60"`
+	RadiusRequestDropped     int    `json:"radius-request-dropped"`
+	RequestBadSecretDropped  int    `json:"request-bad-secret-dropped"`
+	RequestNoKeyVapDropped   int    `json:"request-no-key-vap-dropped"`
+	RequestMalformedDropped  int    `json:"request-malformed-dropped"`
+	RequestIgnored           int    `json:"request-ignored"`
+	RadiusTableFull          int    `json:"radius-table-full"`
+	HaStandbyDropped         int    `json:"ha-standby-dropped"`
+	Ipv6PrefixLengthMismatch int    `json:"ipv6-prefix-length-mismatch"`
+	InvalidKey               int    `json:"invalid-key"`
+	Uuid                     string `json:"uuid"`
+}
+
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookie3460 struct {
+	Uuid             string                                                                                                       `json:"uuid"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsInc3461  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsRate3462 `json:"trigger-stats-rate"`
+}
+
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsInc3461 struct {
 	Verification_failed int    `json:"verification_failed"`
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsRate3428 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookieTriggerStatsRate3462 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Verification_failed int    `json:"verification_failed"`
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtection3429 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtection3463 struct {
 	Uuid             string                                                                                                         `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsInc3430  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsRate3431 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsInc3464  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsRate3465 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsInc3430 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsInc3464 struct {
 	Ddos_entries_too_many              int    `json:"ddos_entries_too_many"`
 	Ddos_entry_add_to_bgp_failure      int    `json:"ddos_entry_add_to_bgp_failure"`
 	Ddos_entry_remove_from_bgp_failure int    `json:"ddos_entry_remove_from_bgp_failure"`
@@ -2555,7 +2621,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeF
 	Uuid                               string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsRate3431 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtectionTriggerStatsRate3465 struct {
 	ThresholdExceededBy                int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                           int    `json:"duration" dval:"60"`
 	Ddos_entries_too_many              int    `json:"ddos_entries_too_many"`
@@ -2565,13 +2631,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeF
 	Uuid                               string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtp3432 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtp3466 struct {
 	Uuid             string                                                                                              `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsInc3433  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsRate3434 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsInc3467  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsRate3468 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsInc3433 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsInc3467 struct {
 	OutOfSessionMemory                int    `json:"out-of-session-memory"`
 	BladeOutOfSessionMemory           int    `json:"blade-out-of-session-memory"`
 	GtpSmpPathCheckFailed             int    `json:"gtp-smp-path-check-failed"`
@@ -2605,7 +2671,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeF
 	Uuid                              string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsRate3434 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtpTriggerStatsRate3468 struct {
 	ThresholdExceededBy               int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                          int    `json:"duration" dval:"60"`
 	OutOfSessionMemory                int    `json:"out-of-session-memory"`
@@ -2641,19 +2707,19 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeF
 	Uuid                              string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcp3435 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcp3469 struct {
 	Uuid             string                                                                                                  `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsInc3436  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsRate3437 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsInc3470  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsRate3471 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsInc3436 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsInc3470 struct {
 	Attemptfails int    `json:"attemptfails"`
 	Noroute      int    `json:"noroute"`
 	Uuid         string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsRate3437 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSystemTcpTriggerStatsRate3471 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Attemptfails        int    `json:"attemptfails"`
@@ -2661,19 +2727,19 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuse3438 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuse3472 struct {
 	Uuid             string                                                                                                     `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsInc3439  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsRate3440 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsInc3473  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsRate3474 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsInc3439 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsInc3473 struct {
 	Ntermi_err      int    `json:"ntermi_err"`
 	Pause_conn_fail int    `json:"pause_conn_fail"`
 	Uuid            string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsRate3440 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbConnReuseTriggerStatsRate3474 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Ntermi_err          int    `json:"ntermi_err"`
@@ -2681,19 +2747,19 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflow3441 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflow3475 struct {
 	Uuid             string                                                                                                 `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsInc3442  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsRate3443 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsInc3476  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsRate3477 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsInc3442 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsInc3476 struct {
 	Pause_conn_fail   int    `json:"pause_conn_fail"`
 	Error_resume_conn int    `json:"error_resume_conn"`
 	Uuid              string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsRate3443 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbAflowTriggerStatsRate3477 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Pause_conn_fail     int    `json:"pause_conn_fail"`
@@ -2701,13 +2767,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFix3444 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFix3478 struct {
 	Uuid             string                                                                                               `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsInc3445  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsRate3446 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsInc3479  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsRate3480 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsInc3445 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsInc3479 struct {
 	Svrsel_fail int    `json:"svrsel_fail"`
 	Noroute     int    `json:"noroute"`
 	Snat_fail   int    `json:"snat_fail"`
@@ -2716,7 +2782,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsRate3446 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFixTriggerStatsRate3480 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Svrsel_fail         int    `json:"svrsel_fail"`
@@ -2727,13 +2793,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxy3447 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxy3481 struct {
 	Uuid             string                                                                                                     `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsInc3448  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsRate3449 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsInc3482  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsRate3483 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsInc3448 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsInc3482 struct {
 	Tcp_err                     int    `json:"tcp_err"`
 	Stream_not_found            int    `json:"stream_not_found"`
 	Stream_err                  int    `json:"stream_err"`
@@ -2756,7 +2822,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsRate3449 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSpdyProxyTriggerStatsRate3483 struct {
 	ThresholdExceededBy         int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                    int    `json:"duration" dval:"60"`
 	Tcp_err                     int    `json:"tcp_err"`
@@ -2781,13 +2847,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp23450 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp23484 struct {
 	Uuid             string                                                                                                 `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsInc3451  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsRate3452 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsInc3485  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsRate3486 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsInc3451 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsInc3485 struct {
 	Protocol_error                          int    `json:"protocol_error"`
 	Internal_error                          int    `json:"internal_error"`
 	Proxy_alloc_error                       int    `json:"proxy_alloc_error"`
@@ -2858,7 +2924,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                                    string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsRate3452 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttp2TriggerStatsRate3486 struct {
 	ThresholdExceededBy                     int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                                int    `json:"duration" dval:"60"`
 	Protocol_error                          int    `json:"protocol_error"`
@@ -2931,13 +2997,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                                    string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7session3453 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7session3487 struct {
 	Uuid             string                                                                                                     `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsInc3454  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsRate3455 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsInc3488  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsRate3489 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsInc3454 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsInc3488 struct {
 	Conn_not_exist     int    `json:"conn_not_exist"`
 	Wbuf_cb_failed     int    `json:"wbuf_cb_failed"`
 	Err_event          int    `json:"err_event"`
@@ -2949,7 +3015,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid               string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsRate3455 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL7sessionTriggerStatsRate3489 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Conn_not_exist      int    `json:"conn_not_exist"`
@@ -2963,13 +3029,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmpp3456 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmpp3490 struct {
 	Uuid             string                                                                                                `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsInc3457  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsRate3458 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsInc3491  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsRate3492 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsInc3457 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsInc3491 struct {
 	Msg_proxy_client_fail            int    `json:"msg_proxy_client_fail"`
 	Msg_proxy_server_fail            int    `json:"msg_proxy_server_fail"`
 	Msg_proxy_fail_start_server_conn int    `json:"msg_proxy_fail_start_server_conn"`
@@ -2978,7 +3044,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                             string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsRate3458 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmppTriggerStatsRate3492 struct {
 	ThresholdExceededBy              int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                         int    `json:"duration" dval:"60"`
 	Msg_proxy_client_fail            int    `json:"msg_proxy_client_fail"`
@@ -2989,13 +3055,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                             string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtp3459 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtp3493 struct {
 	Uuid             string                                                                                                `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsInc3460  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsRate3461 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsInc3494  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsRate3495 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsInc3460 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsInc3494 struct {
 	No_proxy                      int    `json:"no_proxy"`
 	Parse_req_fail                int    `json:"parse_req_fail"`
 	Server_select_fail            int    `json:"server_select_fail"`
@@ -3018,7 +3084,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsRate3461 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSmtpTriggerStatsRate3495 struct {
 	ThresholdExceededBy           int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                      int    `json:"duration" dval:"60"`
 	No_proxy                      int    `json:"no_proxy"`
@@ -3043,13 +3109,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqtt3462 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqtt3496 struct {
 	Uuid             string                                                                                                `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsInc3463  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsRate3464 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsInc3497  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsRate3498 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsInc3463 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsInc3497 struct {
 	Parse_connect_fail     int    `json:"parse_connect_fail"`
 	Parse_publish_fail     int    `json:"parse_publish_fail"`
 	Parse_subscribe_fail   int    `json:"parse_subscribe_fail"`
@@ -3063,7 +3129,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                   string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsRate3464 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMqttTriggerStatsRate3498 struct {
 	ThresholdExceededBy    int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration               int    `json:"duration" dval:"60"`
 	Parse_connect_fail     int    `json:"parse_connect_fail"`
@@ -3079,13 +3145,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                   string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcap3465 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcap3499 struct {
 	Uuid             string                                                                                                `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsInc3466  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsRate3467 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsInc3500  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsRate3501 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsInc3466 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsInc3500 struct {
 	App_serv_conn_no_pcb_err int    `json:"app_serv_conn_no_pcb_err"`
 	App_serv_conn_err        int    `json:"app_serv_conn_err"`
 	Chunk1_hdr_err           int    `json:"chunk1_hdr_err"`
@@ -3112,7 +3178,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsRate3467 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbIcapTriggerStatsRate3501 struct {
 	ThresholdExceededBy      int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                 int    `json:"duration" dval:"60"`
 	App_serv_conn_no_pcb_err int    `json:"app_serv_conn_no_pcb_err"`
@@ -3141,20 +3207,20 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSip3468 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSip3502 struct {
 	Uuid             string                                                                                               `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsInc3469  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsRate3470 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsInc3503  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsRate3504 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsInc3469 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsInc3503 struct {
 	Msg_proxy_client_fail            int    `json:"msg_proxy_client_fail"`
 	Msg_proxy_server_fail            int    `json:"msg_proxy_server_fail"`
 	Msg_proxy_fail_start_server_conn int    `json:"msg_proxy_fail_start_server_conn"`
 	Uuid                             string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsRate3470 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSipTriggerStatsRate3504 struct {
 	ThresholdExceededBy              int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                         int    `json:"duration" dval:"60"`
 	Msg_proxy_client_fail            int    `json:"msg_proxy_client_fail"`
@@ -3163,13 +3229,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                             string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompress3471 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompress3505 struct {
 	Uuid             string                                                                                                      `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsInc3472  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsRate3473 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsInc3506  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsRate3507 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsInc3472 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsInc3506 struct {
 	Failure_count                 int    `json:"failure_count"`
 	Failure_code                  int    `json:"failure_code"`
 	Ring_full_count               int    `json:"ring_full_count"`
@@ -3178,7 +3244,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsRate3473 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHwCompressTriggerStatsRate3507 struct {
 	ThresholdExceededBy           int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                      int    `json:"duration" dval:"60"`
 	Failure_count                 int    `json:"failure_count"`
@@ -3189,37 +3255,37 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysql3474 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysql3508 struct {
 	Uuid             string                                                                                                 `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsInc3475  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsRate3476 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsInc3509  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsRate3510 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsInc3475 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsInc3509 struct {
 	Session_err int    `json:"session_err"`
 	Uuid        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsRate3476 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMysqlTriggerStatsRate3510 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Session_err         int    `json:"session_err"`
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssql3477 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssql3511 struct {
 	Uuid             string                                                                                                 `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsInc3478  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsRate3479 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsInc3512  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsRate3513 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsInc3478 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsInc3512 struct {
 	Session_err  int    `json:"session_err"`
 	Auth_failure int    `json:"auth_failure"`
 	Uuid         string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsRate3479 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMssqlTriggerStatsRate3513 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Session_err         int    `json:"session_err"`
@@ -3227,20 +3293,20 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcip3480 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcip3514 struct {
 	Uuid             string                                                                                                    `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsInc3481  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsRate3482 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsInc3515  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsRate3516 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsInc3481 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsInc3515 struct {
 	Out_of_sessions   int    `json:"out_of_sessions"`
 	Too_many_sessions int    `json:"too_many_sessions"`
 	Threshold_exceed  int    `json:"threshold_exceed"`
 	Uuid              string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsRate3482 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbCrlSrcipTriggerStatsRate3516 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Out_of_sessions     int    `json:"out_of_sessions"`
@@ -3249,13 +3315,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGeneric3483 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGeneric3517 struct {
 	Uuid             string                                                                                                   `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsInc3484  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsRate3485 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsInc3518  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsRate3519 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsInc3484 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsInc3518 struct {
 	Svrsel_fail               int    `json:"svrsel_fail"`
 	No_route                  int    `json:"no_route"`
 	Snat_fail                 int    `json:"snat_fail"`
@@ -3276,7 +3342,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                      string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsRate3485 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbGenericTriggerStatsRate3519 struct {
 	ThresholdExceededBy       int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                  int    `json:"duration" dval:"60"`
 	Svrsel_fail               int    `json:"svrsel_fail"`
@@ -3299,13 +3365,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                      string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersist3486 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersist3520 struct {
 	Uuid             string                                                                                                   `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsInc3487  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsRate3488 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsInc3521  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsRate3522 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsInc3487 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsInc3521 struct {
 	Hash_tbl_trylock_fail      int    `json:"hash_tbl_trylock_fail"`
 	Hash_tbl_create_fail       int    `json:"hash_tbl_create_fail"`
 	Hash_tbl_rst_updown        int    `json:"hash_tbl_rst_updown"`
@@ -3332,7 +3398,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                       string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsRate3488 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPersistTriggerStatsRate3522 struct {
 	ThresholdExceededBy        int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                   int    `json:"duration" dval:"60"`
 	Hash_tbl_trylock_fail      int    `json:"hash_tbl_trylock_fail"`
@@ -3361,13 +3427,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                       string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxy3489 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxy3523 struct {
 	Uuid             string                                                                                                     `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsInc3490  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsRate3491 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsInc3524  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsRate3525 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsInc3490 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsInc3524 struct {
 	Parsereq_fail       int    `json:"parsereq_fail"`
 	Svrsel_fail         int    `json:"svrsel_fail"`
 	Fwdreq_fail         int    `json:"fwdreq_fail"`
@@ -3378,7 +3444,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsRate3491 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbHttpProxyTriggerStatsRate3525 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Parsereq_fail       int    `json:"parsereq_fail"`
@@ -3391,13 +3457,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL43492 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL43526 struct {
 	Uuid             string                                                                                              `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsInc3493  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsRate3494 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsInc3527  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsRate3528 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsInc3493 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsInc3527 struct {
 	Syncookiessentfailed    int    `json:"syncookiessentfailed"`
 	Svrselfail              int    `json:"svrselfail"`
 	Snat_fail               int    `json:"snat_fail"`
@@ -3424,7 +3490,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                    string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsRate3494 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbL4TriggerStatsRate3528 struct {
 	ThresholdExceededBy     int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                int    `json:"duration" dval:"60"`
 	Syncookiessentfailed    int    `json:"syncookiessentfailed"`
@@ -3453,13 +3519,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                    string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttp3495 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttp3529 struct {
 	Uuid             string                                                                                                    `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsInc3496  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsRate3497 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsInc3530  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsRate3531 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsInc3496 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsInc3530 struct {
 	Parsereq_fail       int    `json:"parsereq_fail"`
 	Svrsel_fail         int    `json:"svrsel_fail"`
 	Fwdreq_fail         int    `json:"fwdreq_fail"`
@@ -3471,7 +3537,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsRate3497 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFastHttpTriggerStatsRate3531 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Parsereq_fail       int    `json:"parsereq_fail"`
@@ -3485,13 +3551,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxy3498 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxy3532 struct {
 	Uuid             string                                                                                                    `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsInc3499  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsRate3500 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsInc3533  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsRate3534 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsInc3499 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsInc3533 struct {
 	Svrsel_fail              int    `json:"svrsel_fail"`
 	No_route                 int    `json:"no_route"`
 	Snat_fail                int    `json:"snat_fail"`
@@ -3522,7 +3588,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsRate3500 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbFtpProxyTriggerStatsRate3534 struct {
 	ThresholdExceededBy      int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                 int    `json:"duration" dval:"60"`
 	Svrsel_fail              int    `json:"svrsel_fail"`
@@ -3555,13 +3621,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxy3501 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxy3535 struct {
 	Uuid             string                                                                                                     `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsInc3502  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsRate3503 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsInc3536  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsRate3537 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsInc3502 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsInc3536 struct {
 	Svrsel_fail            int    `json:"svrsel_fail"`
 	No_route               int    `json:"no_route"`
 	Snat_fail              int    `json:"snat_fail"`
@@ -3587,7 +3653,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                   string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsRate3503 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbImapProxyTriggerStatsRate3537 struct {
 	ThresholdExceededBy    int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration               int    `json:"duration" dval:"60"`
 	Svrsel_fail            int    `json:"svrsel_fail"`
@@ -3615,13 +3681,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                   string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3Proxy3504 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3Proxy3538 struct {
 	Uuid             string                                                                                                     `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsInc3505  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsRate3506 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsInc3539  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsRate3540 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsInc3505 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsInc3539 struct {
 	Svrsel_fail           int    `json:"svrsel_fail"`
 	No_route              int    `json:"no_route"`
 	Snat_fail             int    `json:"snat_fail"`
@@ -3639,7 +3705,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsRate3506 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPop3ProxyTriggerStatsRate3540 struct {
 	ThresholdExceededBy   int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration              int    `json:"duration" dval:"60"`
 	Svrsel_fail           int    `json:"svrsel_fail"`
@@ -3659,20 +3725,20 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitch3507 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitch3541 struct {
 	Uuid             string                                                                                                  `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsInc3508  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsRate3509 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsInc3542  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsRate3543 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsInc3508 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsInc3542 struct {
 	Lacp_tx_intf_err_drop       int    `json:"lacp_tx_intf_err_drop"`
 	Unnumbered_nat_error        int    `json:"unnumbered_nat_error"`
 	Unnumbered_unsupported_drop int    `json:"unnumbered_unsupported_drop"`
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsRate3509 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSwitchTriggerStatsRate3543 struct {
 	ThresholdExceededBy         int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                    int    `json:"duration" dval:"60"`
 	Lacp_tx_intf_err_drop       int    `json:"lacp_tx_intf_err_drop"`
@@ -3681,13 +3747,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCache3510 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCache3544 struct {
 	Uuid             string                                                                                                   `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsInc3511  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsRate3512 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsInc3545  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsRate3546 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsInc3511 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsInc3545 struct {
 	Rv_failure            int    `json:"rv_failure"`
 	Content_toobig        int    `json:"content_toobig"`
 	Content_toosmall      int    `json:"content_toosmall"`
@@ -3695,7 +3761,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsRate3512 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRcCacheTriggerStatsRate3546 struct {
 	ThresholdExceededBy   int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration              int    `json:"duration" dval:"60"`
 	Rv_failure            int    `json:"rv_failure"`
@@ -3705,13 +3771,13 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCounters3513 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCounters3547 struct {
 	Uuid             string                                                                                                   `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsInc3514  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsRate3515 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsInc3548  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsRate3549 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsInc3514 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsInc3548 struct {
 	So_pkts_slb_nat_reserve_fail            int    `json:"so_pkts_slb_nat_reserve_fail"`
 	So_pkts_slb_nat_release_fail            int    `json:"so_pkts_slb_nat_release_fail"`
 	So_pkts_l2redirect_dest_mac_zero_drop   int    `json:"so_pkts_l2redirect_dest_mac_zero_drop"`
@@ -3732,7 +3798,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                                    string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsRate3515 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSoCountersTriggerStatsRate3549 struct {
 	ThresholdExceededBy                     int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                                int    `json:"duration" dval:"60"`
 	So_pkts_slb_nat_reserve_fail            int    `json:"so_pkts_slb_nat_reserve_fail"`
@@ -3755,55 +3821,55 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                                    string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGbl3516 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGbl3550 struct {
 	Uuid             string                                                                                                     `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsInc3517  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsRate3518 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsInc3551  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsRate3552 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsInc3517 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsInc3551 struct {
 	Total_invalid_playerid_pkts int    `json:"total_invalid_playerid_pkts"`
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsRate3518 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsRate3552 struct {
 	ThresholdExceededBy         int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                    int    `json:"duration" dval:"60"`
 	Total_invalid_playerid_pkts int    `json:"total_invalid_playerid_pkts"`
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRate3519 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRate3553 struct {
 	Uuid             string                                                                                                     `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsInc3520  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsRate3521 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsInc3554  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsRate3555 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsInc3520 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsInc3554 struct {
 	Total_reset int    `json:"total_reset"`
 	Uuid        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsRate3521 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSportRateTriggerStatsRate3555 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Total_reset         int    `json:"total_reset"`
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobal3522 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobal3556 struct {
 	Uuid             string                                                                                                              `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsInc3523  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsRate3524 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsInc3557  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsRate3558 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsInc3523 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsInc3557 struct {
 	EnqueueFull  int    `json:"enqueue-full"`
 	EnqueueError int    `json:"enqueue-error"`
 	Uuid         string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsRate3524 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeLoggingLocalLogGlobalTriggerStatsRate3558 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	EnqueueFull         int    `json:"enqueue-full"`
@@ -3811,31 +3877,31 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeL
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlb3525 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlb3559 struct {
 	Uuid             string                                                                                               `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsInc3526  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsRate3527 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsInc3560  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsRate3561 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsInc3526 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsInc3560 struct {
 	Mlb_dcmsg_error int    `json:"mlb_dcmsg_error"`
 	Uuid            string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsRate3527 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbMlbTriggerStatsRate3561 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Mlb_dcmsg_error     int    `json:"mlb_dcmsg_error"`
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbe3528 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbe3562 struct {
 	Uuid             string                                                                                                     `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsInc3529  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsRate3530 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsInc3563  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsRate3564 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsInc3529 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsInc3563 struct {
 	Err_entry_create_failed      int    `json:"err_entry_create_failed"`
 	Err_entry_create_oom         int    `json:"err_entry_create_oom"`
 	Err_entry_insert_failed      int    `json:"err_entry_insert_failed"`
@@ -3850,7 +3916,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                         string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsRate3530 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbLinkProbeTriggerStatsRate3564 struct {
 	ThresholdExceededBy          int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                     int    `json:"duration" dval:"60"`
 	Err_entry_create_failed      int    `json:"err_entry_create_failed"`
@@ -3867,19 +3933,19 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                         string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpz3531 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpz3565 struct {
 	Uuid             string                                                                                               `json:"uuid"`
-	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsInc3532  `json:"trigger-stats-inc"`
-	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsRate3533 `json:"trigger-stats-rate"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsInc3566  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsRate3567 `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsInc3532 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsInc3566 struct {
 	Set_bw_error int    `json:"set_bw_error"`
 	Parse_error  int    `json:"parse_error"`
 	Uuid         string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsRate3533 struct {
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbRpzTriggerStatsRate3567 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Set_bw_error        int    `json:"set_bw_error"`
@@ -3887,62 +3953,63 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeS
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesActivate3534 struct {
+type VisibilityPacketCaptureGlobalTemplatesActivate3568 struct {
 	Template string `json:"template"`
 	Uuid     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplates3535 struct {
+type VisibilityPacketCaptureObjectTemplates3569 struct {
 	Uuid                           string                                                                     `json:"uuid"`
-	TemplGtpPlcyTmplList           []VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplList3536           `json:"templ-gtp-plcy-tmpl-list"`
-	InterfaceEthernetTmplList      []VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplList3540      `json:"interface-ethernet-tmpl-list"`
-	InterfaceTunnelTmplList        []VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplList3544        `json:"interface-tunnel-tmpl-list"`
-	AamJwtAuthorizationTmplList    []VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplList3548    `json:"aam-jwt-authorization-tmpl-list"`
-	AamAaaPolicyTmplList           []VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplList3552           `json:"aam-aaa-policy-tmpl-list"`
-	AamAuthLogonHttpInsTmplList    []VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplList3556    `json:"aam-auth-logon-http-ins-tmpl-list"`
-	AamAuthServerLdapInstTmplList  []VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplList3560  `json:"aam-auth-server-ldap-inst-tmpl-list"`
-	AamAuthServerOcspInstTmplList  []VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplList3564  `json:"aam-auth-server-ocsp-inst-tmpl-list"`
-	AamAuthServerRadInstTmplList   []VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplList3568   `json:"aam-auth-server-rad-inst-tmpl-list"`
-	AamAuthServerWinInstTmplList   []VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList3572   `json:"aam-auth-server-win-inst-tmpl-list"`
-	AamAuthSamlServiceProvTmplList []VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplList3576 `json:"aam-auth-saml-service-prov-tmpl-list"`
-	AamAuthSamlIdProvTmplList      []VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplList3580      `json:"aam-auth-saml-id-prov-tmpl-list"`
-	AamAuthServiceGroupTmplList    []VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplList3584    `json:"aam-auth-service-group-tmpl-list"`
-	AamAuthServiceGroupMemTmplList []VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplList3588 `json:"aam-auth-service-group-mem-tmpl-list"`
-	AamAuthRelayHbaseInstTmplList  []VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplList3592  `json:"aam-auth-relay-hbase-inst-tmpl-list"`
-	AamAuthRelayFormInstTmplList   []VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplList3596   `json:"aam-auth-relay-form-inst-tmpl-list"`
-	AamAuthRelayWsFedTmplList      []VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplList3600      `json:"aam-auth-relay-ws-fed-tmpl-list"`
-	AamAuthCaptchaInstTmplList     []VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplList3604     `json:"aam-auth-captcha-inst-tmpl-list"`
-	SlbTemplCacheTmplList          []VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplList3608          `json:"slb-templ-cache-tmpl-list"`
-	SlbPortTmplList                []VisibilityPacketCaptureObjectTemplatesSlbPortTmplList3612                `json:"slb-port-tmpl-list"`
-	SlbServiceTmplList             []VisibilityPacketCaptureObjectTemplatesSlbServiceTmplList3616             `json:"slb-service-tmpl-list"`
-	SlbVportTmplList               []VisibilityPacketCaptureObjectTemplatesSlbVportTmplList3620               `json:"slb-vport-tmpl-list"`
-	Cgnv6ServGroupTmplList         []VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplList3624         `json:"cgnv6-serv-group-tmpl-list"`
-	Cgnv6Dns64VsPortTmplList       []VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplList3628       `json:"cgnv6-dns64-vs-port-tmpl-list"`
-	Cgnv6MapTransDomainTmplList    []VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplList3632    `json:"cgnv6-map-trans-domain-tmpl-list"`
-	Cgnv6EncapDomainTmplList       []VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplList3636       `json:"cgnv6-encap-domain-tmpl-list"`
-	NetflowMonitorTmplList         []VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplList3640         `json:"netflow-monitor-tmpl-list"`
-	RuleSetTmplList                []VisibilityPacketCaptureObjectTemplatesRuleSetTmplList3644                `json:"rule-set-tmpl-list"`
-	RuleSetRuleTmplList            []VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList3648            `json:"rule-set-rule-tmpl-list"`
-	FwServerPortTmplList           []VisibilityPacketCaptureObjectTemplatesFwServerPortTmplList3652           `json:"fw-server-port-tmpl-list"`
-	FwServiceGroupTmplList         []VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplList3656         `json:"fw-service-group-tmpl-list"`
-	FwServiceGroupMemTmplList      []VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplList3660      `json:"fw-service-group-mem-tmpl-list"`
-	Dns_vportTmplList              []VisibilityPacketCaptureObjectTemplatesDns_vportTmplList3664              `json:"dns_vport-tmpl-list"`
-	SmtpVportTmplList              []VisibilityPacketCaptureObjectTemplatesSmtpVportTmplList3668              `json:"smtp-vport-tmpl-list"`
-	Pop3VportTmplList              []VisibilityPacketCaptureObjectTemplatesPop3VportTmplList3672              `json:"pop3-vport-tmpl-list"`
-	ImapVportTmplList              []VisibilityPacketCaptureObjectTemplatesImapVportTmplList3676              `json:"imap-vport-tmpl-list"`
+	TemplGtpPlcyTmplList           []VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplList3570           `json:"templ-gtp-plcy-tmpl-list"`
+	InterfaceEthernetTmplList      []VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplList3574      `json:"interface-ethernet-tmpl-list"`
+	InterfaceTunnelTmplList        []VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplList3578        `json:"interface-tunnel-tmpl-list"`
+	AamJwtAuthorizationTmplList    []VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplList3582    `json:"aam-jwt-authorization-tmpl-list"`
+	AamAaaPolicyTmplList           []VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplList3586           `json:"aam-aaa-policy-tmpl-list"`
+	AamAuthLogonHttpInsTmplList    []VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplList3590    `json:"aam-auth-logon-http-ins-tmpl-list"`
+	AamAuthServerLdapInstTmplList  []VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplList3594  `json:"aam-auth-server-ldap-inst-tmpl-list"`
+	AamAuthServerOcspInstTmplList  []VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplList3598  `json:"aam-auth-server-ocsp-inst-tmpl-list"`
+	AamAuthServerRadInstTmplList   []VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplList3602   `json:"aam-auth-server-rad-inst-tmpl-list"`
+	AamAuthServerWinInstTmplList   []VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList3606   `json:"aam-auth-server-win-inst-tmpl-list"`
+	AamAuthSamlServiceProvTmplList []VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplList3610 `json:"aam-auth-saml-service-prov-tmpl-list"`
+	AamAuthSamlIdProvTmplList      []VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplList3614      `json:"aam-auth-saml-id-prov-tmpl-list"`
+	AamAuthServiceGroupTmplList    []VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplList3618    `json:"aam-auth-service-group-tmpl-list"`
+	AamAuthServiceGroupMemTmplList []VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplList3622 `json:"aam-auth-service-group-mem-tmpl-list"`
+	AamAuthRelayHbaseInstTmplList  []VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplList3626  `json:"aam-auth-relay-hbase-inst-tmpl-list"`
+	AamAuthRelayFormInstTmplList   []VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplList3630   `json:"aam-auth-relay-form-inst-tmpl-list"`
+	AamAuthRelayWsFedTmplList      []VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplList3634      `json:"aam-auth-relay-ws-fed-tmpl-list"`
+	AamAuthCaptchaInstTmplList     []VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplList3638     `json:"aam-auth-captcha-inst-tmpl-list"`
+	SlbTemplCacheTmplList          []VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplList3642          `json:"slb-templ-cache-tmpl-list"`
+	CaptchaTemplateInstTmplList    []VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplList3646    `json:"captcha-template-inst-tmpl-list"`
+	SlbPortTmplList                []VisibilityPacketCaptureObjectTemplatesSlbPortTmplList3650                `json:"slb-port-tmpl-list"`
+	SlbServiceTmplList             []VisibilityPacketCaptureObjectTemplatesSlbServiceTmplList3654             `json:"slb-service-tmpl-list"`
+	SlbVportTmplList               []VisibilityPacketCaptureObjectTemplatesSlbVportTmplList3658               `json:"slb-vport-tmpl-list"`
+	Cgnv6ServGroupTmplList         []VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplList3662         `json:"cgnv6-serv-group-tmpl-list"`
+	Cgnv6Dns64VsPortTmplList       []VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplList3666       `json:"cgnv6-dns64-vs-port-tmpl-list"`
+	Cgnv6MapTransDomainTmplList    []VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplList3670    `json:"cgnv6-map-trans-domain-tmpl-list"`
+	Cgnv6EncapDomainTmplList       []VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplList3674       `json:"cgnv6-encap-domain-tmpl-list"`
+	NetflowMonitorTmplList         []VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplList3678         `json:"netflow-monitor-tmpl-list"`
+	RuleSetTmplList                []VisibilityPacketCaptureObjectTemplatesRuleSetTmplList3682                `json:"rule-set-tmpl-list"`
+	RuleSetRuleTmplList            []VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList3686            `json:"rule-set-rule-tmpl-list"`
+	FwServerPortTmplList           []VisibilityPacketCaptureObjectTemplatesFwServerPortTmplList3690           `json:"fw-server-port-tmpl-list"`
+	FwServiceGroupTmplList         []VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplList3694         `json:"fw-service-group-tmpl-list"`
+	FwServiceGroupMemTmplList      []VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplList3698      `json:"fw-service-group-mem-tmpl-list"`
+	Dns_vportTmplList              []VisibilityPacketCaptureObjectTemplatesDns_vportTmplList3702              `json:"dns_vport-tmpl-list"`
+	SmtpVportTmplList              []VisibilityPacketCaptureObjectTemplatesSmtpVportTmplList3706              `json:"smtp-vport-tmpl-list"`
+	Pop3VportTmplList              []VisibilityPacketCaptureObjectTemplatesPop3VportTmplList3710              `json:"pop3-vport-tmpl-list"`
+	ImapVportTmplList              []VisibilityPacketCaptureObjectTemplatesImapVportTmplList3714              `json:"imap-vport-tmpl-list"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplList3536 struct {
+type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplList3570 struct {
 	Name                 string                                                                             `json:"name"`
 	CaptureConfig        string                                                                             `json:"capture-config"`
 	Uuid                 string                                                                             `json:"uuid"`
 	UserTag              string                                                                             `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsSeverity3537 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsInc3538      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsRate3539     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsSeverity3571 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsInc3572      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsRate3573     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsSeverity3537 struct {
+type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsSeverity3571 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -3954,7 +4021,7 @@ type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsSever
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsInc3538 struct {
+type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsInc3572 struct {
 	DropVldGtpIeRepeatCountExceed      int    `json:"drop-vld-gtp-ie-repeat-count-exceed"`
 	DropVldReservedFieldSet            int    `json:"drop-vld-reserved-field-set"`
 	DropVldTunnelIdFlag                int    `json:"drop-vld-tunnel-id-flag"`
@@ -3988,7 +4055,7 @@ type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsInc35
 	Uuid                               string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsRate3539 struct {
+type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsRate3573 struct {
 	ThresholdExceededBy                int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                           int    `json:"duration" dval:"60"`
 	DropVldGtpIeRepeatCountExceed      int    `json:"drop-vld-gtp-ie-repeat-count-exceed"`
@@ -4024,17 +4091,17 @@ type VisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplListTriggerStatsRate3
 	Uuid                               string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplList3540 struct {
+type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplList3574 struct {
 	Name                 string                                                                                  `json:"name"`
 	CaptureConfig        string                                                                                  `json:"capture-config"`
 	Uuid                 string                                                                                  `json:"uuid"`
 	UserTag              string                                                                                  `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsSeverity3541 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsInc3542      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsRate3543     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsSeverity3575 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsInc3576      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsRate3577     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsSeverity3541 struct {
+type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsSeverity3575 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4046,7 +4113,7 @@ type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStats
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsInc3542 struct {
+type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsInc3576 struct {
 	Input_errors  int    `json:"input_errors"`
 	Crc           int    `json:"crc"`
 	Runts         int    `json:"runts"`
@@ -4057,7 +4124,7 @@ type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStats
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsRate3543 struct {
+type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStatsRate3577 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Input_errors        int    `json:"input_errors"`
@@ -4070,17 +4137,17 @@ type VisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplListTriggerStats
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplList3544 struct {
+type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplList3578 struct {
 	Name                 string                                                                                `json:"name"`
 	CaptureConfig        string                                                                                `json:"capture-config"`
 	Uuid                 string                                                                                `json:"uuid"`
 	UserTag              string                                                                                `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsSeverity3545 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsInc3546      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsRate3547     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsSeverity3579 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsInc3580      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsRate3581     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsSeverity3545 struct {
+type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsSeverity3579 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4092,13 +4159,13 @@ type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsSe
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsInc3546 struct {
+type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsInc3580 struct {
 	NumRxErrPkts int    `json:"num-rx-err-pkts"`
 	NumTxErrPkts int    `json:"num-tx-err-pkts"`
 	Uuid         string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsRate3547 struct {
+type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsRate3581 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	NumRxErrPkts        int    `json:"num-rx-err-pkts"`
@@ -4106,17 +4173,17 @@ type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplListTriggerStatsRa
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplList3548 struct {
+type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplList3582 struct {
 	Name                 string                                                                                    `json:"name"`
 	CaptureConfig        string                                                                                    `json:"capture-config"`
 	Uuid                 string                                                                                    `json:"uuid"`
 	UserTag              string                                                                                    `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsSeverity3549 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsInc3550      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsRate3551     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsSeverity3583 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsInc3584      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsRate3585     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsSeverity3549 struct {
+type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsSeverity3583 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4128,7 +4195,7 @@ type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerSta
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsInc3550 struct {
+type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsInc3584 struct {
 	JwtAuthorizeFailure int    `json:"jwt-authorize-failure"`
 	JwtMissingToken     int    `json:"jwt-missing-token"`
 	JwtMissingClaim     int    `json:"jwt-missing-claim"`
@@ -4138,7 +4205,7 @@ type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerSta
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsRate3551 struct {
+type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerStatsRate3585 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	JwtAuthorizeFailure int    `json:"jwt-authorize-failure"`
@@ -4150,17 +4217,17 @@ type VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplListTriggerSta
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplList3552 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplList3586 struct {
 	Name                 string                                                                             `json:"name"`
 	CaptureConfig        string                                                                             `json:"capture-config"`
 	Uuid                 string                                                                             `json:"uuid"`
 	UserTag              string                                                                             `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsSeverity3553 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsInc3554      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsRate3555     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsSeverity3587 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsInc3588      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsRate3589     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsSeverity3553 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsSeverity3587 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4172,29 +4239,29 @@ type VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsSever
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsInc3554 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsInc3588 struct {
 	Error int    `json:"error"`
 	Uuid  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsRate3555 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplListTriggerStatsRate3589 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Error               int    `json:"error"`
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplList3556 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplList3590 struct {
 	Name                 string                                                                                    `json:"name"`
 	CaptureConfig        string                                                                                    `json:"capture-config"`
 	Uuid                 string                                                                                    `json:"uuid"`
 	UserTag              string                                                                                    `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsSeverity3557 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsInc3558      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsRate3559     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsSeverity3591 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsInc3592      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsRate3593     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsSeverity3557 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsSeverity3591 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4206,29 +4273,29 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerSta
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsInc3558 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsInc3592 struct {
 	Spn_krb_faiure int    `json:"spn_krb_faiure"`
 	Uuid           string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsRate3559 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplListTriggerStatsRate3593 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Spn_krb_faiure      int    `json:"spn_krb_faiure"`
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplList3560 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplList3594 struct {
 	Name                 string                                                                                      `json:"name"`
 	CaptureConfig        string                                                                                      `json:"capture-config"`
 	Uuid                 string                                                                                      `json:"uuid"`
 	UserTag              string                                                                                      `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsSeverity3561 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsInc3562      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsRate3563     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsSeverity3595 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsInc3596      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsRate3597     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsSeverity3561 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsSeverity3595 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4240,7 +4307,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerS
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsInc3562 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsInc3596 struct {
 	AdminBindFailure  int    `json:"admin-bind-failure"`
 	BindFailure       int    `json:"bind-failure"`
 	SearchFailure     int    `json:"search-failure"`
@@ -4252,7 +4319,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerS
 	Uuid              string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsRate3563 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerStatsRate3597 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	AdminBindFailure    int    `json:"admin-bind-failure"`
@@ -4266,17 +4333,17 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplListTriggerS
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplList3564 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplList3598 struct {
 	Name                 string                                                                                      `json:"name"`
 	CaptureConfig        string                                                                                      `json:"capture-config"`
 	Uuid                 string                                                                                      `json:"uuid"`
 	UserTag              string                                                                                      `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsSeverity3565 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsInc3566      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsRate3567     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsSeverity3599 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsInc3600      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsRate3601     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsSeverity3565 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsSeverity3599 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4288,7 +4355,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerS
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsInc3566 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsInc3600 struct {
 	Timeout         int    `json:"timeout"`
 	Fail            int    `json:"fail"`
 	StaplingTimeout int    `json:"stapling-timeout"`
@@ -4296,7 +4363,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerS
 	Uuid            string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsRate3567 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerStatsRate3601 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Timeout             int    `json:"timeout"`
@@ -4306,17 +4373,17 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerOcspInstTmplListTriggerS
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplList3568 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplList3602 struct {
 	Name                 string                                                                                     `json:"name"`
 	CaptureConfig        string                                                                                     `json:"capture-config"`
 	Uuid                 string                                                                                     `json:"uuid"`
 	UserTag              string                                                                                     `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsSeverity3569 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsInc3570      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsRate3571     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsSeverity3603 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsInc3604      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsRate3605     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsSeverity3569 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsSeverity3603 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4328,7 +4395,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerSt
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsInc3570 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsInc3604 struct {
 	Authen_failure    int    `json:"authen_failure"`
 	Authorize_failure int    `json:"authorize_failure"`
 	Timeout_error     int    `json:"timeout_error"`
@@ -4337,7 +4404,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerSt
 	Uuid              string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsRate3571 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerStatsRate3605 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Authen_failure      int    `json:"authen_failure"`
@@ -4348,17 +4415,17 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplListTriggerSt
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList3572 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList3606 struct {
 	Name                 string                                                                                     `json:"name"`
 	CaptureConfig        string                                                                                     `json:"capture-config"`
 	Uuid                 string                                                                                     `json:"uuid"`
 	UserTag              string                                                                                     `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsSeverity3573 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsInc3574      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsRate3575     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsSeverity3607 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsInc3608      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsRate3609     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsSeverity3573 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsSeverity3607 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4370,7 +4437,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerSt
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsInc3574 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsInc3608 struct {
 	Krb_timeout_error        int    `json:"krb_timeout_error"`
 	Krb_other_error          int    `json:"krb_other_error"`
 	Krb_pw_expiry            int    `json:"krb_pw_expiry"`
@@ -4379,7 +4446,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerSt
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsRate3575 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerStatsRate3609 struct {
 	ThresholdExceededBy      int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                 int    `json:"duration" dval:"60"`
 	Krb_timeout_error        int    `json:"krb_timeout_error"`
@@ -4390,17 +4457,17 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplListTriggerSt
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplList3576 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplList3610 struct {
 	Name                 string                                                                                       `json:"name"`
 	CaptureConfig        string                                                                                       `json:"capture-config"`
 	Uuid                 string                                                                                       `json:"uuid"`
 	UserTag              string                                                                                       `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsSeverity3577 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsInc3578      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsRate3579     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsSeverity3611 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsInc3612      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsRate3613     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsSeverity3577 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsSeverity3611 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4412,13 +4479,13 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTrigger
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsInc3578 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsInc3612 struct {
 	AcsAuthzFail int    `json:"acs-authz-fail"`
 	AcsError     int    `json:"acs-error"`
 	Uuid         string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsRate3579 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTriggerStatsRate3613 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	AcsAuthzFail        int    `json:"acs-authz-fail"`
@@ -4426,17 +4493,17 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplListTrigger
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplList3580 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplList3614 struct {
 	Name                 string                                                                                  `json:"name"`
 	CaptureConfig        string                                                                                  `json:"capture-config"`
 	Uuid                 string                                                                                  `json:"uuid"`
 	UserTag              string                                                                                  `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsSeverity3581 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsInc3582      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsRate3583     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsSeverity3615 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsInc3616      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsRate3617     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsSeverity3581 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsSeverity3615 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4448,13 +4515,13 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStats
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsInc3582 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsInc3616 struct {
 	MdFail  int    `json:"md-fail"`
 	AcsFail int    `json:"acs-fail"`
 	Uuid    string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsRate3583 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStatsRate3617 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	MdFail              int    `json:"md-fail"`
@@ -4462,17 +4529,17 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplListTriggerStats
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplList3584 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplList3618 struct {
 	Name                 string                                                                                    `json:"name"`
 	CaptureConfig        string                                                                                    `json:"capture-config"`
 	Uuid                 string                                                                                    `json:"uuid"`
 	UserTag              string                                                                                    `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsSeverity3585 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsInc3586      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsRate3587     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsSeverity3619 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsInc3620      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsRate3621     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsSeverity3585 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsSeverity3619 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4484,29 +4551,29 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerSta
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsInc3586 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsInc3620 struct {
 	Server_selection_fail_reset int    `json:"server_selection_fail_reset"`
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsRate3587 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplListTriggerStatsRate3621 struct {
 	ThresholdExceededBy         int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                    int    `json:"duration" dval:"60"`
 	Server_selection_fail_reset int    `json:"server_selection_fail_reset"`
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplList3588 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplList3622 struct {
 	Name                 string                                                                                       `json:"name"`
 	CaptureConfig        string                                                                                       `json:"capture-config"`
 	Uuid                 string                                                                                       `json:"uuid"`
 	UserTag              string                                                                                       `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsSeverity3589 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsInc3590      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsRate3591     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsSeverity3623 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsInc3624      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsRate3625     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsSeverity3589 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsSeverity3623 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4518,29 +4585,29 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTrigger
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsInc3590 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsInc3624 struct {
 	Curr_conn_overflow int    `json:"curr_conn_overflow"`
 	Uuid               string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsRate3591 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplListTriggerStatsRate3625 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Curr_conn_overflow  int    `json:"curr_conn_overflow"`
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplList3592 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplList3626 struct {
 	Name                 string                                                                                      `json:"name"`
 	CaptureConfig        string                                                                                      `json:"capture-config"`
 	Uuid                 string                                                                                      `json:"uuid"`
 	UserTag              string                                                                                      `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsSeverity3593 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsInc3594      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsRate3595     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsSeverity3627 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsInc3628      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsRate3629     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsSeverity3593 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsSeverity3627 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4552,7 +4619,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerS
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsInc3594 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsInc3628 struct {
 	NoCreds     int    `json:"no-creds"`
 	BadReq      int    `json:"bad-req"`
 	Unauth      int    `json:"unauth"`
@@ -4563,7 +4630,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerS
 	Uuid        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsRate3595 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerStatsRate3629 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	NoCreds             int    `json:"no-creds"`
@@ -4576,17 +4643,17 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplListTriggerS
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplList3596 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplList3630 struct {
 	Name                 string                                                                                     `json:"name"`
 	CaptureConfig        string                                                                                     `json:"capture-config"`
 	Uuid                 string                                                                                     `json:"uuid"`
 	UserTag              string                                                                                     `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsSeverity3597 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsInc3598      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsRate3599     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsSeverity3631 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsInc3632      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsRate3633     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsSeverity3597 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsSeverity3631 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4598,7 +4665,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerSt
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsInc3598 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsInc3632 struct {
 	Invalid_srv_rsp int    `json:"invalid_srv_rsp"`
 	Post_fail       int    `json:"post_fail"`
 	Invalid_cred    int    `json:"invalid_cred"`
@@ -4609,7 +4676,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerSt
 	Uuid            string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsRate3599 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerStatsRate3633 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Invalid_srv_rsp     int    `json:"invalid_srv_rsp"`
@@ -4622,17 +4689,17 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplListTriggerSt
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplList3600 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplList3634 struct {
 	Name                 string                                                                                  `json:"name"`
 	CaptureConfig        string                                                                                  `json:"capture-config"`
 	Uuid                 string                                                                                  `json:"uuid"`
 	UserTag              string                                                                                  `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsSeverity3601 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsInc3602      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsRate3603     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsSeverity3635 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsInc3636      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsRate3637     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsSeverity3601 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsSeverity3635 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4644,29 +4711,29 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStats
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsInc3602 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsInc3636 struct {
 	Failure int    `json:"failure"`
 	Uuid    string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsRate3603 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplListTriggerStatsRate3637 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Failure             int    `json:"failure"`
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplList3604 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplList3638 struct {
 	Name                 string                                                                                   `json:"name"`
 	CaptureConfig        string                                                                                   `json:"capture-config"`
 	Uuid                 string                                                                                   `json:"uuid"`
 	UserTag              string                                                                                   `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsSeverity3605 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsInc3606      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsRate3607     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsSeverity3639 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsInc3640      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsRate3641     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsSeverity3605 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsSeverity3639 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4678,7 +4745,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStat
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsInc3606 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsInc3640 struct {
 	ParseFail    int    `json:"parse-fail"`
 	JsonFail     int    `json:"json-fail"`
 	AttrFail     int    `json:"attr-fail"`
@@ -4687,7 +4754,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStat
 	Uuid         string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsRate3607 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStatsRate3641 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	ParseFail           int    `json:"parse-fail"`
@@ -4698,17 +4765,17 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthCaptchaInstTmplListTriggerStat
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplList3608 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplList3642 struct {
 	Name                 string                                                                              `json:"name"`
 	CaptureConfig        string                                                                              `json:"capture-config"`
 	Uuid                 string                                                                              `json:"uuid"`
 	UserTag              string                                                                              `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsSeverity3609 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsInc3610      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsRate3611     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsSeverity3643 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsInc3644      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsRate3645     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsSeverity3609 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsSeverity3643 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4720,7 +4787,7 @@ type VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsSeve
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsInc3610 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsInc3644 struct {
 	Nc_req_header         int    `json:"nc_req_header"`
 	Nc_res_header         int    `json:"nc_res_header"`
 	Rv_failure            int    `json:"rv_failure"`
@@ -4731,7 +4798,7 @@ type VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsInc3
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsRate3611 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsRate3645 struct {
 	ThresholdExceededBy   int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration              int    `json:"duration" dval:"60"`
 	Nc_req_header         int    `json:"nc_req_header"`
@@ -4744,17 +4811,57 @@ type VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplListTriggerStatsRate
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbPortTmplList3612 struct {
+type VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplList3646 struct {
+	Name                 string                                                                                    `json:"name"`
+	CaptureConfig        string                                                                                    `json:"capture-config"`
+	Uuid                 string                                                                                    `json:"uuid"`
+	UserTag              string                                                                                    `json:"user-tag"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsSeverity3647 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsInc3648      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsRate3649     `json:"trigger-stats-rate"`
+}
+
+type VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsSeverity3647 struct {
+	Error         int    `json:"error"`
+	ErrorAlert    int    `json:"error-alert"`
+	ErrorWarning  int    `json:"error-warning"`
+	ErrorCritical int    `json:"error-critical"`
+	Drop          int    `json:"drop"`
+	DropAlert     int    `json:"drop-alert"`
+	DropWarning   int    `json:"drop-warning"`
+	DropCritical  int    `json:"drop-critical"`
+	Uuid          string `json:"uuid"`
+}
+
+type VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsInc3648 struct {
+	ParseFail    int    `json:"parse-fail"`
+	JsonFail     int    `json:"json-fail"`
+	TimeoutError int    `json:"timeout-error"`
+	OtherError   int    `json:"other-error"`
+	Uuid         string `json:"uuid"`
+}
+
+type VisibilityPacketCaptureObjectTemplatesCaptchaTemplateInstTmplListTriggerStatsRate3649 struct {
+	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
+	Duration            int    `json:"duration" dval:"60"`
+	ParseFail           int    `json:"parse-fail"`
+	JsonFail            int    `json:"json-fail"`
+	TimeoutError        int    `json:"timeout-error"`
+	OtherError          int    `json:"other-error"`
+	Uuid                string `json:"uuid"`
+}
+
+type VisibilityPacketCaptureObjectTemplatesSlbPortTmplList3650 struct {
 	Name                 string                                                                        `json:"name"`
 	CaptureConfig        string                                                                        `json:"capture-config"`
 	Uuid                 string                                                                        `json:"uuid"`
 	UserTag              string                                                                        `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsSeverity3613 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsInc3614      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsRate3615     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsSeverity3651 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsInc3652      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsRate3653     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsSeverity3613 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsSeverity3651 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4766,7 +4873,7 @@ type VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsSeverity36
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsInc3614 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsInc3652 struct {
 	Es_resp_300 int    `json:"es_resp_300"`
 	Es_resp_400 int    `json:"es_resp_400"`
 	Es_resp_500 int    `json:"es_resp_500"`
@@ -4776,7 +4883,7 @@ type VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsInc3614 st
 	Uuid        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsRate3615 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsRate3653 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Es_resp_300         int    `json:"es_resp_300"`
@@ -4788,17 +4895,17 @@ type VisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsRate3615 s
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbServiceTmplList3616 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbServiceTmplList3654 struct {
 	Name                 string                                                                           `json:"name"`
 	CaptureConfig        string                                                                           `json:"capture-config"`
 	Uuid                 string                                                                           `json:"uuid"`
 	UserTag              string                                                                           `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsSeverity3617 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsInc3618      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsRate3619     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsSeverity3655 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsInc3656      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsRate3657     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsSeverity3617 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsSeverity3655 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4810,7 +4917,7 @@ type VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsSeverit
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsInc3618 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsInc3656 struct {
 	Es_resp_300 int    `json:"es_resp_300"`
 	Es_resp_400 int    `json:"es_resp_400"`
 	Es_resp_500 int    `json:"es_resp_500"`
@@ -4820,7 +4927,7 @@ type VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsInc3618
 	Uuid        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsRate3619 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsRate3657 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Es_resp_300         int    `json:"es_resp_300"`
@@ -4832,17 +4939,17 @@ type VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsRate361
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbVportTmplList3620 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbVportTmplList3658 struct {
 	Name                 string                                                                         `json:"name"`
 	CaptureConfig        string                                                                         `json:"capture-config"`
 	Uuid                 string                                                                         `json:"uuid"`
 	UserTag              string                                                                         `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsSeverity3621 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsInc3622      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsRate3623     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsSeverity3659 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsInc3660      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsRate3661     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsSeverity3621 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsSeverity3659 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4854,7 +4961,7 @@ type VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsSeverity3
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsInc3622 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsInc3660 struct {
 	Total_mf_dns_pkts                   int    `json:"total_mf_dns_pkts"`
 	Es_total_failure_actions            int    `json:"es_total_failure_actions"`
 	Compression_miss_no_client          int    `json:"compression_miss_no_client"`
@@ -4866,7 +4973,7 @@ type VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsInc3622 s
 	Uuid                                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsRate3623 struct {
+type VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsRate3661 struct {
 	ThresholdExceededBy                 int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                            int    `json:"duration" dval:"60"`
 	Total_mf_dns_pkts                   int    `json:"total_mf_dns_pkts"`
@@ -4880,17 +4987,17 @@ type VisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStatsRate3623 
 	Uuid                                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplList3624 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplList3662 struct {
 	Name                 string                                                                               `json:"name"`
 	CaptureConfig        string                                                                               `json:"capture-config"`
 	Uuid                 string                                                                               `json:"uuid"`
 	UserTag              string                                                                               `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsSeverity3625 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsInc3626      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsRate3627     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsSeverity3663 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsInc3664      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsRate3665     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsSeverity3625 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsSeverity3663 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4902,13 +5009,13 @@ type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsSev
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsInc3626 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsInc3664 struct {
 	Server_selection_fail_drop  int    `json:"server_selection_fail_drop"`
 	Server_selection_fail_reset int    `json:"server_selection_fail_reset"`
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsRate3627 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsRate3665 struct {
 	ThresholdExceededBy         int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                    int    `json:"duration" dval:"60"`
 	Server_selection_fail_drop  int    `json:"server_selection_fail_drop"`
@@ -4916,17 +5023,17 @@ type VisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplListTriggerStatsRat
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplList3628 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplList3666 struct {
 	Name                 string                                                                                 `json:"name"`
 	CaptureConfig        string                                                                                 `json:"capture-config"`
 	Uuid                 string                                                                                 `json:"uuid"`
 	UserTag              string                                                                                 `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsSeverity3629 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsInc3630      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsRate3631     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsSeverity3667 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsInc3668      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsRate3669     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsSeverity3629 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsSeverity3667 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4938,29 +5045,29 @@ type VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsS
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsInc3630 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsInc3668 struct {
 	Es_total_failure_actions int    `json:"es_total_failure_actions"`
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsRate3631 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplListTriggerStatsRate3669 struct {
 	ThresholdExceededBy      int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                 int    `json:"duration" dval:"60"`
 	Es_total_failure_actions int    `json:"es_total_failure_actions"`
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplList3632 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplList3670 struct {
 	Name                 string                                                                                    `json:"name"`
 	CaptureConfig        string                                                                                    `json:"capture-config"`
 	Uuid                 string                                                                                    `json:"uuid"`
 	UserTag              string                                                                                    `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsSeverity3633 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsInc3634      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsRate3635     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsSeverity3671 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsInc3672      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsRate3673     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsSeverity3633 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsSeverity3671 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -4972,7 +5079,7 @@ type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerSta
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsInc3634 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsInc3672 struct {
 	Inbound_addr_port_validation_failed int    `json:"inbound_addr_port_validation_failed"`
 	Inbound_rev_lookup_failed           int    `json:"inbound_rev_lookup_failed"`
 	Inbound_dest_unreachable            int    `json:"inbound_dest_unreachable"`
@@ -4984,7 +5091,7 @@ type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerSta
 	Uuid                                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsRate3635 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerStatsRate3673 struct {
 	ThresholdExceededBy                 int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                            int    `json:"duration" dval:"60"`
 	Inbound_addr_port_validation_failed int    `json:"inbound_addr_port_validation_failed"`
@@ -4998,17 +5105,17 @@ type VisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplListTriggerSta
 	Uuid                                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplList3636 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplList3674 struct {
 	Name                 string                                                                                 `json:"name"`
 	CaptureConfig        string                                                                                 `json:"capture-config"`
 	Uuid                 string                                                                                 `json:"uuid"`
 	UserTag              string                                                                                 `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsSeverity3637 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsInc3638      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsRate3639     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsSeverity3675 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsInc3676      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsRate3677     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsSeverity3637 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsSeverity3675 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -5020,7 +5127,7 @@ type VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsS
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsInc3638 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsInc3676 struct {
 	Inbound_addr_port_validation_failed int    `json:"inbound_addr_port_validation_failed"`
 	Inbound_rev_lookup_failed           int    `json:"inbound_rev_lookup_failed"`
 	Inbound_dest_unreachable            int    `json:"inbound_dest_unreachable"`
@@ -5032,7 +5139,7 @@ type VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsI
 	Uuid                                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsRate3639 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsRate3677 struct {
 	ThresholdExceededBy                 int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                            int    `json:"duration" dval:"60"`
 	Inbound_addr_port_validation_failed int    `json:"inbound_addr_port_validation_failed"`
@@ -5046,17 +5153,17 @@ type VisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplListTriggerStatsR
 	Uuid                                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplList3640 struct {
+type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplList3678 struct {
 	Name                 string                                                                               `json:"name"`
 	CaptureConfig        string                                                                               `json:"capture-config"`
 	Uuid                 string                                                                               `json:"uuid"`
 	UserTag              string                                                                               `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsSeverity3641 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsInc3642      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsRate3643     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsSeverity3679 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsInc3680      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsRate3681     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsSeverity3641 struct {
+type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsSeverity3679 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -5068,7 +5175,7 @@ type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsSev
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsInc3642 struct {
+type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsInc3680 struct {
 	Nat44RecordsSentFailure            int    `json:"nat44-records-sent-failure"`
 	Nat64RecordsSentFailure            int    `json:"nat64-records-sent-failure"`
 	DsliteRecordsSentFailure           int    `json:"dslite-records-sent-failure"`
@@ -5132,7 +5239,7 @@ type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsInc
 	Uuid                               string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsRate3643 struct {
+type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsRate3681 struct {
 	ThresholdExceededBy                int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                           int    `json:"duration" dval:"60"`
 	Nat44RecordsSentFailure            int    `json:"nat44-records-sent-failure"`
@@ -5198,17 +5305,17 @@ type VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplListTriggerStatsRat
 	Uuid                               string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesRuleSetTmplList3644 struct {
+type VisibilityPacketCaptureObjectTemplatesRuleSetTmplList3682 struct {
 	Name                 string                                                                        `json:"name"`
 	CaptureConfig        string                                                                        `json:"capture-config"`
 	Uuid                 string                                                                        `json:"uuid"`
 	UserTag              string                                                                        `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsSeverity3645 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsInc3646      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsRate3647     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsSeverity3683 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsInc3684      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsRate3685     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsSeverity3645 struct {
+type VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsSeverity3683 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -5220,14 +5327,14 @@ type VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsSeverity36
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsInc3646 struct {
+type VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsInc3684 struct {
 	UnmatchedDrops int    `json:"unmatched-drops"`
 	Deny           int    `json:"deny"`
 	Reset          int    `json:"reset"`
 	Uuid           string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsRate3647 struct {
+type VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsRate3685 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	UnmatchedDrops      int    `json:"unmatched-drops"`
@@ -5236,17 +5343,17 @@ type VisibilityPacketCaptureObjectTemplatesRuleSetTmplListTriggerStatsRate3647 s
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList3648 struct {
+type VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList3686 struct {
 	Name                 string                                                                            `json:"name"`
 	CaptureConfig        string                                                                            `json:"capture-config"`
 	Uuid                 string                                                                            `json:"uuid"`
 	UserTag              string                                                                            `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsSeverity3649 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsInc3650      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsRate3651     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsSeverity3687 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsInc3688      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsRate3689     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsSeverity3649 struct {
+type VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsSeverity3687 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -5258,29 +5365,29 @@ type VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsSeveri
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsInc3650 struct {
+type VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsInc3688 struct {
 	SynCookieVerificationFailed int    `json:"syn-cookie-verification-failed"`
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsRate3651 struct {
+type VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsRate3689 struct {
 	ThresholdExceededBy         int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                    int    `json:"duration" dval:"60"`
 	SynCookieVerificationFailed int    `json:"syn-cookie-verification-failed"`
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesFwServerPortTmplList3652 struct {
+type VisibilityPacketCaptureObjectTemplatesFwServerPortTmplList3690 struct {
 	Name                 string                                                                             `json:"name"`
 	CaptureConfig        string                                                                             `json:"capture-config"`
 	Uuid                 string                                                                             `json:"uuid"`
 	UserTag              string                                                                             `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsSeverity3653 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsInc3654      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsRate3655     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsSeverity3691 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsInc3692      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsRate3693     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsSeverity3653 struct {
+type VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsSeverity3691 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -5292,14 +5399,14 @@ type VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsSever
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsInc3654 struct {
+type VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsInc3692 struct {
 	Es_resp_400          int    `json:"es_resp_400"`
 	Es_resp_500          int    `json:"es_resp_500"`
 	Es_resp_invalid_http int    `json:"es_resp_invalid_http"`
 	Uuid                 string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsRate3655 struct {
+type VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsRate3693 struct {
 	ThresholdExceededBy  int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration             int    `json:"duration" dval:"60"`
 	Es_resp_400          int    `json:"es_resp_400"`
@@ -5308,17 +5415,17 @@ type VisibilityPacketCaptureObjectTemplatesFwServerPortTmplListTriggerStatsRate3
 	Uuid                 string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplList3656 struct {
+type VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplList3694 struct {
 	Name                 string                                                                               `json:"name"`
 	CaptureConfig        string                                                                               `json:"capture-config"`
 	Uuid                 string                                                                               `json:"uuid"`
 	UserTag              string                                                                               `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsSeverity3657 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsInc3658      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsRate3659     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsSeverity3695 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsInc3696      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsRate3697     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsSeverity3657 struct {
+type VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsSeverity3695 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -5330,29 +5437,29 @@ type VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsSev
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsInc3658 struct {
+type VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsInc3696 struct {
 	Server_selection_fail_reset int    `json:"server_selection_fail_reset"`
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsRate3659 struct {
+type VisibilityPacketCaptureObjectTemplatesFwServiceGroupTmplListTriggerStatsRate3697 struct {
 	ThresholdExceededBy         int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                    int    `json:"duration" dval:"60"`
 	Server_selection_fail_reset int    `json:"server_selection_fail_reset"`
 	Uuid                        string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplList3660 struct {
+type VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplList3698 struct {
 	Name                 string                                                                                  `json:"name"`
 	CaptureConfig        string                                                                                  `json:"capture-config"`
 	Uuid                 string                                                                                  `json:"uuid"`
 	UserTag              string                                                                                  `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsSeverity3661 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsInc3662      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsRate3663     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsSeverity3699 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsInc3700      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsRate3701     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsSeverity3661 struct {
+type VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsSeverity3699 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -5364,29 +5471,29 @@ type VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStats
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsInc3662 struct {
+type VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsInc3700 struct {
 	Curr_conn_overflow int    `json:"curr_conn_overflow"`
 	Uuid               string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsRate3663 struct {
+type VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplListTriggerStatsRate3701 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Curr_conn_overflow  int    `json:"curr_conn_overflow"`
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesDns_vportTmplList3664 struct {
+type VisibilityPacketCaptureObjectTemplatesDns_vportTmplList3702 struct {
 	Name                 string                                                                          `json:"name"`
 	CaptureConfig        string                                                                          `json:"capture-config"`
 	Uuid                 string                                                                          `json:"uuid"`
 	UserTag              string                                                                          `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsSeverity3665 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsInc3666      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsRate3667     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsSeverity3703 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsInc3704      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsRate3705     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsSeverity3665 struct {
+type VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsSeverity3703 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -5398,7 +5505,7 @@ type VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsSeverity
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsInc3666 struct {
+type VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsInc3704 struct {
 	Dnsrrl_total_dropped           int    `json:"dnsrrl_total_dropped"`
 	Total_filter_drop              int    `json:"total_filter_drop"`
 	Total_max_query_len_drop       int    `json:"total_max_query_len_drop"`
@@ -5431,7 +5538,7 @@ type VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsInc3666 
 	Uuid                           string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsRate3667 struct {
+type VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsRate3705 struct {
 	ThresholdExceededBy            int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                       int    `json:"duration" dval:"60"`
 	Dnsrrl_total_dropped           int    `json:"dnsrrl_total_dropped"`
@@ -5466,17 +5573,17 @@ type VisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStatsRate3667
 	Uuid                           string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplList3668 struct {
+type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplList3706 struct {
 	Name                 string                                                                          `json:"name"`
 	CaptureConfig        string                                                                          `json:"capture-config"`
 	Uuid                 string                                                                          `json:"uuid"`
 	UserTag              string                                                                          `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsSeverity3669 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsInc3670      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsRate3671     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsSeverity3707 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsInc3708      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsRate3709     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsSeverity3669 struct {
+type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsSeverity3707 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -5488,7 +5595,7 @@ type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsSeverity
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsInc3670 struct {
+type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsInc3708 struct {
 	No_proxy                      int    `json:"no_proxy"`
 	Parse_req_fail                int    `json:"parse_req_fail"`
 	Server_select_fail            int    `json:"server_select_fail"`
@@ -5511,7 +5618,7 @@ type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsInc3670 
 	Uuid                          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsRate3671 struct {
+type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsRate3709 struct {
 	ThresholdExceededBy           int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                      int    `json:"duration" dval:"60"`
 	No_proxy                      int    `json:"no_proxy"`
@@ -5536,17 +5643,17 @@ type VisibilityPacketCaptureObjectTemplatesSmtpVportTmplListTriggerStatsRate3671
 	Uuid                          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesPop3VportTmplList3672 struct {
+type VisibilityPacketCaptureObjectTemplatesPop3VportTmplList3710 struct {
 	Name                 string                                                                          `json:"name"`
 	CaptureConfig        string                                                                          `json:"capture-config"`
 	Uuid                 string                                                                          `json:"uuid"`
 	UserTag              string                                                                          `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsSeverity3673 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsInc3674      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsRate3675     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsSeverity3711 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsInc3712      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsRate3713     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsSeverity3673 struct {
+type VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsSeverity3711 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -5558,7 +5665,7 @@ type VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsSeverity
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsInc3674 struct {
+type VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsInc3712 struct {
 	Svrsel_fail           int    `json:"svrsel_fail"`
 	No_route              int    `json:"no_route"`
 	Snat_fail             int    `json:"snat_fail"`
@@ -5576,7 +5683,7 @@ type VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsInc3674 
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsRate3675 struct {
+type VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsRate3713 struct {
 	ThresholdExceededBy   int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration              int    `json:"duration" dval:"60"`
 	Svrsel_fail           int    `json:"svrsel_fail"`
@@ -5596,17 +5703,17 @@ type VisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStatsRate3675
 	Uuid                  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesImapVportTmplList3676 struct {
+type VisibilityPacketCaptureObjectTemplatesImapVportTmplList3714 struct {
 	Name                 string                                                                          `json:"name"`
 	CaptureConfig        string                                                                          `json:"capture-config"`
 	Uuid                 string                                                                          `json:"uuid"`
 	UserTag              string                                                                          `json:"user-tag"`
-	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsSeverity3677 `json:"trigger-stats-severity"`
-	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsInc3678      `json:"trigger-stats-inc"`
-	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsRate3679     `json:"trigger-stats-rate"`
+	TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsSeverity3715 `json:"trigger-stats-severity"`
+	TriggerStatsInc      VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsInc3716      `json:"trigger-stats-inc"`
+	TriggerStatsRate     VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsRate3717     `json:"trigger-stats-rate"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsSeverity3677 struct {
+type VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsSeverity3715 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`
@@ -5618,7 +5725,7 @@ type VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsSeverity
 	Uuid          string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsInc3678 struct {
+type VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsInc3716 struct {
 	Svrsel_fail            int    `json:"svrsel_fail"`
 	No_route               int    `json:"no_route"`
 	Snat_fail              int    `json:"snat_fail"`
@@ -5644,7 +5751,7 @@ type VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsInc3678 
 	Uuid                   string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsRate3679 struct {
+type VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsRate3717 struct {
 	ThresholdExceededBy    int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration               int    `json:"duration" dval:"60"`
 	Svrsel_fail            int    `json:"svrsel_fail"`
@@ -5672,13 +5779,13 @@ type VisibilityPacketCaptureObjectTemplatesImapVportTmplListTriggerStatsRate3679
 	Uuid                   string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureAutomatedCaptures3680 struct {
+type VisibilityPacketCaptureAutomatedCaptures3718 struct {
 	Slb_port_tmpl_error_code_return_inc  int    `json:"slb_port_tmpl_error_code_return_inc"`
 	Slb_port_tmpl_high_error_code_return int    `json:"slb_port_tmpl_high_error_code_return"`
 	Uuid                                 string `json:"uuid"`
 }
 
-type VisibilityPingSweepDetection3681 struct {
+type VisibilityPingSweepDetection3719 struct {
 	Events   int    `json:"events" dval:"10"`
 	Interval int    `json:"interval" dval:"60"`
 	V4List   string `json:"v4-list"`
@@ -5686,7 +5793,7 @@ type VisibilityPingSweepDetection3681 struct {
 	Uuid     string `json:"uuid"`
 }
 
-type VisibilityPortScanDetection3682 struct {
+type VisibilityPortScanDetection3720 struct {
 	Events   int    `json:"events" dval:"10"`
 	Interval int    `json:"interval" dval:"60"`
 	V4List   string `json:"v4-list"`
@@ -5694,33 +5801,33 @@ type VisibilityPortScanDetection3682 struct {
 	Uuid     string `json:"uuid"`
 }
 
-type VisibilityReporting3683 struct {
+type VisibilityReporting3721 struct {
 	SessionLogging          string                                         `json:"session-logging" dval:"disable"`
 	Uuid                    string                                         `json:"uuid"`
-	SamplingEnable          []VisibilityReportingSamplingEnable3684        `json:"sampling-enable"`
-	TelemetryExportInterval VisibilityReportingTelemetryExportInterval3685 `json:"telemetry-export-interval"`
-	Template                VisibilityReportingTemplate3686                `json:"template"`
+	SamplingEnable          []VisibilityReportingSamplingEnable3722        `json:"sampling-enable"`
+	TelemetryExportInterval VisibilityReportingTelemetryExportInterval3723 `json:"telemetry-export-interval"`
+	Template                VisibilityReportingTemplate3724                `json:"template"`
 }
 
-type VisibilityReportingSamplingEnable3684 struct {
+type VisibilityReportingSamplingEnable3722 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type VisibilityReportingTelemetryExportInterval3685 struct {
+type VisibilityReportingTelemetryExportInterval3723 struct {
 	Value int    `json:"value" dval:"5"`
 	Uuid  string `json:"uuid"`
 }
 
-type VisibilityReportingTemplate3686 struct {
-	Notification VisibilityReportingTemplateNotification3687 `json:"notification"`
+type VisibilityReportingTemplate3724 struct {
+	Notification VisibilityReportingTemplateNotification3725 `json:"notification"`
 }
 
-type VisibilityReportingTemplateNotification3687 struct {
-	TemplateNameList []VisibilityReportingTemplateNotificationTemplateNameList3688 `json:"template-name-list"`
-	Debug            VisibilityReportingTemplateNotificationDebug3691              `json:"debug"`
+type VisibilityReportingTemplateNotification3725 struct {
+	TemplateNameList []VisibilityReportingTemplateNotificationTemplateNameList3726 `json:"template-name-list"`
+	Debug            VisibilityReportingTemplateNotificationDebug3729              `json:"debug"`
 }
 
-type VisibilityReportingTemplateNotificationTemplateNameList3688 struct {
+type VisibilityReportingTemplateNotificationTemplateNameList3726 struct {
 	Name             string                                                                      `json:"name"`
 	Ipv4Address      string                                                                      `json:"ipv4-address"`
 	Ipv6Address      string                                                                      `json:"ipv6-address"`
@@ -5734,15 +5841,15 @@ type VisibilityReportingTemplateNotificationTemplateNameList3688 struct {
 	DebugMode        int                                                                         `json:"debug-mode"`
 	TestConnectivity int                                                                         `json:"test-connectivity"`
 	Uuid             string                                                                      `json:"uuid"`
-	SamplingEnable   []VisibilityReportingTemplateNotificationTemplateNameListSamplingEnable3689 `json:"sampling-enable"`
-	Authentication   VisibilityReportingTemplateNotificationTemplateNameListAuthentication3690   `json:"authentication"`
+	SamplingEnable   []VisibilityReportingTemplateNotificationTemplateNameListSamplingEnable3727 `json:"sampling-enable"`
+	Authentication   VisibilityReportingTemplateNotificationTemplateNameListAuthentication3728   `json:"authentication"`
 }
 
-type VisibilityReportingTemplateNotificationTemplateNameListSamplingEnable3689 struct {
+type VisibilityReportingTemplateNotificationTemplateNameListSamplingEnable3727 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type VisibilityReportingTemplateNotificationTemplateNameListAuthentication3690 struct {
+type VisibilityReportingTemplateNotificationTemplateNameListAuthentication3728 struct {
 	RelativeLoginUri   string `json:"relative-login-uri"`
 	RelativeLogoffUri  string `json:"relative-logoff-uri"`
 	AuthUsername       string `json:"auth-username"`
@@ -5755,11 +5862,11 @@ type VisibilityReportingTemplateNotificationTemplateNameListAuthentication3690 s
 	Uuid               string `json:"uuid"`
 }
 
-type VisibilityReportingTemplateNotificationDebug3691 struct {
+type VisibilityReportingTemplateNotificationDebug3729 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VisibilityResourceUsage3692 struct {
+type VisibilityResourceUsage3730 struct {
 	Uuid string `json:"uuid"`
 }
 
@@ -5767,72 +5874,72 @@ type VisibilitySamplingEnable struct {
 	Counters1 string `json:"counters1"`
 }
 
-type VisibilityTopn3693 struct {
+type VisibilityTopn3731 struct {
 	Uuid                          string                                            `json:"uuid"`
-	SamplingEnable                []VisibilityTopnSamplingEnable3694                `json:"sampling-enable"`
-	TemplGtpPlcyTopnTmplList      []VisibilityTopnTemplGtpPlcyTopnTmplList3695      `json:"templ-gtp-plcy-topn-tmpl-list"`
-	TemplGtpPlcyTopnNode          VisibilityTopnTemplGtpPlcyTopnNode3697            `json:"templ-gtp-plcy-topn-node"`
-	Cgnv6NatPoolTopnTmplList      []VisibilityTopnCgnv6NatPoolTopnTmplList3698      `json:"cgnv6-nat-pool-topn-tmpl-list"`
-	Cgnv6NatPoolTopnNode          VisibilityTopnCgnv6NatPoolTopnNode3700            `json:"cgnv6-nat-pool-topn-node"`
-	GtpApnPrefixTopnTmplList      []VisibilityTopnGtpApnPrefixTopnTmplList3701      `json:"gtp-apn-prefix-topn-tmpl-list"`
-	GtpApnPrefixTopnNode          VisibilityTopnGtpApnPrefixTopnNode3703            `json:"gtp-apn-prefix-topn-node"`
-	GtpNetworkElementTopnTmplList []VisibilityTopnGtpNetworkElementTopnTmplList3704 `json:"gtp-network-element-topn-tmpl-list"`
-	GtpNetworkElementTopnNode     VisibilityTopnGtpNetworkElementTopnNode3706       `json:"gtp-network-element-topn-node"`
+	SamplingEnable                []VisibilityTopnSamplingEnable3732                `json:"sampling-enable"`
+	TemplGtpPlcyTopnTmplList      []VisibilityTopnTemplGtpPlcyTopnTmplList3733      `json:"templ-gtp-plcy-topn-tmpl-list"`
+	TemplGtpPlcyTopnNode          VisibilityTopnTemplGtpPlcyTopnNode3735            `json:"templ-gtp-plcy-topn-node"`
+	Cgnv6NatPoolTopnTmplList      []VisibilityTopnCgnv6NatPoolTopnTmplList3736      `json:"cgnv6-nat-pool-topn-tmpl-list"`
+	Cgnv6NatPoolTopnNode          VisibilityTopnCgnv6NatPoolTopnNode3738            `json:"cgnv6-nat-pool-topn-node"`
+	GtpApnPrefixTopnTmplList      []VisibilityTopnGtpApnPrefixTopnTmplList3739      `json:"gtp-apn-prefix-topn-tmpl-list"`
+	GtpApnPrefixTopnNode          VisibilityTopnGtpApnPrefixTopnNode3741            `json:"gtp-apn-prefix-topn-node"`
+	GtpNetworkElementTopnTmplList []VisibilityTopnGtpNetworkElementTopnTmplList3742 `json:"gtp-network-element-topn-tmpl-list"`
+	GtpNetworkElementTopnNode     VisibilityTopnGtpNetworkElementTopnNode3744       `json:"gtp-network-element-topn-node"`
 }
 
-type VisibilityTopnSamplingEnable3694 struct {
+type VisibilityTopnSamplingEnable3732 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type VisibilityTopnTemplGtpPlcyTopnTmplList3695 struct {
+type VisibilityTopnTemplGtpPlcyTopnTmplList3733 struct {
 	Name     string                                            `json:"name"`
 	TopnSize int                                               `json:"topn-size"`
 	Interval string                                            `json:"interval"`
 	Uuid     string                                            `json:"uuid"`
 	UserTag  string                                            `json:"user-tag"`
-	Metrics  VisibilityTopnTemplGtpPlcyTopnTmplListMetrics3696 `json:"metrics"`
+	Metrics  VisibilityTopnTemplGtpPlcyTopnTmplListMetrics3734 `json:"metrics"`
 }
 
-type VisibilityTopnTemplGtpPlcyTopnTmplListMetrics3696 struct {
+type VisibilityTopnTemplGtpPlcyTopnTmplListMetrics3734 struct {
 	RlMessageMonitor int    `json:"rl-message-monitor"`
 	Uuid             string `json:"uuid"`
 }
 
-type VisibilityTopnTemplGtpPlcyTopnNode3697 struct {
+type VisibilityTopnTemplGtpPlcyTopnNode3735 struct {
 	Activate string `json:"activate"`
 	Uuid     string `json:"uuid"`
 }
 
-type VisibilityTopnCgnv6NatPoolTopnTmplList3698 struct {
+type VisibilityTopnCgnv6NatPoolTopnTmplList3736 struct {
 	Name     string                                            `json:"name"`
 	TopnSize int                                               `json:"topn-size"`
 	Interval string                                            `json:"interval"`
 	Uuid     string                                            `json:"uuid"`
 	UserTag  string                                            `json:"user-tag"`
-	Metrics  VisibilityTopnCgnv6NatPoolTopnTmplListMetrics3699 `json:"metrics"`
+	Metrics  VisibilityTopnCgnv6NatPoolTopnTmplListMetrics3737 `json:"metrics"`
 }
 
-type VisibilityTopnCgnv6NatPoolTopnTmplListMetrics3699 struct {
+type VisibilityTopnCgnv6NatPoolTopnTmplListMetrics3737 struct {
 	UdpTotal int    `json:"udp-total"`
 	TcpTotal int    `json:"tcp-total"`
 	Uuid     string `json:"uuid"`
 }
 
-type VisibilityTopnCgnv6NatPoolTopnNode3700 struct {
+type VisibilityTopnCgnv6NatPoolTopnNode3738 struct {
 	Activate string `json:"activate"`
 	Uuid     string `json:"uuid"`
 }
 
-type VisibilityTopnGtpApnPrefixTopnTmplList3701 struct {
+type VisibilityTopnGtpApnPrefixTopnTmplList3739 struct {
 	Name     string                                            `json:"name"`
 	TopnSize int                                               `json:"topn-size"`
 	Interval string                                            `json:"interval"`
 	Uuid     string                                            `json:"uuid"`
 	UserTag  string                                            `json:"user-tag"`
-	Metrics  VisibilityTopnGtpApnPrefixTopnTmplListMetrics3702 `json:"metrics"`
+	Metrics  VisibilityTopnGtpApnPrefixTopnTmplListMetrics3740 `json:"metrics"`
 }
 
-type VisibilityTopnGtpApnPrefixTopnTmplListMetrics3702 struct {
+type VisibilityTopnGtpApnPrefixTopnTmplListMetrics3740 struct {
 	UplinkBytes                        int    `json:"uplink-bytes"`
 	DownlinkBytes                      int    `json:"downlink-bytes"`
 	UplinkPkts                         int    `json:"uplink-pkts"`
@@ -5923,21 +6030,21 @@ type VisibilityTopnGtpApnPrefixTopnTmplListMetrics3702 struct {
 	Uuid                               string `json:"uuid"`
 }
 
-type VisibilityTopnGtpApnPrefixTopnNode3703 struct {
+type VisibilityTopnGtpApnPrefixTopnNode3741 struct {
 	Activate string `json:"activate"`
 	Uuid     string `json:"uuid"`
 }
 
-type VisibilityTopnGtpNetworkElementTopnTmplList3704 struct {
+type VisibilityTopnGtpNetworkElementTopnTmplList3742 struct {
 	Name     string                                                 `json:"name"`
 	TopnSize int                                                    `json:"topn-size"`
 	Interval string                                                 `json:"interval"`
 	Uuid     string                                                 `json:"uuid"`
 	UserTag  string                                                 `json:"user-tag"`
-	Metrics  VisibilityTopnGtpNetworkElementTopnTmplListMetrics3705 `json:"metrics"`
+	Metrics  VisibilityTopnGtpNetworkElementTopnTmplListMetrics3743 `json:"metrics"`
 }
 
-type VisibilityTopnGtpNetworkElementTopnTmplListMetrics3705 struct {
+type VisibilityTopnGtpNetworkElementTopnTmplListMetrics3743 struct {
 	UplinkBytes                        int    `json:"uplink-bytes"`
 	DownlinkBytes                      int    `json:"downlink-bytes"`
 	UplinkPkts                         int    `json:"uplink-pkts"`
@@ -6031,28 +6138,28 @@ type VisibilityTopnGtpNetworkElementTopnTmplListMetrics3705 struct {
 	Uuid                               string `json:"uuid"`
 }
 
-type VisibilityTopnGtpNetworkElementTopnNode3706 struct {
+type VisibilityTopnGtpNetworkElementTopnNode3744 struct {
 	Activate string `json:"activate"`
 	Uuid     string `json:"uuid"`
 }
 
-type VisibilityZbar3707 struct {
+type VisibilityZbar3745 struct {
 	Action  string                    `json:"action" dval:"disable"`
 	Uuid    string                    `json:"uuid"`
-	Dest    VisibilityZbarDest3708    `json:"dest"`
-	Truples VisibilityZbarTruples3710 `json:"truples"`
+	Dest    VisibilityZbarDest3746    `json:"dest"`
+	Truples VisibilityZbarTruples3748 `json:"truples"`
 }
 
-type VisibilityZbarDest3708 struct {
+type VisibilityZbarDest3746 struct {
 	Uuid       string                           `json:"uuid"`
-	BadSources VisibilityZbarDestBadSources3709 `json:"bad-sources"`
+	BadSources VisibilityZbarDestBadSources3747 `json:"bad-sources"`
 }
 
-type VisibilityZbarDestBadSources3709 struct {
+type VisibilityZbarDestBadSources3747 struct {
 	Uuid string `json:"uuid"`
 }
 
-type VisibilityZbarTruples3710 struct {
+type VisibilityZbarTruples3748 struct {
 	Uuid string `json:"uuid"`
 }
 

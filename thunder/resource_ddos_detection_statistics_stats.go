@@ -263,6 +263,12 @@ func resourceDdosDetectionStatisticsStats() *schema.Resource {
 						"trusted_sample_processed": {
 							Type: schema.TypeInt, Optional: true, Description: "Samples with Source IP in Trustlist Processed",
 						},
+						"intf_select_sample_dropped": {
+							Type: schema.TypeInt, Optional: true, Description: "Xflow Samples Dropped by Interface Selection",
+						},
+						"intf_name_regex_match_error": {
+							Type: schema.TypeInt, Optional: true, Description: "Regex matching error for Interface Names",
+						},
 					},
 				},
 			},
@@ -374,6 +380,8 @@ func setObjectDdosDetectionStatisticsStatsStats(ret edpt.DataDdosDetectionStatis
 			"n_sport_not_found":                ret.DtDdosDetectionStatisticsStats.Stats.NSportNotFound,
 			"n_sport_create_fail":              ret.DtDdosDetectionStatisticsStats.Stats.NSportCreateFail,
 			"trusted_sample_processed":         ret.DtDdosDetectionStatisticsStats.Stats.TrustedSampleProcessed,
+			"intf_select_sample_dropped":       ret.DtDdosDetectionStatisticsStats.Stats.IntfSelectSampleDropped,
+			"intf_name_regex_match_error":      ret.DtDdosDetectionStatisticsStats.Stats.IntfNameRegexMatchError,
 		},
 	}
 }
@@ -466,6 +474,8 @@ func getObjectDdosDetectionStatisticsStatsStats(d []interface{}) edpt.DdosDetect
 		ret.NSportNotFound = in["n_sport_not_found"].(int)
 		ret.NSportCreateFail = in["n_sport_create_fail"].(int)
 		ret.TrustedSampleProcessed = in["trusted_sample_processed"].(int)
+		ret.IntfSelectSampleDropped = in["intf_select_sample_dropped"].(int)
+		ret.IntfNameRegexMatchError = in["intf_name_regex_match_error"].(int)
 	}
 	return ret
 }

@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassListClassListOverflowPolicy struct {
 	Inst struct {
 		Action string `json:"action"`
@@ -24,13 +24,13 @@ type DdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassListClassListOverfl
 
 		ZoneTemplate DdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassListClassListOverflowPolicyZoneTemplate `json:"zone-template"`
 
+		SrcBasedPolicyName string
+
 		ClassListName string
 
 		PortOther string
 
 		Protocol string
-
-		SrcBasedPolicyName string
 
 		ZoneName string
 	} `json:"class-list-overflow-policy"`

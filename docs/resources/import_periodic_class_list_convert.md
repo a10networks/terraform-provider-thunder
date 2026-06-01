@@ -40,6 +40,7 @@ resource "thunder_import_periodic_class_list_convert" "thunder_import_periodic_c
 ### Optional
 
 - `class_list_type` (String) 'ac': ac; 'ipv4': ipv4; 'ipv6': ipv6; 'string': string; 'string-case-insensitive': string-case-insensitive;
+- `password` (String) Config remote server  password
 - `period` (Number) Specify the period in second
 - `remote_file` (String) profile name for remote url
 - `use_mgmt_port` (Number) Use management port as source port

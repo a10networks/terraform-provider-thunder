@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplTriggerStatsInc2764 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplTriggerStatsInc2782 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplTriggerStatsRate2765 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplTriggerStatsRate2783 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplTriggerStatsSeverity2766 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplTriggerStatsSeverity2784 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,19 +25,19 @@ type VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmpl struct {
 	} `json:"cgnv6-dns64-vs-port-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplTriggerStatsInc2764 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplTriggerStatsInc2782 struct {
 	Es_total_failure_actions int    `json:"es_total_failure_actions"`
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplTriggerStatsRate2765 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplTriggerStatsRate2783 struct {
 	ThresholdExceededBy      int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration                 int    `json:"duration" dval:"60"`
 	Es_total_failure_actions int    `json:"es_total_failure_actions"`
 	Uuid                     string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplTriggerStatsSeverity2766 struct {
+type VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplTriggerStatsSeverity2784 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

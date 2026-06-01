@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZonePortZoneServiceOther struct {
 	Inst struct {
 		Age int `json:"age" dval:"5"`
@@ -32,9 +32,11 @@ type DdosDstZonePortZoneServiceOther struct {
 
 		IpFilteringPolicy string `json:"ip-filtering-policy"`
 
-		IpFilteringPolicyStatistics DdosDstZonePortZoneServiceOtherIpFilteringPolicyStatistics243 `json:"ip-filtering-policy-statistics"`
+		IpFilteringPolicyStatistics DdosDstZonePortZoneServiceOtherIpFilteringPolicyStatistics246 `json:"ip-filtering-policy-statistics"`
 
 		LevelList []DdosDstZonePortZoneServiceOtherLevelList `json:"level-list"`
+
+		LogSrcDefaultEnable int `json:"log-src-default-enable"`
 
 		ManualModeEnable int `json:"manual-mode-enable"`
 
@@ -44,15 +46,15 @@ type DdosDstZonePortZoneServiceOther struct {
 
 		OutboundOnly int `json:"outbound-only"`
 
-		PatternRecognition DdosDstZonePortZoneServiceOtherPatternRecognition244 `json:"pattern-recognition"`
+		PatternRecognition DdosDstZonePortZoneServiceOtherPatternRecognition247 `json:"pattern-recognition"`
 
-		PatternRecognitionPuDetails DdosDstZonePortZoneServiceOtherPatternRecognitionPuDetails245 `json:"pattern-recognition-pu-details"`
+		PatternRecognitionPuDetails DdosDstZonePortZoneServiceOtherPatternRecognitionPuDetails248 `json:"pattern-recognition-pu-details"`
 
-		PortInd DdosDstZonePortZoneServiceOtherPortInd246 `json:"port-ind"`
+		PortInd DdosDstZonePortZoneServiceOtherPortInd249 `json:"port-ind"`
 
 		PortOther string `json:"port-other"`
 
-		ProgressionTracking DdosDstZonePortZoneServiceOtherProgressionTracking248 `json:"progression-tracking"`
+		ProgressionTracking DdosDstZonePortZoneServiceOtherProgressionTracking251 `json:"progression-tracking"`
 
 		Protocol string `json:"protocol"`
 
@@ -72,7 +74,7 @@ type DdosDstZonePortZoneServiceOther struct {
 
 		Stateful int `json:"stateful"`
 
-		TopkDestinations DdosDstZonePortZoneServiceOtherTopkDestinations249 `json:"topk-destinations"`
+		TopkDestinations DdosDstZonePortZoneServiceOtherTopkDestinations252 `json:"topk-destinations"`
 
 		TopkDstNumRecords int `json:"topk-dst-num-records" dval:"20"`
 
@@ -82,7 +84,7 @@ type DdosDstZonePortZoneServiceOther struct {
 
 		TopkSortKey string `json:"topk-sort-key" dval:"avg"`
 
-		TopkSources DdosDstZonePortZoneServiceOtherTopkSources250 `json:"topk-sources"`
+		TopkSources DdosDstZonePortZoneServiceOtherTopkSources253 `json:"topk-sources"`
 
 		UnlimitedDynamicEntryCount int `json:"unlimited-dynamic-entry-count"`
 
@@ -121,7 +123,7 @@ type DdosDstZonePortZoneServiceOtherGlidCfg struct {
 	PerAddrGlid string `json:"per-addr-glid"`
 }
 
-type DdosDstZonePortZoneServiceOtherIpFilteringPolicyStatistics243 struct {
+type DdosDstZonePortZoneServiceOtherIpFilteringPolicyStatistics246 struct {
 	Uuid string `json:"uuid"`
 }
 
@@ -184,7 +186,7 @@ type DdosDstZonePortZoneServiceOtherManualModeListZoneTemplate struct {
 	Encap string `json:"encap"`
 }
 
-type DdosDstZonePortZoneServiceOtherPatternRecognition244 struct {
+type DdosDstZonePortZoneServiceOtherPatternRecognition247 struct {
 	Algorithm               string `json:"algorithm"`
 	Mode                    string `json:"mode"`
 	Sensitivity             string `json:"sensitivity"`
@@ -195,20 +197,20 @@ type DdosDstZonePortZoneServiceOtherPatternRecognition244 struct {
 	Uuid                    string `json:"uuid"`
 }
 
-type DdosDstZonePortZoneServiceOtherPatternRecognitionPuDetails245 struct {
+type DdosDstZonePortZoneServiceOtherPatternRecognitionPuDetails248 struct {
 	Uuid string `json:"uuid"`
 }
 
-type DdosDstZonePortZoneServiceOtherPortInd246 struct {
+type DdosDstZonePortZoneServiceOtherPortInd249 struct {
 	Uuid           string                                                    `json:"uuid"`
-	SamplingEnable []DdosDstZonePortZoneServiceOtherPortIndSamplingEnable247 `json:"sampling-enable"`
+	SamplingEnable []DdosDstZonePortZoneServiceOtherPortIndSamplingEnable250 `json:"sampling-enable"`
 }
 
-type DdosDstZonePortZoneServiceOtherPortIndSamplingEnable247 struct {
+type DdosDstZonePortZoneServiceOtherPortIndSamplingEnable250 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type DdosDstZonePortZoneServiceOtherProgressionTracking248 struct {
+type DdosDstZonePortZoneServiceOtherProgressionTracking251 struct {
 	Uuid string `json:"uuid"`
 }
 
@@ -230,6 +232,7 @@ type DdosDstZonePortZoneServiceOtherSrcBasedPolicyListPolicyClassListList struct
 	Glid                           string                                                                                            `json:"glid"`
 	GlidAction                     string                                                                                            `json:"glid-action"`
 	Action                         string                                                                                            `json:"action"`
+	LogEnable                      int                                                                                               `json:"log-enable"`
 	MaxDynamicEntryCount           int                                                                                               `json:"max-dynamic-entry-count"`
 	DynamicEntryCountWarnThreshold int                                                                                               `json:"dynamic-entry-count-warn-threshold"`
 	ZoneTemplate                   DdosDstZonePortZoneServiceOtherSrcBasedPolicyListPolicyClassListListZoneTemplate                  `json:"zone-template"`
@@ -272,11 +275,11 @@ type DdosDstZonePortZoneServiceOtherSrcBasedPolicyListPolicyClassListListClassLi
 	Logging string `json:"logging"`
 }
 
-type DdosDstZonePortZoneServiceOtherTopkDestinations249 struct {
+type DdosDstZonePortZoneServiceOtherTopkDestinations252 struct {
 	Uuid string `json:"uuid"`
 }
 
-type DdosDstZonePortZoneServiceOtherTopkSources250 struct {
+type DdosDstZonePortZoneServiceOtherTopkSources253 struct {
 	Uuid string `json:"uuid"`
 }
 

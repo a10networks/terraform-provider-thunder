@@ -63,6 +63,9 @@ func resourceDdosDnsCacheShardedDomainGroupShardedDomainListPolicy() *schema.Res
 					},
 				},
 			},
+			"refresh_interval_by_soa": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Read by SOA record",
+			},
 			"refresh_interval_hours": {
 				Type: schema.TypeInt, Optional: true, Default: 4, Description: "Zone transfer refresh rate in hours (Default 4). 0 means no refresh",
 			},
@@ -155,25 +158,25 @@ func resourceDdosDnsCacheShardedDomainGroupShardedDomainListPolicyRead(ctx conte
 	return diags
 }
 
-func getObjectDdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturing169(d []interface{}) edpt.DdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturing169 {
+func getObjectDdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturing172(d []interface{}) edpt.DdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturing172 {
 
 	count1 := len(d)
-	var ret edpt.DdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturing169
+	var ret edpt.DdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturing172
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.RootZoneList = getSliceDdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturingRootZoneList170(in["root_zone_list"].([]interface{}))
+		ret.RootZoneList = getSliceDdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturingRootZoneList173(in["root_zone_list"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceDdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturingRootZoneList170(d []interface{}) []edpt.DdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturingRootZoneList170 {
+func getSliceDdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturingRootZoneList173(d []interface{}) []edpt.DdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturingRootZoneList173 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturingRootZoneList170, 0, count1)
+	ret := make([]edpt.DdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturingRootZoneList173, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturingRootZoneList170
+		var oi edpt.DdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturingRootZoneList173
 		oi.RootZone = in["root_zone"].(string)
 		oi.CaptureConfig = in["capture_config"].(string)
 		oi.CaptureMode = in["capture_mode"].(string)
@@ -191,7 +194,8 @@ func dataToEndpointDdosDnsCacheShardedDomainGroupShardedDomainListPolicy(d *sche
 	ret.Inst.Force = d.Get("force").(int)
 	ret.Inst.ManualRefresh = d.Get("manual_refresh").(string)
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.PacketCapturing = getObjectDdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturing169(d.Get("packet_capturing").([]interface{}))
+	ret.Inst.PacketCapturing = getObjectDdosDnsCacheShardedDomainGroupShardedDomainListPolicyPacketCapturing172(d.Get("packet_capturing").([]interface{}))
+	ret.Inst.RefreshIntervalBySoa = d.Get("refresh_interval_by_soa").(int)
 	ret.Inst.RefreshIntervalHours = d.Get("refresh_interval_hours").(int)
 	ret.Inst.ServerIpv4 = d.Get("server_ipv4").(string)
 	ret.Inst.ServerIpv6 = d.Get("server_ipv6").(string)

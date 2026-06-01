@@ -57,11 +57,11 @@ func resourceDdosZoneProfileIpProtoProtoNumberIndicator() *schema.Resource {
 					},
 				},
 			},
-			"profile_name": {
-				Type: schema.TypeString, Required: true, Description: "ProfileName",
-			},
 			"protocol_num": {
 				Type: schema.TypeString, Required: true, Description: "ProtocolNum",
+			},
+			"profile_name": {
+				Type: schema.TypeString, Required: true, Description: "ProfileName",
 			},
 		},
 	}
@@ -161,7 +161,7 @@ func dataToEndpointDdosZoneProfileIpProtoProtoNumberIndicator(d *schema.Resource
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.ZoneThresholdCfg = getObjectDdosZoneProfileIpProtoProtoNumberIndicatorZoneThresholdCfg(d.Get("zone_threshold_cfg").([]interface{}))
-	ret.Inst.ProfileName = d.Get("profile_name").(string)
 	ret.Inst.ProtocolNum = d.Get("protocol_num").(string)
+	ret.Inst.ProfileName = d.Get("profile_name").(string)
 	return ret
 }

@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Partition struct {
 	Inst struct {
 		ApplicationType string `json:"application-type"`
@@ -14,9 +14,9 @@ type Partition struct {
 
 		PartitionName string `json:"partition-name"`
 
-		SharedVlan PartitionSharedVlan1173 `json:"shared-vlan"`
+		SharedVlan PartitionSharedVlan1172 `json:"shared-vlan"`
 
-		Template PartitionTemplate1176 `json:"template"`
+		Template PartitionTemplate1175 `json:"template"`
 
 		UserTag string `json:"user-tag"`
 
@@ -24,22 +24,22 @@ type Partition struct {
 	} `json:"partition"`
 }
 
-type PartitionSharedVlan1173 struct {
+type PartitionSharedVlan1172 struct {
 	Vlan                  int                                         `json:"vlan"`
-	AllowableIpRange      []PartitionSharedVlanAllowableIpRange1174   `json:"allowable-ip-range"`
-	AllowableIpv6Range    []PartitionSharedVlanAllowableIpv6Range1175 `json:"allowable-ipv6-range"`
+	AllowableIpRange      []PartitionSharedVlanAllowableIpRange1173   `json:"allowable-ip-range"`
+	AllowableIpv6Range    []PartitionSharedVlanAllowableIpv6Range1174 `json:"allowable-ipv6-range"`
 	MgmtFloatingIpAddress string                                      `json:"mgmt-floating-ip-address"`
 	Vrid                  int                                         `json:"vrid"`
 	Uuid                  string                                      `json:"uuid"`
 }
 
-type PartitionSharedVlanAllowableIpRange1174 struct {
+type PartitionSharedVlanAllowableIpRange1173 struct {
 }
 
-type PartitionSharedVlanAllowableIpv6Range1175 struct {
+type PartitionSharedVlanAllowableIpv6Range1174 struct {
 }
 
-type PartitionTemplate1176 struct {
+type PartitionTemplate1175 struct {
 	ResourceAccounting string `json:"resource-accounting"`
 	Uuid               string `json:"uuid"`
 }

@@ -62,8 +62,8 @@ Optional:
 - `cgn_pc_acos_harmony_topic_dequeue_err` (Number) CGN PC logs dropped,enq error analytics queues
 - `cgn_pe_acos_harmony_topic` (Number) CGN PE logs sent
 - `cgn_pe_acos_harmony_topic_dequeue_err` (Number) CGN PE logs dropped,enq error analytics queues
-- `cgn_port_usage_hstgrm_acos_harmony_topic` (Number) CGN Port Usage Histogram HC Export
-- `cgn_port_usage_hstgrm_acos_harmony_topic_dequeue_err` (Number) CGN Port Usage Histogram HC Export Failed
+- `cgn_port_usage_hstgrm_acos_harmony_topic` (Number) CGN Port Usage Histogram A10C Export
+- `cgn_port_usage_hstgrm_acos_harmony_topic_dequeue_err` (Number) CGN Port Usage Histogram A10C Export Failed
 - `cgn_summary_error_acos_harmony_topic` (Number) CGN PE logs sent
 - `cgn_summary_error_acos_harmony_topic_dequeue_err` (Number) CGN PE logs dropped,enq error analytics queues
 - `fw_deny_pc_acos_harmony_topic` (Number) FW DENY PC logs sent
@@ -72,22 +72,22 @@ Optional:
 - `fw_pc_acos_harmony_topic_dequeue_err` (Number) FW PC logs dropped,enq error analytics queues
 - `fw_rst_pc_acos_harmony_topic` (Number) FW RST PC logs sent
 - `fw_rst_pc_acos_harmony_topic_dequeue_err` (Number) FW RST PC logs dropped,enq error analytics queues
-- `hc_counters_dropped_from_blade` (Number) HC counters dropped from blade (uuid or size mismatch)
-- `hc_counters_received_from_blade` (Number) HC counters received from blade
-- `hc_counters_sent_to_master` (Number) HC counters sent to master
-- `hc_logs_received_from_blade` (Number) HC logs received from blade
-- `hc_logs_sent_to_master` (Number) HC logs sent to master
-- `hc_oper_received_from_blade` (Number) HC oper received from blade
-- `hc_oper_sent_to_master` (Number) HC oper to master
+- `hc_counters_dropped_from_blade` (Number) A10C counters dropped from blade (uuid or size mismatch)
+- `hc_counters_received_from_blade` (Number) A10C counters received from blade
+- `hc_counters_sent_to_master` (Number) A10C counters sent to master
+- `hc_logs_received_from_blade` (Number) A10C logs received from blade
+- `hc_logs_sent_to_master` (Number) A10C logs sent to master
+- `hc_oper_received_from_blade` (Number) A10C oper received from blade
+- `hc_oper_sent_to_master` (Number) A10C oper to master
 - `kafka_broker_down` (Number) Messages dropped,analytics down
 - `kafka_queue_full_err` (Number) Messages dropped,acos analytics queue full
 - `kafka_topic_error` (Number) Module not supported by analytics
 - `kafka_unknown_topic_dequeue_err` (Number) Unknown type dropped,enq error analytics queues
 - `metrics_dropped_pt_missing` (Number) Metrics dropped,missing partition tenant mapping
-- `ngwaf_hc_ep_topic` (Number) NGWAF HC PE export
-- `ngwaf_hc_ep_topic_dequeue_err` (Number) NGWAF HC PE export failed
-- `ngwaf_hc_metrics_topic` (Number) NGWAF HC metrics export
-- `ngwaf_hc_metrics_topic_dequeue_err` (Number) NGWAF HC metrics export failed
+- `ngwaf_hc_ep_topic` (Number) NGWAF A10C PE export
+- `ngwaf_hc_ep_topic_dequeue_err` (Number) NGWAF A10C PE export failed
+- `ngwaf_hc_metrics_topic` (Number) NGWAF A10C metrics export
+- `ngwaf_hc_metrics_topic_dequeue_err` (Number) NGWAF A10C metrics export failed
 - `pc_acos_harmony_topic` (Number) L4 PC logs sent
 - `pc_acos_harmony_topic_dequeue_err` (Number) L4 PC logs dropped,enq error analytics queues
 - `pc_encoding_failed` (Number) L4 PC logs dropped,encoding error
@@ -114,10 +114,10 @@ Optional:
 - `slb_server_ssl_counters_metrics_topic_dequeue_err` (Number) Server SSL metrics dropped,enq error analytics qs
 - `slb_ssl_stats_metrics_topic` (Number) SSL metrics sent
 - `slb_ssl_stats_metrics_topic_dequeue_err` (Number) SSL metrics dropped,enq error analytics queues
-- `ssli_pc_acos_harmony_topic` (Number) SSLi PC topic counter from acos to harmony
-- `ssli_pc_acos_harmony_topic_dequeue_err` (Number) SSLi PC topic to harmony dequeue error
-- `ssli_pe_acos_harmony_topic` (Number) SSLi PE topic counter from acos to harmony
-- `ssli_pe_acos_harmony_topic_dequeue_err` (Number) SSLi PE topic to harmony dequeue error
+- `ssli_pc_acos_harmony_topic` (Number) SSLi PC topic counter from acos to A10C
+- `ssli_pc_acos_harmony_topic_dequeue_err` (Number) SSLi PC topic to A10C dequeue error
+- `ssli_pe_acos_harmony_topic` (Number) SSLi PE topic counter from acos to A10C
+- `ssli_pe_acos_harmony_topic_dequeue_err` (Number) SSLi PE topic to A10C dequeue error
 - `visibility_topn_harmony_topic` (Number) Visibility TopN sent
 - `visibility_topn_harmony_topic_dequeue_err` (Number) Visibility TopN metrics dropped,enq error analytics qs
 - `vpn_ike_gateway_metrics_topic` (Number) IKE gateway metrics sent

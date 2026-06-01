@@ -6,12 +6,12 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosZoneSrcPortTemplateDns struct {
 	Inst struct {
 		Name string `json:"name"`
 
-		QueryResolutionCheck DdosZoneSrcPortTemplateDnsQueryResolutionCheck359 `json:"query-resolution-check"`
+		QueryResolutionCheck DdosZoneSrcPortTemplateDnsQueryResolutionCheck355 `json:"query-resolution-check"`
 
 		UserTag string `json:"user-tag"`
 
@@ -19,7 +19,7 @@ type DdosZoneSrcPortTemplateDns struct {
 	} `json:"dns"`
 }
 
-type DdosZoneSrcPortTemplateDnsQueryResolutionCheck359 struct {
+type DdosZoneSrcPortTemplateDnsQueryResolutionCheck355 struct {
 	SessionTimeoutValue int    `json:"session-timeout-value"`
 	DomainLockupAction  string `json:"domain-lockup-action" dval:"default"`
 	BigResponseSize     int    `json:"big-response-size"`

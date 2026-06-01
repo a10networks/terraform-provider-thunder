@@ -104,22 +104,22 @@ func resourceReportRead(ctx context.Context, d *schema.ResourceData, meta interf
 	return diags
 }
 
-func getObjectReportDebug1179(d []interface{}) edpt.ReportDebug1179 {
+func getObjectReportDebug1178(d []interface{}) edpt.ReportDebug1178 {
 
 	count1 := len(d)
-	var ret edpt.ReportDebug1179
+	var ret edpt.ReportDebug1178
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Log = in["log"].(int)
-		ret.Sflow = getObjectReportDebugSflow1180(in["sflow"].([]interface{}))
+		ret.Sflow = getObjectReportDebugSflow1179(in["sflow"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectReportDebugSflow1180(d []interface{}) edpt.ReportDebugSflow1180 {
+func getObjectReportDebugSflow1179(d []interface{}) edpt.ReportDebugSflow1179 {
 
 	count1 := len(d)
-	var ret edpt.ReportDebugSflow1180
+	var ret edpt.ReportDebugSflow1179
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Parser = in["parser"].(int)
@@ -130,6 +130,6 @@ func getObjectReportDebugSflow1180(d []interface{}) edpt.ReportDebugSflow1180 {
 
 func dataToEndpointReport(d *schema.ResourceData) edpt.Report {
 	var ret edpt.Report
-	ret.Inst.Debug = getObjectReportDebug1179(d.Get("debug").([]interface{}))
+	ret.Inst.Debug = getObjectReportDebug1178(d.Get("debug").([]interface{}))
 	return ret
 }

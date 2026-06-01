@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6LsnSystemStatusOper struct {
 	Oper Cgnv6LsnSystemStatusOperOper `json:"oper"`
 }
@@ -14,15 +14,17 @@ type DataCgnv6LsnSystemStatusOper struct {
 }
 
 type Cgnv6LsnSystemStatusOperOper struct {
-	LsnCps           int `json:"lsn-cps"`
-	DataSessionsUsed int `json:"data-sessions-used"`
-	DataSessionsFree int `json:"data-sessions-free"`
-	SmpSessionsUsed  int `json:"smp-sessions-used"`
-	SmpSessionsFree  int `json:"smp-sessions-free"`
-	TcpNatPortsUsed  int `json:"tcp-nat-ports-used"`
-	TcpNatPortsFree  int `json:"tcp-nat-ports-free"`
-	UdpNatPortsUsed  int `json:"udp-nat-ports-used"`
-	UdpNatPortsFree  int `json:"udp-nat-ports-free"`
+	LsnCps            int `json:"lsn-cps"`
+	DataSessionsUsed  int `json:"data-sessions-used"`
+	DataSessionsFree  int `json:"data-sessions-free"`
+	SmpSessionsUsed   int `json:"smp-sessions-used"`
+	SmpSessionsFree   int `json:"smp-sessions-free"`
+	TcpNatPortsUsed   int `json:"tcp-nat-ports-used"`
+	TcpNatPortsFree   int `json:"tcp-nat-ports-free"`
+	UdpNatPortsUsed   int `json:"udp-nat-ports-used"`
+	UdpNatPortsFree   int `json:"udp-nat-ports-free"`
+	RadiusEntriesUsed int `json:"radius-entries-used"`
+	RadiusEntriesFree int `json:"radius-entries-free"`
 }
 
 func (p *Cgnv6LsnSystemStatusOper) GetId() string {

@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6FixedNatGlobalTriggerStatsRate struct {
 	Inst struct {
 		ConfigNotFound int `json:"config-not-found"`
@@ -51,6 +51,8 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeCgnv6
 		StandbyDrop int `json:"standby-drop"`
 
 		ThresholdExceededBy int `json:"threshold-exceeded-by" dval:"5"`
+
+		UnusedIpDrop int `json:"unused-ip-drop"`
 
 		Uuid string `json:"uuid"`
 

@@ -5,18 +5,18 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Axdebug struct {
 	Inst struct {
-		ApplyConfig AxdebugApplyConfig75 `json:"apply-config"`
+		ApplyConfig AxdebugApplyConfig76 `json:"apply-config"`
 
-		Capture AxdebugCapture76 `json:"capture"`
+		Capture AxdebugCapture77 `json:"capture"`
 
 		Count1 int `json:"count" dval:"3000"`
 
-		Delete AxdebugDelete77 `json:"delete"`
+		Delete AxdebugDelete78 `json:"delete"`
 
-		Exit AxdebugExit78 `json:"exit"`
+		Exit AxdebugExit79 `json:"exit"`
 
 		FileSize int `json:"file-size" dval:"300"`
 
@@ -34,9 +34,9 @@ type Axdebug struct {
 
 		Outgoing int `json:"outgoing"`
 
-		PcapngConfig AxdebugPcapngConfig79 `json:"pcapng-config"`
+		PcapngConfig AxdebugPcapngConfig80 `json:"pcapng-config"`
 
-		SaveConfig AxdebugSaveConfig80 `json:"save-config"`
+		SaveConfig AxdebugSaveConfig81 `json:"save-config"`
 
 		SessFilterDis int `json:"sess-filter-dis"`
 
@@ -46,11 +46,11 @@ type Axdebug struct {
 	} `json:"axdebug"`
 }
 
-type AxdebugApplyConfig75 struct {
+type AxdebugApplyConfig76 struct {
 	ConfigFile string `json:"config-file"`
 }
 
-type AxdebugCapture76 struct {
+type AxdebugCapture77 struct {
 	Brief       int    `json:"brief"`
 	Detail      int    `json:"detail"`
 	Save        string `json:"save"`
@@ -58,12 +58,12 @@ type AxdebugCapture76 struct {
 	NoStop      int    `json:"no-stop"`
 }
 
-type AxdebugDelete77 struct {
+type AxdebugDelete78 struct {
 	CaptureFile string `json:"capture-file"`
 	ConfigFile  string `json:"config-file"`
 }
 
-type AxdebugExit78 struct {
+type AxdebugExit79 struct {
 	StopCapture int `json:"stop-capture"`
 }
 
@@ -121,14 +121,15 @@ type AxdebugFilterConfigList struct {
 	UserTag          string `json:"user-tag"`
 }
 
-type AxdebugPcapngConfig79 struct {
-	PcapngEnable int    `json:"pcapng-enable"`
-	SslKeyEnable int    `json:"ssl-key-enable"`
-	Exit         int    `json:"exit"`
-	Uuid         string `json:"uuid"`
+type AxdebugPcapngConfig80 struct {
+	PcapngEnable            int    `json:"pcapng-enable"`
+	SslKeyEnable            int    `json:"ssl-key-enable"`
+	PcapngEnhancedLogEnable int    `json:"pcapng-enhanced-log-enable"`
+	Exit                    int    `json:"exit"`
+	Uuid                    string `json:"uuid"`
 }
 
-type AxdebugSaveConfig80 struct {
+type AxdebugSaveConfig81 struct {
 	ConfigFile string `json:"config-file"`
 	Default    int    `json:"default"`
 }

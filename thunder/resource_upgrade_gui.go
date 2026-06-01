@@ -41,6 +41,9 @@ func resourceUpgradeGui() *schema.Resource {
 			"local": {
 				Type: schema.TypeString, Optional: true, Description: "Local GUI image name",
 			},
+			"password": {
+				Type: schema.TypeString, Optional: true, Description: "password for the remote site",
+			},
 			"remote_url": {
 				Type: schema.TypeString, Optional: true, Description: "",
 			},
@@ -142,6 +145,7 @@ func dataToEndpointUpgradeGui(d *schema.ResourceData) edpt.UpgradeGui {
 	ret.Inst.Image = d.Get("image").(string)
 	ret.Inst.ImageFile = d.Get("image_file").(string)
 	ret.Inst.Local = d.Get("local").(string)
+	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.RemoteUrl = d.Get("remote_url").(string)
 	ret.Inst.Rollback = d.Get("rollback").(string)
 	ret.Inst.SourceIpAddress = d.Get("source_ip_address").(string)

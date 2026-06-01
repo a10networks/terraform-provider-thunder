@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SysUtEventActionL3 struct {
 	Inst struct {
 		Checksum string `json:"checksum" dval:"valid"`
@@ -22,9 +22,9 @@ type SysUtEventActionL3 struct {
 
 		Value int `json:"value"`
 
-		Direction string
-
 		EventNumber string
+
+		Direction string
 	} `json:"l3"`
 }
 

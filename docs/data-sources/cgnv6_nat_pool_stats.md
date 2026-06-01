@@ -59,7 +59,9 @@ Optional:
 - `icmp_total` (Number) ICMP Total
 - `ip_free` (Number) IP Free
 - `ip_total` (Number) IP Total
+- `ip_total_cluster` (Number) IP Total in Scaleout Cluster
 - `ip_used` (Number) IP Used
+- `max_users_allowed` (Number) Max Users Allowed
 - `tcp` (Number) TCP
 - `tcp_freed` (Number) TCP Freed
 - `tcp_hit_full` (Number) TCP Hit Full
@@ -67,8 +69,10 @@ Optional:
 - `tcp_port_overload_create` (Number) TCP Port Overloading Session Created
 - `tcp_port_overload_free` (Number) TCP Port Overloading Session Freed
 - `tcp_port_overloaded` (Number) TCP Port Overloaded
+- `tcp_port_usage_percentage` (Number) TCP Port Usage Percentage
 - `tcp_rsvd` (Number) TCP Reserved
 - `tcp_total` (Number) TCP total
+- `tcp_total_port` (Number) TCP Total Port
 - `udp` (Number) UDP
 - `udp_freed` (Number) UDP Freed
 - `udp_hit_full` (Number) UDP Hit Full
@@ -76,6 +80,9 @@ Optional:
 - `udp_port_overload_create` (Number) UDP Port Overloading Session Created
 - `udp_port_overload_free` (Number) UDP Port Overloading Session Freed
 - `udp_port_overloaded` (Number) UDP Port Overloaded
+- `udp_port_usage_percentage` (Number) UDP Port Usage Percentage
 - `udp_rsvd` (Number) UDP Reserved
 - `udp_total` (Number) UDP Total
+- `udp_total_port` (Number) UDP Total Port
+- `user_occupation_percentage` (Number) User Occupation Percentage
 - `users` (Number) Users

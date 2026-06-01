@@ -116,6 +116,7 @@ resource "thunder_interface_ethernet_ipv6" "thunder_interface_ethernet_ipv6" {
 - `rip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip))
 - `router` (Block List, Max: 1) (see [below for nested schema](#nestedblock--router))
 - `router_adver` (Block List, Max: 1) (see [below for nested schema](#nestedblock--router_adver))
+- `stateful_firewall` (Block List, Max: 1) (see [below for nested schema](#nestedblock--stateful_firewall))
 - `ttl_ignore` (Number) Ignore TTL decrement for a received packet before sending out
 - `uuid` (String) uuid of the object
 
@@ -345,3 +346,17 @@ Optional:
 - `preferred_lifetime` (Number) Specify Prefix Preferred Lifetime (default:604800) (Prefix Advertised Preferred Lifetime (default: 604800))
 - `prefix` (String) Set Router Advertisement On-Link Prefix (IPv6 On-Link Prefix)
 - `valid_lifetime` (Number) Specify Valid Lifetime (default:2592000) (Prefix Advertised Valid Lifetime (default: 2592000))
+
+
+
+<a id="nestedblock--stateful_firewall"></a>
+### Nested Schema for `stateful_firewall`
+
+Optional:
+
+- `access_list` (Number) Access-list for traffic from the outside
+- `acl_name` (String) Access-list Name
+- `class_list` (String) Class List (Class List Name)
+- `inside` (Number) Inside (private) interface for stateful firewall
+- `outside` (Number) Outside (public) interface for stateful firewall
+- `uuid` (String) uuid of the object

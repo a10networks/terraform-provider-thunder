@@ -278,10 +278,10 @@ func resourceExportRead(ctx context.Context, d *schema.ResourceData, meta interf
 	return diags
 }
 
-func getObjectExportGeoLocationArchive418(d []interface{}) edpt.ExportGeoLocationArchive418 {
+func getObjectExportGeoLocationArchive409(d []interface{}) edpt.ExportGeoLocationArchive409 {
 
 	count1 := len(d)
-	var ret edpt.ExportGeoLocationArchive418
+	var ret edpt.ExportGeoLocationArchive409
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GeoLocationArchiveName = in["geo_location_archive_name"].(string)
@@ -292,10 +292,10 @@ func getObjectExportGeoLocationArchive418(d []interface{}) edpt.ExportGeoLocatio
 	return ret
 }
 
-func getObjectExportStore419(d []interface{}) edpt.ExportStore419 {
+func getObjectExportStore410(d []interface{}) edpt.ExportStore410 {
 
 	count1 := len(d)
-	var ret edpt.ExportStore419
+	var ret edpt.ExportStore410
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Delete = in["delete"].(int)
@@ -330,7 +330,7 @@ func dataToEndpointExport(d *schema.ResourceData) edpt.Export {
 	ret.Inst.FixedNat = d.Get("fixed_nat").(string)
 	ret.Inst.FixedNatArchive = d.Get("fixed_nat_archive").(string)
 	ret.Inst.GeoLocation = d.Get("geo_location").(string)
-	ret.Inst.GeoLocationArchive = getObjectExportGeoLocationArchive418(d.Get("geo_location_archive").([]interface{}))
+	ret.Inst.GeoLocationArchive = getObjectExportGeoLocationArchive409(d.Get("geo_location_archive").([]interface{}))
 	ret.Inst.IpMapList = d.Get("ip_map_list").(string)
 	ret.Inst.IpsecErrorDump = d.Get("ipsec_error_dump").(string)
 	ret.Inst.LocalUriFile = d.Get("local_uri_file").(string)
@@ -353,7 +353,7 @@ func dataToEndpointExport(d *schema.ResourceData) edpt.Export {
 	ret.Inst.SslKey = d.Get("ssl_key").(string)
 	ret.Inst.StartupConfig = d.Get("startup_config").(int)
 	ret.Inst.StatusCheck = d.Get("status_check").(int)
-	ret.Inst.Store = getObjectExportStore419(d.Get("store").([]interface{}))
+	ret.Inst.Store = getObjectExportStore410(d.Get("store").([]interface{}))
 	ret.Inst.StoreName = d.Get("store_name").(string)
 	ret.Inst.Syslog = d.Get("syslog").(string)
 	ret.Inst.Tgz = d.Get("tgz").(int)

@@ -584,30 +584,30 @@ func getObjectFwTemplateLoggingCustomCustomMessage(d []interface{}) edpt.FwTempl
 	return ret
 }
 
-func getObjectFwTemplateLoggingDisableLogByDestination450(d []interface{}) edpt.FwTemplateLoggingDisableLogByDestination450 {
+func getObjectFwTemplateLoggingDisableLogByDestination441(d []interface{}) edpt.FwTemplateLoggingDisableLogByDestination441 {
 
 	count1 := len(d)
-	var ret edpt.FwTemplateLoggingDisableLogByDestination450
+	var ret edpt.FwTemplateLoggingDisableLogByDestination441
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.TcpList = getSliceFwTemplateLoggingDisableLogByDestinationTcpList451(in["tcp_list"].([]interface{}))
-		ret.UdpList = getSliceFwTemplateLoggingDisableLogByDestinationUdpList452(in["udp_list"].([]interface{}))
+		ret.TcpList = getSliceFwTemplateLoggingDisableLogByDestinationTcpList442(in["tcp_list"].([]interface{}))
+		ret.UdpList = getSliceFwTemplateLoggingDisableLogByDestinationUdpList443(in["udp_list"].([]interface{}))
 		ret.Icmp = in["icmp"].(int)
 		ret.Others = in["others"].(int)
 		//omit uuid
-		ret.IpList = getSliceFwTemplateLoggingDisableLogByDestinationIpList453(in["ip_list"].([]interface{}))
-		ret.Ip6List = getSliceFwTemplateLoggingDisableLogByDestinationIp6List456(in["ip6_list"].([]interface{}))
+		ret.IpList = getSliceFwTemplateLoggingDisableLogByDestinationIpList444(in["ip_list"].([]interface{}))
+		ret.Ip6List = getSliceFwTemplateLoggingDisableLogByDestinationIp6List447(in["ip6_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceFwTemplateLoggingDisableLogByDestinationTcpList451(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationTcpList451 {
+func getSliceFwTemplateLoggingDisableLogByDestinationTcpList442(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationTcpList442 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationTcpList451, 0, count1)
+	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationTcpList442, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwTemplateLoggingDisableLogByDestinationTcpList451
+		var oi edpt.FwTemplateLoggingDisableLogByDestinationTcpList442
 		oi.TcpPortStart = in["tcp_port_start"].(int)
 		oi.TcpPortEnd = in["tcp_port_end"].(int)
 		ret = append(ret, oi)
@@ -615,13 +615,13 @@ func getSliceFwTemplateLoggingDisableLogByDestinationTcpList451(d []interface{})
 	return ret
 }
 
-func getSliceFwTemplateLoggingDisableLogByDestinationUdpList452(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationUdpList452 {
+func getSliceFwTemplateLoggingDisableLogByDestinationUdpList443(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationUdpList443 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationUdpList452, 0, count1)
+	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationUdpList443, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwTemplateLoggingDisableLogByDestinationUdpList452
+		var oi edpt.FwTemplateLoggingDisableLogByDestinationUdpList443
 		oi.UdpPortStart = in["udp_port_start"].(int)
 		oi.UdpPortEnd = in["udp_port_end"].(int)
 		ret = append(ret, oi)
@@ -629,16 +629,16 @@ func getSliceFwTemplateLoggingDisableLogByDestinationUdpList452(d []interface{})
 	return ret
 }
 
-func getSliceFwTemplateLoggingDisableLogByDestinationIpList453(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationIpList453 {
+func getSliceFwTemplateLoggingDisableLogByDestinationIpList444(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationIpList444 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationIpList453, 0, count1)
+	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationIpList444, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwTemplateLoggingDisableLogByDestinationIpList453
+		var oi edpt.FwTemplateLoggingDisableLogByDestinationIpList444
 		oi.Ipv4Addr = in["ipv4_addr"].(string)
-		oi.TcpList = getSliceFwTemplateLoggingDisableLogByDestinationIpListTcpList454(in["tcp_list"].([]interface{}))
-		oi.UdpList = getSliceFwTemplateLoggingDisableLogByDestinationIpListUdpList455(in["udp_list"].([]interface{}))
+		oi.TcpList = getSliceFwTemplateLoggingDisableLogByDestinationIpListTcpList445(in["tcp_list"].([]interface{}))
+		oi.UdpList = getSliceFwTemplateLoggingDisableLogByDestinationIpListUdpList446(in["udp_list"].([]interface{}))
 		oi.Icmp = in["icmp"].(int)
 		oi.Others = in["others"].(int)
 		//omit uuid
@@ -648,13 +648,13 @@ func getSliceFwTemplateLoggingDisableLogByDestinationIpList453(d []interface{}) 
 	return ret
 }
 
-func getSliceFwTemplateLoggingDisableLogByDestinationIpListTcpList454(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationIpListTcpList454 {
+func getSliceFwTemplateLoggingDisableLogByDestinationIpListTcpList445(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationIpListTcpList445 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationIpListTcpList454, 0, count1)
+	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationIpListTcpList445, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwTemplateLoggingDisableLogByDestinationIpListTcpList454
+		var oi edpt.FwTemplateLoggingDisableLogByDestinationIpListTcpList445
 		oi.TcpPortStart = in["tcp_port_start"].(int)
 		oi.TcpPortEnd = in["tcp_port_end"].(int)
 		ret = append(ret, oi)
@@ -662,13 +662,13 @@ func getSliceFwTemplateLoggingDisableLogByDestinationIpListTcpList454(d []interf
 	return ret
 }
 
-func getSliceFwTemplateLoggingDisableLogByDestinationIpListUdpList455(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationIpListUdpList455 {
+func getSliceFwTemplateLoggingDisableLogByDestinationIpListUdpList446(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationIpListUdpList446 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationIpListUdpList455, 0, count1)
+	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationIpListUdpList446, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwTemplateLoggingDisableLogByDestinationIpListUdpList455
+		var oi edpt.FwTemplateLoggingDisableLogByDestinationIpListUdpList446
 		oi.UdpPortStart = in["udp_port_start"].(int)
 		oi.UdpPortEnd = in["udp_port_end"].(int)
 		ret = append(ret, oi)
@@ -676,16 +676,16 @@ func getSliceFwTemplateLoggingDisableLogByDestinationIpListUdpList455(d []interf
 	return ret
 }
 
-func getSliceFwTemplateLoggingDisableLogByDestinationIp6List456(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationIp6List456 {
+func getSliceFwTemplateLoggingDisableLogByDestinationIp6List447(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationIp6List447 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationIp6List456, 0, count1)
+	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationIp6List447, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwTemplateLoggingDisableLogByDestinationIp6List456
+		var oi edpt.FwTemplateLoggingDisableLogByDestinationIp6List447
 		oi.Ipv6Addr = in["ipv6_addr"].(string)
-		oi.TcpList = getSliceFwTemplateLoggingDisableLogByDestinationIp6ListTcpList457(in["tcp_list"].([]interface{}))
-		oi.UdpList = getSliceFwTemplateLoggingDisableLogByDestinationIp6ListUdpList458(in["udp_list"].([]interface{}))
+		oi.TcpList = getSliceFwTemplateLoggingDisableLogByDestinationIp6ListTcpList448(in["tcp_list"].([]interface{}))
+		oi.UdpList = getSliceFwTemplateLoggingDisableLogByDestinationIp6ListUdpList449(in["udp_list"].([]interface{}))
 		oi.Icmp = in["icmp"].(int)
 		oi.Others = in["others"].(int)
 		//omit uuid
@@ -695,13 +695,13 @@ func getSliceFwTemplateLoggingDisableLogByDestinationIp6List456(d []interface{})
 	return ret
 }
 
-func getSliceFwTemplateLoggingDisableLogByDestinationIp6ListTcpList457(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationIp6ListTcpList457 {
+func getSliceFwTemplateLoggingDisableLogByDestinationIp6ListTcpList448(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationIp6ListTcpList448 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationIp6ListTcpList457, 0, count1)
+	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationIp6ListTcpList448, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwTemplateLoggingDisableLogByDestinationIp6ListTcpList457
+		var oi edpt.FwTemplateLoggingDisableLogByDestinationIp6ListTcpList448
 		oi.TcpPortStart = in["tcp_port_start"].(int)
 		oi.TcpPortEnd = in["tcp_port_end"].(int)
 		ret = append(ret, oi)
@@ -709,13 +709,13 @@ func getSliceFwTemplateLoggingDisableLogByDestinationIp6ListTcpList457(d []inter
 	return ret
 }
 
-func getSliceFwTemplateLoggingDisableLogByDestinationIp6ListUdpList458(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationIp6ListUdpList458 {
+func getSliceFwTemplateLoggingDisableLogByDestinationIp6ListUdpList449(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationIp6ListUdpList449 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationIp6ListUdpList458, 0, count1)
+	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationIp6ListUdpList449, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwTemplateLoggingDisableLogByDestinationIp6ListUdpList458
+		var oi edpt.FwTemplateLoggingDisableLogByDestinationIp6ListUdpList449
 		oi.UdpPortStart = in["udp_port_start"].(int)
 		oi.UdpPortEnd = in["udp_port_end"].(int)
 		ret = append(ret, oi)
@@ -723,30 +723,30 @@ func getSliceFwTemplateLoggingDisableLogByDestinationIp6ListUdpList458(d []inter
 	return ret
 }
 
-func getObjectFwTemplateLoggingEnableLogByDestination459(d []interface{}) edpt.FwTemplateLoggingEnableLogByDestination459 {
+func getObjectFwTemplateLoggingEnableLogByDestination450(d []interface{}) edpt.FwTemplateLoggingEnableLogByDestination450 {
 
 	count1 := len(d)
-	var ret edpt.FwTemplateLoggingEnableLogByDestination459
+	var ret edpt.FwTemplateLoggingEnableLogByDestination450
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.TcpList = getSliceFwTemplateLoggingEnableLogByDestinationTcpList460(in["tcp_list"].([]interface{}))
-		ret.UdpList = getSliceFwTemplateLoggingEnableLogByDestinationUdpList461(in["udp_list"].([]interface{}))
+		ret.TcpList = getSliceFwTemplateLoggingEnableLogByDestinationTcpList451(in["tcp_list"].([]interface{}))
+		ret.UdpList = getSliceFwTemplateLoggingEnableLogByDestinationUdpList452(in["udp_list"].([]interface{}))
 		ret.Icmp = in["icmp"].(int)
 		ret.Others = in["others"].(int)
 		//omit uuid
-		ret.IpList = getSliceFwTemplateLoggingEnableLogByDestinationIpList462(in["ip_list"].([]interface{}))
-		ret.Ip6List = getSliceFwTemplateLoggingEnableLogByDestinationIp6List465(in["ip6_list"].([]interface{}))
+		ret.IpList = getSliceFwTemplateLoggingEnableLogByDestinationIpList453(in["ip_list"].([]interface{}))
+		ret.Ip6List = getSliceFwTemplateLoggingEnableLogByDestinationIp6List456(in["ip6_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceFwTemplateLoggingEnableLogByDestinationTcpList460(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationTcpList460 {
+func getSliceFwTemplateLoggingEnableLogByDestinationTcpList451(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationTcpList451 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationTcpList460, 0, count1)
+	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationTcpList451, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwTemplateLoggingEnableLogByDestinationTcpList460
+		var oi edpt.FwTemplateLoggingEnableLogByDestinationTcpList451
 		oi.TcpPortStart = in["tcp_port_start"].(int)
 		oi.TcpPortEnd = in["tcp_port_end"].(int)
 		ret = append(ret, oi)
@@ -754,13 +754,13 @@ func getSliceFwTemplateLoggingEnableLogByDestinationTcpList460(d []interface{}) 
 	return ret
 }
 
-func getSliceFwTemplateLoggingEnableLogByDestinationUdpList461(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationUdpList461 {
+func getSliceFwTemplateLoggingEnableLogByDestinationUdpList452(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationUdpList452 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationUdpList461, 0, count1)
+	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationUdpList452, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwTemplateLoggingEnableLogByDestinationUdpList461
+		var oi edpt.FwTemplateLoggingEnableLogByDestinationUdpList452
 		oi.UdpPortStart = in["udp_port_start"].(int)
 		oi.UdpPortEnd = in["udp_port_end"].(int)
 		ret = append(ret, oi)
@@ -768,16 +768,16 @@ func getSliceFwTemplateLoggingEnableLogByDestinationUdpList461(d []interface{}) 
 	return ret
 }
 
-func getSliceFwTemplateLoggingEnableLogByDestinationIpList462(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationIpList462 {
+func getSliceFwTemplateLoggingEnableLogByDestinationIpList453(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationIpList453 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationIpList462, 0, count1)
+	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationIpList453, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwTemplateLoggingEnableLogByDestinationIpList462
+		var oi edpt.FwTemplateLoggingEnableLogByDestinationIpList453
 		oi.Ipv4Addr = in["ipv4_addr"].(string)
-		oi.TcpList = getSliceFwTemplateLoggingEnableLogByDestinationIpListTcpList463(in["tcp_list"].([]interface{}))
-		oi.UdpList = getSliceFwTemplateLoggingEnableLogByDestinationIpListUdpList464(in["udp_list"].([]interface{}))
+		oi.TcpList = getSliceFwTemplateLoggingEnableLogByDestinationIpListTcpList454(in["tcp_list"].([]interface{}))
+		oi.UdpList = getSliceFwTemplateLoggingEnableLogByDestinationIpListUdpList455(in["udp_list"].([]interface{}))
 		oi.Icmp = in["icmp"].(int)
 		oi.Others = in["others"].(int)
 		//omit uuid
@@ -787,13 +787,13 @@ func getSliceFwTemplateLoggingEnableLogByDestinationIpList462(d []interface{}) [
 	return ret
 }
 
-func getSliceFwTemplateLoggingEnableLogByDestinationIpListTcpList463(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationIpListTcpList463 {
+func getSliceFwTemplateLoggingEnableLogByDestinationIpListTcpList454(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationIpListTcpList454 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationIpListTcpList463, 0, count1)
+	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationIpListTcpList454, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwTemplateLoggingEnableLogByDestinationIpListTcpList463
+		var oi edpt.FwTemplateLoggingEnableLogByDestinationIpListTcpList454
 		oi.TcpPortStart = in["tcp_port_start"].(int)
 		oi.TcpPortEnd = in["tcp_port_end"].(int)
 		ret = append(ret, oi)
@@ -801,13 +801,13 @@ func getSliceFwTemplateLoggingEnableLogByDestinationIpListTcpList463(d []interfa
 	return ret
 }
 
-func getSliceFwTemplateLoggingEnableLogByDestinationIpListUdpList464(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationIpListUdpList464 {
+func getSliceFwTemplateLoggingEnableLogByDestinationIpListUdpList455(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationIpListUdpList455 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationIpListUdpList464, 0, count1)
+	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationIpListUdpList455, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwTemplateLoggingEnableLogByDestinationIpListUdpList464
+		var oi edpt.FwTemplateLoggingEnableLogByDestinationIpListUdpList455
 		oi.UdpPortStart = in["udp_port_start"].(int)
 		oi.UdpPortEnd = in["udp_port_end"].(int)
 		ret = append(ret, oi)
@@ -815,16 +815,16 @@ func getSliceFwTemplateLoggingEnableLogByDestinationIpListUdpList464(d []interfa
 	return ret
 }
 
-func getSliceFwTemplateLoggingEnableLogByDestinationIp6List465(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationIp6List465 {
+func getSliceFwTemplateLoggingEnableLogByDestinationIp6List456(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationIp6List456 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationIp6List465, 0, count1)
+	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationIp6List456, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwTemplateLoggingEnableLogByDestinationIp6List465
+		var oi edpt.FwTemplateLoggingEnableLogByDestinationIp6List456
 		oi.Ipv6Addr = in["ipv6_addr"].(string)
-		oi.TcpList = getSliceFwTemplateLoggingEnableLogByDestinationIp6ListTcpList466(in["tcp_list"].([]interface{}))
-		oi.UdpList = getSliceFwTemplateLoggingEnableLogByDestinationIp6ListUdpList467(in["udp_list"].([]interface{}))
+		oi.TcpList = getSliceFwTemplateLoggingEnableLogByDestinationIp6ListTcpList457(in["tcp_list"].([]interface{}))
+		oi.UdpList = getSliceFwTemplateLoggingEnableLogByDestinationIp6ListUdpList458(in["udp_list"].([]interface{}))
 		oi.Icmp = in["icmp"].(int)
 		oi.Others = in["others"].(int)
 		//omit uuid
@@ -834,13 +834,13 @@ func getSliceFwTemplateLoggingEnableLogByDestinationIp6List465(d []interface{}) 
 	return ret
 }
 
-func getSliceFwTemplateLoggingEnableLogByDestinationIp6ListTcpList466(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationIp6ListTcpList466 {
+func getSliceFwTemplateLoggingEnableLogByDestinationIp6ListTcpList457(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationIp6ListTcpList457 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationIp6ListTcpList466, 0, count1)
+	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationIp6ListTcpList457, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwTemplateLoggingEnableLogByDestinationIp6ListTcpList466
+		var oi edpt.FwTemplateLoggingEnableLogByDestinationIp6ListTcpList457
 		oi.TcpPortStart = in["tcp_port_start"].(int)
 		oi.TcpPortEnd = in["tcp_port_end"].(int)
 		ret = append(ret, oi)
@@ -848,13 +848,13 @@ func getSliceFwTemplateLoggingEnableLogByDestinationIp6ListTcpList466(d []interf
 	return ret
 }
 
-func getSliceFwTemplateLoggingEnableLogByDestinationIp6ListUdpList467(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationIp6ListUdpList467 {
+func getSliceFwTemplateLoggingEnableLogByDestinationIp6ListUdpList458(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationIp6ListUdpList458 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationIp6ListUdpList467, 0, count1)
+	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationIp6ListUdpList458, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwTemplateLoggingEnableLogByDestinationIp6ListUdpList467
+		var oi edpt.FwTemplateLoggingEnableLogByDestinationIp6ListUdpList458
 		oi.UdpPortStart = in["udp_port_start"].(int)
 		oi.UdpPortEnd = in["udp_port_end"].(int)
 		ret = append(ret, oi)
@@ -974,10 +974,10 @@ func getSliceFwTemplateLoggingRuleRuleHttpRequestsDestPort(d []interface{}) []ed
 	return ret
 }
 
-func getObjectFwTemplateLoggingSessionPeriodicLog468(d []interface{}) edpt.FwTemplateLoggingSessionPeriodicLog468 {
+func getObjectFwTemplateLoggingSessionPeriodicLog459(d []interface{}) edpt.FwTemplateLoggingSessionPeriodicLog459 {
 
 	count1 := len(d)
-	var ret edpt.FwTemplateLoggingSessionPeriodicLog468
+	var ret edpt.FwTemplateLoggingSessionPeriodicLog459
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Interval = in["interval"].(int)
@@ -986,10 +986,10 @@ func getObjectFwTemplateLoggingSessionPeriodicLog468(d []interface{}) edpt.FwTem
 	return ret
 }
 
-func getObjectFwTemplateLoggingSourceAddress469(d []interface{}) edpt.FwTemplateLoggingSourceAddress469 {
+func getObjectFwTemplateLoggingSourceAddress460(d []interface{}) edpt.FwTemplateLoggingSourceAddress460 {
 
 	count1 := len(d)
-	var ret edpt.FwTemplateLoggingSourceAddress469
+	var ret edpt.FwTemplateLoggingSourceAddress460
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ip = in["ip"].(string)
@@ -1002,8 +1002,8 @@ func getObjectFwTemplateLoggingSourceAddress469(d []interface{}) edpt.FwTemplate
 func dataToEndpointFwTemplateLogging(d *schema.ResourceData) edpt.FwTemplateLogging {
 	var ret edpt.FwTemplateLogging
 	ret.Inst.Custom = getObjectFwTemplateLoggingCustom(d.Get("custom").([]interface{}))
-	ret.Inst.DisableLogByDestination = getObjectFwTemplateLoggingDisableLogByDestination450(d.Get("disable_log_by_destination").([]interface{}))
-	ret.Inst.EnableLogByDestination = getObjectFwTemplateLoggingEnableLogByDestination459(d.Get("enable_log_by_destination").([]interface{}))
+	ret.Inst.DisableLogByDestination = getObjectFwTemplateLoggingDisableLogByDestination441(d.Get("disable_log_by_destination").([]interface{}))
+	ret.Inst.EnableLogByDestination = getObjectFwTemplateLoggingEnableLogByDestination450(d.Get("enable_log_by_destination").([]interface{}))
 	ret.Inst.Facility = d.Get("facility").(string)
 	ret.Inst.Format = d.Get("format").(string)
 	ret.Inst.IncludeDestFqdn = d.Get("include_dest_fqdn").(int)
@@ -1016,9 +1016,9 @@ func dataToEndpointFwTemplateLogging(d *schema.ResourceData) edpt.FwTemplateLogg
 	ret.Inst.Resolution = d.Get("resolution").(string)
 	ret.Inst.Rule = getObjectFwTemplateLoggingRule(d.Get("rule").([]interface{}))
 	ret.Inst.ServiceGroup = d.Get("service_group").(string)
-	ret.Inst.SessionPeriodicLog = getObjectFwTemplateLoggingSessionPeriodicLog468(d.Get("session_periodic_log").([]interface{}))
+	ret.Inst.SessionPeriodicLog = getObjectFwTemplateLoggingSessionPeriodicLog459(d.Get("session_periodic_log").([]interface{}))
 	ret.Inst.Severity = d.Get("severity").(string)
-	ret.Inst.SourceAddress = getObjectFwTemplateLoggingSourceAddress469(d.Get("source_address").([]interface{}))
+	ret.Inst.SourceAddress = getObjectFwTemplateLoggingSourceAddress460(d.Get("source_address").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

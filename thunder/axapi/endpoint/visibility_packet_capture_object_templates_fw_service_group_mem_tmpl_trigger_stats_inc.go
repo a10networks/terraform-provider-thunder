@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplTriggerStatsInc struct {
 	Inst struct {
 		Curr_conn_overflow int `json:"curr_conn_overflow"`

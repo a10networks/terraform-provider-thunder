@@ -34,14 +34,14 @@ func resourceDdosDstEntryPortPatternRecognition() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
-			},
 			"port_num": {
 				Type: schema.TypeString, Required: true, Description: "PortNum",
 			},
 			"dst_entry_name": {
 				Type: schema.TypeString, Required: true, Description: "DstEntryName",
+			},
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 		},
 	}
@@ -116,8 +116,8 @@ func dataToEndpointDdosDstEntryPortPatternRecognition(d *schema.ResourceData) ed
 	ret.Inst.Mode = d.Get("mode").(string)
 	ret.Inst.Sensitivity = d.Get("sensitivity").(string)
 	//omit uuid
-	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.PortNum = d.Get("port_num").(string)
 	ret.Inst.DstEntryName = d.Get("dst_entry_name").(string)
+	ret.Inst.Protocol = d.Get("protocol").(string)
 	return ret
 }

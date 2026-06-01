@@ -5,14 +5,14 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DebugGslb struct {
 	Inst struct {
 		Extended int `json:"extended"`
 
 		Glname string `json:"glname"`
 
-		Group DebugGslbGroup394 `json:"group"`
+		Group DebugGslbGroup385 `json:"group"`
 
 		Id1 int `json:"id"`
 
@@ -24,7 +24,7 @@ type DebugGslb struct {
 
 		OneShot int `json:"one-shot"`
 
-		Protocol DebugGslbProtocol395 `json:"protocol"`
+		Protocol DebugGslbProtocol386 `json:"protocol"`
 
 		State int `json:"state"`
 
@@ -32,7 +32,7 @@ type DebugGslb struct {
 	} `json:"gslb"`
 }
 
-type DebugGslbGroup394 struct {
+type DebugGslbGroup385 struct {
 	Cache            int    `json:"cache"`
 	Event            int    `json:"event"`
 	All              int    `json:"all"`
@@ -57,7 +57,7 @@ type DebugGslbGroup394 struct {
 	Uuid             string `json:"uuid"`
 }
 
-type DebugGslbProtocol395 struct {
+type DebugGslbProtocol386 struct {
 	Cache             int    `json:"cache"`
 	Event             int    `json:"event"`
 	All               int    `json:"all"`

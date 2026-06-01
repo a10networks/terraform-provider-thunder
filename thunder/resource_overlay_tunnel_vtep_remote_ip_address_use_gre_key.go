@@ -22,11 +22,11 @@ func resourceOverlayTunnelVtepRemoteIpAddressUseGreKey() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"id1": {
-				Type: schema.TypeString, Required: true, Description: "Id1",
-			},
 			"ip_address": {
 				Type: schema.TypeString, Required: true, Description: "IpAddress",
+			},
+			"id1": {
+				Type: schema.TypeString, Required: true, Description: "Id1",
 			},
 		},
 	}
@@ -97,7 +97,7 @@ func dataToEndpointOverlayTunnelVtepRemoteIpAddressUseGreKey(d *schema.ResourceD
 	var ret edpt.OverlayTunnelVtepRemoteIpAddressUseGreKey
 	ret.Inst.GreKey = d.Get("gre_key").(int)
 	//omit uuid
-	ret.Inst.Id1 = d.Get("id1").(string)
 	ret.Inst.IpAddress = d.Get("ip_address").(string)
+	ret.Inst.Id1 = d.Get("id1").(string)
 	return ret
 }

@@ -37,8 +37,8 @@ resource "thunder_ddos_zone_template_quic_version_supported" "thunder_ddos_zone_
 ### Required
 
 - `quic_tmpl_name` (String) QuicTmplName
-- `version_end` (String) Version supported range end
-- `version_start` (String) Configure versions supported in hex
+- `version_end` (Number) Version supported range end
+- `version_start` (Number) Configure versions supported in hex
 
 ### Optional
 

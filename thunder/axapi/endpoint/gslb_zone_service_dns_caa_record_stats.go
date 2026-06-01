@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type GslbZoneServiceDnsCaaRecordStats struct {
 	CriticalFlag int `json:"critical-flag"`
 
@@ -16,11 +16,11 @@ type GslbZoneServiceDnsCaaRecordStats struct {
 
 	Stats GslbZoneServiceDnsCaaRecordStatsStats `json:"stats"`
 
-	ServicePort string
-
 	ServiceName string
 
 	Zone_name string
+
+	ServicePort string
 }
 type DataGslbZoneServiceDnsCaaRecordStats struct {
 	DtGslbZoneServiceDnsCaaRecordStats GslbZoneServiceDnsCaaRecordStats `json:"dns-caa-record"`

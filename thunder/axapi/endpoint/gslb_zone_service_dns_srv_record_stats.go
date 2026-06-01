@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type GslbZoneServiceDnsSrvRecordStats struct {
 	Port int `json:"port"`
 
@@ -14,11 +14,11 @@ type GslbZoneServiceDnsSrvRecordStats struct {
 
 	Stats GslbZoneServiceDnsSrvRecordStatsStats `json:"stats"`
 
-	ServicePort string
-
 	ServiceName string
 
 	Zone_name string
+
+	ServicePort string
 }
 type DataGslbZoneServiceDnsSrvRecordStats struct {
 	DtGslbZoneServiceDnsSrvRecordStats GslbZoneServiceDnsSrvRecordStats `json:"dns-srv-record"`

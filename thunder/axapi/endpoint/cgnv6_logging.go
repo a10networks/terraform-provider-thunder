@@ -5,36 +5,36 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6Logging struct {
 	Inst struct {
-		NatQuotaExceeded Cgnv6LoggingNatQuotaExceeded85 `json:"nat-quota-exceeded"`
+		NatQuotaExceeded Cgnv6LoggingNatQuotaExceeded86 `json:"nat-quota-exceeded"`
 
-		NatResourceExhausted Cgnv6LoggingNatResourceExhausted86 `json:"nat-resource-exhausted"`
+		NatResourceExhausted Cgnv6LoggingNatResourceExhausted87 `json:"nat-resource-exhausted"`
 
-		PoolBasedLog Cgnv6LoggingPoolBasedLog87 `json:"pool-based-log"`
+		PoolBasedLog Cgnv6LoggingPoolBasedLog88 `json:"pool-based-log"`
 
 		SamplingEnable []Cgnv6LoggingSamplingEnable `json:"sampling-enable"`
 
-		SourceAddress Cgnv6LoggingSourceAddress88 `json:"source-address"`
+		SourceAddress Cgnv6LoggingSourceAddress89 `json:"source-address"`
 
-		TcpSvrStatus Cgnv6LoggingTcpSvrStatus89 `json:"tcp-svr-status"`
+		TcpSvrStatus Cgnv6LoggingTcpSvrStatus90 `json:"tcp-svr-status"`
 
 		Uuid string `json:"uuid"`
 	} `json:"logging"`
 }
 
-type Cgnv6LoggingNatQuotaExceeded85 struct {
+type Cgnv6LoggingNatQuotaExceeded86 struct {
 	Level string `json:"level" dval:"warning"`
 	Uuid  string `json:"uuid"`
 }
 
-type Cgnv6LoggingNatResourceExhausted86 struct {
+type Cgnv6LoggingNatResourceExhausted87 struct {
 	Level string `json:"level" dval:"critical"`
 	Uuid  string `json:"uuid"`
 }
 
-type Cgnv6LoggingPoolBasedLog87 struct {
+type Cgnv6LoggingPoolBasedLog88 struct {
 	Cycle int    `json:"cycle" dval:"30"`
 	Uuid  string `json:"uuid"`
 }
@@ -43,11 +43,11 @@ type Cgnv6LoggingSamplingEnable struct {
 	Counters1 string `json:"counters1"`
 }
 
-type Cgnv6LoggingSourceAddress88 struct {
+type Cgnv6LoggingSourceAddress89 struct {
 	Uuid string `json:"uuid"`
 }
 
-type Cgnv6LoggingTcpSvrStatus89 struct {
+type Cgnv6LoggingTcpSvrStatus90 struct {
 	Uuid string `json:"uuid"`
 }
 

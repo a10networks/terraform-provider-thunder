@@ -493,6 +493,9 @@ func resourceRouterBgpAddressFamilyIpv6() *schema.Resource {
 			"originate": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Distribute an IPv6 default route",
 			},
+			"prefer_global": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Prefer Global IPv6 Nexthop address",
+			},
 			"redistribute": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -824,10 +827,10 @@ func getObjectRouterBgpAddressFamilyIpv6Distance(d []interface{}) edpt.RouterBgp
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6Neighbor1237(d []interface{}) edpt.RouterBgpAddressFamilyIpv6Neighbor1237 {
+func getObjectRouterBgpAddressFamilyIpv6Neighbor1236(d []interface{}) edpt.RouterBgpAddressFamilyIpv6Neighbor1236 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6Neighbor1237
+	var ret edpt.RouterBgpAddressFamilyIpv6Neighbor1236
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PeerGroupNeighborList = getSliceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborList(in["peer_group_neighbor_list"].([]interface{}))
@@ -1105,23 +1108,23 @@ func getSliceRouterBgpAddressFamilyIpv6NeighborTrunkNeighborIpv6List(d []interfa
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6Network1238(d []interface{}) edpt.RouterBgpAddressFamilyIpv6Network1238 {
+func getObjectRouterBgpAddressFamilyIpv6Network1237(d []interface{}) edpt.RouterBgpAddressFamilyIpv6Network1237 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6Network1238
+	var ret edpt.RouterBgpAddressFamilyIpv6Network1237
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Synchronization = getObjectRouterBgpAddressFamilyIpv6NetworkSynchronization1239(in["synchronization"].([]interface{}))
-		ret.Monitor = getObjectRouterBgpAddressFamilyIpv6NetworkMonitor1240(in["monitor"].([]interface{}))
+		ret.Synchronization = getObjectRouterBgpAddressFamilyIpv6NetworkSynchronization1238(in["synchronization"].([]interface{}))
+		ret.Monitor = getObjectRouterBgpAddressFamilyIpv6NetworkMonitor1239(in["monitor"].([]interface{}))
 		ret.Ipv6NetworkList = getSliceRouterBgpAddressFamilyIpv6NetworkIpv6NetworkList(in["ipv6_network_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6NetworkSynchronization1239(d []interface{}) edpt.RouterBgpAddressFamilyIpv6NetworkSynchronization1239 {
+func getObjectRouterBgpAddressFamilyIpv6NetworkSynchronization1238(d []interface{}) edpt.RouterBgpAddressFamilyIpv6NetworkSynchronization1238 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6NetworkSynchronization1239
+	var ret edpt.RouterBgpAddressFamilyIpv6NetworkSynchronization1238
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.NetworkSynchronization = in["network_synchronization"].(int)
@@ -1130,21 +1133,21 @@ func getObjectRouterBgpAddressFamilyIpv6NetworkSynchronization1239(d []interface
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6NetworkMonitor1240(d []interface{}) edpt.RouterBgpAddressFamilyIpv6NetworkMonitor1240 {
+func getObjectRouterBgpAddressFamilyIpv6NetworkMonitor1239(d []interface{}) edpt.RouterBgpAddressFamilyIpv6NetworkMonitor1239 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6NetworkMonitor1240
+	var ret edpt.RouterBgpAddressFamilyIpv6NetworkMonitor1239
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Default = getObjectRouterBgpAddressFamilyIpv6NetworkMonitorDefault1241(in["default"].([]interface{}))
+		ret.Default = getObjectRouterBgpAddressFamilyIpv6NetworkMonitorDefault1240(in["default"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6NetworkMonitorDefault1241(d []interface{}) edpt.RouterBgpAddressFamilyIpv6NetworkMonitorDefault1241 {
+func getObjectRouterBgpAddressFamilyIpv6NetworkMonitorDefault1240(d []interface{}) edpt.RouterBgpAddressFamilyIpv6NetworkMonitorDefault1240 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6NetworkMonitorDefault1241
+	var ret edpt.RouterBgpAddressFamilyIpv6NetworkMonitorDefault1240
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.NetworkMonitorDefault = in["network_monitor_default"].(int)
@@ -1172,35 +1175,35 @@ func getSliceRouterBgpAddressFamilyIpv6NetworkIpv6NetworkList(d []interface{}) [
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6Redistribute1242(d []interface{}) edpt.RouterBgpAddressFamilyIpv6Redistribute1242 {
+func getObjectRouterBgpAddressFamilyIpv6Redistribute1241(d []interface{}) edpt.RouterBgpAddressFamilyIpv6Redistribute1241 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6Redistribute1242
+	var ret edpt.RouterBgpAddressFamilyIpv6Redistribute1241
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.ConnectedCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeConnectedCfg1243(in["connected_cfg"].([]interface{}))
-		ret.FloatingIpCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeFloatingIpCfg1244(in["floating_ip_cfg"].([]interface{}))
-		ret.Nat64Cfg = getObjectRouterBgpAddressFamilyIpv6RedistributeNat64Cfg1245(in["nat64_cfg"].([]interface{}))
-		ret.NatMapCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeNatMapCfg1246(in["nat_map_cfg"].([]interface{}))
-		ret.Lw4o6Cfg = getObjectRouterBgpAddressFamilyIpv6RedistributeLw4o6Cfg1247(in["lw4o6_cfg"].([]interface{}))
-		ret.StaticNatCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeStaticNatCfg1248(in["static_nat_cfg"].([]interface{}))
-		ret.IpNatCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeIpNatCfg1249(in["ip_nat_cfg"].([]interface{}))
-		ret.IpNatListCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeIpNatListCfg1250(in["ip_nat_list_cfg"].([]interface{}))
-		ret.IsisCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeIsisCfg1251(in["isis_cfg"].([]interface{}))
-		ret.OspfCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeOspfCfg1252(in["ospf_cfg"].([]interface{}))
-		ret.RipCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeRipCfg1253(in["rip_cfg"].([]interface{}))
-		ret.StaticCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeStaticCfg1254(in["static_cfg"].([]interface{}))
-		ret.PublicIpCfg = getObjectRouterBgpAddressFamilyIpv6RedistributePublicIpCfg1255(in["public_ip_cfg"].([]interface{}))
-		ret.Vip = getObjectRouterBgpAddressFamilyIpv6RedistributeVip1256(in["vip"].([]interface{}))
+		ret.ConnectedCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeConnectedCfg1242(in["connected_cfg"].([]interface{}))
+		ret.FloatingIpCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeFloatingIpCfg1243(in["floating_ip_cfg"].([]interface{}))
+		ret.Nat64Cfg = getObjectRouterBgpAddressFamilyIpv6RedistributeNat64Cfg1244(in["nat64_cfg"].([]interface{}))
+		ret.NatMapCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeNatMapCfg1245(in["nat_map_cfg"].([]interface{}))
+		ret.Lw4o6Cfg = getObjectRouterBgpAddressFamilyIpv6RedistributeLw4o6Cfg1246(in["lw4o6_cfg"].([]interface{}))
+		ret.StaticNatCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeStaticNatCfg1247(in["static_nat_cfg"].([]interface{}))
+		ret.IpNatCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeIpNatCfg1248(in["ip_nat_cfg"].([]interface{}))
+		ret.IpNatListCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeIpNatListCfg1249(in["ip_nat_list_cfg"].([]interface{}))
+		ret.IsisCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeIsisCfg1250(in["isis_cfg"].([]interface{}))
+		ret.OspfCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeOspfCfg1251(in["ospf_cfg"].([]interface{}))
+		ret.RipCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeRipCfg1252(in["rip_cfg"].([]interface{}))
+		ret.StaticCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeStaticCfg1253(in["static_cfg"].([]interface{}))
+		ret.PublicIpCfg = getObjectRouterBgpAddressFamilyIpv6RedistributePublicIpCfg1254(in["public_ip_cfg"].([]interface{}))
+		ret.Vip = getObjectRouterBgpAddressFamilyIpv6RedistributeVip1255(in["vip"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6RedistributeConnectedCfg1243(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeConnectedCfg1243 {
+func getObjectRouterBgpAddressFamilyIpv6RedistributeConnectedCfg1242(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeConnectedCfg1242 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeConnectedCfg1243
+	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeConnectedCfg1242
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Connected = in["connected"].(int)
@@ -1209,10 +1212,10 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeConnectedCfg1243(d []interfa
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6RedistributeFloatingIpCfg1244(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeFloatingIpCfg1244 {
+func getObjectRouterBgpAddressFamilyIpv6RedistributeFloatingIpCfg1243(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeFloatingIpCfg1243 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeFloatingIpCfg1244
+	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeFloatingIpCfg1243
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.FloatingIp = in["floating_ip"].(int)
@@ -1221,10 +1224,10 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeFloatingIpCfg1244(d []interf
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6RedistributeNat64Cfg1245(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeNat64Cfg1245 {
+func getObjectRouterBgpAddressFamilyIpv6RedistributeNat64Cfg1244(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeNat64Cfg1244 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeNat64Cfg1245
+	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeNat64Cfg1244
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Nat64 = in["nat64"].(int)
@@ -1233,10 +1236,10 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeNat64Cfg1245(d []interface{}
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6RedistributeNatMapCfg1246(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeNatMapCfg1246 {
+func getObjectRouterBgpAddressFamilyIpv6RedistributeNatMapCfg1245(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeNatMapCfg1245 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeNatMapCfg1246
+	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeNatMapCfg1245
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.NatMap = in["nat_map"].(int)
@@ -1245,10 +1248,10 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeNatMapCfg1246(d []interface{
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6RedistributeLw4o6Cfg1247(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeLw4o6Cfg1247 {
+func getObjectRouterBgpAddressFamilyIpv6RedistributeLw4o6Cfg1246(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeLw4o6Cfg1246 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeLw4o6Cfg1247
+	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeLw4o6Cfg1246
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Lw4o6 = in["lw4o6"].(int)
@@ -1257,10 +1260,10 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeLw4o6Cfg1247(d []interface{}
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6RedistributeStaticNatCfg1248(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeStaticNatCfg1248 {
+func getObjectRouterBgpAddressFamilyIpv6RedistributeStaticNatCfg1247(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeStaticNatCfg1247 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeStaticNatCfg1248
+	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeStaticNatCfg1247
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.StaticNat = in["static_nat"].(int)
@@ -1269,10 +1272,10 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeStaticNatCfg1248(d []interfa
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6RedistributeIpNatCfg1249(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeIpNatCfg1249 {
+func getObjectRouterBgpAddressFamilyIpv6RedistributeIpNatCfg1248(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeIpNatCfg1248 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeIpNatCfg1249
+	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeIpNatCfg1248
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.IpNat = in["ip_nat"].(int)
@@ -1281,10 +1284,10 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeIpNatCfg1249(d []interface{}
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6RedistributeIpNatListCfg1250(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeIpNatListCfg1250 {
+func getObjectRouterBgpAddressFamilyIpv6RedistributeIpNatListCfg1249(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeIpNatListCfg1249 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeIpNatListCfg1250
+	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeIpNatListCfg1249
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.IpNatList = in["ip_nat_list"].(int)
@@ -1293,10 +1296,10 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeIpNatListCfg1250(d []interfa
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6RedistributeIsisCfg1251(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeIsisCfg1251 {
+func getObjectRouterBgpAddressFamilyIpv6RedistributeIsisCfg1250(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeIsisCfg1250 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeIsisCfg1251
+	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeIsisCfg1250
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Isis = in["isis"].(int)
@@ -1305,10 +1308,10 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeIsisCfg1251(d []interface{})
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6RedistributeOspfCfg1252(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeOspfCfg1252 {
+func getObjectRouterBgpAddressFamilyIpv6RedistributeOspfCfg1251(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeOspfCfg1251 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeOspfCfg1252
+	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeOspfCfg1251
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ospf = in["ospf"].(int)
@@ -1317,10 +1320,10 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeOspfCfg1252(d []interface{})
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6RedistributeRipCfg1253(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeRipCfg1253 {
+func getObjectRouterBgpAddressFamilyIpv6RedistributeRipCfg1252(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeRipCfg1252 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeRipCfg1253
+	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeRipCfg1252
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Rip = in["rip"].(int)
@@ -1329,10 +1332,10 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeRipCfg1253(d []interface{}) 
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6RedistributeStaticCfg1254(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeStaticCfg1254 {
+func getObjectRouterBgpAddressFamilyIpv6RedistributeStaticCfg1253(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeStaticCfg1253 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeStaticCfg1254
+	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeStaticCfg1253
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Static = in["static"].(int)
@@ -1341,10 +1344,10 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeStaticCfg1254(d []interface{
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6RedistributePublicIpCfg1255(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributePublicIpCfg1255 {
+func getObjectRouterBgpAddressFamilyIpv6RedistributePublicIpCfg1254(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributePublicIpCfg1254 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6RedistributePublicIpCfg1255
+	var ret edpt.RouterBgpAddressFamilyIpv6RedistributePublicIpCfg1254
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PublicIp = in["public_ip"].(int)
@@ -1353,22 +1356,22 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributePublicIpCfg1255(d []interfac
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6RedistributeVip1256(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeVip1256 {
+func getObjectRouterBgpAddressFamilyIpv6RedistributeVip1255(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeVip1255 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeVip1256
+	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeVip1255
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.OnlyFlaggedCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeVipOnlyFlaggedCfg1257(in["only_flagged_cfg"].([]interface{}))
-		ret.OnlyNotFlaggedCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeVipOnlyNotFlaggedCfg1258(in["only_not_flagged_cfg"].([]interface{}))
+		ret.OnlyFlaggedCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeVipOnlyFlaggedCfg1256(in["only_flagged_cfg"].([]interface{}))
+		ret.OnlyNotFlaggedCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeVipOnlyNotFlaggedCfg1257(in["only_not_flagged_cfg"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6RedistributeVipOnlyFlaggedCfg1257(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeVipOnlyFlaggedCfg1257 {
+func getObjectRouterBgpAddressFamilyIpv6RedistributeVipOnlyFlaggedCfg1256(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeVipOnlyFlaggedCfg1256 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeVipOnlyFlaggedCfg1257
+	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeVipOnlyFlaggedCfg1256
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.OnlyFlagged = in["only_flagged"].(int)
@@ -1377,10 +1380,10 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeVipOnlyFlaggedCfg1257(d []in
 	return ret
 }
 
-func getObjectRouterBgpAddressFamilyIpv6RedistributeVipOnlyNotFlaggedCfg1258(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeVipOnlyNotFlaggedCfg1258 {
+func getObjectRouterBgpAddressFamilyIpv6RedistributeVipOnlyNotFlaggedCfg1257(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeVipOnlyNotFlaggedCfg1257 {
 
 	count1 := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeVipOnlyNotFlaggedCfg1258
+	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeVipOnlyNotFlaggedCfg1257
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.OnlyNotFlagged = in["only_not_flagged"].(int)
@@ -1396,10 +1399,11 @@ func dataToEndpointRouterBgpAddressFamilyIpv6(d *schema.ResourceData) edpt.Route
 	ret.Inst.Bgp = getObjectRouterBgpAddressFamilyIpv6Bgp(d.Get("bgp").([]interface{}))
 	ret.Inst.Distance = getObjectRouterBgpAddressFamilyIpv6Distance(d.Get("distance").([]interface{}))
 	ret.Inst.MaximumPathsValue = d.Get("maximum_paths_value").(int)
-	ret.Inst.Neighbor = getObjectRouterBgpAddressFamilyIpv6Neighbor1237(d.Get("neighbor").([]interface{}))
-	ret.Inst.Network = getObjectRouterBgpAddressFamilyIpv6Network1238(d.Get("network").([]interface{}))
+	ret.Inst.Neighbor = getObjectRouterBgpAddressFamilyIpv6Neighbor1236(d.Get("neighbor").([]interface{}))
+	ret.Inst.Network = getObjectRouterBgpAddressFamilyIpv6Network1237(d.Get("network").([]interface{}))
 	ret.Inst.Originate = d.Get("originate").(int)
-	ret.Inst.Redistribute = getObjectRouterBgpAddressFamilyIpv6Redistribute1242(d.Get("redistribute").([]interface{}))
+	ret.Inst.PreferGlobal = d.Get("prefer_global").(int)
+	ret.Inst.Redistribute = getObjectRouterBgpAddressFamilyIpv6Redistribute1241(d.Get("redistribute").([]interface{}))
 	ret.Inst.Synchronization = d.Get("synchronization").(int)
 	//omit uuid
 	ret.Inst.AsNumber = d.Get("as_number").(string)

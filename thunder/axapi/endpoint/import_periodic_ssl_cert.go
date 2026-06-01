@@ -6,20 +6,24 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type ImportPeriodicSslCert struct {
 	Inst struct {
 		CertificateType string `json:"certificate-type"`
 
-		Encrypted string `json:"encrypted"`
+		Password string `json:"password"`
 
 		Period int `json:"period"`
+
+		PfxEncrypted string `json:"pfx-encrypted"`
 
 		PfxPassword string `json:"pfx-password"`
 
 		RemoteFile string `json:"remote-file"`
 
 		SslCert string `json:"ssl-cert"`
+
+		StringEncrypted string `json:"string-encrypted"`
 
 		UseMgmtPort int `json:"use-mgmt-port"`
 

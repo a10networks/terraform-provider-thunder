@@ -757,10 +757,10 @@ func getSliceSlbTemplatePolicyBwListId(d []interface{}) []edpt.SlbTemplatePolicy
 	return ret
 }
 
-func getObjectSlbTemplatePolicyClassList1555(d []interface{}) edpt.SlbTemplatePolicyClassList1555 {
+func getObjectSlbTemplatePolicyClassList1556(d []interface{}) edpt.SlbTemplatePolicyClassList1556 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplatePolicyClassList1555
+	var ret edpt.SlbTemplatePolicyClassList1556
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Name = in["name"].(string)
@@ -768,18 +768,18 @@ func getObjectSlbTemplatePolicyClassList1555(d []interface{}) edpt.SlbTemplatePo
 		ret.ClientIpL7Header = in["client_ip_l7_header"].(int)
 		ret.HeaderName = in["header_name"].(string)
 		//omit uuid
-		ret.LidList = getSliceSlbTemplatePolicyClassListLidList1556(in["lid_list"].([]interface{}))
+		ret.LidList = getSliceSlbTemplatePolicyClassListLidList1557(in["lid_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSlbTemplatePolicyClassListLidList1556(d []interface{}) []edpt.SlbTemplatePolicyClassListLidList1556 {
+func getSliceSlbTemplatePolicyClassListLidList1557(d []interface{}) []edpt.SlbTemplatePolicyClassListLidList1557 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplatePolicyClassListLidList1556, 0, count1)
+	ret := make([]edpt.SlbTemplatePolicyClassListLidList1557, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplatePolicyClassListLidList1556
+		var oi edpt.SlbTemplatePolicyClassListLidList1557
 		oi.Lidnum = in["lidnum"].(int)
 		oi.ConnLimit = in["conn_limit"].(int)
 		oi.ConnRateLimit = in["conn_rate_limit"].(int)
@@ -802,8 +802,8 @@ func getSliceSlbTemplatePolicyClassListLidList1556(d []interface{}) []edpt.SlbTe
 		oi.DirectActionValue = in["direct_action_value"].(string)
 		oi.DirectLoggingDrpRst = in["direct_logging_drp_rst"].(int)
 		oi.DirectActionInterval = in["direct_action_interval"].(int)
-		oi.ResponseCodeRateLimit = getSliceSlbTemplatePolicyClassListLidListResponseCodeRateLimit1557(in["response_code_rate_limit"].([]interface{}))
-		oi.Dns64 = getObjectSlbTemplatePolicyClassListLidListDns641558(in["dns64"].([]interface{}))
+		oi.ResponseCodeRateLimit = getSliceSlbTemplatePolicyClassListLidListResponseCodeRateLimit1558(in["response_code_rate_limit"].([]interface{}))
+		oi.Dns64 = getObjectSlbTemplatePolicyClassListLidListDns641559(in["dns64"].([]interface{}))
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		ret = append(ret, oi)
@@ -811,13 +811,13 @@ func getSliceSlbTemplatePolicyClassListLidList1556(d []interface{}) []edpt.SlbTe
 	return ret
 }
 
-func getSliceSlbTemplatePolicyClassListLidListResponseCodeRateLimit1557(d []interface{}) []edpt.SlbTemplatePolicyClassListLidListResponseCodeRateLimit1557 {
+func getSliceSlbTemplatePolicyClassListLidListResponseCodeRateLimit1558(d []interface{}) []edpt.SlbTemplatePolicyClassListLidListResponseCodeRateLimit1558 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplatePolicyClassListLidListResponseCodeRateLimit1557, 0, count1)
+	ret := make([]edpt.SlbTemplatePolicyClassListLidListResponseCodeRateLimit1558, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplatePolicyClassListLidListResponseCodeRateLimit1557
+		var oi edpt.SlbTemplatePolicyClassListLidListResponseCodeRateLimit1558
 		oi.CodeRangeStart = in["code_range_start"].(int)
 		oi.CodeRangeEnd = in["code_range_end"].(int)
 		oi.Threshold = in["threshold"].(int)
@@ -827,10 +827,10 @@ func getSliceSlbTemplatePolicyClassListLidListResponseCodeRateLimit1557(d []inte
 	return ret
 }
 
-func getObjectSlbTemplatePolicyClassListLidListDns641558(d []interface{}) edpt.SlbTemplatePolicyClassListLidListDns641558 {
+func getObjectSlbTemplatePolicyClassListLidListDns641559(d []interface{}) edpt.SlbTemplatePolicyClassListLidListDns641559 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplatePolicyClassListLidListDns641558
+	var ret edpt.SlbTemplatePolicyClassListLidListDns641559
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Disable = in["disable"].(int)
@@ -840,10 +840,10 @@ func getObjectSlbTemplatePolicyClassListLidListDns641558(d []interface{}) edpt.S
 	return ret
 }
 
-func getObjectSlbTemplatePolicyForwardPolicy1559(d []interface{}) edpt.SlbTemplatePolicyForwardPolicy1559 {
+func getObjectSlbTemplatePolicyForwardPolicy1560(d []interface{}) edpt.SlbTemplatePolicyForwardPolicy1560 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplatePolicyForwardPolicy1559
+	var ret edpt.SlbTemplatePolicyForwardPolicy1560
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.NoClientConnReuse = in["no_client_conn_reuse"].(int)
@@ -852,50 +852,50 @@ func getObjectSlbTemplatePolicyForwardPolicy1559(d []interface{}) edpt.SlbTempla
 		ret.RequireWebCategory = in["require_web_category"].(int)
 		ret.ForwardHttpConnectToIcap = in["forward_http_connect_to_icap"].(int)
 		ret.ReqmodIcap = in["reqmod_icap"].(string)
-		ret.Filtering = getSliceSlbTemplatePolicyForwardPolicyFiltering1560(in["filtering"].([]interface{}))
-		ret.SanFiltering = getSliceSlbTemplatePolicyForwardPolicySanFiltering1561(in["san_filtering"].([]interface{}))
+		ret.Filtering = getSliceSlbTemplatePolicyForwardPolicyFiltering1561(in["filtering"].([]interface{}))
+		ret.SanFiltering = getSliceSlbTemplatePolicyForwardPolicySanFiltering1562(in["san_filtering"].([]interface{}))
 		ret.EnableAdvMatch = in["enable_adv_match"].(int)
 		//omit uuid
-		ret.ActionList = getSliceSlbTemplatePolicyForwardPolicyActionList1562(in["action_list"].([]interface{}))
-		ret.DualStackActionList = getSliceSlbTemplatePolicyForwardPolicyDualStackActionList1564(in["dual_stack_action_list"].([]interface{}))
-		ret.SourceList = getSliceSlbTemplatePolicyForwardPolicySourceList1566(in["source_list"].([]interface{}))
+		ret.ActionList = getSliceSlbTemplatePolicyForwardPolicyActionList1563(in["action_list"].([]interface{}))
+		ret.DualStackActionList = getSliceSlbTemplatePolicyForwardPolicyDualStackActionList1565(in["dual_stack_action_list"].([]interface{}))
+		ret.SourceList = getSliceSlbTemplatePolicyForwardPolicySourceList1567(in["source_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSlbTemplatePolicyForwardPolicyFiltering1560(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicyFiltering1560 {
+func getSliceSlbTemplatePolicyForwardPolicyFiltering1561(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicyFiltering1561 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplatePolicyForwardPolicyFiltering1560, 0, count1)
+	ret := make([]edpt.SlbTemplatePolicyForwardPolicyFiltering1561, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplatePolicyForwardPolicyFiltering1560
+		var oi edpt.SlbTemplatePolicyForwardPolicyFiltering1561
 		oi.SsliUrlFiltering = in["ssli_url_filtering"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceSlbTemplatePolicyForwardPolicySanFiltering1561(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySanFiltering1561 {
+func getSliceSlbTemplatePolicyForwardPolicySanFiltering1562(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySanFiltering1562 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplatePolicyForwardPolicySanFiltering1561, 0, count1)
+	ret := make([]edpt.SlbTemplatePolicyForwardPolicySanFiltering1562, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplatePolicyForwardPolicySanFiltering1561
+		var oi edpt.SlbTemplatePolicyForwardPolicySanFiltering1562
 		oi.SsliUrlFilteringSan = in["ssli_url_filtering_san"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceSlbTemplatePolicyForwardPolicyActionList1562(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicyActionList1562 {
+func getSliceSlbTemplatePolicyForwardPolicyActionList1563(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicyActionList1563 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplatePolicyForwardPolicyActionList1562, 0, count1)
+	ret := make([]edpt.SlbTemplatePolicyForwardPolicyActionList1563, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplatePolicyForwardPolicyActionList1562
+		var oi edpt.SlbTemplatePolicyForwardPolicyActionList1563
 		oi.Name = in["name"].(string)
 		oi.Action1 = in["action1"].(string)
 		oi.FakeSg = in["fake_sg"].(string)
@@ -915,32 +915,32 @@ func getSliceSlbTemplatePolicyForwardPolicyActionList1562(d []interface{}) []edp
 		oi.HttpStatusCode = in["http_status_code"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.SamplingEnable = getSliceSlbTemplatePolicyForwardPolicyActionListSamplingEnable1563(in["sampling_enable"].([]interface{}))
+		oi.SamplingEnable = getSliceSlbTemplatePolicyForwardPolicyActionListSamplingEnable1564(in["sampling_enable"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceSlbTemplatePolicyForwardPolicyActionListSamplingEnable1563(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicyActionListSamplingEnable1563 {
+func getSliceSlbTemplatePolicyForwardPolicyActionListSamplingEnable1564(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicyActionListSamplingEnable1564 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplatePolicyForwardPolicyActionListSamplingEnable1563, 0, count1)
+	ret := make([]edpt.SlbTemplatePolicyForwardPolicyActionListSamplingEnable1564, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplatePolicyForwardPolicyActionListSamplingEnable1563
+		var oi edpt.SlbTemplatePolicyForwardPolicyActionListSamplingEnable1564
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceSlbTemplatePolicyForwardPolicyDualStackActionList1564(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicyDualStackActionList1564 {
+func getSliceSlbTemplatePolicyForwardPolicyDualStackActionList1565(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicyDualStackActionList1565 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplatePolicyForwardPolicyDualStackActionList1564, 0, count1)
+	ret := make([]edpt.SlbTemplatePolicyForwardPolicyDualStackActionList1565, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplatePolicyForwardPolicyDualStackActionList1564
+		var oi edpt.SlbTemplatePolicyForwardPolicyDualStackActionList1565
 		oi.Name = in["name"].(string)
 		oi.Ipv4 = in["ipv4"].(string)
 		oi.Ipv4Snat = in["ipv4_snat"].(string)
@@ -951,32 +951,32 @@ func getSliceSlbTemplatePolicyForwardPolicyDualStackActionList1564(d []interface
 		oi.Log = in["log"].(int)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.SamplingEnable = getSliceSlbTemplatePolicyForwardPolicyDualStackActionListSamplingEnable1565(in["sampling_enable"].([]interface{}))
+		oi.SamplingEnable = getSliceSlbTemplatePolicyForwardPolicyDualStackActionListSamplingEnable1566(in["sampling_enable"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceSlbTemplatePolicyForwardPolicyDualStackActionListSamplingEnable1565(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicyDualStackActionListSamplingEnable1565 {
+func getSliceSlbTemplatePolicyForwardPolicyDualStackActionListSamplingEnable1566(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicyDualStackActionListSamplingEnable1566 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplatePolicyForwardPolicyDualStackActionListSamplingEnable1565, 0, count1)
+	ret := make([]edpt.SlbTemplatePolicyForwardPolicyDualStackActionListSamplingEnable1566, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplatePolicyForwardPolicyDualStackActionListSamplingEnable1565
+		var oi edpt.SlbTemplatePolicyForwardPolicyDualStackActionListSamplingEnable1566
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceSlbTemplatePolicyForwardPolicySourceList1566(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySourceList1566 {
+func getSliceSlbTemplatePolicyForwardPolicySourceList1567(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySourceList1567 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplatePolicyForwardPolicySourceList1566, 0, count1)
+	ret := make([]edpt.SlbTemplatePolicyForwardPolicySourceList1567, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplatePolicyForwardPolicySourceList1566
+		var oi edpt.SlbTemplatePolicyForwardPolicySourceList1567
 		oi.Name = in["name"].(string)
 		oi.MatchClassList = in["match_class_list"].(string)
 		oi.MatchAny = in["match_any"].(int)
@@ -984,48 +984,48 @@ func getSliceSlbTemplatePolicyForwardPolicySourceList1566(d []interface{}) []edp
 		oi.Priority = in["priority"].(int)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.SamplingEnable = getSliceSlbTemplatePolicyForwardPolicySourceListSamplingEnable1567(in["sampling_enable"].([]interface{}))
-		oi.Destination = getObjectSlbTemplatePolicyForwardPolicySourceListDestination1568(in["destination"].([]interface{}))
+		oi.SamplingEnable = getSliceSlbTemplatePolicyForwardPolicySourceListSamplingEnable1568(in["sampling_enable"].([]interface{}))
+		oi.Destination = getObjectSlbTemplatePolicyForwardPolicySourceListDestination1569(in["destination"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceSlbTemplatePolicyForwardPolicySourceListSamplingEnable1567(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySourceListSamplingEnable1567 {
+func getSliceSlbTemplatePolicyForwardPolicySourceListSamplingEnable1568(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySourceListSamplingEnable1568 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplatePolicyForwardPolicySourceListSamplingEnable1567, 0, count1)
+	ret := make([]edpt.SlbTemplatePolicyForwardPolicySourceListSamplingEnable1568, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplatePolicyForwardPolicySourceListSamplingEnable1567
+		var oi edpt.SlbTemplatePolicyForwardPolicySourceListSamplingEnable1568
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSlbTemplatePolicyForwardPolicySourceListDestination1568(d []interface{}) edpt.SlbTemplatePolicyForwardPolicySourceListDestination1568 {
+func getObjectSlbTemplatePolicyForwardPolicySourceListDestination1569(d []interface{}) edpt.SlbTemplatePolicyForwardPolicySourceListDestination1569 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplatePolicyForwardPolicySourceListDestination1568
+	var ret edpt.SlbTemplatePolicyForwardPolicySourceListDestination1569
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.AdvMatchList = getSliceSlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchList1569(in["adv_match_list"].([]interface{}))
-		ret.ClassListList = getSliceSlbTemplatePolicyForwardPolicySourceListDestinationClassListList1571(in["class_list_list"].([]interface{}))
-		ret.WebReputationScopeList = getSliceSlbTemplatePolicyForwardPolicySourceListDestinationWebReputationScopeList1572(in["web_reputation_scope_list"].([]interface{}))
-		ret.WebCategoryListList = getSliceSlbTemplatePolicyForwardPolicySourceListDestinationWebCategoryListList1573(in["web_category_list_list"].([]interface{}))
-		ret.Any = getObjectSlbTemplatePolicyForwardPolicySourceListDestinationAny1574(in["any"].([]interface{}))
+		ret.AdvMatchList = getSliceSlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchList1570(in["adv_match_list"].([]interface{}))
+		ret.ClassListList = getSliceSlbTemplatePolicyForwardPolicySourceListDestinationClassListList1572(in["class_list_list"].([]interface{}))
+		ret.WebReputationScopeList = getSliceSlbTemplatePolicyForwardPolicySourceListDestinationWebReputationScopeList1573(in["web_reputation_scope_list"].([]interface{}))
+		ret.WebCategoryListList = getSliceSlbTemplatePolicyForwardPolicySourceListDestinationWebCategoryListList1574(in["web_category_list_list"].([]interface{}))
+		ret.Any = getObjectSlbTemplatePolicyForwardPolicySourceListDestinationAny1575(in["any"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchList1569(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchList1569 {
+func getSliceSlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchList1570(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchList1570 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchList1569, 0, count1)
+	ret := make([]edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchList1570, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchList1569
+		var oi edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchList1570
 		oi.Priority = in["priority"].(int)
 		oi.MatchHost = in["match_host"].(string)
 		oi.MatchHttpContentEncoding = in["match_http_content_encoding"].(string)
@@ -1060,32 +1060,32 @@ func getSliceSlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchList1569
 		oi.DualStackAction = in["dual_stack_action"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.SamplingEnable = getSliceSlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchListSamplingEnable1570(in["sampling_enable"].([]interface{}))
+		oi.SamplingEnable = getSliceSlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchListSamplingEnable1571(in["sampling_enable"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceSlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchListSamplingEnable1570(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchListSamplingEnable1570 {
+func getSliceSlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchListSamplingEnable1571(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchListSamplingEnable1571 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchListSamplingEnable1570, 0, count1)
+	ret := make([]edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchListSamplingEnable1571, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchListSamplingEnable1570
+		var oi edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAdvMatchListSamplingEnable1571
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceSlbTemplatePolicyForwardPolicySourceListDestinationClassListList1571(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySourceListDestinationClassListList1571 {
+func getSliceSlbTemplatePolicyForwardPolicySourceListDestinationClassListList1572(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySourceListDestinationClassListList1572 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplatePolicyForwardPolicySourceListDestinationClassListList1571, 0, count1)
+	ret := make([]edpt.SlbTemplatePolicyForwardPolicySourceListDestinationClassListList1572, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplatePolicyForwardPolicySourceListDestinationClassListList1571
+		var oi edpt.SlbTemplatePolicyForwardPolicySourceListDestinationClassListList1572
 		oi.DestClassList = in["dest_class_list"].(string)
 		oi.Action = in["action"].(string)
 		oi.DualStackAction = in["dual_stack_action"].(string)
@@ -1097,13 +1097,13 @@ func getSliceSlbTemplatePolicyForwardPolicySourceListDestinationClassListList157
 	return ret
 }
 
-func getSliceSlbTemplatePolicyForwardPolicySourceListDestinationWebReputationScopeList1572(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySourceListDestinationWebReputationScopeList1572 {
+func getSliceSlbTemplatePolicyForwardPolicySourceListDestinationWebReputationScopeList1573(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySourceListDestinationWebReputationScopeList1573 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplatePolicyForwardPolicySourceListDestinationWebReputationScopeList1572, 0, count1)
+	ret := make([]edpt.SlbTemplatePolicyForwardPolicySourceListDestinationWebReputationScopeList1573, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplatePolicyForwardPolicySourceListDestinationWebReputationScopeList1572
+		var oi edpt.SlbTemplatePolicyForwardPolicySourceListDestinationWebReputationScopeList1573
 		oi.WebReputationScope = in["web_reputation_scope"].(string)
 		oi.Action = in["action"].(string)
 		oi.DualStackAction = in["dual_stack_action"].(string)
@@ -1115,13 +1115,13 @@ func getSliceSlbTemplatePolicyForwardPolicySourceListDestinationWebReputationSco
 	return ret
 }
 
-func getSliceSlbTemplatePolicyForwardPolicySourceListDestinationWebCategoryListList1573(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySourceListDestinationWebCategoryListList1573 {
+func getSliceSlbTemplatePolicyForwardPolicySourceListDestinationWebCategoryListList1574(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySourceListDestinationWebCategoryListList1574 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplatePolicyForwardPolicySourceListDestinationWebCategoryListList1573, 0, count1)
+	ret := make([]edpt.SlbTemplatePolicyForwardPolicySourceListDestinationWebCategoryListList1574, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplatePolicyForwardPolicySourceListDestinationWebCategoryListList1573
+		var oi edpt.SlbTemplatePolicyForwardPolicySourceListDestinationWebCategoryListList1574
 		oi.WebCategoryList = in["web_category_list"].(string)
 		oi.Action = in["action"].(string)
 		oi.DualStackAction = in["dual_stack_action"].(string)
@@ -1133,27 +1133,27 @@ func getSliceSlbTemplatePolicyForwardPolicySourceListDestinationWebCategoryListL
 	return ret
 }
 
-func getObjectSlbTemplatePolicyForwardPolicySourceListDestinationAny1574(d []interface{}) edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAny1574 {
+func getObjectSlbTemplatePolicyForwardPolicySourceListDestinationAny1575(d []interface{}) edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAny1575 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAny1574
+	var ret edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAny1575
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
 		ret.DualStackAction = in["dual_stack_action"].(string)
 		//omit uuid
-		ret.SamplingEnable = getSliceSlbTemplatePolicyForwardPolicySourceListDestinationAnySamplingEnable1575(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceSlbTemplatePolicyForwardPolicySourceListDestinationAnySamplingEnable1576(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSlbTemplatePolicyForwardPolicySourceListDestinationAnySamplingEnable1575(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAnySamplingEnable1575 {
+func getSliceSlbTemplatePolicyForwardPolicySourceListDestinationAnySamplingEnable1576(d []interface{}) []edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAnySamplingEnable1576 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAnySamplingEnable1575, 0, count1)
+	ret := make([]edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAnySamplingEnable1576, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAnySamplingEnable1575
+		var oi edpt.SlbTemplatePolicyForwardPolicySourceListDestinationAnySamplingEnable1576
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
@@ -1177,8 +1177,8 @@ func dataToEndpointSlbTemplatePolicy(d *schema.ResourceData) edpt.SlbTemplatePol
 	var ret edpt.SlbTemplatePolicy
 	ret.Inst.BwListId = getSliceSlbTemplatePolicyBwListId(d.Get("bw_list_id").([]interface{}))
 	ret.Inst.BwListName = d.Get("bw_list_name").(string)
-	ret.Inst.ClassList = getObjectSlbTemplatePolicyClassList1555(d.Get("class_list").([]interface{}))
-	ret.Inst.ForwardPolicy = getObjectSlbTemplatePolicyForwardPolicy1559(d.Get("forward_policy").([]interface{}))
+	ret.Inst.ClassList = getObjectSlbTemplatePolicyClassList1556(d.Get("class_list").([]interface{}))
+	ret.Inst.ForwardPolicy = getObjectSlbTemplatePolicyForwardPolicy1560(d.Get("forward_policy").([]interface{}))
 	ret.Inst.FullDomainTree = d.Get("full_domain_tree").(int)
 	ret.Inst.Interval = d.Get("interval").(int)
 	ret.Inst.Name = d.Get("name").(string)

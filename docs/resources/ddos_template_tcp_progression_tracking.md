@@ -122,7 +122,7 @@ Optional:
 - `progression_tracking_req_enabled` (String) 'enable-check': Enable General Progression Tracking per Request Response;
 - `request_length_max` (Number) Set the maximum request length
 - `request_length_min` (Number) Set the minimum request length
-- `request_response_model` (String) 'enable': Enable Request Response Model; 'disable': Disable Request Response Model;
+- `request_response_model` (String) 'enable': Enable Request Response Model (Default); 'disable': Disable Request Response Model;
 - `request_to_response_max_time` (Number) Set the maximum request to response time (in unit of 100ms)
 - `response_length_max` (Number) Set the maximum response length
 - `response_length_min` (Number) Set the minimum response length

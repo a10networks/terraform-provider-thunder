@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type InterfaceManagement struct {
 	Inst struct {
 		AccessList InterfaceManagementAccessList `json:"access-list"`
@@ -22,7 +22,7 @@ type InterfaceManagement struct {
 
 		Ipv6 []InterfaceManagementIpv6 `json:"ipv6"`
 
-		Lldp InterfaceManagementLldp827 `json:"lldp"`
+		Lldp InterfaceManagementLldp818 `json:"lldp"`
 
 		Mtu int `json:"mtu"`
 
@@ -62,32 +62,32 @@ type InterfaceManagementIpv6 struct {
 	DefaultIpv6Gateway string `json:"default-ipv6-gateway"`
 }
 
-type InterfaceManagementLldp827 struct {
-	EnableCfg       InterfaceManagementLldpEnableCfg828       `json:"enable-cfg"`
-	NotificationCfg InterfaceManagementLldpNotificationCfg829 `json:"notification-cfg"`
-	TxDot1Cfg       InterfaceManagementLldpTxDot1Cfg830       `json:"tx-dot1-cfg"`
-	TxTlvsCfg       InterfaceManagementLldpTxTlvsCfg831       `json:"tx-tlvs-cfg"`
+type InterfaceManagementLldp818 struct {
+	EnableCfg       InterfaceManagementLldpEnableCfg819       `json:"enable-cfg"`
+	NotificationCfg InterfaceManagementLldpNotificationCfg820 `json:"notification-cfg"`
+	TxDot1Cfg       InterfaceManagementLldpTxDot1Cfg821       `json:"tx-dot1-cfg"`
+	TxTlvsCfg       InterfaceManagementLldpTxTlvsCfg822       `json:"tx-tlvs-cfg"`
 	Uuid            string                                    `json:"uuid"`
 }
 
-type InterfaceManagementLldpEnableCfg828 struct {
+type InterfaceManagementLldpEnableCfg819 struct {
 	RtEnable int `json:"rt-enable"`
 	Rx       int `json:"rx"`
 	Tx       int `json:"tx"`
 }
 
-type InterfaceManagementLldpNotificationCfg829 struct {
+type InterfaceManagementLldpNotificationCfg820 struct {
 	Notification int `json:"notification"`
 	NotifEnable  int `json:"notif-enable"`
 }
 
-type InterfaceManagementLldpTxDot1Cfg830 struct {
+type InterfaceManagementLldpTxDot1Cfg821 struct {
 	TxDot1Tlvs      int `json:"tx-dot1-tlvs"`
 	LinkAggregation int `json:"link-aggregation"`
 	Vlan            int `json:"vlan"`
 }
 
-type InterfaceManagementLldpTxTlvsCfg831 struct {
+type InterfaceManagementLldpTxTlvsCfg822 struct {
 	TxTlvs             int `json:"tx-tlvs"`
 	Exclude            int `json:"exclude"`
 	ManagementAddress  int `json:"management-address"`

@@ -6,12 +6,16 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type ScaleoutUserGroupAssignmentTemplateV6Assignment struct {
 	Inst struct {
+		AssignmentPrefixAuto int `json:"assignment-prefix-auto"`
+
 		AssignmentPrefixLength int `json:"assignment-prefix-length" dval:"128"`
 
 		Ipv6Prefix string `json:"ipv6-prefix"`
+
+		PrivateIp int `json:"private-ip"`
 
 		ServiceConfigTemplate string `json:"service-config-template"`
 

@@ -5,16 +5,18 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type AamJwtAuthorization struct {
 	Inst struct {
+		ClientErrorRespCode int `json:"client-error-resp-code"`
+
 		Encrypted string `json:"encrypted"`
 
 		ExpClaimRequried int `json:"exp-claim-requried"`
 
 		JwtCacheEnable int `json:"jwt-cache-enable"`
 
-		JwtExpDefault int `json:"jwt-exp-default"`
+		JwtExpDefault int `json:"jwt-exp-default" dval:"1800"`
 
 		JwtForwarding int `json:"jwt-forwarding"`
 

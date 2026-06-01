@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type NetworkLldpManagementAddressIpv6Addr struct {
 	Inst struct {
 		InterfaceIpv6 NetworkLldpManagementAddressIpv6AddrInterfaceIpv6 `json:"interface-ipv6"`

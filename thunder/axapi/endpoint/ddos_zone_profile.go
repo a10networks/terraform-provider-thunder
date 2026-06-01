@@ -6,10 +6,10 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosZoneProfile struct {
 	Inst struct {
-		IpProto DdosZoneProfileIpProto358 `json:"ip-proto"`
+		IpProto DdosZoneProfileIpProto354 `json:"ip-proto"`
 
 		PortList []DdosZoneProfilePortList `json:"port-list"`
 
@@ -23,7 +23,7 @@ type DdosZoneProfile struct {
 	} `json:"zone-profile"`
 }
 
-type DdosZoneProfileIpProto358 struct {
+type DdosZoneProfileIpProto354 struct {
 	ProtoNumberList []DdosZoneProfileIpProtoProtoNumberList `json:"proto-number-list"`
 	ProtoNameList   []DdosZoneProfileIpProtoProtoNameList   `json:"proto-name-list"`
 }

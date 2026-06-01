@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDnsCacheDomainGroupDomainListPolicy struct {
 	Inst struct {
 		CacheAllRecords int `json:"cache-all-records"`
@@ -23,13 +23,17 @@ type DdosDnsCacheDomainGroupDomainListPolicy struct {
 
 		Force int `json:"force"`
 
+		Ixfr int `json:"ixfr"`
+
 		ManualRefresh string `json:"manual-refresh"`
 
 		Name string `json:"name"`
 
 		OversizeAnswerResponse string `json:"oversize-answer-response" dval:"set-truncate-bit"`
 
-		PacketCapturing DdosDnsCacheDomainGroupDomainListPolicyPacketCapturing167 `json:"packet-capturing"`
+		PacketCapturing DdosDnsCacheDomainGroupDomainListPolicyPacketCapturing170 `json:"packet-capturing"`
+
+		RefreshIntervalBySoa int `json:"refresh-interval-by-soa"`
 
 		RefreshIntervalHours int `json:"refresh-interval-hours" dval:"4"`
 
@@ -55,12 +59,12 @@ type DdosDnsCacheDomainGroupDomainListPolicy struct {
 	} `json:"domain-list-policy"`
 }
 
-type DdosDnsCacheDomainGroupDomainListPolicyPacketCapturing167 struct {
-	RootZoneList []DdosDnsCacheDomainGroupDomainListPolicyPacketCapturingRootZoneList168 `json:"root-zone-list"`
+type DdosDnsCacheDomainGroupDomainListPolicyPacketCapturing170 struct {
+	RootZoneList []DdosDnsCacheDomainGroupDomainListPolicyPacketCapturingRootZoneList171 `json:"root-zone-list"`
 	Uuid         string                                                                  `json:"uuid"`
 }
 
-type DdosDnsCacheDomainGroupDomainListPolicyPacketCapturingRootZoneList168 struct {
+type DdosDnsCacheDomainGroupDomainListPolicyPacketCapturingRootZoneList171 struct {
 	RootZone      string `json:"root-zone"`
 	CaptureConfig string `json:"capture-config"`
 	CaptureMode   string `json:"capture-mode"`

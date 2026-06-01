@@ -903,10 +903,10 @@ func getSliceDdosZoneTemplateDnsFqdnLabelLenCfg(d []interface{}) []edpt.DdosZone
 	return ret
 }
 
-func getObjectDdosZoneTemplateDnsMalformedQueryCheck360(d []interface{}) edpt.DdosZoneTemplateDnsMalformedQueryCheck360 {
+func getObjectDdosZoneTemplateDnsMalformedQueryCheck356(d []interface{}) edpt.DdosZoneTemplateDnsMalformedQueryCheck356 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateDnsMalformedQueryCheck360
+	var ret edpt.DdosZoneTemplateDnsMalformedQueryCheck356
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ValidationType = in["validation_type"].(string)
@@ -1107,7 +1107,7 @@ func dataToEndpointDdosZoneTemplateDns(d *schema.ResourceData) edpt.DdosZoneTemp
 	ret.Inst.Dst = getObjectDdosZoneTemplateDnsDst(d.Get("dst").([]interface{}))
 	ret.Inst.FqdnLabelCountCfg = getObjectDdosZoneTemplateDnsFqdnLabelCountCfg(d.Get("fqdn_label_count_cfg").([]interface{}))
 	ret.Inst.FqdnLabelLenCfg = getSliceDdosZoneTemplateDnsFqdnLabelLenCfg(d.Get("fqdn_label_len_cfg").([]interface{}))
-	ret.Inst.MalformedQueryCheck = getObjectDdosZoneTemplateDnsMalformedQueryCheck360(d.Get("malformed_query_check").([]interface{}))
+	ret.Inst.MalformedQueryCheck = getObjectDdosZoneTemplateDnsMalformedQueryCheck356(d.Get("malformed_query_check").([]interface{}))
 	ret.Inst.MultiPuThresholdDistribution = getObjectDdosZoneTemplateDnsMultiPuThresholdDistribution(d.Get("multi_pu_threshold_distribution").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.OnNoMatch = d.Get("on_no_match").(string)

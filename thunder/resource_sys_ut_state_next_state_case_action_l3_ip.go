@@ -43,8 +43,8 @@ func resourceSysUtStateNextStateCaseActionL3Ip() *schema.Resource {
 			"virtual_server": {
 				Type: schema.TypeString, Optional: true, Description: "vip",
 			},
-			"state_name": {
-				Type: schema.TypeString, Required: true, Description: "State_name",
+			"case_number": {
+				Type: schema.TypeString, Required: true, Description: "CaseNumber",
 			},
 			"direction": {
 				Type: schema.TypeString, Required: true, Description: "Direction",
@@ -52,8 +52,8 @@ func resourceSysUtStateNextStateCaseActionL3Ip() *schema.Resource {
 			"next_state_name": {
 				Type: schema.TypeString, Required: true, Description: "Next_state_name",
 			},
-			"case_number": {
-				Type: schema.TypeString, Required: true, Description: "CaseNumber",
+			"state_name": {
+				Type: schema.TypeString, Required: true, Description: "State_name",
 			},
 		},
 	}
@@ -131,9 +131,9 @@ func dataToEndpointSysUtStateNextStateCaseActionL3Ip(d *schema.ResourceData) edp
 	//omit uuid
 	ret.Inst.Ve = d.Get("ve").(int)
 	ret.Inst.VirtualServer = d.Get("virtual_server").(string)
-	ret.Inst.State_name = d.Get("state_name").(string)
+	ret.Inst.CaseNumber = d.Get("case_number").(string)
 	ret.Inst.Direction = d.Get("direction").(string)
 	ret.Inst.Next_state_name = d.Get("next_state_name").(string)
-	ret.Inst.CaseNumber = d.Get("case_number").(string)
+	ret.Inst.State_name = d.Get("state_name").(string)
 	return ret
 }

@@ -56,9 +56,6 @@ func resourceImport() *schema.Resource {
 					},
 				},
 			},
-			"background": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Background mode for importing class-list",
-			},
 			"bios_file": {
 				Type: schema.TypeString, Optional: true, Description: "BIOS Image file",
 			},
@@ -428,10 +425,10 @@ func resourceImportRead(ctx context.Context, d *schema.ResourceData, meta interf
 	return diags
 }
 
-func getObjectImportAuthSamlIdp533(d []interface{}) edpt.ImportAuthSamlIdp533 {
+func getObjectImportAuthSamlIdp520(d []interface{}) edpt.ImportAuthSamlIdp520 {
 
 	count1 := len(d)
-	var ret edpt.ImportAuthSamlIdp533
+	var ret edpt.ImportAuthSamlIdp520
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SamlIdpName = in["saml_idp_name"].(string)
@@ -445,10 +442,10 @@ func getObjectImportAuthSamlIdp533(d []interface{}) edpt.ImportAuthSamlIdp533 {
 	return ret
 }
 
-func getObjectImportGeoLocationArchive534(d []interface{}) edpt.ImportGeoLocationArchive534 {
+func getObjectImportGeoLocationArchive521(d []interface{}) edpt.ImportGeoLocationArchive521 {
 
 	count1 := len(d)
-	var ret edpt.ImportGeoLocationArchive534
+	var ret edpt.ImportGeoLocationArchive521
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GeoLocationArchiveFormat = in["geo_location_archive_format"].(string)
@@ -460,10 +457,10 @@ func getObjectImportGeoLocationArchive534(d []interface{}) edpt.ImportGeoLocatio
 	return ret
 }
 
-func getObjectImportHealthExternal535(d []interface{}) edpt.ImportHealthExternal535 {
+func getObjectImportHealthExternal522(d []interface{}) edpt.ImportHealthExternal522 {
 
 	count1 := len(d)
-	var ret edpt.ImportHealthExternal535
+	var ret edpt.ImportHealthExternal522
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Externalfilename = in["externalfilename"].(string)
@@ -477,10 +474,10 @@ func getObjectImportHealthExternal535(d []interface{}) edpt.ImportHealthExternal
 	return ret
 }
 
-func getObjectImportHealthPostfile536(d []interface{}) edpt.ImportHealthPostfile536 {
+func getObjectImportHealthPostfile523(d []interface{}) edpt.ImportHealthPostfile523 {
 
 	count1 := len(d)
-	var ret edpt.ImportHealthPostfile536
+	var ret edpt.ImportHealthPostfile523
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Postfilename = in["postfilename"].(string)
@@ -493,10 +490,10 @@ func getObjectImportHealthPostfile536(d []interface{}) edpt.ImportHealthPostfile
 	return ret
 }
 
-func getObjectImportNgWafCustomPage537(d []interface{}) edpt.ImportNgWafCustomPage537 {
+func getObjectImportNgWafCustomPage524(d []interface{}) edpt.ImportNgWafCustomPage524 {
 
 	count1 := len(d)
-	var ret edpt.ImportNgWafCustomPage537
+	var ret edpt.ImportNgWafCustomPage524
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.CustomPage = in["custom_page"].(string)
@@ -509,10 +506,10 @@ func getObjectImportNgWafCustomPage537(d []interface{}) edpt.ImportNgWafCustomPa
 	return ret
 }
 
-func getObjectImportNgWafModule538(d []interface{}) edpt.ImportNgWafModule538 {
+func getObjectImportNgWafModule525(d []interface{}) edpt.ImportNgWafModule525 {
 
 	count1 := len(d)
-	var ret edpt.ImportNgWafModule538
+	var ret edpt.ImportNgWafModule525
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Overwrite = in["overwrite"].(int)
@@ -524,10 +521,10 @@ func getObjectImportNgWafModule538(d []interface{}) edpt.ImportNgWafModule538 {
 	return ret
 }
 
-func getObjectImportStore539(d []interface{}) edpt.ImportStore539 {
+func getObjectImportStore526(d []interface{}) edpt.ImportStore526 {
 
 	count1 := len(d)
-	var ret edpt.ImportStore539
+	var ret edpt.ImportStore526
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Delete = in["delete"].(int)
@@ -538,10 +535,10 @@ func getObjectImportStore539(d []interface{}) edpt.ImportStore539 {
 	return ret
 }
 
-func getObjectImportToDevice540(d []interface{}) edpt.ImportToDevice540 {
+func getObjectImportToDevice527(d []interface{}) edpt.ImportToDevice527 {
 
 	count1 := len(d)
-	var ret edpt.ImportToDevice540
+	var ret edpt.ImportToDevice527
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Device = in["device"].(int)
@@ -561,8 +558,7 @@ func dataToEndpointImport(d *schema.ResourceData) edpt.Import {
 	ret.Inst.AuthJwks = d.Get("auth_jwks").(string)
 	ret.Inst.AuthPortal = d.Get("auth_portal").(string)
 	ret.Inst.AuthPortalImage = d.Get("auth_portal_image").(string)
-	ret.Inst.AuthSamlIdp = getObjectImportAuthSamlIdp533(d.Get("auth_saml_idp").([]interface{}))
-	ret.Inst.Background = d.Get("background").(int)
+	ret.Inst.AuthSamlIdp = getObjectImportAuthSamlIdp520(d.Get("auth_saml_idp").([]interface{}))
 	ret.Inst.BiosFile = d.Get("bios_file").(string)
 	ret.Inst.BwList = d.Get("bw_list").(string)
 	ret.Inst.CaCert = d.Get("ca_cert").(string)
@@ -579,16 +575,16 @@ func dataToEndpointImport(d *schema.ResourceData) edpt.Import {
 	ret.Inst.DnssecDs = d.Get("dnssec_ds").(string)
 	ret.Inst.DomainList = d.Get("domain_list").(string)
 	ret.Inst.GeoLocation = d.Get("geo_location").(string)
-	ret.Inst.GeoLocationArchive = getObjectImportGeoLocationArchive534(d.Get("geo_location_archive").([]interface{}))
+	ret.Inst.GeoLocationArchive = getObjectImportGeoLocationArchive521(d.Get("geo_location_archive").([]interface{}))
 	ret.Inst.GlmCert = d.Get("glm_cert").(string)
 	ret.Inst.GlmLicense = d.Get("glm_license").(string)
-	ret.Inst.HealthExternal = getObjectImportHealthExternal535(d.Get("health_external").([]interface{}))
-	ret.Inst.HealthPostfile = getObjectImportHealthPostfile536(d.Get("health_postfile").([]interface{}))
+	ret.Inst.HealthExternal = getObjectImportHealthExternal522(d.Get("health_external").([]interface{}))
+	ret.Inst.HealthPostfile = getObjectImportHealthPostfile523(d.Get("health_postfile").([]interface{}))
 	ret.Inst.IpMapList = d.Get("ip_map_list").(string)
 	ret.Inst.LocalUriFile = d.Get("local_uri_file").(string)
 	ret.Inst.Lw4o6 = d.Get("lw_4o6").(string)
-	ret.Inst.NgWafCustomPage = getObjectImportNgWafCustomPage537(d.Get("ng_waf_custom_page").([]interface{}))
-	ret.Inst.NgWafModule = getObjectImportNgWafModule538(d.Get("ng_waf_module").([]interface{}))
+	ret.Inst.NgWafCustomPage = getObjectImportNgWafCustomPage524(d.Get("ng_waf_custom_page").([]interface{}))
+	ret.Inst.NgWafModule = getObjectImportNgWafModule525(d.Get("ng_waf_module").([]interface{}))
 	ret.Inst.Overwrite = d.Get("overwrite").(int)
 	ret.Inst.Password = d.Get("password").(string)
 	ret.Inst.PfxPassword = d.Get("pfx_password").(string)
@@ -601,12 +597,12 @@ func dataToEndpointImport(d *schema.ResourceData) edpt.Import {
 	ret.Inst.SslCertKey = d.Get("ssl_cert_key").(string)
 	ret.Inst.SslCrl = d.Get("ssl_crl").(string)
 	ret.Inst.SslKey = d.Get("ssl_key").(string)
-	ret.Inst.Store = getObjectImportStore539(d.Get("store").([]interface{}))
+	ret.Inst.Store = getObjectImportStore526(d.Get("store").([]interface{}))
 	ret.Inst.StoreName = d.Get("store_name").(string)
 	ret.Inst.Terminal = d.Get("terminal").(int)
 	ret.Inst.ThalesKmdata = d.Get("thales_kmdata").(string)
 	ret.Inst.ThalesSecworld = d.Get("thales_secworld").(string)
-	ret.Inst.ToDevice = getObjectImportToDevice540(d.Get("to_device").([]interface{}))
+	ret.Inst.ToDevice = getObjectImportToDevice527(d.Get("to_device").([]interface{}))
 	ret.Inst.Tsig = d.Get("tsig").(string)
 	ret.Inst.UsbLicense = d.Get("usb_license").(string)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)

@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZoneIpProtoProtoNumberStats struct {
 	Inst struct {
 		ProtocolNum int `json:"protocol-num"`
@@ -110,6 +110,8 @@ type DdosDstZoneIpProtoProtoNumberStatsStatsOtherZoneIpproto struct {
 	Src_learn_overflow                  int `json:"src_learn_overflow"`
 	Dynamic_count_warn                  int `json:"dynamic_count_warn"`
 	Src_zone_service_entry_hit          int `json:"src_zone_service_entry_hit"`
+	Src_ip_filtering_drop               int `json:"src_ip_filtering_drop"`
+	Src_ip_filtering_bypass             int `json:"src_ip_filtering_bypass"`
 }
 
 func (p *DdosDstZoneIpProtoProtoNumberStats) GetId() string {

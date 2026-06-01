@@ -399,26 +399,26 @@ func getSliceRouterRipDistanceListCfg(d []interface{}) []edpt.RouterRipDistanceL
 	return ret
 }
 
-func getObjectRouterRipDistributeList1393(d []interface{}) edpt.RouterRipDistributeList1393 {
+func getObjectRouterRipDistributeList1392(d []interface{}) edpt.RouterRipDistributeList1392 {
 
 	count1 := len(d)
-	var ret edpt.RouterRipDistributeList1393
+	var ret edpt.RouterRipDistributeList1392
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.AclCfg = getSliceRouterRipDistributeListAclCfg1394(in["acl_cfg"].([]interface{}))
+		ret.AclCfg = getSliceRouterRipDistributeListAclCfg1393(in["acl_cfg"].([]interface{}))
 		//omit uuid
-		ret.Prefix = getObjectRouterRipDistributeListPrefix1395(in["prefix"].([]interface{}))
+		ret.Prefix = getObjectRouterRipDistributeListPrefix1394(in["prefix"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceRouterRipDistributeListAclCfg1394(d []interface{}) []edpt.RouterRipDistributeListAclCfg1394 {
+func getSliceRouterRipDistributeListAclCfg1393(d []interface{}) []edpt.RouterRipDistributeListAclCfg1393 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterRipDistributeListAclCfg1394, 0, count1)
+	ret := make([]edpt.RouterRipDistributeListAclCfg1393, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterRipDistributeListAclCfg1394
+		var oi edpt.RouterRipDistributeListAclCfg1393
 		oi.Acl = in["acl"].(string)
 		oi.AclDirection = in["acl_direction"].(string)
 		oi.Ethernet = in["ethernet"].(int)
@@ -431,25 +431,25 @@ func getSliceRouterRipDistributeListAclCfg1394(d []interface{}) []edpt.RouterRip
 	return ret
 }
 
-func getObjectRouterRipDistributeListPrefix1395(d []interface{}) edpt.RouterRipDistributeListPrefix1395 {
+func getObjectRouterRipDistributeListPrefix1394(d []interface{}) edpt.RouterRipDistributeListPrefix1394 {
 
 	count1 := len(d)
-	var ret edpt.RouterRipDistributeListPrefix1395
+	var ret edpt.RouterRipDistributeListPrefix1394
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.PrefixCfg = getSliceRouterRipDistributeListPrefixPrefixCfg1396(in["prefix_cfg"].([]interface{}))
+		ret.PrefixCfg = getSliceRouterRipDistributeListPrefixPrefixCfg1395(in["prefix_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceRouterRipDistributeListPrefixPrefixCfg1396(d []interface{}) []edpt.RouterRipDistributeListPrefixPrefixCfg1396 {
+func getSliceRouterRipDistributeListPrefixPrefixCfg1395(d []interface{}) []edpt.RouterRipDistributeListPrefixPrefixCfg1395 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterRipDistributeListPrefixPrefixCfg1396, 0, count1)
+	ret := make([]edpt.RouterRipDistributeListPrefixPrefixCfg1395, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterRipDistributeListPrefixPrefixCfg1396
+		var oi edpt.RouterRipDistributeListPrefixPrefixCfg1395
 		oi.PrefixList = in["prefix_list"].(string)
 		oi.PrefixListDirection = in["prefix_list_direction"].(string)
 		oi.Ethernet = in["ethernet"].(int)
@@ -505,25 +505,25 @@ func getSliceRouterRipNetworkInterfaceListCfg(d []interface{}) []edpt.RouterRipN
 	return ret
 }
 
-func getObjectRouterRipOffsetList1397(d []interface{}) edpt.RouterRipOffsetList1397 {
+func getObjectRouterRipOffsetList1396(d []interface{}) edpt.RouterRipOffsetList1396 {
 
 	count1 := len(d)
-	var ret edpt.RouterRipOffsetList1397
+	var ret edpt.RouterRipOffsetList1396
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.AclCfg = getSliceRouterRipOffsetListAclCfg1398(in["acl_cfg"].([]interface{}))
+		ret.AclCfg = getSliceRouterRipOffsetListAclCfg1397(in["acl_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceRouterRipOffsetListAclCfg1398(d []interface{}) []edpt.RouterRipOffsetListAclCfg1398 {
+func getSliceRouterRipOffsetListAclCfg1397(d []interface{}) []edpt.RouterRipOffsetListAclCfg1397 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterRipOffsetListAclCfg1398, 0, count1)
+	ret := make([]edpt.RouterRipOffsetListAclCfg1397, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterRipOffsetListAclCfg1398
+		var oi edpt.RouterRipOffsetListAclCfg1397
 		oi.Acl = in["acl"].(string)
 		oi.OffsetListDirection = in["offset_list_direction"].(string)
 		oi.Metric = in["metric"].(int)
@@ -554,26 +554,26 @@ func getSliceRouterRipPassiveInterfaceList(d []interface{}) []edpt.RouterRipPass
 	return ret
 }
 
-func getObjectRouterRipRedistribute1399(d []interface{}) edpt.RouterRipRedistribute1399 {
+func getObjectRouterRipRedistribute1398(d []interface{}) edpt.RouterRipRedistribute1398 {
 
 	count1 := len(d)
-	var ret edpt.RouterRipRedistribute1399
+	var ret edpt.RouterRipRedistribute1398
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.RedistList = getSliceRouterRipRedistributeRedistList1400(in["redist_list"].([]interface{}))
-		ret.VipList = getSliceRouterRipRedistributeVipList1401(in["vip_list"].([]interface{}))
+		ret.RedistList = getSliceRouterRipRedistributeRedistList1399(in["redist_list"].([]interface{}))
+		ret.VipList = getSliceRouterRipRedistributeVipList1400(in["vip_list"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceRouterRipRedistributeRedistList1400(d []interface{}) []edpt.RouterRipRedistributeRedistList1400 {
+func getSliceRouterRipRedistributeRedistList1399(d []interface{}) []edpt.RouterRipRedistributeRedistList1399 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterRipRedistributeRedistList1400, 0, count1)
+	ret := make([]edpt.RouterRipRedistributeRedistList1399, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterRipRedistributeRedistList1400
+		var oi edpt.RouterRipRedistributeRedistList1399
 		oi.Type = in["type"].(string)
 		oi.Metric = in["metric"].(int)
 		oi.RouteMap = in["route_map"].(string)
@@ -582,13 +582,13 @@ func getSliceRouterRipRedistributeRedistList1400(d []interface{}) []edpt.RouterR
 	return ret
 }
 
-func getSliceRouterRipRedistributeVipList1401(d []interface{}) []edpt.RouterRipRedistributeVipList1401 {
+func getSliceRouterRipRedistributeVipList1400(d []interface{}) []edpt.RouterRipRedistributeVipList1400 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterRipRedistributeVipList1401, 0, count1)
+	ret := make([]edpt.RouterRipRedistributeVipList1400, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterRipRedistributeVipList1401
+		var oi edpt.RouterRipRedistributeVipList1400
 		oi.VipType = in["vip_type"].(string)
 		oi.VipMetric = in["vip_metric"].(int)
 		oi.VipRouteMap = in["vip_route_map"].(string)
@@ -652,14 +652,14 @@ func dataToEndpointRouterRip(d *schema.ResourceData) edpt.RouterRip {
 	ret.Inst.DefaultInformation = d.Get("default_information").(string)
 	ret.Inst.DefaultMetric = d.Get("default_metric").(int)
 	ret.Inst.DistanceListCfg = getSliceRouterRipDistanceListCfg(d.Get("distance_list_cfg").([]interface{}))
-	ret.Inst.DistributeList = getObjectRouterRipDistributeList1393(d.Get("distribute_list").([]interface{}))
+	ret.Inst.DistributeList = getObjectRouterRipDistributeList1392(d.Get("distribute_list").([]interface{}))
 	ret.Inst.Neighbor = getSliceRouterRipNeighbor(d.Get("neighbor").([]interface{}))
 	ret.Inst.NetworkAddresses = getSliceRouterRipNetworkAddresses(d.Get("network_addresses").([]interface{}))
 	ret.Inst.NetworkInterfaceListCfg = getSliceRouterRipNetworkInterfaceListCfg(d.Get("network_interface_list_cfg").([]interface{}))
-	ret.Inst.OffsetList = getObjectRouterRipOffsetList1397(d.Get("offset_list").([]interface{}))
+	ret.Inst.OffsetList = getObjectRouterRipOffsetList1396(d.Get("offset_list").([]interface{}))
 	ret.Inst.PassiveInterfaceList = getSliceRouterRipPassiveInterfaceList(d.Get("passive_interface_list").([]interface{}))
 	ret.Inst.RecvBufferSize = d.Get("recv_buffer_size").(int)
-	ret.Inst.Redistribute = getObjectRouterRipRedistribute1399(d.Get("redistribute").([]interface{}))
+	ret.Inst.Redistribute = getObjectRouterRipRedistribute1398(d.Get("redistribute").([]interface{}))
 	ret.Inst.RipMaximumPrefixCfg = getObjectRouterRipRipMaximumPrefixCfg(d.Get("rip_maximum_prefix_cfg").([]interface{}))
 	ret.Inst.RouteCfg = getSliceRouterRipRouteCfg(d.Get("route_cfg").([]interface{}))
 	ret.Inst.Timers = getObjectRouterRipTimers(d.Get("timers").([]interface{}))

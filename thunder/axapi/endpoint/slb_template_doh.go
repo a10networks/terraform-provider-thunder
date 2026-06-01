@@ -6,16 +6,16 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbTemplateDoh struct {
 	Inst struct {
 		ConnReuse string `json:"conn-reuse" dval:"disable"`
 
 		Dns string `json:"dns"`
 
-		DnsRetry SlbTemplateDohDnsRetry1547 `json:"dns-retry"`
+		DnsRetry SlbTemplateDohDnsRetry1548 `json:"dns-retry"`
 
-		Forwarder SlbTemplateDohForwarder1548 `json:"forwarder"`
+		Forwarder SlbTemplateDohForwarder1549 `json:"forwarder"`
 
 		Name string `json:"name"`
 
@@ -43,14 +43,14 @@ type SlbTemplateDoh struct {
 	} `json:"doh"`
 }
 
-type SlbTemplateDohDnsRetry1547 struct {
+type SlbTemplateDohDnsRetry1548 struct {
 	RetryInterval int    `json:"retry-interval" dval:"10"`
 	AfterTimeout  string `json:"after-timeout" dval:"close"`
 	MaxTrials     int    `json:"max-trials" dval:"3"`
 	Uuid          string `json:"uuid"`
 }
 
-type SlbTemplateDohForwarder1548 struct {
+type SlbTemplateDohForwarder1549 struct {
 	ForwardingIpv4  string `json:"forwarding-ipv4"`
 	V4Internal      int    `json:"v4-internal"`
 	V4Port          int    `json:"v4-port" dval:"53"`

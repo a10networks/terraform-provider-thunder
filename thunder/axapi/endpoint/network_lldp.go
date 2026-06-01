@@ -5,12 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type NetworkLldp struct {
 	Inst struct {
 		EnableCfg NetworkLldpEnableCfg `json:"enable-cfg"`
 
-		ManagementAddress NetworkLldpManagementAddress1155 `json:"management-address"`
+		ManagementAddress NetworkLldpManagementAddress1154 `json:"management-address"`
 
 		NotificationCfg NetworkLldpNotificationCfg `json:"notification-cfg"`
 
@@ -30,7 +30,7 @@ type NetworkLldpEnableCfg struct {
 	Tx     int `json:"tx"`
 }
 
-type NetworkLldpManagementAddress1155 struct {
+type NetworkLldpManagementAddress1154 struct {
 	DnsList      []NetworkLldpManagementAddressDnsList      `json:"dns-list"`
 	Ipv4AddrList []NetworkLldpManagementAddressIpv4AddrList `json:"ipv4-addr-list"`
 	Ipv6AddrList []NetworkLldpManagementAddressIpv6AddrList `json:"ipv6-addr-list"`

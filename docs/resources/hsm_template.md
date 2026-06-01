@@ -49,7 +49,7 @@ resource "thunder_hsm_template" "thunder_hsm_template" {
 - `rfs_port` (Number) Specify Port
 - `sec_world` (String) Security World Name
 - `softcard` (Number) Softcard
-- `softhsm_enum` (String) 'softHSM': software implementation of a cryptographic store;
+- `softhsm_enum` (String) 'softHSM': software implementation of a cryptographic store; 'thalesHSM': Thales HSM;
 - `user_tag` (String) Customized tag
 - `uuid` (String) uuid of the object
 - `worker` (Number) Specify number of workers for each data CPU

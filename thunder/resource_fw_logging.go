@@ -120,25 +120,25 @@ func resourceFwLoggingRead(ctx context.Context, d *schema.ResourceData, meta int
 	return diags
 }
 
-func getObjectFwLoggingGtp443(d []interface{}) edpt.FwLoggingGtp443 {
+func getObjectFwLoggingGtp434(d []interface{}) edpt.FwLoggingGtp434 {
 
 	count1 := len(d)
-	var ret edpt.FwLoggingGtp443
+	var ret edpt.FwLoggingGtp434
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceFwLoggingGtpSamplingEnable444(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceFwLoggingGtpSamplingEnable435(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceFwLoggingGtpSamplingEnable444(d []interface{}) []edpt.FwLoggingGtpSamplingEnable444 {
+func getSliceFwLoggingGtpSamplingEnable435(d []interface{}) []edpt.FwLoggingGtpSamplingEnable435 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwLoggingGtpSamplingEnable444, 0, count1)
+	ret := make([]edpt.FwLoggingGtpSamplingEnable435, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwLoggingGtpSamplingEnable444
+		var oi edpt.FwLoggingGtpSamplingEnable435
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
@@ -161,7 +161,7 @@ func getSliceFwLoggingSamplingEnable(d []interface{}) []edpt.FwLoggingSamplingEn
 func dataToEndpointFwLogging(d *schema.ResourceData) edpt.FwLogging {
 	var ret edpt.FwLogging
 	ret.Inst.CefLabel = d.Get("cef_label").(string)
-	ret.Inst.Gtp = getObjectFwLoggingGtp443(d.Get("gtp").([]interface{}))
+	ret.Inst.Gtp = getObjectFwLoggingGtp434(d.Get("gtp").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.SamplingEnable = getSliceFwLoggingSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	//omit uuid

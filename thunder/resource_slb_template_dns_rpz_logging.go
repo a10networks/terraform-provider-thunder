@@ -32,11 +32,11 @@ func resourceSlbTemplateDnsRpzLogging() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"dns_name": {
-				Type: schema.TypeString, Required: true, Description: "Dns_name",
-			},
 			"seq_id": {
 				Type: schema.TypeString, Required: true, Description: "SeqId",
+			},
+			"dns_name": {
+				Type: schema.TypeString, Required: true, Description: "Dns_name",
 			},
 		},
 	}
@@ -121,7 +121,7 @@ func dataToEndpointSlbTemplateDnsRpzLogging(d *schema.ResourceData) edpt.SlbTemp
 	ret.Inst.Enable = d.Get("enable").(int)
 	ret.Inst.RpzAction = getSliceSlbTemplateDnsRpzLoggingRpzAction(d.Get("rpz_action").([]interface{}))
 	//omit uuid
-	ret.Inst.Dns_name = d.Get("dns_name").(string)
 	ret.Inst.SeqId = d.Get("seq_id").(string)
+	ret.Inst.Dns_name = d.Get("dns_name").(string)
 	return ret
 }

@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SysUtStateNextStateCaseActionTcpOptions struct {
 	Inst struct {
 		Mss int `json:"mss"`
@@ -20,13 +20,13 @@ type SysUtStateNextStateCaseActionTcpOptions struct {
 
 		Wscale int `json:"wscale"`
 
-		State_name string
+		Next_state_name string
 
 		Direction string
 
 		CaseNumber string
 
-		Next_state_name string
+		State_name string
 	} `json:"options"`
 }
 

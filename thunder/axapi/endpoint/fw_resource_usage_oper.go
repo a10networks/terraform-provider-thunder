@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type FwResourceUsageOper struct {
 	Oper FwResourceUsageOperOper `json:"oper"`
 }
@@ -28,6 +28,8 @@ type FwResourceUsageOperOper struct {
 	FwIpRangeTotalCount          int    `json:"fw-ip-range-total-count"`
 	FwHelperSessionsCurrentCount int    `json:"fw-helper-sessions-current-count"`
 	FwHelperSessionsTotalCount   int    `json:"fw-helper-sessions-total-count"`
+	RadiusTableCurrentCount      int    `json:"radius-table-current-count"`
+	RadiusTableTotalCount        int    `json:"radius-table-total-count"`
 	ClausePerObjGrpCurrentCount  string `json:"clause-per-obj-grp-current-count"`
 	ClausePerObjGrpTotalCount    int    `json:"clause-per-obj-grp-total-count"`
 	Object                       int    `json:"object"`
@@ -37,6 +39,7 @@ type FwResourceUsageOperOper struct {
 	Zone                         int    `json:"zone"`
 	IpRange                      int    `json:"ip-range"`
 	HelperSessions               int    `json:"helper-sessions"`
+	RadiusTableSize              int    `json:"radius-table-size"`
 	ClausePerObjGrp              int    `json:"clause-per-obj-grp"`
 }
 

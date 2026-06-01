@@ -35,6 +35,9 @@ func resourceScaleoutUserGroupAssignmentTemplate() *schema.Resource {
 						"assignment_prefix_length": {
 							Type: schema.TypeInt, Optional: true, Default: 32, Description: "User group assignment prefix length, default is 32",
 						},
+						"assignment_prefix_auto": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Automatically break down the prefix so that each user-group is assigned one and only one subnet",
+						},
 						"user_group_range_start": {
 							Type: schema.TypeInt, Optional: true, Description: "User group range start",
 						},
@@ -42,7 +45,10 @@ func resourceScaleoutUserGroupAssignmentTemplate() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Description: "User group range end",
 						},
 						"service_config_template": {
-							Type: schema.TypeString, Optional: true, Description: "",
+							Type: schema.TypeString, Optional: true, Description: "Configure a scaleout service config template to use",
+						},
+						"private_ip": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Set the assignment as private, and no BGP route will be advertised for it",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -60,6 +66,9 @@ func resourceScaleoutUserGroupAssignmentTemplate() *schema.Resource {
 						"assignment_prefix_length": {
 							Type: schema.TypeInt, Optional: true, Default: 128, Description: "User group assignment prefix length, default is 128",
 						},
+						"assignment_prefix_auto": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Automatically break down the prefix so that each user-group is assigned one and only one subnet",
+						},
 						"user_group_range_start": {
 							Type: schema.TypeInt, Optional: true, Description: "User group range start",
 						},
@@ -68,6 +77,9 @@ func resourceScaleoutUserGroupAssignmentTemplate() *schema.Resource {
 						},
 						"service_config_template": {
 							Type: schema.TypeString, Optional: true, Description: "Configure a scaleout service config template to use",
+						},
+						"private_ip": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Set the assignment as private, and no BGP route will be advertised for it",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -149,9 +161,11 @@ func getSliceScaleoutUserGroupAssignmentTemplateV4AssignmentList(d []interface{}
 		var oi edpt.ScaleoutUserGroupAssignmentTemplateV4AssignmentList
 		oi.Ipv4Prefix = in["ipv4_prefix"].(string)
 		oi.AssignmentPrefixLength = in["assignment_prefix_length"].(int)
+		oi.AssignmentPrefixAuto = in["assignment_prefix_auto"].(int)
 		oi.UserGroupRangeStart = in["user_group_range_start"].(int)
 		oi.UserGroupRangeEnd = in["user_group_range_end"].(int)
 		oi.ServiceConfigTemplate = in["service_config_template"].(string)
+		oi.PrivateIp = in["private_ip"].(int)
 		//omit uuid
 		ret = append(ret, oi)
 	}
@@ -167,9 +181,11 @@ func getSliceScaleoutUserGroupAssignmentTemplateV6AssignmentList(d []interface{}
 		var oi edpt.ScaleoutUserGroupAssignmentTemplateV6AssignmentList
 		oi.Ipv6Prefix = in["ipv6_prefix"].(string)
 		oi.AssignmentPrefixLength = in["assignment_prefix_length"].(int)
+		oi.AssignmentPrefixAuto = in["assignment_prefix_auto"].(int)
 		oi.UserGroupRangeStart = in["user_group_range_start"].(int)
 		oi.UserGroupRangeEnd = in["user_group_range_end"].(int)
 		oi.ServiceConfigTemplate = in["service_config_template"].(string)
+		oi.PrivateIp = in["private_ip"].(int)
 		//omit uuid
 		ret = append(ret, oi)
 	}

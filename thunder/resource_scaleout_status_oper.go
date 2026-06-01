@@ -23,6 +23,9 @@ func resourceScaleoutStatusOper() *schema.Resource {
 						"role": {
 							Type: schema.TypeString, Optional: true, Description: "",
 						},
+						"failure_safe": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
 						"device_list": {
 							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
@@ -187,6 +190,22 @@ func resourceScaleoutStatusOper() *schema.Resource {
 								},
 							},
 						},
+						"fallback": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"failure_domain_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"dev_id": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"failure_domain_name": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
+								},
+							},
+						},
 					},
 				},
 			},
@@ -218,6 +237,7 @@ func setObjectScaleoutStatusOperOper(ret edpt.DataScaleoutStatusOper) []interfac
 		map[string]interface{}{
 			"db_role":                           ret.DtScaleoutStatusOper.Oper.Db_role,
 			"role":                              ret.DtScaleoutStatusOper.Oper.Role,
+			"failure_safe":                      ret.DtScaleoutStatusOper.Oper.Failure_safe,
 			"device_list":                       setSliceScaleoutStatusOperOperDeviceList(ret.DtScaleoutStatusOper.Oper.DeviceList),
 			"cluster_mode":                      ret.DtScaleoutStatusOper.Oper.ClusterMode,
 			"follow_shared_redirection":         ret.DtScaleoutStatusOper.Oper.FollowSharedRedirection,
@@ -238,6 +258,8 @@ func setObjectScaleoutStatusOperOper(ret edpt.DataScaleoutStatusOper) []interfac
 			"dest_session_sync_ip_list":         setSliceScaleoutStatusOperOperDestSessionSyncIpList(ret.DtScaleoutStatusOper.Oper.DestSessionSyncIpList),
 			"exclude_interface_ip_list":         setSliceScaleoutStatusOperOperExcludeInterfaceIpList(ret.DtScaleoutStatusOper.Oper.ExcludeInterfaceIpList),
 			"exclude_interface_ipv6_list":       setSliceScaleoutStatusOperOperExcludeInterfaceIpv6List(ret.DtScaleoutStatusOper.Oper.ExcludeInterfaceIpv6List),
+			"fallback":                          ret.DtScaleoutStatusOper.Oper.Fallback,
+			"failure_domain_list":               setSliceScaleoutStatusOperOperFailureDomainList(ret.DtScaleoutStatusOper.Oper.FailureDomainList),
 		},
 	}
 }
@@ -361,6 +383,17 @@ func setSliceScaleoutStatusOperOperExcludeInterfaceIpv6List(d []edpt.ScaleoutSta
 	return result
 }
 
+func setSliceScaleoutStatusOperOperFailureDomainList(d []edpt.ScaleoutStatusOperOperFailureDomainList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["dev_id"] = item.DevId
+		in["failure_domain_name"] = item.FailureDomainName
+		result = append(result, in)
+	}
+	return result
+}
+
 func getObjectScaleoutStatusOperOper(d []interface{}) edpt.ScaleoutStatusOperOper {
 
 	count1 := len(d)
@@ -369,6 +402,7 @@ func getObjectScaleoutStatusOperOper(d []interface{}) edpt.ScaleoutStatusOperOpe
 		in := d[0].(map[string]interface{})
 		ret.Db_role = in["db_role"].(string)
 		ret.Role = in["role"].(string)
+		ret.Failure_safe = in["failure_safe"].(string)
 		ret.DeviceList = getSliceScaleoutStatusOperOperDeviceList(in["device_list"].([]interface{}))
 		ret.ClusterMode = in["cluster_mode"].(string)
 		ret.FollowSharedRedirection = in["follow_shared_redirection"].(int)
@@ -389,6 +423,8 @@ func getObjectScaleoutStatusOperOper(d []interface{}) edpt.ScaleoutStatusOperOpe
 		ret.DestSessionSyncIpList = getSliceScaleoutStatusOperOperDestSessionSyncIpList(in["dest_session_sync_ip_list"].([]interface{}))
 		ret.ExcludeInterfaceIpList = getSliceScaleoutStatusOperOperExcludeInterfaceIpList(in["exclude_interface_ip_list"].([]interface{}))
 		ret.ExcludeInterfaceIpv6List = getSliceScaleoutStatusOperOperExcludeInterfaceIpv6List(in["exclude_interface_ipv6_list"].([]interface{}))
+		ret.Fallback = in["fallback"].(int)
+		ret.FailureDomainList = getSliceScaleoutStatusOperOperFailureDomainList(in["failure_domain_list"].([]interface{}))
 	}
 	return ret
 }
@@ -540,6 +576,20 @@ func getSliceScaleoutStatusOperOperExcludeInterfaceIpv6List(d []interface{}) []e
 		in := item.(map[string]interface{})
 		var oi edpt.ScaleoutStatusOperOperExcludeInterfaceIpv6List
 		oi.Ipv6 = in["ipv6"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceScaleoutStatusOperOperFailureDomainList(d []interface{}) []edpt.ScaleoutStatusOperOperFailureDomainList {
+
+	count1 := len(d)
+	ret := make([]edpt.ScaleoutStatusOperOperFailureDomainList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.ScaleoutStatusOperOperFailureDomainList
+		oi.DevId = in["dev_id"].(int)
+		oi.FailureDomainName = in["failure_domain_name"].(string)
 		ret = append(ret, oi)
 	}
 	return ret

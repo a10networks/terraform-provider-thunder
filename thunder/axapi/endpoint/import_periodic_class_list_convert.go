@@ -5,12 +5,16 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type ImportPeriodicClassListConvert struct {
 	Inst struct {
 		ClassListConvert string `json:"class-list-convert"`
 
 		ClassListType string `json:"class-list-type"`
+
+		Encrypted string `json:"encrypted"`
+
+		Password string `json:"password"`
 
 		Period int `json:"period"`
 

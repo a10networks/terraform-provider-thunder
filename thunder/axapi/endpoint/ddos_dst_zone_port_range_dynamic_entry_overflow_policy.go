@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZonePortRangeDynamicEntryOverflowPolicy struct {
 	Inst struct {
 		Action string `json:"action"`
@@ -24,11 +24,11 @@ type DdosDstZonePortRangeDynamicEntryOverflowPolicy struct {
 
 		ZoneTemplate DdosDstZonePortRangeDynamicEntryOverflowPolicyZoneTemplate `json:"zone-template"`
 
-		PortRangeStart string
-
 		Protocol string
 
 		ZoneName string
+
+		PortRangeStart string
 
 		PortRangeEnd string
 	} `json:"dynamic-entry-overflow-policy"`

@@ -5,26 +5,22 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type InterfaceLifIpv6 struct {
-	Inst struct {
-		AddressList []InterfaceLifIpv6AddressList `json:"address-list"`
-
-		Inside int `json:"inside"`
-
-		Ipv6Enable int `json:"ipv6-enable"`
-
-		Ospf InterfaceLifIpv6Ospf668 `json:"ospf"`
-
-		Outside int `json:"outside"`
-
-		Router InterfaceLifIpv6Router678 `json:"router"`
-
-		Uuid string `json:"uuid"`
-
-		Ifname string
-	} `json:"ipv6"`
+	Ipv6 InterfaceLifIpv6Inst `json:"ipv6"`
 }
+
+type InterfaceLifIpv6Inst struct {
+	AddressList []InterfaceLifIpv6AddressList `json:"address-list"`
+	Inside      int                           `json:"inside"`
+	Ipv6Enable  int                           `json:"ipv6-enable"`
+	Ospf        InterfaceLifIpv6Ospf659       `json:"ospf"`
+	Outside     int                           `json:"outside"`
+	Router      InterfaceLifIpv6Router669     `json:"router"`
+	Uuid        string                        `json:"uuid"`
+	Ifname      string                        `json:"-"`
+}
+
 
 type InterfaceLifIpv6AddressList struct {
 	Ipv6Addr  string `json:"ipv6-addr"`
@@ -32,48 +28,48 @@ type InterfaceLifIpv6AddressList struct {
 	LinkLocal int    `json:"link-local"`
 }
 
-type InterfaceLifIpv6Ospf668 struct {
-	NetworkList           []InterfaceLifIpv6OspfNetworkList669           `json:"network-list"`
+type InterfaceLifIpv6Ospf659 struct {
+	NetworkList           []InterfaceLifIpv6OspfNetworkList660           `json:"network-list"`
 	Bfd                   int                                            `json:"bfd"`
 	Disable               int                                            `json:"disable"`
-	CostCfg               []InterfaceLifIpv6OspfCostCfg670               `json:"cost-cfg"`
-	DeadIntervalCfg       []InterfaceLifIpv6OspfDeadIntervalCfg671       `json:"dead-interval-cfg"`
-	HelloIntervalCfg      []InterfaceLifIpv6OspfHelloIntervalCfg672      `json:"hello-interval-cfg"`
-	MtuIgnoreCfg          []InterfaceLifIpv6OspfMtuIgnoreCfg673          `json:"mtu-ignore-cfg"`
-	NeighborCfg           []InterfaceLifIpv6OspfNeighborCfg674           `json:"neighbor-cfg"`
-	PriorityCfg           []InterfaceLifIpv6OspfPriorityCfg675           `json:"priority-cfg"`
-	RetransmitIntervalCfg []InterfaceLifIpv6OspfRetransmitIntervalCfg676 `json:"retransmit-interval-cfg"`
-	TransmitDelayCfg      []InterfaceLifIpv6OspfTransmitDelayCfg677      `json:"transmit-delay-cfg"`
+	CostCfg               []InterfaceLifIpv6OspfCostCfg661               `json:"cost-cfg"`
+	DeadIntervalCfg       []InterfaceLifIpv6OspfDeadIntervalCfg662       `json:"dead-interval-cfg"`
+	HelloIntervalCfg      []InterfaceLifIpv6OspfHelloIntervalCfg663      `json:"hello-interval-cfg"`
+	MtuIgnoreCfg          []InterfaceLifIpv6OspfMtuIgnoreCfg664          `json:"mtu-ignore-cfg"`
+	NeighborCfg           []InterfaceLifIpv6OspfNeighborCfg665           `json:"neighbor-cfg"`
+	PriorityCfg           []InterfaceLifIpv6OspfPriorityCfg666           `json:"priority-cfg"`
+	RetransmitIntervalCfg []InterfaceLifIpv6OspfRetransmitIntervalCfg667 `json:"retransmit-interval-cfg"`
+	TransmitDelayCfg      []InterfaceLifIpv6OspfTransmitDelayCfg668      `json:"transmit-delay-cfg"`
 	Uuid                  string                                         `json:"uuid"`
 }
 
-type InterfaceLifIpv6OspfNetworkList669 struct {
+type InterfaceLifIpv6OspfNetworkList660 struct {
 	BroadcastType     string `json:"broadcast-type"`
 	P2mpNbma          int    `json:"p2mp-nbma"`
 	NetworkInstanceId int    `json:"network-instance-id"`
 }
 
-type InterfaceLifIpv6OspfCostCfg670 struct {
+type InterfaceLifIpv6OspfCostCfg661 struct {
 	Cost       int `json:"cost"`
 	InstanceId int `json:"instance-id"`
 }
 
-type InterfaceLifIpv6OspfDeadIntervalCfg671 struct {
+type InterfaceLifIpv6OspfDeadIntervalCfg662 struct {
 	DeadInterval int `json:"dead-interval" dval:"40"`
 	InstanceId   int `json:"instance-id"`
 }
 
-type InterfaceLifIpv6OspfHelloIntervalCfg672 struct {
+type InterfaceLifIpv6OspfHelloIntervalCfg663 struct {
 	HelloInterval int `json:"hello-interval" dval:"10"`
 	InstanceId    int `json:"instance-id"`
 }
 
-type InterfaceLifIpv6OspfMtuIgnoreCfg673 struct {
+type InterfaceLifIpv6OspfMtuIgnoreCfg664 struct {
 	MtuIgnore  int `json:"mtu-ignore"`
 	InstanceId int `json:"instance-id"`
 }
 
-type InterfaceLifIpv6OspfNeighborCfg674 struct {
+type InterfaceLifIpv6OspfNeighborCfg665 struct {
 	Neighbor             string `json:"neighbor" dval:"::"`
 	NeigInst             int    `json:"neig-inst"`
 	NeighborCost         int    `json:"neighbor-cost"`
@@ -81,45 +77,45 @@ type InterfaceLifIpv6OspfNeighborCfg674 struct {
 	NeighborPriority     int    `json:"neighbor-priority"`
 }
 
-type InterfaceLifIpv6OspfPriorityCfg675 struct {
+type InterfaceLifIpv6OspfPriorityCfg666 struct {
 	Priority   int `json:"priority" dval:"1"`
 	InstanceId int `json:"instance-id"`
 }
 
-type InterfaceLifIpv6OspfRetransmitIntervalCfg676 struct {
+type InterfaceLifIpv6OspfRetransmitIntervalCfg667 struct {
 	RetransmitInterval int `json:"retransmit-interval" dval:"5"`
 	InstanceId         int `json:"instance-id"`
 }
 
-type InterfaceLifIpv6OspfTransmitDelayCfg677 struct {
+type InterfaceLifIpv6OspfTransmitDelayCfg668 struct {
 	TransmitDelay int `json:"transmit-delay" dval:"1"`
 	InstanceId    int `json:"instance-id"`
 }
 
-type InterfaceLifIpv6Router678 struct {
-	Ripng InterfaceLifIpv6RouterRipng679 `json:"ripng"`
-	Ospf  InterfaceLifIpv6RouterOspf680  `json:"ospf"`
-	Isis  InterfaceLifIpv6RouterIsis682  `json:"isis"`
+type InterfaceLifIpv6Router669 struct {
+	Ripng InterfaceLifIpv6RouterRipng670 `json:"ripng"`
+	Ospf  InterfaceLifIpv6RouterOspf671  `json:"ospf"`
+	Isis  InterfaceLifIpv6RouterIsis673  `json:"isis"`
 }
 
-type InterfaceLifIpv6RouterRipng679 struct {
+type InterfaceLifIpv6RouterRipng670 struct {
 	Rip  int    `json:"rip"`
 	Uuid string `json:"uuid"`
 }
 
-type InterfaceLifIpv6RouterOspf680 struct {
-	AreaList []InterfaceLifIpv6RouterOspfAreaList681 `json:"area-list"`
+type InterfaceLifIpv6RouterOspf671 struct {
+	AreaList []InterfaceLifIpv6RouterOspfAreaList672 `json:"area-list"`
 	Uuid     string                                  `json:"uuid"`
 }
 
-type InterfaceLifIpv6RouterOspfAreaList681 struct {
+type InterfaceLifIpv6RouterOspfAreaList672 struct {
 	AreaIdNum  int    `json:"area-id-num"`
 	AreaIdAddr string `json:"area-id-addr"`
 	Tag        string `json:"tag"`
 	InstanceId int    `json:"instance-id"`
 }
 
-type InterfaceLifIpv6RouterIsis682 struct {
+type InterfaceLifIpv6RouterIsis673 struct {
 	Tag  string `json:"tag"`
 	Uuid string `json:"uuid"`
 }
@@ -129,8 +125,9 @@ func (p *InterfaceLifIpv6) GetId() string {
 }
 
 func (p *InterfaceLifIpv6) getPath() string {
-	return "interface/lif/" + p.Inst.Ifname + "/ipv6"
+	return "interface/lif/" + p.Ipv6.Ifname + "/ipv6"
 }
+
 
 func (p *InterfaceLifIpv6) Post(authToken string, host string, logger *axapi.ThunderLog) error {
 	logger.Println("InterfaceLifIpv6::Post")

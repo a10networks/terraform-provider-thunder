@@ -65,8 +65,8 @@ func resourceSysUtStateNextStateCaseActionL2() *schema.Resource {
 			"vlan": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Vlan ID on the packet. 0 is untagged",
 			},
-			"state_name": {
-				Type: schema.TypeString, Required: true, Description: "State_name",
+			"next_state_name": {
+				Type: schema.TypeString, Required: true, Description: "Next_state_name",
 			},
 			"direction": {
 				Type: schema.TypeString, Required: true, Description: "Direction",
@@ -74,8 +74,8 @@ func resourceSysUtStateNextStateCaseActionL2() *schema.Resource {
 			"case_number": {
 				Type: schema.TypeString, Required: true, Description: "CaseNumber",
 			},
-			"next_state_name": {
-				Type: schema.TypeString, Required: true, Description: "Next_state_name",
+			"state_name": {
+				Type: schema.TypeString, Required: true, Description: "State_name",
 			},
 		},
 	}
@@ -171,9 +171,9 @@ func dataToEndpointSysUtStateNextStateCaseActionL2(d *schema.ResourceData) edpt.
 	//omit uuid
 	ret.Inst.Value = d.Get("value").(int)
 	ret.Inst.Vlan = d.Get("vlan").(int)
-	ret.Inst.State_name = d.Get("state_name").(string)
+	ret.Inst.Next_state_name = d.Get("next_state_name").(string)
 	ret.Inst.Direction = d.Get("direction").(string)
 	ret.Inst.CaseNumber = d.Get("case_number").(string)
-	ret.Inst.Next_state_name = d.Get("next_state_name").(string)
+	ret.Inst.State_name = d.Get("state_name").(string)
 	return ret
 }

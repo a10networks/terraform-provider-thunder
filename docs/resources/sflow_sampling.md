@@ -34,6 +34,7 @@ resource "thunder_sflow_sampling" "thunder_sflow_sampling" {
 
 ### Optional
 
+- `ddos_zone` (Number) Enable DDOS Zone Packet Sampling
 - `eth_list` (Block List) (see [below for nested schema](#nestedblock--eth_list))
 - `uuid` (String) uuid of the object
 - `ve_list` (Block List) (see [below for nested schema](#nestedblock--ve_list))

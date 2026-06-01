@@ -221,10 +221,10 @@ func resourceDdosDstZoneWebGuiRead(ctx context.Context, d *schema.ResourceData, 
 	return diags
 }
 
-func getObjectDdosDstZoneWebGuiLearning270(d []interface{}) edpt.DdosDstZoneWebGuiLearning270 {
+func getObjectDdosDstZoneWebGuiLearning273(d []interface{}) edpt.DdosDstZoneWebGuiLearning273 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneWebGuiLearning270
+	var ret edpt.DdosDstZoneWebGuiLearning273
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Duration = in["duration"].(string)
@@ -234,38 +234,38 @@ func getObjectDdosDstZoneWebGuiLearning270(d []interface{}) edpt.DdosDstZoneWebG
 	return ret
 }
 
-func getObjectDdosDstZoneWebGuiProtection271(d []interface{}) edpt.DdosDstZoneWebGuiProtection271 {
+func getObjectDdosDstZoneWebGuiProtection274(d []interface{}) edpt.DdosDstZoneWebGuiProtection274 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneWebGuiProtection271
+	var ret edpt.DdosDstZoneWebGuiProtection274
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Port = getObjectDdosDstZoneWebGuiProtectionPort272(in["port"].([]interface{}))
-		ret.IpProto = getObjectDdosDstZoneWebGuiProtectionIpProto275(in["ip_proto"].([]interface{}))
-		ret.PortRangeList = getSliceDdosDstZoneWebGuiProtectionPortRangeList277(in["port_range_list"].([]interface{}))
+		ret.Port = getObjectDdosDstZoneWebGuiProtectionPort275(in["port"].([]interface{}))
+		ret.IpProto = getObjectDdosDstZoneWebGuiProtectionIpProto278(in["ip_proto"].([]interface{}))
+		ret.PortRangeList = getSliceDdosDstZoneWebGuiProtectionPortRangeList280(in["port_range_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectDdosDstZoneWebGuiProtectionPort272(d []interface{}) edpt.DdosDstZoneWebGuiProtectionPort272 {
+func getObjectDdosDstZoneWebGuiProtectionPort275(d []interface{}) edpt.DdosDstZoneWebGuiProtectionPort275 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneWebGuiProtectionPort272
+	var ret edpt.DdosDstZoneWebGuiProtectionPort275
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.ZoneServiceList = getSliceDdosDstZoneWebGuiProtectionPortZoneServiceList273(in["zone_service_list"].([]interface{}))
-		ret.ZoneServiceOtherList = getSliceDdosDstZoneWebGuiProtectionPortZoneServiceOtherList274(in["zone_service_other_list"].([]interface{}))
+		ret.ZoneServiceList = getSliceDdosDstZoneWebGuiProtectionPortZoneServiceList276(in["zone_service_list"].([]interface{}))
+		ret.ZoneServiceOtherList = getSliceDdosDstZoneWebGuiProtectionPortZoneServiceOtherList277(in["zone_service_other_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDstZoneWebGuiProtectionPortZoneServiceList273(d []interface{}) []edpt.DdosDstZoneWebGuiProtectionPortZoneServiceList273 {
+func getSliceDdosDstZoneWebGuiProtectionPortZoneServiceList276(d []interface{}) []edpt.DdosDstZoneWebGuiProtectionPortZoneServiceList276 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstZoneWebGuiProtectionPortZoneServiceList273, 0, count1)
+	ret := make([]edpt.DdosDstZoneWebGuiProtectionPortZoneServiceList276, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZoneWebGuiProtectionPortZoneServiceList273
+		var oi edpt.DdosDstZoneWebGuiProtectionPortZoneServiceList276
 		oi.PortNum = in["port_num"].(int)
 		oi.Protocol = in["protocol"].(string)
 		oi.Pbe = in["pbe"].(string)
@@ -275,13 +275,13 @@ func getSliceDdosDstZoneWebGuiProtectionPortZoneServiceList273(d []interface{}) 
 	return ret
 }
 
-func getSliceDdosDstZoneWebGuiProtectionPortZoneServiceOtherList274(d []interface{}) []edpt.DdosDstZoneWebGuiProtectionPortZoneServiceOtherList274 {
+func getSliceDdosDstZoneWebGuiProtectionPortZoneServiceOtherList277(d []interface{}) []edpt.DdosDstZoneWebGuiProtectionPortZoneServiceOtherList277 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstZoneWebGuiProtectionPortZoneServiceOtherList274, 0, count1)
+	ret := make([]edpt.DdosDstZoneWebGuiProtectionPortZoneServiceOtherList277, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZoneWebGuiProtectionPortZoneServiceOtherList274
+		var oi edpt.DdosDstZoneWebGuiProtectionPortZoneServiceOtherList277
 		oi.PortOther = in["port_other"].(string)
 		oi.Protocol = in["protocol"].(string)
 		oi.Pbe = in["pbe"].(string)
@@ -291,24 +291,24 @@ func getSliceDdosDstZoneWebGuiProtectionPortZoneServiceOtherList274(d []interfac
 	return ret
 }
 
-func getObjectDdosDstZoneWebGuiProtectionIpProto275(d []interface{}) edpt.DdosDstZoneWebGuiProtectionIpProto275 {
+func getObjectDdosDstZoneWebGuiProtectionIpProto278(d []interface{}) edpt.DdosDstZoneWebGuiProtectionIpProto278 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneWebGuiProtectionIpProto275
+	var ret edpt.DdosDstZoneWebGuiProtectionIpProto278
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.ProtoNameList = getSliceDdosDstZoneWebGuiProtectionIpProtoProtoNameList276(in["proto_name_list"].([]interface{}))
+		ret.ProtoNameList = getSliceDdosDstZoneWebGuiProtectionIpProtoProtoNameList279(in["proto_name_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDstZoneWebGuiProtectionIpProtoProtoNameList276(d []interface{}) []edpt.DdosDstZoneWebGuiProtectionIpProtoProtoNameList276 {
+func getSliceDdosDstZoneWebGuiProtectionIpProtoProtoNameList279(d []interface{}) []edpt.DdosDstZoneWebGuiProtectionIpProtoProtoNameList279 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstZoneWebGuiProtectionIpProtoProtoNameList276, 0, count1)
+	ret := make([]edpt.DdosDstZoneWebGuiProtectionIpProtoProtoNameList279, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZoneWebGuiProtectionIpProtoProtoNameList276
+		var oi edpt.DdosDstZoneWebGuiProtectionIpProtoProtoNameList279
 		oi.Protocol = in["protocol"].(string)
 		oi.Pbe = in["pbe"].(string)
 		//omit uuid
@@ -318,13 +318,13 @@ func getSliceDdosDstZoneWebGuiProtectionIpProtoProtoNameList276(d []interface{})
 	return ret
 }
 
-func getSliceDdosDstZoneWebGuiProtectionPortRangeList277(d []interface{}) []edpt.DdosDstZoneWebGuiProtectionPortRangeList277 {
+func getSliceDdosDstZoneWebGuiProtectionPortRangeList280(d []interface{}) []edpt.DdosDstZoneWebGuiProtectionPortRangeList280 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstZoneWebGuiProtectionPortRangeList277, 0, count1)
+	ret := make([]edpt.DdosDstZoneWebGuiProtectionPortRangeList280, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZoneWebGuiProtectionPortRangeList277
+		var oi edpt.DdosDstZoneWebGuiProtectionPortRangeList280
 		oi.PortRangeStart = in["port_range_start"].(int)
 		oi.PortRangeEnd = in["port_range_end"].(int)
 		oi.Protocol = in["protocol"].(string)
@@ -340,9 +340,9 @@ func dataToEndpointDdosDstZoneWebGui(d *schema.ResourceData) edpt.DdosDstZoneWeb
 	var ret edpt.DdosDstZoneWebGui
 	ret.Inst.ActivatedAfterLearning = d.Get("activated_after_learning").(int)
 	ret.Inst.CreateTime = d.Get("create_time").(string)
-	ret.Inst.Learning = getObjectDdosDstZoneWebGuiLearning270(d.Get("learning").([]interface{}))
+	ret.Inst.Learning = getObjectDdosDstZoneWebGuiLearning273(d.Get("learning").([]interface{}))
 	ret.Inst.ModifyTime = d.Get("modify_time").(string)
-	ret.Inst.Protection = getObjectDdosDstZoneWebGuiProtection271(d.Get("protection").([]interface{}))
+	ret.Inst.Protection = getObjectDdosDstZoneWebGuiProtection274(d.Get("protection").([]interface{}))
 	ret.Inst.Sensitivity = d.Get("sensitivity").(string)
 	ret.Inst.Status = d.Get("status").(string)
 	//omit uuid

@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosZoneTemplateDns struct {
 	Inst struct {
 		AllowQueryClass DdosZoneTemplateDnsAllowQueryClass `json:"allow-query-class"`
@@ -29,7 +29,7 @@ type DdosZoneTemplateDns struct {
 
 		FqdnLabelLenCfg []DdosZoneTemplateDnsFqdnLabelLenCfg `json:"fqdn-label-len-cfg"`
 
-		MalformedQueryCheck DdosZoneTemplateDnsMalformedQueryCheck360 `json:"malformed-query-check"`
+		MalformedQueryCheck DdosZoneTemplateDnsMalformedQueryCheck356 `json:"malformed-query-check"`
 
 		MultiPuThresholdDistribution DdosZoneTemplateDnsMultiPuThresholdDistribution `json:"multi-pu-threshold-distribution"`
 
@@ -182,7 +182,7 @@ type DdosZoneTemplateDnsFqdnLabelLenCfg struct {
 	FqdnLabelLengthAction         string `json:"fqdn-label-length-action"`
 }
 
-type DdosZoneTemplateDnsMalformedQueryCheck360 struct {
+type DdosZoneTemplateDnsMalformedQueryCheck356 struct {
 	ValidationType                  string `json:"validation-type"`
 	NonQueryOpcodeCheck             string `json:"non-query-opcode-check"`
 	SkipMultiPacketCheck            int    `json:"skip-multi-packet-check"`

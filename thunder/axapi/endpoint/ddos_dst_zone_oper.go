@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZoneOper struct {
 	Detection DdosDstZoneOperDetection `json:"detection"`
 
@@ -20,6 +20,8 @@ type DdosDstZoneOper struct {
 	Port DdosDstZoneOperPort `json:"port"`
 
 	PortRangeList []DdosDstZoneOperPortRangeList `json:"port-range-list"`
+
+	SrcIpFiltering DdosDstZoneOperSrcIpFiltering `json:"src-ip-filtering"`
 
 	SrcPort DdosDstZoneOperSrcPort `json:"src-port"`
 
@@ -289,6 +291,7 @@ type DdosDstZoneOperIpProtoProtoNumberListPortIndOper struct {
 	EscalationTimestamp string                                                         `json:"escalation-timestamp"`
 	InitialLearning     string                                                         `json:"initial-learning"`
 	ActiveTime          int                                                            `json:"active-time"`
+	BaselineWindowSize  int                                                            `json:"baseline-window-size"`
 	SourcesAllEntries   int                                                            `json:"sources-all-entries"`
 	SubnetIpAddr        string                                                         `json:"subnet-ip-addr"`
 	SubnetIpv6Addr      string                                                         `json:"subnet-ipv6-addr"`
@@ -639,6 +642,7 @@ type DdosDstZoneOperIpProtoProtoNameListPortIndOper struct {
 	EscalationTimestamp string                                                       `json:"escalation-timestamp"`
 	InitialLearning     string                                                       `json:"initial-learning"`
 	ActiveTime          int                                                          `json:"active-time"`
+	BaselineWindowSize  int                                                          `json:"baseline-window-size"`
 	SourcesAllEntries   int                                                          `json:"sources-all-entries"`
 	SubnetIpAddr        string                                                       `json:"subnet-ip-addr"`
 	SubnetIpv6Addr      string                                                       `json:"subnet-ipv6-addr"`
@@ -1154,6 +1158,7 @@ type DdosDstZoneOperPortZoneServiceListPortIndOper struct {
 	EscalationTimestamp string                                                      `json:"escalation-timestamp"`
 	InitialLearning     string                                                      `json:"initial-learning"`
 	ActiveTime          int                                                         `json:"active-time"`
+	BaselineWindowSize  int                                                         `json:"baseline-window-size"`
 	SourcesAllEntries   int                                                         `json:"sources-all-entries"`
 	SubnetIpAddr        string                                                      `json:"subnet-ip-addr"`
 	SubnetIpv6Addr      string                                                      `json:"subnet-ipv6-addr"`
@@ -1624,6 +1629,7 @@ type DdosDstZoneOperPortZoneServiceOtherListPortIndOper struct {
 	EscalationTimestamp string                                                           `json:"escalation-timestamp"`
 	InitialLearning     string                                                           `json:"initial-learning"`
 	ActiveTime          int                                                              `json:"active-time"`
+	BaselineWindowSize  int                                                              `json:"baseline-window-size"`
 	SourcesAllEntries   int                                                              `json:"sources-all-entries"`
 	SubnetIpAddr        string                                                           `json:"subnet-ip-addr"`
 	SubnetIpv6Addr      string                                                           `json:"subnet-ipv6-addr"`
@@ -1996,6 +2002,7 @@ type DdosDstZoneOperPortRangeListPortIndOper struct {
 	EscalationTimestamp string                                                `json:"escalation-timestamp"`
 	InitialLearning     string                                                `json:"initial-learning"`
 	ActiveTime          int                                                   `json:"active-time"`
+	BaselineWindowSize  int                                                   `json:"baseline-window-size"`
 	SourcesAllEntries   int                                                   `json:"sources-all-entries"`
 	SubnetIpAddr        string                                                `json:"subnet-ip-addr"`
 	SubnetIpv6Addr      string                                                `json:"subnet-ipv6-addr"`
@@ -2284,6 +2291,19 @@ type DdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_listR
 	IsResponseSizeRateLimitExceed int    `json:"is-response-size-rate-limit-exceed"`
 	CurrentResponseSizeRate       string `json:"current-response-size-rate"`
 	ResponseSizeRateLimit         string `json:"response-size-rate-limit"`
+}
+
+type DdosDstZoneOperSrcIpFiltering struct {
+	Oper DdosDstZoneOperSrcIpFilteringOper `json:"oper"`
+}
+
+type DdosDstZoneOperSrcIpFilteringOper struct {
+	ClassList []DdosDstZoneOperSrcIpFilteringOperClassList `json:"class-list"`
+}
+
+type DdosDstZoneOperSrcIpFilteringOperClassList struct {
+	Name string `json:"name"`
+	Hit  int    `json:"hit"`
 }
 
 type DdosDstZoneOperSrcPort struct {

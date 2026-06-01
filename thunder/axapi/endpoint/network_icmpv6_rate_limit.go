@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type NetworkIcmpv6RateLimit struct {
 	Inst struct {
 		Icmpv6Lockup int `json:"icmpv6-lockup"`

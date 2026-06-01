@@ -57,14 +57,14 @@ func resourceDdosZoneProfilePortIndicator() *schema.Resource {
 					},
 				},
 			},
-			"profile_name": {
-				Type: schema.TypeString, Required: true, Description: "ProfileName",
+			"port_protocol": {
+				Type: schema.TypeString, Required: true, Description: "PortProtocol",
 			},
 			"port_num": {
 				Type: schema.TypeString, Required: true, Description: "PortNum",
 			},
-			"port_protocol": {
-				Type: schema.TypeString, Required: true, Description: "PortProtocol",
+			"profile_name": {
+				Type: schema.TypeString, Required: true, Description: "ProfileName",
 			},
 		},
 	}
@@ -164,8 +164,8 @@ func dataToEndpointDdosZoneProfilePortIndicator(d *schema.ResourceData) edpt.Ddo
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.ZoneThresholdCfg = getObjectDdosZoneProfilePortIndicatorZoneThresholdCfg(d.Get("zone_threshold_cfg").([]interface{}))
-	ret.Inst.ProfileName = d.Get("profile_name").(string)
-	ret.Inst.PortNum = d.Get("port_num").(string)
 	ret.Inst.PortProtocol = d.Get("port_protocol").(string)
+	ret.Inst.PortNum = d.Get("port_num").(string)
+	ret.Inst.ProfileName = d.Get("profile_name").(string)
 	return ret
 }

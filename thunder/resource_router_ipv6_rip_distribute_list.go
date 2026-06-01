@@ -169,25 +169,25 @@ func getSliceRouterIpv6RipDistributeListAclCfg(d []interface{}) []edpt.RouterIpv
 	return ret
 }
 
-func getObjectRouterIpv6RipDistributeListPrefix1342(d []interface{}) edpt.RouterIpv6RipDistributeListPrefix1342 {
+func getObjectRouterIpv6RipDistributeListPrefix1341(d []interface{}) edpt.RouterIpv6RipDistributeListPrefix1341 {
 
 	count1 := len(d)
-	var ret edpt.RouterIpv6RipDistributeListPrefix1342
+	var ret edpt.RouterIpv6RipDistributeListPrefix1341
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.PrefixCfg = getSliceRouterIpv6RipDistributeListPrefixPrefixCfg1343(in["prefix_cfg"].([]interface{}))
+		ret.PrefixCfg = getSliceRouterIpv6RipDistributeListPrefixPrefixCfg1342(in["prefix_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceRouterIpv6RipDistributeListPrefixPrefixCfg1343(d []interface{}) []edpt.RouterIpv6RipDistributeListPrefixPrefixCfg1343 {
+func getSliceRouterIpv6RipDistributeListPrefixPrefixCfg1342(d []interface{}) []edpt.RouterIpv6RipDistributeListPrefixPrefixCfg1342 {
 
 	count1 := len(d)
-	ret := make([]edpt.RouterIpv6RipDistributeListPrefixPrefixCfg1343, 0, count1)
+	ret := make([]edpt.RouterIpv6RipDistributeListPrefixPrefixCfg1342, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RouterIpv6RipDistributeListPrefixPrefixCfg1343
+		var oi edpt.RouterIpv6RipDistributeListPrefixPrefixCfg1342
 		oi.PrefixList = in["prefix_list"].(string)
 		oi.PrefixListDirection = in["prefix_list_direction"].(string)
 		oi.Ethernet = in["ethernet"].(int)
@@ -203,7 +203,7 @@ func getSliceRouterIpv6RipDistributeListPrefixPrefixCfg1343(d []interface{}) []e
 func dataToEndpointRouterIpv6RipDistributeList(d *schema.ResourceData) edpt.RouterIpv6RipDistributeList {
 	var ret edpt.RouterIpv6RipDistributeList
 	ret.Inst.AclCfg = getSliceRouterIpv6RipDistributeListAclCfg(d.Get("acl_cfg").([]interface{}))
-	ret.Inst.Prefix = getObjectRouterIpv6RipDistributeListPrefix1342(d.Get("prefix").([]interface{}))
+	ret.Inst.Prefix = getObjectRouterIpv6RipDistributeListPrefix1341(d.Get("prefix").([]interface{}))
 	//omit uuid
 	return ret
 }

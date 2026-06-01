@@ -71,14 +71,14 @@ func resourceDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassListOper() 
 					},
 				},
 			},
+			"src_based_policy_name": {
+				Type: schema.TypeString, Required: true, Description: "SrcBasedPolicyName",
+			},
 			"port_other": {
 				Type: schema.TypeString, Required: true, Description: "PortOther",
 			},
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
-			},
-			"src_based_policy_name": {
-				Type: schema.TypeString, Required: true, Description: "SrcBasedPolicyName",
 			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
@@ -162,11 +162,11 @@ func dataToEndpointDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassListO
 
 	ret.Oper = getObjectDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassListOperOper(d.Get("oper").([]interface{}))
 
+	ret.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
+
 	ret.PortOther = d.Get("port_other").(string)
 
 	ret.Protocol = d.Get("protocol").(string)
-
-	ret.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
 
 	ret.ZoneName = d.Get("zone_name").(string)
 	return ret

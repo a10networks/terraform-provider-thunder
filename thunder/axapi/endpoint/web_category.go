@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type WebCategory struct {
 	Inst struct {
-		BypassedUrls WebCategoryBypassedUrls3760 `json:"bypassed-urls"`
+		BypassedUrls WebCategoryBypassedUrls3798 `json:"bypassed-urls"`
 
 		CategoryListList []WebCategoryCategoryListList `json:"category-list-list"`
 
@@ -22,15 +22,15 @@ type WebCategory struct {
 
 		Enable int `json:"enable"`
 
-		InterceptedUrls WebCategoryInterceptedUrls3761 `json:"intercepted-urls"`
+		InterceptedUrls WebCategoryInterceptedUrls3799 `json:"intercepted-urls"`
 
-		License WebCategoryLicense3762 `json:"license"`
+		License WebCategoryLicense3800 `json:"license"`
 
 		OnlineCheckDisable int `json:"online-check-disable"`
 
 		Port int `json:"port" dval:"80"`
 
-		ProxyServer WebCategoryProxyServer3763 `json:"proxy-server"`
+		ProxyServer WebCategoryProxyServer3801 `json:"proxy-server"`
 
 		RemoteSyslogEnable int `json:"remote-syslog-enable"`
 
@@ -42,25 +42,27 @@ type WebCategory struct {
 
 		RtuUpdateInterval int `json:"rtu-update-interval" dval:"60"`
 
+		SdkModule string `json:"sdk-module" dval:"new"`
+
 		Server string `json:"server"`
 
 		ServerTimeout int `json:"server-timeout" dval:"15"`
 
 		SslPort int `json:"ssl-port" dval:"443"`
 
-		Statistics WebCategoryStatistics3764 `json:"statistics"`
+		Statistics WebCategoryStatistics3802 `json:"statistics"`
 
-		Url WebCategoryUrl3766 `json:"url"`
+		Url WebCategoryUrl3804 `json:"url"`
 
 		UseMgmtPort int `json:"use-mgmt-port"`
 
 		Uuid string `json:"uuid"`
 
-		WebReputation WebCategoryWebReputation3767 `json:"web-reputation"`
+		WebReputation WebCategoryWebReputation3805 `json:"web-reputation"`
 	} `json:"web-category"`
 }
 
-type WebCategoryBypassedUrls3760 struct {
+type WebCategoryBypassedUrls3798 struct {
 	Uuid string `json:"uuid"`
 }
 
@@ -160,19 +162,19 @@ type WebCategoryCategoryListListSamplingEnable struct {
 	Counters1 string `json:"counters1"`
 }
 
-type WebCategoryInterceptedUrls3761 struct {
+type WebCategoryInterceptedUrls3799 struct {
 	Uuid string `json:"uuid"`
 }
 
-type WebCategoryLicense3762 struct {
+type WebCategoryLicense3800 struct {
 	Uuid string `json:"uuid"`
 }
 
-type WebCategoryProxyServer3763 struct {
+type WebCategoryProxyServer3801 struct {
 	ProxyHost    string `json:"proxy-host"`
 	HttpPort     int    `json:"http-port"`
 	HttpsPort    int    `json:"https-port"`
-	AuthType     string `json:"auth-type" dval:"ntlm"`
+	AuthType     string `json:"auth-type" dval:"basic"`
 	Domain       string `json:"domain"`
 	Username     string `json:"username"`
 	Password     int    `json:"password"`
@@ -212,35 +214,35 @@ type WebCategoryReputationScopeListSamplingEnable struct {
 	Counters1 string `json:"counters1"`
 }
 
-type WebCategoryStatistics3764 struct {
+type WebCategoryStatistics3802 struct {
 	Uuid           string                                    `json:"uuid"`
-	SamplingEnable []WebCategoryStatisticsSamplingEnable3765 `json:"sampling-enable"`
+	SamplingEnable []WebCategoryStatisticsSamplingEnable3803 `json:"sampling-enable"`
 }
 
-type WebCategoryStatisticsSamplingEnable3765 struct {
+type WebCategoryStatisticsSamplingEnable3803 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type WebCategoryUrl3766 struct {
+type WebCategoryUrl3804 struct {
 	Uuid string `json:"uuid"`
 }
 
-type WebCategoryWebReputation3767 struct {
+type WebCategoryWebReputation3805 struct {
 	Uuid            string                                      `json:"uuid"`
-	InterceptedUrls WebCategoryWebReputationInterceptedUrls3768 `json:"intercepted-urls"`
-	BypassedUrls    WebCategoryWebReputationBypassedUrls3769    `json:"bypassed-urls"`
-	Url             WebCategoryWebReputationUrl3770             `json:"url"`
+	InterceptedUrls WebCategoryWebReputationInterceptedUrls3806 `json:"intercepted-urls"`
+	BypassedUrls    WebCategoryWebReputationBypassedUrls3807    `json:"bypassed-urls"`
+	Url             WebCategoryWebReputationUrl3808             `json:"url"`
 }
 
-type WebCategoryWebReputationInterceptedUrls3768 struct {
+type WebCategoryWebReputationInterceptedUrls3806 struct {
 	Uuid string `json:"uuid"`
 }
 
-type WebCategoryWebReputationBypassedUrls3769 struct {
+type WebCategoryWebReputationBypassedUrls3807 struct {
 	Uuid string `json:"uuid"`
 }
 
-type WebCategoryWebReputationUrl3770 struct {
+type WebCategoryWebReputationUrl3808 struct {
 	Uuid string `json:"uuid"`
 }
 

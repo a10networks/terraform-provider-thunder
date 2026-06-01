@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SlbVirtualServer struct {
 	Inst struct {
 		AclId int `json:"acl-id"`
@@ -41,7 +41,7 @@ type SlbVirtualServer struct {
 
 		Ipv6Address string `json:"ipv6-address"`
 
-		MigrateVip SlbVirtualServerMigrateVip1578 `json:"migrate-vip"`
+		MigrateVip SlbVirtualServerMigrateVip1579 `json:"migrate-vip"`
 
 		Name string `json:"name"`
 
@@ -85,7 +85,7 @@ type SlbVirtualServer struct {
 	} `json:"virtual-server"`
 }
 
-type SlbVirtualServerMigrateVip1578 struct {
+type SlbVirtualServerMigrateVip1579 struct {
 	TargetDataCpu      int    `json:"target-data-cpu"`
 	TargetFloatingIpv4 string `json:"target-floating-ipv4"`
 	TargetFloatingIpv6 string `json:"target-floating-ipv6"`

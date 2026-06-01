@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6DdosProtectionStats struct {
 	Stats Cgnv6DdosProtectionStatsStats `json:"stats"`
 }
@@ -52,10 +52,6 @@ type Cgnv6DdosProtectionStatsStats struct {
 	Syn_cookie_syn_ack_sent          int `json:"syn_cookie_syn_ack_sent"`
 	Syn_cookie_verification_passed   int `json:"syn_cookie_verification_passed"`
 	Syn_cookie_verification_failed   int `json:"syn_cookie_verification_failed"`
-	L3_entry_del_to_hw_failure       int `json:"l3_entry_del_to_hw_failure"`
-	L4_entry_del_to_hw_failure       int `json:"l4_entry_del_to_hw_failure"`
-	L4_entry_add_to_hw_failure       int `json:"l4_entry_add_to_hw_failure"`
-	L3_hw_out_of_entries             int `json:"l3_hw_out_of_entries"`
 }
 
 func (p *Cgnv6DdosProtectionStats) GetId() string {

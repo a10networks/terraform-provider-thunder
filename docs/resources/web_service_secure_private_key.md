@@ -22,6 +22,7 @@ __PLACEHOLDER__
 
 - `file_url` (String) File URL
 - `load` (Number) Load WEB private-key
+- `passphrase` (String) Password Phrase
 - `use_mgmt_port` (Number) Use management port as source port
 
 ### Read-Only

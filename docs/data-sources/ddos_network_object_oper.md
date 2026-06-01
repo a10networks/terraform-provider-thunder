@@ -37,6 +37,7 @@ __PLACEHOLDER__
 Optional:
 
 - `agent_group_details` (Number)
+- `aggregated_details` (Number)
 - `anomaly_ip_list` (Number)
 - `details` (Number)
 - `discovered_ip_list` (Number)
@@ -48,8 +49,8 @@ Optional:
 - `port_start` (Number)
 - `protocol` (Number)
 - `single_layer_discovered_list` (Number)
-- `sport` (Number)
-- `sport_list` (Number)
+- `src_port` (Number)
+- `src_service_list` (Number)
 - `subnet_ip_addr` (String)
 - `subnet_ipv6_addr` (String)
 - `total_details` (Number)
@@ -67,6 +68,7 @@ Optional:
 - `de_es_timestamp` (String)
 - `display_filter` (String)
 - `es_timestamp` (String)
+- `estimated_bit_rate` (String)
 - `histogram_mode` (Number)
 - `indicators` (Block List) (see [below for nested schema](#nestedblock--oper--entry_list--indicators))
 - `is_anomaly` (Number)

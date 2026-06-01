@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplTriggerStatsInc2749 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplTriggerStatsInc2764 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplTriggerStatsRate2750 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplTriggerStatsRate2765 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplTriggerStatsSeverity2751 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplTriggerStatsSeverity2766 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,7 +25,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmpl struct {
 	} `json:"aam-auth-server-rad-inst-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplTriggerStatsInc2749 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplTriggerStatsInc2764 struct {
 	Authen_failure    int    `json:"authen_failure"`
 	Authorize_failure int    `json:"authorize_failure"`
 	Timeout_error     int    `json:"timeout_error"`
@@ -34,7 +34,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplTriggerStatsI
 	Uuid              string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplTriggerStatsRate2750 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplTriggerStatsRate2765 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Authen_failure      int    `json:"authen_failure"`
@@ -45,7 +45,7 @@ type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplTriggerStatsR
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplTriggerStatsSeverity2751 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAuthServerRadInstTmplTriggerStatsSeverity2766 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

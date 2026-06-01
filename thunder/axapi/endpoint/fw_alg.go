@@ -5,103 +5,103 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type FwAlg struct {
 	Inst struct {
-		Dns FwAlgDns426 `json:"dns"`
+		Dns FwAlgDns417 `json:"dns"`
 
-		Esp FwAlgEsp427 `json:"esp"`
+		Esp FwAlgEsp418 `json:"esp"`
 
-		Ftp FwAlgFtp429 `json:"ftp"`
+		Ftp FwAlgFtp420 `json:"ftp"`
 
-		Icmp FwAlgIcmp431 `json:"icmp"`
+		Icmp FwAlgIcmp422 `json:"icmp"`
 
-		Pptp FwAlgPptp432 `json:"pptp"`
+		Pptp FwAlgPptp423 `json:"pptp"`
 
-		Rtsp FwAlgRtsp434 `json:"rtsp"`
+		Rtsp FwAlgRtsp425 `json:"rtsp"`
 
-		Sctp FwAlgSctp436 `json:"sctp"`
+		Sctp FwAlgSctp427 `json:"sctp"`
 
-		Sip FwAlgSip437 `json:"sip"`
+		Sip FwAlgSip428 `json:"sip"`
 
-		Tftp FwAlgTftp439 `json:"tftp"`
+		Tftp FwAlgTftp430 `json:"tftp"`
 
 		Uuid string `json:"uuid"`
 	} `json:"alg"`
 }
 
-type FwAlgDns426 struct {
+type FwAlgDns417 struct {
 	DefaultPortDisable string `json:"default-port-disable"`
 	Uuid               string `json:"uuid"`
 }
 
-type FwAlgEsp427 struct {
+type FwAlgEsp418 struct {
 	DefaultPortDisable string                      `json:"default-port-disable"`
 	Uuid               string                      `json:"uuid"`
-	SamplingEnable     []FwAlgEspSamplingEnable428 `json:"sampling-enable"`
+	SamplingEnable     []FwAlgEspSamplingEnable419 `json:"sampling-enable"`
 }
 
-type FwAlgEspSamplingEnable428 struct {
+type FwAlgEspSamplingEnable419 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type FwAlgFtp429 struct {
+type FwAlgFtp420 struct {
 	DefaultPortDisable string                      `json:"default-port-disable"`
 	Uuid               string                      `json:"uuid"`
-	SamplingEnable     []FwAlgFtpSamplingEnable430 `json:"sampling-enable"`
+	SamplingEnable     []FwAlgFtpSamplingEnable421 `json:"sampling-enable"`
 }
 
-type FwAlgFtpSamplingEnable430 struct {
+type FwAlgFtpSamplingEnable421 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type FwAlgIcmp431 struct {
+type FwAlgIcmp422 struct {
 	Disable string `json:"disable"`
 	Uuid    string `json:"uuid"`
 }
 
-type FwAlgPptp432 struct {
+type FwAlgPptp423 struct {
 	DefaultPortDisable string                       `json:"default-port-disable"`
 	Uuid               string                       `json:"uuid"`
-	SamplingEnable     []FwAlgPptpSamplingEnable433 `json:"sampling-enable"`
+	SamplingEnable     []FwAlgPptpSamplingEnable424 `json:"sampling-enable"`
 }
 
-type FwAlgPptpSamplingEnable433 struct {
+type FwAlgPptpSamplingEnable424 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type FwAlgRtsp434 struct {
+type FwAlgRtsp425 struct {
 	DefaultPortDisable string                       `json:"default-port-disable"`
 	Uuid               string                       `json:"uuid"`
-	SamplingEnable     []FwAlgRtspSamplingEnable435 `json:"sampling-enable"`
+	SamplingEnable     []FwAlgRtspSamplingEnable426 `json:"sampling-enable"`
 }
 
-type FwAlgRtspSamplingEnable435 struct {
+type FwAlgRtspSamplingEnable426 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type FwAlgSctp436 struct {
+type FwAlgSctp427 struct {
 	Action string `json:"action" dval:"enable"`
 	Uuid   string `json:"uuid"`
 }
 
-type FwAlgSip437 struct {
+type FwAlgSip428 struct {
 	DefaultPortDisable string                      `json:"default-port-disable"`
 	Uuid               string                      `json:"uuid"`
-	SamplingEnable     []FwAlgSipSamplingEnable438 `json:"sampling-enable"`
+	SamplingEnable     []FwAlgSipSamplingEnable429 `json:"sampling-enable"`
 }
 
-type FwAlgSipSamplingEnable438 struct {
+type FwAlgSipSamplingEnable429 struct {
 	Counters1 string `json:"counters1"`
 }
 
-type FwAlgTftp439 struct {
+type FwAlgTftp430 struct {
 	DefaultPortDisable string                       `json:"default-port-disable"`
 	Uuid               string                       `json:"uuid"`
-	SamplingEnable     []FwAlgTftpSamplingEnable440 `json:"sampling-enable"`
+	SamplingEnable     []FwAlgTftpSamplingEnable431 `json:"sampling-enable"`
 }
 
-type FwAlgTftpSamplingEnable440 struct {
+type FwAlgTftpSamplingEnable431 struct {
 	Counters1 string `json:"counters1"`
 }
 

@@ -6,18 +6,18 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmpl struct {
 	Inst struct {
 		CaptureConfig string `json:"capture-config"`
 
 		Name string `json:"name"`
 
-		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplTriggerStatsInc2719 `json:"trigger-stats-inc"`
+		TriggerStatsInc VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplTriggerStatsInc2734 `json:"trigger-stats-inc"`
 
-		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplTriggerStatsRate2720 `json:"trigger-stats-rate"`
+		TriggerStatsRate VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplTriggerStatsRate2735 `json:"trigger-stats-rate"`
 
-		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplTriggerStatsSeverity2721 `json:"trigger-stats-severity"`
+		TriggerStatsSeverity VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplTriggerStatsSeverity2736 `json:"trigger-stats-severity"`
 
 		UserTag string `json:"user-tag"`
 
@@ -25,19 +25,19 @@ type VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmpl struct {
 	} `json:"aam-aaa-policy-tmpl"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplTriggerStatsInc2719 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplTriggerStatsInc2734 struct {
 	Error int    `json:"error"`
 	Uuid  string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplTriggerStatsRate2720 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplTriggerStatsRate2735 struct {
 	ThresholdExceededBy int    `json:"threshold-exceeded-by" dval:"5"`
 	Duration            int    `json:"duration" dval:"60"`
 	Error               int    `json:"error"`
 	Uuid                string `json:"uuid"`
 }
 
-type VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplTriggerStatsSeverity2721 struct {
+type VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplTriggerStatsSeverity2736 struct {
 	Error         int    `json:"error"`
 	ErrorAlert    int    `json:"error-alert"`
 	ErrorWarning  int    `json:"error-warning"`

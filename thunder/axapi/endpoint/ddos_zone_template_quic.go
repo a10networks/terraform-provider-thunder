@@ -6,10 +6,10 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosZoneTemplateQuic struct {
 	Inst struct {
-		ActionOnInitial DdosZoneTemplateQuicActionOnInitial369 `json:"action-on-initial"`
+		ActionOnInitial DdosZoneTemplateQuicActionOnInitial365 `json:"action-on-initial"`
 
 		CreateConnOnInitialOnly int `json:"create-conn-on-initial-only"`
 
@@ -29,7 +29,7 @@ type DdosZoneTemplateQuic struct {
 	} `json:"quic"`
 }
 
-type DdosZoneTemplateQuicActionOnInitial369 struct {
+type DdosZoneTemplateQuicActionOnInitial365 struct {
 	RetryTokenAuthenticationStatic     string `json:"retry-token-authentication-static"`
 	RetryTokenAuthenticationDynamic    string `json:"retry-token-authentication-dynamic"`
 	ScidLength                         int    `json:"scid-length" dval:"20"`

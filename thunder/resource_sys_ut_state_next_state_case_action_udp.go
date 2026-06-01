@@ -37,8 +37,8 @@ func resourceSysUtStateNextStateCaseActionUdp() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"state_name": {
-				Type: schema.TypeString, Required: true, Description: "State_name",
+			"next_state_name": {
+				Type: schema.TypeString, Required: true, Description: "Next_state_name",
 			},
 			"direction": {
 				Type: schema.TypeString, Required: true, Description: "Direction",
@@ -46,8 +46,8 @@ func resourceSysUtStateNextStateCaseActionUdp() *schema.Resource {
 			"case_number": {
 				Type: schema.TypeString, Required: true, Description: "CaseNumber",
 			},
-			"next_state_name": {
-				Type: schema.TypeString, Required: true, Description: "Next_state_name",
+			"state_name": {
+				Type: schema.TypeString, Required: true, Description: "State_name",
 			},
 		},
 	}
@@ -123,9 +123,9 @@ func dataToEndpointSysUtStateNextStateCaseActionUdp(d *schema.ResourceData) edpt
 	ret.Inst.NatPool = d.Get("nat_pool").(string)
 	ret.Inst.SrcPort = d.Get("src_port").(int)
 	//omit uuid
-	ret.Inst.State_name = d.Get("state_name").(string)
+	ret.Inst.Next_state_name = d.Get("next_state_name").(string)
 	ret.Inst.Direction = d.Get("direction").(string)
 	ret.Inst.CaseNumber = d.Get("case_number").(string)
-	ret.Inst.Next_state_name = d.Get("next_state_name").(string)
+	ret.Inst.State_name = d.Get("state_name").(string)
 	return ret
 }

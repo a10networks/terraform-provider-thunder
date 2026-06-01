@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZoneIpProtoProtoNumberSrcBasedPolicyPolicyClassList struct {
 	Inst struct {
 		Action string `json:"action"`
@@ -37,11 +37,11 @@ type DdosDstZoneIpProtoProtoNumberSrcBasedPolicyPolicyClassList struct {
 
 		ZoneTemplate DdosDstZoneIpProtoProtoNumberSrcBasedPolicyPolicyClassListZoneTemplate `json:"zone-template"`
 
-		SrcBasedPolicyName string
-
 		ZoneName string
 
 		ProtocolNum string
+
+		SrcBasedPolicyName string
 	} `json:"policy-class-list"`
 }
 

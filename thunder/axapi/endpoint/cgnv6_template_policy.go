@@ -6,10 +6,10 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6TemplatePolicy struct {
 	Inst struct {
-		ClassList Cgnv6TemplatePolicyClassList136 `json:"class-list"`
+		ClassList Cgnv6TemplatePolicyClassList137 `json:"class-list"`
 
 		Name string `json:"name"`
 
@@ -19,16 +19,16 @@ type Cgnv6TemplatePolicy struct {
 	} `json:"policy"`
 }
 
-type Cgnv6TemplatePolicyClassList136 struct {
+type Cgnv6TemplatePolicyClassList137 struct {
 	Name             string                                   `json:"name"`
 	ClientIpL3Dest   int                                      `json:"client-ip-l3-dest"`
 	ClientIpL7Header int                                      `json:"client-ip-l7-header"`
 	HeaderName       string                                   `json:"header-name"`
 	Uuid             string                                   `json:"uuid"`
-	LidList          []Cgnv6TemplatePolicyClassListLidList137 `json:"lid-list"`
+	LidList          []Cgnv6TemplatePolicyClassListLidList138 `json:"lid-list"`
 }
 
-type Cgnv6TemplatePolicyClassListLidList137 struct {
+type Cgnv6TemplatePolicyClassListLidList138 struct {
 	Lidnum           int                                         `json:"lidnum"`
 	ConnLimit        int                                         `json:"conn-limit"`
 	ConnRateLimit    int                                         `json:"conn-rate-limit"`
@@ -41,12 +41,12 @@ type Cgnv6TemplatePolicyClassListLidList137 struct {
 	Lockout          int                                         `json:"lockout"`
 	Log              int                                         `json:"log"`
 	Interval         int                                         `json:"interval"`
-	Dns64            Cgnv6TemplatePolicyClassListLidListDns64138 `json:"dns64"`
+	Dns64            Cgnv6TemplatePolicyClassListLidListDns64139 `json:"dns64"`
 	Uuid             string                                      `json:"uuid"`
 	UserTag          string                                      `json:"user-tag"`
 }
 
-type Cgnv6TemplatePolicyClassListLidListDns64138 struct {
+type Cgnv6TemplatePolicyClassListLidListDns64139 struct {
 	Disable         int    `json:"disable"`
 	ExclusiveAnswer int    `json:"exclusive-answer"`
 	Prefix          string `json:"prefix"`

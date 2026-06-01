@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type RouterIsis struct {
 	Inst struct {
-		AddressFamily RouterIsisAddressFamily1363 `json:"address-family"`
+		AddressFamily RouterIsisAddressFamily1362 `json:"address-family"`
 
 		AdjacencyCheck int `json:"adjacency-check" dval:"1"`
 
@@ -46,7 +46,7 @@ type RouterIsis struct {
 
 		ProtocolList []RouterIsisProtocolList `json:"protocol-list"`
 
-		Redistribute RouterIsisRedistribute1375 `json:"redistribute"`
+		Redistribute RouterIsisRedistribute1374 `json:"redistribute"`
 
 		SetOverloadBitCfg RouterIsisSetOverloadBitCfg `json:"set-overload-bit-cfg"`
 
@@ -62,40 +62,40 @@ type RouterIsis struct {
 	} `json:"isis"`
 }
 
-type RouterIsisAddressFamily1363 struct {
-	Ipv6 RouterIsisAddressFamilyIpv61364 `json:"ipv6"`
+type RouterIsisAddressFamily1362 struct {
+	Ipv6 RouterIsisAddressFamilyIpv61363 `json:"ipv6"`
 }
 
-type RouterIsisAddressFamilyIpv61364 struct {
+type RouterIsisAddressFamilyIpv61363 struct {
 	DefaultInformation string                                             `json:"default-information"`
 	AdjacencyCheck     int                                                `json:"adjacency-check" dval:"1"`
 	Distance           int                                                `json:"distance" dval:"115"`
-	MultiTopologyCfg   RouterIsisAddressFamilyIpv6MultiTopologyCfg1365    `json:"multi-topology-cfg"`
-	SummaryPrefixList  []RouterIsisAddressFamilyIpv6SummaryPrefixList1366 `json:"summary-prefix-list"`
+	MultiTopologyCfg   RouterIsisAddressFamilyIpv6MultiTopologyCfg1364    `json:"multi-topology-cfg"`
+	SummaryPrefixList  []RouterIsisAddressFamilyIpv6SummaryPrefixList1365 `json:"summary-prefix-list"`
 	Uuid               string                                             `json:"uuid"`
-	Redistribute       RouterIsisAddressFamilyIpv6Redistribute1367        `json:"redistribute"`
+	Redistribute       RouterIsisAddressFamilyIpv6Redistribute1366        `json:"redistribute"`
 }
 
-type RouterIsisAddressFamilyIpv6MultiTopologyCfg1365 struct {
+type RouterIsisAddressFamilyIpv6MultiTopologyCfg1364 struct {
 	MultiTopology   int    `json:"multi-topology"`
 	Level           string `json:"level"`
 	Transition      int    `json:"transition"`
 	LevelTransition int    `json:"level-transition"`
 }
 
-type RouterIsisAddressFamilyIpv6SummaryPrefixList1366 struct {
+type RouterIsisAddressFamilyIpv6SummaryPrefixList1365 struct {
 	Prefix string `json:"prefix"`
 	Level  string `json:"level" dval:"level-2"`
 }
 
-type RouterIsisAddressFamilyIpv6Redistribute1367 struct {
-	RedistList []RouterIsisAddressFamilyIpv6RedistributeRedistList1368 `json:"redist-list"`
-	VipList    []RouterIsisAddressFamilyIpv6RedistributeVipList1369    `json:"vip-list"`
-	Isis       RouterIsisAddressFamilyIpv6RedistributeIsis1370         `json:"isis"`
+type RouterIsisAddressFamilyIpv6Redistribute1366 struct {
+	RedistList []RouterIsisAddressFamilyIpv6RedistributeRedistList1367 `json:"redist-list"`
+	VipList    []RouterIsisAddressFamilyIpv6RedistributeVipList1368    `json:"vip-list"`
+	Isis       RouterIsisAddressFamilyIpv6RedistributeIsis1369         `json:"isis"`
 	Uuid       string                                                  `json:"uuid"`
 }
 
-type RouterIsisAddressFamilyIpv6RedistributeRedistList1368 struct {
+type RouterIsisAddressFamilyIpv6RedistributeRedistList1367 struct {
 	Type       string `json:"type"`
 	Metric     int    `json:"metric"`
 	MetricType string `json:"metric-type" dval:"internal"`
@@ -103,7 +103,7 @@ type RouterIsisAddressFamilyIpv6RedistributeRedistList1368 struct {
 	Level      string `json:"level" dval:"level-2"`
 }
 
-type RouterIsisAddressFamilyIpv6RedistributeVipList1369 struct {
+type RouterIsisAddressFamilyIpv6RedistributeVipList1368 struct {
 	VipType       string `json:"vip-type"`
 	VipMetric     int    `json:"vip-metric"`
 	VipRouteMap   string `json:"vip-route-map"`
@@ -111,25 +111,25 @@ type RouterIsisAddressFamilyIpv6RedistributeVipList1369 struct {
 	VipLevel      string `json:"vip-level" dval:"level-2"`
 }
 
-type RouterIsisAddressFamilyIpv6RedistributeIsis1370 struct {
-	Level1From RouterIsisAddressFamilyIpv6RedistributeIsisLevel1From1371 `json:"level-1-from"`
-	Level2From RouterIsisAddressFamilyIpv6RedistributeIsisLevel2From1373 `json:"level-2-from"`
+type RouterIsisAddressFamilyIpv6RedistributeIsis1369 struct {
+	Level1From RouterIsisAddressFamilyIpv6RedistributeIsisLevel1From1370 `json:"level-1-from"`
+	Level2From RouterIsisAddressFamilyIpv6RedistributeIsisLevel2From1372 `json:"level-2-from"`
 }
 
-type RouterIsisAddressFamilyIpv6RedistributeIsisLevel1From1371 struct {
-	Into1 RouterIsisAddressFamilyIpv6RedistributeIsisLevel1FromInto11372 `json:"into-1"`
+type RouterIsisAddressFamilyIpv6RedistributeIsisLevel1From1370 struct {
+	Into1 RouterIsisAddressFamilyIpv6RedistributeIsisLevel1FromInto11371 `json:"into-1"`
 }
 
-type RouterIsisAddressFamilyIpv6RedistributeIsisLevel1FromInto11372 struct {
+type RouterIsisAddressFamilyIpv6RedistributeIsisLevel1FromInto11371 struct {
 	Level2         int    `json:"level-2"`
 	DistributeList string `json:"distribute-list"`
 }
 
-type RouterIsisAddressFamilyIpv6RedistributeIsisLevel2From1373 struct {
-	Into2 RouterIsisAddressFamilyIpv6RedistributeIsisLevel2FromInto21374 `json:"into-2"`
+type RouterIsisAddressFamilyIpv6RedistributeIsisLevel2From1372 struct {
+	Into2 RouterIsisAddressFamilyIpv6RedistributeIsisLevel2FromInto21373 `json:"into-2"`
 }
 
-type RouterIsisAddressFamilyIpv6RedistributeIsisLevel2FromInto21374 struct {
+type RouterIsisAddressFamilyIpv6RedistributeIsisLevel2FromInto21373 struct {
 	Level1         int    `json:"level-1"`
 	DistributeList string `json:"distribute-list"`
 }
@@ -215,14 +215,14 @@ type RouterIsisProtocolList struct {
 	ProtocolTopology int `json:"protocol-topology"`
 }
 
-type RouterIsisRedistribute1375 struct {
-	RedistList []RouterIsisRedistributeRedistList1376 `json:"redist-list"`
-	VipList    []RouterIsisRedistributeVipList1377    `json:"vip-list"`
-	Isis       RouterIsisRedistributeIsis1378         `json:"isis"`
+type RouterIsisRedistribute1374 struct {
+	RedistList []RouterIsisRedistributeRedistList1375 `json:"redist-list"`
+	VipList    []RouterIsisRedistributeVipList1376    `json:"vip-list"`
+	Isis       RouterIsisRedistributeIsis1377         `json:"isis"`
 	Uuid       string                                 `json:"uuid"`
 }
 
-type RouterIsisRedistributeRedistList1376 struct {
+type RouterIsisRedistributeRedistList1375 struct {
 	Type       string `json:"type"`
 	Metric     int    `json:"metric"`
 	MetricType string `json:"metric-type" dval:"internal"`
@@ -230,7 +230,7 @@ type RouterIsisRedistributeRedistList1376 struct {
 	Level      string `json:"level" dval:"level-2"`
 }
 
-type RouterIsisRedistributeVipList1377 struct {
+type RouterIsisRedistributeVipList1376 struct {
 	VipType       string `json:"vip-type"`
 	VipMetric     int    `json:"vip-metric"`
 	VipRouteMap   string `json:"vip-route-map"`
@@ -238,25 +238,25 @@ type RouterIsisRedistributeVipList1377 struct {
 	VipLevel      string `json:"vip-level" dval:"level-2"`
 }
 
-type RouterIsisRedistributeIsis1378 struct {
-	Level1From RouterIsisRedistributeIsisLevel1From1379 `json:"level-1-from"`
-	Level2From RouterIsisRedistributeIsisLevel2From1381 `json:"level-2-from"`
+type RouterIsisRedistributeIsis1377 struct {
+	Level1From RouterIsisRedistributeIsisLevel1From1378 `json:"level-1-from"`
+	Level2From RouterIsisRedistributeIsisLevel2From1380 `json:"level-2-from"`
 }
 
-type RouterIsisRedistributeIsisLevel1From1379 struct {
-	Into1 RouterIsisRedistributeIsisLevel1FromInto11380 `json:"into-1"`
+type RouterIsisRedistributeIsisLevel1From1378 struct {
+	Into1 RouterIsisRedistributeIsisLevel1FromInto11379 `json:"into-1"`
 }
 
-type RouterIsisRedistributeIsisLevel1FromInto11380 struct {
+type RouterIsisRedistributeIsisLevel1FromInto11379 struct {
 	Level2         int    `json:"level-2"`
 	DistributeList string `json:"distribute-list"`
 }
 
-type RouterIsisRedistributeIsisLevel2From1381 struct {
-	Into2 RouterIsisRedistributeIsisLevel2FromInto21382 `json:"into-2"`
+type RouterIsisRedistributeIsisLevel2From1380 struct {
+	Into2 RouterIsisRedistributeIsisLevel2FromInto21381 `json:"into-2"`
 }
 
-type RouterIsisRedistributeIsisLevel2FromInto21382 struct {
+type RouterIsisRedistributeIsisLevel2FromInto21381 struct {
 	Level1         int    `json:"level-1"`
 	DistributeList string `json:"distribute-list"`
 }

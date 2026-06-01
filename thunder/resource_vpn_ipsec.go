@@ -244,10 +244,10 @@ func resourceVpnIpsecRead(ctx context.Context, d *schema.ResourceData, meta inte
 	return diags
 }
 
-func getObjectVpnIpsecBindTunnel3711(d []interface{}) edpt.VpnIpsecBindTunnel3711 {
+func getObjectVpnIpsecBindTunnel3749(d []interface{}) edpt.VpnIpsecBindTunnel3749 {
 
 	count1 := len(d)
-	var ret edpt.VpnIpsecBindTunnel3711
+	var ret edpt.VpnIpsecBindTunnel3749
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Tunnel = in["tunnel"].(int)
@@ -274,10 +274,10 @@ func getSliceVpnIpsecEncCfg(d []interface{}) []edpt.VpnIpsecEncCfg {
 	return ret
 }
 
-func getObjectVpnIpsecIpsecGateway3712(d []interface{}) edpt.VpnIpsecIpsecGateway3712 {
+func getObjectVpnIpsecIpsecGateway3750(d []interface{}) edpt.VpnIpsecIpsecGateway3750 {
 
 	count1 := len(d)
-	var ret edpt.VpnIpsecIpsecGateway3712
+	var ret edpt.VpnIpsecIpsecGateway3750
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.IkeGateway = in["ike_gateway"].(string)
@@ -348,12 +348,12 @@ func getObjectVpnIpsecTrafficSelectorIpv6(d []interface{}) edpt.VpnIpsecTrafficS
 func dataToEndpointVpnIpsec(d *schema.ResourceData) edpt.VpnIpsec {
 	var ret edpt.VpnIpsec
 	ret.Inst.AntiReplayWindow = d.Get("anti_replay_window").(string)
-	ret.Inst.BindTunnel = getObjectVpnIpsecBindTunnel3711(d.Get("bind_tunnel").([]interface{}))
+	ret.Inst.BindTunnel = getObjectVpnIpsecBindTunnel3749(d.Get("bind_tunnel").([]interface{}))
 	ret.Inst.DhGroup = d.Get("dh_group").(string)
 	ret.Inst.Dscp = d.Get("dscp").(string)
 	ret.Inst.EncCfg = getSliceVpnIpsecEncCfg(d.Get("enc_cfg").([]interface{}))
 	ret.Inst.EnforceTrafficSelector = d.Get("enforce_traffic_selector").(int)
-	ret.Inst.IpsecGateway = getObjectVpnIpsecIpsecGateway3712(d.Get("ipsec_gateway").([]interface{}))
+	ret.Inst.IpsecGateway = getObjectVpnIpsecIpsecGateway3750(d.Get("ipsec_gateway").([]interface{}))
 	ret.Inst.Lifebytes = d.Get("lifebytes").(int)
 	ret.Inst.Lifetime = d.Get("lifetime").(int)
 	ret.Inst.Mode = d.Get("mode").(string)

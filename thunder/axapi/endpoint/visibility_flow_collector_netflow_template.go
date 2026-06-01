@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityFlowCollectorNetflowTemplate struct {
 	Inst struct {
-		Detail VisibilityFlowCollectorNetflowTemplateDetail2035 `json:"detail"`
+		Detail VisibilityFlowCollectorNetflowTemplateDetail2034 `json:"detail"`
 
 		SamplingEnable []VisibilityFlowCollectorNetflowTemplateSamplingEnable `json:"sampling-enable"`
 
@@ -16,7 +16,7 @@ type VisibilityFlowCollectorNetflowTemplate struct {
 	} `json:"template"`
 }
 
-type VisibilityFlowCollectorNetflowTemplateDetail2035 struct {
+type VisibilityFlowCollectorNetflowTemplateDetail2034 struct {
 	Uuid string `json:"uuid"`
 }
 

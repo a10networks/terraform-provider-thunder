@@ -157,10 +157,10 @@ func resourceCloudServicesCloudProviderAzureMetricsRead(ctx context.Context, d *
 	return diags
 }
 
-func getObjectCloudServicesCloudProviderAzureMetricsDdos139(d []interface{}) edpt.CloudServicesCloudProviderAzureMetricsDdos139 {
+func getObjectCloudServicesCloudProviderAzureMetricsDdos140(d []interface{}) edpt.CloudServicesCloudProviderAzureMetricsDdos140 {
 
 	count1 := len(d)
-	var ret edpt.CloudServicesCloudProviderAzureMetricsDdos139
+	var ret edpt.CloudServicesCloudProviderAzureMetricsDdos140
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Tcp = in["tcp"].(string)
@@ -178,7 +178,7 @@ func dataToEndpointCloudServicesCloudProviderAzureMetrics(d *schema.ResourceData
 	ret.Inst.ActivePartitions = d.Get("active_partitions").(string)
 	ret.Inst.Cps = d.Get("cps").(string)
 	ret.Inst.Cpu = d.Get("cpu").(string)
-	ret.Inst.Ddos = getObjectCloudServicesCloudProviderAzureMetricsDdos139(d.Get("ddos").([]interface{}))
+	ret.Inst.Ddos = getObjectCloudServicesCloudProviderAzureMetricsDdos140(d.Get("ddos").([]interface{}))
 	ret.Inst.Disk = d.Get("disk").(string)
 	ret.Inst.Interfaces = d.Get("interfaces").(string)
 	ret.Inst.Memory = d.Get("memory").(string)

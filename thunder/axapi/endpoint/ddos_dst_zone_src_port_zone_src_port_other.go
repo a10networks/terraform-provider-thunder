@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZoneSrcPortZoneSrcPortOther struct {
 	Inst struct {
 		DefaultActionList string `json:"default-action-list"`
@@ -16,7 +16,7 @@ type DdosDstZoneSrcPortZoneSrcPortOther struct {
 
 		LevelList []DdosDstZoneSrcPortZoneSrcPortOtherLevelList `json:"level-list"`
 
-		PortInd DdosDstZoneSrcPortZoneSrcPortOtherPortInd266 `json:"port-ind"`
+		PortInd DdosDstZoneSrcPortZoneSrcPortOtherPortInd269 `json:"port-ind"`
 
 		PortOther string `json:"port-other"`
 
@@ -52,7 +52,7 @@ type DdosDstZoneSrcPortZoneSrcPortOtherLevelListIndicatorList struct {
 	UserTag               string `json:"user-tag"`
 }
 
-type DdosDstZoneSrcPortZoneSrcPortOtherPortInd266 struct {
+type DdosDstZoneSrcPortZoneSrcPortOtherPortInd269 struct {
 	Uuid string `json:"uuid"`
 }
 

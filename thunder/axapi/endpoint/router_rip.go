@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type RouterRip struct {
 	Inst struct {
 		CiscoMetricBehavior string `json:"cisco-metric-behavior" dval:"disable"`
@@ -16,7 +16,7 @@ type RouterRip struct {
 
 		DistanceListCfg []RouterRipDistanceListCfg `json:"distance-list-cfg"`
 
-		DistributeList RouterRipDistributeList1393 `json:"distribute-list"`
+		DistributeList RouterRipDistributeList1392 `json:"distribute-list"`
 
 		Neighbor []RouterRipNeighbor `json:"neighbor"`
 
@@ -24,13 +24,13 @@ type RouterRip struct {
 
 		NetworkInterfaceListCfg []RouterRipNetworkInterfaceListCfg `json:"network-interface-list-cfg"`
 
-		OffsetList RouterRipOffsetList1397 `json:"offset-list"`
+		OffsetList RouterRipOffsetList1396 `json:"offset-list"`
 
 		PassiveInterfaceList []RouterRipPassiveInterfaceList `json:"passive-interface-list"`
 
 		RecvBufferSize int `json:"recv-buffer-size"`
 
-		Redistribute RouterRipRedistribute1399 `json:"redistribute"`
+		Redistribute RouterRipRedistribute1398 `json:"redistribute"`
 
 		RipMaximumPrefixCfg RouterRipRipMaximumPrefixCfg `json:"rip-maximum-prefix-cfg"`
 
@@ -50,13 +50,13 @@ type RouterRipDistanceListCfg struct {
 	DistanceAcl      string `json:"distance-acl"`
 }
 
-type RouterRipDistributeList1393 struct {
-	AclCfg []RouterRipDistributeListAclCfg1394 `json:"acl-cfg"`
+type RouterRipDistributeList1392 struct {
+	AclCfg []RouterRipDistributeListAclCfg1393 `json:"acl-cfg"`
 	Uuid   string                              `json:"uuid"`
-	Prefix RouterRipDistributeListPrefix1395   `json:"prefix"`
+	Prefix RouterRipDistributeListPrefix1394   `json:"prefix"`
 }
 
-type RouterRipDistributeListAclCfg1394 struct {
+type RouterRipDistributeListAclCfg1393 struct {
 	Acl          string `json:"acl"`
 	AclDirection string `json:"acl-direction"`
 	Ethernet     int    `json:"ethernet"`
@@ -66,12 +66,12 @@ type RouterRipDistributeListAclCfg1394 struct {
 	Ve           int    `json:"ve"`
 }
 
-type RouterRipDistributeListPrefix1395 struct {
-	PrefixCfg []RouterRipDistributeListPrefixPrefixCfg1396 `json:"prefix-cfg"`
+type RouterRipDistributeListPrefix1394 struct {
+	PrefixCfg []RouterRipDistributeListPrefixPrefixCfg1395 `json:"prefix-cfg"`
 	Uuid      string                                       `json:"uuid"`
 }
 
-type RouterRipDistributeListPrefixPrefixCfg1396 struct {
+type RouterRipDistributeListPrefixPrefixCfg1395 struct {
 	PrefixList          string `json:"prefix-list"`
 	PrefixListDirection string `json:"prefix-list-direction"`
 	Ethernet            int    `json:"ethernet"`
@@ -97,12 +97,12 @@ type RouterRipNetworkInterfaceListCfg struct {
 	Ve       int `json:"ve"`
 }
 
-type RouterRipOffsetList1397 struct {
-	AclCfg []RouterRipOffsetListAclCfg1398 `json:"acl-cfg"`
+type RouterRipOffsetList1396 struct {
+	AclCfg []RouterRipOffsetListAclCfg1397 `json:"acl-cfg"`
 	Uuid   string                          `json:"uuid"`
 }
 
-type RouterRipOffsetListAclCfg1398 struct {
+type RouterRipOffsetListAclCfg1397 struct {
 	Acl                 string `json:"acl"`
 	OffsetListDirection string `json:"offset-list-direction"`
 	Metric              int    `json:"metric"`
@@ -121,19 +121,19 @@ type RouterRipPassiveInterfaceList struct {
 	Ve       int `json:"ve"`
 }
 
-type RouterRipRedistribute1399 struct {
-	RedistList []RouterRipRedistributeRedistList1400 `json:"redist-list"`
-	VipList    []RouterRipRedistributeVipList1401    `json:"vip-list"`
+type RouterRipRedistribute1398 struct {
+	RedistList []RouterRipRedistributeRedistList1399 `json:"redist-list"`
+	VipList    []RouterRipRedistributeVipList1400    `json:"vip-list"`
 	Uuid       string                                `json:"uuid"`
 }
 
-type RouterRipRedistributeRedistList1400 struct {
+type RouterRipRedistributeRedistList1399 struct {
 	Type     string `json:"type"`
 	Metric   int    `json:"metric"`
 	RouteMap string `json:"route-map"`
 }
 
-type RouterRipRedistributeVipList1401 struct {
+type RouterRipRedistributeVipList1400 struct {
 	VipType     string `json:"vip-type"`
 	VipMetric   int    `json:"vip-metric"`
 	VipRouteMap string `json:"vip-route-map"`

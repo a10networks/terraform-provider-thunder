@@ -38,7 +38,7 @@ resource "thunder_web_category_proxy_server" "thunderWebCategoryProxyServerTest"
 
 ### Optional
 
-- `auth_type` (String) 'ntlm': NTLM authentication(default); 'basic': Basic authentication;
+- `auth_type` (String) 'ntlm': NTLM authentication; 'basic': Basic authentication (default);
 - `domain` (String) Realm for NTLM authentication
 - `http_port` (Number) Proxy server HTTP port
 - `https_port` (Number) Proxy server HTTPS port(HTTP port will be used if not configured)

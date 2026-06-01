@@ -73,10 +73,15 @@ Optional:
 
 Optional:
 
+- `cert` (String) Specify the client certificate (The certificate file name)
+- `custom_ca` (String) Speicfy a CA certificate (The CA certificate file name)
 - `monitor` (Number) Specify monitor TACACS+ server
+- `over_tls` (Number) Enable TACACS+ over TLS support
 - `password` (Number) Specify the user password
 - `password_value` (String) The user password
 - `port` (Number) Specify the port number used by TACACS+ server.( default port is 49) (Port number (default 49))
 - `prefer_data_interface` (Number) Prefer data plane to send request (Only for loopback)
+- `private_key` (String) Specify the client private-key (The private-key file name)
+- `skip_cert_verification` (Number) Do TLS without server certificate verification
 - `timeout` (Number) Specify the maximum time allowed for setting up a connection with the TACACS+ server. (default timeout is 12 seconds) (Maximum time allowed for setting up a connection with the TACACS+ server, in seconds (default 12))
 - `username` (String) Specify the username

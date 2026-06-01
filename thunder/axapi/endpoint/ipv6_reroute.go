@@ -5,16 +5,16 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Ipv6Reroute struct {
 	Inst struct {
-		SuppressProtocols Ipv6RerouteSuppressProtocols1126 `json:"suppress-protocols"`
+		SuppressProtocols Ipv6RerouteSuppressProtocols1125 `json:"suppress-protocols"`
 
 		Uuid string `json:"uuid"`
 	} `json:"reroute"`
 }
 
-type Ipv6RerouteSuppressProtocols1126 struct {
+type Ipv6RerouteSuppressProtocols1125 struct {
 	Ospf      int    `json:"ospf"`
 	Ebgp      int    `json:"ebgp"`
 	Ibgp      int    `json:"ibgp"`

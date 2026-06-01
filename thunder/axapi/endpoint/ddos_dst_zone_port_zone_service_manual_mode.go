@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZonePortZoneServiceManualMode struct {
 	Inst struct {
 		CloseSessionsForAllSources int `json:"close-sessions-for-all-sources"`
@@ -24,11 +24,11 @@ type DdosDstZonePortZoneServiceManualMode struct {
 
 		ZoneTemplate DdosDstZonePortZoneServiceManualModeZoneTemplate `json:"zone-template"`
 
-		Protocol string
+		ZoneName string
 
 		PortNum string
 
-		ZoneName string
+		Protocol string
 	} `json:"manual-mode"`
 }
 

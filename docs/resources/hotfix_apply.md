@@ -22,6 +22,7 @@ __PLACEHOLDER__
 
 - `file_url` (String) File URL
 - `image_file` (String) image file from AXAPI
+- `password` (String) password for the remote site
 - `source_ip_address` (String) Source ip address
 - `use_mgmt_port` (Number) Use management port as source port
 

@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SnmpServerEnableTrapsRoutingBgp struct {
 	Inst struct {
-		Ax SnmpServerEnableTrapsRoutingBgpAx1580 `json:"ax"`
+		Ax SnmpServerEnableTrapsRoutingBgpAx1581 `json:"ax"`
 
 		Bgpbackwardtransnotification int `json:"bgpBackwardTransNotification"`
 
@@ -18,7 +18,7 @@ type SnmpServerEnableTrapsRoutingBgp struct {
 	} `json:"bgp"`
 }
 
-type SnmpServerEnableTrapsRoutingBgpAx1580 struct {
+type SnmpServerEnableTrapsRoutingBgpAx1581 struct {
 	Bgpestablishednotification             int    `json:"bgpEstablishedNotification"`
 	Bgpbackwardtransnotification           int    `json:"bgpBackwardTransNotification"`
 	Bgpprefixthresholdexceedednotification int    `json:"bgpPrefixThresholdExceededNotification"`

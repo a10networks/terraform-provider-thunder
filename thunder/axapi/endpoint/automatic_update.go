@@ -5,24 +5,24 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type AutomaticUpdate struct {
 	Inst struct {
-		CheckNow AutomaticUpdateCheckNow69 `json:"check-now"`
+		CheckNow AutomaticUpdateCheckNow70 `json:"check-now"`
 
-		Checknow AutomaticUpdateChecknow70 `json:"checknow"`
+		Checknow AutomaticUpdateChecknow71 `json:"checknow"`
 
 		ConfigList []AutomaticUpdateConfigList `json:"config-list"`
 
 		GlmSourceUrl string `json:"glm-source-url"`
 
-		Info AutomaticUpdateInfo71 `json:"info"`
+		Info AutomaticUpdateInfo72 `json:"info"`
 
-		ProxyServer AutomaticUpdateProxyServer72 `json:"proxy-server"`
+		ProxyServer AutomaticUpdateProxyServer73 `json:"proxy-server"`
 
-		Reset AutomaticUpdateReset73 `json:"reset"`
+		Reset AutomaticUpdateReset74 `json:"reset"`
 
-		Revert AutomaticUpdateRevert74 `json:"revert"`
+		Revert AutomaticUpdateRevert75 `json:"revert"`
 
 		UseMgmtPort int `json:"use-mgmt-port"`
 
@@ -30,14 +30,14 @@ type AutomaticUpdate struct {
 	} `json:"automatic-update"`
 }
 
-type AutomaticUpdateCheckNow69 struct {
+type AutomaticUpdateCheckNow70 struct {
 	FeatureName       string `json:"feature-name"`
 	ProdVer           string `json:"prod-ver"`
 	FromStagingServer int    `json:"from-staging-server"`
 	StageVer          string `json:"stage-ver"`
 }
 
-type AutomaticUpdateChecknow70 struct {
+type AutomaticUpdateChecknow71 struct {
 	Uuid string `json:"uuid"`
 }
 
@@ -54,11 +54,11 @@ type AutomaticUpdateConfigList struct {
 	Uuid             string `json:"uuid"`
 }
 
-type AutomaticUpdateInfo71 struct {
+type AutomaticUpdateInfo72 struct {
 	Uuid string `json:"uuid"`
 }
 
-type AutomaticUpdateProxyServer72 struct {
+type AutomaticUpdateProxyServer73 struct {
 	ProxyHost    string `json:"proxy-host"`
 	HttpsPort    int    `json:"https-port"`
 	AuthType     string `json:"auth-type" dval:"ntlm"`
@@ -70,11 +70,11 @@ type AutomaticUpdateProxyServer72 struct {
 	Uuid         string `json:"uuid"`
 }
 
-type AutomaticUpdateReset73 struct {
+type AutomaticUpdateReset74 struct {
 	FeatureName string `json:"feature-name"`
 }
 
-type AutomaticUpdateRevert74 struct {
+type AutomaticUpdateRevert75 struct {
 	FeatureName string `json:"feature-name"`
 }
 

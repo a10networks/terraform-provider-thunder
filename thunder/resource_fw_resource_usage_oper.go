@@ -59,6 +59,12 @@ func resourceFwResourceUsageOper() *schema.Resource {
 						"fw_helper_sessions_total_count": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
+						"radius_table_current_count": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"radius_table_total_count": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 						"clause_per_obj_grp_current_count": {
 							Type: schema.TypeString, Optional: true, Description: "",
 						},
@@ -84,6 +90,9 @@ func resourceFwResourceUsageOper() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
 						"helper_sessions": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"radius_table_size": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
 						"clause_per_obj_grp": {
@@ -132,6 +141,8 @@ func setObjectFwResourceUsageOperOper(ret edpt.DataFwResourceUsageOper) []interf
 			"fw_ip_range_total_count":          ret.DtFwResourceUsageOper.Oper.FwIpRangeTotalCount,
 			"fw_helper_sessions_current_count": ret.DtFwResourceUsageOper.Oper.FwHelperSessionsCurrentCount,
 			"fw_helper_sessions_total_count":   ret.DtFwResourceUsageOper.Oper.FwHelperSessionsTotalCount,
+			"radius_table_current_count":       ret.DtFwResourceUsageOper.Oper.RadiusTableCurrentCount,
+			"radius_table_total_count":         ret.DtFwResourceUsageOper.Oper.RadiusTableTotalCount,
 			"clause_per_obj_grp_current_count": ret.DtFwResourceUsageOper.Oper.ClausePerObjGrpCurrentCount,
 			"clause_per_obj_grp_total_count":   ret.DtFwResourceUsageOper.Oper.ClausePerObjGrpTotalCount,
 			"object":                           ret.DtFwResourceUsageOper.Oper.Object,
@@ -141,6 +152,7 @@ func setObjectFwResourceUsageOperOper(ret edpt.DataFwResourceUsageOper) []interf
 			"zone":                             ret.DtFwResourceUsageOper.Oper.Zone,
 			"ip_range":                         ret.DtFwResourceUsageOper.Oper.IpRange,
 			"helper_sessions":                  ret.DtFwResourceUsageOper.Oper.HelperSessions,
+			"radius_table_size":                ret.DtFwResourceUsageOper.Oper.RadiusTableSize,
 			"clause_per_obj_grp":               ret.DtFwResourceUsageOper.Oper.ClausePerObjGrp,
 		},
 	}
@@ -166,6 +178,8 @@ func getObjectFwResourceUsageOperOper(d []interface{}) edpt.FwResourceUsageOperO
 		ret.FwIpRangeTotalCount = in["fw_ip_range_total_count"].(int)
 		ret.FwHelperSessionsCurrentCount = in["fw_helper_sessions_current_count"].(int)
 		ret.FwHelperSessionsTotalCount = in["fw_helper_sessions_total_count"].(int)
+		ret.RadiusTableCurrentCount = in["radius_table_current_count"].(int)
+		ret.RadiusTableTotalCount = in["radius_table_total_count"].(int)
 		ret.ClausePerObjGrpCurrentCount = in["clause_per_obj_grp_current_count"].(string)
 		ret.ClausePerObjGrpTotalCount = in["clause_per_obj_grp_total_count"].(int)
 		ret.Object = in["object"].(int)
@@ -175,6 +189,7 @@ func getObjectFwResourceUsageOperOper(d []interface{}) edpt.FwResourceUsageOperO
 		ret.Zone = in["zone"].(int)
 		ret.IpRange = in["ip_range"].(int)
 		ret.HelperSessions = in["helper_sessions"].(int)
+		ret.RadiusTableSize = in["radius_table_size"].(int)
 		ret.ClausePerObjGrp = in["clause_per_obj_grp"].(int)
 	}
 	return ret

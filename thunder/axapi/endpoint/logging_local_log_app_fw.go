@@ -5,22 +5,22 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type LoggingLocalLogAppFw struct {
 	Inst struct {
-		DotPlot LoggingLocalLogAppFwDotPlot1132 `json:"dot-plot"`
+		DotPlot LoggingLocalLogAppFwDotPlot1131 `json:"dot-plot"`
 
-		TopN LoggingLocalLogAppFwTopN1133 `json:"top-n"`
+		TopN LoggingLocalLogAppFwTopN1132 `json:"top-n"`
 
 		Uuid string `json:"uuid"`
 	} `json:"app-fw"`
 }
 
-type LoggingLocalLogAppFwDotPlot1132 struct {
+type LoggingLocalLogAppFwDotPlot1131 struct {
 	Uuid string `json:"uuid"`
 }
 
-type LoggingLocalLogAppFwTopN1133 struct {
+type LoggingLocalLogAppFwTopN1132 struct {
 	Uuid string `json:"uuid"`
 }
 

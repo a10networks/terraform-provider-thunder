@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosZoneProfilePort struct {
 	Inst struct {
 		IndicatorList []DdosZoneProfilePortIndicatorList `json:"indicator-list"`

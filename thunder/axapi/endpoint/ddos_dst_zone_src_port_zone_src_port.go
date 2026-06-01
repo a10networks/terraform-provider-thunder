@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosDstZoneSrcPortZoneSrcPort struct {
 	Inst struct {
 		DefaultActionList string `json:"default-action-list"`
@@ -19,7 +19,7 @@ type DdosDstZoneSrcPortZoneSrcPort struct {
 
 		OutboundSrcTracking string `json:"outbound-src-tracking" dval:"disable"`
 
-		PortInd DdosDstZoneSrcPortZoneSrcPortPortInd267 `json:"port-ind"`
+		PortInd DdosDstZoneSrcPortZoneSrcPortPortInd270 `json:"port-ind"`
 
 		PortNum int `json:"port-num"`
 
@@ -55,7 +55,7 @@ type DdosDstZoneSrcPortZoneSrcPortLevelListIndicatorList struct {
 	UserTag               string `json:"user-tag"`
 }
 
-type DdosDstZoneSrcPortZoneSrcPortPortInd267 struct {
+type DdosDstZoneSrcPortZoneSrcPortPortInd270 struct {
 	Uuid string `json:"uuid"`
 }
 

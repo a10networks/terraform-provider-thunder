@@ -5,12 +5,12 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type RouterRipDistributeList struct {
 	Inst struct {
 		AclCfg []RouterRipDistributeListAclCfg `json:"acl-cfg"`
 
-		Prefix RouterRipDistributeListPrefix1391 `json:"prefix"`
+		Prefix RouterRipDistributeListPrefix1390 `json:"prefix"`
 
 		Uuid string `json:"uuid"`
 	} `json:"distribute-list"`
@@ -26,12 +26,12 @@ type RouterRipDistributeListAclCfg struct {
 	Ve           int    `json:"ve"`
 }
 
-type RouterRipDistributeListPrefix1391 struct {
-	PrefixCfg []RouterRipDistributeListPrefixPrefixCfg1392 `json:"prefix-cfg"`
+type RouterRipDistributeListPrefix1390 struct {
+	PrefixCfg []RouterRipDistributeListPrefixPrefixCfg1391 `json:"prefix-cfg"`
 	Uuid      string                                       `json:"uuid"`
 }
 
-type RouterRipDistributeListPrefixPrefixCfg1392 struct {
+type RouterRipDistributeListPrefixPrefixCfg1391 struct {
 	PrefixList          string `json:"prefix-list"`
 	PrefixListDirection string `json:"prefix-list-direction"`
 	Ethernet            int    `json:"ethernet"`

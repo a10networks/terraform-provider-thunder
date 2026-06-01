@@ -6,10 +6,10 @@ import (
 	"net/url"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type TrafficControlRuleSetRule struct {
 	Inst struct {
-		ActionGroup TrafficControlRuleSetRuleActionGroup2030 `json:"action-group"`
+		ActionGroup TrafficControlRuleSetRuleActionGroup2029 `json:"action-group"`
 
 		AppList []TrafficControlRuleSetRuleAppList `json:"app-list"`
 
@@ -39,7 +39,7 @@ type TrafficControlRuleSetRule struct {
 
 		IpVersion string `json:"ip-version" dval:"v4"`
 
-		MoveRule TrafficControlRuleSetRuleMoveRule2031 `json:"move-rule"`
+		MoveRule TrafficControlRuleSetRuleMoveRule2030 `json:"move-rule"`
 
 		Name string `json:"name"`
 
@@ -81,7 +81,7 @@ type TrafficControlRuleSetRule struct {
 	} `json:"rule"`
 }
 
-type TrafficControlRuleSetRuleActionGroup2030 struct {
+type TrafficControlRuleSetRuleActionGroup2029 struct {
 	LimitPolicy int    `json:"limit-policy"`
 	Uuid        string `json:"uuid"`
 }
@@ -100,7 +100,7 @@ type TrafficControlRuleSetRuleDestList struct {
 	DstSlbVserver    string `json:"dst-slb-vserver"`
 }
 
-type TrafficControlRuleSetRuleMoveRule2031 struct {
+type TrafficControlRuleSetRuleMoveRule2030 struct {
 	Location   string `json:"location" dval:"bottom"`
 	TargetRule string `json:"target-rule"`
 }

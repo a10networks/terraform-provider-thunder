@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SystemResourceUsage struct {
 	Inst struct {
 		AflexTableEntryCount int `json:"aflex-table-entry-count"`
@@ -26,6 +26,8 @@ type SystemResourceUsage struct {
 
 		IpsecSaNumber int `json:"ipsec-sa-number"`
 
+		JwtCacheEntry int `json:"jwt-cache-entry"`
+
 		L4SessionCount int `json:"l4-session-count"`
 
 		MaxAflexAuthzCollectionNumber int `json:"max-aflex-authz-collection-number" dval:"512"`
@@ -40,13 +42,17 @@ type SystemResourceUsage struct {
 
 		RamCacheMemoryLimit int `json:"ram-cache-memory-limit"`
 
+		SslContextMemory int `json:"ssl-context-memory" dval:"2048"`
+
+		SslDmaMemory int `json:"ssl-dma-memory" dval:"256"`
+
 		Uuid string `json:"uuid"`
 
-		Visibility SystemResourceUsageVisibility1753 `json:"visibility"`
+		Visibility SystemResourceUsageVisibility1754 `json:"visibility"`
 	} `json:"resource-usage"`
 }
 
-type SystemResourceUsageVisibility1753 struct {
+type SystemResourceUsageVisibility1754 struct {
 	MonitoredEntityCount int    `json:"monitored-entity-count"`
 	Uuid                 string `json:"uuid"`
 }

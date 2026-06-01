@@ -63,5 +63,6 @@ Optional:
 - `mpls_malformed` (Number) MPLS Malformed
 - `mpls_rcvd` (Number) MPLS Received
 - `noroute` (Number) IPv4/v6 Out No Route
+- `outgoing_mtu_exceed_drop` (Number) Outgoing MTU Exceed Drop
 - `pkt_not_for_ddos` (Number) Not For DDOS
 - `src_ip_bypass` (Number) Src IP Bypass

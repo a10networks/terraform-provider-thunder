@@ -5,9 +5,11 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type SflowSampling struct {
 	Inst struct {
+		DdosZone int `json:"ddos-zone"`
+
 		EthList []SflowSamplingEthList `json:"eth-list"`
 
 		Uuid string `json:"uuid"`

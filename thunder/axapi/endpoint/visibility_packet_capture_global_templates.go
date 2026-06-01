@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type VisibilityPacketCaptureGlobalTemplates struct {
 	Inst struct {
-		Activate VisibilityPacketCaptureGlobalTemplatesActivate2718 `json:"activate"`
+		Activate VisibilityPacketCaptureGlobalTemplatesActivate2733 `json:"activate"`
 
 		TemplateList []VisibilityPacketCaptureGlobalTemplatesTemplateList `json:"template-list"`
 
@@ -16,7 +16,7 @@ type VisibilityPacketCaptureGlobalTemplates struct {
 	} `json:"global-templates"`
 }
 
-type VisibilityPacketCaptureGlobalTemplatesActivate2718 struct {
+type VisibilityPacketCaptureGlobalTemplatesActivate2733 struct {
 	Template string `json:"template"`
 	Uuid     string `json:"uuid"`
 }
@@ -73,6 +73,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChange 
 	Cgnv6LsnAlgSip           VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSip           `json:"cgnv6-lsn-alg-sip"`
 	Cgnv6LsnAlgMgcp          VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcp          `json:"cgnv6-lsn-alg-mgcp"`
 	Cgnv6LsnAlgH323          VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323          `json:"cgnv6-lsn-alg-h323"`
+	Cgnv6LsnRadius           VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadius           `json:"cgnv6-lsn-radius"`
 	Cgnv6Nat64Global         VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64Global         `json:"cgnv6-nat64-global"`
 	Cgnv6DsLiteGlobal        VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobal        `json:"cgnv6-ds-lite-global"`
 	Cgnv6FixedNatGlobal      VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobal      `json:"cgnv6-fixed-nat-global"`
@@ -90,6 +91,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChange 
 	FwGlobal                 VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobal                 `json:"fw-global"`
 	FwAlgRtsp                VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtsp                `json:"fw-alg-rtsp"`
 	FwAlgPptp                VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptp                `json:"fw-alg-pptp"`
+	FwRadServer              VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServer              `json:"fw-rad-server"`
 	FwTcpSynCookie           VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookie           `json:"fw-tcp-syn-cookie"`
 	FwDdosProtection         VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtection         `json:"fw-ddos-protection"`
 	FwGtp                    VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtp                    `json:"fw-gtp"`
@@ -1549,9 +1551,6 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	L3_entry_remove_from_bgp_failure int    `json:"l3_entry_remove_from_bgp_failure"`
 	L3_entry_add_to_hw_failure       int    `json:"l3_entry_add_to_hw_failure"`
 	Syn_cookie_verification_failed   int    `json:"syn_cookie_verification_failed"`
-	L3_entry_del_to_hw_failure       int    `json:"l3_entry_del_to_hw_failure"`
-	L4_entry_del_to_hw_failure       int    `json:"l4_entry_del_to_hw_failure"`
-	L4_entry_add_to_hw_failure       int    `json:"l4_entry_add_to_hw_failure"`
 	Uuid                             string `json:"uuid"`
 }
 
@@ -1572,9 +1571,6 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	L3_entry_remove_from_bgp_failure int    `json:"l3_entry_remove_from_bgp_failure"`
 	L3_entry_add_to_hw_failure       int    `json:"l3_entry_add_to_hw_failure"`
 	Syn_cookie_verification_failed   int    `json:"syn_cookie_verification_failed"`
-	L3_entry_del_to_hw_failure       int    `json:"l3_entry_del_to_hw_failure"`
-	L4_entry_del_to_hw_failure       int    `json:"l4_entry_del_to_hw_failure"`
-	L4_entry_add_to_hw_failure       int    `json:"l4_entry_add_to_hw_failure"`
 	Uuid                             string `json:"uuid"`
 }
 
@@ -1774,6 +1770,40 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	Uuid                string `json:"uuid"`
 }
 
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadius struct {
+	Uuid             string                                                                                                   `json:"uuid"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsInc  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsRate `json:"trigger-stats-rate"`
+}
+
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsInc struct {
+	RadiusRequestDropped       int    `json:"radius-request-dropped"`
+	RequestBadSecretDropped    int    `json:"request-bad-secret-dropped"`
+	RequestNoKeyVapDropped     int    `json:"request-no-key-vap-dropped"`
+	RequestMalformedDropped    int    `json:"request-malformed-dropped"`
+	RequestIgnored             int    `json:"request-ignored"`
+	RadiusTableFull            int    `json:"radius-table-full"`
+	SecretNotConfiguredDropped int    `json:"secret-not-configured-dropped"`
+	HaStandbyDropped           int    `json:"ha-standby-dropped"`
+	InvalidKey                 int    `json:"invalid-key"`
+	Uuid                       string `json:"uuid"`
+}
+
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsRate struct {
+	ThresholdExceededBy        int    `json:"threshold-exceeded-by" dval:"5"`
+	Duration                   int    `json:"duration" dval:"60"`
+	RadiusRequestDropped       int    `json:"radius-request-dropped"`
+	RequestBadSecretDropped    int    `json:"request-bad-secret-dropped"`
+	RequestNoKeyVapDropped     int    `json:"request-no-key-vap-dropped"`
+	RequestMalformedDropped    int    `json:"request-malformed-dropped"`
+	RequestIgnored             int    `json:"request-ignored"`
+	RadiusTableFull            int    `json:"radius-table-full"`
+	SecretNotConfiguredDropped int    `json:"secret-not-configured-dropped"`
+	HaStandbyDropped           int    `json:"ha-standby-dropped"`
+	InvalidKey                 int    `json:"invalid-key"`
+	Uuid                       string `json:"uuid"`
+}
+
 type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64Global struct {
 	Uuid             string                                                                                                     `json:"uuid"`
 	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64GlobalTriggerStatsInc  `json:"trigger-stats-inc"`
@@ -1873,6 +1903,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	ConfigNotFound                     int    `json:"config-not-found"`
 	PortOverloadFailed                 int    `json:"port-overload-failed"`
 	HaSessionUserQuotaExceeded         int    `json:"ha-session-user-quota-exceeded"`
+	UnusedIpDrop                       int    `json:"unused-ip-drop"`
 	Uuid                               string `json:"uuid"`
 }
 
@@ -1899,6 +1930,7 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeC
 	ConfigNotFound                     int    `json:"config-not-found"`
 	PortOverloadFailed                 int    `json:"port-overload-failed"`
 	HaSessionUserQuotaExceeded         int    `json:"ha-session-user-quota-exceeded"`
+	UnusedIpDrop                       int    `json:"unused-ip-drop"`
 	Uuid                               string `json:"uuid"`
 }
 
@@ -2230,6 +2262,40 @@ type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeF
 	CallReqPnsCallIdMismatch   int    `json:"call-req-pns-call-id-mismatch"`
 	CallReplyPnsCallIdMismatch int    `json:"call-reply-pns-call-id-mismatch"`
 	Uuid                       string `json:"uuid"`
+}
+
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServer struct {
+	Uuid             string                                                                                                `json:"uuid"`
+	TriggerStatsInc  VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsInc  `json:"trigger-stats-inc"`
+	TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsRate `json:"trigger-stats-rate"`
+}
+
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsInc struct {
+	RadiusRequestDropped     int    `json:"radius-request-dropped"`
+	RequestBadSecretDropped  int    `json:"request-bad-secret-dropped"`
+	RequestNoKeyVapDropped   int    `json:"request-no-key-vap-dropped"`
+	RequestMalformedDropped  int    `json:"request-malformed-dropped"`
+	RequestIgnored           int    `json:"request-ignored"`
+	RadiusTableFull          int    `json:"radius-table-full"`
+	HaStandbyDropped         int    `json:"ha-standby-dropped"`
+	Ipv6PrefixLengthMismatch int    `json:"ipv6-prefix-length-mismatch"`
+	InvalidKey               int    `json:"invalid-key"`
+	Uuid                     string `json:"uuid"`
+}
+
+type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsRate struct {
+	ThresholdExceededBy      int    `json:"threshold-exceeded-by" dval:"5"`
+	Duration                 int    `json:"duration" dval:"60"`
+	RadiusRequestDropped     int    `json:"radius-request-dropped"`
+	RequestBadSecretDropped  int    `json:"request-bad-secret-dropped"`
+	RequestNoKeyVapDropped   int    `json:"request-no-key-vap-dropped"`
+	RequestMalformedDropped  int    `json:"request-malformed-dropped"`
+	RequestIgnored           int    `json:"request-ignored"`
+	RadiusTableFull          int    `json:"radius-table-full"`
+	HaStandbyDropped         int    `json:"ha-standby-dropped"`
+	Ipv6PrefixLengthMismatch int    `json:"ipv6-prefix-length-mismatch"`
+	InvalidKey               int    `json:"invalid-key"`
+	Uuid                     string `json:"uuid"`
 }
 
 type VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookie struct {

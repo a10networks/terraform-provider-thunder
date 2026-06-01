@@ -16,11 +16,17 @@ func resourceScaleoutUserGroupAssignmentTemplateV6Assignment() *schema.Resource 
 		DeleteContext: resourceScaleoutUserGroupAssignmentTemplateV6AssignmentDelete,
 
 		Schema: map[string]*schema.Schema{
+			"assignment_prefix_auto": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Automatically break down the prefix so that each user-group is assigned one and only one subnet",
+			},
 			"assignment_prefix_length": {
 				Type: schema.TypeInt, Optional: true, Default: 128, Description: "User group assignment prefix length, default is 128",
 			},
 			"ipv6_prefix": {
 				Type: schema.TypeString, Required: true, Description: "IPv6 prefix",
+			},
+			"private_ip": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Set the assignment as private, and no BGP route will be advertised for it",
 			},
 			"service_config_template": {
 				Type: schema.TypeString, Optional: true, Description: "Configure a scaleout service config template to use",
@@ -104,8 +110,10 @@ func resourceScaleoutUserGroupAssignmentTemplateV6AssignmentRead(ctx context.Con
 
 func dataToEndpointScaleoutUserGroupAssignmentTemplateV6Assignment(d *schema.ResourceData) edpt.ScaleoutUserGroupAssignmentTemplateV6Assignment {
 	var ret edpt.ScaleoutUserGroupAssignmentTemplateV6Assignment
+	ret.Inst.AssignmentPrefixAuto = d.Get("assignment_prefix_auto").(int)
 	ret.Inst.AssignmentPrefixLength = d.Get("assignment_prefix_length").(int)
 	ret.Inst.Ipv6Prefix = d.Get("ipv6_prefix").(string)
+	ret.Inst.PrivateIp = d.Get("private_ip").(int)
 	ret.Inst.ServiceConfigTemplate = d.Get("service_config_template").(string)
 	ret.Inst.UserGroupRangeEnd = d.Get("user_group_range_end").(int)
 	ret.Inst.UserGroupRangeStart = d.Get("user_group_range_start").(int)

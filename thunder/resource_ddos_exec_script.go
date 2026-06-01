@@ -46,32 +46,6 @@ func resourceDdosExecScript() *schema.Resource {
 			"script": {
 				Type: schema.TypeString, Optional: true, Description: "Specify script to execute",
 			},
-			"src_ip": {
-				Type: schema.TypeList, Optional: true, Description: "",
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"ip_addr": {
-							Type: schema.TypeString, Optional: true, Description: "Specify IP address",
-						},
-						"subnet_ip_addr": {
-							Type: schema.TypeString, Optional: true, Description: "IP Subnet",
-						},
-					},
-				},
-			},
-			"src_ipv6": {
-				Type: schema.TypeList, Optional: true, Description: "",
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"ip6_addr": {
-							Type: schema.TypeString, Optional: true, Description: "Specify IPv6 address",
-						},
-						"subnet_ipv6_addr": {
-							Type: schema.TypeString, Optional: true, Description: "IPV6 Subnet",
-						},
-					},
-				},
-			},
 			"threshold": {
 				Type: schema.TypeInt, Optional: true, Description: "Threshold",
 			},
@@ -146,34 +120,6 @@ func resourceDdosExecScriptRead(ctx context.Context, d *schema.ResourceData, met
 	return diags
 }
 
-func getSliceDdosExecScriptSrcIp(d []interface{}) []edpt.DdosExecScriptSrcIp {
-
-	count1 := len(d)
-	ret := make([]edpt.DdosExecScriptSrcIp, 0, count1)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.DdosExecScriptSrcIp
-		oi.IpAddr = in["ip_addr"].(string)
-		oi.SubnetIpAddr = in["subnet_ip_addr"].(string)
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getSliceDdosExecScriptSrcIpv6(d []interface{}) []edpt.DdosExecScriptSrcIpv6 {
-
-	count1 := len(d)
-	ret := make([]edpt.DdosExecScriptSrcIpv6, 0, count1)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.DdosExecScriptSrcIpv6
-		oi.Ip6Addr = in["ip6_addr"].(string)
-		oi.SubnetIpv6Addr = in["subnet_ipv6_addr"].(string)
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
 func dataToEndpointDdosExecScript(d *schema.ResourceData) edpt.DdosExecScript {
 	var ret edpt.DdosExecScript
 	ret.Inst.AlertType = d.Get("alert_type").(int)
@@ -186,8 +132,6 @@ func dataToEndpointDdosExecScript(d *schema.ResourceData) edpt.DdosExecScript {
 	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.ProtocolNum = d.Get("protocol_num").(int)
 	ret.Inst.Script = d.Get("script").(string)
-	ret.Inst.SrcIp = getSliceDdosExecScriptSrcIp(d.Get("src_ip").([]interface{}))
-	ret.Inst.SrcIpv6 = getSliceDdosExecScriptSrcIpv6(d.Get("src_ipv6").([]interface{}))
 	ret.Inst.Threshold = d.Get("threshold").(int)
 	ret.Inst.Timeout = d.Get("timeout").(int)
 	ret.Inst.Zone = d.Get("zone").(string)

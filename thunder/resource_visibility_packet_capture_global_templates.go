@@ -4087,15 +4087,6 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 															"syn_cookie_verification_failed": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for SYN cookie verification failed",
 															},
-															"l3_entry_del_to_hw_failure": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L3 entry HW del failure",
-															},
-															"l4_entry_del_to_hw_failure": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L4 entry HW del failure",
-															},
-															"l4_entry_add_to_hw_failure": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L4 entry HW add failure",
-															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 															},
@@ -4153,15 +4144,6 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 															},
 															"syn_cookie_verification_failed": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for SYN cookie verification failed",
-															},
-															"l3_entry_del_to_hw_failure": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L3 entry HW del failure",
-															},
-															"l4_entry_del_to_hw_failure": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L4 entry HW del failure",
-															},
-															"l4_entry_add_to_hw_failure": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L4 entry HW add failure",
 															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -4676,6 +4658,96 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 											},
 										},
 									},
+									"cgnv6_lsn_radius": {
+										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"uuid": {
+													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+												},
+												"trigger_stats_inc": {
+													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"radius_request_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Malformed Packet)",
+															},
+															"request_bad_secret_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Bad Secret Dropped",
+															},
+															"request_no_key_vap_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request No Key Attribute Dropped",
+															},
+															"request_malformed_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Malformed Dropped",
+															},
+															"request_ignored": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Ignored",
+															},
+															"radius_table_full": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Table Full)",
+															},
+															"secret_not_configured_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Secret Not Configured Dropped",
+															},
+															"ha_standby_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for HA Standby Dropped",
+															},
+															"invalid_key": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Radius Request has Invalid Key Field",
+															},
+															"uuid": {
+																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+															},
+														},
+													},
+												},
+												"trigger_stats_rate": {
+													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"threshold_exceeded_by": {
+																Type: schema.TypeInt, Optional: true, Default: 5, Description: "Set the threshold to the number of times greater than the previous duration to start the capture, default is 5",
+															},
+															"duration": {
+																Type: schema.TypeInt, Optional: true, Default: 60, Description: "Time in seconds to look for the anomaly, default is 60",
+															},
+															"radius_request_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Malformed Packet)",
+															},
+															"request_bad_secret_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Bad Secret Dropped",
+															},
+															"request_no_key_vap_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request No Key Attribute Dropped",
+															},
+															"request_malformed_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Malformed Dropped",
+															},
+															"request_ignored": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Ignored",
+															},
+															"radius_table_full": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Table Full)",
+															},
+															"secret_not_configured_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Secret Not Configured Dropped",
+															},
+															"ha_standby_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for HA Standby Dropped",
+															},
+															"invalid_key": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Radius Request has Invalid Key Field",
+															},
+															"uuid": {
+																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+															},
+														},
+													},
+												},
+											},
+										},
+									},
 									"cgnv6_nat64_global": {
 										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 										Elem: &schema.Resource{
@@ -4939,6 +5011,9 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 															"ha_session_user_quota_exceeded": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for HA Sessions User Quota Exceeded",
 															},
+															"unused_ip_drop": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Fixed NAT UNUSED IP Hit and Drop",
+															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 															},
@@ -5014,6 +5089,9 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 															},
 															"ha_session_user_quota_exceeded": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for HA Sessions User Quota Exceeded",
+															},
+															"unused_ip_drop": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Fixed NAT UNUSED IP Hit and Drop",
 															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -5836,6 +5914,96 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 															},
 															"call_reply_pns_call_id_mismatch": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Call ID Mismatch on Call Reply",
+															},
+															"uuid": {
+																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+															},
+														},
+													},
+												},
+											},
+										},
+									},
+									"fw_rad_server": {
+										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"uuid": {
+													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+												},
+												"trigger_stats_inc": {
+													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"radius_request_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Malformed Packet)",
+															},
+															"request_bad_secret_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Bad Secret Dropped",
+															},
+															"request_no_key_vap_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request No Key Attribute Dropped",
+															},
+															"request_malformed_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Malformed Dropped",
+															},
+															"request_ignored": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Table Full Dropped",
+															},
+															"radius_table_full": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Table Full)",
+															},
+															"ha_standby_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for HA Standby Dropped",
+															},
+															"ipv6_prefix_length_mismatch": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Framed IPV6 Prefix Length Mismatch",
+															},
+															"invalid_key": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Radius Request has Invalid Key Field",
+															},
+															"uuid": {
+																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+															},
+														},
+													},
+												},
+												"trigger_stats_rate": {
+													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"threshold_exceeded_by": {
+																Type: schema.TypeInt, Optional: true, Default: 5, Description: "Set the threshold to the number of times greater than the previous duration to start the capture, default is 5",
+															},
+															"duration": {
+																Type: schema.TypeInt, Optional: true, Default: 60, Description: "Time in seconds to look for the anomaly, default is 60",
+															},
+															"radius_request_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Malformed Packet)",
+															},
+															"request_bad_secret_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Bad Secret Dropped",
+															},
+															"request_no_key_vap_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request No Key Attribute Dropped",
+															},
+															"request_malformed_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Malformed Dropped",
+															},
+															"request_ignored": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Table Full Dropped",
+															},
+															"radius_table_full": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Table Full)",
+															},
+															"ha_standby_dropped": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for HA Standby Dropped",
+															},
+															"ipv6_prefix_length_mismatch": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Framed IPV6 Prefix Length Mismatch",
+															},
+															"invalid_key": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Radius Request has Invalid Key Field",
 															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -9580,10 +9748,10 @@ func resourceVisibilityPacketCaptureGlobalTemplatesRead(ctx context.Context, d *
 	return diags
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesActivate2718(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesActivate2718 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesActivate2733(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesActivate2733 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesActivate2718
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesActivate2733
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Template = in["template"].(string)
@@ -9665,6 +9833,7 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.Cgnv6LsnAlgSip = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSip(in["cgnv6_lsn_alg_sip"].([]interface{}))
 		ret.Cgnv6LsnAlgMgcp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcp(in["cgnv6_lsn_alg_mgcp"].([]interface{}))
 		ret.Cgnv6LsnAlgH323 = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323(in["cgnv6_lsn_alg_h323"].([]interface{}))
+		ret.Cgnv6LsnRadius = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadius(in["cgnv6_lsn_radius"].([]interface{}))
 		ret.Cgnv6Nat64Global = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64Global(in["cgnv6_nat64_global"].([]interface{}))
 		ret.Cgnv6DsLiteGlobal = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobal(in["cgnv6_ds_lite_global"].([]interface{}))
 		ret.Cgnv6FixedNatGlobal = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobal(in["cgnv6_fixed_nat_global"].([]interface{}))
@@ -9682,6 +9851,7 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.FwGlobal = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobal(in["fw_global"].([]interface{}))
 		ret.FwAlgRtsp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtsp(in["fw_alg_rtsp"].([]interface{}))
 		ret.FwAlgPptp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptp(in["fw_alg_pptp"].([]interface{}))
+		ret.FwRadServer = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServer(in["fw_rad_server"].([]interface{}))
 		ret.FwTcpSynCookie = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookie(in["fw_tcp_syn_cookie"].([]interface{}))
 		ret.FwDdosProtection = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtection(in["fw_ddos_protection"].([]interface{}))
 		ret.FwGtp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtp(in["fw_gtp"].([]interface{}))
@@ -11596,9 +11766,6 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.L3_entry_remove_from_bgp_failure = in["l3_entry_remove_from_bgp_failure"].(int)
 		ret.L3_entry_add_to_hw_failure = in["l3_entry_add_to_hw_failure"].(int)
 		ret.Syn_cookie_verification_failed = in["syn_cookie_verification_failed"].(int)
-		ret.L3_entry_del_to_hw_failure = in["l3_entry_del_to_hw_failure"].(int)
-		ret.L4_entry_del_to_hw_failure = in["l4_entry_del_to_hw_failure"].(int)
-		ret.L4_entry_add_to_hw_failure = in["l4_entry_add_to_hw_failure"].(int)
 		//omit uuid
 	}
 	return ret
@@ -11626,9 +11793,6 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.L3_entry_remove_from_bgp_failure = in["l3_entry_remove_from_bgp_failure"].(int)
 		ret.L3_entry_add_to_hw_failure = in["l3_entry_add_to_hw_failure"].(int)
 		ret.Syn_cookie_verification_failed = in["syn_cookie_verification_failed"].(int)
-		ret.L3_entry_del_to_hw_failure = in["l3_entry_del_to_hw_failure"].(int)
-		ret.L4_entry_del_to_hw_failure = in["l4_entry_del_to_hw_failure"].(int)
-		ret.L4_entry_add_to_hw_failure = in["l4_entry_add_to_hw_failure"].(int)
 		//omit uuid
 	}
 	return ret
@@ -11977,6 +12141,61 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadius(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadius {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadius
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		//omit uuid
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsInc(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsRate(in["trigger_stats_rate"].([]interface{}))
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsInc(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsInc {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsInc
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.RadiusRequestDropped = in["radius_request_dropped"].(int)
+		ret.RequestBadSecretDropped = in["request_bad_secret_dropped"].(int)
+		ret.RequestNoKeyVapDropped = in["request_no_key_vap_dropped"].(int)
+		ret.RequestMalformedDropped = in["request_malformed_dropped"].(int)
+		ret.RequestIgnored = in["request_ignored"].(int)
+		ret.RadiusTableFull = in["radius_table_full"].(int)
+		ret.SecretNotConfiguredDropped = in["secret_not_configured_dropped"].(int)
+		ret.HaStandbyDropped = in["ha_standby_dropped"].(int)
+		ret.InvalidKey = in["invalid_key"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsRate(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsRate {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsRate
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
+		ret.Duration = in["duration"].(int)
+		ret.RadiusRequestDropped = in["radius_request_dropped"].(int)
+		ret.RequestBadSecretDropped = in["request_bad_secret_dropped"].(int)
+		ret.RequestNoKeyVapDropped = in["request_no_key_vap_dropped"].(int)
+		ret.RequestMalformedDropped = in["request_malformed_dropped"].(int)
+		ret.RequestIgnored = in["request_ignored"].(int)
+		ret.RadiusTableFull = in["radius_table_full"].(int)
+		ret.SecretNotConfiguredDropped = in["secret_not_configured_dropped"].(int)
+		ret.HaStandbyDropped = in["ha_standby_dropped"].(int)
+		ret.InvalidKey = in["invalid_key"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
 func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64Global(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64Global {
 
 	count1 := len(d)
@@ -12130,6 +12349,7 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.ConfigNotFound = in["config_not_found"].(int)
 		ret.PortOverloadFailed = in["port_overload_failed"].(int)
 		ret.HaSessionUserQuotaExceeded = in["ha_session_user_quota_exceeded"].(int)
+		ret.UnusedIpDrop = in["unused_ip_drop"].(int)
 		//omit uuid
 	}
 	return ret
@@ -12163,6 +12383,7 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.ConfigNotFound = in["config_not_found"].(int)
 		ret.PortOverloadFailed = in["port_overload_failed"].(int)
 		ret.HaSessionUserQuotaExceeded = in["ha_session_user_quota_exceeded"].(int)
+		ret.UnusedIpDrop = in["unused_ip_drop"].(int)
 		//omit uuid
 	}
 	return ret
@@ -12787,6 +13008,61 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.Duration = in["duration"].(int)
 		ret.CallReqPnsCallIdMismatch = in["call_req_pns_call_id_mismatch"].(int)
 		ret.CallReplyPnsCallIdMismatch = in["call_reply_pns_call_id_mismatch"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServer(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServer {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServer
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		//omit uuid
+		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsInc(in["trigger_stats_inc"].([]interface{}))
+		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsRate(in["trigger_stats_rate"].([]interface{}))
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsInc(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsInc {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsInc
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.RadiusRequestDropped = in["radius_request_dropped"].(int)
+		ret.RequestBadSecretDropped = in["request_bad_secret_dropped"].(int)
+		ret.RequestNoKeyVapDropped = in["request_no_key_vap_dropped"].(int)
+		ret.RequestMalformedDropped = in["request_malformed_dropped"].(int)
+		ret.RequestIgnored = in["request_ignored"].(int)
+		ret.RadiusTableFull = in["radius_table_full"].(int)
+		ret.HaStandbyDropped = in["ha_standby_dropped"].(int)
+		ret.Ipv6PrefixLengthMismatch = in["ipv6_prefix_length_mismatch"].(int)
+		ret.InvalidKey = in["invalid_key"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsRate(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsRate {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsRate
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
+		ret.Duration = in["duration"].(int)
+		ret.RadiusRequestDropped = in["radius_request_dropped"].(int)
+		ret.RequestBadSecretDropped = in["request_bad_secret_dropped"].(int)
+		ret.RequestNoKeyVapDropped = in["request_no_key_vap_dropped"].(int)
+		ret.RequestMalformedDropped = in["request_malformed_dropped"].(int)
+		ret.RequestIgnored = in["request_ignored"].(int)
+		ret.RadiusTableFull = in["radius_table_full"].(int)
+		ret.HaStandbyDropped = in["ha_standby_dropped"].(int)
+		ret.Ipv6PrefixLengthMismatch = in["ipv6_prefix_length_mismatch"].(int)
+		ret.InvalidKey = in["invalid_key"].(int)
 		//omit uuid
 	}
 	return ret
@@ -14914,7 +15190,7 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 
 func dataToEndpointVisibilityPacketCaptureGlobalTemplates(d *schema.ResourceData) edpt.VisibilityPacketCaptureGlobalTemplates {
 	var ret edpt.VisibilityPacketCaptureGlobalTemplates
-	ret.Inst.Activate = getObjectVisibilityPacketCaptureGlobalTemplatesActivate2718(d.Get("activate").([]interface{}))
+	ret.Inst.Activate = getObjectVisibilityPacketCaptureGlobalTemplatesActivate2733(d.Get("activate").([]interface{}))
 	ret.Inst.TemplateList = getSliceVisibilityPacketCaptureGlobalTemplatesTemplateList(d.Get("template_list").([]interface{}))
 	//omit uuid
 	return ret

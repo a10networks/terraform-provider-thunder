@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type WebService struct {
 	Inst struct {
 		AutoRedirtDisable int `json:"auto-redirt-disable"`
@@ -38,7 +38,7 @@ type WebService struct {
 
 		PublicApis []WebServicePublicApis `json:"public-apis"`
 
-		Secure WebServiceSecure3775 `json:"secure"`
+		Secure WebServiceSecure3813 `json:"secure"`
 
 		SecurePort int `json:"secure-port" dval:"443"`
 
@@ -54,36 +54,37 @@ type WebServicePublicApis struct {
 	ApiUri string `json:"api-uri"`
 }
 
-type WebServiceSecure3775 struct {
+type WebServiceSecure3813 struct {
 	Restart     int                             `json:"restart"`
 	Wipe        int                             `json:"wipe"`
-	Generate    WebServiceSecureGenerate3776    `json:"generate"`
-	Regenerate  WebServiceSecureRegenerate3777  `json:"regenerate"`
-	Certificate WebServiceSecureCertificate3778 `json:"certificate"`
-	PrivateKey  WebServiceSecurePrivateKey3779  `json:"private-key"`
+	Generate    WebServiceSecureGenerate3814    `json:"generate"`
+	Regenerate  WebServiceSecureRegenerate3815  `json:"regenerate"`
+	Certificate WebServiceSecureCertificate3816 `json:"certificate"`
+	PrivateKey  WebServiceSecurePrivateKey3817  `json:"private-key"`
 }
 
-type WebServiceSecureGenerate3776 struct {
+type WebServiceSecureGenerate3814 struct {
 	DomainName string `json:"domain-name"`
 	Country    string `json:"country"`
 	State      string `json:"state"`
 }
 
-type WebServiceSecureRegenerate3777 struct {
+type WebServiceSecureRegenerate3815 struct {
 	DomainName string `json:"domain-name"`
 	Country    string `json:"country"`
 	State      string `json:"state"`
 }
 
-type WebServiceSecureCertificate3778 struct {
+type WebServiceSecureCertificate3816 struct {
 	Load        int    `json:"load"`
 	UseMgmtPort int    `json:"use-mgmt-port"`
 	FileUrl     string `json:"file-url"`
 }
 
-type WebServiceSecurePrivateKey3779 struct {
+type WebServiceSecurePrivateKey3817 struct {
 	Load        int    `json:"load"`
 	UseMgmtPort int    `json:"use-mgmt-port"`
+	Passphrase  string `json:"passphrase"`
 	FileUrl     string `json:"file-url"`
 }
 

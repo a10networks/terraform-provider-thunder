@@ -160,10 +160,10 @@ func resourceSnmpServerEnableTrapsSystemRead(ctx context.Context, d *schema.Reso
 	return diags
 }
 
-func getObjectSnmpServerEnableTrapsSystemAppsGlobal1584(d []interface{}) edpt.SnmpServerEnableTrapsSystemAppsGlobal1584 {
+func getObjectSnmpServerEnableTrapsSystemAppsGlobal1585(d []interface{}) edpt.SnmpServerEnableTrapsSystemAppsGlobal1585 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsSystemAppsGlobal1584
+	var ret edpt.SnmpServerEnableTrapsSystemAppsGlobal1585
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SessionsThreshold = in["sessions_threshold"].(int)
@@ -176,7 +176,7 @@ func getObjectSnmpServerEnableTrapsSystemAppsGlobal1584(d []interface{}) edpt.Sn
 func dataToEndpointSnmpServerEnableTrapsSystem(d *schema.ResourceData) edpt.SnmpServerEnableTrapsSystem {
 	var ret edpt.SnmpServerEnableTrapsSystem
 	ret.Inst.All = d.Get("all").(int)
-	ret.Inst.AppsGlobal = getObjectSnmpServerEnableTrapsSystemAppsGlobal1584(d.Get("apps_global").([]interface{}))
+	ret.Inst.AppsGlobal = getObjectSnmpServerEnableTrapsSystemAppsGlobal1585(d.Get("apps_global").([]interface{}))
 	ret.Inst.ControlCpuHigh = d.Get("control_cpu_high").(int)
 	ret.Inst.DataCpuHigh = d.Get("data_cpu_high").(int)
 	ret.Inst.Fan = d.Get("fan").(int)

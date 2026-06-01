@@ -169,6 +169,12 @@ func resourceScaleoutCluster() *schema.Resource {
 						"action": {
 							Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': enable; 'disable': disable;",
 						},
+						"failure_domain": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "configure failure-domain",
+						},
+						"failure_domain_string": {
+							Type: schema.TypeString, Optional: true, Description: "Specify the failure-domain name",
+						},
 						"start_delay": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
@@ -762,6 +768,8 @@ func getObjectScaleoutClusterLocalDevice1457(d []interface{}) edpt.ScaleoutClust
 		ret.Priority = in["priority"].(int)
 		ret.Id1 = in["id1"].(int)
 		ret.Action = in["action"].(string)
+		ret.FailureDomain = in["failure_domain"].(int)
+		ret.FailureDomainString = in["failure_domain_string"].(string)
 		ret.StartDelay = in["start_delay"].(int)
 		ret.ClusterMode = in["cluster_mode"].(string)
 		//omit uuid

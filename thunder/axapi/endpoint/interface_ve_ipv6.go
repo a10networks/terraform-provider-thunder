@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type InterfaceVeIpv6 struct {
 	Inst struct {
 		AddressList []InterfaceVeIpv6AddressList `json:"address-list"`
@@ -16,15 +16,17 @@ type InterfaceVeIpv6 struct {
 
 		Ipv6Enable int `json:"ipv6-enable"`
 
-		Ospf InterfaceVeIpv6Ospf1029 `json:"ospf"`
+		Ospf InterfaceVeIpv6Ospf1025 `json:"ospf"`
 
 		Outside int `json:"outside"`
 
-		Rip InterfaceVeIpv6Rip1039 `json:"rip"`
+		Rip InterfaceVeIpv6Rip1035 `json:"rip"`
 
-		Router InterfaceVeIpv6Router1041 `json:"router"`
+		Router InterfaceVeIpv6Router1037 `json:"router"`
 
 		RouterAdver InterfaceVeIpv6RouterAdver `json:"router-adver"`
+
+		StatefulFirewall InterfaceVeIpv6StatefulFirewall1042 `json:"stateful-firewall"`
 
 		TtlIgnore int `json:"ttl-ignore"`
 
@@ -41,48 +43,48 @@ type InterfaceVeIpv6AddressList struct {
 	AddressType string `json:"address-type"`
 }
 
-type InterfaceVeIpv6Ospf1029 struct {
-	NetworkList           []InterfaceVeIpv6OspfNetworkList1030           `json:"network-list"`
+type InterfaceVeIpv6Ospf1025 struct {
+	NetworkList           []InterfaceVeIpv6OspfNetworkList1026           `json:"network-list"`
 	Bfd                   int                                            `json:"bfd"`
 	Disable               int                                            `json:"disable"`
-	CostCfg               []InterfaceVeIpv6OspfCostCfg1031               `json:"cost-cfg"`
-	DeadIntervalCfg       []InterfaceVeIpv6OspfDeadIntervalCfg1032       `json:"dead-interval-cfg"`
-	HelloIntervalCfg      []InterfaceVeIpv6OspfHelloIntervalCfg1033      `json:"hello-interval-cfg"`
-	MtuIgnoreCfg          []InterfaceVeIpv6OspfMtuIgnoreCfg1034          `json:"mtu-ignore-cfg"`
-	NeighborCfg           []InterfaceVeIpv6OspfNeighborCfg1035           `json:"neighbor-cfg"`
-	PriorityCfg           []InterfaceVeIpv6OspfPriorityCfg1036           `json:"priority-cfg"`
-	RetransmitIntervalCfg []InterfaceVeIpv6OspfRetransmitIntervalCfg1037 `json:"retransmit-interval-cfg"`
-	TransmitDelayCfg      []InterfaceVeIpv6OspfTransmitDelayCfg1038      `json:"transmit-delay-cfg"`
+	CostCfg               []InterfaceVeIpv6OspfCostCfg1027               `json:"cost-cfg"`
+	DeadIntervalCfg       []InterfaceVeIpv6OspfDeadIntervalCfg1028       `json:"dead-interval-cfg"`
+	HelloIntervalCfg      []InterfaceVeIpv6OspfHelloIntervalCfg1029      `json:"hello-interval-cfg"`
+	MtuIgnoreCfg          []InterfaceVeIpv6OspfMtuIgnoreCfg1030          `json:"mtu-ignore-cfg"`
+	NeighborCfg           []InterfaceVeIpv6OspfNeighborCfg1031           `json:"neighbor-cfg"`
+	PriorityCfg           []InterfaceVeIpv6OspfPriorityCfg1032           `json:"priority-cfg"`
+	RetransmitIntervalCfg []InterfaceVeIpv6OspfRetransmitIntervalCfg1033 `json:"retransmit-interval-cfg"`
+	TransmitDelayCfg      []InterfaceVeIpv6OspfTransmitDelayCfg1034      `json:"transmit-delay-cfg"`
 	Uuid                  string                                         `json:"uuid"`
 }
 
-type InterfaceVeIpv6OspfNetworkList1030 struct {
+type InterfaceVeIpv6OspfNetworkList1026 struct {
 	BroadcastType     string `json:"broadcast-type"`
 	P2mpNbma          int    `json:"p2mp-nbma"`
 	NetworkInstanceId int    `json:"network-instance-id"`
 }
 
-type InterfaceVeIpv6OspfCostCfg1031 struct {
+type InterfaceVeIpv6OspfCostCfg1027 struct {
 	Cost       int `json:"cost"`
 	InstanceId int `json:"instance-id"`
 }
 
-type InterfaceVeIpv6OspfDeadIntervalCfg1032 struct {
+type InterfaceVeIpv6OspfDeadIntervalCfg1028 struct {
 	DeadInterval int `json:"dead-interval" dval:"40"`
 	InstanceId   int `json:"instance-id"`
 }
 
-type InterfaceVeIpv6OspfHelloIntervalCfg1033 struct {
+type InterfaceVeIpv6OspfHelloIntervalCfg1029 struct {
 	HelloInterval int `json:"hello-interval" dval:"10"`
 	InstanceId    int `json:"instance-id"`
 }
 
-type InterfaceVeIpv6OspfMtuIgnoreCfg1034 struct {
+type InterfaceVeIpv6OspfMtuIgnoreCfg1030 struct {
 	MtuIgnore  int `json:"mtu-ignore"`
 	InstanceId int `json:"instance-id"`
 }
 
-type InterfaceVeIpv6OspfNeighborCfg1035 struct {
+type InterfaceVeIpv6OspfNeighborCfg1031 struct {
 	Neighbor             string `json:"neighbor" dval:"::"`
 	NeigInst             int    `json:"neig-inst"`
 	NeighborCost         int    `json:"neighbor-cost"`
@@ -90,54 +92,54 @@ type InterfaceVeIpv6OspfNeighborCfg1035 struct {
 	NeighborPriority     int    `json:"neighbor-priority"`
 }
 
-type InterfaceVeIpv6OspfPriorityCfg1036 struct {
+type InterfaceVeIpv6OspfPriorityCfg1032 struct {
 	Priority   int `json:"priority" dval:"1"`
 	InstanceId int `json:"instance-id"`
 }
 
-type InterfaceVeIpv6OspfRetransmitIntervalCfg1037 struct {
+type InterfaceVeIpv6OspfRetransmitIntervalCfg1033 struct {
 	RetransmitInterval int `json:"retransmit-interval" dval:"5"`
 	InstanceId         int `json:"instance-id"`
 }
 
-type InterfaceVeIpv6OspfTransmitDelayCfg1038 struct {
+type InterfaceVeIpv6OspfTransmitDelayCfg1034 struct {
 	TransmitDelay int `json:"transmit-delay" dval:"1"`
 	InstanceId    int `json:"instance-id"`
 }
 
-type InterfaceVeIpv6Rip1039 struct {
-	SplitHorizonCfg InterfaceVeIpv6RipSplitHorizonCfg1040 `json:"split-horizon-cfg"`
+type InterfaceVeIpv6Rip1035 struct {
+	SplitHorizonCfg InterfaceVeIpv6RipSplitHorizonCfg1036 `json:"split-horizon-cfg"`
 	Uuid            string                                `json:"uuid"`
 }
 
-type InterfaceVeIpv6RipSplitHorizonCfg1040 struct {
+type InterfaceVeIpv6RipSplitHorizonCfg1036 struct {
 	State string `json:"state" dval:"poisoned"`
 }
 
-type InterfaceVeIpv6Router1041 struct {
-	Ripng InterfaceVeIpv6RouterRipng1042 `json:"ripng"`
-	Ospf  InterfaceVeIpv6RouterOspf1043  `json:"ospf"`
-	Isis  InterfaceVeIpv6RouterIsis1045  `json:"isis"`
+type InterfaceVeIpv6Router1037 struct {
+	Ripng InterfaceVeIpv6RouterRipng1038 `json:"ripng"`
+	Ospf  InterfaceVeIpv6RouterOspf1039  `json:"ospf"`
+	Isis  InterfaceVeIpv6RouterIsis1041  `json:"isis"`
 }
 
-type InterfaceVeIpv6RouterRipng1042 struct {
+type InterfaceVeIpv6RouterRipng1038 struct {
 	Rip  int    `json:"rip"`
 	Uuid string `json:"uuid"`
 }
 
-type InterfaceVeIpv6RouterOspf1043 struct {
-	AreaList []InterfaceVeIpv6RouterOspfAreaList1044 `json:"area-list"`
+type InterfaceVeIpv6RouterOspf1039 struct {
+	AreaList []InterfaceVeIpv6RouterOspfAreaList1040 `json:"area-list"`
 	Uuid     string                                  `json:"uuid"`
 }
 
-type InterfaceVeIpv6RouterOspfAreaList1044 struct {
+type InterfaceVeIpv6RouterOspfAreaList1040 struct {
 	AreaIdNum  int    `json:"area-id-num"`
 	AreaIdAddr string `json:"area-id-addr"`
 	Tag        string `json:"tag"`
 	InstanceId int    `json:"instance-id"`
 }
 
-type InterfaceVeIpv6RouterIsis1045 struct {
+type InterfaceVeIpv6RouterIsis1041 struct {
 	Tag  string `json:"tag"`
 	Uuid string `json:"uuid"`
 }
@@ -170,6 +172,15 @@ type InterfaceVeIpv6RouterAdverPrefixList struct {
 	NotOnLink         int    `json:"not-on-link"`
 	PreferredLifetime int    `json:"preferred-lifetime" dval:"604800"`
 	ValidLifetime     int    `json:"valid-lifetime" dval:"2592000"`
+}
+
+type InterfaceVeIpv6StatefulFirewall1042 struct {
+	Inside     int    `json:"inside"`
+	ClassList  string `json:"class-list"`
+	Outside    int    `json:"outside"`
+	AccessList int    `json:"access-list"`
+	AclName    string `json:"acl-name"`
+	Uuid       string `json:"uuid"`
 }
 
 func (p *InterfaceVeIpv6) GetId() string {

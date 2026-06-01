@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type DdosTemplateSipMalformedSip struct {
 	Inst struct {
 		MalformedSipCallIdMaxLength int `json:"malformed-sip-call-id-max-length" dval:"32511"`

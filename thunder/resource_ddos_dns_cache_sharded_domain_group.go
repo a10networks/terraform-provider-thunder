@@ -56,6 +56,9 @@ func resourceDdosDnsCacheShardedDomainGroup() *schema.Resource {
 						"dns_notify_enable_ipv6": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "DNS notify enabled",
 						},
+						"refresh_interval_by_soa": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Read by SOA record",
+						},
 						"refresh_interval_hours": {
 							Type: schema.TypeInt, Optional: true, Default: 4, Description: "Zone transfer refresh rate in hours (Default 4). 0 means no refresh",
 						},
@@ -190,6 +193,7 @@ func getSliceDdosDnsCacheShardedDomainGroupShardedDomainListPolicyList(d []inter
 		oi.ServerV6Port = in["server_v6_port"].(int)
 		oi.ClientIpv6 = in["client_ipv6"].(string)
 		oi.DnsNotifyEnableIpv6 = in["dns_notify_enable_ipv6"].(int)
+		oi.RefreshIntervalBySoa = in["refresh_interval_by_soa"].(int)
 		oi.RefreshIntervalHours = in["refresh_interval_hours"].(int)
 		oi.ManualRefresh = in["manual_refresh"].(string)
 		oi.Force = in["force"].(int)

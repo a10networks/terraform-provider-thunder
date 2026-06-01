@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// based on ACOS 7_0_2-102
+// based on ACOS 6_0_8-219
 type Cgnv6Lw4o6BindingTableTunnelAddressNatAddressPortRange struct {
 	Inst struct {
 		PortEnd int `json:"port-end"`
@@ -15,11 +15,11 @@ type Cgnv6Lw4o6BindingTableTunnelAddressNatAddressPortRange struct {
 
 		TunnelEndpointAddress string `json:"tunnel-endpoint-address"`
 
-		Ipv6TunnelAddr string
-
 		Binding_table_name string
 
 		Ipv4NatAddr string
+
+		Ipv6TunnelAddr string
 	} `json:"port-range"`
 }
 
