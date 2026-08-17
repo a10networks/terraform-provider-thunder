@@ -4,6 +4,7 @@ import (
 	"github.com/a10networks/terraform-provider-thunder/thunder/axapi"
 	"github.com/clarketm/json"
 	"net/url"
+	"strconv"
 )
 
 // based on ACOS 6_0_8-219
@@ -25,7 +26,7 @@ type Glid struct {
 
 		FragPktRateLimit int `json:"frag-pkt-rate-limit"`
 
-		Name string `json:"name"`
+		Name NumericString `json:"name"`
 
 		OverLimitCfg GlidOverLimitCfg `json:"over-limit-cfg"`
 
@@ -72,7 +73,31 @@ type GlidOverLimitCfg struct {
 }
 
 func (p *Glid) GetId() string {
-	return url.QueryEscape(p.Inst.Name)
+	return url.QueryEscape(string(p.Inst.Name))
+}
+
+type NumericString string
+
+func (s NumericString) MarshalJSON() ([]byte, error) {
+	if _, err := strconv.Atoi(string(s)); err != nil {
+		return json.Marshal(string(s))
+	}
+	return []byte(string(s)), nil
+}
+
+func (s *NumericString) UnmarshalJSON(data []byte) error {
+	var str string
+	if err := json.Unmarshal(data, &str); err == nil {
+		*s = NumericString(str)
+		return nil
+	}
+
+	var num int
+	if err := json.Unmarshal(data, &num); err != nil {
+		return err
+	}
+	*s = NumericString(strconv.Itoa(num))
+	return nil
 }
 
 func (p *Glid) getPath() string {

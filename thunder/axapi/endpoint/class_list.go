@@ -4,6 +4,7 @@ import (
 	"github.com/a10networks/terraform-provider-thunder/thunder/axapi"
 	"github.com/clarketm/json"
 	"net/url"
+	"strconv"
 )
 
 // based on ACOS 6_0_8-219
@@ -59,15 +60,36 @@ type ClassListGeoList struct {
 }
 
 type ClassListIpv4List struct {
-	Ipv4addr             string `json:"ipv4addr"`
-	Lid                  int    `json:"lid"`
-	Glid                 string `json:"glid"`
-	SharedPartitionGlid  int    `json:"shared-partition-glid"`
-	GlidShared           string `json:"glid-shared"`
-	LsnLid               int    `json:"lsn-lid"`
-	LsnRadiusProfile     int    `json:"lsn-radius-profile"`
-	GtpRateLimitPolicyV4 string `json:"gtp-rate-limit-policy-v4"`
-	Age                  int    `json:"age"`
+	Ipv4addr             string         `json:"ipv4addr"`
+	Lid                  int            `json:"lid"`
+	Glid                 StringOrNumber `json:"glid"`
+	SharedPartitionGlid  int            `json:"shared-partition-glid"`
+	GlidShared           string         `json:"glid-shared"`
+	LsnLid               int            `json:"lsn-lid"`
+	LsnRadiusProfile     int            `json:"lsn-radius-profile"`
+	GtpRateLimitPolicyV4 string         `json:"gtp-rate-limit-policy-v4"`
+	Age                  int            `json:"age"`
+}
+
+type StringOrNumber string
+
+func (s StringOrNumber) MarshalJSON() ([]byte, error) {
+	return json.Marshal(string(s))
+}
+
+func (s *StringOrNumber) UnmarshalJSON(data []byte) error {
+	var str string
+	if err := json.Unmarshal(data, &str); err == nil {
+		*s = StringOrNumber(str)
+		return nil
+	}
+
+	var num int
+	if err := json.Unmarshal(data, &num); err != nil {
+		return err
+	}
+	*s = StringOrNumber(strconv.Itoa(num))
+	return nil
 }
 
 type ClassListIpv6List struct {

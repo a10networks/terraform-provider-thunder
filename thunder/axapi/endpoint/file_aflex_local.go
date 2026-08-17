@@ -73,14 +73,14 @@ func (p *FileAflexLocal) Post(authToken string, host string, logger *axapi.Thund
 	s.Inst.DstFile = p.Inst.DstFile
 	s.Inst.File = p.Inst.File
 	if p.Inst.FileHandle != "" {
-		s.Inst.FileHandle = p.Inst.FileHandle
+		s.Inst.FileHandle = p.Inst.File
 	}
 	if p.Inst.SkipBackup != 0 {
 		s.Inst.SkipBackup = p.Inst.SkipBackup
 	}
 	s.Inst.Uuid = p.Inst.Uuid
 	s.Inst.FileContent = data
-	_, err = axapi.NormalizeMultipartObject(http.MethodPost,p.getPath(),s.Inst.File,s.Inst.FileContent,s,headers,host,logger,)
+	_, err = axapi.NormalizeMultipartObject(http.MethodPost, p.getPath(), s.Inst.File, s.Inst.FileContent, s, headers, host, logger)
 	return err
 
 }

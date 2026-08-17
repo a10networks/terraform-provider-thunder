@@ -309,7 +309,7 @@ func getSliceClassListIpv4List(d []interface{}) []edpt.ClassListIpv4List {
 		var oi edpt.ClassListIpv4List
 		oi.Ipv4addr = in["ipv4addr"].(string)
 		oi.Lid = in["lid"].(int)
-		oi.Glid = in["glid"].(string)
+		oi.Glid = edpt.StringOrNumber(in["glid"].(string))
 		oi.SharedPartitionGlid = in["shared_partition_glid"].(int)
 		oi.GlidShared = in["glid_shared"].(string)
 		oi.LsnLid = in["lsn_lid"].(int)

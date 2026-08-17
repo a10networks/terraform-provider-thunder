@@ -2,9 +2,11 @@ package thunder
 
 import (
 	"context"
+	"fmt"
 	edpt "github.com/a10networks/terraform-provider-thunder/thunder/axapi/endpoint"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"strconv"
 )
 
 func resourceGlid() *schema.Resource {
@@ -68,6 +70,12 @@ func resourceGlid() *schema.Resource {
 			},
 			"name": {
 				Type: schema.TypeString, Required: true, Description: "Global Limit ID Name (PBSLB allows number only)",
+				ValidateFunc: func(i interface{}, k string) (warnings []string, errors []error) {
+					if _, err := strconv.Atoi(i.(string)); err != nil {
+						errors = append(errors, fmt.Errorf("%q must be a numeric GLID name", k))
+					}
+					return warnings, errors
+				},
 			},
 			"over_limit_cfg": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -242,7 +250,7 @@ func dataToEndpointGlid(d *schema.ResourceData) edpt.Glid {
 	ret.Inst.Dns = getObjectGlidDns(d.Get("dns").([]interface{}))
 	ret.Inst.Dns64 = getObjectGlidDns64(d.Get("dns64").([]interface{}))
 	ret.Inst.FragPktRateLimit = d.Get("frag_pkt_rate_limit").(int)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Name = edpt.NumericString(d.Get("name").(string))
 	ret.Inst.OverLimitCfg = getObjectGlidOverLimitCfg(d.Get("over_limit_cfg").([]interface{}))
 	ret.Inst.PktRateLimit = d.Get("pkt_rate_limit").(int)
 	ret.Inst.RateUnit = d.Get("rate_unit").(string)
