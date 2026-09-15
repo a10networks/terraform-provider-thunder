@@ -9,23 +9,27 @@ Terraform provider plugin will only configure thunder via axapi, It will not ins
 
 ## Support Matrix
 
-| ACOS | [TTP 1.0.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.0.0) | [TTP 1.1.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.1.0) | [TTP 1.2.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.2.1) | [TTP 1.2.2](https://github.com/a10networks/terraform-provider-thunder/tree/v1.2.2) | [TTP 1.3.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.3.0) | [TTP 1.4.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.4.0) | [TTP 1.4.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.4.1) | [TTP 1.4.2](https://github.com/a10networks/terraform-provider-thunder/tree/v1.4.2) | [TTP 1.4.3](https://github.com/a10networks/terraform-provider-thunder/tree/v1.4.3) | [TTP 1.5.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.5.0) | [TTP 1.5.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.5.1) | [TTP 1.6.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.6.0) | [TTP 1.6.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.6.1) |
-| :--------: | :-------: | :-------:  | :-------: | :-------: | :-------: | :-------: | :-------: | :-------:| :-------:|:-------:| :-------:| :-------:| :-------:|
-| `ACOS version 6.0.8` | `No`  | `No`  | `No`| `No` | `No` | `No` | `No`| `No`| `No`| `No`| `No`| `Yes`| `Yes`|
-| `ACOS version 7.0.2` | `No`  | `No`  | `No`| `No` | `No` | `No` | `No`| `No`| `No`| `Yes`| `Yes`| `No`| `No`|
-| `ACOS version 6.0.2-p1` | `No`  | `No`  | `No`| `No` | `No` | `Yes` | `Yes`| `Yes`| `Yes`| `No`| `No`| `No`| `No`|
-| `ACOS version 6.0.1` | `No`  | `No`  | `Yes`| `Yes` | `Yes` | `No` | `No` | `No`| `No`| `No`| `No`| `No`| `No`|
-| `ACOS version 6.0.0-p2` | `No`  | `No`  | `Yes`| `Yes` | `Yes` | `No` | `No` | `No`| `No`| `No`| `No`| `No`| `No`|
-| `ACOS version 6.0.0-p1` | `No`  | `No`  | `Yes`| `Yes` | `Yes` | `No` | `No` | `No`| `No`| `No`| `No`| `No`| `No`|
-| `ACOS version 5.2.1-p6` | `No`  | `Yes` | `No` | `No` | `No` | `No` | `No` | `No`| `No`| `No`| `No`| `No`| `No`|
-| `ACOS version 5.2.1-p5`| `No`  | `Yes` | `No` | `No` | `No` | `No` | `No` | `No`| `No`| `No`| `No`| `No`| `No`|
-| `ACOS version 5.2.1-p4` | `Yes` | `No`  | `No` | `No` | `No` | `No` | `No` | `No`| `No`| `No`| `No`| `No`| `No`|
-| `ACOS version 5.2.1-p3` | `Yes` | `No`  | `No` | `No` | `No` | `No` | `No` | `No`| `No`| `No`| `No`| `No`| `No`|
+| ACOS | [TTP 1.0.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.0.0) | [TTP 1.1.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.1.0) | [TTP 1.2.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.2.1) | [TTP 1.2.2](https://github.com/a10networks/terraform-provider-thunder/tree/v1.2.2) | [TTP 1.3.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.3.0) | [TTP 1.4.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.4.0) | [TTP 1.4.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.4.1) | [TTP 1.4.2](https://github.com/a10networks/terraform-provider-thunder/tree/v1.4.2) | [TTP 1.4.3](https://github.com/a10networks/terraform-provider-thunder/tree/v1.4.3) | [TTP 1.5.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.5.0) | [TTP 1.5.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.5.1) | [TTP 1.6.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.6.0) | [TTP 1.6.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.6.1) | [TTP 1.6.2](https://github.com/a10networks/terraform-provider-thunder/tree/v1.6.2) |
+| :--------: | :-------: | :-------:  | :-------: | :-------: | :-------: | :-------: | :-------: | :-------:| :-------:|:-------:| :-------:| :-------:| :-------:| :-------:|
+| `ACOS version 6.0.8` | `No`  | `No`  | `No`| `No` | `No` | `No` | `No`| `No`| `No`| `No`| `No`| `Yes`| `Yes`| `Yes`|
+| `ACOS version 7.0.2` | `No`  | `No`  | `No`| `No` | `No` | `No` | `No`| `No`| `No`| `Yes`| `Yes`| `No`| `No`| `No`|
+| `ACOS version 6.0.2-p1` | `No`  | `No`  | `No`| `No` | `No` | `Yes` | `Yes`| `Yes`| `Yes`| `No`| `No`| `No`| `No`| `No`|
+| `ACOS version 6.0.1` | `No`  | `No`  | `Yes`| `Yes` | `Yes` | `No` | `No` | `No`| `No`| `No`| `No`| `No`| `No`| `No`|
+| `ACOS version 6.0.0-p2` | `No`  | `No`  | `Yes`| `Yes` | `Yes` | `No` | `No` | `No`| `No`| `No`| `No`| `No`| `No`| `No`|
+| `ACOS version 6.0.0-p1` | `No`  | `No`  | `Yes`| `Yes` | `Yes` | `No` | `No` | `No`| `No`| `No`| `No`| `No`| `No`| `No`|
+| `ACOS version 5.2.1-p6` | `No`  | `Yes` | `No` | `No` | `No` | `No` | `No` | `No`| `No`| `No`| `No`| `No`| `No`| `No`|
+| `ACOS version 5.2.1-p5`| `No`  | `Yes` | `No` | `No` | `No` | `No` | `No` | `No`| `No`| `No`| `No`| `No`| `No`| `No`|
+| `ACOS version 5.2.1-p4` | `Yes` | `No`  | `No` | `No` | `No` | `No` | `No` | `No`| `No`| `No`| `No`| `No`| `No`| `No`|
+| `ACOS version 5.2.1-p3` | `Yes` | `No`  | `No` | `No` | `No` | `No` | `No` | `No`| `No`| `No`| `No`| `No`| `No`| `No`|
 
 ## Release Logs
 
+### TTP-1.6.2
+- Added support for versioning in which the optional parameters for the SLB Template Client SSL and Aflex resources are handled.
+
 ### TTP-1.6.1
-- Added the support of version in slb template, glid and fixed teh issue related to aflex resource
+- Added version support for SLB Template and GLID resources.
+- Fixed an issue related to the Aflex resource.
 
 ### TTP-1.6.0
 

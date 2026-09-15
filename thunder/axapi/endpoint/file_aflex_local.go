@@ -5,6 +5,7 @@ import (
 	"github.com/clarketm/json"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"os"
 )
 
@@ -33,7 +34,13 @@ type DeleteFileAflexLocal struct {
 }
 
 func (p *FileAflexLocal) GetId() string {
-	return "1"
+	if p.Inst.File != "" {
+		return url.QueryEscape(p.Inst.File)
+	}
+	if p.Inst.DstFile != "" {
+		return url.QueryEscape(p.Inst.DstFile)
+	}
+	return ""
 }
 
 func (p *FileAflexLocal) getPath() string {
@@ -71,6 +78,9 @@ func (p *FileAflexLocal) Post(authToken string, host string, logger *axapi.Thund
 	s := &FileAflexLocal{}
 	s.Inst.Action = p.Inst.Action
 	s.Inst.DstFile = p.Inst.DstFile
+	if s.Inst.DstFile == "" && (p.Inst.Action == "import" || p.Inst.Action == "replace") {
+		s.Inst.DstFile = p.Inst.File
+	}
 	s.Inst.File = p.Inst.File
 	if p.Inst.FileHandle != "" {
 		s.Inst.FileHandle = p.Inst.File

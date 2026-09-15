@@ -1833,9 +1833,6 @@ func dataToEndpointSlbTemplateClientSsl(d *schema.ResourceData) edpt.SlbTemplate
 	ret.Inst.CloseNotify = d.Get("close_notify").(int)
 	ret.Inst.ContainsList = getSliceSlbTemplateClientSslContainsList(d.Get("contains_list").([]interface{}))
 	ret.Inst.CrlCerts = getSliceSlbTemplateClientSslCrlCerts(d.Get("crl_certs").([]interface{}))
-	if _, ok := d.GetOk("version"); ok {
-		ret.Inst.Dgversion = d.Get("dgversion").(int)
-	}
 	ret.Inst.DhType = d.Get("dh_type").(string)
 	ret.Inst.DirectClientServerAuth = d.Get("direct_client_server_auth").(int)
 	ret.Inst.DisableSslv3 = d.Get("disable_sslv3").(int)
@@ -1992,6 +1989,7 @@ func dataToEndpointSlbTemplateClientSsl(d *schema.ResourceData) edpt.SlbTemplate
 	ret.Inst.VerifyCertFailAction = d.Get("verify_cert_fail_action").(string)
 	if version, ok := d.GetOk("version"); ok {
 		ret.Inst.Version = version.(int)
+		ret.Inst.Dgversion = d.Get("dgversion").(int)
 	}
 	ret.Inst.WebCategory = getObjectSlbTemplateClientSslWebCategory(d.Get("web_category").([]interface{}))
 	ret.Inst.WebReputation = getObjectSlbTemplateClientSslWebReputation(d.Get("web_reputation").([]interface{}))

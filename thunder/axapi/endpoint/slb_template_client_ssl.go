@@ -109,7 +109,7 @@ type SlbTemplateClientSsl struct {
 
 		CrlCerts []SlbTemplateClientSslCrlCerts `json:"crl-certs"`
 
-		Dgversion int `json:"dgversion" dval:"31"`
+		Dgversion int `json:"dgversion"`
 
 		DhType string `json:"dh-type"`
 
